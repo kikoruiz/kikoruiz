@@ -1,6 +1,6 @@
-import React from "react";
-import { styled } from "frontity";
-import Loader from "react-spinners/ScaleLoader";
+import React from 'react'
+import {styled} from 'frontity'
+import Loader from 'react-spinners/ScaleLoader'
 
 const Loading = () => (
   <Container>
@@ -12,9 +12,9 @@ const Loading = () => (
       height={24}
     />
   </Container>
-);
+)
 
-export default Loading;
+export default Loading
 
 const Container = styled.div`
   width: 800px;
@@ -27,4 +27,4 @@ const Container = styled.div`
   & > * {
     margin-top: 24px;
   }
-`;
+`

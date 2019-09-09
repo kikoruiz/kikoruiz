@@ -1,22 +1,30 @@
-import React from "react";
-import { connect } from "frontity";
+import React from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'frontity'
 
-const Link = ({ actions, link, className, children }) => {
+const Link = ({actions, link, className, children}) => {
   const onClick = event => {
     // Do nothing if it's an external link
-    if (link.startsWith("http")) return;
+    if (link.startsWith('http')) return
 
-    event.preventDefault();
+    event.preventDefault()
     // Set the router to the new url.
-    actions.router.set(link);
-    window.scrollTo(0, 0);
-  };
+    actions.router.set(link)
+    window.scrollTo(0, 0)
+  }
 
   return (
     <a href={link} onClick={onClick} className={className}>
       {children}
     </a>
-  );
-};
+  )
+}
 
-export default connect(Link);
+Link.propTypes = {
+  actions: PropTypes.obj,
+  link: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node
+}
+
+export default connect(Link)

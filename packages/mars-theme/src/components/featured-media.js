@@ -1,11 +1,12 @@
-import React from "react";
-import { connect, styled } from "frontity";
-import Image from "@frontity/components/image";
+import React from 'react'
+import PropTypes from 'prop-types'
+import {connect, styled} from 'frontity'
+import Image from '@frontity/components/image'
 
-const FeaturedMedia = ({ state, id }) => {
-  const media = state.source.attachment[id];
+const FeaturedMedia = ({state, id}) => {
+  const media = state.source.attachment[id]
 
-  if (!media) return null;
+  if (!media) return null
 
   const srcset =
     Object.values(media.media_details.sizes)
@@ -15,10 +16,10 @@ const FeaturedMedia = ({ state, id }) => {
       .reduce(
         (final, current, index, array) =>
           final.concat(
-            `${current.join(" ")}w${index !== array.length - 1 ? ", " : ""}`
+            `${current.join(' ')}w${index !== array.length - 1 ? ', ' : ''}`
           ),
-        ""
-      ) || null;
+        ''
+      ) || null
 
   return (
     <Container>
@@ -28,19 +29,24 @@ const FeaturedMedia = ({ state, id }) => {
         srcSet={srcset}
       />
     </Container>
-  );
-};
+  )
+}
 
-export default connect(FeaturedMedia);
+FeaturedMedia.propTypes = {
+  state: PropTypes.obj,
+  id: PropTypes.any
+}
+
+export default connect(FeaturedMedia)
 
 const Container = styled.div`
   margin-top: 16px;
   height: 300px;
-`;
+`
 
 const StyledImage = styled(Image)`
   display: block;
   height: 100%;
   width: 100%;
   object-fit: cover;
-`;
+`

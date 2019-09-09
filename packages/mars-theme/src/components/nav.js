@@ -1,8 +1,9 @@
-import React from "react";
-import { connect, styled } from "frontity";
-import Link from "./link";
+import React from 'react'
+import PropTypes from 'prop-types'
+import {connect, styled} from 'frontity'
+import Link from './link'
 
-const Nav = ({ state }) => (
+const Nav = ({state}) => (
   <Container>
     {state.theme.menu.map(([name, link]) => (
       <Item key={name} isSelected={state.router.link === link}>
@@ -10,9 +11,13 @@ const Nav = ({ state }) => (
       </Item>
     ))}
   </Container>
-);
+)
 
-export default connect(Nav);
+Nav.propTypes = {
+  state: PropTypes.obj
+}
+
+export default connect(Nav)
 
 const Container = styled.nav`
   list-style: none;
@@ -23,7 +28,7 @@ const Container = styled.nav`
   padding: 0 24px;
   margin: 0;
   overflow-x: auto;
-`;
+`
 
 const Item = styled.div`
   padding: 0;
@@ -37,7 +42,7 @@ const Item = styled.div`
     display: inline-block;
     line-height: 2em;
     border-bottom: 2px solid
-      ${({ isSelected }) => (isSelected ? "#fff" : "transparent")};
+      ${({isSelected}) => (isSelected ? '#fff' : 'transparent')};
   }
 
   &:first-of-type {
@@ -48,9 +53,9 @@ const Item = styled.div`
     margin-right: 0;
 
     &:after {
-      content: "";
+      content: '';
       display: inline-block;
       width: 24px;
     }
   }
-`;
+`
