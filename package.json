@@ -10,7 +10,9 @@
     "dev": "frontity dev",
     "build": "frontity build",
     "serve": "frontity serve",
-    "commit": "npx git-cz"
+    "commit": "npx git-cz",
+    "lint": "sui-lint js",
+    "lint:fix": "sui-lint js --fix"
   },
   "prettier": {},
   "dependencies": {
