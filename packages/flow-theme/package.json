@@ -1,0 +1,26 @@
+{
+  "name": "@kikoruiz/flow-theme",
+  "version": "0.0.1",
+  "description": "Kiko Ruiz flow theme.",
+  "keywords": [
+    "frontity",
+    "kikoruiz",
+    "kikoruiz-theme",
+    "flow",
+    "flow-theme"
+  ],
+  "homepage": "https://kikoruiz.es",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kikoruiz/kikoruiz.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@frontity/components": "^1.1.11",
+    "@frontity/html2react": "^1.1.11",
+    "frontity": "^1.3.1"
+  }
+}

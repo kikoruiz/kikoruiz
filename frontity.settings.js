@@ -9,16 +9,10 @@ const settings = {
   },
   packages: [
     {
-      name: '@frontity/mars-theme',
+      name: '@kikoruiz/flow-theme',
       state: {
         theme: {
-          menu: [
-            ['Home', '/'],
-            ['Nature', '/category/nature/'],
-            ['Travel', '/category/travel/'],
-            ['Japan', '/tag/japan/'],
-            ['About Us', '/about-us/']
-          ],
+          menu: [['Home', '/']],
           featured: {
             showOnList: false,
             showOnPost: false
