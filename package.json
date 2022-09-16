@@ -19,6 +19,8 @@
     "eslint-config-next": "12",
     "eslint-config-prettier": "8",
     "postcss": "8",
+    "prettier": "2",
+    "prettier-plugin-tailwindcss": "0",
     "tailwindcss": "3"
   }
 }
