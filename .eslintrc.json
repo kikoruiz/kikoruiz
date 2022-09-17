@@ -1,6 +1,12 @@
 {
+  "env": {
+    "es6": true
+  },
   "extends": ["next", "prettier"],
   "rules": {
-    "no-unused-vars": "warn"
+    "import/extensions": ["warn", "always", {"ignorePackages": true}],
+    "no-undef": "error",
+    "no-unused-vars": "warn",
+    "spaced-comment": "warn"
   }
 }

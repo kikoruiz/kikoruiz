@@ -1,7 +1,8 @@
-import {getGalleryAlbums} from '../lib/gallery/albums.js'
+import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 
-export default function Home({albums}) {
+export default function Gallery({albums}) {
   console.log({albums})
+
   return (
     <ul>
       {albums.map(({name}, index) => (

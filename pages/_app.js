@@ -1,7 +1,37 @@
+import Head from 'next/head'
+import Link from 'next/link'
 import '../styles/globals.css'
 
-function App({Component, pageProps}) {
-  return <Component {...pageProps} />
-}
+export default function App({Component, pageProps}) {
+  return (
+    <>
+      <Head>
+        <title>Kiko Ruiz</title>
+        <meta name="description" content="Kiko Ruiz" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-export default App
+      <header>
+        <nav>
+          <ul>
+            <li>
+              <Link href="/">
+                <a>Home</a>
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/posts">
+                <a>Posts</a>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <Component {...pageProps} />
+      </main>
+      <footer></footer>
+    </>
+  )
+}
