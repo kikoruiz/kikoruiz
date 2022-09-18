@@ -21,8 +21,8 @@ export default function App({Component, pageProps}) {
             </li>
 
             <li>
-              <Link href="/posts">
-                <a>Posts</a>
+              <Link href="/blog">
+                <a>Blog</a>
               </Link>
             </li>
           </ul>
