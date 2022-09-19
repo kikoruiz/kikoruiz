@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "minify:pictures": "imagemin resources/pictures/* --plugin=webp --out-dir=public/pictures"
+    "lint": "next lint"
   },
   "dependencies": {
     "change-case": "4",
@@ -24,8 +23,6 @@
     "eslint": "8",
     "eslint-config-next": "12",
     "eslint-config-prettier": "8",
-    "imagemin-cli": "7",
-    "imagemin-webp": "7",
     "postcss": "8",
     "prettier": "2",
     "prettier-plugin-tailwindcss": "0",
