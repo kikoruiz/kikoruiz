@@ -1,12 +1,15 @@
+import Link from 'next/link'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 
 export default function Gallery({albums}) {
-  console.log({albums})
-
   return (
     <ul>
-      {albums.map(({name}, index) => (
-        <li key={index}>{name}</li>
+      {albums.map(({name, slug}) => (
+        <li key={slug}>
+          <Link href={`/gallery/${slug}`}>
+            <a>{name}</a>
+          </Link>
+        </li>
       ))}
     </ul>
   )
