@@ -2,7 +2,7 @@ import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 import {getGalleryPictures} from '../../lib/gallery/pictures.js'
 
 export default function GalleryAlbum({pictures}) {
-  return (
+  return pictures.length > 0 ? (
     <ul>
       {pictures.map(({fileName, title}, index) => (
         <li key={index}>
@@ -10,6 +10,8 @@ export default function GalleryAlbum({pictures}) {
         </li>
       ))}
     </ul>
+  ) : (
+    'There are no pictures in this album.'
   )
 }
 

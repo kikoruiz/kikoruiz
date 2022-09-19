@@ -1,18 +1,8 @@
-import Link from 'next/link'
+import Collection from '../../components/collection.js'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 
 export default function Gallery({albums}) {
-  return (
-    <ul>
-      {albums.map(({name, slug}) => (
-        <li key={slug}>
-          <Link href={`/gallery/${slug}`}>
-            <a>{name}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  )
+  return <Collection items={albums} />
 }
 
 export async function getStaticProps() {

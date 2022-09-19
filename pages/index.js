@@ -1,14 +1,8 @@
+import Collection from '../components/collection.js'
 import {getGalleryAlbums} from '../lib/gallery/albums.js'
 
 export default function Home({albums}) {
-  console.log({albums})
-  return (
-    <ul>
-      {albums.map(({name}, index) => (
-        <li key={index}>{name}</li>
-      ))}
-    </ul>
-  )
+  return <Collection items={albums} />
 }
 
 export async function getStaticProps() {
