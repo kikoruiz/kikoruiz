@@ -1,4 +1,4 @@
-export const ALBUMS = [
+export const GALLERY_ALBUMS = [
   {
     name: 'Seascapes',
     slug: 'seascapes',
