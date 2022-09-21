@@ -6,6 +6,18 @@ export const GALLERY_ALBUMS = [
     description: ''
   },
   {
+    name: 'Moon',
+    slug: 'moon',
+    tag: 'moon',
+    description: ''
+  },
+  {
+    name: 'Portraits',
+    slug: 'portraits',
+    tag: 'portrait',
+    description: ''
+  },
+  {
     name: 'Iceland',
     slug: 'iceland',
     tag: 'iceland',
@@ -15,12 +27,6 @@ export const GALLERY_ALBUMS = [
     name: 'Lofoten Islands',
     slug: 'lofoten-islands',
     tag: 'lofoten islands',
-    description: ''
-  },
-  {
-    name: 'Moon',
-    slug: 'moon',
-    tag: 'moon',
     description: ''
   },
   {

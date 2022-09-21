@@ -1,18 +1,10 @@
+import Collection from '../../components/collection.js'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 import {getGalleryPictures} from '../../lib/gallery/pictures.js'
+import {fromExifToCollection} from '../../lib/gallery/mappers.js'
 
 export default function GalleryAlbum({pictures}) {
-  return pictures.length > 0 ? (
-    <ul>
-      {pictures.map(({fileName, title}, index) => (
-        <li key={index}>
-          {title}: {fileName}
-        </li>
-      ))}
-    </ul>
-  ) : (
-    'There are no pictures in this album.'
-  )
+  return <Collection items={pictures} />
 }
 
 export async function getStaticPaths() {
@@ -28,6 +20,8 @@ export async function getStaticProps({params: {slug}}) {
   const pictures = await getGalleryPictures({slug})
 
   return {
-    props: {pictures}
+    props: {
+      pictures: pictures.map(fromExifToCollection)
+    }
   }
 }

@@ -8,7 +8,6 @@ export default function App({Component, pageProps}) {
       <Head>
         <title>Kiko Ruiz</title>
         <meta name="description" content="Kiko Ruiz" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header>
@@ -28,9 +27,11 @@ export default function App({Component, pageProps}) {
           </ul>
         </nav>
       </header>
+
       <main>
         <Component {...pageProps} />
       </main>
+
       <footer></footer>
     </>
   )
