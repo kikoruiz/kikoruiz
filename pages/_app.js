@@ -1,5 +1,7 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import Header from '../components/header.js'
+import Navbar from '../components/navbar.js'
+import Footer from '../components/footer.js'
 import '../styles/globals.css'
 
 export default function App({Component, pageProps}) {
@@ -10,29 +12,12 @@ export default function App({Component, pageProps}) {
         <meta name="description" content="Kiko Ruiz" />
       </Head>
 
-      <header>
-        <nav>
-          <ul>
-            <li>
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/blog">
-                <a>Blog</a>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
+      <Header />
+      <Navbar />
       <main>
         <Component {...pageProps} />
       </main>
-
-      <footer></footer>
+      <Footer />
     </>
   )
 }
