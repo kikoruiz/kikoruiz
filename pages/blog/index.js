@@ -4,7 +4,7 @@ import {getPrettyDate} from '../../lib/blog/date.js'
 
 export default function Posts({posts}) {
   return (
-    <div>
+    <div className="p-12">
       <h1>Posts</h1>
       {posts.map(post => (
         <article key={post.slug}>

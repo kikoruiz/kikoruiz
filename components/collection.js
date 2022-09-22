@@ -8,12 +8,11 @@ export default function Collection({items}) {
     <div className="columns-2 gap-1 space-y-1 p-1 md:columns-3">
       {items.map(({name, key, url, image}, index) => {
         const {src, orientation} = image
+        const className = `relative ${
+          orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
+        }`
         const content = (
-          <div
-            className={`relative ${
-              orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
-            }`}
-          >
+          <div className={className}>
             <span>{name}</span>
 
             <Image
@@ -29,7 +28,7 @@ export default function Collection({items}) {
 
         return url ? (
           <Link href={url} key={key}>
-            {content}
+            <a className={`${className} block`}>{content}</a>
           </Link>
         ) : (
           <Fragment key={key}>{content}</Fragment>

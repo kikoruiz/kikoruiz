@@ -6,12 +6,12 @@ export default function Document() {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
+          href="https://fonts.googleapis.com/css2?family=Work+Sans&display=optional"
           rel="stylesheet"
         />
       </Head>
 
-      <body className="subpixel-antialiased">
+      <body className="bg-neutral-900 text-neutral-300 subpixel-antialiased">
         <Main />
         <NextScript />
       </body>
