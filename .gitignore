@@ -9,7 +9,7 @@
 /coverage
 
 # generated data
-/data/pictures/
+/data/pictures/metadata.json
 
 # next.js
 /.next/
