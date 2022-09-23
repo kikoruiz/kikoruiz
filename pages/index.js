@@ -3,7 +3,7 @@ import {getGalleryAlbums} from '../lib/gallery/albums.js'
 import {fromAlbumToImageGallery} from '../lib/gallery/mappers.js'
 
 export default function Home({albums}) {
-  return <ImageGallery items={albums} />
+  return <ImageGallery items={albums} isAlbum />
 }
 
 export async function getStaticProps() {
