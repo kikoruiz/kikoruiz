@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# generated data
+/data/pictures/
+
 # next.js
 /.next/
 /out/

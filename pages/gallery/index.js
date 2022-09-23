@@ -1,15 +1,16 @@
-import Collection from '../../components/collection.js'
+import ImageGallery from '../../components/image-gallery.js'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
-import {fromAlbumToCollection} from '../../lib/gallery/mappers.js'
+import {fromAlbumToImageGallery} from '../../lib/gallery/mappers.js'
 
 export default function Gallery({albums}) {
-  return <Collection items={albums} />
+  return <ImageGallery items={albums} />
 }
 
 export async function getStaticProps() {
-  const albums = await getGalleryAlbums()
+  const galleryAlbums = await getGalleryAlbums()
+  const albums = await Promise.all(galleryAlbums.map(fromAlbumToImageGallery))
 
   return {
-    props: {albums: albums.map(fromAlbumToCollection)}
+    props: {albums}
   }
 }
