@@ -5,15 +5,13 @@ import Image from 'next/image'
 export default function ImageGallery({items}) {
   return (
     <div className="columns-2 gap-1 space-y-1 px-1 pb-1 md:columns-3">
-      {items.map(({name, key, url, image}, index) => {
+      {items.map(({name, key, url, image, metadata}, index) => {
         const {src, orientation, base64} = image
-        const className = `relative inline-block break-inside-avoid-column w-full ${
+        const className = `relative inline-flex flex-col-reverse break-inside-avoid-column w-full ${
           orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
         }${index === 0 ? ' mt-1' : ''}`
         const content = (
           <>
-            <span>{name}</span>
-
             <Image
               src={src}
               layout="fill"
@@ -23,6 +21,20 @@ export default function ImageGallery({items}) {
               placeholder="blur"
               blurDataURL={base64}
             />
+
+            <figcaption className="relative rounded-bl-sm bg-gradient-to-r from-neutral-800 to-transparent px-3 py-2 text-xs text-neutral-400">
+              <header className="font-bold">{name}</header>
+              {metadata && (
+                <>
+                  <span className="mr-1 text-neutral-500">
+                    {metadata.shutterSpeed}s
+                  </span>
+                  <span className="inline-block text-neutral-600">
+                    <span className="italic">f</span>/{metadata.aperture}
+                  </span>
+                </>
+              )}
+            </figcaption>
           </>
         )
 
@@ -50,7 +62,12 @@ ImageGallery.propTypes = {
       image: PropTypes.shape({
         src: PropTypes.string.isRequired,
         orientation: PropTypes.string.isRequired
-      }).isRequired
+      }).isRequired,
+      metadata: PropTypes.shape({
+        model: PropTypes.string,
+        aperture: PropTypes.number,
+        shutterSpeed: PropTypes.string
+      })
     })
   )
 }
