@@ -1,10 +1,10 @@
-import Collection from '../../components/collection.js'
+import ImageGallery from '../../components/image-gallery.js'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 import {getGalleryPictures} from '../../lib/gallery/pictures.js'
-import {fromExifToCollection} from '../../lib/gallery/mappers.js'
+import {fromExifToImageGallery} from '../../lib/gallery/mappers.js'
 
 export default function GalleryAlbum({pictures}) {
-  return <Collection items={pictures} />
+  return <ImageGallery items={pictures} />
 }
 
 export async function getStaticPaths() {
@@ -17,11 +17,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params: {slug}}) {
-  const pictures = await getGalleryPictures({slug})
+  const galleryPictures = await getGalleryPictures({slug})
+  const pictures = await Promise.all(
+    galleryPictures.map(fromExifToImageGallery)
+  )
 
   return {
-    props: {
-      pictures: pictures.map(fromExifToCollection)
-    }
+    props: {pictures}
   }
 }

@@ -9,7 +9,7 @@ export default function Navbar() {
           <li key={slug}>
             <Link href={`/${slug}`}>
               <a className="block border-b border-transparent px-6 py-3 font-extrabold hover:border-orange-200 hover:text-orange-200">
-                {name.toLowerCase()}.
+                {name.toLowerCase()}
               </a>
             </Link>
           </li>

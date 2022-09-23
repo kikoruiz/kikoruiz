@@ -4,15 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run save:metadata && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "save:metadata": "node ./bin/pictures/save-metadata.js"
   },
   "dependencies": {
     "change-case": "4",
     "exiftool-vendored": "17",
     "gray-matter": "4",
     "next": "12",
+    "plaiceholder": "2",
     "react": "18",
     "react-dom": "18",
     "remark": "14",

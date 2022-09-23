@@ -1,18 +1,17 @@
-import {Fragment} from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function Collection({items}) {
+export default function ImageGallery({items}) {
   return (
-    <div className="columns-2 gap-1 space-y-1 p-1 md:columns-3">
+    <div className="columns-2 gap-1 space-y-1 px-1 pb-1 md:columns-3">
       {items.map(({name, key, url, image}, index) => {
-        const {src, orientation} = image
-        const className = `relative ${
+        const {src, orientation, base64} = image
+        const className = `relative inline-block break-inside-avoid-column w-full ${
           orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
-        }`
+        }${index === 0 ? ' mt-1' : ''}`
         const content = (
-          <div className={className}>
+          <>
             <span>{name}</span>
 
             <Image
@@ -21,9 +20,10 @@ export default function Collection({items}) {
               objectFit="cover"
               alt={name}
               className="rounded-sm"
-              priority={index === 0}
+              placeholder="blur"
+              blurDataURL={base64}
             />
-          </div>
+          </>
         )
 
         return url ? (
@@ -31,14 +31,16 @@ export default function Collection({items}) {
             <a className={`${className} block`}>{content}</a>
           </Link>
         ) : (
-          <Fragment key={key}>{content}</Fragment>
+          <div key={key} className={className}>
+            {content}
+          </div>
         )
       })}
     </div>
   )
 }
 
-Collection.propTypes = {
+ImageGallery.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
