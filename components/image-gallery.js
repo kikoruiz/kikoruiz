@@ -43,9 +43,11 @@ export default function ImageGallery({items, isAlbum = false}) {
                   <span className="after:content-['\00a0·']">
                     {metadata.shutterSpeed}s
                   </span>
-                  <span className="inline-block after:content-['\00a0·']">
-                    <span className="italic">f</span>/{metadata.aperture}
-                  </span>
+                  {metadata.aperture && (
+                    <span className="inline-block after:content-['\00a0·']">
+                      <span className="italic">f</span>/{metadata.aperture}
+                    </span>
+                  )}
                   <span>ISO {metadata.iso}</span>
                 </div>
               )}

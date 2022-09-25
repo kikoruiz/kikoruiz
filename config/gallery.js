@@ -1,5 +1,11 @@
 export const GALLERY_ALBUMS = [
   {
+    name: 'Landscapes',
+    slug: 'landscapes',
+    tag: 'landscape',
+    description: ''
+  },
+  {
     name: 'Seascapes',
     slug: 'seascapes',
     tag: 'seascape',
