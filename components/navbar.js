@@ -11,12 +11,16 @@ export default function Navbar() {
         {SECTIONS.map(({name, slug}) => {
           const href = `/${slug}`
           const isActiveSection = asPath.includes(href)
+          const isActualSection = asPath === href
           const content = (
             <a
-              className={`block border-b border-transparent px-6 py-3 font-extrabold${
+              title={name}
+              className={`relative block px-6 py-3 after:absolute after:-bottom-0 after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-transparent font-extrabold${
+                isActualSection ? ' hover:cursor-default' : ''
+              }${
                 isActiveSection
-                  ? ' border-orange-300 text-orange-300 hover:cursor-default'
-                  : ' hover:border-orange-200 hover:text-orange-200'
+                  ? ' text-orange-300 after:via-orange-300'
+                  : ' hover:text-orange-200 hover:after:via-orange-200'
               }`}
             >
               <span>{name.toLowerCase()}</span>
@@ -25,7 +29,7 @@ export default function Navbar() {
 
           return (
             <li key={slug}>
-              {isActiveSection ? content : <Link href={href}>{content}</Link>}
+              {isActualSection ? content : <Link href={href}>{content}</Link>}
             </li>
           )
         })}
