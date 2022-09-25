@@ -7,44 +7,66 @@ export const SECTIONS = [
 export const BRANDS = {
   SOCIAL: [
     {
-      name: 'facebook',
-      color: '#1877f2'
+      name: 'WhatsApp',
+      slug: 'whatsapp',
+      url: 'https://wa.me/34619602535'
     },
     {
-      name: 'instagram',
-      color: '#ff0069'
+      name: 'Instagram',
+      slug: 'instagram',
+      url: 'https://www.instagram.com/kikoruiz'
     },
     {
-      name: 'whatsapp',
-      color: '#25d366'
+      name: 'Facebook',
+      slug: 'facebook',
+      url: 'https://www.facebook.com/kikoruiz.photography'
     },
     {
-      name: 'twitter',
-      color: '#1d9bf0'
+      name: '500px',
+      slug: '500px',
+      url: 'https://500px.com/p/kikoruiz'
     },
     {
-      name: 'vero',
-      color: '#00cccc'
+      name: 'Vero',
+      slug: 'vero',
+      url: 'https://vero.co/kikoruiz'
     },
     {
-      name: 'youtube',
-      color: '#ff0000'
+      name: 'Twitter',
+      slug: 'twitter',
+      url: 'https://twitter.com/kikoruizlloret'
     },
     {
-      name: 'linkedin',
-      color: '#0082be'
+      name: 'GitHub',
+      slug: 'github',
+      url: 'https://github.com/kikoruiz'
+    },
+    {
+      name: 'YouTube',
+      slug: 'youtube',
+      url: 'https://www.youtube.com/channel/UC9yTPRFINiwLGBMhEMXv19w'
+    },
+    {
+      name: 'Linkedin',
+      slug: 'linkedin',
+      url: 'https://www.linkedin.com/in/kikoruiz/'
     }
   ],
   TOOLS: [
     {
-      name: 'nextjs'
+      name: 'Next.js',
+      slug: 'nextjs',
+      url: 'https://nextjs.org'
     },
     {
-      name: 'vercel'
+      name: 'Vercel',
+      slug: 'vercel',
+      url: 'https://vercel.com'
     },
     {
-      name: 'tailwindcss',
-      color: '#38bdf8'
+      name: 'Tailwind CSS',
+      slug: 'tailwindcss',
+      url: 'https://tailwindcss.com'
     }
   ]
 }
