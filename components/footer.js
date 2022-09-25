@@ -1,7 +1,9 @@
 export default function Footer() {
+  const year = new Date().getFullYear()
+
   return (
     <footer className="flex p-6">
-      <p>© 2022 Kiko Ruiz</p>
+      <p>{`© ${year} Kiko Ruiz`}</p>
     </footer>
   )
 }
