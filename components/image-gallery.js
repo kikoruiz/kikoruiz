@@ -17,7 +17,7 @@ export default function ImageGallery({items, isAlbum = false}) {
           'relative rounded-bl-sm bg-gradient-to-r text-xs'
         const captionClassName = isAlbum
           ? `${captionBaseClassName} from-neutral-900 px-6 py-9 text-4xl`
-          : `${captionBaseClassName} from-neutral-800 p-3 text-neutral-400`
+          : `${captionBaseClassName} from-neutral-800 via-transparent p-3 text-neutral-400`
         const content = (
           <>
             <Image
@@ -32,19 +32,21 @@ export default function ImageGallery({items, isAlbum = false}) {
 
             <figcaption className={captionClassName}>
               <header
-                className={`font-bold${isAlbum ? ' text-neutral-500' : ''}`}
+                className={`drop-shadow transition font-bold${
+                  isAlbum ? ' text-neutral-400' : ''
+                } group-hover:text-orange-300`}
               >
                 {name}
               </header>
               {metadata && (
-                <div className="space-x-1">
-                  <span className="text-neutral-500">
+                <div className="space-x-1 text-neutral-600 drop-shadow">
+                  <span className="after:content-['\00a0·']">
                     {metadata.shutterSpeed}s
                   </span>
-                  <span className="inline-block text-neutral-600">
+                  <span className="inline-block after:content-['\00a0·']">
                     <span className="italic">f</span>/{metadata.aperture}
                   </span>
-                  <span className="text-neutral-700">ISO {metadata.iso}</span>
+                  <span>ISO {metadata.iso}</span>
                 </div>
               )}
             </figcaption>
@@ -53,7 +55,11 @@ export default function ImageGallery({items, isAlbum = false}) {
 
         return url ? (
           <Link href={url} key={key}>
-            <a className={`${className} block`}>{content}</a>
+            <a
+              className={`${className} group block rounded-sm border-2 border-transparent transition hover:border-orange-300`}
+            >
+              {content}
+            </a>
           </Link>
         ) : (
           <div key={key} className={className}>
