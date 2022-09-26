@@ -10,6 +10,7 @@
     "save:metadata": "node ./bin/pictures/save-metadata.js"
   },
   "dependencies": {
+    "@heroicons/react": "2",
     "change-case": "4",
     "exiftool-vendored": "17",
     "gray-matter": "4",

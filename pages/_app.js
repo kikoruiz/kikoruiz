@@ -4,6 +4,8 @@ import Footer from '../components/footer.js'
 import '../styles/globals.css'
 
 export default function App({Component, pageProps}) {
+  const {album} = pageProps
+
   return (
     <div className="flex min-h-screen flex-col">
       <Head>
@@ -11,7 +13,7 @@ export default function App({Component, pageProps}) {
         <meta name="description" content="Kiko Ruiz" />
       </Head>
 
-      <Header />
+      <Header album={album} />
       <main className="container mx-auto">
         <Component {...pageProps} />
       </main>
