@@ -36,6 +36,12 @@ export const GALLERY_ALBUMS = [
     description: ''
   },
   {
+    name: 'Toscana',
+    slug: 'toscana',
+    tag: 'toscana',
+    description: ''
+  },
+  {
     name: 'Milky Way',
     slug: 'milky-way',
     tag: 'milky way',
