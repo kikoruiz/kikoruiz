@@ -11,7 +11,7 @@ export default function Document() {
         />
       </Head>
 
-      <body className="bg-neutral-900 text-neutral-300 subpixel-antialiased">
+      <body className="bg-gradient-to-bl from-neutral-900 via-neutral-900 to-black text-neutral-300 subpixel-antialiased">
         <Main />
         <NextScript />
       </body>

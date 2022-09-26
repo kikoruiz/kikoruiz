@@ -58,7 +58,7 @@ export default function ImageGallery({items, isAlbum = false}) {
         return url ? (
           <Link href={url} key={key}>
             <a
-              className={`${className} group block rounded-sm border-2 border-transparent transition hover:border-orange-300`}
+              className={`${className} group block rounded-sm border-2 border-transparent transition hover:border-orange-300/60`}
             >
               {content}
             </a>
