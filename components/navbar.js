@@ -6,8 +6,8 @@ export default function Navbar() {
   const {asPath} = useRouter()
 
   return (
-    <nav className="sticky top-0 z-10 w-full bg-neutral-900/75 backdrop-blur">
-      <ul className="flex justify-center">
+    <nav className="flex">
+      <ul className="flex justify-center self-center">
         {SECTIONS.map(({name, slug}) => {
           const href = `/${slug}`
           const isActiveSection = asPath.includes(href)
@@ -15,7 +15,7 @@ export default function Navbar() {
           const content = (
             <a
               title={name}
-              className={`relative block px-6 py-3 after:absolute after:-bottom-0 after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-transparent font-extrabold${
+              className={`relative block px-6 py-3 after:absolute after:bottom-0 after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-transparent font-extrabold${
                 isActualSection ? ' hover:cursor-default' : ''
               }${
                 isActiveSection
