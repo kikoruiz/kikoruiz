@@ -10,14 +10,14 @@ export default function ImageGallery({items, isAlbum = false}) {
         const imageAspectClassName =
           orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
         const aspectClassName = isAlbum ? 'aspect-square' : imageAspectClassName
-        const className = `relative inline-flex flex-col-reverse break-inside-avoid-column w-full ${aspectClassName}${
+        const className = `relative inline-flex flex-col-reverse break-inside-avoid-column w-full drop-shadow-md ${aspectClassName}${
           index === 0 ? ' mt-2' : ''
         }`
         const captionBaseClassName =
-          'relative rounded-bl-sm bg-gradient-to-r text-xs'
+          'relative rounded-bl-sm bg-gradient-to-r text-xs lg:text-sm'
         const captionClassName = isAlbum
-          ? `${captionBaseClassName} from-neutral-900 px-6 py-9 text-4xl`
-          : `${captionBaseClassName} from-neutral-800 via-transparent p-3 text-neutral-400`
+          ? `${captionBaseClassName} from-neutral-900 px-6 py-9`
+          : `${captionBaseClassName} from-black/60 p-3 text-neutral-400`
         const content = (
           <>
             <Image
@@ -32,8 +32,8 @@ export default function ImageGallery({items, isAlbum = false}) {
 
             <figcaption className={captionClassName}>
               <header
-                className={`drop-shadow transition font-bold${
-                  isAlbum ? ' text-neutral-400' : ''
+                className={`drop-shadow font-bold${
+                  isAlbum ? ' text-3xl text-neutral-400 lg:text-4xl' : ''
                 } group-hover:text-orange-300`}
               >
                 {name}
@@ -58,7 +58,7 @@ export default function ImageGallery({items, isAlbum = false}) {
         return url ? (
           <Link href={url} key={key}>
             <a
-              className={`${className} group block rounded-sm border-2 border-transparent transition hover:border-orange-300/60`}
+              className={`${className} group block rounded-sm border-2 border-transparent hover:border-orange-300/60`}
             >
               {content}
             </a>
