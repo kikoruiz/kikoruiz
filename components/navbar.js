@@ -8,16 +8,13 @@ import tailwindConfig from '../tailwind.config.js'
 
 const config = resolveConfig(tailwindConfig)
 const {screens} = config.theme
+const smallScreenWidth = Number(screens.sm.split('px')[0])
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const {asPath} = useRouter()
 
-  useMediaQuery(
-    {minWidth: Number(screens.sm.split('px')[0])},
-    undefined,
-    handleMediaQueryChange
-  )
+  useMediaQuery({minWidth: smallScreenWidth}, undefined, handleMediaQueryChange)
 
   function handleMediaQueryChange(matches) {
     if (matches) setIsMenuOpen(false)

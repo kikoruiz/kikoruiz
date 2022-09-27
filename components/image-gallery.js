@@ -4,20 +4,24 @@ import Image from 'next/image'
 
 export default function ImageGallery({items, isAlbum = false}) {
   return (
-    <div className="columns-1 gap-2 space-y-2 px-2 pb-2 sm:columns-2 md:columns-3">
+    <div
+      className={`gap-3 space-y-3 px-3 pb-3 md:columns-3${
+        isAlbum ? ' columns-2' : ' columns-1 sm:columns-2'
+      }`}
+    >
       {items.map(({name, key, url, image, metadata}, index) => {
         const {src, orientation, base64} = image
         const imageAspectClassName =
           orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
         const aspectClassName = isAlbum ? 'aspect-square' : imageAspectClassName
         const className = `relative inline-flex flex-col-reverse break-inside-avoid-column w-full drop-shadow-md ${aspectClassName}${
-          index === 0 ? ' mt-2' : ''
+          index === 0 ? ' mt-3' : ''
         }`
         const captionBaseClassName =
-          'relative rounded-bl-sm bg-gradient-to-r text-xs lg:text-sm'
+          'relative rounded-bl-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
         const captionClassName = isAlbum
-          ? `${captionBaseClassName} from-neutral-900 px-6 py-9`
-          : `${captionBaseClassName} from-black/60 p-3 text-neutral-400`
+          ? `${captionBaseClassName} px-3 py-6 md:px-6 md:py-9`
+          : `${captionBaseClassName} p-3 text-neutral-400`
         const content = (
           <>
             <Image
@@ -32,9 +36,11 @@ export default function ImageGallery({items, isAlbum = false}) {
 
             <figcaption className={captionClassName}>
               <header
-                className={`drop-shadow font-bold${
-                  isAlbum ? ' text-3xl text-neutral-400 lg:text-4xl' : ''
-                } group-hover:text-orange-300`}
+                className={`font-bold drop-shadow group-hover:text-orange-300${
+                  isAlbum
+                    ? ' text-2xl text-neutral-400 md:text-3xl lg:text-4xl'
+                    : ''
+                }`}
               >
                 {name}
               </header>
