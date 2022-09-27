@@ -1,22 +1,11 @@
-import {useMenuContext} from '../context/menu.js'
 import Header from '../components/header.js'
 import Footer from '../components/footer.js'
 
-export default function Layout({children, album}) {
-  const {isMenuOpen} = useMenuContext()
-
+export default function Layout({children}) {
   return (
-    <div
-      className={`flex min-h-screen flex-col${isMenuOpen ? ' touch-none' : ''}`}
-    >
-      <Header album={album} />
-      <main
-        className={`container mx-auto${
-          isMenuOpen ? ' pointer-events-none' : ''
-        }`}
-      >
-        {children}
-      </main>
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="container mx-auto">{children}</main>
       <Footer />
     </div>
   )
