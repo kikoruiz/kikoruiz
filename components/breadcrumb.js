@@ -10,10 +10,10 @@ export default function Breadcrumb() {
   return items.length > 0 ? (
     <div className="bg-neutral-800/75">
       <div className="container mx-auto py-3 px-3 text-xl">
-        {items.map(({name, href, key}) => {
-          if (href)
+        {items.map(({name, href, slug}) => {
+          if (href) {
             return (
-              <Link href="/gallery" key={key}>
+              <Link href="/gallery" key={slug}>
                 <a
                   title="Back to Gallery"
                   className="text-neutral-400/30 drop-shadow after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-400/30"
@@ -22,9 +22,10 @@ export default function Breadcrumb() {
                 </a>
               </Link>
             )
+          }
 
           return (
-            <span className="font-black text-orange-300/75" key={key}>
+            <span className="font-black text-orange-300/75" key={slug}>
               {name}
             </span>
           )
