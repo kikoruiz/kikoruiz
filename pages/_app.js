@@ -1,23 +1,15 @@
-import Head from 'next/head'
-import Header from '../components/header.js'
-import Footer from '../components/footer.js'
+import {MenuContextProvider} from '../context/menu.js'
+import Layout from '../components/layout.js'
 import '../styles/globals.css'
 
 export default function App({Component, pageProps}) {
   const {album} = pageProps
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <Head>
-        <title>Kiko Ruiz</title>
-        <meta name="description" content="Kiko Ruiz" />
-      </Head>
-
-      <Header album={album} />
-      <main className="container mx-auto">
+    <MenuContextProvider>
+      <Layout album={album}>
         <Component {...pageProps} />
-      </main>
-      <Footer />
-    </div>
+      </Layout>
+    </MenuContextProvider>
   )
 }

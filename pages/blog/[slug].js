@@ -1,9 +1,14 @@
+import Head from 'next/head'
 import {getAllPosts, getPostBySlug} from '../../lib/blog/posts.js'
 import {getPrettyDate} from '../../lib/blog/date.js'
 
 export default function Post({post}) {
   return (
     <div>
+      <Head>
+        <title>Kiko Ruiz</title>
+      </Head>
+
       <h1>{post.title}</h1>
 
       <time dateTime={post.createdAt}>{getPrettyDate(post.createdAt)}</time>
