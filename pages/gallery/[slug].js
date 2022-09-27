@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import ImageGallery from '../../components/image-gallery.js'
 import {GALLERY_ALBUMS} from '../../config/gallery.js'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
@@ -8,7 +9,15 @@ import {
 } from '../../lib/gallery/mappers.js'
 
 export default function GalleryAlbum({pictures}) {
-  return <ImageGallery items={pictures} />
+  return (
+    <>
+      <Head>
+        <title>Kiko Ruiz</title>
+      </Head>
+
+      <ImageGallery items={pictures} />
+    </>
+  )
 }
 
 export async function getStaticPaths() {

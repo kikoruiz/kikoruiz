@@ -1,9 +1,18 @@
+import Head from 'next/head'
 import ImageGallery from '../../components/image-gallery.js'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 import {fromAlbumToImageGallery} from '../../lib/gallery/mappers.js'
 
 export default function Gallery({albums}) {
-  return <ImageGallery items={albums} isAlbum />
+  return (
+    <>
+      <Head>
+        <title>Kiko Ruiz</title>
+      </Head>
+
+      <ImageGallery items={albums} isAlbum />
+    </>
+  )
 }
 
 export async function getStaticProps() {

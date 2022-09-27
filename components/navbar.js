@@ -1,18 +1,40 @@
-import {useState} from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
+import {useMenuContext} from '../context/menu.js'
 import {SECTIONS} from '../config/index.js'
+import {useMediaQuery} from 'react-responsive'
+import resolveConfig from 'tailwindcss/resolveConfig.js'
+import tailwindConfig from '../tailwind.config.js'
+
+const config = resolveConfig(tailwindConfig)
+const {screens} = config.theme
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const {isMenuOpen, setIsMenuOpen} = useMenuContext()
   const {asPath} = useRouter()
+
+  useMediaQuery(
+    {minWidth: Number(screens.sm.split('px')[0])},
+    undefined,
+    handleMediaQueryChange
+  )
+
+  function handleMediaQueryChange(matches) {
+    if (matches) setIsMenuOpen(false)
+  }
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen)
   }
 
   return (
-    <nav className={`my-auto${isMenuOpen ? ' relative' : ''}`}>
+    <nav
+      className={`my-auto${
+        isMenuOpen
+          ? ' relative before:fixed before:top-0 before:left-0 before:h-screen before:w-screen before:bg-neutral-900/75'
+          : ''
+      }`}
+    >
       <button
         className="relative flex h-10 w-10 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none sm:hidden"
         onClick={toggleMenu}

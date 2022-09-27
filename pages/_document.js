@@ -4,6 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        <meta name="description" content="Kiko Ruiz" />
         <meta name="theme-color" content="#171717"></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
