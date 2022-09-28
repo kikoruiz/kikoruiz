@@ -8,7 +8,7 @@ export default function Document() {
         <meta name="theme-color" content="#171717"></meta>
         <link rel="icon" href="/favicon.ico" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Work+Sans&display=optional"
+          href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"
           rel="stylesheet"
         />
       </Head>
