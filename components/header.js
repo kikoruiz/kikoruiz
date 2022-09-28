@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-10 w-full backdrop-blur">
       <div className="bg-neutral-900/90">
-        <div className="container mx-auto flex justify-between px-6">
+        <div className="container mx-auto flex justify-between pl-5 pr-3">
           <div className="flex justify-center py-8">
             <Link href="/">
               <a title="Kiko Ruiz">
