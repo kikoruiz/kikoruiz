@@ -1,7 +1,9 @@
+import {GALLERY_ALBUMS} from './gallery.js'
+
 export const DEFAULT_LOCALE = 'es-ES'
 export const SECTIONS = [
   {name: 'About Me', slug: 'about-me'},
-  {name: 'Gallery', slug: 'gallery'},
+  {name: 'Gallery', slug: 'gallery', categories: GALLERY_ALBUMS},
   {name: 'Blog', slug: 'blog'}
 ]
 export const BRANDS = {

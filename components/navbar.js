@@ -70,7 +70,7 @@ export default function Navbar() {
       <ul
         className={`${
           isMenuOpen
-            ? 'absolute right-0 top-full z-20 mt-3 w-[calc(100vw-3rem)] rounded-md bg-neutral-800 px-3 py-4 drop-shadow-lg'
+            ? 'absolute right-0 top-full z-20 mt-3 w-[calc(100vw-1.5rem)] rounded-md bg-neutral-800 px-3 py-4 drop-shadow-lg'
             : 'hidden sm:flex'
         }`}
       >
