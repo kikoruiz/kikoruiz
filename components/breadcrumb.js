@@ -13,12 +13,12 @@ export default function Breadcrumb() {
         {items.map(({name, href, slug}) => {
           if (href) {
             return (
-              <Link href="/gallery" key={slug}>
+              <Link href={href} key={slug}>
                 <a
                   title={`Back to ${name}`}
-                  className="text-neutral-400/30 drop-shadow after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-400/30"
+                  className="text-neutral-400/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-400/30"
                 >
-                  Gallery
+                  {name}
                 </a>
               </Link>
             )
