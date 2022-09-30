@@ -1,8 +1,14 @@
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Image from 'next/image'
+import {themeScreens} from '../lib/utils.js'
 
 export default function ImageGallery({items, isAlbum = false}) {
+  const {sm, md} = themeScreens
+  const sizes = isAlbum
+    ? `(min-width: ${md}) 33vw, 50vw`
+    : `(min-width: ${md}) 33vw, (min-width: ${sm}) 50vw, 100vw`
+
   return (
     <div
       className={`gap-3 space-y-3 px-3 pb-3 md:columns-3${
@@ -10,12 +16,17 @@ export default function ImageGallery({items, isAlbum = false}) {
       }`}
     >
       {items.map(({name, key, url, image, metadata}, index) => {
+        const isFirstImage = index === 0
+        const isSecondImage = index === 1
+        const needsPreload =
+          isFirstImage ||
+          (isSecondImage && items[0].image.orientation === 'horizontal')
         const {src, orientation, base64} = image
         const imageAspectClassName =
           orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
         const aspectClassName = isAlbum ? 'aspect-square' : imageAspectClassName
         const className = `relative inline-flex flex-col-reverse break-inside-avoid-column w-full drop-shadow-md ${aspectClassName}${
-          index === 0 ? ' mt-3' : ''
+          isFirstImage ? ' mt-3' : ''
         }`
         const captionBaseClassName =
           'relative rounded-bl-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
@@ -27,11 +38,13 @@ export default function ImageGallery({items, isAlbum = false}) {
             <Image
               src={src}
               layout="fill"
+              sizes={sizes}
               objectFit="cover"
               alt={name}
               className="rounded-sm"
               placeholder="blur"
               blurDataURL={base64}
+              priority={needsPreload}
             />
 
             <figcaption className={captionClassName}>
@@ -88,7 +101,8 @@ ImageGallery.propTypes = {
       url: PropTypes.string,
       image: PropTypes.shape({
         src: PropTypes.string.isRequired,
-        orientation: PropTypes.string.isRequired
+        orientation: PropTypes.string.isRequired,
+        base64: PropTypes.string
       }).isRequired,
       metadata: PropTypes.shape({
         iso: PropTypes.number,
