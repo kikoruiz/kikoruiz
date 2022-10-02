@@ -3,18 +3,16 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {SECTIONS} from '../config/index.js'
 import {useMediaQuery} from 'react-responsive'
-import resolveConfig from 'tailwindcss/resolveConfig.js'
-import tailwindConfig from '../tailwind.config.js'
+import {screens} from '../lib/utils.js'
+import IconChevronDown from '../assets/icons/chevron-down.svg'
 
-const config = resolveConfig(tailwindConfig)
-const {screens} = config.theme
-const smallScreenWidth = Number(screens.sm.split('px')[0])
+const {sm} = screens
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const {asPath} = useRouter()
 
-  useMediaQuery({minWidth: smallScreenWidth}, undefined, handleMediaQueryChange)
+  useMediaQuery({minWidth: sm}, undefined, handleMediaQueryChange)
 
   function handleMediaQueryChange(matches) {
     if (matches) setIsMenuOpen(false)
@@ -70,38 +68,93 @@ export default function Navbar() {
       <ul
         className={`${
           isMenuOpen
-            ? 'absolute right-0 top-full z-20 mt-3 w-[calc(100vw-1.5rem)] rounded-md bg-neutral-800 px-3 py-4 drop-shadow-lg'
+            ? 'absolute right-0 top-full z-20 mt-3 w-[calc(100vw-1.5rem)] rounded-md bg-neutral-800 py-4 drop-shadow-lg'
             : 'hidden sm:flex'
         }`}
       >
-        {SECTIONS.map(({name, slug}) => {
-          const href = `/${slug}`
+        {SECTIONS.map(section => {
+          const href = `/${section.slug}`
           const isActiveSection = asPath.includes(href)
           const isActualSection = asPath === href
+          const hasCategories = section.categories
           const content = (
             <a
-              title={name}
-              className={`relative block px-6 font-extrabold after:absolute after:bottom-0 after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-transparent ${
-                isMenuOpen ? 'py-3' : 'py-2'
+              title={section.name}
+              className={`relative block px-6 font-extrabold ${
+                isMenuOpen
+                  ? 'mx-3 py-3 after:absolute after:top-0 after:left-0 after:block after:h-full after:w-[1px] after:bg-gradient-to-b after:from-transparent after:via-transparent'
+                  : 'py-2 after:absolute after:bottom-0 after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-transparent'
               }${isActualSection ? ' hover:cursor-default' : ''}${
                 isActiveSection
                   ? ' text-orange-300 after:via-orange-300'
-                  : ' hover:text-orange-200 hover:after:via-orange-200'
+                  : ' group-hover:text-orange-200 group-hover:after:via-orange-200'
+              }${
+                hasCategories && !isMenuOpen
+                  ? ' group-hover:before:absolute group-hover:before:bottom-0 group-hover:before:left-[-0.5rem] group-hover:before:block group-hover:before:h-full group-hover:before:w-[calc(100%+1rem)] group-hover:before:rounded-t group-hover:before:bg-neutral-800 group-hover:before:drop-shadow-md'
+                  : ''
               }`}
               onClick={isMenuOpen && !isActualSection ? toggleMenu : () => {}}
             >
-              <span>{name.toLowerCase()}</span>
+              <div className="relative flex items-center">
+                <span>{section.name.toLowerCase()}</span>
+                {hasCategories && (
+                  <IconChevronDown className="ml-2 h-[12px] w-[12px]" />
+                )}
+              </div>
             </a>
           )
-          const itemProps = {
-            key: slug,
-            ...(isMenuOpen && {className: 'first:mt-1 last:mb-2'})
-          }
 
           return (
-            // eslint-disable-next-line
-            <li {...itemProps}>
+            <li
+              key={section.slug}
+              className={`group ${
+                isMenuOpen ? 'first:mt-1 last:mb-2' : 'relative'
+              }`}
+            >
               {isActualSection ? content : <Link href={href}>{content}</Link>}
+              {hasCategories && (
+                <ul
+                  className={`group-hover:block${
+                    isMenuOpen
+                      ? ''
+                      : ' absolute left-2/4 hidden w-[calc(100%+1rem)] -translate-x-1/2 rounded-b bg-neutral-800 pt-3 drop-shadow-md'
+                  }`}
+                >
+                  {section.categories.map(category => {
+                    const categoryHref = `/${section.slug}/${category.slug}`
+                    const isActualCategory = asPath === categoryHref
+                    const categoryContent = (
+                      <a
+                        title={category.name}
+                        className={`block py-3 text-sm text-neutral-400 group-last:rounded-b ${
+                          isMenuOpen ? 'px-12' : 'px-6'
+                        } ${
+                          isActualCategory
+                            ? 'bg-neutral-600/20 text-orange-300 hover:cursor-default'
+                            : 'hover:bg-neutral-600/30 hover:text-orange-200'
+                        }`}
+                        onClick={
+                          isMenuOpen && !isActualCategory
+                            ? toggleMenu
+                            : () => {}
+                        }
+                      >
+                        {category.name.toLowerCase()}
+                      </a>
+                    )
+
+                    return (
+                      <li key={category.slug} className="group">
+                        {isActualCategory ? (
+                          categoryContent
+                        ) : (
+                          <Link href={categoryHref}>{categoryContent}</Link>
+                        )}
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
             </li>
           )
         })}

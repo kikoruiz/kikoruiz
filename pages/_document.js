@@ -2,7 +2,7 @@ import {Html, Head, Main, NextScript} from 'next/document'
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang="en">
       <Head>
         <meta name="description" content="Kiko Ruiz" />
         <meta name="theme-color" content="#171717"></meta>

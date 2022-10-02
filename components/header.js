@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Breadcrumb from './breadcrumb.js'
 import Navbar from './navbar.js'
-import LogoIcon from '../assets/icons/logo.svg'
+import Logo from '../assets/brand/photo-logo.svg'
 
 export default function Header() {
   return (
@@ -11,7 +11,7 @@ export default function Header() {
           <div className="flex justify-center py-8">
             <Link href="/">
               <a title="Kiko Ruiz">
-                <LogoIcon className="w-24 fill-neutral-300 transition-colors ease-in-out hover:fill-orange-200" />
+                <Logo className="w-24 fill-neutral-300 transition-colors ease-in-out hover:fill-orange-200" />
               </a>
             </Link>
           </div>
