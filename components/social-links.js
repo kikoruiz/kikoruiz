@@ -1,11 +1,11 @@
 import {BRANDS} from '../config/index.js'
-import icons from './social-icons.js'
+import logos from './social-logos.js'
 
 export default function SocialLinks() {
   return (
     <ul className="flex flex-wrap">
       {BRANDS.SOCIAL.map(({name, slug, url}) => {
-        const Icon = icons[`Icon${name}`]
+        const Logo = logos[`Logo${name}`]
 
         return (
           <li key={slug} className="mr-2 mb-2 flex last-of-type:mr-0 md:mb-0">
@@ -16,7 +16,7 @@ export default function SocialLinks() {
               target="_blank"
               rel="noopener noreferrer nofollow"
             >
-              <Icon
+              <Logo
                 className={`w-6 fill-neutral-300 transition-colors ${hoverClassName(
                   slug
                 )}`}
