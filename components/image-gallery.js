@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Image from 'next/image'
+import useTranslation from 'next-translate/useTranslation'
 import {themeScreens} from '../lib/utils.js'
 
 export default function ImageGallery({items, isAlbum = false}) {
+  const {t} = useTranslation()
   const {sm, md} = themeScreens
   const sizes = isAlbum
     ? `(min-width: ${md}) 33vw, 50vw`
@@ -55,7 +57,7 @@ export default function ImageGallery({items, isAlbum = false}) {
                     : ''
                 }`}
               >
-                {name}
+                {name ?? t(`gallery.albums.${key}`)}
               </header>
               {metadata && (
                 <div className="space-x-1 text-neutral-600 drop-shadow">
@@ -77,6 +79,7 @@ export default function ImageGallery({items, isAlbum = false}) {
         return url ? (
           <Link href={url} key={key}>
             <a
+              title={name ?? t(`gallery.albums.${key}`)}
               className={`${className} group block rounded-sm border-2 border-transparent hover:border-orange-300/60`}
             >
               {content}
@@ -95,8 +98,7 @@ export default function ImageGallery({items, isAlbum = false}) {
 ImageGallery.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string,
+      name: PropTypes.string,
       key: PropTypes.string.isRequired,
       url: PropTypes.string,
       image: PropTypes.shape({

@@ -1,9 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 import {getAllPosts} from '../../lib/blog/posts.js'
 import {getPrettyDate} from '../../lib/blog/date.js'
 
 export default function Posts({posts}) {
+  const {locale} = useRouter()
+
   return (
     <>
       <Head>
@@ -21,7 +24,7 @@ export default function Posts({posts}) {
             </h2>
 
             <time dateTime={post.createdAt}>
-              {getPrettyDate(post.createdAt)}
+              {getPrettyDate(post.createdAt, locale)}
             </time>
 
             <p>{post.excerpt}</p>

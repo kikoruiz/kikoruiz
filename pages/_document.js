@@ -1,8 +1,8 @@
 import {Html, Head, Main, NextScript} from 'next/document'
 
-export default function Document() {
+export default function Document({locale}) {
   return (
-    <Html lang="en">
+    <Html lang={locale}>
       <Head>
         <meta name="description" content="Kiko Ruiz" />
         <meta name="theme-color" content="#171717"></meta>

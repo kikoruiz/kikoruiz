@@ -1,14 +1,16 @@
 import {useState} from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
-import {SECTIONS} from '../config/index.js'
 import {useMediaQuery} from 'react-responsive'
+import useTranslation from 'next-translate/useTranslation'
+import {SECTIONS} from '../config/index.js'
 import {screens} from '../lib/utils.js'
 import IconChevronDown from '../assets/icons/chevron-down.svg'
 
 const {sm} = screens
 
 export default function Navbar() {
+  const {t} = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const {asPath} = useRouter()
 
@@ -96,7 +98,7 @@ export default function Navbar() {
               onClick={isMenuOpen && !isActualSection ? toggleMenu : () => {}}
             >
               <div className="relative flex items-center">
-                <span>{section.name.toLowerCase()}</span>
+                <span>{t(`sections.${section.slug}`)}</span>
                 {hasCategories && (
                   <IconChevronDown className="ml-2 h-[12px] w-[12px]" />
                 )}
@@ -139,7 +141,9 @@ export default function Navbar() {
                             : () => {}
                         }
                       >
-                        {category.name.toLowerCase()}
+                        {section.localePrefix
+                          ? t(`${section.localePrefix}${category.slug}`)
+                          : category.name}
                       </a>
                     )
 
