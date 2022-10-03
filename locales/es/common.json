@@ -1,0 +1,23 @@
+{
+  "breadcrumb": {
+    "back-to": "Volver a {{section}}"
+  },
+  "sections": {
+    "about-me": "Sobre mí",
+    "gallery": "Galería",
+    "blog": "Blog"
+  },
+  "gallery": {
+    "albums": {
+      "landscapes": "Paisajes",
+      "seascapes": "Costa",
+      "moon": "Luna",
+      "portraits": "Retratos",
+      "iceland": "Islandia",
+      "lofoten-islands": "Islas Lofoten",
+      "toscana": "Toscana",
+      "milky-way": "Vía láctea",
+      "northern-lights": "Auroras boreales"
+    }
+  }
+}
