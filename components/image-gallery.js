@@ -17,7 +17,7 @@ export default function ImageGallery({items, isAlbum = false}) {
         isAlbum ? ' columns-2' : ' columns-1 sm:columns-2'
       }`}
     >
-      {items.map(({name, key, url, image, metadata}, index) => {
+      {items.map(({name, id, url, image, metadata}, index) => {
         const isFirstImage = index === 0
         const isSecondImage = index === 1
         const needsPreload =
@@ -42,7 +42,7 @@ export default function ImageGallery({items, isAlbum = false}) {
               layout="fill"
               sizes={sizes}
               objectFit="cover"
-              alt={name}
+              alt={name ?? t(`gallery.albums.${id}.name`)}
               className="rounded-sm"
               placeholder="blur"
               blurDataURL={base64}
@@ -57,7 +57,7 @@ export default function ImageGallery({items, isAlbum = false}) {
                     : ''
                 }`}
               >
-                {name ?? t(`gallery.albums.${key}`)}
+                {name ?? t(`gallery.albums.${id}.name`)}
               </header>
               {metadata && (
                 <div className="space-x-1 text-neutral-600 drop-shadow">
@@ -77,16 +77,16 @@ export default function ImageGallery({items, isAlbum = false}) {
         )
 
         return url ? (
-          <Link href={url} key={key}>
+          <Link href={url} key={id}>
             <a
-              title={name ?? t(`gallery.albums.${key}`)}
+              title={name ?? t(`gallery.albums.${id}.name`)}
               className={`${className} group block rounded-sm border-2 border-transparent hover:border-orange-300/60`}
             >
               {content}
             </a>
           </Link>
         ) : (
-          <div key={key} className={className}>
+          <div key={id} className={className}>
             {content}
           </div>
         )
@@ -99,7 +99,7 @@ ImageGallery.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
-      key: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
       url: PropTypes.string,
       image: PropTypes.shape({
         src: PropTypes.string.isRequired,

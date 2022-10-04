@@ -3,8 +3,28 @@ const nextTranslate = require('next-translate')
 module.exports = nextTranslate({
   reactStrictMode: true,
   i18n: {
-    locales: ['es'],
-    defaultLocale: 'es'
+    locales: ['es', 'en'],
+    defaultLocale: 'es',
+    localeDetection: false
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/en/about-me',
+        destination: '/en/sobre-mi',
+        locale: false
+      },
+      {
+        source: '/en/gallery',
+        destination: '/en/galeria',
+        locale: false
+      },
+      {
+        source: '/en/gallery/:slug',
+        destination: '/en/galeria/:slug',
+        locale: false
+      }
+    ]
   },
   webpack: config => {
     config.module.rules.push({

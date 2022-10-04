@@ -15,11 +15,13 @@ export default function Gallery({albums}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({locale}) {
   const galleryAlbums = await getGalleryAlbums()
-  const albums = await Promise.all(galleryAlbums.map(fromAlbumToImageGallery))
+  const albums = await Promise.all(
+    galleryAlbums.map(fromAlbumToImageGallery(locale))
+  )
 
   return {
-    props: {albums}
+    props: {albums, section: 'gallery'}
   }
 }

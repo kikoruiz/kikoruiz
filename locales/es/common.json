@@ -1,23 +1,59 @@
 {
-  "breadcrumb": {
+  "navigation": {
     "back-to": "Volver a {{section}}"
   },
   "sections": {
-    "about-me": "Sobre mí",
-    "gallery": "Galería",
-    "blog": "Blog"
+    "about-me": {
+      "name": "Sobre mí",
+      "slug": "sobre-mi"
+    },
+    "gallery": {
+      "name": "Galería",
+      "slug": "galeria"
+    },
+    "blog": {
+      "name": "Blog",
+      "slug": "blog"
+    }
   },
   "gallery": {
     "albums": {
-      "landscapes": "Paisajes",
-      "seascapes": "Costa",
-      "moon": "Luna",
-      "portraits": "Retratos",
-      "iceland": "Islandia",
-      "lofoten-islands": "Islas Lofoten",
-      "toscana": "Toscana",
-      "milky-way": "Vía láctea",
-      "northern-lights": "Auroras boreales"
+      "landscapes": {
+        "name": "Paisajes",
+        "slug": "paisajes"
+      },
+      "seascapes": {
+        "name": "Costa",
+        "slug": "costa"
+      },
+      "moon": {
+        "name": "Luna",
+        "slug": "luna"
+      },
+      "portraits": {
+        "name": "Retratos",
+        "slug": "retratos"
+      },
+      "iceland": {
+        "name": "Islandia",
+        "slug": "islandia"
+      },
+      "lofoten-islands": {
+        "name": "Islas Lofoten",
+        "slug": "islas-lofoten"
+      },
+      "toscana": {
+        "name": "Toscana",
+        "slug": "toscana"
+      },
+      "milky-way": {
+        "name": "Vía láctea",
+        "slug": "via-lactea"
+      },
+      "northern-lights": {
+        "name": "Auroras boreales",
+        "slug": "auroras-boreales"
+      }
     }
   }
 }

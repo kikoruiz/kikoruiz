@@ -23,21 +23,31 @@ export default function Post({post}) {
   )
 }
 
-export function getStaticPaths() {
+export async function getStaticPaths({locales}) {
+  let paths = []
+  const posts = getAllPosts()
+
+  for (const locale of locales) {
+    paths = paths.concat(
+      posts.map(post => ({
+        params: {
+          slug: post.slug
+        },
+        locale
+      }))
+    )
+  }
+
   return {
-    fallback: false,
-    paths: getAllPosts().map(post => ({
-      params: {
-        slug: post.slug
-      }
-    }))
+    paths,
+    fallback: false
   }
 }
 
 export function getStaticProps({params}) {
+  const post = getPostBySlug(params.slug)
+
   return {
-    props: {
-      post: getPostBySlug(params.slug)
-    }
+    props: {post, section: 'blog'}
   }
 }

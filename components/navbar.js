@@ -75,13 +75,13 @@ export default function Navbar() {
         }`}
       >
         {SECTIONS.map(section => {
-          const href = `/${section.slug}`
+          const href = `/${t(`sections.${section.id}.slug`)}`
           const isActiveSection = asPath.includes(href)
           const isActualSection = asPath === href
           const hasCategories = section.categories
           const content = (
             <a
-              title={section.name}
+              title={t(`sections.${section.id}.name`)}
               className={`relative block px-6 font-extrabold ${
                 isMenuOpen
                   ? 'mx-3 py-3 after:absolute after:top-0 after:left-0 after:block after:h-full after:w-[1px] after:bg-gradient-to-b after:from-transparent after:via-transparent'
@@ -98,7 +98,7 @@ export default function Navbar() {
               onClick={isMenuOpen && !isActualSection ? toggleMenu : () => {}}
             >
               <div className="relative flex items-center">
-                <span>{t(`sections.${section.slug}`)}</span>
+                <span>{t(`sections.${section.id}.name`)}</span>
                 {hasCategories && (
                   <IconChevronDown className="ml-2 h-[12px] w-[12px]" />
                 )}
@@ -108,7 +108,7 @@ export default function Navbar() {
 
           return (
             <li
-              key={section.slug}
+              key={section.id}
               className={`group ${
                 isMenuOpen ? 'first:mt-1 last:mb-2' : 'relative'
               }`}
@@ -123,11 +123,13 @@ export default function Navbar() {
                   }`}
                 >
                   {section.categories.map(category => {
-                    const categoryHref = `/${section.slug}/${category.slug}`
+                    const categoryHref = `/${t(
+                      `sections.${section.id}.slug`
+                    )}/${t(`${section.localePrefix}${category.id}.slug`)}`
                     const isActualCategory = asPath === categoryHref
                     const categoryContent = (
                       <a
-                        title={category.name}
+                        title={t(`${section.localePrefix}${category.id}.name`)}
                         className={`block py-3 text-sm text-neutral-400 group-last:rounded-b ${
                           isMenuOpen ? 'px-12' : 'px-6'
                         } ${
@@ -141,14 +143,12 @@ export default function Navbar() {
                             : () => {}
                         }
                       >
-                        {section.localePrefix
-                          ? t(`${section.localePrefix}${category.slug}`)
-                          : category.name}
+                        {t(`${section.localePrefix}${category.id}.name`)}
                       </a>
                     )
 
                     return (
-                      <li key={category.slug} className="group">
+                      <li key={category.id} className="group">
                         {isActualCategory ? (
                           categoryContent
                         ) : (

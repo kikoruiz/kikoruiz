@@ -13,3 +13,9 @@ export default function AboutMe() {
     </>
   )
 }
+
+export async function getStaticProps() {
+  return {
+    props: {section: 'about-me'}
+  }
+}

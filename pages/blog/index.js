@@ -42,7 +42,8 @@ export default function Posts({posts}) {
 export function getStaticProps() {
   return {
     props: {
-      posts: getAllPosts()
+      posts: getAllPosts(),
+      section: 'blog'
     }
   }
 }

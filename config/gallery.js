@@ -1,38 +1,38 @@
 export const GALLERY_ALBUMS = [
   {
-    slug: 'landscapes',
+    id: 'landscapes',
     tag: 'landscape'
   },
   {
-    slug: 'seascapes',
+    id: 'seascapes',
     tag: 'seascape'
   },
   {
-    slug: 'moon',
+    id: 'moon',
     tag: 'moon'
   },
   {
-    slug: 'portraits',
+    id: 'portraits',
     tag: 'portrait'
   },
   {
-    slug: 'iceland',
+    id: 'iceland',
     tag: 'iceland'
   },
   {
-    slug: 'lofoten-islands',
+    id: 'lofoten-islands',
     tag: 'lofoten islands'
   },
   {
-    slug: 'toscana',
+    id: 'toscana',
     tag: 'toscana'
   },
   {
-    slug: 'milky-way',
+    id: 'milky-way',
     tag: 'milky way'
   },
   {
-    slug: 'northern-lights',
+    id: 'northern-lights',
     tag: 'northern lights'
   }
 ]
