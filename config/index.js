@@ -1,13 +1,13 @@
 import {GALLERY_ALBUMS} from './gallery.js'
 
 export const SECTIONS = [
-  {slug: 'about-me'},
+  {id: 'about-me'},
   {
-    slug: 'gallery',
+    id: 'gallery',
     categories: GALLERY_ALBUMS,
     localePrefix: 'gallery.albums.'
   },
-  {slug: 'blog'}
+  {id: 'blog'}
 ]
 export const BRANDS = {
   SOCIAL: [

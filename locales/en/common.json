@@ -1,0 +1,59 @@
+{
+  "navigation": {
+    "back-to": "Back to {{section}}"
+  },
+  "sections": {
+    "about-me": {
+      "name": "About me",
+      "slug": "about-me"
+    },
+    "gallery": {
+      "name": "Gallery",
+      "slug": "gallery"
+    },
+    "blog": {
+      "name": "Blog",
+      "slug": "blog"
+    }
+  },
+  "gallery": {
+    "albums": {
+      "landscapes": {
+        "name": "Landscapes",
+        "slug": "landscapes"
+      },
+      "seascapes": {
+        "name": "Seascapes",
+        "slug": "seascapes"
+      },
+      "moon": {
+        "name": "Moon",
+        "slug": "moon"
+      },
+      "portraits": {
+        "name": "Portraits",
+        "slug": "portraits"
+      },
+      "iceland": {
+        "name": "Iceland",
+        "slug": "iceland"
+      },
+      "lofoten-islands": {
+        "name": "Lofoten Islands",
+        "slug": "lofoten-slands"
+      },
+      "toscana": {
+        "name": "Toscana",
+        "slug": "toscana"
+      },
+      "milky-way": {
+        "name": "Milky Way",
+        "slug": "milky-way"
+      },
+      "northern-lights": {
+        "name": "Northern Lights",
+        "slug": "northern-lights"
+      }
+    }
+  }
+}

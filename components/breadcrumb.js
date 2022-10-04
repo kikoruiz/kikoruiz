@@ -3,23 +3,21 @@ import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {fromRouteToBreadcrumbItems} from '../lib/mappers.js'
 
-export default function Breadcrumb() {
+export default function Breadcrumb({section}) {
   const {t} = useTranslation()
   const router = useRouter()
-  const {route, query} = router
-  const items = fromRouteToBreadcrumbItems({route, query})
+  const {asPath} = router
+  const items = fromRouteToBreadcrumbItems({section, asPath, t})
 
   return items.length > 0 ? (
     <div className="bg-neutral-800/75">
       <div className="container mx-auto py-3 px-4 text-xl">
-        {items.map(({href, slug, localeKey}) => {
-          const name = t(localeKey)
-
+        {items.map(({href, slug, name}) => {
           if (href) {
             return (
               <Link href={href} key={slug}>
                 <a
-                  title={t('breadcrumb.back-to', {section: name})}
+                  title={t('navigation.back-to', {section: name})}
                   className="text-neutral-400/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-400/30"
                 >
                   {name}

@@ -3,7 +3,7 @@ import Breadcrumb from './breadcrumb.js'
 import Navbar from './navbar.js'
 import Logo from '../assets/brand/photo-logo.svg'
 
-export default function Header() {
+export default function Header({section}) {
   return (
     <header className="sticky top-0 z-10 w-full backdrop-blur">
       <div className="bg-neutral-900/90">
@@ -20,7 +20,7 @@ export default function Header() {
         </div>
       </div>
 
-      <Breadcrumb />
+      <Breadcrumb section={section} />
     </header>
   )
 }
