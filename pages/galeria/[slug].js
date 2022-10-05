@@ -4,12 +4,16 @@ import ImageGallery from '../../components/image-gallery.js'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 import {getGalleryPictures} from '../../lib/gallery/pictures.js'
 import {fromExifToImageGallery} from '../../lib/gallery/mappers.js'
+import {fromLocalesToAlternates} from '../../lib/mappers.js'
 
-export default function GalleryAlbum({pictures}) {
+export default function GalleryAlbum({pictures, alternates}) {
   return (
     <>
       <Head>
         <title>Kiko Ruiz</title>
+        {alternates.map(({locale, href}) => (
+          <link key={locale} rel="alternate" hreflang={locale} href={href} />
+        ))}
       </Head>
 
       <ImageGallery items={pictures} />
@@ -35,13 +39,29 @@ export async function getStaticPaths({locales}) {
   return {paths, fallback: false}
 }
 
-export async function getStaticProps({params: {slug}, locale}) {
+export async function getStaticProps({
+  params: {slug},
+  locale,
+  locales,
+  defaultLocale
+}) {
+  const section = 'gallery'
   const galleryPictures = await getGalleryPictures({locale, slug})
   const pictures = await Promise.all(
     galleryPictures.map(fromExifToImageGallery)
   )
+  const alternates = await Promise.all(
+    locales.map(
+      await fromLocalesToAlternates({
+        defaultLocale,
+        locale,
+        section,
+        category: slug
+      })
+    )
+  )
 
   return {
-    props: {pictures, section: 'gallery'}
+    props: {pictures, alternates, section}
   }
 }

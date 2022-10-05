@@ -9,10 +9,13 @@ import IconChevronDown from '../assets/icons/chevron-down.svg'
 
 const {sm} = screens
 
-export default function Navbar() {
+export default function Navbar({section}) {
   const {t} = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const {asPath} = useRouter()
+  const path = section
+    ? asPath.replace(/(\/[a-z,-]+)/, `/${t(`sections.${section}.slug`)}`)
+    : asPath
 
   useMediaQuery({minWidth: sm}, undefined, handleMediaQueryChange)
 
@@ -76,8 +79,8 @@ export default function Navbar() {
       >
         {SECTIONS.map(section => {
           const href = `/${t(`sections.${section.id}.slug`)}`
-          const isActiveSection = asPath.includes(href)
-          const isActualSection = asPath === href
+          const isActiveSection = path.includes(href)
+          const isActualSection = path === href
           const hasCategories = section.categories
           const sectionName = t(`sections.${section.id}.name`)
           const sectionClassName = `relative px-6 font-extrabold ${
@@ -136,7 +139,7 @@ export default function Navbar() {
                     const categoryHref = `/${t(
                       `sections.${section.id}.slug`
                     )}/${t(`${section.localePrefix}${category.id}.slug`)}`
-                    const isActualCategory = asPath === categoryHref
+                    const isActualCategory = path === categoryHref
                     const categoryName = t(
                       `${section.localePrefix}${category.id}.name`
                     )

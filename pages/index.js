@@ -2,12 +2,16 @@ import Head from 'next/head.js'
 import ImageGallery from '../components/image-gallery.js'
 import {getGalleryAlbums} from '../lib/gallery/albums.js'
 import {fromAlbumToImageGallery} from '../lib/gallery/mappers.js'
+import {fromLocalesToAlternates} from '../lib/mappers.js'
 
-export default function Home({albums}) {
+export default function Home({albums, alternates}) {
   return (
     <>
       <Head>
         <title>Kiko Ruiz</title>
+        {alternates.map(({locale, href}) => (
+          <link key={locale} rel="alternate" hreflang={locale} href={href} />
+        ))}
       </Head>
 
       <ImageGallery items={albums} isAlbum />
@@ -15,13 +19,16 @@ export default function Home({albums}) {
   )
 }
 
-export async function getStaticProps({locale}) {
+export async function getStaticProps({locale, locales, defaultLocale}) {
   const galleryAlbums = await getGalleryAlbums()
   const albums = await Promise.all(
     galleryAlbums.map(fromAlbumToImageGallery(locale))
   )
+  const alternates = await Promise.all(
+    locales.map(await fromLocalesToAlternates({defaultLocale}))
+  )
 
   return {
-    props: {albums}
+    props: {albums, alternates}
   }
 }
