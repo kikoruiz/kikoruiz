@@ -7,7 +7,7 @@ export default function AboutMe({alternates}) {
       <Head>
         <title>Kiko Ruiz</title>
         {alternates.map(({locale, href}) => (
-          <link key={locale} rel="alternate" hreflang={locale} href={href} />
+          <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
       </Head>
 
