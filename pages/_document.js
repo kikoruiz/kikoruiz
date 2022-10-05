@@ -5,7 +5,7 @@ export default function Document({locale}) {
     <Html lang={locale}>
       <Head>
         <meta name="description" content="Kiko Ruiz" />
-        <meta name="theme-color" content="#171717"></meta>
+        <meta name="theme-color" content="#171717" />
         <link rel="icon" href="/favicon.ico" />
         <link
           href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap"

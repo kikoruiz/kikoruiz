@@ -1,10 +1,14 @@
 import Head from 'next/head'
+import {fromLocalesToAlternates} from '../lib/mappers.js'
 
-export default function AboutMe() {
+export default function AboutMe({alternates}) {
   return (
     <>
       <Head>
         <title>Kiko Ruiz</title>
+        {alternates.map(({locale, href}) => (
+          <link key={locale} rel="alternate" hreflang={locale} href={href} />
+        ))}
       </Head>
 
       <div className="flex justify-center p-12">
@@ -14,8 +18,13 @@ export default function AboutMe() {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({locales, defaultLocale}) {
+  const section = 'about-me'
+  const alternates = await Promise.all(
+    locales.map(await fromLocalesToAlternates({defaultLocale, section}))
+  )
+
   return {
-    props: {section: 'about-me'}
+    props: {section, alternates}
   }
 }

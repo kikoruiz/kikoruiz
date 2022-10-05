@@ -2,10 +2,14 @@ import Layout from '../components/layout.js'
 import '../styles/globals.css'
 
 export default function App({Component, pageProps}) {
-  const {section} = pageProps
+  const {section, post} = pageProps
+  const sectionData = {
+    section,
+    post
+  }
 
   return (
-    <Layout section={section}>
+    <Layout {...sectionData}>
       <Component {...pageProps} />
     </Layout>
   )
