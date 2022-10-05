@@ -1,5 +1,6 @@
 import {GALLERY_ALBUMS} from './gallery.js'
 
+export const DEFAULT_ORIGIN = 'https://kikoruiz.es'
 export const SECTIONS = [
   {id: 'about-me'},
   {
