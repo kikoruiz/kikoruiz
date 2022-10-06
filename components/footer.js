@@ -22,13 +22,13 @@ export default function Footer({alternates}) {
   return (
     <footer className="container relative mx-auto mt-auto px-4 pt-24 pb-12 after:absolute after:left-0 after:top-12 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600 sm:pb-16 sm:pt-32 sm:after:top-16">
       <div className="md:flex md:items-center md:justify-between">
-        <div>
-          <label htmlFor="languages" className="mb-2 block text-neutral-400">
+        <div className="mb-12 flex items-center md:mb-0">
+          <label htmlFor="languages" className="mr-2 text-sm text-neutral-500">
             {t('languages.selector.label')}
           </label>
           <select
             id="languages"
-            className="block w-full text-neutral-900"
+            className="block appearance-none rounded-md border border-neutral-700 bg-neutral-800 bg-select bg-[length:0.75rem] bg-[right_0.5rem_center] bg-no-repeat py-1.5 pl-3 pr-7 text-sm outline-0 focus:ring-1 focus:ring-orange-300/60"
             onChange={handleLanguageChange}
             defaultValue={currentLocale}
           >
@@ -43,7 +43,7 @@ export default function Footer({alternates}) {
         <SocialLinks />
       </div>
 
-      <div>
+      <div className="mt-12">
         <p className="mb-8 flex self-center md:mb-0">{`Copyright © ${year} Kiko Ruiz`}</p>
       </div>
     </footer>

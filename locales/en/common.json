@@ -58,7 +58,7 @@
   },
   "languages": {
     "selector": {
-      "label": "Select a language"
+      "label": "Language:"
     },
     "names": {
       "en": "English",
