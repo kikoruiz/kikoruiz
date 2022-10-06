@@ -55,5 +55,14 @@
         "slug": "auroras-boreales"
       }
     }
+  },
+  "languages": {
+    "selector": {
+      "label": "Selecciona un idioma"
+    },
+    "names": {
+      "en": "English",
+      "es": "Español"
+    }
   }
 }

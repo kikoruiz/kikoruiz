@@ -55,5 +55,14 @@
         "slug": "northern-lights"
       }
     }
+  },
+  "languages": {
+    "selector": {
+      "label": "Select a language"
+    },
+    "names": {
+      "en": "English",
+      "es": "Español"
+    }
   }
 }
