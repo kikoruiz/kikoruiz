@@ -11,13 +11,13 @@ export default function SocialLinks() {
           <li key={slug} className="mr-2 mb-2 flex last-of-type:mr-0 md:mb-0">
             <a
               title={name}
-              className="group flex rounded-full bg-gradient-to-t from-neutral-800 to-neutral-800 p-3 transition hover:from-neutral-800"
+              className="group flex h-fit rounded-full bg-gradient-to-t from-neutral-800 to-neutral-800 p-3 transition hover:from-neutral-800"
               href={url}
               target="_blank"
               rel="noopener noreferrer nofollow"
             >
               <Logo
-                className={`w-6 fill-neutral-300 transition-colors ${hoverClassName(
+                className={`h-6 w-6 fill-neutral-300 transition-colors ${hoverClassName(
                   slug
                 )}`}
               />
