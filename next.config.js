@@ -2,6 +2,9 @@ const nextTranslate = require('next-translate')
 
 module.exports = nextTranslate({
   reactStrictMode: true,
+  images: {
+    formats: ['image/avif', 'image/webp']
+  },
   i18n: {
     locales: ['es', 'en'],
     defaultLocale: 'es',

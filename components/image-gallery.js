@@ -31,10 +31,10 @@ export default function ImageGallery({items, isAlbum = false}) {
           isFirstImage ? ' mt-3' : ''
         }`
         const captionBaseClassName =
-          'relative rounded-bl-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
+          'p-3 relative rounded-bl-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
         const captionClassName = isAlbum
-          ? `${captionBaseClassName} px-3 py-6 md:px-6 md:py-9`
-          : `${captionBaseClassName} p-3 text-neutral-400`
+          ? `${captionBaseClassName} md:p-6`
+          : `${captionBaseClassName} text-neutral-400`
         const content = (
           <>
             <Image
@@ -47,14 +47,15 @@ export default function ImageGallery({items, isAlbum = false}) {
               placeholder="blur"
               blurDataURL={base64}
               priority={needsPreload}
+              lazyBoundary="300px"
             />
 
             <figcaption className={captionClassName}>
               <header
-                className={`font-bold drop-shadow group-hover:text-orange-300${
+                className={`drop-shadow group-hover:text-orange-300 ${
                   isAlbum
-                    ? ' text-2xl text-neutral-400 md:text-3xl lg:text-4xl'
-                    : ''
+                    ? 'text-2xl font-black text-neutral-400 md:text-4xl'
+                    : 'font-bold'
                 }`}
               >
                 {name ?? t(`gallery.albums.${id}.name`)}
@@ -80,7 +81,7 @@ export default function ImageGallery({items, isAlbum = false}) {
           <Link href={url} key={id}>
             <a
               title={name ?? t(`gallery.albums.${id}.name`)}
-              className={`${className} group block rounded-sm border-2 border-transparent hover:border-orange-300/60`}
+              className={`${className} group block rounded-sm hover:ring-2 hover:ring-orange-300/60`}
             >
               {content}
             </a>
