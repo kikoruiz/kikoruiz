@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import {getPlaiceholder} from 'plaiceholder'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from '../lib/mappers.js'
 import {getDescription} from '../lib/about-me.js'
@@ -28,15 +27,14 @@ export default function AboutMe({avatar, description, alternates}) {
               objectFit="cover"
               alt={t('sections.about-me.name')}
               className="rounded-full"
-              placeholder="blur"
-              blurDataURL={avatar.base64}
               priority
             />
           </div>
         </div>
+
         <article
           dangerouslySetInnerHTML={{__html: description.body}}
-          className="prose prose-neutral flex-1 prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-strong:text-neutral-300 dark:prose-invert"
+          className="prose prose-neutral flex-1 prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-strong:text-neutral-300 dark:prose-invert"
         />
       </section>
     </>
@@ -49,8 +47,6 @@ export async function getStaticProps({locales, locale, defaultLocale}) {
     src: '/avatar.jpg',
     sizes: `(min-width: ${sm}) 33vw, 100vw`
   }
-  const {base64} = await getPlaiceholder(avatar.src)
-  avatar.base64 = base64
   const section = 'about-me'
   const alternates = await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale, section}))

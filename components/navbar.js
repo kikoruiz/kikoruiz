@@ -83,7 +83,7 @@ export default function Navbar({section}) {
           const isActualSection = path === href
           const hasCategories = section.categories
           const sectionName = t(`sections.${section.id}.name`)
-          const sectionClassName = `relative px-6 font-extrabold ${
+          const sectionClassName = `relative px-6 font-bold sm:font-normal ${
             isMenuOpen
               ? 'mx-3 py-3 after:absolute after:top-0 after:left-0 after:block after:h-full after:w-[1px] after:bg-gradient-to-b after:from-transparent after:via-transparent'
               : 'py-2 after:absolute after:bottom-0 after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-transparent'
