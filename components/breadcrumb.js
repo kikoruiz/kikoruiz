@@ -12,7 +12,7 @@ export default function Breadcrumb({section, post}) {
 
   return items.length > 0 ? (
     <div className="bg-neutral-800/75">
-      <div className="container mx-auto py-3 px-4 text-xl">
+      <div className="container mx-auto py-3 px-6 text-xl sm:px-4">
         {items.map(({href, id, name}) => {
           if (href) {
             return (
@@ -28,7 +28,7 @@ export default function Breadcrumb({section, post}) {
           }
 
           return (
-            <span className="font-black text-orange-300/75" key={id}>
+            <span className="font-bold text-orange-300/75" key={id}>
               {name}
             </span>
           )

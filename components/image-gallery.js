@@ -54,7 +54,7 @@ export default function ImageGallery({items, isAlbum = false}) {
               <header
                 className={`drop-shadow group-hover:text-orange-300 ${
                   isAlbum
-                    ? 'text-2xl font-black text-neutral-400 md:text-4xl'
+                    ? 'text-3xl font-extrabold text-neutral-400 md:text-4xl'
                     : 'font-bold'
                 }`}
               >
