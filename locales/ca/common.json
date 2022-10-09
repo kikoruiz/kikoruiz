@@ -1,15 +1,15 @@
 {
   "navigation": {
-    "back-to": "Back to {{section}}"
+    "back-to": "Tornar a {{section}}"
   },
   "sections": {
     "about-me": {
-      "name": "About me",
-      "slug": "about-me"
+      "name": "Sobre mi",
+      "slug": "sobre-mi"
     },
     "gallery": {
-      "name": "Gallery",
-      "slug": "gallery"
+      "name": "Galeria",
+      "slug": "galeria"
     },
     "blog": {
       "name": "Blog",
@@ -19,46 +19,46 @@
   "gallery": {
     "albums": {
       "landscapes": {
-        "name": "Landscapes",
-        "slug": "landscapes"
+        "name": "Paisatges",
+        "slug": "paisatges"
       },
       "seascapes": {
-        "name": "Seascapes",
-        "slug": "seascapes"
+        "name": "Costa",
+        "slug": "costa"
       },
       "moon": {
-        "name": "Moon",
-        "slug": "moon"
+        "name": "Lluna",
+        "slug": "lluna"
       },
       "portraits": {
-        "name": "Portraits",
-        "slug": "portraits"
+        "name": "Retrats",
+        "slug": "retrats"
       },
       "iceland": {
-        "name": "Iceland",
-        "slug": "iceland"
+        "name": "Islàndia",
+        "slug": "islandia"
       },
       "lofoten-islands": {
-        "name": "Lofoten Islands",
-        "slug": "lofoten-islands"
+        "name": "Illes Lofoten",
+        "slug": "illes-lofoten"
       },
       "toscana": {
         "name": "Toscana",
         "slug": "toscana"
       },
       "milky-way": {
-        "name": "Milky Way",
-        "slug": "milky-way"
+        "name": "Via làctia",
+        "slug": "via-lactia"
       },
       "northern-lights": {
-        "name": "Northern Lights",
-        "slug": "northern-lights"
+        "name": "Aurores boreals",
+        "slug": "aurores-boreals"
       }
     }
   },
   "languages": {
     "selector": {
-      "label": "Language:"
+      "label": "Llengua:"
     },
     "names": {
       "en": "English",
