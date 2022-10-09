@@ -28,6 +28,10 @@ export default function Navbar({section}) {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  function handleElementClick() {
+    if (isMenuOpen) toggleMenu()
+  }
+
   return (
     <nav className={`my-auto${isMenuOpen ? ' relative' : ''}`}>
       <button
@@ -38,7 +42,7 @@ export default function Navbar({section}) {
             ? 'opacity-1 touch-none'
             : 'pointer-events-none touch-auto opacity-0'
         }`}
-        onClick={isMenuOpen ? toggleMenu : () => {}}
+        onClick={handleElementClick}
       ></button>
 
       <button
@@ -133,7 +137,7 @@ export default function Navbar({section}) {
                   <a
                     title={sectionName}
                     className={sectionClassName}
-                    onClick={isMenuOpen ? toggleMenu : () => {}}
+                    onClick={handleElementClick}
                   >
                     {content}
                   </a>
@@ -177,7 +181,7 @@ export default function Navbar({section}) {
                             <a
                               title={categoryName}
                               className={categoryClassName}
-                              onClick={isMenuOpen ? toggleMenu : () => {}}
+                              onClick={handleElementClick}
                             >
                               {categoryName}
                             </a>
