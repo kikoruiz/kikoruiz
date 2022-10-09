@@ -1,0 +1,69 @@
+{
+  "navigation": {
+    "back-to": "Tornar a {{section}}"
+  },
+  "sections": {
+    "about-me": {
+      "name": "Sobre mi",
+      "slug": "sobre-mi"
+    },
+    "gallery": {
+      "name": "Galeria",
+      "slug": "galeria"
+    },
+    "blog": {
+      "name": "Blog",
+      "slug": "blog"
+    }
+  },
+  "gallery": {
+    "albums": {
+      "landscapes": {
+        "name": "Paisatges",
+        "slug": "paisatges"
+      },
+      "seascapes": {
+        "name": "Costa",
+        "slug": "costa"
+      },
+      "moon": {
+        "name": "Lluna",
+        "slug": "lluna"
+      },
+      "portraits": {
+        "name": "Retrats",
+        "slug": "retrats"
+      },
+      "iceland": {
+        "name": "Islàndia",
+        "slug": "islandia"
+      },
+      "lofoten-islands": {
+        "name": "Illes Lofoten",
+        "slug": "illes-lofoten"
+      },
+      "toscana": {
+        "name": "Toscana",
+        "slug": "toscana"
+      },
+      "milky-way": {
+        "name": "Via làctia",
+        "slug": "via-lactia"
+      },
+      "northern-lights": {
+        "name": "Aurores boreals",
+        "slug": "aurores-boreals"
+      }
+    }
+  },
+  "languages": {
+    "selector": {
+      "label": "Llengua:"
+    },
+    "names": {
+      "en": "English",
+      "es": "Español",
+      "ca": "Català"
+    }
+  }
+}

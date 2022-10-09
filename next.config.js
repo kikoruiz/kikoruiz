@@ -6,7 +6,7 @@ module.exports = nextTranslate({
     formats: ['image/avif', 'image/webp']
   },
   i18n: {
-    locales: ['es', 'en'],
+    locales: ['es', 'ca', 'en'],
     defaultLocale: 'es',
     localeDetection: false
   },
