@@ -31,7 +31,7 @@ export default function ImageGallery({items, isAlbum = false}) {
           isFirstImage ? ' mt-3' : ''
         }`
         const captionBaseClassName =
-          'p-3 relative rounded-bl-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
+          'p-3.5 relative rounded-bl-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
         const captionClassName = isAlbum
           ? `${captionBaseClassName} md:p-6`
           : `${captionBaseClassName} text-neutral-400`
@@ -43,7 +43,11 @@ export default function ImageGallery({items, isAlbum = false}) {
               sizes={sizes}
               objectFit="cover"
               alt={name ?? t(`gallery.albums.${id}.name`)}
-              className="rounded-sm"
+              className={`rounded-sm${
+                isAlbum
+                  ? ' scale-100 transition-transform group-hover:scale-105'
+                  : ''
+              }`}
               placeholder="blur"
               blurDataURL={base64}
               priority={needsPreload}
@@ -55,7 +59,7 @@ export default function ImageGallery({items, isAlbum = false}) {
                 className={`drop-shadow group-hover:text-orange-300 ${
                   isAlbum
                     ? 'text-3xl font-extrabold text-neutral-400 md:text-4xl'
-                    : 'font-bold'
+                    : 'text-sm font-bold'
                 }`}
               >
                 {name ?? t(`gallery.albums.${id}.name`)}
