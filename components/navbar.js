@@ -6,6 +6,7 @@ import useTranslation from 'next-translate/useTranslation'
 import {SECTIONS} from '../config/index.js'
 import {screens} from '../lib/utils.js'
 import IconChevronDown from '../assets/icons/chevron-down.svg'
+import IconChevronUp from '../assets/icons/chevron-up.svg'
 
 const {sm} = screens
 
@@ -83,7 +84,7 @@ export default function Navbar({section}) {
           const isActualSection = path === href
           const hasCategories = section.categories
           const sectionName = t(`sections.${section.id}.name`)
-          const sectionClassName = `relative px-6 font-bold sm:font-normal ${
+          const sectionClassName = `relative px-6 font-bold ${
             isMenuOpen
               ? 'mx-3 py-3 after:absolute after:top-0 after:left-0 after:block after:h-full after:w-[1px] after:bg-gradient-to-b after:from-transparent after:via-transparent'
               : 'py-2 after:absolute after:bottom-0 after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-transparent'
@@ -99,8 +100,19 @@ export default function Navbar({section}) {
           const content = (
             <div className="relative flex items-center">
               <span>{sectionName}</span>
-              {hasCategories && (
-                <IconChevronDown className="ml-2 h-[12px] w-[12px]" />
+              {hasCategories && !isMenuOpen && (
+                <>
+                  <IconChevronDown
+                    className={`ml-2 h-[12px] w-[12px]${
+                      !isMenuOpen ? ' group-hover:hidden' : ''
+                    }`}
+                  />
+                  <IconChevronUp
+                    className={`ml-2 hidden h-[12px] w-[12px]${
+                      !isMenuOpen ? ' group-hover:block' : ''
+                    }`}
+                  />
+                </>
               )}
             </div>
           )
@@ -109,7 +121,7 @@ export default function Navbar({section}) {
             <li
               key={section.id}
               className={`group ${
-                isMenuOpen ? 'first:mt-1 last:mb-2' : 'relative'
+                isMenuOpen ? 'first:mt-1 last:mb-2' : 'relative hover:z-10'
               }`}
             >
               {isActualSection ? (
