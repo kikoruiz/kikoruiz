@@ -12,7 +12,7 @@ export default function AboutMe({avatar, description, alternates}) {
   return (
     <>
       <Head>
-        <title>Kiko Ruiz</title>
+        <title>{`Kiko Ruiz / ${t('sections.about-me.name')}`}</title>
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}

@@ -43,11 +43,7 @@ export default function ImageGallery({items, isAlbum = false}) {
               sizes={sizes}
               objectFit="cover"
               alt={name ?? t(`gallery.albums.${id}.name`)}
-              className={`rounded-sm${
-                isAlbum
-                  ? ' scale-100 transition-transform group-hover:scale-105'
-                  : ''
-              }`}
+              className="rounded-sm"
               placeholder="blur"
               blurDataURL={base64}
               priority={needsPreload}
