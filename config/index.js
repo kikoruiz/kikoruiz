@@ -1,6 +1,7 @@
 import {GALLERY_ALBUMS} from './gallery.js'
 
 export const DEFAULT_ORIGIN = 'https://kikoruiz.es'
+
 export const SECTIONS = [
   {id: 'about-me'},
   {
@@ -10,6 +11,14 @@ export const SECTIONS = [
   },
   {id: 'blog'}
 ]
+
+export const PERSONAL_INFO = {
+  phone: '+34619602535',
+  email: 'hola@kikoruiz.es',
+  location: 'Sant Cugat del Vallès (Barcelona)',
+  birthday: '08/27/1983'
+}
+
 export const BRANDS = {
   SOCIAL: [
     {

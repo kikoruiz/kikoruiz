@@ -1,0 +1,8 @@
+{
+  "personal-info": {
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location",
+    "birthday": "Birthday"
+  }
+}

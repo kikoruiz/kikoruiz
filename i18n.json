@@ -2,6 +2,6 @@
   "defaultNS": "common",
   "pages": {
     "*": ["common"],
-    "/": ["home"]
+    "/sobre-mi": ["about-me"]
   }
 }
