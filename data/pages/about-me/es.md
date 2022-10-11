@@ -12,4 +12,4 @@ es (desde hace muchos años también) el **diseño**. En realidad me inicié en 
 
 ## Actualmente
 
-trabajo como **ingeniero de software** en el equipo de _Plataforma Web_ de Adevinta Spain, dando soporte a los desarrolladores que hay en los diferentes marketplaces de la compañía (como [Coches.net](https://www.coches.net/), [Fotocasa](https://www.fotocasa.es/es/) o [InfoJobs](https://www.infojobs.net/)), priorizando la calidad, estabilidad y optimización de sus aplicaciones web.
+trabajo como **ingeniero de software** en el equipo de _Plataforma Web_ de Adevinta Spain, dando soporte a los desarrolladores que hay en los diferentes marketplaces de la compañía (como [Coches.net](https://www.coches.net), [Fotocasa](https://www.fotocasa.es/es) o [InfoJobs](https://www.infojobs.net)), priorizando la calidad, estabilidad y optimización de sus aplicaciones web.

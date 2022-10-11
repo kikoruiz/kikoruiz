@@ -12,4 +12,4 @@ Valoroe tots i cadascun dels passos del **procés creatiu** pel qual em trasllad
 
 ## Actualment
 
-treballe com a **enginyer de software** a l'equip de _Plataforma Web_ d'Adevinta Spain, donant suport als desenvolupadors que hi ha als diferents marketplaces de la companyia (com [Coches.net](https://www.coches.net) /), [Fotocasa](https://www.fotocasa.es/es/) o [InfoJobs](https://www.infojobs.net/)), prioritzant la qualitat, estabilitat i optimització de les seves aplicacions web.
+treballe com a **enginyer de software** a l'equip de _Plataforma Web_ d'Adevinta Spain, donant suport als desenvolupadors que hi ha als diferents marketplaces de la companyia (com [Coches.net](https://www.coches.net), [Fotocasa](https://www.fotocasa.es/es) o [InfoJobs](https://www.infojobs.net)), prioritzant la qualitat, estabilitat i optimització de les seves aplicacions web.
