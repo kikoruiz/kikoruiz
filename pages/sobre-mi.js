@@ -22,8 +22,8 @@ export default function AboutMe({avatar, description, alternates}) {
       </Head>
 
       <section className="flex flex-col p-6 sm:flex-row sm:p-0">
-        <div className="mb-6 w-full px-24 sm:mr-6 sm:w-1/3 sm:px-4 md:px-6 xl:px-12 2xl:px-24">
-          <div className="relative mb-6 aspect-square overflow-hidden rounded-full border-8 border-neutral-600/30 sm:mb-6">
+        <div className="mb-12 w-full sm:mr-6 sm:w-1/3">
+          <div className="relative mx-12 mb-6 aspect-square overflow-hidden rounded-full border-8 border-neutral-600/30 sm:mx-4 sm:mb-6 md:mx-6 xl:mx-12 2xl:mx-24">
             <Image
               src={avatar.src}
               layout="fill"
@@ -36,7 +36,7 @@ export default function AboutMe({avatar, description, alternates}) {
               priority
             />
           </div>
-          <dl className="px-4">
+          <dl className="rounded-lg bg-gradient-to-tl from-neutral-800/60 px-6 sm:px-3">
             {Object.keys(PERSONAL_INFO).map(key => {
               const value = PERSONAL_INFO[key]
 
@@ -47,6 +47,7 @@ export default function AboutMe({avatar, description, alternates}) {
                       <a
                         href={`tel:${value}`}
                         className="hover:text-orange-200"
+                        title={value}
                       >
                         {value}
                       </a>
@@ -56,6 +57,7 @@ export default function AboutMe({avatar, description, alternates}) {
                       <a
                         href={`mailto:${value}`}
                         className="hover:text-orange-200"
+                        title={value}
                       >
                         {value}
                       </a>
@@ -67,6 +69,7 @@ export default function AboutMe({avatar, description, alternates}) {
                           value
                         )}`}
                         className="hover:text-orange-200"
+                        title={value}
                         target="_blank"
                         rel="noopener noreferrer nofollow"
                       >
@@ -91,13 +94,15 @@ export default function AboutMe({avatar, description, alternates}) {
                 <div
                   className={`${personalInfoBackground(
                     key
-                  )} relative border-b border-neutral-800 bg-[length:1.2rem] bg-[left_0.65rem_center] bg-no-repeat py-6 pl-14 before:absolute before:left-0 before:top-1/2 before:-z-10 before:-mt-5 before:h-10 before:w-10 before:rounded-xl before:bg-gradient-to-b before:from-neutral-800 last:border-0`}
+                  )} relative border-b border-neutral-800 bg-[length:1.2rem] bg-[left_0.65rem_center] bg-no-repeat py-6 pl-14 before:absolute before:left-0 before:top-1/2 before:-z-10 before:-mt-5 before:h-10 before:w-10 before:rounded-xl before:bg-gradient-to-bl before:from-neutral-700 last:border-0`}
                   key={key}
                 >
                   <dt className="text-xs opacity-30">
                     {t(`about-me:personal-info.${key}`)}
                   </dt>
-                  <dd className="font-semibold">{description()}</dd>
+                  <dd className="overflow-hidden text-ellipsis font-semibold">
+                    {description()}
+                  </dd>
                 </div>
               )
             })}
