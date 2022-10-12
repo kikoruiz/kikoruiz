@@ -4,7 +4,7 @@ i sóc un apassionat de la **fotografia**, una passió que m'acompanya des de fa
 
 Algunes de les coses que més gaudisc d'aquesta afició són les **experiències** compartides, els **moments** únics que intente reflectir en les meues fotografies i, probablement el que més, la connexió que visc amb la **natura** al apropar-me més a ella per representar aquests moments.
 
-Valoroe tots i cadascun dels passos del **procés creatiu** pel qual em trasllada la fotografia, des de la planificació de les fotos fins a l'edició dels meus treballs.
+Valore tots i cadascun dels passos del **procés creatiu** pel qual em trasllada la fotografia, des de la planificació de les fotos fins a l'edició dels meus treballs.
 
 ## Una altra de les meues passions
 
