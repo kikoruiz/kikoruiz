@@ -1,35 +1,59 @@
 import Head from 'next/head'
 import {useRouter} from 'next/router'
-import {getAllPosts, getPostBySlug} from '../../lib/blog/posts.js'
+import useTranslation from 'next-translate/useTranslation'
+import {getAllPosts} from '../../lib/blog/posts.js'
 import {getPrettyDate} from '../../lib/blog/date.js'
 import {fromLocalesToAlternates} from '../../lib/mappers.js'
+import Article from '../../components/article.js'
+import {BLOG_AUTHORS} from '../../config/index.js'
 
 export default function Post({post, alternates}) {
   const {locale} = useRouter()
+  const {t} = useTranslation('blog')
+  const author = BLOG_AUTHORS.find(({slug}) => post.author === slug).name
 
   return (
     <div>
       <Head>
-        <title>Kiko Ruiz</title>
+        <title>{`Kiko Ruiz / ${post.title}`}</title>
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
       </Head>
 
-      <h1>{post.title}</h1>
+      <article className="p-6 sm:p-4">
+        <header className="pt-12 text-center sm:pt-0">
+          <div className="text-sm">
+            <time
+              className="text-orange-300/60 after:content-['\00a0·\00a0']"
+              dateTime={post.createdAt}
+            >
+              {getPrettyDate(post.createdAt, locale)}
+            </time>
 
-      <time dateTime={post.createdAt}>
-        {getPrettyDate(post.createdAt, locale)}
-      </time>
+            <span className="text-neutral-600/60">
+              {t('post.reading-time-message', {count: post.readingTime})}
+            </span>
+          </div>
 
-      <div dangerouslySetInnerHTML={{__html: post.body}} />
+          <h1 className="my-3 text-6xl font-black sm:text-8xl">{post.title}</h1>
+
+          <div className="font-extralight text-neutral-300/60">
+            {t('post.by', {author})}
+          </div>
+        </header>
+
+        <Article className="relative mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600">
+          {post.content}
+        </Article>
+      </article>
     </div>
   )
 }
 
 export async function getStaticPaths({locales}) {
+  const posts = await getAllPosts()
   let paths = []
-  const posts = getAllPosts()
 
   for (const locale of locales) {
     paths = paths.concat(
@@ -55,7 +79,8 @@ export async function getStaticProps({
   defaultLocale
 }) {
   const section = 'blog'
-  const post = getPostBySlug(slug)
+  const posts = await getAllPosts()
+  const post = posts.find(post => post.slug === slug)
   const alternates = await Promise.all(
     locales.map(
       await fromLocalesToAlternates({
