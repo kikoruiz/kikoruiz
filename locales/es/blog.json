@@ -1,0 +1,10 @@
+{
+  "post": {
+    "by": "Por {{author}}",
+    "reading-time-message": {
+      "0": "menos de un min. de lectura",
+      "1": "{{count}} min. de lectura",
+      "other": "{{count}} min. de lectura"
+    }
+  }
+}

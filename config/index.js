@@ -16,8 +16,10 @@ export const PERSONAL_INFO = {
   phone: '+34619602535',
   email: 'hola@kikoruiz.es',
   location: 'Sant Cugat del Vallès (Barcelona)',
-  birthday: '08/27/1983'
+  birthday: '1983-08-27'
 }
+
+export const BLOG_AUTHORS = [{slug: 'kiko-ruiz', name: 'Kiko Ruiz'}]
 
 export const BRANDS = {
   SOCIAL: [

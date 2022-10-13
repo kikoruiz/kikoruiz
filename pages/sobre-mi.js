@@ -7,6 +7,7 @@ import {fromLocalesToAlternates} from '../lib/mappers.js'
 import {getDescription} from '../lib/about-me.js'
 import {themeScreens} from '../lib/utils.js'
 import {PERSONAL_INFO} from '../config/index.js'
+import Article from '../components/article.js'
 
 export default function AboutMe({avatar, description, alternates}) {
   const {locale} = useRouter()
@@ -109,10 +110,7 @@ export default function AboutMe({avatar, description, alternates}) {
           </dl>
         </div>
 
-        <article
-          dangerouslySetInnerHTML={{__html: description.body}}
-          className="prose prose-neutral flex-1 prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-strong:text-neutral-300 dark:prose-invert"
-        />
+        <Article className="flex-1">{description.content}</Article>
       </section>
     </>
   )

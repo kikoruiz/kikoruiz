@@ -2,6 +2,7 @@
   "defaultNS": "common",
   "pages": {
     "*": ["common"],
-    "/sobre-mi": ["about-me"]
+    "/sobre-mi": ["about-me"],
+    "rgx:/blog*": ["blog"]
   }
 }
