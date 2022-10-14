@@ -3,12 +3,12 @@ import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {fromSectionToBreadcrumbItems} from '../lib/mappers.js'
 
-export default function Breadcrumb({section, post}) {
+export default function Breadcrumb({section}) {
   const {t} = useTranslation()
   const router = useRouter()
   const {asPath} = router
   const [, , category] = asPath.split('/')
-  const items = fromSectionToBreadcrumbItems({section, category, post, t})
+  const items = fromSectionToBreadcrumbItems({section, category, t})
 
   return items.length > 0 ? (
     <div className="bg-neutral-800/75">

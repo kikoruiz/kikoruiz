@@ -43,9 +43,10 @@ export default function Post({post, alternates}) {
           </div>
         </header>
 
-        <Article className="relative mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600">
-          {post.content}
-        </Article>
+        <Article
+          content={post.content}
+          className="relative mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600"
+        />
       </article>
     </div>
   )
