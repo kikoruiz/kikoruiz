@@ -42,7 +42,7 @@ export default function PostCard({
             <time className="text-orange-300/60" dateTime={createdAt}>
               {getPrettyDate(createdAt, locale)}
             </time>
-            <p className="mt-3 text-neutral-600">{excerpt}</p>
+            <p className="mt-3 font-light text-neutral-600">{excerpt}</p>
           </div>
         </article>
       </a>

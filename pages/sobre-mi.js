@@ -110,7 +110,7 @@ export default function AboutMe({avatar, description, alternates}) {
           </dl>
         </div>
 
-        <Article className="flex-1">{description.content}</Article>
+        <Article content={description.content} className="flex-1" />
       </section>
     </>
   )

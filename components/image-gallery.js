@@ -87,9 +87,9 @@ export default function ImageGallery({items, isAlbum = false}) {
             </a>
           </Link>
         ) : (
-          <div key={id} className={className}>
+          <figure key={id} className={className}>
             {content}
-          </div>
+          </figure>
         )
       })}
     </div>
