@@ -12,14 +12,14 @@ export default function Breadcrumb({section}) {
 
   return items.length > 0 ? (
     <div className="bg-neutral-800/75">
-      <div className="container mx-auto py-3 px-6 text-xl sm:px-4">
+      <div className="container mx-auto py-2 px-6 text-sm">
         {items.map(({href, id, name}) => {
           if (href) {
             return (
               <Link href={href} key={id}>
                 <a
                   title={t('navigation.back-to', {section: name})}
-                  className="text-neutral-400/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-400/30"
+                  className="font-light text-neutral-400/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-400/30"
                 >
                   {name}
                 </a>
@@ -28,7 +28,7 @@ export default function Breadcrumb({section}) {
           }
 
           return (
-            <span className="font-bold text-orange-300/75" key={id}>
+            <span className="font-bold text-neutral-300/60" key={id}>
               {name}
             </span>
           )

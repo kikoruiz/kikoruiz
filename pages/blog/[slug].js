@@ -21,7 +21,7 @@ export default function Post({post, alternates}) {
         ))}
       </Head>
 
-      <article className="p-6 sm:p-4">
+      <article className="p-6">
         <header className="pt-12 text-center sm:pt-0">
           <div className="text-sm">
             <time
@@ -45,7 +45,7 @@ export default function Post({post, alternates}) {
 
         <Article
           content={post.content}
-          className="relative mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600"
+          className="relative mx-auto mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600 xl:max-w-5xl"
         />
       </article>
     </div>
