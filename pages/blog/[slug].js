@@ -8,7 +8,6 @@ import {fromLocalesToAlternates} from '../../lib/mappers.js'
 import {BLOG} from '../../config/index.js'
 import Article from '../../components/article.js'
 import BlogTags from '../../components/blog-tags.js'
-import {getSectionSeparator} from '../../lib/utils.js'
 
 export default function Post({post, alternates}) {
   const {locale} = useRouter()
@@ -28,7 +27,7 @@ export default function Post({post, alternates}) {
         <header className="pt-9 text-center sm:pt-0">
           <div>
             <time
-              className="rounded bg-gradient-to-r from-neutral-800/60 p-2 text-orange-300/60"
+              className="rounded bg-gradient-to-br from-neutral-800/60 p-2 text-orange-300/60"
               dateTime={post.createdAt}
             >
               {getPrettyDate(post.createdAt, locale)}
@@ -48,7 +47,7 @@ export default function Post({post, alternates}) {
 
         <Article
           content={post.content}
-          className={`mx-auto mt-12 pt-12 ${getSectionSeparator()}`}
+          className="relative mx-auto mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600"
         />
 
         {post.tags && <BlogTags tags={post.tags} isPost />}
