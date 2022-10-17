@@ -1,7 +1,6 @@
 import {useRouter} from 'next/router.js'
 import useTranslation from 'next-translate/useTranslation'
 import SocialLinks from './social-links.js'
-import {getSectionSeparator} from '../lib/utils.js'
 
 export default function Footer({alternates}) {
   const {locales, locale: currentLocale, push} = useRouter()
@@ -21,9 +20,7 @@ export default function Footer({alternates}) {
   }
 
   return (
-    <footer
-      className={`container mx-auto mt-12 px-6 pt-16 pb-12 sm:mt-0 sm:pt-32 sm:pb-16 sm:after:top-16 ${getSectionSeparator()}`}
-    >
+    <footer className="container relative mx-auto mt-12 px-6 pt-16 pb-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600 sm:mt-0 sm:pt-32 sm:pb-16 sm:after:top-16">
       <div className="md:flex md:items-center md:justify-between">
         <div className="mb-12 flex items-center md:mb-0">
           <label htmlFor="languages" className="mr-2 text-sm text-neutral-500">
