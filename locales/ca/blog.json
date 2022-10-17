@@ -1,10 +1,18 @@
 {
+  "tags": {
+    "photography": "fotografia",
+    "personal": "personal"
+  },
   "post": {
     "by": "Per {{author}}",
     "reading-time-message": {
       "0": "menys d'un min. de lectura",
       "1": "{{count}} min. de lectura",
       "other": "{{count}} min. de lectura"
-    }
+    },
+    "go-to-tag": "Anar al tag \"{{tag}}\""
+  },
+  "list": {
+    "back-to-all": "Tornar a tots els articles"
   }
 }

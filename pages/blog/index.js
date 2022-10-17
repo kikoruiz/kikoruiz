@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import {getAllPosts} from '../../lib/blog/posts.js'
 import {fromLocalesToAlternates} from '../../lib/mappers.js'
-import PostCard from '../../components/post-card.js'
+import {getTagsData} from '../../lib/blog/tags.js'
+import PostsList from '../../components/posts-list.js'
 
-export default function Posts({posts, alternates}) {
+export default function Blog({posts, tags, alternates}) {
   return (
     <>
       <Head>
@@ -13,18 +14,15 @@ export default function Posts({posts, alternates}) {
         ))}
       </Head>
 
-      <section className="grid p-4 sm:grid-cols-2 sm:gap-2">
-        {posts.map(post => (
-          <PostCard key={post.slug} {...post} />
-        ))}
-      </section>
+      <PostsList tags={tags} posts={posts} />
     </>
   )
 }
 
-export async function getStaticProps({locales, defaultLocale}) {
+export async function getStaticProps({locales, locale, defaultLocale}) {
   const section = 'blog'
   const posts = await getAllPosts()
+  const tags = await getTagsData({locale})
   const alternates = await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale, section}))
   )
@@ -32,6 +30,7 @@ export async function getStaticProps({locales, defaultLocale}) {
   return {
     props: {
       posts,
+      tags,
       alternates,
       section
     }

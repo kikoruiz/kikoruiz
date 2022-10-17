@@ -11,8 +11,8 @@ function handleRouteChange(url) {
 
 export default function App({Component, pageProps}) {
   const router = useRouter()
-  const {section, alternates} = pageProps
-  const sectionData = {section}
+  const {section, post, alternates} = pageProps
+  const sectionData = {section, post}
   const languageData = {alternates}
 
   useEffect(() => {

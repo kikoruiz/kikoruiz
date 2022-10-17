@@ -1,4 +1,4 @@
-## Hello! 👋, my name is Kiko
+# Hello! 👋, my name is Kiko
 
 and I am passionate about **photography** 📷, a passion that has been with me for many years, but especially since I bought my first digital SLR camera in 2016, when I began to introduce myself to **landscape** photography.
 

@@ -19,7 +19,8 @@
     "react": "18",
     "react-dom": "18",
     "react-markdown": "8",
-    "react-responsive": "9"
+    "react-responsive": "9",
+    "remove-accents": "0"
   },
   "devDependencies": {
     "@svgr/webpack": "6",

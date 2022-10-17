@@ -24,7 +24,7 @@ export default function AboutMe({avatar, description, alternates}) {
 
       <section className="flex flex-col p-6 sm:flex-row sm:py-0">
         <div className="mb-12 w-full sm:mr-6 sm:w-1/3">
-          <div className="relative mx-12 mb-6 aspect-square overflow-hidden rounded-full border-8 border-neutral-600/30 sm:mx-4 sm:mb-6 md:mx-6 xl:mx-12 2xl:mx-24">
+          <div className="relative mx-12 mb-6 aspect-square overflow-hidden rounded-full border-8 border-neutral-600/30 sm:mx-4 sm:mb-6 md:mx-6 xl:mx-14">
             <Image
               src={avatar.src}
               layout="fill"
