@@ -10,9 +10,10 @@
       "1": "{{count}} min. de lectura",
       "other": "{{count}} min. de lectura"
     },
-    "go-to-tag": "Anar al tag \"{{tag}}\""
+    "filter-by-tag": "Tag \"{{tag}}\""
   },
   "list": {
+    "filter-by": "Filtrar per:",
     "back-to-all": "Tornar a tots els articles"
   }
 }

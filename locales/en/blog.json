@@ -10,9 +10,10 @@
       "1": "{{count}} min read",
       "other": "{{count}} min read"
     },
-    "go-to-tag": "Go to tag \"{{tag}}\""
+    "filter-by-tag": "Tag \"{{tag}}\""
   },
   "list": {
+    "filter-by": "Filter by:",
     "back-to-all": "Back to all articles"
   }
 }
