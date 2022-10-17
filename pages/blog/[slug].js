@@ -3,17 +3,19 @@ import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {getAllPosts} from '../../lib/blog/posts.js'
 import {getPrettyDate} from '../../lib/blog/date.js'
+import {getTagsData} from '../../lib/blog/tags.js'
 import {fromLocalesToAlternates} from '../../lib/mappers.js'
+import {BLOG} from '../../config/index.js'
 import Article from '../../components/article.js'
-import {BLOG_AUTHORS} from '../../config/index.js'
+import BlogTags from '../../components/blog-tags.js'
 
 export default function Post({post, alternates}) {
   const {locale} = useRouter()
   const {t} = useTranslation('blog')
-  const author = BLOG_AUTHORS.find(({slug}) => post.author === slug).name
+  const author = BLOG.AUTHORS.find(({slug}) => post.author === slug).name
 
   return (
-    <div>
+    <>
       <Head>
         <title>{`Kiko Ruiz / ${post.title}`}</title>
         {alternates.map(({locale, href}) => (
@@ -21,17 +23,17 @@ export default function Post({post, alternates}) {
         ))}
       </Head>
 
-      <article className="p-6">
-        <header className="pt-12 text-center sm:pt-0">
-          <div className="text-sm">
+      <article className="mx-auto p-6 xl:max-w-5xl">
+        <header className="pt-9 text-center sm:pt-0">
+          <div>
             <time
-              className="text-orange-300/60 after:content-['\00a0·\00a0']"
+              className="rounded bg-neutral-800/60 p-2 text-orange-300/60"
               dateTime={post.createdAt}
             >
               {getPrettyDate(post.createdAt, locale)}
             </time>
 
-            <span className="text-neutral-600/60">
+            <span className="text-neutral-600/60 before:content-['\00a0·\00a0']">
               {t('post.reading-time-message', {count: post.readingTime})}
             </span>
           </div>
@@ -45,10 +47,12 @@ export default function Post({post, alternates}) {
 
         <Article
           content={post.content}
-          className="relative mx-auto mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600 xl:max-w-5xl"
+          className="relative mx-auto mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600"
         />
+
+        {post.tags && <BlogTags tags={post.tags} isPost />}
       </article>
-    </div>
+    </>
   )
 }
 
@@ -82,6 +86,7 @@ export async function getStaticProps({
   const section = 'blog'
   const posts = await getAllPosts()
   const post = posts.find(post => post.slug === slug)
+  const tags = await getTagsData({tags: post.tags.split(', '), locale})
   const alternates = await Promise.all(
     locales.map(
       await fromLocalesToAlternates({
@@ -94,6 +99,10 @@ export async function getStaticProps({
   )
 
   return {
-    props: {post, alternates, section}
+    props: {
+      post: {...post, tags},
+      alternates,
+      section
+    }
   }
 }

@@ -1,4 +1,4 @@
-## Hola! 👋, el meu nom és Kiko
+# Hola! 👋, el meu nom és Kiko
 
 i sóc un apassionat de la **fotografia** 📷, una passió que m'acompanya des de fa molts anys, però sobretot des que vaig adquirir la meua primera càmera rèflex digital l'any 2016 i em vaig començar a introduir a la fotografia de **paisatge**.
 

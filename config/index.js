@@ -19,7 +19,10 @@ export const PERSONAL_INFO = {
   birthday: '1983-08-27'
 }
 
-export const BLOG_AUTHORS = [{slug: 'kiko-ruiz', name: 'Kiko Ruiz'}]
+export const BLOG = {
+  AUTHORS: [{slug: 'kiko-ruiz', name: 'Kiko Ruiz'}],
+  TAGS: ['photography', 'personal']
+}
 
 export const BRANDS = {
   SOCIAL: [

@@ -5,15 +5,18 @@
   "sections": {
     "about-me": {
       "name": "About me",
-      "slug": "about-me"
+      "slug": "about-me",
+      "description": ""
     },
     "gallery": {
       "name": "Gallery",
-      "slug": "gallery"
+      "slug": "gallery",
+      "description": ""
     },
     "blog": {
       "name": "Blog",
-      "slug": "blog"
+      "slug": "blog",
+      "description": "Articles about photography, web development and some experiencies of my own."
     }
   },
   "gallery": {

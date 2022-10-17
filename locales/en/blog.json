@@ -1,10 +1,18 @@
 {
+  "tags": {
+    "photography": "photography",
+    "personal": "personal"
+  },
   "post": {
     "by": "By {{author}}",
     "reading-time-message": {
       "0": "less than a min read",
       "1": "{{count}} min read",
       "other": "{{count}} min read"
-    }
+    },
+    "go-to-tag": "Go to tag \"{{tag}}\""
+  },
+  "list": {
+    "back-to-all": "Back to all articles"
   }
 }

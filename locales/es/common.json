@@ -5,15 +5,18 @@
   "sections": {
     "about-me": {
       "name": "Sobre mí",
-      "slug": "sobre-mi"
+      "slug": "sobre-mi",
+      "description": ""
     },
     "gallery": {
       "name": "Galería",
-      "slug": "galeria"
+      "slug": "galeria",
+      "description": ""
     },
     "blog": {
       "name": "Blog",
-      "slug": "blog"
+      "slug": "blog",
+      "description": "Artículos sobre fotografía, desarrollo web y algunas experiencias propias."
     }
   },
   "gallery": {
