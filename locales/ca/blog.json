@@ -10,7 +10,7 @@
       "1": "{{count}} min. de lectura",
       "other": "{{count}} min. de lectura"
     },
-    "filter-by-tag": "Tag \"{{tag}}\""
+    "tag": "Tag \"{{tag}}\""
   },
   "list": {
     "filter-by": "Filtrar per:",
