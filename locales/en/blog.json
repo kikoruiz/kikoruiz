@@ -10,7 +10,7 @@
       "1": "{{count}} min read",
       "other": "{{count}} min read"
     },
-    "filter-by-tag": "Tag \"{{tag}}\""
+    "tag": "Tag \"{{tag}}\""
   },
   "list": {
     "filter-by": "Filter by:",

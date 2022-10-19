@@ -21,10 +21,10 @@ export default function BlogTags({tags, isPost, hasSeparator}) {
             <li className="flex" key={slug}>
               <Link href={href}>
                 <a
-                  className={`relative rounded-l-3xl rounded-r-md border p-2 pl-6 font-medium text-neutral-900 before:absolute before:left-2 before:top-1/2 before:mt-[-4.5px] before:h-[9px] before:w-[9px] before:rounded-full before:border before:bg-neutral-900 ${tagClassName(
+                  className={`relative rounded-r rounded-l-3xl border p-2 pl-6 font-medium text-neutral-900 before:absolute before:left-2 before:top-1/2 before:mt-[-4.5px] before:h-[9px] before:w-[9px] before:rounded-full before:border before:bg-neutral-900 ${tagClassName(
                     id
                   )}`}
-                  title={t('post.filter-by-tag', {tag: name})}
+                  title={t('post.tag', {tag: name})}
                 >
                   {name}
                 </a>
