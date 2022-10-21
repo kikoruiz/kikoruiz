@@ -1,7 +1,7 @@
 const nextTranslate = require('next-translate')
 
 module.exports = nextTranslate({
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     formats: ['image/avif', 'image/webp']
   },

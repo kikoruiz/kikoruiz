@@ -1,0 +1,142 @@
+import {useState, useRef, useEffect} from 'react'
+import {useRouter} from 'next/router'
+import {useCombobox} from 'downshift'
+import useTranslation from 'next-translate/useTranslation'
+import {fetcher} from '../lib/utils.js'
+import IconMagnifyingGlass from '../assets/icons/magnifying-glass.svg'
+
+export default function SearchBar({isOpen, setIsOpen}) {
+  const {t} = useTranslation()
+  const {locale, push} = useRouter()
+  const inputRef = useRef(null)
+  const [items, setItems] = useState([])
+  const {
+    isOpen: isMenuOpen,
+    getLabelProps,
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+    highlightedIndex,
+    getItemProps,
+    reset
+  } = useCombobox({
+    items,
+    labelId: 'search-label',
+    menuId: 'search-menu',
+    onSelectedItemChange: ({selectedItem}) => {
+      if (selectedItem?.excerpt) {
+        const destination = `/${t('sections.blog.slug')}/${selectedItem.slug}`
+
+        reset()
+        setIsOpen(false)
+        push(destination, destination, {locale})
+      }
+    },
+    itemToString: () => '',
+    onInputValueChange: async ({inputValue}) => {
+      let items = []
+
+      if (inputValue) {
+        items = await fetcher.get(`/api/search/${inputValue}`)
+      }
+
+      setItems(items)
+    }
+  })
+
+  useEffect(() => {
+    if (isOpen) inputRef.current.focus()
+  }, [isOpen])
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        reset()
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown)
+    } else {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isOpen, setIsOpen, reset])
+
+  return (
+    <div
+      className={`absolute left-0 top-full z-20 px-4 sm:px-0 w-full${
+        isOpen ? '' : ' hidden'
+      }`}
+    >
+      <form className="container mx-auto overflow-hidden rounded-md bg-neutral-800 drop-shadow-lg xl:max-w-4xl">
+        <label
+          {...getLabelProps()}
+          htmlFor="search"
+          className="sr-only mb-2 text-sm font-medium text-gray-900"
+        >
+          {t('navigation.search')}
+        </label>
+        <div {...getComboboxProps()} className="relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <IconMagnifyingGlass className="w-6 fill-neutral-600" />
+          </div>
+          <input
+            {...getInputProps({ref: inputRef})}
+            type="text"
+            id="search"
+            className="block w-full appearance-none rounded-md border border-transparent bg-transparent p-4 pl-12 text-sm text-neutral-300 placeholder-neutral-600 focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
+            placeholder={t('navigation.search')}
+            required
+          />
+        </div>
+
+        <div
+          {...getMenuProps()}
+          className="max-h-[calc(100vh-20rem)] overflow-y-auto"
+        >
+          {isMenuOpen && (
+            <ul>
+              {items.map((item, index) => {
+                return (
+                  <li
+                    {...getItemProps({item, index})}
+                    key={item.slug}
+                    className={`p-4 cursor-pointer${
+                      highlightedIndex === index ? ' bg-neutral-900/30' : ''
+                    }`}
+                  >
+                    {item.excerpt ? (
+                      <div className="font-bold text-neutral-300/90">
+                        {item.title}
+                      </div>
+                    ) : (
+                      <>
+                        <header className="font-bold text-neutral-300/90">
+                          {item.title}
+                        </header>
+                        <dl className="flex text-xs">
+                          <dt className="text-neutral-300/30 after:content-[':\00a0']">
+                            {t('gallery.album')}
+                          </dt>
+                          <dd className="text-orange-300/60">
+                            {t(`gallery.albums.${item.album}.name`)}
+                          </dd>
+                        </dl>
+                      </>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+        </div>
+      </form>
+    </div>
+  )
+}

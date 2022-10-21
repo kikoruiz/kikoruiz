@@ -4,13 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run save:metadata && next build",
+    "prebuild": "npm run save:metadata && npm run save:content",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "save:metadata": "node ./bin/pictures/save-metadata.js"
+    "save:metadata": "node ./bin/pictures/save-metadata.js",
+    "save:content": "node ./bin/search/save-content.js"
   },
   "dependencies": {
     "change-case": "4",
+    "downshift": "6",
     "exiftool-vendored": "17",
     "gray-matter": "4",
     "next": "12",

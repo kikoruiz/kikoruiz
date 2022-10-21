@@ -7,12 +7,15 @@ import {SECTIONS} from '../config/index.js'
 import {screens} from '../lib/utils.js'
 import IconChevronDown from '../assets/icons/chevron-down.svg'
 import IconChevronUp from '../assets/icons/chevron-up.svg'
+import IconMagnifyingGlass from '../assets/icons/magnifying-glass.svg'
+import SearchBar from './search-bar.js'
 
 const {sm} = screens
 
-export default function Navbar({section}) {
+export default function Navigation({section}) {
   const {t} = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const {asPath} = useRouter()
   const path = section
     ? asPath.replace(/(\/[a-z,-]+)/, `/${t(`sections.${section}.slug`)}`)
@@ -28,58 +31,22 @@ export default function Navbar({section}) {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  function toggleSearch() {
+    setIsSearchBarOpen(!isSearchBarOpen)
+  }
+
   function handleElementClick() {
     if (isMenuOpen) toggleMenu()
+    if (isSearchBarOpen) toggleSearch()
   }
 
   return (
-    <nav className={`my-auto${isMenuOpen ? ' relative' : ''}`}>
-      <button
-        aria-hidden="true"
-        tabIndex="-1"
-        className={`fixed inset-0 top-0 left-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity sm:hidden ${
-          isMenuOpen
-            ? 'opacity-1 touch-none'
-            : 'pointer-events-none touch-auto opacity-0'
-        }`}
-        onClick={handleElementClick}
-      ></button>
-
-      <button
-        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-        className="relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none sm:hidden"
-        onClick={toggleMenu}
-      >
-        <span className="sr-only">
-          {isMenuOpen ? 'Close menu' : 'Open menu'}
-        </span>
-        <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
-          <span
-            aria-hidden="true"
-            className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out ${
-              isMenuOpen ? 'rotate-45' : '-translate-y-1.5'
-            }`}
-          ></span>
-          <span
-            aria-hidden="true"
-            className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out${
-              isMenuOpen ? ' opacity-0' : ''
-            }`}
-          ></span>
-          <span
-            aria-hidden="true"
-            className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out ${
-              isMenuOpen ? '-rotate-45' : 'translate-y-1.5'
-            }`}
-          ></span>
-        </div>
-      </button>
-
+    <nav className={`my-auto flex gap-3${isMenuOpen ? ' relative' : ''}`}>
       <ul
         className={`${
           isMenuOpen
             ? 'absolute right-0 top-full z-20 mt-3 w-[calc(100vw-1.5rem)] rounded-md bg-neutral-800 py-4 drop-shadow-lg'
-            : 'hidden sm:flex'
+            : 'hidden sm:mt-[3px] sm:flex'
         }`}
       >
         {SECTIONS.map(section => {
@@ -196,6 +163,66 @@ export default function Navbar({section}) {
           )
         })}
       </ul>
+
+      <button
+        aria-label={t('navigation.search')}
+        title={t('navigation.search')}
+        className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-orange-200 focus:outline-none"
+        onClick={toggleSearch}
+        onBlur={event => event.preventDefault()}
+      >
+        <span className="sr-only">{t('navigation.search')}</span>
+        <div className="w-5">
+          <IconMagnifyingGlass />
+        </div>
+      </button>
+
+      <button
+        aria-label={
+          isMenuOpen ? t('navigation.close-menu') : t('navigation.open-menu')
+        }
+        className={`relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none sm:hidden${
+          isMenuOpen ? ' z-10' : ''
+        }`}
+        onClick={toggleMenu}
+      >
+        <span className="sr-only">
+          {isMenuOpen ? t('navigation.close-menu') : t('navigation.open-menu')}
+        </span>
+        <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
+          <span
+            aria-hidden="true"
+            className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out ${
+              isMenuOpen ? 'rotate-45' : '-translate-y-1.5'
+            }`}
+          ></span>
+          <span
+            aria-hidden="true"
+            className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out${
+              isMenuOpen ? ' opacity-0' : ''
+            }`}
+          ></span>
+          <span
+            aria-hidden="true"
+            className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out ${
+              isMenuOpen ? '-rotate-45' : 'translate-y-1.5'
+            }`}
+          ></span>
+        </div>
+      </button>
+
+      <button
+        aria-hidden="true"
+        tabIndex="-1"
+        className={`fixed inset-0 top-0 left-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity ${
+          isMenuOpen || isSearchBarOpen
+            ? 'opacity-1 touch-none'
+            : 'pointer-events-none touch-auto opacity-0 sm:hidden'
+        }`}
+        onClick={handleElementClick}
+      ></button>
+
+      <SearchBar isOpen={isSearchBarOpen} setIsOpen={setIsSearchBarOpen} />
     </nav>
   )
 }

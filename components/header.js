@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Breadcrumb from './breadcrumb.js'
-import Navbar from './navbar.js'
+import Navigation from './navigation.js'
 import Logo from '../assets/brand/photo-logo.svg'
 
 export default function Header({...sectionData}) {
@@ -16,7 +16,7 @@ export default function Header({...sectionData}) {
             </Link>
           </div>
 
-          <Navbar section={sectionData.section} />
+          <Navigation section={sectionData.section} />
         </div>
       </div>
 

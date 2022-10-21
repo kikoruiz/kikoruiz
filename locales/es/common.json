@@ -1,6 +1,9 @@
 {
   "navigation": {
-    "back-to": "Volver a {{section}}"
+    "back-to": "Volver a {{section}}",
+    "close-menu": "Cerrar menú",
+    "open-menu": "Abrir menú",
+    "search": "Buscar"
   },
   "sections": {
     "about-me": {
@@ -20,6 +23,7 @@
     }
   },
   "gallery": {
+    "album": "Álbum",
     "albums": {
       "landscapes": {
         "name": "Paisajes",
