@@ -21,7 +21,7 @@ export default function PostsList({tag, tags, posts}) {
       >
         <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
           <h1
-            className={`bg-gradient-to-t from-orange-300/90 to-neutral-900 bg-clip-text font-black leading-tight text-transparent drop-shadow sm:leading-tight ${titleClassName}`}
+            className={`bg-gradient-to-t from-orange-300 to-neutral-900 bg-clip-text font-black leading-tight text-transparent drop-shadow sm:leading-tight ${titleClassName}`}
             title={title}
           >
             {title}
