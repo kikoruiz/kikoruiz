@@ -90,7 +90,7 @@ export default function SearchBar({isOpen, setIsOpen}) {
             {...getInputProps({ref: inputRef})}
             type="text"
             id="search"
-            className="block w-full appearance-none rounded-md border border-transparent bg-transparent p-4 pl-12 text-sm text-neutral-300 placeholder-neutral-600 focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
+            className="block w-full appearance-none rounded-md border border-transparent bg-transparent p-4 pl-12 text-neutral-300 placeholder-neutral-600 focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
             placeholder={t('navigation.search')}
             required
           />
