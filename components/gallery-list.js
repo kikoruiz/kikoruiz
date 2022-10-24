@@ -4,7 +4,7 @@ import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
 import {themeScreens} from '../lib/utils.js'
 
-export default function ImageGallery({items, isAlbum = false}) {
+export default function GalleryList({items, isAlbum = false}) {
   const {t} = useTranslation()
   const {sm, md} = themeScreens
   const sizes = isAlbum
@@ -17,7 +17,8 @@ export default function ImageGallery({items, isAlbum = false}) {
         isAlbum ? ' columns-2' : ' columns-1 sm:columns-2'
       }`}
     >
-      {items.map(({name, id, url, image, metadata}, index) => {
+      {items.map(({name, id, url, slug, image, metadata}, index) => {
+        if (!isAlbum) url = `${url}/?carousel=${slug}`
         const isFirstImage = index === 0
         const isSecondImage = index === 1
         const needsPreload =
@@ -77,8 +78,8 @@ export default function ImageGallery({items, isAlbum = false}) {
           </>
         )
 
-        return url ? (
-          <Link href={url} key={id}>
+        return (
+          <Link href={url} shallow={!isAlbum} key={id}>
             <a
               title={name ?? t(`gallery.albums.${id}.name`)}
               className={`${className} group block rounded-sm hover:ring-2 hover:ring-orange-300/60`}
@@ -86,17 +87,13 @@ export default function ImageGallery({items, isAlbum = false}) {
               {content}
             </a>
           </Link>
-        ) : (
-          <figure key={id} className={className}>
-            {content}
-          </figure>
         )
       })}
     </div>
   )
 }
 
-ImageGallery.propTypes = {
+GalleryList.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,

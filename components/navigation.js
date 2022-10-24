@@ -214,7 +214,7 @@ export default function Navigation({section}) {
       <button
         aria-hidden="true"
         tabIndex="-1"
-        className={`fixed inset-0 top-0 left-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity ${
+        className={`fixed inset-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity ${
           isMenuOpen || isSearchBarOpen
             ? 'opacity-1 touch-none'
             : 'pointer-events-none touch-auto opacity-0 sm:hidden'

@@ -3,6 +3,7 @@
   "pages": {
     "*": ["common"],
     "/sobre-mi": ["about-me"],
+    "rgx:/galeria*": ["gallery"],
     "rgx:/blog*": ["blog"]
   }
 }

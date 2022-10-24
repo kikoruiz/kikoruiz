@@ -14,6 +14,7 @@
   "dependencies": {
     "change-case": "4",
     "downshift": "6",
+    "embla-carousel-react": "7",
     "exiftool-vendored": "17",
     "gray-matter": "4",
     "next": "12",
