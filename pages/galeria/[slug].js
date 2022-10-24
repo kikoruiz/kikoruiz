@@ -1,12 +1,27 @@
+import {useState, useEffect} from 'react'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
+import {useRouter} from 'next/router'
 import getT from 'next-translate/getT'
-import ImageGallery from '../../components/image-gallery.js'
+import GalleryList from '../../components/gallery-list.js'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 import {getGalleryPictures} from '../../lib/gallery/pictures.js'
-import {fromExifToImageGallery} from '../../lib/gallery/mappers.js'
+import {fromExifToGallery} from '../../lib/gallery/mappers.js'
 import {fromLocalesToAlternates} from '../../lib/mappers.js'
 
+const DynamicGalleryCarousel = dynamic(() =>
+  import('../../components/gallery-carousel.js')
+)
+
 export default function GalleryAlbum({pictures, alternates}) {
+  const {query} = useRouter()
+  const {carousel} = query
+  const [isCarouselOpen, setIsCarouselOpen] = useState(false)
+
+  useEffect(() => {
+    setIsCarouselOpen(Boolean(carousel))
+  }, [setIsCarouselOpen, carousel])
+
   return (
     <>
       <Head>
@@ -16,7 +31,13 @@ export default function GalleryAlbum({pictures, alternates}) {
         ))}
       </Head>
 
-      <ImageGallery items={pictures} />
+      <GalleryList items={pictures} />
+      {isCarouselOpen && (
+        <DynamicGalleryCarousel
+          items={pictures}
+          setIsCarouselOpen={setIsCarouselOpen}
+        />
+      )}
     </>
   )
 }
@@ -48,7 +69,7 @@ export async function getStaticProps({
   const section = 'gallery'
   const galleryPictures = await getGalleryPictures({locale, slug})
   const pictures = await Promise.all(
-    galleryPictures.map(fromExifToImageGallery)
+    galleryPictures.map(fromExifToGallery({locale, slug}))
   )
   const alternates = await Promise.all(
     locales.map(

@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import ImageGallery from '../../components/image-gallery.js'
+import GalleryList from '../../components/gallery-list.js'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
-import {fromAlbumToImageGallery} from '../../lib/gallery/mappers.js'
+import {fromAlbumToGallery} from '../../lib/gallery/mappers.js'
 import {fromLocalesToAlternates} from '../../lib/mappers.js'
 
 export default function Gallery({albums, alternates}) {
@@ -14,7 +14,7 @@ export default function Gallery({albums, alternates}) {
         ))}
       </Head>
 
-      <ImageGallery items={albums} isAlbum />
+      <GalleryList items={albums} isAlbum />
     </>
   )
 }
@@ -23,7 +23,7 @@ export async function getStaticProps({locale, locales, defaultLocale}) {
   const section = 'gallery'
   const galleryAlbums = await getGalleryAlbums()
   const albums = await Promise.all(
-    galleryAlbums.map(fromAlbumToImageGallery(locale))
+    galleryAlbums.map(fromAlbumToGallery(locale))
   )
   const alternates = await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale, section}))

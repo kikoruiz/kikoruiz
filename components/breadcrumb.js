@@ -6,9 +6,14 @@ import {fromSectionToBreadcrumbItems} from '../lib/mappers.js'
 export default function Breadcrumb({section, post, tag}) {
   const {t} = useTranslation()
   const router = useRouter()
-  const {asPath} = router
-  const [, , category] = asPath.split('/')
-  const items = fromSectionToBreadcrumbItems({section, category, post, tag, t})
+  const {query} = router
+  const items = fromSectionToBreadcrumbItems({
+    section,
+    category: query.slug,
+    post,
+    tag,
+    t
+  })
 
   return items.length > 0 ? (
     <div className="bg-neutral-800/75">
