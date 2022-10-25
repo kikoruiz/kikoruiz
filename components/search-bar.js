@@ -24,13 +24,19 @@ export default function SearchBar({isOpen, setIsOpen}) {
     labelId: 'search-label',
     menuId: 'search-menu',
     onSelectedItemChange: ({selectedItem}) => {
+      let destination
       if (selectedItem?.excerpt) {
-        const destination = `/${t('sections.blog.slug')}/${selectedItem.slug}`
-
-        reset()
-        setIsOpen(false)
-        push(destination, destination, {locale})
+        destination = `/${t('sections.blog.slug')}/${selectedItem.slug}`
+      } else if (selectedItem?.album) {
+        destination = `/${t('sections.gallery.slug')}/${t(
+          `gallery.albums.${selectedItem.album}.slug`
+        )}?carousel=${selectedItem.slug}`
       }
+
+      if (!destination) return
+      reset()
+      setIsOpen(false)
+      push(destination, destination, {locale})
     },
     itemToString: () => '',
     onInputValueChange: async ({inputValue}) => {
