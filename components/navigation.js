@@ -6,7 +6,6 @@ import useTranslation from 'next-translate/useTranslation'
 import {SECTIONS} from '../config/index.js'
 import {screens} from '../lib/utils.js'
 import IconChevronDown from '../assets/icons/chevron-down.svg'
-import IconChevronUp from '../assets/icons/chevron-up.svg'
 import IconMagnifyingGlass from '../assets/icons/magnifying-glass.svg'
 import SearchBar from './search-bar.js'
 
@@ -75,12 +74,9 @@ export default function Navigation({section}) {
                 <>
                   <IconChevronDown
                     className={`ml-2 h-[12px] w-[12px]${
-                      !isMenuOpen ? ' group-hover:hidden' : ''
-                    }`}
-                  />
-                  <IconChevronUp
-                    className={`ml-2 hidden h-[12px] w-[12px]${
-                      !isMenuOpen ? ' group-hover:block' : ''
+                      !isMenuOpen
+                        ? ' transition-transform ease-in-out group-hover:-rotate-180'
+                        : ''
                     }`}
                   />
                 </>

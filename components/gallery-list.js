@@ -28,7 +28,7 @@ export default function GalleryList({items, isAlbum = false}) {
         const imageAspectClassName =
           orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
         const aspectClassName = isAlbum ? 'aspect-square' : imageAspectClassName
-        const className = `relative inline-flex flex-col-reverse break-inside-avoid-column w-full drop-shadow-md hover:after:rounded-sm hover:after:absolute hover:after:w-full hover:after:h-full hover:after:border hover:after:border-orange-300 hover:after:inset-0 ${aspectClassName}${
+        const className = `relative inline-flex flex-col-reverse break-inside-avoid-column w-full drop-shadow-md after:rounded-sm after:absolute after:w-full after:h-full after:border after:border-transparent hover:after:border-orange-300 after:inset-0 ${aspectClassName}${
           isFirstImage ? ' mt-3' : ''
         }`
         const captionBaseClassName =
@@ -48,7 +48,7 @@ export default function GalleryList({items, isAlbum = false}) {
               placeholder="blur"
               blurDataURL={base64}
               priority={needsPreload}
-              lazyBoundary="300px"
+              lazyBoundary="120px"
             />
 
             <figcaption className={captionClassName}>
@@ -82,7 +82,7 @@ export default function GalleryList({items, isAlbum = false}) {
           <Link href={url} shallow={!isAlbum} key={id}>
             <a
               title={name ?? t(`gallery.albums.${id}.name`)}
-              className={`${className} group block rounded-sm`}
+              className={`${className} group`}
             >
               {content}
             </a>
