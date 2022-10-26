@@ -17,6 +17,7 @@
     "embla-carousel-react": "7",
     "exiftool-vendored": "17",
     "gray-matter": "4",
+    "lodash": "4",
     "next": "12",
     "next-translate": "1",
     "plaiceholder": "2",
