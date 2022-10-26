@@ -76,9 +76,12 @@ export default function SearchBar({isOpen, setIsOpen}) {
 
   return (
     <div
-      className={`absolute left-0 top-full z-20 px-4 sm:px-0 w-full${
+      className={`absolute left-0 top-full z-20 cursor-pointer px-4 sm:px-0 w-full${
         isOpen ? '' : ' hidden'
       }`}
+      onClick={event => {
+        if (event.target.localName !== 'input') setIsOpen(false)
+      }}
     >
       <form className="container mx-auto overflow-hidden rounded-md bg-neutral-800 drop-shadow-lg xl:max-w-4xl">
         <label

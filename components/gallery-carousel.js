@@ -82,6 +82,7 @@ function GalleryCarousel({items, setIsCarouselOpen}) {
                     placeholder="blur"
                     blurDataURL={image.base64}
                     priority={index === startIndex}
+                    lazyBoundary="0px"
                   />
                   <figcaption className="absolute left-0 bottom-0 bg-gradient-to-r from-neutral-900 p-6 text-neutral-400">
                     <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
