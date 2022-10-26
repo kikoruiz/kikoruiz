@@ -1,7 +1,8 @@
-import {useState, useRef, useEffect} from 'react'
+import {useState, useRef, useEffect, useCallback} from 'react'
 import {useRouter} from 'next/router'
 import {useCombobox} from 'downshift'
 import useTranslation from 'next-translate/useTranslation'
+import {debounce} from 'lodash'
 import {fetcher} from '../lib/utils.js'
 import IconMagnifyingGlass from '../assets/icons/magnifying-glass.svg'
 
@@ -10,6 +11,19 @@ export default function SearchBar({isOpen, setIsOpen}) {
   const {locale, push} = useRouter()
   const inputRef = useRef(null)
   const [items, setItems] = useState([])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedChangeHandler = useCallback(
+    debounce(async ({inputValue}) => {
+      let items = []
+
+      if (inputValue) {
+        items = await fetcher.get(`/api/search/${inputValue}`)
+      }
+
+      setItems(items)
+    }, 600),
+    []
+  )
   const {
     isOpen: isMenuOpen,
     getLabelProps,
@@ -39,15 +53,7 @@ export default function SearchBar({isOpen, setIsOpen}) {
       push(destination, destination, {locale})
     },
     itemToString: () => '',
-    onInputValueChange: async ({inputValue}) => {
-      let items = []
-
-      if (inputValue) {
-        items = await fetcher.get(`/api/search/${inputValue}`)
-      }
-
-      setItems(items)
-    }
+    onInputValueChange: debouncedChangeHandler
   })
 
   useEffect(() => {
