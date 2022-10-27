@@ -18,7 +18,7 @@ export default function PostCard({
   return (
     <Link href={href}>
       <a title={title}>
-        <article className="flex flex-col overflow-hidden rounded-lg border border-neutral-600/30 bg-neutral-800/30 shadow-md hover:border-orange-300/60 hover:shadow-black/20">
+        <article className="flex flex-col overflow-hidden rounded border border-neutral-600/30 bg-neutral-800/30 shadow-md hover:border-orange-300/60 hover:shadow-black/20">
           {highlightedImage && (
             <div className="relative aspect-video">
               <Image

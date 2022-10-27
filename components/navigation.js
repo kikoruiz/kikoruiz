@@ -13,17 +13,29 @@ const {sm} = screens
 
 export default function Navigation({section}) {
   const {t} = useTranslation()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
-  const {asPath} = useRouter()
+  const router = useRouter()
+  const {asPath} = router
   const path = section
     ? asPath.replace(/(\/[a-z,-]+)/, `/${t(`sections.${section}.slug`)}`)
     : asPath
+  const activeSection = SECTIONS.find(({id, categories}) => {
+    const sectionSlug = t(`sections.${id}.slug`)
+
+    return path.includes(sectionSlug) && categories
+  })
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
+  const [expandedSections, setExpandedSections] = useState(
+    activeSection ? [activeSection.id] : []
+  )
 
   useMediaQuery({minWidth: sm}, undefined, handleMediaQueryChange)
 
   function handleMediaQueryChange(matches) {
-    if (matches) setIsMenuOpen(false)
+    if (matches) {
+      setIsMenuOpen(false)
+      setExpandedSections([])
+    }
   }
 
   function toggleMenu() {
@@ -32,6 +44,21 @@ export default function Navigation({section}) {
 
   function toggleSearch() {
     setIsSearchBarOpen(!isSearchBarOpen)
+  }
+
+  function handleSectionClick(event) {
+    const section = SECTIONS.find(
+      ({id}) => t(`sections.${id}.name`) === event.currentTarget.title
+    )
+    const hasCategories = Boolean(section.categories)
+    const expandedSectionsWithCategories = hasCategories
+      ? [...expandedSections, section.id]
+      : expandedSections
+    const newexpandedSections = expandedSections.includes(section.id)
+      ? expandedSections.filter(id => id !== section.id)
+      : expandedSectionsWithCategories
+
+    setExpandedSections([...new Set(newexpandedSections)])
   }
 
   function handleElementClick() {
@@ -52,13 +79,14 @@ export default function Navigation({section}) {
           const href = `/${t(`sections.${section.id}.slug`)}`
           const isActiveSection = path.includes(href)
           const isActualSection = path === href
-          const hasCategories = section.categories
+          const hasCategories = Boolean(section.categories)
+          const isSectionExpanded = expandedSections.includes(section.id)
           const sectionName = t(`sections.${section.id}.name`)
           const sectionClassName = `relative px-6 font-bold ${
             isMenuOpen
-              ? 'mx-3 py-3 after:absolute after:top-0 after:left-0 after:block after:h-full after:w-[1px] after:bg-gradient-to-b after:from-transparent after:via-transparent'
+              ? 'mx-3 py-3 after:absolute after:top-0 after:left-0 after:block after:h-full after:w-[1px] after:bg-gradient-to-b after:from-transparent after:via-transparent cursor-pointer'
               : 'py-2 after:absolute after:bottom-0 after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-transparent'
-          } ${isActualSection ? 'hover:cursor-default' : 'block'}${
+          } ${isActualSection ? 'sm:hover:cursor-default' : 'block'}${
             isActiveSection
               ? ' text-orange-300 after:via-orange-300'
               : ' group-hover:text-orange-200 group-hover:after:via-orange-200'
@@ -66,16 +94,20 @@ export default function Navigation({section}) {
             hasCategories && !isMenuOpen
               ? ' group-hover:before:absolute group-hover:before:bottom-0 group-hover:before:left-[-0.5rem] group-hover:before:block group-hover:before:h-full group-hover:before:w-[calc(100%+1rem)] group-hover:before:rounded-t group-hover:before:bg-neutral-800 group-hover:before:drop-shadow-md'
               : ''
+          }${
+            hasCategories && isSectionExpanded && !isMenuOpen
+              ? ' before:absolute before:bottom-0 before:left-[-0.5rem] before:h-full before:w-[calc(100%+1rem)] before:rounded-t before:bg-neutral-800 before:drop-shadow-md'
+              : ''
           }`
           const content = (
             <div className="relative flex items-center">
               <span>{sectionName}</span>
-              {hasCategories && !isMenuOpen && (
+              {hasCategories && (
                 <>
                   <IconChevronDown
-                    className={`ml-2 h-[12px] w-[12px]${
-                      !isMenuOpen
-                        ? ' transition-transform ease-in-out group-hover:-rotate-180'
+                    className={`ml-2 h-[12px] w-[12px] transition-transform ease-in-out${
+                      !isMenuOpen || isSectionExpanded
+                        ? ' -rotate-180 sm:rotate-0 sm:group-hover:-rotate-180'
                         : ''
                     }`}
                   />
@@ -88,11 +120,17 @@ export default function Navigation({section}) {
             <li
               key={section.id}
               className={`group ${
-                isMenuOpen ? 'first:mt-1 last:mb-2' : 'relative hover:z-10'
+                isMenuOpen
+                  ? 'first:mt-1 last:mb-2'
+                  : `relative ${isSectionExpanded ? 'z-10' : 'hover:z-10'}`
               }`}
             >
-              {isActualSection ? (
-                <div title={sectionName} className={sectionClassName}>
+              {isActualSection || (isMenuOpen && hasCategories) ? (
+                <div
+                  title={sectionName}
+                  className={sectionClassName}
+                  onClick={isMenuOpen ? handleSectionClick : () => {}}
+                >
                   {content}
                 </div>
               ) : (
@@ -108,11 +146,11 @@ export default function Navigation({section}) {
               )}
               {hasCategories && (
                 <ul
-                  className={`group-hover:block${
+                  className={`sm:group-hover:block${
                     isMenuOpen
                       ? ''
-                      : ' absolute left-2/4 hidden w-[calc(100%+1rem)] -translate-x-1/2 rounded-b bg-neutral-800 pt-3 drop-shadow-md'
-                  }`}
+                      : ' absolute left-2/4 w-[calc(100%+1rem)] -translate-x-1/2 rounded-b bg-neutral-800 pt-3 drop-shadow-md'
+                  }${isSectionExpanded ? '' : ' hidden'}`}
                 >
                   {section.categories.map(category => {
                     const categoryHref = `/${t(
