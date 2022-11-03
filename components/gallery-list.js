@@ -28,7 +28,7 @@ export default function GalleryList({items, isAlbum = false}) {
         const imageAspectClassName =
           orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
         const aspectClassName = isAlbum ? 'aspect-square' : imageAspectClassName
-        const className = `relative inline-flex flex-col-reverse break-inside-avoid-column w-full drop-shadow-md after:rounded-sm after:absolute after:w-full after:h-full after:border after:border-transparent hover:after:border-orange-300 after:inset-0 ${aspectClassName}${
+        const className = `relative inline-flex flex-col-reverse break-inside-avoid-column w-full after:rounded-sm after:absolute after:w-full after:h-full after:border after:border-transparent hover:after:border-orange-300 after:inset-0 ${aspectClassName}${
           isFirstImage ? ' mt-3' : ''
         }`
         const captionBaseClassName =
