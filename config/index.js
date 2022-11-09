@@ -64,7 +64,7 @@ export const BRANDS = {
     {
       name: 'YouTube',
       slug: 'youtube',
-      url: 'https://www.youtube.com/channel/UC9yTPRFINiwLGBMhEMXv19w'
+      url: 'https://www.youtube.com/user/kikoruizlloret'
     },
     {
       name: 'Linkedin',
