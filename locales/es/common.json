@@ -8,17 +8,14 @@
   "sections": {
     "about-me": {
       "name": "Sobre mí",
-      "slug": "sobre-mi",
       "description": ""
     },
     "gallery": {
       "name": "Galería",
-      "slug": "galeria",
       "description": ""
     },
     "blog": {
       "name": "Blog",
-      "slug": "blog",
       "description": "Artículos sobre fotografía, desarrollo web y algunas experiencias propias."
     }
   },
@@ -26,40 +23,22 @@
     "album": "Álbum",
     "albums": {
       "landscapes": {
-        "name": "Paisajes",
-        "slug": "paisajes"
+        "name": "Paisajes"
       },
       "seascapes": {
-        "name": "Costa",
-        "slug": "costa"
+        "name": "Costa"
       },
-      "moon": {
-        "name": "Luna",
-        "slug": "luna"
+      "astro": {
+        "name": "Astros"
       },
       "portraits": {
-        "name": "Retratos",
-        "slug": "retratos"
+        "name": "Retratos"
       },
-      "iceland": {
-        "name": "Islandia",
-        "slug": "islandia"
+      "travel": {
+        "name": "Viajes"
       },
-      "lofoten-islands": {
-        "name": "Islas Lofoten",
-        "slug": "islas-lofoten"
-      },
-      "toscana": {
-        "name": "Toscana",
-        "slug": "toscana"
-      },
-      "milky-way": {
-        "name": "Vía láctea",
-        "slug": "via-lactea"
-      },
-      "northern-lights": {
-        "name": "Auroras boreales",
-        "slug": "auroras-boreales"
+      "night": {
+        "name": "Nocturnas"
       }
     }
   },

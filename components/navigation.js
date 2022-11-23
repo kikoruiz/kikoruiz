@@ -4,22 +4,25 @@ import {useRouter} from 'next/router'
 import {useMediaQuery} from 'react-responsive'
 import useTranslation from 'next-translate/useTranslation'
 import {SECTIONS} from '../config/index.js'
-import {screens} from '../lib/utils.js'
+import {getSlug, screens} from '../lib/utils.js'
 import IconChevronDown from '../assets/icons/chevron-down.svg'
 import IconMagnifyingGlass from '../assets/icons/magnifying-glass.svg'
 import SearchBar from './search-bar.js'
 
 const {sm} = screens
 
-export default function Navigation({section}) {
+export default function Navigation({section, hasHero}) {
   const {t} = useTranslation()
   const router = useRouter()
   const {asPath} = router
   const path = section
-    ? asPath.replace(/(\/[a-z,-]+)/, `/${t(`sections.${section}.slug`)}`)
+    ? asPath.replace(
+        /(\/[a-z,-]+)/,
+        `/${getSlug(t(`sections.${section}.name`))}`
+      )
     : asPath
   const activeSection = SECTIONS.find(({id, categories}) => {
-    const sectionSlug = t(`sections.${id}.slug`)
+    const sectionSlug = getSlug(t(`sections.${id}.name`))
 
     return path.includes(sectionSlug) && categories
   })
@@ -61,9 +64,14 @@ export default function Navigation({section}) {
     setExpandedSections([...new Set(newexpandedSections)])
   }
 
-  function handleElementClick() {
+  function handleElementClick(event) {
+    const section = SECTIONS.find(
+      ({id}) => t(`sections.${id}.name`) === event.currentTarget.title
+    )
+
     if (isMenuOpen) toggleMenu()
     if (isSearchBarOpen) toggleSearch()
+    if (section?.id) setExpandedSections([])
   }
 
   return (
@@ -76,7 +84,7 @@ export default function Navigation({section}) {
         }`}
       >
         {SECTIONS.map(section => {
-          const href = `/${t(`sections.${section.id}.slug`)}`
+          const href = `/${getSlug(t(`sections.${section.id}.name`))}`
           const isActiveSection = path.includes(href)
           const isActualSection = path === href
           const hasCategories = Boolean(section.categories)
@@ -93,10 +101,6 @@ export default function Navigation({section}) {
           }${
             hasCategories && !isMenuOpen
               ? ' group-hover:before:absolute group-hover:before:bottom-0 group-hover:before:left-[-0.5rem] group-hover:before:block group-hover:before:h-full group-hover:before:w-[calc(100%+1rem)] group-hover:before:rounded-t group-hover:before:bg-neutral-800 group-hover:before:drop-shadow-md'
-              : ''
-          }${
-            hasCategories && isSectionExpanded && !isMenuOpen
-              ? ' before:absolute before:bottom-0 before:left-[-0.5rem] before:h-full before:w-[calc(100%+1rem)] before:rounded-t before:bg-neutral-800 before:drop-shadow-md'
               : ''
           }`
           const content = (
@@ -146,16 +150,19 @@ export default function Navigation({section}) {
               )}
               {hasCategories && (
                 <ul
-                  className={`sm:group-hover:block${
+                  className={`sm:hidden sm:group-hover:block${
                     isMenuOpen
                       ? ''
                       : ' absolute left-2/4 w-[calc(100%+1rem)] -translate-x-1/2 rounded-b bg-neutral-800 pt-3 drop-shadow-md'
-                  }${isSectionExpanded ? '' : ' hidden'}`}
+                  } ${isSectionExpanded ? 'block' : 'hidden'}`}
                 >
                   {section.categories.map(category => {
-                    const categoryHref = `/${t(
-                      `sections.${section.id}.slug`
-                    )}/${t(`${section.localePrefix}${category.id}.slug`)}`
+                    const categorySlug = getSlug(
+                      t(`${section.localePrefix}${category.id}.name`)
+                    )
+                    const categoryHref = `/${getSlug(
+                      t(`sections.${section.id}.name`)
+                    )}/${categorySlug}`
                     const isActualCategory = path === categoryHref
                     const categoryName = t(
                       `${section.localePrefix}${category.id}.name`
@@ -201,7 +208,9 @@ export default function Navigation({section}) {
       <button
         aria-label={t('navigation.search')}
         title={t('navigation.search')}
-        className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-orange-200 focus:outline-none"
+        className={`flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t text-neutral-400 hover:text-orange-200 focus:outline-none ${
+          hasHero ? 'from-neutral-300/10' : 'from-neutral-800'
+        }`}
         onClick={toggleSearch}
         onBlur={event => event.preventDefault()}
       >
@@ -215,9 +224,9 @@ export default function Navigation({section}) {
         aria-label={
           isMenuOpen ? t('navigation.close-menu') : t('navigation.open-menu')
         }
-        className={`relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none sm:hidden${
-          isMenuOpen ? ' z-10' : ''
-        }`}
+        className={`relative flex h-11 w-11 rounded-full bg-gradient-to-t text-neutral-400 hover:text-neutral-300 focus:outline-none sm:hidden ${
+          hasHero ? 'from-neutral-300/10' : 'from-neutral-800'
+        }${isMenuOpen ? ' z-10' : ''}`}
         onClick={toggleMenu}
       >
         <span className="sr-only">

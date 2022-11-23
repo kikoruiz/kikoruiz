@@ -8,6 +8,7 @@ import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 import {getGalleryPictures} from '../../lib/gallery/pictures.js'
 import {fromExifToGallery} from '../../lib/gallery/mappers.js'
 import {fromLocalesToAlternates} from '../../lib/mappers.js'
+import {getSlug} from '../../lib/utils.js'
 
 const DynamicGalleryCarousel = dynamic(() =>
   import('../../components/gallery-carousel.js')
@@ -50,10 +51,14 @@ export async function getStaticPaths({locales}) {
     const t = await getT(locale, 'common')
 
     paths = paths.concat(
-      albums.map(({id}) => ({
-        params: {slug: t(`gallery.albums.${id}.slug`)},
-        locale
-      }))
+      albums.map(({id}) => {
+        const slug = getSlug(t(`gallery.albums.${id}.name`))
+
+        return {
+          params: {slug},
+          locale
+        }
+      })
     )
   }
 
