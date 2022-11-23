@@ -3,6 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import ArrowLeft from '../assets/icons/arrow-left.svg'
 import PostCard from './post-card.js'
 import BlogTags from './blog-tags.js'
+import {getSlug} from '../lib/utils.js'
 
 export default function PostsList({tag, tags, posts}) {
   const {t} = useTranslation('blog')
@@ -34,7 +35,7 @@ export default function PostsList({tag, tags, posts}) {
         </div>
         {currentTag && (
           <div className="relative mt-9 pt-9 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60">
-            <Link href={`/${t('common:sections.blog.slug')}`}>
+            <Link href={`/${getSlug(t('common:sections.blog.name'))}`}>
               <a
                 title={t('list.back-to-all')}
                 className="inline-flex items-center text-xs font-light text-neutral-300/30 hover:text-neutral-300/90 sm:text-sm"

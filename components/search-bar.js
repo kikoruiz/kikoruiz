@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 import {useCombobox} from 'downshift'
 import useTranslation from 'next-translate/useTranslation'
 import {debounce} from 'lodash'
-import {fetcher} from '../lib/utils.js'
+import {fetcher, getSlug} from '../lib/utils.js'
 import IconMagnifyingGlass from '../assets/icons/magnifying-glass.svg'
 
 export default function SearchBar({isOpen, setIsOpen}) {
@@ -40,10 +40,12 @@ export default function SearchBar({isOpen, setIsOpen}) {
     onSelectedItemChange: ({selectedItem}) => {
       let destination
       if (selectedItem?.excerpt) {
-        destination = `/${t('sections.blog.slug')}/${selectedItem.slug}`
+        destination = `/${getSlug(t('sections.blog.name'))}/${
+          selectedItem.slug
+        }`
       } else if (selectedItem?.album) {
-        destination = `/${t('sections.gallery.slug')}/${t(
-          `gallery.albums.${selectedItem.album}.slug`
+        destination = `/${getSlug(t('sections.gallery.name'))}/${getSlug(
+          t(`gallery.albums.${selectedItem.album}.name`)
         )}?carousel=${selectedItem.slug}`
       }
 

@@ -8,17 +8,14 @@
   "sections": {
     "about-me": {
       "name": "About me",
-      "slug": "about-me",
       "description": ""
     },
     "gallery": {
       "name": "Gallery",
-      "slug": "gallery",
       "description": ""
     },
     "blog": {
       "name": "Blog",
-      "slug": "blog",
       "description": "Articles about photography, web development and some experiencies of my own."
     }
   },
@@ -26,40 +23,22 @@
     "album": "Album",
     "albums": {
       "landscapes": {
-        "name": "Landscapes",
-        "slug": "landscapes"
+        "name": "Landscapes"
       },
       "seascapes": {
-        "name": "Seascapes",
-        "slug": "seascapes"
+        "name": "Seascapes"
       },
-      "moon": {
-        "name": "Moon",
-        "slug": "moon"
+      "astro": {
+        "name": "Astro"
       },
       "portraits": {
-        "name": "Portraits",
-        "slug": "portraits"
+        "name": "Portraits"
       },
-      "iceland": {
-        "name": "Iceland",
-        "slug": "iceland"
+      "travel": {
+        "name": "Travel"
       },
-      "lofoten-islands": {
-        "name": "Lofoten Islands",
-        "slug": "lofoten-islands"
-      },
-      "toscana": {
-        "name": "Toscana",
-        "slug": "toscana"
-      },
-      "milky-way": {
-        "name": "Milky Way",
-        "slug": "milky-way"
-      },
-      "northern-lights": {
-        "name": "Northern Lights",
-        "slug": "northern-lights"
+      "night": {
+        "name": "Night"
       }
     }
   },
