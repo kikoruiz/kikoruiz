@@ -37,6 +37,9 @@
       "travel": {
         "name": "Viajes"
       },
+      "seasonal": {
+        "name": "Estacional"
+      },
       "night": {
         "name": "Nocturnas"
       }
