@@ -2,7 +2,7 @@ export const GALLERY_ALBUMS = [
   {
     id: 'landscapes',
     tags: ['landscape'],
-    excludeTags: ['travel', 'seascape']
+    excludeTags: ['travel', 'seascape', 'seasonal']
   },
   {
     id: 'seascapes',
@@ -21,6 +21,10 @@ export const GALLERY_ALBUMS = [
   {
     id: 'travel',
     tags: ['travel']
+  },
+  {
+    id: 'seasonal',
+    tags: ['seasonal']
   },
   {
     id: 'night',

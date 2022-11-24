@@ -37,6 +37,9 @@
       "travel": {
         "name": "Travel"
       },
+      "seasonal": {
+        "name": "Seasonal"
+      },
       "night": {
         "name": "Night"
       }

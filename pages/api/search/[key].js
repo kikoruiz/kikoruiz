@@ -2,6 +2,7 @@ import searchContent from '../../../data/search/content.json'
 import picturesMetadata from '../../../data/pictures/metadata.json'
 import {paramCase} from 'change-case'
 import {GALLERY_ALBUMS} from '../../../config/gallery.js'
+import {taggedPictures} from '../../../lib/gallery/pictures.js'
 
 function matchSearchKey(key) {
   return function (attrs) {
@@ -25,7 +26,9 @@ export default function handler(req, res) {
     ...searchContent.filter(matchSearchKey(key)),
     ...picturesMetadata
       .map(({description, keywords, title, fileName}) => {
-        const album = GALLERY_ALBUMS.find(({tag}) => keywords.includes(tag))
+        const album = GALLERY_ALBUMS.find(({tags, excludeTags}) =>
+          taggedPictures({tags, excludeTags})({keywords})
+        )
 
         return {
           slug: paramCase(title),
