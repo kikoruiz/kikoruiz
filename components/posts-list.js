@@ -48,11 +48,11 @@ export default function PostsList({tag, tags, posts}) {
         )}
         {!currentTag && (
           <>
-            <p className="mt-3 font-light text-neutral-300/60">
+            <p className="relative mt-3 pb-6 font-light text-neutral-300/60 after:absolute after:left-0 after:bottom-[-1px] after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60">
               {t('common:sections.blog.description')}
             </p>
 
-            <BlogTags tags={tags} hasSeparator />
+            <BlogTags tags={tags} />
           </>
         )}
       </header>
