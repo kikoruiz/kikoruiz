@@ -1,17 +1,13 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 
-export default function BlogTags({tags, isPost, hasSeparator}) {
+export default function BlogTags({tags, isPost}) {
   const {t} = useTranslation('blog')
 
   return (
     <div
       className={`flex items-center gap-3 text-xs ${
-        isPost ? 'mt-12 sm:mt-16' : 'mt-6 justify-center'
-      }${
-        hasSeparator
-          ? ' relative pt-9 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60'
-          : ''
+        isPost ? 'mt-12 sm:mt-16' : 'mt-9 justify-center'
       }`}
     >
       {!isPost && <span className="font-light">{t('list.filter-by')}</span>}
