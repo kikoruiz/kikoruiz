@@ -17,7 +17,11 @@ export default function GalleryList({items, isAlbum = false}) {
 
   return (
     <>
-      <header className="mt-9 mb-6 px-6 text-center sm:mb-9 sm:-mt-3">
+      <header
+        className={`mt-9 px-6 text-center sm:-mt-3 ${
+          isAlbum ? 'mb-9 sm:mb-12' : 'mb-6 sm:mb-9'
+        }`}
+      >
         <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
           <h1
             className="truncate bg-gradient-to-t from-orange-300 to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:text-8xl sm:leading-tight"
