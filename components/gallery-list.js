@@ -3,17 +3,16 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import {themeScreens, getTitle} from '../lib/utils.js'
+import {themeScreens, getTitle, getSlug} from '../lib/utils.js'
+import ArrowLeft from '../assets/icons/arrow-left.svg'
 
 export default function GalleryList({items, isAlbum = false}) {
   const {
     query: {slug}
   } = useRouter()
   const {t} = useTranslation()
-  const {sm, md} = themeScreens
-  const sizes = isAlbum
-    ? `(min-width: ${md}) 33vw, 50vw`
-    : `(min-width: ${md}) 33vw, (min-width: ${sm}) 50vw, 100vw`
+  const {sm, lg} = themeScreens
+  const sizes = `(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`
   const title = isAlbum ? t('sections.gallery.name') : getTitle(slug)
 
   return (
@@ -27,18 +26,26 @@ export default function GalleryList({items, isAlbum = false}) {
             {title}
           </h1>
         </div>
-        {isAlbum && (
+        {isAlbum ? (
           <p className="relative mt-3 pb-6 font-light text-neutral-300/60 after:absolute after:left-0 after:bottom-[-1px] after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60">
             {t('sections.gallery.description')}
           </p>
+        ) : (
+          <div className="mt-3">
+            <Link href={`/${getSlug(t('sections.gallery.name'))}`}>
+              <a
+                title={t('gallery:album.back-to-gallery')}
+                className="inline-flex items-center text-xs font-light text-neutral-300/30 hover:text-neutral-300/90 sm:text-sm"
+              >
+                <ArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+                {t('gallery:album.back-to-gallery')}
+              </a>
+            </Link>
+          </div>
         )}
       </header>
 
-      <div
-        className={`gap-3 space-y-3 px-3 pb-3 md:columns-3${
-          isAlbum ? ' columns-2' : ' columns-1 sm:columns-2'
-        }`}
-      >
+      <div className="columns-1 gap-3 space-y-3 px-3 pb-3 sm:columns-2 lg:columns-3">
         {items.map(({name, id, url, slug, image, metadata}, index) => {
           if (!isAlbum) url = `${url}/?carousel=${slug}`
           const isFirstImage = index === 0
@@ -56,10 +63,10 @@ export default function GalleryList({items, isAlbum = false}) {
             isFirstImage ? ' mt-3' : ''
           }`
           const captionBaseClassName =
-            'p-3.5 relative rounded-bl-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
+            'relative rounded-bl-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
           const captionClassName = isAlbum
-            ? `${captionBaseClassName} md:p-6`
-            : `${captionBaseClassName} text-neutral-400`
+            ? `${captionBaseClassName} px-3 py-6 overflow-hidden`
+            : `${captionBaseClassName} p-3.5 text-neutral-400`
           const content = (
             <>
               <Image
@@ -79,14 +86,14 @@ export default function GalleryList({items, isAlbum = false}) {
                 <header
                   className={`drop-shadow group-hover:text-orange-300 ${
                     isAlbum
-                      ? 'text-3xl font-extrabold text-neutral-400 md:text-4xl'
+                      ? 'break-words text-6xl font-thin leading-none text-neutral-400 sm:text-5xl md:text-6xl'
                       : 'text-sm font-bold'
                   }`}
                 >
                   {name ?? t(`gallery.albums.${id}.name`)}
                 </header>
                 {metadata && (
-                  <div className="space-x-1 text-neutral-600 drop-shadow">
+                  <div className="space-x-1 font-light text-neutral-600 drop-shadow">
                     <span className="after:content-['\00a0·']">
                       {metadata.shutterSpeed}s
                     </span>
