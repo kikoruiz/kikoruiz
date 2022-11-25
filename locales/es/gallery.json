@@ -1,5 +1,8 @@
 {
   "carousel": {
     "close": "Cerrar el carrusel"
+  },
+  "album": {
+    "back-to-gallery": "Volver a la galería"
   }
 }

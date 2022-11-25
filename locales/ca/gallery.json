@@ -1,5 +1,8 @@
 {
   "carousel": {
     "close": "Tancar el carrusel"
+  },
+  "album": {
+    "back-to-gallery": "Tornar a la galeria"
   }
 }
