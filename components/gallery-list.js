@@ -17,7 +17,7 @@ export default function GalleryList({items, isAlbum = false}) {
 
   return (
     <>
-      <header className="my-9 px-6 text-center sm:mb-12 sm:-mt-3">
+      <header className="mt-9 mb-6 px-6 text-center sm:mb-9 sm:-mt-3">
         <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
           <h1
             className="truncate bg-gradient-to-t from-orange-300 to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:text-8xl sm:leading-tight"
@@ -26,12 +26,18 @@ export default function GalleryList({items, isAlbum = false}) {
             {title}
           </h1>
         </div>
-        {isAlbum ? (
-          <p className="relative mt-3 pb-6 font-light text-neutral-300/60 after:absolute after:left-0 after:bottom-[-1px] after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60">
-            {t('sections.gallery.description')}
-          </p>
-        ) : (
-          <div className="mt-3">
+        <div
+          className={`relative after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent ${
+            isAlbum
+              ? 'pb-6 after:bottom-[-1px] after:via-orange-300/60'
+              : 'mt-6 pt-6 after:top-0 after:via-neutral-600'
+          }`}
+        >
+          {isAlbum ? (
+            <p className="mt-3 font-light text-neutral-300/60">
+              {t('sections.gallery.description')}
+            </p>
+          ) : (
             <Link href={`/${getSlug(t('sections.gallery.name'))}`}>
               <a
                 title={t('gallery:album.back-to-gallery')}
@@ -41,8 +47,8 @@ export default function GalleryList({items, isAlbum = false}) {
                 {t('gallery:album.back-to-gallery')}
               </a>
             </Link>
-          </div>
-        )}
+          )}
+        </div>
       </header>
 
       <div className="columns-1 gap-3 space-y-3 px-3 pb-3 sm:columns-2 lg:columns-3">
@@ -86,7 +92,7 @@ export default function GalleryList({items, isAlbum = false}) {
                 <header
                   className={`drop-shadow group-hover:text-orange-300 ${
                     isAlbum
-                      ? 'break-words text-6xl font-thin leading-none text-neutral-400 sm:text-5xl md:text-6xl'
+                      ? 'break-words text-6xl font-thin leading-none text-neutral-300/90 sm:text-5xl md:text-6xl'
                       : 'text-sm font-bold'
                   }`}
                 >
