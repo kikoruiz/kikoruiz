@@ -16,9 +16,7 @@ export default function PostsList({tag, tags, posts}) {
   return (
     <>
       <header
-        className={`my-9 px-6 text-center sm:mb-12 ${
-          tag ? 'sm:-mt-1' : 'sm:-mt-3'
-        }`}
+        className={`my-9 px-6 text-center ${tag ? 'sm:-mt-1' : 'sm:-mt-3'}`}
       >
         <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
           <h1
@@ -34,7 +32,7 @@ export default function PostsList({tag, tags, posts}) {
           )}
         </div>
         {currentTag && (
-          <div className="relative mt-9 pt-9 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60">
+          <div className="relative mt-9 pt-6 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60">
             <Link href={`/${getSlug(t('common:sections.blog.name'))}`}>
               <a
                 title={t('list.back-to-all')}
