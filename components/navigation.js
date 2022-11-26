@@ -126,7 +126,9 @@ export default function Navigation({section, hasHero}) {
               className={`group ${
                 isMenuOpen
                   ? 'first:mt-1 last:mb-2'
-                  : `relative ${isSectionExpanded ? 'z-10' : 'hover:z-10'}`
+                  : `relative ${
+                      isSectionExpanded && isMenuOpen ? 'z-10' : 'hover:z-10'
+                    }`
               }`}
             >
               {isActualSection || (isMenuOpen && hasCategories) ? (
