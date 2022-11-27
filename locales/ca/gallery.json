@@ -4,5 +4,12 @@
   },
   "album": {
     "back-to-gallery": "Tornar a la galeria"
+  },
+  "sorting": {
+    "label": "Ordenar por:",
+    "options": {
+      "id": "Data",
+      "name": "Nom"
+    }
   }
 }

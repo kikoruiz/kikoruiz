@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import getT from 'next-translate/getT'
 import GalleryList from '../../components/gallery-list.js'
+import GalleryHeader from '../../components/gallery-header.js'
 import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 import {getGalleryPictures} from '../../lib/gallery/pictures.js'
 import {fromExifToGallery} from '../../lib/gallery/mappers.js'
@@ -32,6 +33,7 @@ export default function GalleryAlbum({pictures, alternates}) {
         ))}
       </Head>
 
+      <GalleryHeader />
       <GalleryList items={pictures} />
       {isCarouselOpen && (
         <DynamicGalleryCarousel

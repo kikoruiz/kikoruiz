@@ -22,13 +22,13 @@ export default function Footer({alternates}) {
   return (
     <footer className="container relative mx-auto mt-12 px-6 pt-16 pb-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600 sm:mt-0 sm:pt-32 sm:pb-16 sm:after:top-16">
       <div className="md:flex md:items-center md:justify-between">
-        <div className="mb-12 flex items-center md:mb-0">
-          <label htmlFor="languages" className="mr-2 text-sm text-neutral-500">
+        <div className="mb-12 flex items-center text-sm md:mb-0">
+          <label htmlFor="languages" className="mr-2 text-neutral-500">
             {t('languages.selector.label')}
           </label>
           <select
             id="languages"
-            className="block appearance-none rounded-md border border-neutral-700 bg-neutral-800 bg-select bg-[length:0.75rem] bg-[right_0.5rem_center] bg-no-repeat py-1.5 pl-3 pr-7 text-sm shadow-sm focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
+            className="block appearance-none rounded-md border border-neutral-700 bg-neutral-800 bg-select bg-[length:0.75rem] bg-[right_0.5rem_center] bg-no-repeat py-1.5 pl-3 pr-7 shadow-sm focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
             onChange={handleLanguageChange}
             defaultValue={currentLocale}
           >

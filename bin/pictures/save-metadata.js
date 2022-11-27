@@ -72,8 +72,6 @@ async function saveAllPicturesMetadata() {
     })
   }
 
-  pictures = pictures.sort((a, b) => a.rating - b.rating)
-
   fs.writeFileSync(picturesMetadataFile, JSON.stringify(pictures))
 }
 
