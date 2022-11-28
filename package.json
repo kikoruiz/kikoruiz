@@ -12,6 +12,7 @@
     "save:content": "node ./bin/search/save-content.js"
   },
   "dependencies": {
+    "@vercel/analytics": "0",
     "change-case": "4",
     "downshift": "6",
     "embla-carousel-react": "7",

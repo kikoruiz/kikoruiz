@@ -1,6 +1,7 @@
 import {useEffect} from 'react'
 import Script from 'next/script'
 import {useRouter} from 'next/router'
+import {Analytics} from '@vercel/analytics/react'
 import Layout from '../components/layout.js'
 import {trackPage, GA_TRACKING_ID} from '../lib/tracking.js'
 import '../styles/globals.css'
@@ -50,6 +51,7 @@ export default function App({Component, pageProps}) {
 
       <Layout {...sectionData} {...languageData}>
         <Component {...pageProps} />
+        <Analytics />
       </Layout>
     </>
   )
