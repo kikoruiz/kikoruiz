@@ -57,6 +57,7 @@ export default function GalleryAlbum({pictures, alternates}) {
       <GalleryList
         items={items}
         onSort={handleSortingChange}
+        sortingOption={sortingOption}
         toggleSortingDirection={toggleSortingDirection}
         isReversedSorting={isReversedSorting}
       />
