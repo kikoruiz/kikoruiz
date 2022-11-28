@@ -170,7 +170,7 @@ export default function GalleryList({
                                     : ''
                                 }`}
                               >
-                                {metadata.focalLength}
+                                {metadata.focalLength} mm
                               </span>
                             </>
                           )}
