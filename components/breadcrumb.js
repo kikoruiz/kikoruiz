@@ -24,7 +24,7 @@ export default function Breadcrumb({section, post, tag}) {
               <Link href={href} key={id}>
                 <a
                   title={t('navigation.back-to', {section: name})}
-                  className="font-light text-neutral-300/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-400/30"
+                  className="font-light text-neutral-300/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
                 >
                   {name}
                 </a>
