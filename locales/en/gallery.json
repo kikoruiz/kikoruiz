@@ -9,8 +9,8 @@
     "label": "Sort by:",
     "options": {
       "picture-group": "Picture",
-      "id": "Date",
-      "name": "Name",
+      "date": "Date",
+      "name": "Title",
       "metadata-group": "Metadata",
       "metadata": {
         "iso": "ISO",

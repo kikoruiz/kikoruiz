@@ -65,7 +65,7 @@ function GalleryCarousel({items, setIsCarouselOpen}) {
         ref={emblaRef}
       >
         <div className="embla__container flex h-full w-full items-center">
-          {items.map(({name, id, image, metadata}, index) => {
+          {items.map(({name, id, image}, index) => {
             const imageAspectClassName =
               image.orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
 
@@ -88,20 +88,6 @@ function GalleryCarousel({items, setIsCarouselOpen}) {
                     <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
                       {name}
                     </header>
-                    {metadata && (
-                      <div className="space-x-1 text-neutral-400/50 drop-shadow">
-                        <span className="after:content-['\00a0·']">
-                          {metadata.shutterSpeed}s
-                        </span>
-                        {metadata.aperture && (
-                          <span className="inline-block after:content-['\00a0·']">
-                            <span className="italic">f</span>/
-                            {metadata.aperture}
-                          </span>
-                        )}
-                        <span>ISO {metadata.iso}</span>
-                      </div>
-                    )}
                   </figcaption>
                 </figure>
               </div>
