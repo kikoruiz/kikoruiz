@@ -8,6 +8,7 @@
   "sorting": {
     "label": "Ordenar por:",
     "options": {
+      "picture-group": "Fotografía",
       "id": "Fecha",
       "name": "Nombre",
       "metadata-group": "Metadatos",
