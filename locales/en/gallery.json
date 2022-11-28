@@ -9,7 +9,15 @@
     "label": "Sort by:",
     "options": {
       "id": "Date",
-      "name": "Name"
-    }
+      "name": "Name",
+      "metadata-group": "Metadata",
+      "metadata": {
+        "iso": "ISO",
+        "aperture": "Aperture",
+        "shutter-speed": "Shutter speed",
+        "focal-length": "Focal length"
+      }
+    },
+    "direction": "Sort direction"
   }
 }

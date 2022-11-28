@@ -1,58 +1,80 @@
-import {useState} from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
-import {themeScreens, sortListBy} from '../lib/utils.js'
+import {themeScreens} from '../lib/utils.js'
+import {
+  SORTING_OPTIONS,
+  DEFAULT_SORTING_OPTION,
+  DISABLED_SORTING_OPTIONS
+} from '../config/gallery.js'
+import ArrowPathRoundedSquare from '../assets/icons/arrow-path-rounded-square.svg'
 
-const SORTING_OPTIONS = ['id', 'name']
-const DEFAULT_SORTING_OPTION = 'name'
-
-export default function GalleryList({items, isAlbum = false}) {
+export default function GalleryList({
+  items,
+  isAlbum = false,
+  onSort,
+  toggleSortingDirection,
+  isReversedSorting
+}) {
   const {t} = useTranslation()
   const {sm, lg} = themeScreens
   const sizes = `(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`
-  const defaultPictures = isAlbum
-    ? items
-    : sortListBy(items, DEFAULT_SORTING_OPTION)
-  const [pictures, setPictures] = useState(defaultPictures)
-
-  function handleSortChange(event) {
-    const option = event.target.value
-
-    setPictures([...sortListBy(pictures, option)])
-  }
 
   return (
     <section className="px-3">
       {!isAlbum && (
-        <div className="flex items-center justify-end pt-3 text-xs">
-          <label htmlFor="sorting" className="mr-2 text-neutral-500">
-            {t('gallery:sorting.label')}
-          </label>
-          <select
-            id="sorting"
-            className="block appearance-none rounded-md border border-neutral-700 bg-neutral-800 bg-select bg-[length:0.75rem] bg-[right_0.5rem_center] bg-no-repeat py-1.5 pl-3 pr-7 shadow-sm focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
-            onChange={handleSortChange}
-            defaultValue={DEFAULT_SORTING_OPTION}
+        <div className="flex justify-end gap-2 pt-3">
+          <div className="flex items-center text-xs">
+            <label htmlFor="sorting" className="mr-2 text-neutral-500">
+              {t('gallery:sorting.label')}
+            </label>
+            <select
+              id="sorting"
+              className="block appearance-none rounded-md border border-neutral-700 bg-neutral-800 bg-select bg-[length:0.75rem] bg-[right_0.5rem_center] bg-no-repeat py-1.5 pl-3 pr-7 shadow-sm focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
+              onChange={onSort}
+              defaultValue={DEFAULT_SORTING_OPTION}
+            >
+              {SORTING_OPTIONS.map(option => {
+                const isDisabled = DISABLED_SORTING_OPTIONS.includes(option)
+
+                return (
+                  <option
+                    key={`sorting-by-${option}`}
+                    value={option}
+                    disabled={isDisabled}
+                  >
+                    {t(`gallery:sorting.options.${option}`)}
+                  </option>
+                )
+              })}
+            </select>
+          </div>
+          <button
+            onClick={toggleSortingDirection}
+            className="flex items-center rounded-md border border-neutral-700 bg-neutral-800 p-1.5 text-xs font-light"
+            aria-label={t('gallery:sorting.direction')}
+            title={t('gallery:sorting.direction')}
           >
-            {SORTING_OPTIONS.map(option => (
-              <option key={`sorting-by-${option}`} value={option}>
-                {t(`gallery:sorting.options.${option}`)}
-              </option>
-            ))}
-          </select>
+            <span className="text-neutral-300/60">
+              {isReversedSorting ? 'Z' : 'A'}
+            </span>
+            <ArrowPathRoundedSquare className="w-6 px-1" />
+            <span className="text-neutral-300/60">
+              {isReversedSorting ? 'A' : 'Z'}
+            </span>
+          </button>
         </div>
       )}
 
       <div className="columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3">
-        {pictures.map(({name, id, url, slug, image, metadata}, index) => {
+        {items.map(({name, id, url, slug, image, metadata}, index) => {
           if (!isAlbum) url = `${url}/?carousel=${slug}`
           const isFirstImage = index === 0
           const isSecondImage = index === 1
           const needsPreload =
             isFirstImage ||
-            (isSecondImage && pictures[0].image.orientation === 'horizontal')
+            (isSecondImage && items[0].image.orientation === 'horizontal')
           const {src, orientation, base64} = image
           const imageAspectClassName =
             orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'

@@ -38,3 +38,16 @@ export const GALLERY_ALBUMS = [
     highlightedPicture: '2022-06-25_0028.jpg'
   }
 ]
+
+export const SORTING_OPTIONS = [
+  'id',
+  'name',
+  'metadata-group',
+  'metadata.iso',
+  'metadata.aperture',
+  'metadata.shutter-speed',
+  'metadata.focal-length'
+]
+export const DEFAULT_SORTING_OPTION = 'id'
+export const DISABLED_SORTING_OPTIONS = ['metadata-group']
+export const PENDING_EVAL_SORTING_OPTIONS = ['metadata.shutter-speed']

@@ -6,10 +6,18 @@
     "back-to-gallery": "Tornar a la galeria"
   },
   "sorting": {
-    "label": "Ordenar por:",
+    "label": "Ordenar per:",
     "options": {
       "id": "Data",
-      "name": "Nom"
-    }
+      "name": "Nom",
+      "metadata-group": "Metadades",
+      "metadata": {
+        "iso": "ISO",
+        "aperture": "Obertura de diafragma",
+        "shutter-speed": "Velocitat d'obturació",
+        "focal-length": "Distància focal"
+      }
+    },
+    "direction": "Direcció d'ordenació"
   }
 }

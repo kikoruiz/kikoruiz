@@ -9,7 +9,8 @@ import {getGalleryAlbums} from '../../lib/gallery/albums.js'
 import {getGalleryPictures} from '../../lib/gallery/pictures.js'
 import {fromExifToGallery} from '../../lib/gallery/mappers.js'
 import {fromLocalesToAlternates} from '../../lib/mappers.js'
-import {getSlug} from '../../lib/utils.js'
+import {getSlug, sortListBy} from '../../lib/utils.js'
+import {DEFAULT_SORTING_OPTION} from '../../config/gallery.js'
 
 const DynamicGalleryCarousel = dynamic(() =>
   import('../../components/gallery-carousel.js')
@@ -19,6 +20,25 @@ export default function GalleryAlbum({pictures, alternates}) {
   const {query} = useRouter()
   const {carousel} = query
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
+  const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
+  const [isReversedSorting, setIsReversedSorting] = useState(false)
+  const [items, setItems] = useState(sortListBy(pictures, sortingOption))
+
+  function handleSortingChange(event) {
+    const option = event.target.value
+
+    setSortingOption(option)
+  }
+
+  function toggleSortingDirection() {
+    setIsReversedSorting(!isReversedSorting)
+  }
+
+  useEffect(() => {
+    const sortedItems = sortListBy(pictures, sortingOption)
+
+    setItems(isReversedSorting ? [...sortedItems].reverse() : [...sortedItems])
+  }, [pictures, sortingOption, isReversedSorting])
 
   useEffect(() => {
     setIsCarouselOpen(Boolean(carousel))
@@ -34,10 +54,15 @@ export default function GalleryAlbum({pictures, alternates}) {
       </Head>
 
       <GalleryHeader />
-      <GalleryList items={pictures} />
+      <GalleryList
+        items={items}
+        onSort={handleSortingChange}
+        toggleSortingDirection={toggleSortingDirection}
+        isReversedSorting={isReversedSorting}
+      />
       {isCarouselOpen && (
         <DynamicGalleryCarousel
-          items={pictures}
+          items={items}
           setIsCarouselOpen={setIsCarouselOpen}
         />
       )}
