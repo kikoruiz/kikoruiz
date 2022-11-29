@@ -3,12 +3,12 @@
     "close": "Tancar el carrusel"
   },
   "album": {
-    "back-to-gallery": "Tornar a la galeria"
+    "back-to-gallery": "Tornar a Galeria"
   },
   "sorting": {
     "label": "Ordenar per:",
     "options": {
-      "picture-group": "Fotografia",
+      "data-group": "Informació",
       "date": "Data",
       "name": "Títol",
       "metadata-group": "Metadades",
