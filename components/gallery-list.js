@@ -71,7 +71,7 @@ export default function GalleryList({
       <div className="columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3">
         {items.map(
           (
-            {name, id, date, prettyDate, url, slug, image, metadata, isPano},
+            {name, id, date, prettyDate, url, slug, image, shotInfo, isPano},
             index
           ) => {
             if (!isAlbum) url = `${url}/?carousel=${slug}`
@@ -127,7 +127,7 @@ export default function GalleryList({
                           {prettyDate}
                         </time>
                       )}
-                      {metadata && sortingOption.includes('metadata') && (
+                      {shotInfo && sortingOption.includes('shot-info') && (
                         <>
                           <span
                             className={`${
@@ -136,10 +136,10 @@ export default function GalleryList({
                                 : ''
                             }`}
                           >
-                            {metadata.shutterSpeed}s
+                            {shotInfo.shutterSpeed}s
                           </span>
                           {' ·'}
-                          {metadata.aperture && (
+                          {shotInfo.aperture && (
                             <>
                               <span
                                 className={`inline-block${
@@ -149,7 +149,7 @@ export default function GalleryList({
                                 }`}
                               >
                                 <span className="italic">f</span>/
-                                {metadata.aperture}
+                                {shotInfo.aperture}
                               </span>
                               {' ·'}
                             </>
@@ -161,9 +161,9 @@ export default function GalleryList({
                                 : ''
                             }`}
                           >
-                            ISO {metadata.iso}
+                            ISO {shotInfo.iso}
                           </span>
-                          {metadata.focalLength && (
+                          {shotInfo.focalLength && (
                             <>
                               {' ·'}
                               <span
@@ -173,7 +173,7 @@ export default function GalleryList({
                                     : ''
                                 }`}
                               >
-                                {metadata.focalLength} mm
+                                {shotInfo.focalLength} mm
                                 {isPano && ' (pano)'}
                               </span>
                             </>
@@ -214,7 +214,7 @@ GalleryList.propTypes = {
         orientation: PropTypes.string.isRequired,
         base64: PropTypes.string
       }).isRequired,
-      metadata: PropTypes.shape({
+      shotInfo: PropTypes.shape({
         iso: PropTypes.number,
         aperture: PropTypes.number,
         shutterSpeed: PropTypes.oneOfType([PropTypes.string, PropTypes.number])

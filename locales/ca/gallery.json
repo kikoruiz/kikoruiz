@@ -8,11 +8,11 @@
   "sorting": {
     "label": "Ordenar per:",
     "options": {
-      "data-group": "Informació",
+      "info-group": "Informació general",
       "date": "Data",
       "name": "Títol",
-      "metadata-group": "Metadades",
-      "metadata": {
+      "shot-info-group": "Informació tècnica",
+      "shot-info": {
         "iso": "ISO",
         "aperture": "Obertura de diafragma",
         "shutter-speed": "Velocitat d'obturació",
