@@ -3,12 +3,12 @@
     "close": "Close carousel"
   },
   "album": {
-    "back-to-gallery": "Back to gallery"
+    "back-to-gallery": "Back to Gallery"
   },
   "sorting": {
     "label": "Sort by:",
     "options": {
-      "picture-group": "Picture",
+      "data-group": "Information",
       "date": "Date",
       "name": "Title",
       "metadata-group": "Metadata",
