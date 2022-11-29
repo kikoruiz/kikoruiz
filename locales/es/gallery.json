@@ -8,11 +8,11 @@
   "sorting": {
     "label": "Ordenar por:",
     "options": {
-      "data-group": "Información",
+      "info-group": "Información general",
       "date": "Fecha",
       "name": "Título",
-      "metadata-group": "Metadatos",
-      "metadata": {
+      "shot-info-group": "Información de disparo",
+      "shot-info": {
         "iso": "ISO",
         "aperture": "Apertura de diafragma",
         "shutter-speed": "Velocidad de obturación",

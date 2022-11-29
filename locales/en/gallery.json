@@ -8,11 +8,11 @@
   "sorting": {
     "label": "Sort by:",
     "options": {
-      "data-group": "Information",
+      "info-group": "General information",
       "date": "Date",
       "name": "Title",
-      "metadata-group": "Metadata",
-      "metadata": {
+      "shot-info-group": "Shot information",
+      "shot-info": {
         "iso": "ISO",
         "aperture": "Aperture",
         "shutter-speed": "Shutter speed",

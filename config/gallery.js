@@ -40,15 +40,15 @@ export const GALLERY_ALBUMS = [
 ]
 
 export const SORTING_OPTIONS = [
-  'data-group',
+  'info-group',
   'date',
   'name',
-  'metadata-group',
-  'metadata.shutter-speed',
-  'metadata.aperture',
-  'metadata.iso',
-  'metadata.focal-length'
+  'shot-info-group',
+  'shot-info.shutter-speed',
+  'shot-info.aperture',
+  'shot-info.iso',
+  'shot-info.focal-length'
 ]
 export const DEFAULT_SORTING_OPTION = 'date'
-export const DISABLED_SORTING_OPTIONS = ['data-group', 'metadata-group']
-export const PENDING_EVAL_SORTING_OPTIONS = ['metadata.shutter-speed']
+export const DISABLED_SORTING_OPTIONS = ['info-group', 'shot-info-group']
+export const PENDING_EVAL_SORTING_OPTIONS = ['shot-info.shutter-speed']
