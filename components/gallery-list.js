@@ -70,7 +70,10 @@ export default function GalleryList({
 
       <div className="columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3">
         {items.map(
-          ({name, id, date, prettyDate, url, slug, image, metadata}, index) => {
+          (
+            {name, id, date, prettyDate, url, slug, image, metadata, isPano},
+            index
+          ) => {
             if (!isAlbum) url = `${url}/?carousel=${slug}`
             const isFirstImage = index === 0
             const isSecondImage = index === 1
@@ -171,6 +174,7 @@ export default function GalleryList({
                                 }`}
                               >
                                 {metadata.focalLength} mm
+                                {isPano && ' (pano)'}
                               </span>
                             </>
                           )}
