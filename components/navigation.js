@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {useMediaQuery} from 'react-responsive'
@@ -32,12 +32,19 @@ export default function Navigation({section, hasHero}) {
     activeSection ? [activeSection.id] : []
   )
 
-  useMediaQuery({minWidth: sm}, undefined, handleMediaQueryChange)
+  useMediaQuery({minWidth: sm}, undefined, handleMobileUpChange)
+  useMediaQuery({maxWidth: sm - 1}, undefined, handleMobileDownChange)
 
-  function handleMediaQueryChange(matches) {
+  function handleMobileUpChange(matches) {
     if (matches) {
       setIsMenuOpen(false)
       setExpandedSections([])
+    }
+  }
+
+  function handleMobileDownChange(matches) {
+    if (matches && activeSection) {
+      setExpandedSections([activeSection.id])
     }
   }
 
@@ -73,6 +80,10 @@ export default function Navigation({section, hasHero}) {
     if (isSearchBarOpen) toggleSearch()
     if (section?.id) setExpandedSections([])
   }
+
+  useEffect(() => {
+    setExpandedSections(activeSection ? [activeSection.id] : [])
+  }, [activeSection])
 
   return (
     <nav className={`my-auto flex gap-3${isMenuOpen ? ' relative' : ''}`}>
