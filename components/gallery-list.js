@@ -188,13 +188,14 @@ export default function GalleryList({
             )
 
             return (
-              <Link href={url} shallow={!isAlbum} key={id}>
-                <a
-                  title={name ?? t(`gallery.albums.${id}.name`)}
-                  className={`${className} group`}
-                >
-                  {content}
-                </a>
+              <Link
+                href={url}
+                shallow={!isAlbum}
+                key={id}
+                title={name ?? t(`gallery.albums.${id}.name`)}
+                className={`${className} group`}
+              >
+                {content}
               </Link>
             )
           }

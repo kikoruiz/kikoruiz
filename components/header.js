@@ -9,10 +9,8 @@ export default function Header({...sectionData}) {
       <div className="bg-neutral-900/90">
         <div className="container mx-auto flex justify-between pl-5 pr-3">
           <div className="flex justify-center py-8">
-            <Link href="/">
-              <a title="Kiko Ruiz">
-                <Logo className="w-24 fill-neutral-300 transition-colors ease-in-out hover:fill-orange-200" />
-              </a>
+            <Link href="/" title="Kiko Ruiz">
+              <Logo className="w-24 fill-neutral-300 transition-colors ease-in-out hover:fill-orange-200" />
             </Link>
           </div>
 

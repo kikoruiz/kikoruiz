@@ -37,14 +37,13 @@ export default function GalleryHeader({isAlbum}) {
             {t('sections.gallery.description')}
           </p>
         ) : (
-          <Link href={`/${getSlug(t('sections.gallery.name'))}`}>
-            <a
-              title={t('gallery:album.back-to-gallery')}
-              className="inline-flex items-center text-xs font-light text-neutral-300/30 hover:text-neutral-300/90 sm:text-sm"
-            >
-              <ArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
-              {t('gallery:album.back-to-gallery')}
-            </a>
+          <Link
+            href={`/${getSlug(t('sections.gallery.name'))}`}
+            title={t('gallery:album.back-to-gallery')}
+            className="inline-flex items-center text-xs font-light text-neutral-300/30 hover:text-neutral-300/90 sm:text-sm"
+          >
+            <ArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+            {t('gallery:album.back-to-gallery')}
           </Link>
         )}
       </div>
