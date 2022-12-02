@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from "next/legacy/image";
+import Image from 'next/image'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {getPrettyDate} from '../lib/blog/date.js'
@@ -23,12 +23,14 @@ export default function PostCard({
             <div className="relative aspect-video">
               <Image
                 src={highlightedImage.src}
-                layout="fill"
-                sizes={highlightedImage.sizes}
-                objectFit="cover"
                 alt={highlightedImage.src}
                 placeholder="blur"
                 blurDataURL={highlightedImage.base64}
+                fill
+                sizes={highlightedImage.sizes}
+                style={{
+                  objectFit: 'cover'
+                }}
               />
             </div>
           )}

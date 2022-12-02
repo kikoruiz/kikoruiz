@@ -1,6 +1,6 @@
 import {useEffect, memo} from 'react'
 import {useRouter} from 'next/router'
-import Image from "next/legacy/image";
+import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
 import {getSlug} from '../lib/utils.js'
@@ -76,13 +76,15 @@ function GalleryCarousel({items, setIsCarouselOpen}) {
                 >
                   <Image
                     src={image.src}
-                    layout="fill"
-                    objectFit="cover"
                     alt={name}
                     placeholder="blur"
                     blurDataURL={image.base64}
                     priority={index === startIndex}
-                    lazyBoundary="0px"
+                    fill
+                    sizes="100vw"
+                    style={{
+                      objectFit: 'cover'
+                    }}
                   />
                   <figcaption className="absolute left-0 bottom-0 bg-gradient-to-r from-neutral-900 p-6 text-neutral-400">
                     <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">

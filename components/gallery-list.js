@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import Link from 'next/link'
-import Image from "next/legacy/image";
+import Image from 'next/image'
 import useTranslation from 'next-translate/useTranslation'
 import {themeScreens} from '../lib/utils.js'
 import {
@@ -99,15 +99,16 @@ export default function GalleryList({
               <>
                 <Image
                   src={src}
-                  layout="fill"
-                  sizes={sizes}
-                  objectFit="cover"
                   alt={name ?? t(`gallery.albums.${id}.name`)}
                   className="rounded-sm"
                   placeholder="blur"
                   blurDataURL={base64}
                   priority={needsPreload}
-                  lazyBoundary="120px"
+                  fill
+                  sizes={sizes}
+                  style={{
+                    objectFit: 'cover'
+                  }}
                 />
 
                 <figcaption className={captionClassName}>
