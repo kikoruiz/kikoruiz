@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {getPlaiceholder} from 'plaiceholder'
