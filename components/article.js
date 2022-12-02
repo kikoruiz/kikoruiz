@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 
 export default function Article({content, className}) {
@@ -21,11 +21,14 @@ export default function Article({content, className}) {
           <figure className="relative aspect-3/2 shadow-lg">
             <Image
               src={image.properties.src}
-              objectFit="cover"
-              layout="fill"
               alt={alt}
               priority={isPriority}
               className="rounded"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'cover'
+              }}
             />
             {hasCaption && (
               <figcaption aria-label={caption}>{caption}</figcaption>
