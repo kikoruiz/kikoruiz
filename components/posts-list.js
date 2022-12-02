@@ -33,14 +33,13 @@ export default function PostsList({tag, tags, posts}) {
         </div>
         {currentTag && (
           <div className="relative mt-9 pt-6 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60">
-            <Link href={`/${getSlug(t('common:sections.blog.name'))}`}>
-              <a
-                title={t('list.back-to-all')}
-                className="inline-flex items-center text-xs font-light text-neutral-300/30 hover:text-neutral-300/90 sm:text-sm"
-              >
-                <ArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
-                {t('list.back-to-all')}
-              </a>
+            <Link
+              href={`/${getSlug(t('common:sections.blog.name'))}`}
+              title={t('list.back-to-all')}
+              className="inline-flex items-center text-xs font-light text-neutral-300/30 hover:text-neutral-300/90 sm:text-sm"
+            >
+              <ArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+              {t('list.back-to-all')}
             </Link>
           </div>
         )}

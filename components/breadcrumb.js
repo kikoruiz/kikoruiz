@@ -21,13 +21,13 @@ export default function Breadcrumb({section, post, tag}) {
         {items.map(({href, id, name}) => {
           if (href) {
             return (
-              <Link href={href} key={id}>
-                <a
-                  title={t('navigation.back-to', {section: name})}
-                  className="font-light text-neutral-300/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
-                >
-                  {name}
-                </a>
+              <Link
+                href={href}
+                key={id}
+                title={t('navigation.back-to', {section: name})}
+                className="font-light text-neutral-300/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
+              >
+                {name}
               </Link>
             )
           }

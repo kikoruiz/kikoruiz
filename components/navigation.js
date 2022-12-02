@@ -151,14 +151,13 @@ export default function Navigation({section, hasHero}) {
                   {content}
                 </div>
               ) : (
-                <Link href={href}>
-                  <a
-                    title={sectionName}
-                    className={sectionClassName}
-                    onClick={handleElementClick}
-                  >
-                    {content}
-                  </a>
+                <Link
+                  href={href}
+                  title={sectionName}
+                  className={sectionClassName}
+                  onClick={handleElementClick}
+                >
+                  {content}
                 </Link>
               )}
               {hasCategories && (
@@ -198,14 +197,13 @@ export default function Navigation({section, hasHero}) {
                             {categoryName}
                           </span>
                         ) : (
-                          <Link href={categoryHref}>
-                            <a
-                              title={categoryName}
-                              className={categoryClassName}
-                              onClick={handleElementClick}
-                            >
-                              {categoryName}
-                            </a>
+                          <Link
+                            href={categoryHref}
+                            title={categoryName}
+                            className={categoryClassName}
+                            onClick={handleElementClick}
+                          >
+                            {categoryName}
                           </Link>
                         )}
                       </li>
