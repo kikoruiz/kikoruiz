@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import ReactMarkdown from 'react-markdown'
 
 export default function Article({content, className}) {
