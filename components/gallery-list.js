@@ -85,11 +85,11 @@ export default function GalleryList({
             const aspectClassName = isAlbum
               ? 'aspect-square'
               : imageAspectClassName
-            const className = `group inline-flex flex-col-reverse break-inside-avoid-column w-full after:absolute after:inset-0 after:h-full after:w-full after:rounded-sm after:border after:border-transparent hover:after:border-orange-300 ${aspectClassName}${
+            const className = `group inline-flex flex-col-reverse break-inside-avoid-column w-full after:absolute after:inset-0 after:h-full after:w-full after:border after:border-transparent hover:after:border-orange-300 ${aspectClassName}${
               isFirstImage ? ' mt-3' : ''
             }`
             const captionBaseClassName =
-              'relative rounded-b-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
+              'relative bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
             const captionClassName = isAlbum
               ? `${captionBaseClassName} px-3 py-6 overflow-hidden`
               : `${captionBaseClassName} p-3.5 text-neutral-400`
@@ -105,7 +105,6 @@ export default function GalleryList({
                 sizes={sizes}
                 needsPreload={needsPreload}
                 fallbackStyle={css}
-                isRounded
               >
                 <figcaption className={captionClassName}>
                   <header
