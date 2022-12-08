@@ -16,7 +16,6 @@
     "change-case": "4",
     "downshift": "6",
     "embla-carousel-react": "7",
-    "exiftool-vendored": "17",
     "gray-matter": "4",
     "lodash": "4",
     "next": "13",
@@ -29,12 +28,14 @@
     "remove-accents": "0"
   },
   "devDependencies": {
+    "@plaiceholder/next": "2",
     "@svgr/webpack": "6",
     "@tailwindcss/typography": "0",
     "autoprefixer": "10",
     "eslint": "8",
     "eslint-config-next": "13",
     "eslint-config-prettier": "8",
+    "exiftool-vendored": "17",
     "postcss": "8",
     "prettier": "2",
     "prettier-plugin-tailwindcss": "0",

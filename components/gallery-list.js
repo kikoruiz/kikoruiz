@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
-import Link from 'next/link'
-import Image from 'next/image'
+import Image from './image.js'
 import useTranslation from 'next-translate/useTranslation'
 import {themeScreens} from '../lib/utils.js'
 import {
@@ -80,37 +79,34 @@ export default function GalleryList({
             const needsPreload =
               isFirstImage ||
               (isSecondImage && items[0].image.orientation === 'horizontal')
-            const {src, orientation, base64} = image
+            const {src, orientation, css} = image
             const imageAspectClassName =
               orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
             const aspectClassName = isAlbum
               ? 'aspect-square'
               : imageAspectClassName
-            const className = `relative inline-flex flex-col-reverse break-inside-avoid-column w-full after:rounded-sm after:absolute after:w-full after:h-full after:border after:border-transparent hover:after:border-orange-300 after:inset-0 ${aspectClassName}${
+            const className = `group inline-flex flex-col-reverse break-inside-avoid-column w-full after:absolute after:inset-0 after:h-full after:w-full after:rounded-sm after:border after:border-transparent hover:after:border-orange-300 ${aspectClassName}${
               isFirstImage ? ' mt-3' : ''
             }`
             const captionBaseClassName =
-              'relative rounded-bl-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
+              'relative rounded-b-sm bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
             const captionClassName = isAlbum
               ? `${captionBaseClassName} px-3 py-6 overflow-hidden`
               : `${captionBaseClassName} p-3.5 text-neutral-400`
             const sortedPropertyClassName = 'font-bold text-neutral-300/40'
-            const content = (
-              <>
-                <Image
-                  src={src}
-                  alt={name ?? t(`gallery.albums.${id}.name`)}
-                  className="rounded-sm"
-                  placeholder="blur"
-                  blurDataURL={base64}
-                  priority={needsPreload}
-                  fill
-                  sizes={sizes}
-                  style={{
-                    objectFit: 'cover'
-                  }}
-                />
 
+            return (
+              <Image
+                key={id}
+                src={src}
+                url={url}
+                alt={name ?? t(`gallery.albums.${id}.name`)}
+                className={className}
+                sizes={sizes}
+                needsPreload={needsPreload}
+                fallbackStyle={css}
+                isRounded
+              >
                 <figcaption className={captionClassName}>
                   <header
                     className={`drop-shadow group-hover:text-orange-300 ${
@@ -184,19 +180,7 @@ export default function GalleryList({
                     </div>
                   )}
                 </figcaption>
-              </>
-            )
-
-            return (
-              <Link
-                href={url}
-                shallow={!isAlbum}
-                key={id}
-                title={name ?? t(`gallery.albums.${id}.name`)}
-                className={`${className} group`}
-              >
-                {content}
-              </Link>
+              </Image>
             )
           }
         )}
@@ -214,7 +198,7 @@ GalleryList.propTypes = {
       image: PropTypes.shape({
         src: PropTypes.string.isRequired,
         orientation: PropTypes.string.isRequired,
-        base64: PropTypes.string
+        css: PropTypes.object
       }).isRequired,
       shotInfo: PropTypes.shape({
         iso: PropTypes.number,

@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import NextImage from 'next/image'
 import ReactMarkdown from 'react-markdown'
 
 export default function Article({content, className}) {
@@ -19,16 +19,13 @@ export default function Article({content, className}) {
 
         return (
           <figure className="relative aspect-3/2 shadow-lg">
-            <Image
+            <NextImage
               src={image.properties.src}
               alt={alt}
               priority={isPriority}
-              className="rounded"
+              className="rounded object-cover"
               fill
               sizes="100vw"
-              style={{
-                objectFit: 'cover'
-              }}
             />
             {hasCaption && (
               <figcaption aria-label={caption}>{caption}</figcaption>
