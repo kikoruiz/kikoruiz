@@ -1,8 +1,8 @@
 import {useEffect, memo} from 'react'
 import {useRouter} from 'next/router'
-import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
+import Image from './image.js'
 import {getSlug} from '../lib/utils.js'
 
 let startIndex
@@ -71,27 +71,20 @@ function GalleryCarousel({items, setIsCarouselOpen}) {
 
             return (
               <div key={id} className="embla__slide flex-[0_0_100%]">
-                <figure
-                  className={`relative mx-auto max-h-screen ${imageAspectClassName}`}
+                <Image
+                  src={image.src}
+                  alt={name}
+                  className={`mx-auto max-h-screen ${imageAspectClassName}`}
+                  sizes="100vw"
+                  needsPreload={index === startIndex}
+                  fallbackStyle={image.css}
                 >
-                  <Image
-                    src={image.src}
-                    alt={name}
-                    placeholder="blur"
-                    blurDataURL={image.base64}
-                    priority={index === startIndex}
-                    fill
-                    sizes="100vw"
-                    style={{
-                      objectFit: 'cover'
-                    }}
-                  />
                   <figcaption className="absolute left-0 bottom-0 bg-gradient-to-r from-neutral-900 p-6 text-neutral-400">
                     <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
                       {name}
                     </header>
                   </figcaption>
-                </figure>
+                </Image>
               </div>
             )
           })}

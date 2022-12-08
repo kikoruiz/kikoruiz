@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {getPlaiceholder} from 'plaiceholder'
@@ -8,6 +7,7 @@ import {getDescription} from '../lib/about-me.js'
 import {themeScreens} from '../lib/utils.js'
 import {PERSONAL_INFO} from '../config/index.js'
 import Article from '../components/article.js'
+import Image from '../components/image.js'
 
 export default function AboutMe({avatar, description, alternates}) {
   const {locale} = useRouter()
@@ -24,21 +24,15 @@ export default function AboutMe({avatar, description, alternates}) {
 
       <section className="flex flex-col p-6 sm:flex-row sm:py-0">
         <div className="mb-12 w-full sm:mr-6 sm:w-1/3">
-          <div className="relative mx-12 mb-6 aspect-square overflow-hidden rounded-full border-8 border-neutral-600/30 sm:mx-4 sm:mb-6 md:mx-6 xl:mx-14">
-            <Image
-              src={avatar.src}
-              alt={t('sections.about-me.name')}
-              className="rounded-full"
-              placeholder="blur"
-              blurDataURL={avatar.base64}
-              priority
-              fill
-              sizes={avatar.sizes}
-              style={{
-                objectFit: 'cover'
-              }}
-            />
-          </div>
+          <Image
+            src={avatar.src}
+            alt={t('sections.about-me.name')}
+            className="mx-12 mb-6 aspect-square rounded-full border-8 border-neutral-600/30 sm:mx-4 sm:mb-6 md:mx-6 xl:mx-14"
+            sizes={avatar.sizes}
+            fallbackStyle={avatar.css}
+            isFullRounded
+          />
+
           <dl className="rounded-lg bg-gradient-to-tl from-neutral-800/60 px-6 sm:px-3">
             {Object.keys(PERSONAL_INFO).map(key => {
               const value = PERSONAL_INFO[key]
@@ -124,8 +118,8 @@ export async function getStaticProps({locales, locale, defaultLocale}) {
     src: '/avatar.jpg',
     sizes: `(min-width: ${sm}) 33vw, 100vw`
   }
-  const {base64} = await getPlaiceholder(avatar.src)
-  avatar.base64 = base64
+  const {css} = await getPlaiceholder(avatar.src)
+  avatar.css = css
   const section = 'about-me'
   const alternates = await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale, section}))

@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
+import Image from './image.js'
 import {getPrettyDate} from '../lib/blog/date.js'
 
 export default function PostCard({
@@ -19,19 +19,13 @@ export default function PostCard({
     <Link href={href} title={title}>
       <article className="flex flex-col overflow-hidden rounded border border-neutral-600/30 bg-neutral-800/30 shadow-md hover:border-orange-300/60 hover:shadow-black/20">
         {highlightedImage && (
-          <div className="relative aspect-video">
-            <Image
-              src={highlightedImage.src}
-              alt={highlightedImage.src}
-              placeholder="blur"
-              blurDataURL={highlightedImage.base64}
-              fill
-              sizes={highlightedImage.sizes}
-              style={{
-                objectFit: 'cover'
-              }}
-            />
-          </div>
+          <Image
+            src={highlightedImage.src}
+            alt={highlightedImage.src}
+            className="aspect-video"
+            sizes={highlightedImage.sizes}
+            fallbackStyle={highlightedImage.css}
+          />
         )}
         <div className="p-4 text-sm">
           <header className="flex items-center justify-between">
