@@ -105,6 +105,8 @@ export default function GalleryList({
                 sizes={sizes}
                 needsPreload={needsPreload}
                 fallbackStyle={css}
+                isRounded
+                isShallowLink={!isAlbum}
               >
                 <figcaption className={captionClassName}>
                   <header

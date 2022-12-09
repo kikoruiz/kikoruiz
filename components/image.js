@@ -13,6 +13,7 @@ export default function Image({
   fallbackStyle,
   isRounded,
   isFullRounded,
+  isShallowLink,
   children
 }) {
   const isLink = Boolean(url)
@@ -20,10 +21,11 @@ export default function Image({
   const wrapperClassName = `relative overflow-hidden${
     isRounded ? ' rounded-sm' : ''
   }`
+  const isFullSize = sizes === '100vw'
   const roundedStyle =
     isRounded || isFullRounded
       ? {
-          '-webkit-mask-image': '-webkit-radial-gradient(white, black)'
+          WebkitMaskImage: '-webkit-radial-gradient(white, black)'
         }
       : {}
 
@@ -35,19 +37,18 @@ export default function Image({
     <>
       <div
         aria-hidden
-        className={`absolute inset-0 h-full w-full blur-3xl${
-          isLoaded ? ' hidden' : ''
-        }${isFullRounded ? ' rounded-full' : ''}`}
+        className={`absolute inset-0 -z-10 h-full w-full ${
+          isFullSize ? 'blur-3xl' : 'blur-2xl'
+        }${isLoaded ? ' hidden' : ''}${isFullRounded ? ' rounded-full' : ''}`}
         style={{
           ...fallbackStyle,
-          transform: 'translate3d(0, 0, 0)',
-          ...roundedStyle
+          transform: 'translate3d(0, 0, 0)'
         }}
       />
       <NextImage
         src={src}
         alt={alt}
-        className="object-cover"
+        className={`object-cover ${isLoaded ? 'visible' : 'invisible'}`}
         priority={needsPreload}
         onLoad={handleImageLoad}
         sizes={sizes}
@@ -63,6 +64,7 @@ export default function Image({
       title={alt}
       className={`${className} ${wrapperClassName}`}
       style={roundedStyle}
+      shallow={isShallowLink}
     >
       {content}
     </Link>
@@ -87,5 +89,6 @@ Image.propTypes = {
     backgroundSize: PropTypes.string
   }),
   isRounded: PropTypes.bool,
+  isShallowLink: PropTypes.bool,
   children: PropTypes.node
 }
