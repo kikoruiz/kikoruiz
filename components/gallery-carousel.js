@@ -65,29 +65,74 @@ function GalleryCarousel({items, setIsCarouselOpen}) {
         ref={emblaRef}
       >
         <div className="embla__container flex h-full w-full items-center">
-          {items.map(({name, id, image}, index) => {
-            const imageAspectClassName =
-              image.orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
+          {items.map(
+            ({name, id, image, date, prettyDate, shotInfo, isPano}, index) => {
+              const imageAspectClassName =
+                image.orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
+              const shotInfoList = [
+                {
+                  id: 'shutter-speed',
+                  content: <>{shotInfo.shutterSpeed}s</>
+                },
+                {
+                  id: 'aperture',
+                  content: (
+                    <>
+                      <span className="italic">f</span>/{shotInfo.aperture}
+                    </>
+                  )
+                },
+                {
+                  id: 'iso',
+                  content: <>ISO {shotInfo.iso}</>
+                },
+                {
+                  id: 'focal-length',
+                  content: (
+                    <>
+                      {shotInfo.focalLength} mm{isPano && ' (pano)'}
+                    </>
+                  )
+                }
+              ]
 
-            return (
-              <div key={id} className="embla__slide flex-[0_0_100%]">
-                <Image
-                  src={image.src}
-                  alt={name}
-                  className={`mx-auto max-h-screen ${imageAspectClassName}`}
-                  sizes="100vw"
-                  needsPreload={index === startIndex}
-                  fallbackStyle={image.css}
-                >
-                  <figcaption className="absolute left-0 bottom-0 bg-gradient-to-r from-neutral-900 p-6 text-neutral-400">
-                    <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
-                      {name}
-                    </header>
-                  </figcaption>
-                </Image>
-              </div>
-            )
-          })}
+              return (
+                <div key={id} className="embla__slide flex-[0_0_100%]">
+                  <div className="contents h-screen w-screen">
+                    <Image
+                      src={image.src}
+                      alt={name}
+                      className={`m-auto max-h-screen ${imageAspectClassName}`}
+                      sizes="100vw"
+                      needsPreload={index === startIndex}
+                      fallbackStyle={image.css}
+                    />
+
+                    <div className="fixed top-0 flex h-full w-full flex-col-reverse">
+                      <section className="bg-gradient-to-r from-neutral-900 p-6 text-neutral-400">
+                        <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
+                          {name}
+                        </header>
+                        <time className="text-neutral-300/40" dateTime={date}>
+                          {prettyDate}
+                        </time>
+                        <dl className="mt-3 text-sm font-light text-neutral-300/60">
+                          {shotInfoList.map(({id, content}) => (
+                            <div className="flex flex-wrap" key={id}>
+                              <dt className="mr-3 basis-2/4 text-right text-orange-300/60">
+                                {t(`gallery:sorting.options.shot-info.${id}`)}
+                              </dt>
+                              <dd>{content}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+          )}
         </div>
       </div>
     </div>
