@@ -1,3 +1,4 @@
+import type {NextApiRequest, NextApiResponse} from 'next'
 import searchContent from '../../../data/search/content.json'
 import picturesMetadata from '../../../data/pictures/metadata.json'
 import {paramCase} from 'change-case'
@@ -18,7 +19,7 @@ function matchSearchKey(key) {
   }
 }
 
-export default function handler(req, res) {
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: {key}
   } = req
