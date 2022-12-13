@@ -3,7 +3,7 @@ const {withPlaiceholder} = require('@plaiceholder/next')
 
 module.exports = withPlaiceholder(
   nextTranslate({
-    reactStrictMode: false,
+    reactStrictMode: true,
     images: {
       formats: ['image/avif', 'image/webp']
     },

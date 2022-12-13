@@ -31,6 +31,7 @@
     "@plaiceholder/next": "2",
     "@svgr/webpack": "6",
     "@tailwindcss/typography": "0",
+    "@types/node": "18",
     "autoprefixer": "10",
     "eslint": "8",
     "eslint-config-next": "13",
