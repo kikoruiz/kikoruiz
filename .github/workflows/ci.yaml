@@ -1,4 +1,4 @@
-name: GitHub Actions Vercel Production Deployment
+name: kikoruiz.es CI
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -19,6 +19,15 @@ jobs:
         run: npm ci
       - name: Check types
         run: npm run check:types
+  lint:
+    name: Code linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint code
+        run: npm run lint
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
