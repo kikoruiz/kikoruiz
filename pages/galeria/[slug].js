@@ -3,17 +3,17 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import getT from 'next-translate/getT'
-import GalleryList from '../../components/gallery-list.js'
-import GalleryHeader from '../../components/gallery-header.js'
-import {getGalleryAlbums} from '../../lib/gallery/albums.js'
-import {getGalleryPictures} from '../../lib/gallery/pictures.js'
-import {fromExifToGallery} from '../../lib/gallery/mappers.js'
-import {fromLocalesToAlternates} from '../../lib/mappers.js'
-import {getSlug, sortListBy} from '../../lib/utils.js'
-import {DEFAULT_SORTING_OPTION} from '../../config/gallery.js'
+import GalleryList from '../../components/gallery-list'
+import GalleryHeader from '../../components/gallery-header'
+import {getGalleryAlbums} from '../../lib/gallery/albums'
+import {getGalleryPictures} from '../../lib/gallery/pictures'
+import {fromExifToGallery} from '../../lib/gallery/mappers'
+import {fromLocalesToAlternates} from '../../lib/mappers'
+import {getSlug, sortListBy} from '../../lib/utils'
+import {DEFAULT_SORTING_OPTION} from '../../config/gallery'
 
 const DynamicGalleryCarousel = dynamic(() =>
-  import('../../components/gallery-carousel.js')
+  import('../../components/gallery-carousel')
 )
 
 export default function GalleryAlbum({pictures, alternates}) {

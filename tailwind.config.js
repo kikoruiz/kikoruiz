@@ -2,7 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./pages/**/*.js', './components/**/*.js'],
+  content: ['./pages/**/*.{js,tsx}', './components/**/*.{js,tsx}'],
   theme: {
     screens: {
       ...defaultTheme.screens,

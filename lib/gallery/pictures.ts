@@ -1,8 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import getT from 'next-translate/getT'
-import {GALLERY_ALBUMS} from '../../config/gallery.js'
-import {getSlug} from '../utils.js'
+import {GALLERY_ALBUMS} from '../../config/gallery'
+import {getSlug} from '../utils'
 
 const picturesMetadataFile = path.join(
   process.cwd(),
@@ -12,13 +12,19 @@ const picturesMetadataFile = path.join(
 )
 
 async function getAllPictures() {
-  const metadata = fs.readFileSync(picturesMetadataFile)
+  const metadata = fs.readFileSync(picturesMetadataFile, 'utf8')
 
   return JSON.parse(metadata)
 }
 
-export function taggedPictures({tags, excludeTags = []}) {
-  return function ({keywords}) {
+export function taggedPictures({
+  tags,
+  excludeTags = []
+}: {
+  tags: string[]
+  excludeTags: string[]
+}) {
+  return function ({keywords}: {keywords: string[]}) {
     return (
       tags.some(tag => keywords.includes(tag)) &&
       keywords.every(keyword => !excludeTags.includes(keyword))
@@ -28,15 +34,25 @@ export function taggedPictures({tags, excludeTags = []}) {
 
 export async function getHighlightedPicture(highlightedPicture) {
   const pictures = await getAllPictures()
-  const {fileName, imageSize} = pictures.find(
-    ({fileName}) => fileName === highlightedPicture
-  )
+  const {
+    fileName,
+    imageSize
+  }: {
+    fileName: string
+    imageSize: string
+  } = pictures.find(({fileName}) => fileName === highlightedPicture)
 
   return {fileName, imageSize}
 }
 
-export async function getGalleryPictures({locale, slug}) {
-  const pictures = await getAllPictures()
+export async function getGalleryPictures({
+  locale,
+  slug
+}: {
+  locale: string
+  slug: string
+}) {
+  const pictures = (await getAllPictures()) as object[]
   const t = await getT(locale, 'common')
 
   const {tags, excludeTags} = GALLERY_ALBUMS.find(album => {

@@ -1,8 +1,21 @@
 import {getPlaiceholder} from 'plaiceholder'
 import getT from 'next-translate/getT'
-import {getSlug} from '../utils.js'
+import {getSlug} from '../utils'
 
-function getOrientation(size) {
+interface ExifData {
+  fileName: string
+  title: string
+  createDate: string
+  model: string
+  imageSize: string
+  iso: number
+  aperture: number
+  shutterSpeed: string | number
+  focalLength: string
+  keywords: string[]
+}
+
+function getOrientation(size: string) {
   const dimensions = size.split('x')
   const [width, height] = dimensions
   const orientation = Number(width) > Number(height) ? 'horizontal' : 'vertical'
@@ -10,14 +23,20 @@ function getOrientation(size) {
   return orientation
 }
 
-function getPrettyDate(date, locale) {
+function getPrettyDate(date: string, locale: string) {
   return new Date(date).toLocaleString(locale, {
     month: 'long',
     year: 'numeric'
   })
 }
 
-export function fromExifToGallery({slug, locale}) {
+export function fromExifToGallery({
+  slug,
+  locale
+}: {
+  slug: string
+  locale: string
+}) {
   return async function ({
     fileName,
     title,
@@ -29,7 +48,7 @@ export function fromExifToGallery({slug, locale}) {
     shutterSpeed,
     focalLength,
     keywords
-  }) {
+  }: ExifData) {
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
     const {css} = await getPlaiceholder(src)
@@ -70,7 +89,7 @@ export function fromExifToGallery({slug, locale}) {
   }
 }
 
-export function fromAlbumToGallery(locale) {
+export function fromAlbumToGallery(locale: string) {
   return async function ({id, highlightedPicture}) {
     const src = `/pictures/${highlightedPicture.fileName}`
     const {css} = await getPlaiceholder(src)

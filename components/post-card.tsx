@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import Image from './image.js'
-import {getPrettyDate} from '../lib/blog/date.js'
+import Image from './image'
+import {getPrettyDate} from '../lib/blog/date'
 
 export default function PostCard({
   title,
@@ -11,7 +11,7 @@ export default function PostCard({
   readingTime,
   excerpt,
   highlightedImage
-}) {
+}: PostCardProps) {
   const {locale} = useRouter()
   const {t} = useTranslation('blog')
 
@@ -42,4 +42,23 @@ export default function PostCard({
       </article>
     </Link>
   )
+}
+
+interface PostCardProps {
+  title: string
+  href: string
+  createdAt: string
+  readingTime: number
+  excerpt: string
+  highlightedImage: {
+    src: string
+    alt: string
+    css: {
+      backgroundImage: string
+      backgroundPosition: string
+      backgroundSize: string
+      backgroundRepeat: string
+    }
+    sizes: string
+  }
 }

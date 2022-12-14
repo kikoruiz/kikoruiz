@@ -1,5 +1,5 @@
-import {GALLERY_ALBUMS} from '../../config/gallery.js'
-import {getHighlightedPicture} from './pictures.js'
+import {GALLERY_ALBUMS} from '../../config/gallery'
+import {getHighlightedPicture} from './pictures'
 
 export function getGalleryAlbums() {
   const galleryAlbums = GALLERY_ALBUMS.map(async data => {

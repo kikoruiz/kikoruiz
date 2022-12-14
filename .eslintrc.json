@@ -4,9 +4,16 @@
   },
   "extends": ["next", "prettier"],
   "rules": {
-    "import/extensions": ["warn", "always", {"ignorePackages": true}],
     "no-undef": "error",
     "no-unused-vars": "warn",
     "spaced-comment": "warn"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }

@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import ArrowLeft from '../assets/icons/arrow-left.svg'
-import PostCard from './post-card.js'
-import BlogTags from './blog-tags.js'
-import {getSlug} from '../lib/utils.js'
+import PostCard from './post-card'
+import BlogTags from './blog-tags'
+import {getSlug} from '../lib/utils'
 
 export default function PostsList({tag, tags, posts}) {
   const {t} = useTranslation('blog')

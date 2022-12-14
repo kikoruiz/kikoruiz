@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "save:metadata": "node ./bin/pictures/save-metadata.js",
-    "save:content": "node ./bin/search/save-content.js"
+    "save:content": "node ./bin/search/save-content.js",
+    "check:types": "tsc"
   },
   "dependencies": {
     "@vercel/analytics": "0",
