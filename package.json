@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run save:metadata && npm run save:content",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "npm run save:metadata && npm run save:content",
     "save:metadata": "node ./bin/pictures/save-metadata.js",
     "save:content": "node ./bin/search/save-content.js",
     "check:types": "tsc"
