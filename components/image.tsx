@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import {useState} from 'react'
 import Link from 'next/link'
 import NextImage from 'next/image'
@@ -15,7 +14,7 @@ export default function Image({
   isFullRounded,
   isShallowLink,
   children
-}) {
+}: ImageProps) {
   const isLink = Boolean(url)
   const [isLoaded, setIsLoaded] = useState(false)
   const wrapperClassName = `relative overflow-hidden${
@@ -75,20 +74,21 @@ export default function Image({
   )
 }
 
-Image.propTypes = {
-  src: PropTypes.string,
-  url: PropTypes.string,
-  alt: PropTypes.string,
-  className: PropTypes.string,
-  sizes: PropTypes.string,
-  needsPreload: PropTypes.bool,
-  fallbackStyle: PropTypes.shape({
-    backgroundImage: PropTypes.string,
-    backgroundPosition: PropTypes.string,
-    backgroundRepeat: PropTypes.string,
-    backgroundSize: PropTypes.string
-  }),
-  isRounded: PropTypes.bool,
-  isShallowLink: PropTypes.bool,
-  children: PropTypes.node
+interface ImageProps {
+  src: string
+  url?: string
+  alt: string
+  className: string
+  sizes: string
+  needsPreload?: boolean
+  fallbackStyle: {
+    backgroundImage: string
+    backgroundPosition: string
+    backgroundRepeat: string
+    backgroundSize: string
+  }
+  isRounded?: boolean
+  isFullRounded?: boolean
+  isShallowLink?: boolean
+  children?: JSX.Element
 }

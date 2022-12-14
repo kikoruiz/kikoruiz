@@ -7,7 +7,7 @@ import {getDescription} from '../lib/about-me.js'
 import {themeScreens} from '../lib/utils.js'
 import {PERSONAL_INFO} from '../config/index.js'
 import Article from '../components/article.js'
-import Image from '../components/image.js'
+import Image from '../components/image.tsx'
 
 export default function AboutMe({avatar, description, alternates}) {
   const {locale} = useRouter()

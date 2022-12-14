@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import Image from './image.js'
+import Image from './image'
 import useTranslation from 'next-translate/useTranslation'
 import {themeScreens} from '../lib/utils.js'
 import {

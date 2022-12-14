@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import GalleryList from '../../components/gallery-list.js'
-import GalleryHeader from '../../components/gallery-header.js'
-import {getGalleryAlbums} from '../../lib/gallery/albums.js'
-import {fromAlbumToGallery} from '../../lib/gallery/mappers.js'
-import {fromLocalesToAlternates} from '../../lib/mappers.js'
+import GalleryList from '../../components/gallery-list'
+import GalleryHeader from '../../components/gallery-header'
+import {getGalleryAlbums} from '../../lib/gallery/albums'
+import {fromAlbumToGallery} from '../../lib/gallery/mappers'
+import {fromLocalesToAlternates} from '../../lib/mappers'
 
 export default function Gallery({albums, alternates}) {
   return (

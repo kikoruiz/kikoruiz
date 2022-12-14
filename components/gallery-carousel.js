@@ -2,8 +2,8 @@ import {useEffect, memo} from 'react'
 import {useRouter} from 'next/router'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
-import Image from './image.js'
-import {getSlug} from '../lib/utils.js'
+import Image from './image'
+import {getSlug} from '../lib/utils'
 
 let startIndex
 

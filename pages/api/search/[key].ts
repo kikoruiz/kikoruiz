@@ -2,13 +2,13 @@ import type {NextApiRequest, NextApiResponse} from 'next'
 import searchContent from '../../../data/search/content.json'
 import picturesMetadata from '../../../data/pictures/metadata.json'
 import {paramCase} from 'change-case'
-import {GALLERY_ALBUMS} from '../../../config/gallery.js'
-import {taggedPictures} from '../../../lib/gallery/pictures.js'
+import {GALLERY_ALBUMS} from '../../../config/gallery'
+import {taggedPictures} from '../../../lib/gallery/pictures'
 
-function matchSearchKey(key) {
-  return function (attrs) {
+function matchSearchKey(key: string) {
+  return function (attrs: object) {
     return Object.keys(attrs).find(attr => {
-      const item = attrs[attr]
+      const item = attrs[attr] as string | string[]
 
       if (!item) return
 
@@ -20,9 +20,10 @@ function matchSearchKey(key) {
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const {
+  let {
     query: {key}
   } = req
+  if (typeof key !== 'string') key = key[0]
   const results = [
     ...searchContent.filter(matchSearchKey(key)),
     ...picturesMetadata
