@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import Image from './image'
 import useTranslation from 'next-translate/useTranslation'
-import {themeScreens} from '../lib/utils.js'
+import {themeScreens} from '../lib/utils'
 import {
   SORTING_OPTIONS,
   DEFAULT_SORTING_OPTION,

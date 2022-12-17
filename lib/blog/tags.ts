@@ -1,8 +1,14 @@
 import getT from 'next-translate/getT'
-import {BLOG} from '../../config/index.js'
-import {getSlug} from '../utils.js'
+import {BLOG} from '../../config/index'
+import {getSlug} from '../utils'
 
-export async function getTagsData({tags = BLOG.TAGS, locale}) {
+export async function getTagsData({
+  tags = BLOG.TAGS,
+  locale
+}: {
+  tags: string[]
+  locale: string
+}) {
   const t = await getT(locale, 'blog')
 
   return tags

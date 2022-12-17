@@ -2,12 +2,12 @@ import Head from 'next/head'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {getPlaiceholder} from 'plaiceholder'
-import {fromLocalesToAlternates} from '../lib/mappers.js'
-import {getDescription} from '../lib/about-me.js'
-import {themeScreens} from '../lib/utils.js'
-import {PERSONAL_INFO} from '../config/index.js'
-import Article from '../components/article.js'
-import Image from '../components/image.tsx'
+import {fromLocalesToAlternates} from '../lib/mappers'
+import {getDescription} from '../lib/about-me'
+import {themeScreens} from '../lib/utils'
+import {PERSONAL_INFO} from '../config'
+import Article from '../components/article'
+import Image from '../components/image'
 
 export default function AboutMe({avatar, description, alternates}) {
   const {locale} = useRouter()

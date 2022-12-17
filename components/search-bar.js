@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 import {useCombobox} from 'downshift'
 import useTranslation from 'next-translate/useTranslation'
 import {debounce} from 'lodash'
-import {fetcher, getSlug} from '../lib/utils.js'
+import {fetcher, getSlug} from '../lib/utils'
 import IconMagnifyingGlass from '../assets/icons/magnifying-glass.svg'
 
 export default function SearchBar({isOpen, setIsOpen}) {

@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import {getAllPosts} from '../../lib/blog/posts.js'
-import {fromLocalesToAlternates} from '../../lib/mappers.js'
-import {getTagsData} from '../../lib/blog/tags.js'
-import PostsList from '../../components/posts-list.js'
+import {getAllPosts} from '../../lib/blog/posts'
+import {fromLocalesToAlternates} from '../../lib/mappers'
+import {getTagsData} from '../../lib/blog/tags'
+import PostsList from '../../components/posts-list'
 
 export default function Blog({posts, tags, alternates}) {
   return (

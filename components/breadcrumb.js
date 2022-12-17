@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import {fromSectionToBreadcrumbItems} from '../lib/mappers.js'
+import {fromSectionToBreadcrumbItems} from '../lib/mappers'
 
 export default function Breadcrumb({section, post, tag}) {
   const {t} = useTranslation()
