@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import getT from 'next-translate/getT'
 import {remove} from 'remove-accents'
-import {BLOG} from '../../../config/index.js'
-import {fromLocalesToAlternates} from '../../../lib/mappers.js'
-import {getAllPosts} from '../../../lib/blog/posts.js'
-import PostsList from '../../../components/posts-list.js'
+import {BLOG} from '../../../config'
+import {fromLocalesToAlternates} from '../../../lib/mappers'
+import {getAllPosts} from '../../../lib/blog/posts'
+import PostsList from '../../../components/posts-list'
 
 export default function Tag({tag, posts, alternates}) {
   return (

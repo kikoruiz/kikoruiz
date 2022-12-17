@@ -1,14 +1,14 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import {getPlaiceholder} from 'plaiceholder'
-import {getMarkdownContent} from '../content.js'
-import {themeScreens} from '../utils.js'
+import {getMarkdownContent} from '../content'
+import {themeScreens} from '../utils'
 
 const DEFAULT_WORDS_PER_MINUTE = 225
 
 const postsDirectory = path.join(process.cwd(), 'data', 'posts')
 
-function getPostBySlug(slug) {
+function getPostBySlug(slug: string) {
   return getMarkdownContent(`${postsDirectory}/${slug}.md`)
 }
 
@@ -48,7 +48,7 @@ export async function getAllPosts() {
   )
 }
 
-export function getReadingTime(content) {
+export function getReadingTime(content: string) {
   const words = content.trim().split(/\s+/).length
   const time = Math.ceil(words / DEFAULT_WORDS_PER_MINUTE)
 

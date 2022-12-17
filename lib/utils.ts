@@ -1,14 +1,14 @@
-import resolveConfig from 'tailwindcss/resolveConfig.js'
-import tailwindConfig from '../tailwind.config.js'
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../tailwind.config'
 import {paramCase, headerCase, camelCase} from 'change-case'
 import removeAccents from 'remove-accents'
-import {PENDING_EVAL_SORTING_OPTIONS} from '../config/gallery.js'
+import {PENDING_EVAL_SORTING_OPTIONS} from '../config/gallery'
 
-const config = resolveConfig(tailwindConfig)
+const config = resolveConfig(tailwindConfig) as any
 const {screens: themeScreens} = config.theme
 
 export const fetcher = {
-  get: async (url, options) => {
+  get: async (url: RequestInfo, options: RequestInit) => {
     const response = await fetch(url, options)
 
     return response.json()
@@ -23,15 +23,15 @@ export const screens = Object.keys(themeScreens).reduce(
   {}
 )
 
-export function getTitle(slug) {
+export function getTitle(slug: string) {
   return headerCase(slug)
 }
 
-export function getSlug(name) {
+export function getSlug(name: string) {
   return paramCase(removeAccents(name))
 }
 
-function getDeepProperty(obj, property) {
+function getDeepProperty(obj: object, property: string) {
   const propertyValue = property.split('.').reduce((acc, key) => {
     const value = acc[camelCase(key)]
     const needsEval =
@@ -45,7 +45,7 @@ function getDeepProperty(obj, property) {
   return propertyValue
 }
 
-export function sortListBy(list, property) {
+export function sortListBy(list: object[], property: string) {
   const isDeepProperty = property.includes('.')
   const sortedList = list.sort((a, b) => {
     const isFirstGreaterOrEqual = isDeepProperty

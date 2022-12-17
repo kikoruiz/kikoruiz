@@ -44,7 +44,7 @@ export default function PostCard({
   )
 }
 
-interface PostCardProps {
+type PostCardProps = {
   title: string
   href: string
   createdAt: string

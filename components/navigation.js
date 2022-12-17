@@ -3,11 +3,11 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {useMediaQuery} from 'react-responsive'
 import useTranslation from 'next-translate/useTranslation'
-import {SECTIONS} from '../config/index.js'
-import {getSlug, screens} from '../lib/utils.js'
+import {SECTIONS} from '../config'
+import {getSlug, screens} from '../lib/utils'
 import IconChevronDown from '../assets/icons/chevron-down.svg'
 import IconMagnifyingGlass from '../assets/icons/magnifying-glass.svg'
-import SearchBar from './search-bar.js'
+import SearchBar from './search-bar'
 
 const {sm} = screens
 

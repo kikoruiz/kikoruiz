@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import {getAllPosts} from '../../lib/blog/posts.js'
-import {getPrettyDate} from '../../lib/blog/date.js'
-import {getTagsData} from '../../lib/blog/tags.js'
-import {fromLocalesToAlternates} from '../../lib/mappers.js'
-import {BLOG} from '../../config/index.js'
-import Article from '../../components/article.js'
-import BlogTags from '../../components/blog-tags.js'
+import {getAllPosts} from '../../lib/blog/posts'
+import {getPrettyDate} from '../../lib/blog/date'
+import {getTagsData} from '../../lib/blog/tags'
+import {fromLocalesToAlternates} from '../../lib/mappers'
+import {BLOG} from '../../config'
+import Article from '../../components/article'
+import BlogTags from '../../components/blog-tags'
 
 export default function Post({post, alternates}) {
   const {locale} = useRouter()

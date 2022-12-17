@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import Link from 'next/link'
 import NextImage from 'next/image'
+import {ImageFallbackStyle} from 'types/gallery'
 
 export default function Image({
   src,
@@ -74,19 +75,14 @@ export default function Image({
   )
 }
 
-interface ImageProps {
+type ImageProps = {
   src: string
   url?: string
   alt: string
   className: string
   sizes: string
   needsPreload?: boolean
-  fallbackStyle: {
-    backgroundImage: string
-    backgroundPosition: string
-    backgroundRepeat: string
-    backgroundSize: string
-  }
+  fallbackStyle: ImageFallbackStyle
   isRounded?: boolean
   isFullRounded?: boolean
   isShallowLink?: boolean

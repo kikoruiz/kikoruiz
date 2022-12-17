@@ -1,8 +1,11 @@
 import {paramCase} from 'change-case'
 import {remove} from 'remove-accents'
 import getT from 'next-translate/getT'
-import {SECTIONS, DEFAULT_ORIGIN} from '../config/index.js'
-import {getSlug} from './utils.js'
+import {SECTIONS, DEFAULT_ORIGIN} from '../config'
+import {getSlug} from './utils'
+import {Translate} from 'next-translate'
+import {BlogPost} from 'types/blog'
+import {Alternate, BreadcrumbItem} from 'types'
 
 export function fromSectionToBreadcrumbItems({
   section,
@@ -10,6 +13,12 @@ export function fromSectionToBreadcrumbItems({
   post,
   tag,
   t
+}: {
+  section: string
+  category: string
+  post: BlogPost
+  tag: string
+  t: Translate
 }) {
   const sectionItem = SECTIONS.find(({id}) => id === section)
   const categoryItem = sectionItem?.categories?.find(({id}) => {
@@ -17,7 +26,7 @@ export function fromSectionToBreadcrumbItems({
 
     return slug === category
   })
-  let items = []
+  let items = [] as BreadcrumbItem[]
 
   // When there are no levels.
   if (!sectionItem) return items
@@ -63,10 +72,16 @@ export async function fromLocalesToAlternates({
   section,
   category,
   tag
+}: {
+  defaultLocale: string
+  locale: string
+  section: string
+  category: string
+  tag: string
 }) {
   const currentT = currentLocale && (await getT(currentLocale, 'common'))
 
-  return async function (locale) {
+  return async function (locale: string) {
     const t = await getT(locale, 'common')
     const localePath = locale === defaultLocale ? '' : `/${locale}`
     const sectionSlug = getSlug(t(`sections.${section}.name`))
@@ -95,6 +110,6 @@ export async function fromLocalesToAlternates({
       href: `${
         process.env.ORIGIN || DEFAULT_ORIGIN
       }${localePath}${sectionPath}${endingPath}`
-    }
+    } as Alternate
   }
 }

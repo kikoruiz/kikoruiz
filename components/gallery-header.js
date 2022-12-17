@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import ArrowLeft from '../assets/icons/arrow-left.svg'
-import {getSlug, getTitle} from '../lib/utils.js'
+import {getSlug, getTitle} from '../lib/utils'
 
 export default function GalleryHeader({isAlbum}) {
   const {
