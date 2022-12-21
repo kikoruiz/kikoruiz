@@ -11,7 +11,7 @@ import SearchBar from './search-bar'
 
 const {sm} = screens
 
-export default function Navigation({section, hasHero}) {
+export default function Navigation({section, hasHero}: NavigationProps) {
   const {t} = useTranslation()
   const router = useRouter()
   const {asPath} = router
@@ -64,11 +64,11 @@ export default function Navigation({section, hasHero}) {
     const expandedSectionsWithCategories = hasCategories
       ? [...expandedSections, section.id]
       : expandedSections
-    const newexpandedSections = expandedSections.includes(section.id)
+    const newExpandedSections = expandedSections.includes(section.id)
       ? expandedSections.filter(id => id !== section.id)
       : expandedSectionsWithCategories
 
-    setExpandedSections([...new Set(newexpandedSections)])
+    setExpandedSections([...new Set(newExpandedSections)])
   }
 
   function handleElementClick(event) {
@@ -146,7 +146,7 @@ export default function Navigation({section, hasHero}) {
                 <div
                   title={sectionName}
                   className={sectionClassName}
-                  onClick={isMenuOpen ? handleSectionClick : () => {}}
+                  onClick={isMenuOpen ? handleSectionClick : null}
                 >
                   {content}
                 </div>
@@ -267,7 +267,7 @@ export default function Navigation({section, hasHero}) {
 
       <button
         aria-hidden="true"
-        tabIndex="-1"
+        tabIndex={-1}
         className={`fixed inset-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity ${
           isMenuOpen || isSearchBarOpen
             ? 'opacity-1 touch-none'
@@ -279,4 +279,9 @@ export default function Navigation({section, hasHero}) {
       <SearchBar isOpen={isSearchBarOpen} setIsOpen={setIsSearchBarOpen} />
     </nav>
   )
+}
+
+interface NavigationProps {
+  section: string
+  hasHero?: boolean
 }

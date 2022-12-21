@@ -6,7 +6,7 @@ import {debounce} from 'lodash'
 import {fetcher, getSlug} from '../lib/utils'
 import IconMagnifyingGlass from '../assets/icons/magnifying-glass.svg'
 
-export default function SearchBar({isOpen, setIsOpen}) {
+export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const {t} = useTranslation()
   const {locale, push} = useRouter()
   const inputRef = useRef(null)
@@ -88,7 +88,9 @@ export default function SearchBar({isOpen, setIsOpen}) {
         isOpen ? '' : ' hidden'
       }`}
       onClick={event => {
-        if (event.target.localName !== 'input') setIsOpen(false)
+        const {localName} = event.target as HTMLDivElement
+
+        if (localName !== 'input') setIsOpen(false)
       }}
     >
       <form className="container mx-auto overflow-hidden rounded-md bg-neutral-800 drop-shadow-lg xl:max-w-4xl">
@@ -156,4 +158,9 @@ export default function SearchBar({isOpen, setIsOpen}) {
       </form>
     </div>
   )
+}
+
+interface SearchBarProps {
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
 }

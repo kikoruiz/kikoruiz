@@ -4,8 +4,9 @@ import ArrowLeft from '../assets/icons/arrow-left.svg'
 import PostCard from './post-card'
 import BlogTags from './blog-tags'
 import {getSlug} from '../lib/utils'
+import {BlogPost, BlogTag as BlogTagInterface} from 'types/blog'
 
-export default function PostsList({tag, tags, posts}) {
+export default function PostsList({tag, tags, posts}: PostsListProps) {
   const {t} = useTranslation('blog')
   const title = t('common:sections.blog.name')
   const titleClassName = tag
@@ -61,4 +62,10 @@ export default function PostsList({tag, tags, posts}) {
       </section>
     </>
   )
+}
+
+interface PostsListProps {
+  tag: string
+  tags: BlogTagInterface[]
+  posts: BlogPost[]
 }

@@ -2,10 +2,12 @@
   "env": {
     "es6": true
   },
-  "extends": ["next", "prettier"],
+  "extends": ["next", "prettier", "plugin:@typescript-eslint/recommended"],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "no-undef": "error",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
     "spaced-comment": "warn"
   },
   "overrides": [

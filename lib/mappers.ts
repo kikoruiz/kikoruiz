@@ -26,7 +26,7 @@ export function fromSectionToBreadcrumbItems({
 
     return slug === category
   })
-  let items = [] as BreadcrumbItem[]
+  const items = [] as BreadcrumbItem[]
 
   // When there are no levels.
   if (!sectionItem) return items
@@ -77,7 +77,7 @@ export async function fromLocalesToAlternates({
   locale: string
   section: string
   category: string
-  tag: string
+  tag?: string
 }) {
   const currentT = currentLocale && (await getT(currentLocale, 'common'))
 

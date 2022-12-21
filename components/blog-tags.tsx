@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
+import {BlogTag} from 'types/blog'
 
-export default function BlogTags({tags, isPost}) {
+export default function BlogTags({tags, isPost = false}: BlogTagsProps) {
   const {t} = useTranslation('blog')
 
   return (
@@ -41,4 +42,9 @@ function tagClassName(tag) {
     default:
       return 'bg-orange-400/60 hover:bg-orange-400 border-orange-900 before:border-orange-900'
   }
+}
+
+interface BlogTagsProps {
+  tags: BlogTag[]
+  isPost?: boolean
 }

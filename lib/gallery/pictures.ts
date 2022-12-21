@@ -52,7 +52,7 @@ export async function getGalleryPictures({
   locale: string
   slug: string
 }) {
-  const pictures = (await getAllPictures()) as object[]
+  const pictures = await getAllPictures()
   const t = await getT(locale, 'common')
 
   const {tags, excludeTags} = GALLERY_ALBUMS.find(album => {

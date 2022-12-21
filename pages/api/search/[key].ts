@@ -20,10 +20,7 @@ function matchSearchKey(key: string) {
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  let {
-    query: {key}
-  } = req
-  if (typeof key !== 'string') key = key[0]
+  let {key} = req.query as {key: string}
   const results = [
     ...searchContent.filter(matchSearchKey(key)),
     ...picturesMetadata

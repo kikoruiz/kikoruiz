@@ -11,18 +11,25 @@ import {fromExifToGallery} from '../../lib/gallery/mappers'
 import {fromLocalesToAlternates} from '../../lib/mappers'
 import {getSlug, sortListBy} from '../../lib/utils'
 import {DEFAULT_SORTING_OPTION} from '../../config/gallery'
+import {Picture} from 'types/gallery'
+import {Alternate} from 'types'
 
-const DynamicGalleryCarousel = dynamic(() =>
-  import('../../components/gallery-carousel')
+const DynamicGalleryCarousel = dynamic(
+  () => import('../../components/gallery-carousel')
 )
 
-export default function GalleryAlbum({pictures, alternates}) {
+export default function GalleryAlbum({
+  pictures,
+  alternates
+}: GalleryAlbumProps) {
   const {query} = useRouter()
   const {carousel} = query
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
   const [isReversedSorting, setIsReversedSorting] = useState(false)
-  const [items, setItems] = useState(sortListBy(pictures, sortingOption))
+  const [items, setItems] = useState(
+    sortListBy(pictures, sortingOption) as Picture[]
+  )
 
   function handleSortingChange(event) {
     const option = event.target.value
@@ -35,7 +42,7 @@ export default function GalleryAlbum({pictures, alternates}) {
   }
 
   useEffect(() => {
-    const sortedItems = sortListBy(pictures, sortingOption)
+    const sortedItems = sortListBy(pictures, sortingOption) as Picture[]
 
     setItems(isReversedSorting ? [...sortedItems].reverse() : [...sortedItems])
   }, [pictures, sortingOption, isReversedSorting])
@@ -101,10 +108,10 @@ export async function getStaticProps({
 }) {
   const section = 'gallery'
   const galleryPictures = await getGalleryPictures({locale, slug})
-  const pictures = await Promise.all(
+  const pictures: Picture[] = await Promise.all(
     galleryPictures.map(fromExifToGallery({locale, slug}))
   )
-  const alternates = await Promise.all(
+  const alternates: Alternate[] = await Promise.all(
     locales.map(
       await fromLocalesToAlternates({
         defaultLocale,
@@ -118,4 +125,9 @@ export async function getStaticProps({
   return {
     props: {pictures, alternates, section}
   }
+}
+
+type GalleryAlbumProps = {
+  pictures: Picture[]
+  alternates: Alternate[]
 }
