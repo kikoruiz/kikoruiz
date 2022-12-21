@@ -1,15 +1,16 @@
-import {useRouter} from 'next/router.js'
+import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import SocialLinks from './social-links.js'
+import SocialLinks from './social-links'
+import {Alternate} from 'types'
 
-export default function Footer({alternates}) {
+export default function Footer({alternates}: FooterProps) {
   const {locales, locale: currentLocale, push} = useRouter()
   const {t} = useTranslation()
   const year = new Date().getFullYear()
 
   function handleLanguageChange(event) {
     const origin = window.location.origin
-    const locale = event.target.value
+    const locale = event.target.value as string
     const destination = alternates
       .find(alternate => alternate.locale === locale)
       .href.split(origin)[1]
@@ -48,4 +49,8 @@ export default function Footer({alternates}) {
       </div>
     </footer>
   )
+}
+
+interface FooterProps {
+  alternates: Alternate[]
 }

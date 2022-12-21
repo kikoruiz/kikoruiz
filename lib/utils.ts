@@ -3,12 +3,14 @@ import tailwindConfig from '../tailwind.config'
 import {paramCase, headerCase, camelCase} from 'change-case'
 import removeAccents from 'remove-accents'
 import {PENDING_EVAL_SORTING_OPTIONS} from '../config/gallery'
+import {Screens, ThemeScreens} from 'types'
 
-const config = resolveConfig(tailwindConfig) as any
-const {screens: themeScreens} = config.theme
+const config = resolveConfig(tailwindConfig)
+export const {screens: themeScreens}: {screens?: ThemeScreens} =
+  config.theme as object
 
 export const fetcher = {
-  get: async (url: RequestInfo, options: RequestInit) => {
+  get: async (url: RequestInfo, options?: RequestInit) => {
     const response = await fetch(url, options)
 
     return response.json()
@@ -20,7 +22,7 @@ export const screens = Object.keys(themeScreens).reduce(
     ...acc,
     [screen]: Number(themeScreens[screen].split('px')[0])
   }),
-  {}
+  {} as Screens
 )
 
 export function getTitle(slug: string) {
@@ -57,5 +59,3 @@ export function sortListBy(list: object[], property: string) {
 
   return sortedList
 }
-
-export {themeScreens}

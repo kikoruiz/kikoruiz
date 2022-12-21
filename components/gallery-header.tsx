@@ -4,12 +4,12 @@ import useTranslation from 'next-translate/useTranslation'
 import ArrowLeft from '../assets/icons/arrow-left.svg'
 import {getSlug, getTitle} from '../lib/utils'
 
-export default function GalleryHeader({isAlbum}) {
+export default function GalleryHeader({isAlbum = false}: GalleryHeaderProps) {
   const {
     query: {slug}
   } = useRouter()
   const {t} = useTranslation()
-  const title = isAlbum ? t('sections.gallery.name') : getTitle(slug)
+  const title = isAlbum ? t('sections.gallery.name') : getTitle(slug as string)
 
   return (
     <header
@@ -49,4 +49,8 @@ export default function GalleryHeader({isAlbum}) {
       </div>
     </header>
   )
+}
+
+interface GalleryHeaderProps {
+  isAlbum?: boolean
 }

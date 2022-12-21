@@ -3,6 +3,7 @@ import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import Image from './image'
 import {getPrettyDate} from '../lib/blog/date'
+import {HighlightedImage} from 'types/gallery'
 
 export default function PostCard({
   title,
@@ -44,21 +45,11 @@ export default function PostCard({
   )
 }
 
-type PostCardProps = {
+interface PostCardProps {
   title: string
   href: string
   createdAt: string
   readingTime: number
   excerpt: string
-  highlightedImage: {
-    src: string
-    alt: string
-    css: {
-      backgroundImage: string
-      backgroundPosition: string
-      backgroundSize: string
-      backgroundRepeat: string
-    }
-    sizes: string
-  }
+  highlightedImage: HighlightedImage
 }

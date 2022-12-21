@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import Breadcrumb from './breadcrumb.js'
-import Navigation from './navigation.js'
+import Breadcrumb from './breadcrumb'
+import Navigation from './navigation'
 import Logo from '../assets/brand/photo-logo.svg'
+import {SectionData} from 'types'
 
-export default function Header({...sectionData}) {
+export default function Header({...sectionData}: SectionData) {
   return (
     <header className="sticky top-0 z-10 w-full backdrop-blur">
       <div className="bg-neutral-900/90">

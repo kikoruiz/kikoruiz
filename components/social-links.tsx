@@ -1,5 +1,5 @@
-import {BRANDS} from '../config/index.js'
-import logos from './social-logos.js'
+import {BRANDS} from '../config'
+import logos from './social-logos'
 
 export default function SocialLinks() {
   return (
@@ -29,7 +29,7 @@ export default function SocialLinks() {
   )
 }
 
-function hoverClassName(slug) {
+function hoverClassName(slug: string) {
   switch (slug) {
     case '500px':
       return 'group-hover:fill-[#ffffff]'

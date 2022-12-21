@@ -75,7 +75,7 @@ export default function Image({
   )
 }
 
-type ImageProps = {
+interface ImageProps {
   src: string
   url?: string
   alt: string

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import {ChangeEvent, MouseEvent} from 'react'
 import Image from './image'
 import useTranslation from 'next-translate/useTranslation'
 import {themeScreens} from '../lib/utils'
@@ -6,8 +6,9 @@ import {
   SORTING_OPTIONS,
   DEFAULT_SORTING_OPTION,
   DISABLED_SORTING_OPTIONS
-} from '../config/gallery.js'
+} from '../config/gallery'
 import ArrowPathRoundedSquare from '../assets/icons/arrow-path-rounded-square.svg'
+import {Picture} from 'types/gallery'
 
 export default function GalleryList({
   items,
@@ -16,7 +17,7 @@ export default function GalleryList({
   sortingOption,
   toggleSortingDirection,
   isReversedSorting
-}) {
+}: GalleryListProps) {
   const {t} = useTranslation()
   const {sm, lg} = themeScreens
   const sizes = `(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`
@@ -190,23 +191,11 @@ export default function GalleryList({
   )
 }
 
-GalleryList.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      id: PropTypes.string.isRequired,
-      url: PropTypes.string,
-      image: PropTypes.shape({
-        src: PropTypes.string.isRequired,
-        orientation: PropTypes.string.isRequired,
-        css: PropTypes.object
-      }).isRequired,
-      shotInfo: PropTypes.shape({
-        iso: PropTypes.number,
-        aperture: PropTypes.number,
-        shutterSpeed: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-      })
-    })
-  ),
-  isAlbum: PropTypes.bool
+interface GalleryListProps {
+  items: Picture[]
+  isAlbum?: boolean
+  onSort: (event: ChangeEvent) => void
+  sortingOption: string
+  toggleSortingDirection: (event: MouseEvent) => void
+  isReversedSorting: boolean
 }

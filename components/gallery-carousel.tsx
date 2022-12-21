@@ -4,10 +4,11 @@ import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
 import Image from './image'
 import {getSlug} from '../lib/utils'
+import {Picture} from 'types/gallery'
 
-let startIndex
+let startIndex: number | undefined
 
-function GalleryCarousel({items, setIsCarouselOpen}) {
+function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
   const {t} = useTranslation('gallery')
   const {push, asPath, query} = useRouter()
   const {carousel} = query
@@ -23,7 +24,7 @@ function GalleryCarousel({items, setIsCarouselOpen}) {
     startIndex = undefined
   }
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     function handleCarouselChange() {
       const index = emblaApi.selectedScrollSnap()
       const slug = getSlug(items[index].name)
@@ -140,3 +141,8 @@ function GalleryCarousel({items, setIsCarouselOpen}) {
 }
 
 export default memo(GalleryCarousel)
+
+interface GalleryCarouselProps {
+  items: Picture[]
+  setIsCarouselOpen: (isCarouselOpen: boolean) => void
+}
