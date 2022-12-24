@@ -1,16 +1,20 @@
 import {HighlightedImage} from './gallery'
 
-export interface BlogPost {
+export interface BlogPostContent {
   author: string
   content: string
-  createdAt: string
   excerpt: string
+  tags: string
+  title: string
+}
+
+export interface BlogPost extends BlogPostContent {
+  createdAt: string
   highlightedImage: HighlightedImage
   href: string
   readingTime: number
   slug: string
-  tags: BlogTag[]
-  title: string
+  blogTags: BlogTag[]
 }
 
 export interface BlogTag {

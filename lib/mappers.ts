@@ -74,9 +74,9 @@ export async function fromLocalesToAlternates({
   tag
 }: {
   defaultLocale: string
-  locale: string
-  section: string
-  category: string
+  locale?: string
+  section?: string
+  category?: string
   tag?: string
 }) {
   const currentT = currentLocale && (await getT(currentLocale, 'common'))

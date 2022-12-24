@@ -65,7 +65,7 @@ export default function PostsList({tag, tags, posts}: PostsListProps) {
 }
 
 interface PostsListProps {
-  tag: string
-  tags: BlogTagInterface[]
+  tag?: string
+  tags?: BlogTagInterface[]
   posts: BlogPost[]
 }

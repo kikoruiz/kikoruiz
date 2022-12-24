@@ -5,8 +5,10 @@ import {BLOG} from '../../../config'
 import {fromLocalesToAlternates} from '../../../lib/mappers'
 import {getAllPosts} from '../../../lib/blog/posts'
 import PostsList from '../../../components/posts-list'
+import {BlogPost} from 'types/blog'
+import {Alternate} from 'types'
 
-export default function Tag({tag, posts, alternates}) {
+export default function Tag({tag, posts, alternates}: TagProps) {
   return (
     <>
       <Head>
@@ -74,4 +76,10 @@ export async function getStaticProps({
       alternates
     }
   }
+}
+
+interface TagProps {
+  tag: string
+  posts: BlogPost[]
+  alternates: Alternate[]
 }

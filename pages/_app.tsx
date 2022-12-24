@@ -1,16 +1,17 @@
 import {useEffect} from 'react'
 import Script from 'next/script'
 import {useRouter} from 'next/router'
+import {AppProps} from 'next/app'
 import {Analytics} from '@vercel/analytics/react'
 import Layout from '../components/layout'
 import {trackPage, GA_TRACKING_ID} from '../lib/tracking'
 import '../styles/globals.css'
 
-function handleRouteChange(url) {
+function handleRouteChange(url: string) {
   trackPage(url)
 }
 
-export default function App({Component, pageProps}) {
+export default function App({Component, pageProps}: AppProps) {
   const router = useRouter()
   const {section, post, tag, alternates} = pageProps
   const sectionData = {section, post, tag}

@@ -4,8 +4,10 @@ import GalleryHeader from '../../components/gallery-header'
 import {getGalleryAlbums} from '../../lib/gallery/albums'
 import {fromAlbumToGallery} from '../../lib/gallery/mappers'
 import {fromLocalesToAlternates} from '../../lib/mappers'
+import {Picture} from 'types/gallery'
+import {Alternate} from 'types'
 
-export default function Gallery({albums, alternates}) {
+export default function Gallery({albums, alternates}: GalleryProps) {
   return (
     <>
       <Head>
@@ -34,4 +36,9 @@ export async function getStaticProps({locale, locales, defaultLocale}) {
   return {
     props: {albums, alternates, section}
   }
+}
+
+interface GalleryProps {
+  albums: Picture[]
+  alternates: Alternate[]
 }

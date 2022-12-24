@@ -194,8 +194,8 @@ export default function GalleryList({
 interface GalleryListProps {
   items: Picture[]
   isAlbum?: boolean
-  onSort: (event: ChangeEvent) => void
-  sortingOption: string
-  toggleSortingDirection: (event: MouseEvent) => void
-  isReversedSorting: boolean
+  onSort?: (event: ChangeEvent) => void
+  sortingOption?: string
+  toggleSortingDirection?: (event: MouseEvent) => void
+  isReversedSorting?: boolean
 }

@@ -1,6 +1,6 @@
-import {Html, Head, Main, NextScript} from 'next/document'
+import {Html, Head, Main, NextScript, DocumentProps} from 'next/document'
 
-export default function Document({locale}) {
+export default function Document({locale}: DocumentProps) {
   return (
     <Html lang={locale}>
       <Head>

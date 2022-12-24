@@ -8,8 +8,10 @@ import {fromLocalesToAlternates} from '../../lib/mappers'
 import {BLOG} from '../../config'
 import Article from '../../components/article'
 import BlogTags from '../../components/blog-tags'
+import {BlogPost} from 'types/blog'
+import {Alternate} from 'types'
 
-export default function Post({post, alternates}) {
+export default function Post({post, alternates}: PostProps) {
   const {locale} = useRouter()
   const {t} = useTranslation('blog')
   const author = BLOG.AUTHORS.find(({slug}) => post.author === slug).name
@@ -50,7 +52,7 @@ export default function Post({post, alternates}) {
           className="relative mx-auto mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600"
         />
 
-        {post.tags && <BlogTags tags={post.tags} isPost />}
+        {post.tags && <BlogTags tags={post.blogTags} isPost />}
       </article>
     </>
   )
@@ -86,7 +88,7 @@ export async function getStaticProps({
   const section = 'blog'
   const posts = await getAllPosts()
   const post = posts.find(post => post.slug === slug)
-  const tags = await getTagsData({tags: post.tags.split(', '), locale})
+  const blogTags = await getTagsData({tags: post.tags.split(', '), locale})
   const alternates = await Promise.all(
     locales.map(
       await fromLocalesToAlternates({
@@ -100,9 +102,14 @@ export async function getStaticProps({
 
   return {
     props: {
-      post: {...post, tags},
+      post: {...post, blogTags},
       alternates,
       section
     }
   }
+}
+
+interface PostProps {
+  post: BlogPost
+  alternates: Alternate[]
 }

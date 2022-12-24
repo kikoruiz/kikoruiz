@@ -127,7 +127,7 @@ export async function getStaticProps({
   }
 }
 
-type GalleryAlbumProps = {
+interface GalleryAlbumProps {
   pictures: Picture[]
   alternates: Alternate[]
 }
