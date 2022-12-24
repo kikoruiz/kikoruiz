@@ -8,8 +8,15 @@ import {themeScreens} from '../lib/utils'
 import {PERSONAL_INFO} from '../config'
 import Article from '../components/article'
 import Image from '../components/image'
+import {BlogPostContent} from 'types/blog'
+import {Alternate} from 'types'
+import {ImageFallbackStyle} from 'types/gallery'
 
-export default function AboutMe({avatar, description, alternates}) {
+export default function AboutMe({
+  avatar,
+  description,
+  alternates
+}: AboutMeProps) {
   const {locale} = useRouter()
   const {t} = useTranslation()
 
@@ -117,7 +124,7 @@ export async function getStaticProps({locales, locale, defaultLocale}) {
   const avatar = {
     src: '/avatar.jpg',
     sizes: `(min-width: ${sm}) 33vw, 100vw`
-  }
+  } as Avatar
   const {css} = await getPlaiceholder(avatar.src)
   avatar.css = css
   const section = 'about-me'
@@ -142,4 +149,16 @@ function personalInfoBackground(key) {
     case 'birthday':
       return 'bg-personal-info-birthday'
   }
+}
+
+type Avatar = {
+  src: string
+  sizes: string
+  css?: ImageFallbackStyle
+}
+
+interface AboutMeProps {
+  avatar: Avatar
+  description: BlogPostContent
+  alternates: Alternate[]
 }

@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import matter from 'gray-matter'
+import {BlogPostContent} from 'types/blog'
 
 export function getMarkdownContent(filename: string) {
   const file = fs.readFileSync(filename, 'utf8')
@@ -8,5 +9,5 @@ export function getMarkdownContent(filename: string) {
   return {
     ...data,
     content
-  }
+  } as BlogPostContent
 }

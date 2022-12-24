@@ -6,7 +6,7 @@ export async function getTagsData({
   tags = BLOG.TAGS,
   locale
 }: {
-  tags: string[]
+  tags?: string[]
   locale: string
 }) {
   const t = await getT(locale, 'blog')
