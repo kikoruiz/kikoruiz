@@ -1,4 +1,4 @@
-import {useEffect, memo} from 'react'
+import {useEffect, memo, Fragment} from 'react'
 import {useRouter} from 'next/router'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
@@ -85,7 +85,7 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                 },
                 {
                   id: 'iso',
-                  content: <>ISO {shotInfo.iso}</>
+                  content: <>{shotInfo.iso}</>
                 },
                 {
                   id: 'focal-length',
@@ -114,17 +114,21 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                         <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
                           {name}
                         </header>
-                        <time className="text-neutral-300/40" dateTime={date}>
+                        <time
+                          className="flex text-neutral-300/40"
+                          dateTime={date}
+                        >
                           {prettyDate}
                         </time>
-                        <dl className="mt-3 text-sm font-light text-neutral-300/60">
+
+                        <dl className="relative mt-6 inline-grid auto-rows-max grid-cols-2 pt-6 text-sm font-thin text-neutral-300/60 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30">
                           {shotInfoList.map(({id, content}) => (
-                            <div className="flex flex-wrap" key={id}>
-                              <dt className="mr-3 basis-2/4 text-right text-orange-300/60">
+                            <Fragment key={id}>
+                              <dt className="mr-2 text-right font-bold text-orange-300/60">
                                 {t(`gallery:sorting.options.shot-info.${id}`)}
                               </dt>
                               <dd>{content}</dd>
-                            </div>
+                            </Fragment>
                           ))}
                         </dl>
                       </section>
