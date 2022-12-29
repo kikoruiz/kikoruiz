@@ -1,6 +1,8 @@
 {
   "carousel": {
-    "close": "Tancar el carrusel"
+    "close": "Tancar el carrusel",
+    "show-shot-info": "Veure la informació tècnica",
+    "hide-shot-info": "Amagar"
   },
   "album": {
     "back-to-gallery": "Tornar a Galeria"
