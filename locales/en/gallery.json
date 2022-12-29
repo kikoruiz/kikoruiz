@@ -1,6 +1,8 @@
 {
   "carousel": {
-    "close": "Close carousel"
+    "close": "Close carousel",
+    "show-shot-info": "Show shot info",
+    "hide-shot-info": "Hide"
   },
   "album": {
     "back-to-gallery": "Back to Gallery"

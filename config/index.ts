@@ -1,4 +1,4 @@
-import {GALLERY_ALBUMS} from './gallery.js'
+import {GALLERY_ALBUMS} from './gallery'
 
 export const DEFAULT_ORIGIN = 'https://kikoruiz.es'
 

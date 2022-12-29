@@ -1,14 +1,16 @@
-import {useEffect, memo, Fragment} from 'react'
+import {useEffect, useState, memo} from 'react'
 import {useRouter} from 'next/router'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
 import Image from './image'
+import ShotInfo from './shot-info'
 import {getSlug} from '../lib/utils'
 import {Picture} from 'types/gallery'
 
 let startIndex: number | undefined
 
 function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
+  const [showShotInfo, setShowShotInfo] = useState(false)
   const {t} = useTranslation('gallery')
   const {push, asPath, query} = useRouter()
   const {carousel} = query
@@ -70,32 +72,6 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
             ({name, id, image, date, prettyDate, shotInfo, isPano}, index) => {
               const imageAspectClassName =
                 image.orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
-              const shotInfoList = [
-                {
-                  id: 'shutter-speed',
-                  content: <>{shotInfo.shutterSpeed}s</>
-                },
-                {
-                  id: 'aperture',
-                  content: (
-                    <>
-                      <span className="italic">f</span>/{shotInfo.aperture}
-                    </>
-                  )
-                },
-                {
-                  id: 'iso',
-                  content: <>{shotInfo.iso}</>
-                },
-                {
-                  id: 'focal-length',
-                  content: (
-                    <>
-                      {shotInfo.focalLength} mm{isPano && ' (pano)'}
-                    </>
-                  )
-                }
-              ]
 
               return (
                 <div key={id} className="embla__slide flex-[0_0_100%]">
@@ -121,16 +97,12 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                           {prettyDate}
                         </time>
 
-                        <dl className="relative mt-6 inline-grid auto-rows-max grid-cols-2 pt-6 text-sm font-thin text-neutral-300/60 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30">
-                          {shotInfoList.map(({id, content}) => (
-                            <Fragment key={id}>
-                              <dt className="mr-2 text-right font-bold text-orange-300/60">
-                                {t(`gallery:sorting.options.shot-info.${id}`)}
-                              </dt>
-                              <dd>{content}</dd>
-                            </Fragment>
-                          ))}
-                        </dl>
+                        <ShotInfo
+                          shotInfo={shotInfo}
+                          isPano={isPano}
+                          isOpen={showShotInfo}
+                          handleToggle={() => setShowShotInfo(!showShotInfo)}
+                        />
                       </section>
                     </div>
                   </div>
