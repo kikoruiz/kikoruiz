@@ -4,6 +4,8 @@ import {getSlug} from '../utils'
 import {Image, Picture, ShotInfo} from 'types/gallery'
 import {ALLOWED_PICTURE_TAGS} from 'config/gallery'
 
+const DEFAULT_CANON_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
+
 interface ExifData {
   fileName: string
   title: string
@@ -48,7 +50,7 @@ export function fromExifToGallery({
     title,
     createDate,
     model,
-    lens,
+    lens = DEFAULT_CANON_LENS,
     imageSize,
     fileSize,
     iso,
