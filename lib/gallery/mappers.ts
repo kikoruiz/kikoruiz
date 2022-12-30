@@ -1,18 +1,24 @@
 import {getPlaiceholder} from 'plaiceholder'
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
+import {Image, Picture, ShotInfo} from 'types/gallery'
+import {ALLOWED_PICTURE_TAGS} from 'config/gallery'
 
 interface ExifData {
   fileName: string
   title: string
   createDate: string
   model: string
+  lens: string
   imageSize: string
+  fileSize: string
   iso: number
   aperture: number
   shutterSpeed: string | number
   focalLength: string
   keywords: string[]
+  rawFileName: string
+  megapixels: number
 }
 
 function getOrientation(size: string) {
@@ -42,13 +48,17 @@ export function fromExifToGallery({
     title,
     createDate,
     model,
+    lens,
     imageSize,
+    fileSize,
     iso,
     aperture,
     shutterSpeed,
     focalLength,
-    keywords
-  }: ExifData) {
+    keywords,
+    rawFileName,
+    megapixels
+  }: ExifData): Promise<Picture> {
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
     const {css} = await getPlaiceholder(src)
@@ -73,9 +83,13 @@ export function fromExifToGallery({
       id: fileName.split('.')[0],
       url: `/${getSlug(t('sections.gallery.name'))}/${slug}`,
       slug: getSlug(title),
-      image: {src, orientation, css},
+      image: {src, orientation, css} as Image,
+      imageSize,
+      fileSize,
       date: createDate,
       prettyDate: getPrettyDate(createDate, locale),
+      model,
+      lens,
       shotInfo: {
         iso,
         ...(aperture && {aperture}),
@@ -83,8 +97,13 @@ export function fromExifToGallery({
         ...(focalLength && {
           focalLength: Number(focalLength.replace('.0 mm', ''))
         })
-      },
-      isPano
+      } as ShotInfo,
+      isPano,
+      editingSoftware: rawFileName.includes('.cr2')
+        ? 'Adobe Lightroom'
+        : 'Adobe Photoshop',
+      megapixels,
+      tags: keywords.filter(keywords => ALLOWED_PICTURE_TAGS.includes(keywords))
     }
   }
 }

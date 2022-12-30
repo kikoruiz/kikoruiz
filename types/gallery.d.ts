@@ -15,10 +15,17 @@ export interface Picture {
   url: string
   slug: string
   image: Image
+  imageSize: string
+  fileSize: string
   date: string
   prettyDate: string
+  model: string
+  lens: string
   shotInfo: ShotInfo
   isPano: boolean
+  editingSoftware: string
+  megapixels: number
+  tags: string[]
 }
 
 export interface ImageFallbackStyle {

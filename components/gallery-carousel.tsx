@@ -101,7 +101,9 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                           shotInfo={shotInfo}
                           isPano={isPano}
                           isOpen={showShotInfo}
-                          handleToggle={() => setShowShotInfo(!showShotInfo)}
+                          handleToggle={() => {
+                            setShowShotInfo(!showShotInfo)
+                          }}
                         />
                       </section>
                     </div>
