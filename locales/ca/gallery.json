@@ -1,8 +1,16 @@
 {
   "carousel": {
     "close": "Tancar el carrusel",
-    "show-shot-info": "Veure la informació tècnica",
-    "hide-shot-info": "Amagar"
+    "show-picture-info": "Veure la informació tècnica",
+    "hide-picture-info": "Amagar",
+    "picture-info": {
+      "model": "Càmera",
+      "lens": "Objectiu",
+      "iso": "ISO",
+      "aperture": "Obertura de diafragma",
+      "shutter-speed": "Velocitat d'obturació",
+      "focal-length": "Distància focal"
+    }
   },
   "album": {
     "back-to-gallery": "Tornar a Galeria"

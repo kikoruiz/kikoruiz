@@ -4,18 +4,33 @@ import EyeIcon from '../assets/icons/eye.svg'
 import EyeSlashIcon from '../assets/icons/eye-slash.svg'
 import {ShotInfo as ShotInfoInterface} from 'types/gallery'
 
-export default function ShotInfo({
+export default function PictureInfo({
   shotInfo,
   isPano,
+  model,
+  lens,
+  editingSoftware,
+  megapixels,
+  tags,
+  fileSize,
+  imageSize,
   isOpen,
   handleToggle
-}: ShotInfoProps) {
+}: PictureInfoProps) {
   const {t} = useTranslation('gallery')
   const buttonText = isOpen
-    ? t('carousel.hide-shot-info')
-    : t('carousel.show-shot-info')
-  const ShowShotInfoIcon = isOpen ? EyeSlashIcon : EyeIcon
+    ? t('carousel.hide-picture-info')
+    : t('carousel.show-picture-info')
+  const ShowPictureInfoIcon = isOpen ? EyeSlashIcon : EyeIcon
   const shotInfoList = [
+    {
+      id: 'model',
+      content: <>{model}</>
+    },
+    {
+      id: 'lens',
+      content: <>{lens}</>
+    },
     {
       id: 'shutter-speed',
       content: <>{shotInfo.shutterSpeed}s</>
@@ -49,13 +64,14 @@ export default function ShotInfo({
           {shotInfoList.map(({id, content}) => (
             <Fragment key={id}>
               <dt className="mr-2 text-right font-bold text-orange-300/60">
-                {t(`gallery:sorting.options.shot-info.${id}`)}
+                {t(`gallery:carousel.picture-info.${id}`)}
               </dt>
               <dd>{content}</dd>
             </Fragment>
           ))}
         </dl>
       )}
+
       <button
         onClick={handleToggle}
         aria-label={buttonText}
@@ -63,16 +79,23 @@ export default function ShotInfo({
           isOpen ? ' mt-3' : ''
         }`}
       >
+        <ShowPictureInfoIcon className="mr-1.5 w-3" />
         {buttonText}
-        <ShowShotInfoIcon className="ml-1.5 w-3" />
       </button>
     </div>
   )
 }
 
-interface ShotInfoProps {
+interface PictureInfoProps {
   shotInfo: ShotInfoInterface
   isPano: boolean
+  model: string
+  lens: string
+  editingSoftware: string
+  megapixels: number
+  tags: string[]
+  fileSize: string
+  imageSize: string
   isOpen: boolean
   handleToggle: () => void
 }

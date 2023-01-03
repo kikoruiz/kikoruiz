@@ -3,14 +3,14 @@ import {useRouter} from 'next/router'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
 import Image from './image'
-import ShotInfo from './shot-info'
+import PictureInfo from './picture-info'
 import {getSlug} from '../lib/utils'
 import {Picture} from 'types/gallery'
 
 let startIndex: number | undefined
 
 function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
-  const [showShotInfo, setShowShotInfo] = useState(false)
+  const [showPictureInfo, setShowPictureInfo] = useState(false)
   const {t} = useTranslation('gallery')
   const {push, asPath, query} = useRouter()
   const {carousel} = query
@@ -69,9 +69,38 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
       >
         <div className="embla__container flex h-full w-full items-center">
           {items.map(
-            ({name, id, image, date, prettyDate, shotInfo, isPano}, index) => {
+            (
+              {
+                name,
+                id,
+                image,
+                date,
+                prettyDate,
+                shotInfo,
+                isPano,
+                model,
+                lens,
+                editingSoftware,
+                megapixels,
+                tags,
+                fileSize,
+                imageSize
+              },
+              index
+            ) => {
               const imageAspectClassName =
                 image.orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
+              const pictureInfoProps = {
+                shotInfo,
+                isPano,
+                model,
+                lens,
+                editingSoftware,
+                megapixels,
+                tags,
+                fileSize,
+                imageSize
+              }
 
               return (
                 <div key={id} className="embla__slide flex-[0_0_100%]">
@@ -97,12 +126,11 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                           {prettyDate}
                         </time>
 
-                        <ShotInfo
-                          shotInfo={shotInfo}
-                          isPano={isPano}
-                          isOpen={showShotInfo}
+                        <PictureInfo
+                          {...pictureInfoProps}
+                          isOpen={showPictureInfo}
                           handleToggle={() => {
-                            setShowShotInfo(!showShotInfo)
+                            setShowPictureInfo(!showPictureInfo)
                           }}
                         />
                       </section>

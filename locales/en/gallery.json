@@ -1,8 +1,16 @@
 {
   "carousel": {
     "close": "Close carousel",
-    "show-shot-info": "Show shot info",
-    "hide-shot-info": "Hide"
+    "show-picture-info": "Show picture info",
+    "hide-picture-info": "Hide",
+    "picture-info": {
+      "model": "Camera",
+      "lens": "Lens",
+      "iso": "ISO",
+      "aperture": "Aperture",
+      "shutter-speed": "Shutter speed",
+      "focal-length": "Focal length"
+    }
   },
   "album": {
     "back-to-gallery": "Back to Gallery"

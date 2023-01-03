@@ -1,8 +1,16 @@
 {
   "carousel": {
     "close": "Cerrar el carrusel",
-    "show-shot-info": "Ver la información de disparo",
-    "hide-shot-info": "Ocultar"
+    "show-picture-info": "Ver la información técnica",
+    "hide-picture-info": "Ocultar",
+    "picture-info": {
+      "model": "Cámara",
+      "lens": "Objetivo",
+      "iso": "ISO",
+      "aperture": "Apertura de diafragma",
+      "shutter-speed": "Velocidad de obturación",
+      "focal-length": "Distancia focal"
+    }
   },
   "album": {
     "back-to-gallery": "Volver a Galería"

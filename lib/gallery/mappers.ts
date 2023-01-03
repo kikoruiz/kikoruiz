@@ -4,7 +4,8 @@ import {getSlug} from '../utils'
 import {Image, Picture, ShotInfo} from 'types/gallery'
 import {ALLOWED_PICTURE_TAGS} from 'config/gallery'
 
-const DEFAULT_CANON_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
+const DEFAULT_CANON_EF_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
+const DEFAULT_CANON_RF_LENS = 'Canon RF 15-35mm F2.8L IS USM'
 
 interface ExifData {
   fileName: string
@@ -50,7 +51,7 @@ export function fromExifToGallery({
     title,
     createDate,
     model,
-    lens = DEFAULT_CANON_LENS,
+    lens,
     imageSize,
     fileSize,
     iso,
@@ -74,10 +75,18 @@ export function fromExifToGallery({
     if (model === 'Canon EOS 6D') {
       if (!focalLength) focalLength = '14.0 mm'
       if (!aperture) aperture = 2.8
+      if (!lens) lens = DEFAULT_CANON_EF_LENS
     }
     // EOS RF lens cases (in panos).
     if (model === 'Canon EOS R' && isPano) {
       if (!focalLength) focalLength = '15.0 mm'
+      if (!lens) lens = DEFAULT_CANON_RF_LENS
+    }
+
+    // Replace incorrect lenses.
+    lens = lens.replace('0.0mm f/0.0', DEFAULT_CANON_EF_LENS)
+    if (lens.includes(' or ')) {
+      lens = lens.split(' or ')[0]
     }
 
     return {
