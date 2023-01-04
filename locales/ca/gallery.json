@@ -1,6 +1,10 @@
 {
   "carousel": {
     "close": "Tancar el carrusel",
+    "navigation": {
+      "previous": "Anterior",
+      "next": "Següent"
+    },
     "show-picture-info": "Veure la informació tècnica",
     "hide-picture-info": "Amagar",
     "picture-info": {

@@ -1,6 +1,10 @@
 {
   "carousel": {
     "close": "Close carousel",
+    "navigation": {
+      "previous": "Previous",
+      "next": "Next"
+    },
     "show-picture-info": "Show picture info",
     "hide-picture-info": "Hide",
     "picture-info": {
