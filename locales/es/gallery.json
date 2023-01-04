@@ -1,6 +1,10 @@
 {
   "carousel": {
     "close": "Cerrar el carrusel",
+    "navigation": {
+      "previous": "Anterior",
+      "next": "Siguiente"
+    },
     "show-picture-info": "Ver la información técnica",
     "hide-picture-info": "Ocultar",
     "picture-info": {

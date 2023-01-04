@@ -6,6 +6,8 @@ import Image from './image'
 import PictureInfo from './picture-info'
 import {getSlug} from '../lib/utils'
 import {Picture} from 'types/gallery'
+import ArrowLeftIcon from '../assets/icons/arrow-left.svg'
+import ArrowRightIcon from '../assets/icons/arrow-right.svg'
 
 let startIndex: number | undefined
 
@@ -17,6 +19,9 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
   const index = items.findIndex(({name}) => getSlug(name) === carousel)
   if (typeof startIndex === 'undefined') startIndex = index
   const [emblaRef, emblaApi] = useEmblaCarousel({startIndex})
+  const needsButtonPrevious = emblaApi?.selectedScrollSnap() !== 0
+  const needsButtonNext =
+    emblaApi?.selectedScrollSnap() !== emblaApi?.scrollSnapList().length - 1
 
   function handleButtonClose() {
     const destination = asPath.split('?')[0]
@@ -24,6 +29,14 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
     push(destination, destination, {shallow: true})
     setIsCarouselOpen(false)
     startIndex = undefined
+  }
+
+  function handleButtonPrevious() {
+    if (emblaApi.canScrollPrev()) emblaApi.scrollPrev()
+  }
+
+  function handleButtonNext() {
+    if (emblaApi.canScrollNext()) emblaApi.scrollNext()
   }
 
   useEffect((): (() => void) => {
@@ -62,6 +75,29 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
           ></span>
         </div>
       </button>
+
+      <nav className="hidden sm:block">
+        {needsButtonPrevious && (
+          <button
+            aria-label={t('carousel.navigation.previous')}
+            title={t('carousel.navigation.previous')}
+            className="absolute -left-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-end rounded-full bg-gradient-to-l from-neutral-800/60 pr-3.5 text-neutral-400 hover:text-neutral-300 focus:outline-none"
+            onClick={handleButtonPrevious}
+          >
+            <ArrowLeftIcon className="w-9" />
+          </button>
+        )}
+        {needsButtonNext && (
+          <button
+            aria-label={t('carousel.navigation.next')}
+            title={t('carousel.navigation.next')}
+            className="absolute -right-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-start rounded-full bg-gradient-to-r from-neutral-800/60 pl-3.5 text-neutral-400 hover:text-neutral-300 focus:outline-none"
+            onClick={handleButtonNext}
+          >
+            <ArrowRightIcon className="w-9" />
+          </button>
+        )}
+      </nav>
 
       <div
         className="embla h-full w-full overflow-hidden bg-neutral-900"
