@@ -60,13 +60,13 @@ export default function PictureInfo({
   return (
     <div className="mt-3">
       {isOpen && (
-        <dl className="relative inline-grid auto-rows-max grid-cols-2 pt-3 text-sm font-thin text-neutral-300/60 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30">
+        <dl className="relative inline-grid auto-rows-max grid-cols-3 pt-3 text-sm font-thin text-neutral-300/60 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30">
           {shotInfoList.map(({id, content}) => (
             <Fragment key={id}>
               <dt className="mr-2 text-right font-bold text-orange-300/60">
                 {t(`gallery:carousel.picture-info.${id}`)}
               </dt>
-              <dd>{content}</dd>
+              <dd className="col-span-2 inline-flex items-end">{content}</dd>
             </Fragment>
           ))}
         </dl>
