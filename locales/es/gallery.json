@@ -13,7 +13,9 @@
       "iso": "ISO",
       "aperture": "Apertura de diafragma",
       "shutter-speed": "Velocidad de obturación",
-      "focal-length": "Distancia focal"
+      "focal-length": "Distancia focal",
+      "editing-software": "Software de edición",
+      "tags": "Etiquetas"
     }
   },
   "album": {
