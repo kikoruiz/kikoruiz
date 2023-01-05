@@ -112,7 +112,7 @@ export function fromExifToGallery({
       isPano,
       editingSoftware: rawFileName.includes('.cr2')
         ? 'Adobe Lightroom'
-        : 'Adobe Photoshop',
+        : 'Adobe Lightroom + Adobe Photoshop',
       megapixels,
       tags: keywords.filter(keywords => ALLOWED_PICTURE_TAGS.includes(keywords))
     }

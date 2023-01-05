@@ -13,7 +13,9 @@
       "iso": "ISO",
       "aperture": "Aperture",
       "shutter-speed": "Shutter speed",
-      "focal-length": "Focal length"
+      "focal-length": "Focal length",
+      "editing-software": "Editing software",
+      "tags": "Tags"
     }
   },
   "album": {

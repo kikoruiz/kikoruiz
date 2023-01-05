@@ -120,10 +120,7 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                 model,
                 lens,
                 editingSoftware,
-                megapixels,
-                tags,
-                fileSize,
-                imageSize
+                tags
               },
               index
             ) => {
@@ -135,10 +132,7 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                 model,
                 lens,
                 editingSoftware,
-                megapixels,
-                tags,
-                fileSize,
-                imageSize
+                tags
               }
 
               return (
@@ -154,25 +148,27 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                     />
 
                     <div className="fixed top-0 flex h-full w-full flex-col-reverse">
-                      <section className="bg-gradient-to-r from-neutral-900 p-6 text-neutral-400">
-                        <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
-                          {name}
-                        </header>
-                        <time
-                          className="flex text-neutral-300/40"
-                          dateTime={date}
-                        >
-                          {prettyDate}
-                        </time>
+                      <div className="bg-gradient-to-r from-neutral-900">
+                        <section className="mx-auto p-6 text-neutral-400 xl:max-w-5xl">
+                          <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
+                            {name}
+                          </header>
+                          <time
+                            className="flex text-neutral-300/40"
+                            dateTime={date}
+                          >
+                            {prettyDate}
+                          </time>
 
-                        <PictureInfo
-                          {...pictureInfoProps}
-                          isOpen={showPictureInfo}
-                          handleToggle={() => {
-                            setShowPictureInfo(!showPictureInfo)
-                          }}
-                        />
-                      </section>
+                          <PictureInfo
+                            {...pictureInfoProps}
+                            isOpen={showPictureInfo}
+                            handleToggle={() => {
+                              setShowPictureInfo(!showPictureInfo)
+                            }}
+                          />
+                        </section>
+                      </div>
                     </div>
                   </div>
                 </div>

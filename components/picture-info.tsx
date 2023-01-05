@@ -10,10 +10,7 @@ export default function PictureInfo({
   model,
   lens,
   editingSoftware,
-  megapixels,
   tags,
-  fileSize,
-  imageSize,
   isOpen,
   handleToggle
 }: PictureInfoProps) {
@@ -54,19 +51,41 @@ export default function PictureInfo({
           {shotInfo.focalLength} mm{isPano && ' (pano)'}
         </>
       )
+    },
+    {id: 'editing-software', content: <>{editingSoftware}</>},
+    {
+      id: 'tags',
+      content: (
+        <>
+          {tags.map(tag => (
+            <span
+              key={tag}
+              className="mr-1 mb-1 inline-flex rounded-lg bg-neutral-600/20 p-2 leading-[0.5]"
+            >
+              {tag}
+            </span>
+          ))}
+        </>
+      )
     }
   ]
 
   return (
     <div className="mt-3">
       {isOpen && (
-        <dl className="relative inline-grid auto-rows-max grid-cols-3 pt-3 text-sm font-thin text-neutral-300/60 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30">
+        <dl className="relative inline-grid auto-rows-max grid-cols-4 pt-3 text-sm font-thin text-neutral-300/60 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30">
           {shotInfoList.map(({id, content}) => (
             <Fragment key={id}>
               <dt className="mr-2 text-right font-bold text-orange-300/60">
                 {t(`gallery:carousel.picture-info.${id}`)}
               </dt>
-              <dd className="col-span-2 inline-flex items-end">{content}</dd>
+              <dd
+                className={`col-span-3${
+                  id === 'tags' ? '' : ' inline-flex items-end'
+                }`}
+              >
+                {content}
+              </dd>
             </Fragment>
           ))}
         </dl>
@@ -92,10 +111,10 @@ interface PictureInfoProps {
   model: string
   lens: string
   editingSoftware: string
-  megapixels: number
+  megapixels?: number
   tags: string[]
-  fileSize: string
-  imageSize: string
+  fileSize?: string
+  imageSize?: string
   isOpen: boolean
   handleToggle: () => void
 }
