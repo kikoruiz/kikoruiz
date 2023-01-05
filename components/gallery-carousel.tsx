@@ -19,9 +19,12 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
   const index = items.findIndex(({name}) => getSlug(name) === carousel)
   if (typeof startIndex === 'undefined') startIndex = index
   const [emblaRef, emblaApi] = useEmblaCarousel({startIndex})
-  const needsButtonPrevious = emblaApi?.selectedScrollSnap() !== 0
-  const needsButtonNext =
-    emblaApi?.selectedScrollSnap() !== emblaApi?.scrollSnapList().length - 1
+  const needsButtonPrevious = emblaApi
+    ? emblaApi.selectedScrollSnap() !== 0
+    : startIndex !== 0
+  const needsButtonNext = emblaApi
+    ? emblaApi.selectedScrollSnap() !== items.length - 1
+    : startIndex !== items.length - 1
 
   function handleButtonClose() {
     const destination = asPath.split('?')[0]
@@ -60,18 +63,18 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
       <button
         aria-label={t('carousel.close')}
         title={t('carousel.close')}
-        className="absolute top-3 right-3 z-20 flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none sm:top-6 sm:right-6"
+        className="group absolute top-3 right-3 z-20 flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none sm:top-6 sm:right-6"
         onClick={handleButtonClose}
       >
         <span className="sr-only">{t('carousel.close')}</span>
         <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
           <span
             aria-hidden="true"
-            className="absolute flex h-0.5 w-5 rotate-45 transform bg-current"
+            className="absolute flex h-0.5 w-5 rotate-45 transform bg-current group-hover:bg-current"
           ></span>
           <span
             aria-hidden="true"
-            className="absolute flex h-0.5 w-5 -rotate-45 transform bg-current"
+            className="absolute flex h-0.5 w-5 -rotate-45 transform bg-current group-hover:bg-current"
           ></span>
         </div>
       </button>
@@ -81,7 +84,7 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
           <button
             aria-label={t('carousel.navigation.previous')}
             title={t('carousel.navigation.previous')}
-            className="absolute -left-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-end rounded-full bg-gradient-to-l from-neutral-800/60 pr-3.5 text-neutral-400 hover:text-neutral-300 focus:outline-none"
+            className="absolute -left-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-end rounded-full bg-gradient-to-l from-neutral-800/60 pr-3.5 text-neutral-400 hover:from-neutral-800/30 hover:text-neutral-300 focus:outline-none"
             onClick={handleButtonPrevious}
           >
             <ArrowLeftIcon className="w-9" />
@@ -91,7 +94,7 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
           <button
             aria-label={t('carousel.navigation.next')}
             title={t('carousel.navigation.next')}
-            className="absolute -right-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-start rounded-full bg-gradient-to-r from-neutral-800/60 pl-3.5 text-neutral-400 hover:text-neutral-300 focus:outline-none"
+            className="absolute -right-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-start rounded-full bg-gradient-to-r from-neutral-800/60 pl-3.5 text-neutral-400 hover:from-neutral-800/30 hover:text-neutral-300 focus:outline-none"
             onClick={handleButtonNext}
           >
             <ArrowRightIcon className="w-9" />
