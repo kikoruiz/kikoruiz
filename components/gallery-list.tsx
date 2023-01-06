@@ -95,7 +95,6 @@ export default function GalleryList({
             const aspectClassName = isAlbum
               ? 'aspect-square'
               : getAspectRatioClassName(imageSize)
-            if (!aspectClassName) console.log({src})
             const className = `group inline-flex flex-col-reverse break-inside-avoid-column w-full after:absolute after:inset-0 after:h-full after:w-full after:border after:border-transparent hover:after:border-orange-300 ${aspectClassName}${
               isFirstImage ? ' mt-3' : ''
             }`
