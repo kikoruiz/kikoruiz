@@ -3,11 +3,43 @@ import Link from 'next/link'
 import NextImage from 'next/image'
 import {ImageFallbackStyle} from 'types/gallery'
 
+function getAspectRatioClassName(aspectRatio: string): string {
+  switch (aspectRatio) {
+    case '1:1':
+      return 'aspect-square'
+    case '2:1':
+      return 'aspect-2/1'
+    case '3:2':
+      return 'aspect-3/2'
+    case '2:3':
+      return 'aspect-2/3'
+    case '4:3':
+      return 'aspect-4/3'
+    case '3:4':
+      return 'aspect-3/4'
+    case '5:4':
+      return 'aspect-5/4'
+    case '4:5':
+      return 'aspect-4/5'
+    case '5:3':
+      return 'aspect-5/3'
+    case '3:5':
+      return 'aspect-3/5'
+    case '16:9':
+      return 'aspect-16/9'
+    case '16:10':
+      return 'aspect-16/10'
+    default:
+      return ''
+  }
+}
+
 export default function Image({
   src,
   url,
   alt,
   className,
+  aspectRatio,
   sizes,
   needsPreload,
   fallbackStyle,
@@ -57,19 +89,23 @@ export default function Image({
       {children}
     </>
   )
+  const aspectClassName = ` ${getAspectRatioClassName(aspectRatio)}` ?? ''
 
   return isLink ? (
     <Link
       href={url}
       title={alt}
-      className={`${className} ${wrapperClassName}`}
+      className={`${className} ${wrapperClassName}${aspectClassName}`}
       style={roundedStyle}
       shallow={isShallowLink}
     >
       {content}
     </Link>
   ) : (
-    <figure className={`${className} ${wrapperClassName}`} style={roundedStyle}>
+    <figure
+      className={`${className} ${wrapperClassName}${aspectClassName}`}
+      style={roundedStyle}
+    >
       {content}
     </figure>
   )
@@ -80,6 +116,7 @@ interface ImageProps {
   url?: string
   alt: string
   className: string
+  aspectRatio?: string
   sizes: string
   needsPreload?: boolean
   fallbackStyle: ImageFallbackStyle
