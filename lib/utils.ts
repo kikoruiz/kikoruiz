@@ -59,3 +59,39 @@ export function sortListBy(list: object[], property: string) {
 
   return sortedList
 }
+
+export function getAspectRatioClassName(size: string): string {
+  const [width, height] = size.split('x')
+  const remainder = Number(width) / Number(height)
+  const fixedRemainder = Number(remainder.toFixed(2))
+
+  switch (fixedRemainder) {
+    case 1:
+      return 'aspect-square'
+    case 2:
+      return 'aspect-2/1'
+    case 1.5:
+    case 1.52:
+      return 'aspect-3/2'
+    case 0.67:
+      return 'aspect-2/3'
+    case 1.33:
+      return 'aspect-4/3'
+    case 0.75:
+      return 'aspect-3/4'
+    case 1.25:
+      return 'aspect-5/4'
+    case 0.8:
+      return 'aspect-4/5'
+    case 1.67:
+      return 'aspect-5/3'
+    case 0.6:
+      return 'aspect-3/5'
+    case 1.78:
+      return 'aspect-16/9'
+    case 1.6:
+      return 'aspect-16/10'
+    default:
+      return ''
+  }
+}

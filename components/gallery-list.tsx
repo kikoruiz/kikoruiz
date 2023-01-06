@@ -1,7 +1,7 @@
 import {ChangeEvent, MouseEvent} from 'react'
 import Image from './image'
 import useTranslation from 'next-translate/useTranslation'
-import {themeScreens} from '../lib/utils'
+import {themeScreens, getAspectRatioClassName} from '../lib/utils'
 import {
   SORTING_OPTIONS,
   DEFAULT_SORTING_OPTION,
@@ -71,7 +71,18 @@ export default function GalleryList({
       <div className="columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3">
         {items.map(
           (
-            {name, id, date, prettyDate, url, slug, image, shotInfo, isPano},
+            {
+              name,
+              id,
+              date,
+              prettyDate,
+              url,
+              slug,
+              image,
+              imageSize,
+              shotInfo,
+              isPano
+            },
             index
           ) => {
             if (!isAlbum) url = `${url}/?carousel=${slug}`
@@ -80,12 +91,11 @@ export default function GalleryList({
             const needsPreload =
               isFirstImage ||
               (isSecondImage && items[0].image.orientation === 'horizontal')
-            const {src, orientation, css} = image
-            const imageAspectClassName =
-              orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
+            const {src, css} = image
             const aspectClassName = isAlbum
               ? 'aspect-square'
-              : imageAspectClassName
+              : getAspectRatioClassName(imageSize)
+            if (!aspectClassName) console.log({src})
             const className = `group inline-flex flex-col-reverse break-inside-avoid-column w-full after:absolute after:inset-0 after:h-full after:w-full after:border after:border-transparent hover:after:border-orange-300 ${aspectClassName}${
               isFirstImage ? ' mt-3' : ''
             }`

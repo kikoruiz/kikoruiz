@@ -4,7 +4,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
 import Image from './image'
 import PictureInfo from './picture-info'
-import {getSlug} from '../lib/utils'
+import {getSlug, getAspectRatioClassName} from '../lib/utils'
 import {Picture} from 'types/gallery'
 import ArrowLeftIcon from '../assets/icons/arrow-left.svg'
 import ArrowRightIcon from '../assets/icons/arrow-right.svg'
@@ -113,26 +113,25 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                 name,
                 id,
                 image,
+                imageSize,
                 date,
                 prettyDate,
                 shotInfo,
                 isPano,
                 model,
                 lens,
-                editingSoftware,
-                tags
+                editingSoftware
+                // tags
               },
               index
             ) => {
-              const imageAspectClassName =
-                image.orientation === 'vertical' ? 'aspect-2/3' : 'aspect-3/2'
+              const imageAspectClassName = getAspectRatioClassName(imageSize)
               const pictureInfoProps = {
                 shotInfo,
                 isPano,
                 model,
                 lens,
-                editingSoftware,
-                tags
+                editingSoftware
               }
 
               return (
@@ -159,6 +158,17 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                           >
                             {prettyDate}
                           </time>
+
+                          {/* <div className="mt-1">
+                            {tags.map(tag => (
+                              <span
+                                key={tag}
+                                className="mr-2 mt-2 inline-flex rounded-full bg-neutral-600/20 p-2 text-xs leading-[0.5] text-neutral-500"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div> */}
 
                           <PictureInfo
                             {...pictureInfoProps}

@@ -10,7 +10,6 @@ export default function PictureInfo({
   model,
   lens,
   editingSoftware,
-  tags,
   isOpen,
   handleToggle
 }: PictureInfoProps) {
@@ -52,22 +51,7 @@ export default function PictureInfo({
         </>
       )
     },
-    {id: 'editing-software', content: <>{editingSoftware}</>},
-    {
-      id: 'tags',
-      content: (
-        <>
-          {tags.map(tag => (
-            <span
-              key={tag}
-              className="mr-1 mb-1 inline-flex rounded-lg bg-neutral-600/20 p-2 leading-[0.5]"
-            >
-              {tag}
-            </span>
-          ))}
-        </>
-      )
-    }
+    {id: 'editing-software', content: <>{editingSoftware}</>}
   ]
 
   return (
@@ -79,13 +63,7 @@ export default function PictureInfo({
               <dt className="mr-2 text-right font-bold text-orange-300/60">
                 {t(`gallery:carousel.picture-info.${id}`)}
               </dt>
-              <dd
-                className={`col-span-3${
-                  id === 'tags' ? '' : ' inline-flex items-end'
-                }`}
-              >
-                {content}
-              </dd>
+              <dd className="col-span-3 inline-flex items-end">{content}</dd>
             </Fragment>
           ))}
         </dl>
@@ -112,7 +90,6 @@ interface PictureInfoProps {
   lens: string
   editingSoftware: string
   megapixels?: number
-  tags: string[]
   fileSize?: string
   imageSize?: string
   isOpen: boolean
