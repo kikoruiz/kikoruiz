@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
-import ArrowLeft from '../assets/icons/arrow-left.svg'
+import ArrowLeft from 'assets/icons/arrow-left.svg'
 import PostCard from './post-card'
 import BlogTags from './blog-tags'
-import {getSlug} from '../lib/utils'
+import {getSlug} from 'lib/utils'
 import {BlogPost, BlogTag as BlogTagInterface} from 'types/blog'
 
 export default function PostsList({tag, tags, posts}: PostsListProps) {

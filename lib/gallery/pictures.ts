@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import getT from 'next-translate/getT'
-import {GALLERY_ALBUMS} from '../../config/gallery'
+import {GALLERY_ALBUMS} from 'config/gallery'
 import {getSlug} from '../utils'
 
 const picturesMetadataFile = path.join(

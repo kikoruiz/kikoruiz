@@ -1,7 +1,7 @@
 import {Fragment} from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import EyeIcon from '../assets/icons/eye.svg'
-import EyeSlashIcon from '../assets/icons/eye-slash.svg'
+import EyeIcon from 'assets/icons/eye.svg'
+import EyeSlashIcon from 'assets/icons/eye-slash.svg'
 import {ShotInfo as ShotInfoInterface} from 'types/gallery'
 
 export default function PictureInfo({

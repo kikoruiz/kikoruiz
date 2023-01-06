@@ -1,9 +1,9 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
-import searchContent from '../../../data/search/content.json'
-import picturesMetadata from '../../../data/pictures/metadata.json'
+import searchContent from 'data/search/content.json'
+import picturesMetadata from 'data/pictures/metadata.json'
 import {paramCase} from 'change-case'
-import {GALLERY_ALBUMS} from '../../../config/gallery'
-import {taggedPictures} from '../../../lib/gallery/pictures'
+import {GALLERY_ALBUMS} from 'config/gallery'
+import {taggedPictures} from 'lib/gallery/pictures'
 
 function matchSearchKey(key: string) {
   return function (attrs: object) {

@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import {Alternate} from 'types'
 import {Picture} from 'types/gallery'
-import GalleryList from '../components/gallery-list'
-import {getGalleryAlbums} from '../lib/gallery/albums'
-import {fromAlbumToGallery} from '../lib/gallery/mappers'
-import {fromLocalesToAlternates} from '../lib/mappers'
+import GalleryList from 'components/gallery-list'
+import {getGalleryAlbums} from 'lib/gallery/albums'
+import {fromAlbumToGallery} from 'lib/gallery/mappers'
+import {fromLocalesToAlternates} from 'lib/mappers'
 
 export default function Home({albums, alternates}: HomeProps) {
   return (

@@ -1,8 +1,8 @@
 import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from '../tailwind.config'
+import tailwindConfig from 'tailwind.config'
 import {paramCase, headerCase, camelCase} from 'change-case'
 import removeAccents from 'remove-accents'
-import {PENDING_EVAL_SORTING_OPTIONS} from '../config/gallery'
+import {PENDING_EVAL_SORTING_OPTIONS} from 'config/gallery'
 import {Screens, ThemeScreens} from 'types'
 
 const config = resolveConfig(tailwindConfig)
