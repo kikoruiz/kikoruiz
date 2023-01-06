@@ -9,6 +9,7 @@ export default function PictureInfo({
   isPano,
   model,
   lens,
+  aspectRatio,
   editingSoftware,
   isOpen,
   handleToggle
@@ -51,6 +52,7 @@ export default function PictureInfo({
         </>
       )
     },
+    {id: 'aspect-ratio', content: <>{aspectRatio}</>},
     {id: 'editing-software', content: <>{editingSoftware}</>}
   ]
 
@@ -88,6 +90,7 @@ interface PictureInfoProps {
   isPano: boolean
   model: string
   lens: string
+  aspectRatio: string
   editingSoftware: string
   megapixels?: number
   fileSize?: string

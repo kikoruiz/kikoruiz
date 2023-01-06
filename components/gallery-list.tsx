@@ -1,13 +1,13 @@
 import {ChangeEvent, MouseEvent} from 'react'
 import Image from './image'
 import useTranslation from 'next-translate/useTranslation'
-import {themeScreens, getAspectRatioClassName} from '../lib/utils'
+import {getAspectRatio, themeScreens} from 'lib/utils'
 import {
   SORTING_OPTIONS,
   DEFAULT_SORTING_OPTION,
   DISABLED_SORTING_OPTIONS
-} from '../config/gallery'
-import ArrowPathRoundedSquare from '../assets/icons/arrow-path-rounded-square.svg'
+} from 'config/gallery'
+import ArrowPathRoundedSquare from 'assets/icons/arrow-path-rounded-square.svg'
 import {Picture} from 'types/gallery'
 
 export default function GalleryList({
@@ -92,10 +92,7 @@ export default function GalleryList({
               isFirstImage ||
               (isSecondImage && items[0].image.orientation === 'horizontal')
             const {src, css} = image
-            const aspectClassName = isAlbum
-              ? 'aspect-square'
-              : getAspectRatioClassName(imageSize)
-            const className = `group inline-flex flex-col-reverse break-inside-avoid-column w-full after:absolute after:inset-0 after:h-full after:w-full after:border after:border-transparent hover:after:border-orange-300 ${aspectClassName}${
+            const className = `group inline-flex flex-col-reverse break-inside-avoid-column w-full after:absolute after:inset-0 after:h-full after:w-full after:border after:border-transparent hover:after:border-orange-300${
               isFirstImage ? ' mt-3' : ''
             }`
             const captionBaseClassName =
@@ -104,6 +101,7 @@ export default function GalleryList({
               ? `${captionBaseClassName} px-3 py-6 overflow-hidden`
               : `${captionBaseClassName} p-3.5 text-neutral-400`
             const sortedPropertyClassName = 'font-bold text-neutral-300/40'
+            const aspectRatio = isAlbum ? '1:1' : getAspectRatio(imageSize)
 
             return (
               <Image
@@ -112,6 +110,7 @@ export default function GalleryList({
                 url={url}
                 alt={name ?? t(`gallery.albums.${id}.name`)}
                 className={className}
+                aspectRatio={aspectRatio}
                 sizes={sizes}
                 needsPreload={needsPreload}
                 fallbackStyle={css}

@@ -4,10 +4,10 @@ import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
 import Image from './image'
 import PictureInfo from './picture-info'
-import {getSlug, getAspectRatioClassName} from '../lib/utils'
+import {getAspectRatio, getSlug} from 'lib/utils'
 import {Picture} from 'types/gallery'
-import ArrowLeftIcon from '../assets/icons/arrow-left.svg'
-import ArrowRightIcon from '../assets/icons/arrow-right.svg'
+import ArrowLeftIcon from 'assets/icons/arrow-left.svg'
+import ArrowRightIcon from 'assets/icons/arrow-right.svg'
 
 let startIndex: number | undefined
 
@@ -125,13 +125,14 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
               },
               index
             ) => {
-              const imageAspectClassName = getAspectRatioClassName(imageSize)
+              const aspectRatio = getAspectRatio(imageSize)
               const pictureInfoProps = {
                 shotInfo,
                 isPano,
                 model,
                 lens,
-                editingSoftware
+                editingSoftware,
+                aspectRatio
               }
 
               return (
@@ -140,7 +141,8 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                     <Image
                       src={image.src}
                       alt={name}
-                      className={`m-auto max-h-screen ${imageAspectClassName}`}
+                      className="m-auto max-h-screen"
+                      aspectRatio={aspectRatio}
                       sizes="100vw"
                       needsPreload={index === startIndex}
                       fallbackStyle={image.css}
