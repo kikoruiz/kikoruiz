@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import Image from './image'
-import {getPrettyDate} from '../lib/blog/date'
+import {getPrettyDate} from 'lib/blog/date'
 import {HighlightedImage} from 'types/gallery'
 
 export default function PostCard({

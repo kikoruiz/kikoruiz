@@ -1,5 +1,5 @@
 import getT from 'next-translate/getT'
-import {BLOG} from '../../config/index'
+import {BLOG} from 'config/index'
 import {getSlug} from '../utils'
 
 export async function getTagsData({

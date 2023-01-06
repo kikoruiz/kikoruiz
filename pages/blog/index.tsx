@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import {getAllPosts} from '../../lib/blog/posts'
-import {fromLocalesToAlternates} from '../../lib/mappers'
-import {getTagsData} from '../../lib/blog/tags'
-import PostsList from '../../components/posts-list'
+import {getAllPosts} from 'lib/blog/posts'
+import {fromLocalesToAlternates} from 'lib/mappers'
+import {getTagsData} from 'lib/blog/tags'
+import PostsList from 'components/posts-list'
 import {BlogPost, BlogTag} from 'types/blog'
 import {Alternate} from 'types'
 

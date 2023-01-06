@@ -3,8 +3,8 @@ import Script from 'next/script'
 import {useRouter} from 'next/router'
 import {AppProps} from 'next/app'
 import {Analytics} from '@vercel/analytics/react'
-import Layout from '../components/layout'
-import {trackPage, GA_TRACKING_ID} from '../lib/tracking'
+import Layout from 'components/layout'
+import {trackPage, GA_TRACKING_ID} from 'lib/tracking'
 import '../styles/globals.css'
 
 function handleRouteChange(url: string) {

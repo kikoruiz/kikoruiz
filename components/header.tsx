@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Breadcrumb from './breadcrumb'
 import Navigation from './navigation'
-import Logo from '../assets/brand/photo-logo.svg'
+import Logo from 'assets/brand/photo-logo.svg'
 import {SectionData} from 'types'
 
 export default function Header({...sectionData}: SectionData) {

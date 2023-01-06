@@ -1,4 +1,4 @@
-import {GALLERY_ALBUMS} from '../../config/gallery'
+import {GALLERY_ALBUMS} from 'config/gallery'
 import {getHighlightedPicture} from './pictures'
 
 export function getGalleryAlbums() {

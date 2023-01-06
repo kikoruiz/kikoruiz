@@ -1,4 +1,4 @@
-import {BRANDS} from '../config'
+import {BRANDS} from 'config'
 import logos from './social-logos'
 
 export default function SocialLinks() {
