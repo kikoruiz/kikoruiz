@@ -50,9 +50,7 @@ export default function Image({
 }: ImageProps) {
   const isLink = Boolean(url)
   const [isLoaded, setIsLoaded] = useState(false)
-  const wrapperClassName = `relative overflow-hidden${
-    isRounded ? ' rounded-sm' : ''
-  }`
+  const wrapperClassName = `relative ${isRounded ? ' rounded-sm' : ''}`
   const isFullSize = sizes === '100vw'
   const roundedStyle =
     isRounded || isFullRounded
