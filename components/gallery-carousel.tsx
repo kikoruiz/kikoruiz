@@ -65,6 +65,12 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
         event.preventDefault()
         if (emblaApi.canScrollNext()) emblaApi.scrollNext()
       }
+
+      // Key "I".
+      if (event.keyCode === 73) {
+        event.preventDefault()
+        setShowPictureInfo(!showPictureInfo)
+      }
     }
 
     document.addEventListener('keydown', handleKeyDown)
@@ -72,7 +78,14 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [asPath, push, setIsCarouselOpen, emblaApi])
+  }, [
+    asPath,
+    push,
+    setIsCarouselOpen,
+    emblaApi,
+    setShowPictureInfo,
+    showPictureInfo
+  ])
 
   useEffect((): (() => void) => {
     function handleCarouselChange() {
