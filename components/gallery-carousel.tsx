@@ -43,6 +43,38 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
   }
 
   useEffect((): (() => void) => {
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+
+        const destination = asPath.split('?')[0]
+
+        push(destination, destination, {shallow: true})
+        setIsCarouselOpen(false)
+        startIndex = undefined
+      }
+
+      // Arrow left key.
+      if (event.keyCode === 37) {
+        event.preventDefault()
+        if (emblaApi.canScrollPrev()) emblaApi.scrollPrev()
+      }
+
+      // Arrow right key.
+      if (event.keyCode === 39) {
+        event.preventDefault()
+        if (emblaApi.canScrollNext()) emblaApi.scrollNext()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [asPath, push, setIsCarouselOpen, emblaApi])
+
+  useEffect((): (() => void) => {
     function handleCarouselChange() {
       const index = emblaApi.selectedScrollSnap()
       const slug = getSlug(items[index].name)
