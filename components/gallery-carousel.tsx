@@ -141,7 +141,7 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
                     <Image
                       src={image.src}
                       alt={name}
-                      className="m-auto max-h-screen"
+                      className="m-auto max-h-screen overflow-hidden"
                       aspectRatio={aspectRatio}
                       sizes="100vw"
                       needsPreload={index === startIndex}
