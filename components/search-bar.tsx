@@ -6,18 +6,35 @@ import {debounce} from 'lodash'
 import {fetcher, getSlug} from 'lib/utils'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
 
+const STATUS_OPTIONS = {
+  IDLE: 'idle',
+  PENDING: 'pending',
+  RESOLVED: 'resolved',
+  REJECTED: 'rejected'
+}
+
 export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const {t} = useTranslation()
   const {locale, push} = useRouter()
   const inputRef = useRef(null)
   const [items, setItems] = useState([])
+  const [status, setStatus] = useState(STATUS_OPTIONS.IDLE)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedChangeHandler = useCallback(
     debounce(async ({inputValue}) => {
+      setStatus(STATUS_OPTIONS.PENDING)
       let items = []
 
       if (inputValue) {
-        items = await fetcher.get(`/api/search/${inputValue}`)
+        try {
+          items = await fetcher.get(`/api/search/${inputValue}`)
+          setStatus(STATUS_OPTIONS.RESOLVED)
+        } catch (error) {
+          console.error(error)
+          setStatus(STATUS_OPTIONS.REJECTED)
+        }
+      } else {
+        setStatus(STATUS_OPTIONS.IDLE)
       }
 
       setItems(items)
@@ -55,11 +72,19 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
       push(destination, destination, {locale})
     },
     itemToString: () => '',
-    onInputValueChange: debouncedChangeHandler
+    onInputValueChange: debouncedChangeHandler,
+    onStateChange: ({isOpen}) => {
+      if (isOpen === false) {
+        setStatus(STATUS_OPTIONS.IDLE)
+        reset()
+      }
+    }
   })
 
   useEffect(() => {
-    if (isOpen) inputRef.current.focus()
+    if (isOpen) {
+      inputRef.current.focus()
+    }
   }, [isOpen])
 
   useEffect(() => {
@@ -68,6 +93,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
         event.preventDefault()
         reset()
         setIsOpen(false)
+        setStatus(STATUS_OPTIONS.IDLE)
       }
     }
 
@@ -90,7 +116,10 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
       onClick={event => {
         const {localName} = event.target as HTMLDivElement
 
-        if (localName !== 'input') setIsOpen(false)
+        if (localName !== 'input') {
+          setIsOpen(false)
+          setStatus(STATUS_OPTIONS.IDLE)
+        }
       }}
     >
       <form className="container mx-auto overflow-hidden rounded-md bg-neutral-800 drop-shadow-lg xl:max-w-4xl">
@@ -113,6 +142,17 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
             placeholder={t('navigation.search')}
             required
           />
+          {status === STATUS_OPTIONS.PENDING && (
+            <div
+              aria-hidden
+              role="status"
+              className="absolute inset-0 flex h-full w-full items-center justify-end pr-4"
+            >
+              <div className="relative h-8 w-8 animate-spin rounded-full bg-gradient-to-r from-orange-300 via-neutral-800 to-orange-400">
+                <div className="absolute top-1/2 left-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-neutral-800" />
+              </div>
+            </div>
+          )}
         </div>
 
         <div
