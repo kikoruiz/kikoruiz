@@ -34,7 +34,7 @@ export default function AboutMe({
           <Image
             src={avatar.src}
             alt={t('sections.about-me.name')}
-            className="mx-12 mb-6 aspect-square rounded-full border-8 border-neutral-600/30 sm:mx-4 sm:mb-6 md:mx-6 xl:mx-14"
+            className="mx-12 mb-6 aspect-square overflow-hidden rounded-full border-8 border-neutral-600/30 sm:mx-4 sm:mb-6 md:mx-6 xl:mx-14"
             sizes={avatar.sizes}
             fallbackStyle={avatar.css}
             isFullRounded

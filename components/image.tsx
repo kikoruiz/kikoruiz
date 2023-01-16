@@ -50,7 +50,7 @@ export default function Image({
 }: ImageProps) {
   const isLink = Boolean(url)
   const [isLoaded, setIsLoaded] = useState(false)
-  const wrapperClassName = `relative ${isRounded ? ' rounded-sm' : ''}`
+  const wrapperClassName = `relative${isRounded ? ' rounded-sm' : ''}`
   const isFullSize = sizes === '100vw'
   const roundedStyle =
     isRounded || isFullRounded
@@ -87,7 +87,10 @@ export default function Image({
       {children}
     </>
   )
-  const aspectClassName = ` ${getAspectRatioClassName(aspectRatio)}` ?? ''
+  const aspectRatioClassName = getAspectRatioClassName(aspectRatio)
+  const aspectClassName = aspectRatioClassName
+    ? ` ${getAspectRatioClassName(aspectRatio)}`
+    : ''
 
   return isLink ? (
     <Link
