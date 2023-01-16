@@ -148,8 +148,8 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
               role="status"
               className="absolute inset-0 flex h-full w-full items-center justify-end pr-4"
             >
-              <div className="relative h-8 w-8 animate-spin rounded-full bg-gradient-to-r from-orange-300 via-neutral-800 to-orange-400">
-                <div className="absolute top-1/2 left-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-neutral-800" />
+              <div className="relative h-7 w-7 animate-spin rounded-full bg-gradient-to-r from-orange-300 via-neutral-800 to-orange-400">
+                <div className="absolute top-1/2 left-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-neutral-800" />
               </div>
             </div>
           )}
