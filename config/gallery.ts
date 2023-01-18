@@ -1,3 +1,5 @@
+import {Subcategory} from 'types/gallery'
+
 export const GALLERY_ALBUMS = [
   {
     id: 'landscapes',
@@ -25,7 +27,13 @@ export const GALLERY_ALBUMS = [
   {
     id: 'travel',
     tags: ['travel'],
-    highlightedPicture: '2021-10-27_0280.jpg'
+    highlightedPicture: '2021-10-27_0280.jpg',
+    subcategories: [
+      {id: 'iceland', tag: 'iceland'},
+      {id: 'lofoten-islands', tag: 'lofoten islands'},
+      {id: 'toscana', tag: 'toscana'},
+      {id: 'provence', tag: 'provence'}
+    ] as Subcategory[]
   },
   {
     id: 'seasonal',
@@ -136,6 +144,7 @@ export const ALLOWED_PICTURE_TAGS = [
   'supermoon',
   'telephoto',
   'textures',
+  'toscana',
   'tower',
   'travel',
   'trees',

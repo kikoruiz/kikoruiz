@@ -3,15 +3,15 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import getT from 'next-translate/getT'
-import GalleryList from '../../components/gallery-list'
-import GalleryHeader from '../../components/gallery-header'
-import {getGalleryAlbums} from '../../lib/gallery/albums'
-import {getGalleryPictures} from '../../lib/gallery/pictures'
-import {fromExifToGallery} from '../../lib/gallery/mappers'
-import {fromLocalesToAlternates} from '../../lib/mappers'
-import {getSlug, sortListBy} from '../../lib/utils'
-import {DEFAULT_SORTING_OPTION} from '../../config/gallery'
-import {Picture} from 'types/gallery'
+import GalleryList from 'components/gallery-list'
+import GalleryHeader from 'components/gallery-header'
+import {getGalleryAlbums} from 'lib/gallery/albums'
+import {getGalleryPictures} from 'lib/gallery/pictures'
+import {fromExifToGallery} from 'lib/gallery/mappers'
+import {fromLocalesToAlternates} from 'lib/mappers'
+import {getSlug, sortListBy} from 'lib/utils'
+import {DEFAULT_SORTING_OPTION, GALLERY_ALBUMS} from 'config/gallery'
+import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
 
 const DynamicGalleryCarousel = dynamic(
@@ -20,6 +20,8 @@ const DynamicGalleryCarousel = dynamic(
 
 export default function GalleryAlbum({
   pictures,
+  category,
+  subcategories,
   alternates
 }: GalleryAlbumProps) {
   const {query} = useRouter()
@@ -62,7 +64,9 @@ export default function GalleryAlbum({
 
       <GalleryHeader />
       <GalleryList
-        items={items}
+        pictures={items}
+        category={category}
+        subcategories={subcategories}
         onSort={handleSortingChange}
         sortingOption={sortingOption}
         toggleSortingDirection={toggleSortingDirection}
@@ -70,7 +74,8 @@ export default function GalleryAlbum({
       />
       {isCarouselOpen && (
         <DynamicGalleryCarousel
-          items={items}
+          pictures={items}
+          subcategories={subcategories}
           setIsCarouselOpen={setIsCarouselOpen}
         />
       )}
@@ -111,6 +116,13 @@ export async function getStaticProps({
   const pictures: Picture[] = await Promise.all(
     galleryPictures.map(fromExifToGallery({locale, slug}))
   )
+  const t = await getT(locale, 'common')
+  const category = GALLERY_ALBUMS.find(({id}) => {
+    const albumSlug = getSlug(t(`gallery.albums.${id}.name`))
+
+    return albumSlug === slug
+  })
+  const subcategories = category?.subcategories
   const alternates: Alternate[] = await Promise.all(
     locales.map(
       await fromLocalesToAlternates({
@@ -123,11 +135,19 @@ export async function getStaticProps({
   )
 
   return {
-    props: {pictures, alternates, section}
+    props: {
+      pictures,
+      ...(category && {category: category.id}),
+      ...(subcategories && {subcategories}),
+      alternates,
+      section
+    }
   }
 }
 
 interface GalleryAlbumProps {
   pictures: Picture[]
+  category?: string
+  subcategories?: Subcategory[]
   alternates: Alternate[]
 }

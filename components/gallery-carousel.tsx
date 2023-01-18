@@ -5,13 +5,27 @@ import useTranslation from 'next-translate/useTranslation'
 import Image from './image'
 import PictureInfo from './picture-info'
 import {getAspectRatio, getSlug} from 'lib/utils'
-import {Picture} from 'types/gallery'
+import {Picture, Subcategory} from 'types/gallery'
 import ArrowLeftIcon from 'assets/icons/arrow-left.svg'
 import ArrowRightIcon from 'assets/icons/arrow-right.svg'
 
 let startIndex: number | undefined
 
-function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
+function GalleryCarousel({
+  pictures,
+  subcategories,
+  setIsCarouselOpen
+}: GalleryCarouselProps) {
+  const items = subcategories
+    ? subcategories.reduce(
+        (acc, subcategory) => [
+          ...acc,
+          ...pictures.filter(({tags}) => tags.includes(subcategory.tag))
+        ],
+        []
+      )
+    : pictures
+  console.log({items})
   const [showPictureInfo, setShowPictureInfo] = useState(false)
   const {t} = useTranslation('gallery')
   const {push, asPath, query} = useRouter()
@@ -241,6 +255,7 @@ function GalleryCarousel({items, setIsCarouselOpen}: GalleryCarouselProps) {
 export default memo(GalleryCarousel)
 
 interface GalleryCarouselProps {
-  items: Picture[]
+  pictures: Picture[]
+  subcategories?: Subcategory[]
   setIsCarouselOpen: (isCarouselOpen: boolean) => void
 }
