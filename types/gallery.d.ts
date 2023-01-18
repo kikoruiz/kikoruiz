@@ -1,3 +1,8 @@
+export interface Subcategory {
+  id: string
+  tag: string
+}
+
 export interface Image {
   src: string
   orientation?: 'horizontal' | 'vertical'

@@ -16,7 +16,7 @@ export default function Home({albums, alternates}: HomeProps) {
         ))}
       </Head>
 
-      <GalleryList items={albums} isAlbum />
+      <GalleryList pictures={albums} isAlbum />
     </>
   )
 }

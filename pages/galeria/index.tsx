@@ -18,7 +18,7 @@ export default function Gallery({albums, alternates}: GalleryProps) {
       </Head>
 
       <GalleryHeader isAlbum />
-      <GalleryList items={albums} isAlbum />
+      <GalleryList pictures={albums} isAlbum />
     </>
   )
 }

@@ -35,7 +35,13 @@
         "name": "Retrats"
       },
       "travel": {
-        "name": "Viatges"
+        "name": "Viatges",
+        "subcategories": {
+          "iceland": "Islàndia",
+          "lofoten-islands": "Illes Lofoten",
+          "toscana": "Toscana",
+          "provence": "Provença"
+        }
       },
       "seasonal": {
         "name": "Estacional"
