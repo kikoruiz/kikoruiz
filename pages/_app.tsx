@@ -5,6 +5,7 @@ import {AppProps} from 'next/app'
 import {Analytics} from '@vercel/analytics/react'
 import Layout from 'components/layout'
 import {trackPage, GA_TRACKING_ID} from 'lib/tracking'
+import {SubcategoryContextProvider} from 'contexts/subcategory'
 import '../styles/globals.css'
 
 function handleRouteChange(url: string) {
@@ -50,10 +51,12 @@ export default function App({Component, pageProps}: AppProps) {
         }}
       />
 
-      <Layout {...sectionData} {...languageData}>
-        <Component {...pageProps} />
-        <Analytics />
-      </Layout>
+      <SubcategoryContextProvider>
+        <Layout {...sectionData} {...languageData}>
+          <Component {...pageProps} />
+          <Analytics />
+        </Layout>
+      </SubcategoryContextProvider>
     </>
   )
 }

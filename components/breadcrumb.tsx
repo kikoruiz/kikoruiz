@@ -2,12 +2,20 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {fromSectionToBreadcrumbItems} from 'lib/mappers'
+import useSubcategoryContext from 'contexts/subcategory'
 import {SectionData} from 'types'
+
+function scrollToTop() {
+  if (typeof window === 'undefined') return
+
+  window.scrollTo({top: 0})
+}
 
 export default function Breadcrumb({section, post, tag}: SectionData) {
   const {t} = useTranslation()
   const router = useRouter()
   const {query} = router
+  const {subcategory} = useSubcategoryContext()
   const items = fromSectionToBreadcrumbItems({
     section,
     category: query.slug as string,
@@ -33,12 +41,23 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
             )
           }
 
-          return (
+          return subcategory ? (
+            <span
+              key={id}
+              className="cursor-pointer text-neutral-300/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
+              onClick={scrollToTop}
+            >
+              {name}
+            </span>
+          ) : (
             <span className="font-bold text-orange-300/60" key={id}>
               {name}
             </span>
           )
         })}
+        {subcategory && (
+          <span className="font-bold text-orange-300/60">{subcategory}</span>
+        )}
       </div>
     </div>
   ) : null
