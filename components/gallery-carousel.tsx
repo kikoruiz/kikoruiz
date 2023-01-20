@@ -25,7 +25,6 @@ function GalleryCarousel({
         []
       )
     : pictures
-  console.log({items})
   const [showPictureInfo, setShowPictureInfo] = useState(false)
   const {t} = useTranslation('gallery')
   const {push, asPath, query} = useRouter()

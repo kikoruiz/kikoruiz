@@ -11,6 +11,7 @@ import {fromExifToGallery} from 'lib/gallery/mappers'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getSlug, sortListBy} from 'lib/utils'
 import {DEFAULT_SORTING_OPTION, GALLERY_ALBUMS} from 'config/gallery'
+import useSubcategoryContext from 'contexts/subcategory'
 import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
 
@@ -32,6 +33,8 @@ export default function GalleryAlbum({
   const [items, setItems] = useState(
     sortListBy(pictures, sortingOption) as Picture[]
   )
+  const {setSubcategory} = useSubcategoryContext()
+  const hasSubcategories = subcategories?.length > 0
 
   function handleSortingChange(event) {
     const option = event.target.value
@@ -52,6 +55,14 @@ export default function GalleryAlbum({
   useEffect(() => {
     setIsCarouselOpen(Boolean(carousel))
   }, [setIsCarouselOpen, carousel])
+
+  // Reset subcategory value.
+  useEffect(
+    () => () => {
+      if (hasSubcategories) setSubcategory(null)
+    },
+    [hasSubcategories, setSubcategory]
+  )
 
   return (
     <>

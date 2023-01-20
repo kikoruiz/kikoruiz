@@ -1,13 +1,16 @@
 import {ChangeEvent, MouseEvent} from 'react'
+// import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
+import ArrowPathRoundedSquare from 'assets/icons/arrow-path-rounded-square.svg'
+import GalleryListItems from './gallery-list-items'
+import GallerySubcategory from './gallery-subcategory'
+import {Picture, Subcategory} from 'types/gallery'
+import useSubcategoryContext from 'contexts/subcategory'
 import {
   SORTING_OPTIONS,
   DEFAULT_SORTING_OPTION,
   DISABLED_SORTING_OPTIONS
 } from 'config/gallery'
-import ArrowPathRoundedSquare from 'assets/icons/arrow-path-rounded-square.svg'
-import GalleryListItems from './gallery-list-items'
-import {Picture, Subcategory} from 'types/gallery'
 
 export default function GalleryList({
   pictures,
@@ -20,9 +23,25 @@ export default function GalleryList({
   isReversedSorting
 }: GalleryListProps) {
   const {t} = useTranslation()
+  const {setSubcategory} = useSubcategoryContext()
+
+  function onSubcategoryChange(nextSubcategory) {
+    setSubcategory(nextSubcategory)
+  }
 
   return (
     <section className="px-3">
+      {/* {category &&
+        subcategories &&
+        subcategories.map(({id}) => {
+          const name = t(`gallery.albums.${category}.subcategories.${id}`)
+
+          return (
+            <li key={id}>
+              <Link href={`#${id}`}>{name}</Link>
+            </li>
+          )
+        })} */}
       {!isAlbum && (
         <div className="flex justify-center gap-2 pt-3 sm:justify-end">
           <div className="flex items-center text-xs">
@@ -68,20 +87,18 @@ export default function GalleryList({
       )}
 
       {category && subcategories ? (
-        subcategories.map(({id, tag}) => {
-          return (
-            <div className="mt-3 xl:mt-4" key={id}>
-              <header className="rounded-sm bg-gradient-to-r from-neutral-800/30 p-3 text-xl font-light text-neutral-300/60 drop-shadow-sm">
-                {t(`gallery.albums.${category}.subcategories.${id}`)}
-              </header>
-              <GalleryListItems
-                items={pictures.filter(({tags}) => tags.includes(tag))}
-                isAlbum={isAlbum}
-                sortingOption={sortingOption}
-              />
-            </div>
-          )
-        })
+        subcategories.map(({id, tag}, index) => (
+          <GallerySubcategory
+            key={id}
+            index={index}
+            id={id}
+            category={category}
+            items={pictures.filter(({tags}) => tags.includes(tag))}
+            isAlbum={isAlbum}
+            sortingOption={sortingOption}
+            onChange={onSubcategoryChange}
+          />
+        ))
       ) : (
         <GalleryListItems
           items={pictures}
