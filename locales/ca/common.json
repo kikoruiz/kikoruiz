@@ -3,7 +3,10 @@
     "back-to": "Tornar a {{section}}",
     "close-menu": "Tancar menú",
     "open-menu": "Obrir menú",
-    "search": "Cercar"
+    "search": "Cercar",
+    "album": {
+      "scroll-to-top": "Anar al començament de l'àlbum"
+    }
   },
   "sections": {
     "about-me": {

@@ -1,13 +1,20 @@
-import {useEffect} from 'react'
-import {useInView} from 'react-intersection-observer'
+import {useEffect, useRef} from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import {Picture} from 'types/gallery'
+import {Picture, Subcategory} from 'types/gallery'
 import GalleryListItems from './gallery-list-items'
+
+function getOffset(element: Element) {
+  const elementRect = element?.getBoundingClientRect()
+
+  return Math.ceil(elementRect?.top)
+}
 
 export default function GallerySubcategory({
   index,
   id,
   category,
+  currentSubcategory,
+  subcategories,
   items,
   isAlbum,
   sortingOption,
@@ -15,33 +22,65 @@ export default function GallerySubcategory({
 }: GallerySubcategoryProps) {
   const {t} = useTranslation()
   const name = t(`gallery.albums.${category}.subcategories.${id}`)
-  const {ref, inView, entry} = useInView({
-    threshold: 0,
-    trackVisibility: true,
-    delay: 300
-  })
+  const ref = useRef(null)
 
   useEffect(() => {
-    if (!entry) return
+    const element = ref.current
+    const breadcrumbOffset = getOffset(document.querySelector('#breadcrumb'))
+    const observer = new IntersectionObserver(
+      entries => {
+        const [entry] = entries
+        const {isIntersecting, intersectionRatio, intersectionRect} = entry
 
-    const {
-      isIntersecting,
-      isVisible
-    }: {isIntersecting: boolean; isVisible?: boolean} = entry
+        if (
+          !isIntersecting &&
+          intersectionRatio > 0 &&
+          intersectionRect.top === breadcrumbOffset
+        ) {
+          onChange(name)
+        } else if (isIntersecting && index === 0) {
+          onChange(null)
+        } else if (
+          isIntersecting &&
+          intersectionRatio === 1 &&
+          currentSubcategory === name
+        ) {
+          const currentIndex = subcategories.findIndex(
+            subcategory => subcategory.id === id
+          )
+          const nextSubcategory = subcategories[currentIndex - 1]
+          const nextSubcategoryName = t(
+            `gallery.albums.${category}.subcategories.${nextSubcategory.id}`
+          )
+          onChange(nextSubcategoryName)
+        }
+      },
+      {
+        threshold: 1,
+        rootMargin: `-${breadcrumbOffset}px 0% 0% 0%`
+      }
+    )
 
-    if (inView && isIntersecting) {
-      if (!isVisible) {
-        onChange(name)
-      }
-      if (isVisible && index === 0) {
-        onChange(null)
-      }
-    }
-  }, [inView, entry, onChange, name, index])
+    observer.observe(element)
+
+    return () => observer.unobserve(element)
+  }, [
+    name,
+    index,
+    id,
+    category,
+    currentSubcategory,
+    subcategories,
+    onChange,
+    t
+  ])
 
   return (
-    <div ref={ref} className="mt-3 xl:mt-4" id={id}>
-      <header className="rounded-sm bg-gradient-to-r from-neutral-800/30 p-3 text-xl font-light text-neutral-300/60 drop-shadow-sm">
+    <div className="mt-3 xl:mt-4" id={id}>
+      <header
+        ref={ref}
+        className="rounded-sm bg-gradient-to-r from-neutral-800/30 p-3 text-xl font-light text-neutral-300/60 drop-shadow-sm"
+      >
         {name}
       </header>
 
@@ -58,6 +97,8 @@ interface GallerySubcategoryProps {
   index: number
   id: string
   category?: string
+  currentSubcategory?: string
+  subcategories: Subcategory[]
   items: Picture[]
   isAlbum?: boolean
   sortingOption?: string

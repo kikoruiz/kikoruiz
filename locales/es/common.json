@@ -3,7 +3,10 @@
     "back-to": "Volver a {{section}}",
     "close-menu": "Cerrar menú",
     "open-menu": "Abrir menú",
-    "search": "Buscar"
+    "search": "Buscar",
+    "album": {
+      "scroll-to-top": "Ir al inicio del álbum"
+    }
   },
   "sections": {
     "about-me": {

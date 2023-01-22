@@ -23,10 +23,12 @@ export default function GalleryList({
   isReversedSorting
 }: GalleryListProps) {
   const {t} = useTranslation()
-  const {setSubcategory} = useSubcategoryContext()
+  const {subcategory, setSubcategory} = useSubcategoryContext()
 
   function onSubcategoryChange(nextSubcategory) {
-    setSubcategory(nextSubcategory)
+    if (subcategory !== nextSubcategory) {
+      setSubcategory(nextSubcategory)
+    }
   }
 
   return (
@@ -93,6 +95,8 @@ export default function GalleryList({
             index={index}
             id={id}
             category={category}
+            currentSubcategory={subcategory}
+            subcategories={subcategories}
             items={pictures.filter(({tags}) => tags.includes(tag))}
             isAlbum={isAlbum}
             sortingOption={sortingOption}
