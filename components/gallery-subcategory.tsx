@@ -2,6 +2,8 @@ import {useEffect, useRef} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import {Picture, Subcategory} from 'types/gallery'
 import GalleryListItems from './gallery-list-items'
+import icons from './gallery-subcategory-icons'
+import {getTitle} from 'lib/utils'
 
 function getOffset(element: Element) {
   const elementRect = element?.getBoundingClientRect()
@@ -22,6 +24,7 @@ export default function GallerySubcategory({
 }: GallerySubcategoryProps) {
   const {t} = useTranslation()
   const name = t(`gallery.albums.${category}.subcategories.${id}`)
+  const Icon = icons[`${getTitle(id).replaceAll('-', '')}Icon`]
   const ref = useRef(null)
 
   useEffect(() => {
@@ -43,10 +46,7 @@ export default function GallerySubcategory({
         } else if (index === 0) {
           onChange({overlapped: null})
         } else {
-          const currentIndex = subcategories.findIndex(
-            subcategory => subcategory.id === id
-          )
-          const previousSubcategory = subcategories[currentIndex - 1]
+          const previousSubcategory = subcategories[index - 1]
           const previousSubcategoryName = t(
             `gallery.albums.${category}.subcategories.${previousSubcategory.id}`
           )
@@ -78,8 +78,9 @@ export default function GallerySubcategory({
     <div className="mt-3 xl:mt-4" id={id}>
       <header
         ref={ref}
-        className="rounded-sm bg-gradient-to-r from-neutral-800/30 p-3 text-xl font-light text-neutral-300/60 drop-shadow-sm"
+        className="flex items-center rounded-sm bg-gradient-to-r from-neutral-800/30 p-3 text-xl font-light text-neutral-300/60 drop-shadow-sm"
       >
+        <Icon className="mr-3 w-9 rounded-full opacity-90" />
         {name}
       </header>
 
