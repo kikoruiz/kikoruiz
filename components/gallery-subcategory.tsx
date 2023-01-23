@@ -40,21 +40,18 @@ export default function GallerySubcategory({
 
         if (!isIntersecting && boundingClientRect.bottom < window.innerHeight) {
           onChange({overlapped: name})
+        } else if (index === 0) {
+          onChange({overlapped: null})
         } else {
           const currentIndex = subcategories.findIndex(
             subcategory => subcategory.id === id
           )
           const previousSubcategory = subcategories[currentIndex - 1]
+          const previousSubcategoryName = t(
+            `gallery.albums.${category}.subcategories.${previousSubcategory.id}`
+          )
 
-          if (previousSubcategory) {
-            const previousSubcategoryName = t(
-              `gallery.albums.${category}.subcategories.${previousSubcategory.id}`
-            )
-
-            onChange({overlapped: previousSubcategoryName})
-          } else if (index === 0) {
-            onChange({overlapped: null})
-          }
+          onChange({overlapped: previousSubcategoryName})
         }
       },
       {
@@ -104,5 +101,11 @@ interface GallerySubcategoryProps {
   items: Picture[]
   isAlbum?: boolean
   sortingOption?: string
-  onChange: (name: string) => void
+  onChange: ({
+    visible,
+    overlapped
+  }: {
+    visible?: string
+    overlapped?: string
+  }) => void
 }
