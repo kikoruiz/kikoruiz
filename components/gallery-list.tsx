@@ -1,4 +1,4 @@
-import {ChangeEvent, MouseEvent} from 'react'
+import {ChangeEvent, MouseEvent, useState} from 'react'
 // import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import ArrowPathRoundedSquare from 'assets/icons/arrow-path-rounded-square.svg'
@@ -23,12 +23,12 @@ export default function GalleryList({
   isReversedSorting
 }: GalleryListProps) {
   const {t} = useTranslation()
-  const {subcategory, setSubcategory} = useSubcategoryContext()
+  const [visibleSubcategory, setVisibleSubcategory] = useState(null)
+  const {setSubcategory} = useSubcategoryContext()
 
-  function onSubcategoryChange(nextSubcategory) {
-    if (subcategory !== nextSubcategory) {
-      setSubcategory(nextSubcategory)
-    }
+  function onSubcategoryChange({visible: nextVisible, overlapped}) {
+    if (typeof nextVisible !== 'undefined') setVisibleSubcategory(nextVisible)
+    if (typeof overlapped !== 'undefined') setSubcategory(overlapped)
   }
 
   return (
@@ -95,7 +95,7 @@ export default function GalleryList({
             index={index}
             id={id}
             category={category}
-            currentSubcategory={subcategory}
+            visibleSubcategory={visibleSubcategory}
             subcategories={subcategories}
             items={pictures.filter(({tags}) => tags.includes(tag))}
             isAlbum={isAlbum}

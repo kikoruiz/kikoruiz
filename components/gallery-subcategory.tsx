@@ -13,7 +13,7 @@ export default function GallerySubcategory({
   index,
   id,
   category,
-  currentSubcategory,
+  visibleSubcategory,
   subcategories,
   items,
   isAlbum,
@@ -30,29 +30,31 @@ export default function GallerySubcategory({
     const observer = new IntersectionObserver(
       entries => {
         const [entry] = entries
-        const {isIntersecting, intersectionRatio, intersectionRect} = entry
+        const {isIntersecting, boundingClientRect} = entry
 
-        if (
-          !isIntersecting &&
-          intersectionRatio > 0 &&
-          intersectionRect.top === breadcrumbOffset
-        ) {
-          onChange(name)
-        } else if (isIntersecting && index === 0) {
-          onChange(null)
-        } else if (
-          isIntersecting &&
-          intersectionRatio === 1 &&
-          currentSubcategory === name
-        ) {
+        if (isIntersecting) {
+          onChange({visible: name})
+        }
+
+        if (visibleSubcategory !== name) return
+
+        if (!isIntersecting && boundingClientRect.bottom < window.innerHeight) {
+          onChange({overlapped: name})
+        } else {
           const currentIndex = subcategories.findIndex(
             subcategory => subcategory.id === id
           )
-          const nextSubcategory = subcategories[currentIndex - 1]
-          const nextSubcategoryName = t(
-            `gallery.albums.${category}.subcategories.${nextSubcategory.id}`
-          )
-          onChange(nextSubcategoryName)
+          const previousSubcategory = subcategories[currentIndex - 1]
+
+          if (previousSubcategory) {
+            const previousSubcategoryName = t(
+              `gallery.albums.${category}.subcategories.${previousSubcategory.id}`
+            )
+
+            onChange({overlapped: previousSubcategoryName})
+          } else if (index === 0) {
+            onChange({overlapped: null})
+          }
         }
       },
       {
@@ -65,13 +67,13 @@ export default function GallerySubcategory({
 
     return () => observer.unobserve(element)
   }, [
-    name,
     index,
     id,
     category,
-    currentSubcategory,
+    visibleSubcategory,
     subcategories,
     onChange,
+    name,
     t
   ])
 
@@ -97,7 +99,7 @@ interface GallerySubcategoryProps {
   index: number
   id: string
   category?: string
-  currentSubcategory?: string
+  visibleSubcategory?: string
   subcategories: Subcategory[]
   items: Picture[]
   isAlbum?: boolean
