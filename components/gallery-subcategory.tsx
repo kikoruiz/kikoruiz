@@ -3,7 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import {Picture, Subcategory} from 'types/gallery'
 import GalleryListItems from './gallery-list-items'
 import icons from './gallery-subcategory-icons'
-import {getTitle} from 'lib/utils'
+import {getCapitalizedName} from 'lib/utils'
 
 function getOffset(element: Element) {
   const elementRect = element?.getBoundingClientRect()
@@ -24,7 +24,7 @@ export default function GallerySubcategory({
 }: GallerySubcategoryProps) {
   const {t} = useTranslation()
   const name = t(`gallery.albums.${category}.subcategories.${id}`)
-  const Icon = icons[`${getTitle(id).replaceAll('-', '')}Icon`]
+  const Icon = icons[`${getCapitalizedName(id)}Icon`]
   const ref = useRef(null)
 
   useEffect(() => {
@@ -36,22 +36,19 @@ export default function GallerySubcategory({
         const {isIntersecting, boundingClientRect} = entry
 
         if (isIntersecting) {
-          onChange({visible: name})
+          onChange({visible: id})
         }
 
-        if (visibleSubcategory !== name) return
+        if (visibleSubcategory !== id) return
 
         if (!isIntersecting && boundingClientRect.bottom < window.innerHeight) {
-          onChange({overlapped: name})
+          onChange({overlapped: id})
         } else if (index === 0) {
           onChange({overlapped: null})
         } else {
           const previousSubcategory = subcategories[index - 1]
-          const previousSubcategoryName = t(
-            `gallery.albums.${category}.subcategories.${previousSubcategory.id}`
-          )
 
-          onChange({overlapped: previousSubcategoryName})
+          onChange({overlapped: previousSubcategory.id})
         }
       },
       {

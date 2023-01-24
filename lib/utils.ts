@@ -1,6 +1,6 @@
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from 'tailwind.config'
-import {paramCase, headerCase, camelCase} from 'change-case'
+import {paramCase, headerCase, camelCase, pascalCase} from 'change-case'
 import removeAccents from 'remove-accents'
 import {PENDING_EVAL_SORTING_OPTIONS} from 'config/gallery'
 import {Screens, ThemeScreens} from 'types'
@@ -27,6 +27,10 @@ export const screens = Object.keys(themeScreens).reduce(
 
 export function getTitle(slug: string) {
   return headerCase(slug)
+}
+
+export function getCapitalizedName(slug: string) {
+  return pascalCase(slug)
 }
 
 export function getSlug(name: string) {

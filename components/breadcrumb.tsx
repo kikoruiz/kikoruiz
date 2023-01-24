@@ -4,6 +4,9 @@ import useTranslation from 'next-translate/useTranslation'
 import {fromSectionToBreadcrumbItems} from 'lib/mappers'
 import useSubcategoryContext from 'contexts/subcategory'
 import {SectionData} from 'types'
+import icons from './gallery-subcategory-icons'
+import {getCapitalizedName, getSlug} from 'lib/utils'
+import {GALLERY_ALBUMS} from 'config/gallery'
 
 function scrollToTop() {
   if (typeof window === 'undefined') return
@@ -16,13 +19,22 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
   const router = useRouter()
   const {query} = router
   const {subcategory} = useSubcategoryContext()
+  const category = query.slug as string
   const items = fromSectionToBreadcrumbItems({
     section,
-    category: query.slug as string,
+    category,
     post,
     tag,
     t
   })
+  const categoryItem = GALLERY_ALBUMS.find(
+    ({id}) => getSlug(t(`${section}.albums.${id}.name`)) === category
+  )
+  const hasSubcategory = subcategory && categoryItem
+  let Icon
+  if (hasSubcategory) {
+    Icon = icons[`${getCapitalizedName(subcategory)}Icon`]
+  }
 
   return items.length > 0 ? (
     <div id="breadcrumb" className="bg-neutral-800/75">
@@ -41,7 +53,7 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
             )
           }
 
-          return subcategory ? (
+          return hasSubcategory ? (
             <span
               key={id}
               aria-label={t('navigation.album.scroll-to-top')}
@@ -57,8 +69,13 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
             </span>
           )
         })}
-        {subcategory && (
-          <span className="font-bold text-orange-300/60">{subcategory}</span>
+        {hasSubcategory && (
+          <span className="inline-flex items-center font-bold text-orange-300/60">
+            <Icon className="mr-1.5 w-3 rounded-full" />
+            {t(
+              `${section}.albums.${categoryItem.id}.subcategories.${subcategory}`
+            )}
+          </span>
         )}
       </div>
     </div>
