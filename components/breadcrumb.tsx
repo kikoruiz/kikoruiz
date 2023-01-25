@@ -27,9 +27,11 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
     tag,
     t
   })
-  const categoryItem = GALLERY_ALBUMS.find(
-    ({id}) => getSlug(t(`${section}.albums.${id}.name`)) === category
-  )
+  const categoryItem =
+    section === 'gallery' &&
+    GALLERY_ALBUMS.find(
+      ({id}) => getSlug(t(`gallery.albums.${id}.name`)) === category
+    )
   const hasSubcategory = subcategory && categoryItem
   let Icon
   if (hasSubcategory) {
@@ -71,7 +73,7 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
         })}
         {hasSubcategory && (
           <span className="inline-flex items-center font-bold text-orange-300/60">
-            <Icon className="mr-1.5 w-3 rounded-full" />
+            <Icon className="mr-1.5 ml-0.5 w-3 rounded-full" />
             {t(
               `${section}.albums.${categoryItem.id}.subcategories.${subcategory}`
             )}
