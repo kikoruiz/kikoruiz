@@ -1,11 +1,13 @@
 import {ChangeEvent, MouseEvent, useState} from 'react'
-// import Link from 'next/link'
+import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import ArrowPathRoundedSquare from 'assets/icons/arrow-path-rounded-square.svg'
 import GalleryListItems from './gallery-list-items'
 import GallerySubcategory from './gallery-subcategory'
 import {Picture, Subcategory} from 'types/gallery'
 import useSubcategoryContext from 'contexts/subcategory'
+import icons from './gallery-subcategory-icons'
+import {getCapitalizedName} from 'lib/utils'
 import {
   SORTING_OPTIONS,
   DEFAULT_SORTING_OPTION,
@@ -33,17 +35,27 @@ export default function GalleryList({
 
   return (
     <section className="px-3">
-      {/* {category &&
-        subcategories &&
-        subcategories.map(({id}) => {
-          const name = t(`gallery.albums.${category}.subcategories.${id}`)
+      {category && subcategories && (
+        <div className="mb-12 flex justify-center gap-3 font-extralight">
+          {subcategories.map(({id}) => {
+            const name = t(`gallery.albums.${category}.subcategories.${id}`)
+            const Icon = icons[`${getCapitalizedName(id)}Icon`]
 
-          return (
-            <li key={id}>
-              <Link href={`#${id}`}>{name}</Link>
-            </li>
-          )
-        })} */}
+            return (
+              <Link
+                key={id}
+                href={`#${id}`}
+                title={name}
+                scroll={false}
+                className="flex items-center rounded-lg bg-gradient-to-t from-neutral-600/20 to-neutral-600/10 py-2 px-3 text-neutral-300/60 hover:bg-neutral-600/10 hover:text-orange-300"
+              >
+                <Icon className="mr-2 w-4 rounded-full opacity-90" />
+                {name}
+              </Link>
+            )
+          })}
+        </div>
+      )}
       {!isAlbum && (
         <div className="flex justify-center gap-2 pt-3 sm:justify-end">
           <div className="flex items-center text-xs">

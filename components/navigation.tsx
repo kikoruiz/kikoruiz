@@ -15,12 +15,13 @@ export default function Navigation({section, hasHero}: NavigationProps) {
   const {t} = useTranslation()
   const router = useRouter()
   const {asPath} = router
-  const path = section
+  let path = section
     ? asPath.replace(
         /(\/[a-z,-]+)/,
         `/${getSlug(t(`sections.${section}.name`))}`
       )
     : asPath
+  if (path.includes('#')) path = path.split('#')[0]
   const activeSection = SECTIONS.find(({id, categories}) => {
     const sectionSlug = getSlug(t(`sections.${id}.name`))
 

@@ -5,10 +5,10 @@ import GalleryListItems from './gallery-list-items'
 import icons from './gallery-subcategory-icons'
 import {getCapitalizedName} from 'lib/utils'
 
-function getOffset(element: Element) {
+function getOffset(element: Element, side: 'top' | 'bottom' = 'top') {
   const elementRect = element?.getBoundingClientRect()
 
-  return Math.ceil(elementRect?.top)
+  return Math.ceil(elementRect?.[side])
 }
 
 export default function GallerySubcategory({
@@ -25,11 +25,15 @@ export default function GallerySubcategory({
   const {t} = useTranslation()
   const name = t(`gallery.albums.${category}.subcategories.${id}`)
   const Icon = icons[`${getCapitalizedName(id)}Icon`]
-  const ref = useRef(null)
+  const elementRef = useRef(null)
+  const anchorRef = useRef(null)
 
   useEffect(() => {
-    const element = ref.current
-    const breadcrumbOffset = getOffset(document.querySelector('#breadcrumb'))
+    const element = elementRef.current
+    const anchor = anchorRef.current
+    const breadcrumbElement = document.querySelector('#breadcrumb')
+    const breadcrumbOffset = getOffset(breadcrumbElement)
+    const breadcrumbOffsetBottom = getOffset(breadcrumbElement, 'bottom')
     const observer = new IntersectionObserver(
       entries => {
         const [entry] = entries
@@ -57,6 +61,9 @@ export default function GallerySubcategory({
       }
     )
 
+    anchor.style.top = `-${
+      breadcrumbOffsetBottom - element.getBoundingClientRect().height
+    }px`
     observer.observe(element)
 
     return () => observer.unobserve(element)
@@ -72,10 +79,11 @@ export default function GallerySubcategory({
   ])
 
   return (
-    <div className="mt-3 xl:mt-4" id={id}>
+    <div className={`relative ${index === 0 ? 'mt-3' : 'mt-12'}`}>
+      <span id={id} ref={anchorRef} aria-hidden="true" className="absolute" />
       <header
-        ref={ref}
-        className="flex items-center rounded-sm bg-gradient-to-r from-neutral-800/30 p-3 text-xl font-light text-neutral-300/60 drop-shadow-sm"
+        ref={elementRef}
+        className="flex items-center rounded bg-gradient-to-r from-neutral-800/30 p-3 text-3xl font-extrabold text-orange-300/60 drop-shadow-sm"
       >
         <Icon className="mr-3 w-9 rounded-full opacity-90" />
         {name}
