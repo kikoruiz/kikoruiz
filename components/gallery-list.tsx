@@ -36,7 +36,7 @@ export default function GalleryList({
   return (
     <section className="px-3">
       {category && subcategories && (
-        <div className="mb-12 flex flex-wrap justify-center gap-3 font-extralight">
+        <div className="mx-auto mb-12 flex max-w-xs flex-wrap justify-center gap-3 font-extralight sm:max-w-none">
           {subcategories.map(({id}) => {
             const name = t(`gallery.albums.${category}.subcategories.${id}`)
             const Icon = icons[`${getCapitalizedName(id)}Icon`]
