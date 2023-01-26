@@ -49,7 +49,7 @@ export default function GalleryList({
                 scroll={false}
                 className="flex items-center rounded-lg bg-gradient-to-t from-neutral-600/20 to-neutral-600/10 py-2 px-3 text-neutral-300/60 hover:bg-neutral-600/10 hover:text-orange-300"
               >
-                <Icon className="mr-2 w-4 rounded-full opacity-90" />
+                {Icon && <Icon className="mr-2 w-4 rounded-full opacity-90" />}
                 {name}
               </Link>
             )

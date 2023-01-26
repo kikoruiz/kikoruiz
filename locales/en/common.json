@@ -47,7 +47,13 @@
         }
       },
       "seasonal": {
-        "name": "Seasonal"
+        "name": "Seasonal",
+        "subcategories": {
+          "winter": "Winter",
+          "spring": "Spring",
+          "summer": "Summer",
+          "autumn": "Autumn"
+        }
       },
       "night": {
         "name": "Night"

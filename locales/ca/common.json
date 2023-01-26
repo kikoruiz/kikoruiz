@@ -47,7 +47,13 @@
         }
       },
       "seasonal": {
-        "name": "Estacional"
+        "name": "Estacional",
+        "subcategories": {
+          "winter": "Hivern",
+          "spring": "Primavera",
+          "summer": "Estiu",
+          "autumn": "Tardor"
+        }
       },
       "night": {
         "name": "Nocturnes"
