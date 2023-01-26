@@ -12,13 +12,13 @@ export default function BlogTags({tags, isPost = false}: BlogTagsProps) {
       }`}
     >
       {!isPost && <span className="font-light">{t('list.filter-by')}</span>}
-      <ul className="flex gap-3 text-xs">
+      <ul className="flex flex-row-reverse gap-3 text-xs">
         {tags.map(({name, id, slug, href}) => {
           return (
-            <li className="flex" key={slug}>
+            <li className="-ml-6 flex last:ml-0" key={slug}>
               <Link
                 href={href}
-                className={`relative rounded-r rounded-l-3xl border p-2 pl-6 font-medium text-neutral-900 before:absolute before:left-2 before:top-1/2 before:mt-[-4.5px] before:h-[9px] before:w-[9px] before:rounded-full before:border before:bg-neutral-900 ${tagClassName(
+                className={`relative rotate-12 rounded-r rounded-l-3xl border p-2 pl-6 font-medium text-neutral-900 transition-transform duration-300 ease-in-out before:absolute before:left-2 before:top-1/2 before:mt-[-4.5px] before:h-[9px] before:w-[9px] before:rounded-full before:border before:bg-neutral-900 hover:translate-x-1 hover:rotate-3 ${tagClassName(
                   id
                 )}`}
                 title={t('post.tag', {tag: name})}
