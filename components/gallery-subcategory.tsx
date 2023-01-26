@@ -85,7 +85,7 @@ export default function GallerySubcategory({
         ref={elementRef}
         className="flex items-center rounded bg-gradient-to-r from-neutral-800/30 p-3 text-3xl font-extrabold text-orange-300/60 drop-shadow-sm"
       >
-        <Icon className="mr-3 w-9 rounded-full opacity-90" />
+        {Icon && <Icon className="mr-3 w-9 rounded-full opacity-90" />}
         {name}
       </header>
 

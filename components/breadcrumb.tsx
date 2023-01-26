@@ -73,7 +73,7 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
         })}
         {hasSubcategory && (
           <span className="inline-flex items-center font-bold text-orange-300/60">
-            <Icon className="mr-1.5 ml-0.5 w-3 rounded-full" />
+            {Icon && <Icon className="mr-1.5 ml-0.5 w-3 rounded-full" />}
             {t(
               `${section}.albums.${categoryItem.id}.subcategories.${subcategory}`
             )}
