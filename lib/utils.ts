@@ -1,3 +1,4 @@
+import path from 'path'
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from 'tailwind.config'
 import {paramCase, headerCase, camelCase, pascalCase} from 'change-case'
@@ -6,6 +7,7 @@ import {PENDING_EVAL_SORTING_OPTIONS} from 'config/gallery'
 import {Screens, ThemeScreens} from 'types'
 
 const config = resolveConfig(tailwindConfig)
+
 export const {screens: themeScreens}: {screens?: ThemeScreens} =
   config.theme as object
 
@@ -98,4 +100,15 @@ export function getAspectRatio(size: string): string {
     default:
       return ''
   }
+}
+
+export async function getAverageColor(src) {
+  const {getAverageColor: fastAverageColor} = await import(
+    'fast-average-color-node'
+  )
+  const resourceFile = path.join(process.cwd(), 'public', src)
+  const color = await fastAverageColor(resourceFile)
+  const {hex, isDark, isLight} = color
+
+  return {hex, isDark, isLight}
 }

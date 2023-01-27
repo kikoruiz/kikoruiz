@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import {Alternate} from 'types'
-import {Picture} from 'types/gallery'
-import GalleryList from 'components/gallery-list'
-import {getGalleryAlbums} from 'lib/gallery/albums'
-import {fromAlbumToGallery} from 'lib/gallery/mappers'
+import {HighlightedImage} from 'types/gallery'
+import Hero from 'components/hero'
+import {getPlaiceholder} from 'plaiceholder'
 import {fromLocalesToAlternates} from 'lib/mappers'
+import {getAverageColor} from 'lib/utils'
 
-export default function Home({albums, alternates}: HomeProps) {
+export default function Home({alternates, heroImage}: HomeProps) {
   return (
     <>
       <Head>
@@ -16,26 +16,81 @@ export default function Home({albums, alternates}: HomeProps) {
         ))}
       </Head>
 
-      <GalleryList pictures={albums} isAlbum />
+      <Hero image={heroImage} />
+
+      <article className="prose text-neutral-300/60">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+          posuere ipsum ac quam molestie interdum. Donec scelerisque non mauris
+          ut viverra. Pellentesque id vehicula mauris. Mauris ultrices
+          pellentesque purus, at ullamcorper lacus viverra consequat. Ut ac
+          libero dolor. Sed turpis sem, pharetra non malesuada sed, hendrerit
+          sit amet dui. Vivamus vel tristique augue. Fusce sed ipsum id justo
+          lobortis maximus. Donec commodo ante ut dui consequat, in dictum elit
+          fringilla. Cras eget porta dolor, non mattis sem. In eget arcu eget
+          metus molestie facilisis id in eros. Donec sed scelerisque augue. Nam
+          dignissim risus vitae imperdiet suscipit. Quisque quis sapien
+          fermentum, blandit nibh rhoncus, congue dui. Nullam porttitor magna et
+          nisl congue, eu venenatis tellus pulvinar. Nullam in nunc ut eros
+          vestibulum tempor. Mauris ac pulvinar erat. Nam sem leo, commodo in
+          bibendum sed, ultrices eget dolor. Nulla porttitor eros et mi
+          malesuada facilisis. Vestibulum vulputate fringilla ante id placerat.
+          Pellentesque eu libero maximus, cursus ipsum sit amet, varius velit.
+          Orci varius natoque penatibus et magnis dis parturient montes,
+          nascetur ridiculus mus.
+        </p>
+        <p>
+          Nullam sem arcu, tempor sed maximus et, porta quis est. Proin sem
+          neque, semper in condimentum et, malesuada faucibus nisl. Aenean eget
+          finibus lectus. Morbi blandit leo eget nisl vestibulum molestie. In et
+          ante mauris. Sed magna lorem, pulvinar ac placerat id, faucibus
+          pellentesque eros. Vivamus leo turpis, posuere vitae urna eu, viverra
+          ultricies arcu. Cras rutrum neque dictum, lacinia velit vel, bibendum
+          orci. Maecenas at lacinia nisl.
+        </p>
+        <p>
+          Pellentesque justo magna, volutpat id turpis commodo, vestibulum
+          luctus nibh. Maecenas laoreet ipsum quis elementum egestas. Duis
+          iaculis nisi vel urna maximus congue. Nulla eu dolor cursus, sagittis
+          nunc a, pretium mi. Curabitur ut lacus id dolor ullamcorper dictum.
+          Mauris ac nisi ac dui suscipit posuere ac a purus. Sed porttitor
+          eleifend accumsan. Integer ullamcorper mauris ac imperdiet auctor.
+          Aenean eu lacus tincidunt, efficitur felis nec, gravida tortor.
+          Praesent magna lorem, rhoncus ut pellentesque non, porta vitae mi. Sed
+          pretium venenatis ligula id luctus. Nulla viverra felis ut molestie
+          dapibus. Maecenas at tincidunt quam. Curabitur eu aliquam libero. Sed
+          feugiat augue non purus malesuada, eget molestie libero rutrum. In
+          luctus purus ac leo gravida, non blandit neque laoreet. In in gravida
+          elit. Ut convallis mollis ipsum, et luctus urna pellentesque vitae.
+          Fusce eu magna sed leo sodales posuere. Nulla finibus, risus eu
+          interdum viverra, quam nisl scelerisque ante, non finibus est lorem
+          non elit.
+        </p>
+      </article>
     </>
   )
 }
 
-export async function getStaticProps({locale, locales, defaultLocale}) {
-  const galleryAlbums = await getGalleryAlbums()
-  const albums = await Promise.all(
-    galleryAlbums.map(fromAlbumToGallery(locale))
-  )
+export async function getStaticProps({locales, defaultLocale}) {
+  const heroImage = {
+    src: '/pictures/2021-10-28_0037.jpg',
+    alt: 'Kiko Ruiz Photography',
+    sizes: '100vw'
+  }
+  const {css} = await getPlaiceholder(heroImage.src)
+  heroImage.css = css
+  const averageColor = await getAverageColor(heroImage.src)
+  heroImage.averageColor = averageColor
   const alternates = await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale}))
   )
 
   return {
-    props: {albums, alternates}
+    props: {heroImage, alternates}
   }
 }
 
 interface HomeProps {
-  albums: Picture[]
   alternates: Alternate[]
+  heroImage: HighlightedImage
 }

@@ -17,6 +17,7 @@ export interface SectionData {
   post?: BlogPost
   section?: string
   tag?: string
+  hasHero?: boolean
 }
 
 export interface ThemeScreens {
