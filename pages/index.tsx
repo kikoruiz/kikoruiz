@@ -76,7 +76,7 @@ export async function getStaticProps({locales, defaultLocale}) {
     src: '/pictures/2021-10-28_0037.jpg',
     alt: 'Kiko Ruiz Photography',
     sizes: '100vw'
-  }
+  } as HighlightedImage
   const {css} = await getPlaiceholder(heroImage.src)
   heroImage.css = css
   const averageColor = await getAverageColor(heroImage.src)
