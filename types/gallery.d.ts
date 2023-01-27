@@ -7,6 +7,7 @@ export interface Image {
   src: string
   orientation?: 'horizontal' | 'vertical'
   css: ImageFallbackStyle
+  // averageColor:
 }
 
 export interface HighlightedImage extends Image {
