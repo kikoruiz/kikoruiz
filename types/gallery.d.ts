@@ -7,12 +7,18 @@ export interface Image {
   src: string
   orientation?: 'horizontal' | 'vertical'
   css: ImageFallbackStyle
-  // averageColor:
+  averageColor?: ImageAverageColor
 }
 
 export interface HighlightedImage extends Image {
   alt: string
   sizes: string
+}
+
+export interface ImageAverageColor {
+  hex: string
+  isDark: boolean
+  isLight: boolean
 }
 
 export interface Picture {
