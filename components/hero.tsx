@@ -1,4 +1,4 @@
-import Image from 'components/image'
+import Image from './image'
 
 export default function Hero({image}) {
   return (
