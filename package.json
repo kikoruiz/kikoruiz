@@ -20,7 +20,7 @@
     "fast-average-color-node": "2",
     "gray-matter": "4",
     "lodash": "4",
-    "next": "13",
+    "next": "13.1.5",
     "next-translate": "1",
     "plaiceholder": "2",
     "react": "18",
