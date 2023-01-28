@@ -1,12 +1,8 @@
 import Head from 'next/head'
 import {Alternate} from 'types'
-import {HighlightedImage} from 'types/gallery'
-import Hero from 'components/hero'
-import {getPlaiceholder} from 'plaiceholder'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {getAverageColor} from 'lib/utils'
 
-export default function Home({alternates, heroImage}: HomeProps) {
+export default function Home({alternates}: HomeProps) {
   return (
     <>
       <Head>
@@ -15,8 +11,6 @@ export default function Home({alternates, heroImage}: HomeProps) {
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
       </Head>
-
-      <Hero image={heroImage} />
 
       <article className="prose text-neutral-300/60">
         <p>
@@ -72,25 +66,15 @@ export default function Home({alternates, heroImage}: HomeProps) {
 }
 
 export async function getStaticProps({locales, defaultLocale}) {
-  const heroImage = {
-    src: '/pictures/2021-10-28_0037.jpg',
-    alt: 'Kiko Ruiz Photography',
-    sizes: '100vw'
-  } as HighlightedImage
-  const {css} = await getPlaiceholder(heroImage.src)
-  heroImage.css = css
-  const averageColor = await getAverageColor(heroImage.src)
-  heroImage.averageColor = averageColor
   const alternates = await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale}))
   )
 
   return {
-    props: {heroImage, alternates}
+    props: {alternates}
   }
 }
 
 interface HomeProps {
   alternates: Alternate[]
-  heroImage: HighlightedImage
 }

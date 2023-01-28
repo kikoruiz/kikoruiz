@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "pages/api/**/*.ts": {
-      "excludeFiles": "{public/**/*}"
-    }
-  },
   "github": {
     "enabled": false
   }
