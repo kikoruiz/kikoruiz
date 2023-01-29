@@ -7,10 +7,6 @@ import {fromLocalesToAlternates} from '../../lib/mappers'
 import {Picture} from 'types/gallery'
 import {Alternate} from 'types'
 
-export const config = {
-  unstable_excludeFiles: ['public/**/*']
-}
-
 export default function Gallery({albums, alternates}: GalleryProps) {
   return (
     <>

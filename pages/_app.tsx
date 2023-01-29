@@ -8,10 +8,6 @@ import {trackPage, GA_TRACKING_ID} from 'lib/tracking'
 import {SubcategoryContextProvider} from 'contexts/subcategory'
 import '../styles/globals.css'
 
-export const config = {
-  unstable_excludeFiles: ['public/**/*']
-}
-
 function handleRouteChange(url: string) {
   trackPage(url)
 }
