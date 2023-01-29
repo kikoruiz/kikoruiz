@@ -15,6 +15,10 @@ import useSubcategoryContext from 'contexts/subcategory'
 import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
 
+export const config = {
+  unstable_excludeFiles: ['public/**/*']
+}
+
 const DynamicGalleryCarousel = dynamic(
   () => import('../../components/gallery-carousel')
 )

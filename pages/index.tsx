@@ -6,6 +6,10 @@ import {getPlaiceholder} from 'plaiceholder'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getAverageColor} from 'lib/utils'
 
+export const config = {
+  unstable_excludeFiles: ['public/**/*']
+}
+
 export default function Home({alternates, heroImage}: HomeProps) {
   return (
     <>
