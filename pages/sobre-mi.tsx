@@ -12,10 +12,6 @@ import {BlogPostContent} from 'types/blog'
 import {Alternate} from 'types'
 import {ImageFallbackStyle} from 'types/gallery'
 
-export const config = {
-  unstable_excludeFiles: ['public/**/*']
-}
-
 export default function AboutMe({
   avatar,
   description,

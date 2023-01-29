@@ -1,4 +1,3 @@
-import path from 'path'
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from 'tailwind.config'
 import {paramCase, headerCase, camelCase, pascalCase} from 'change-case'
@@ -102,11 +101,11 @@ export function getAspectRatio(size: string): string {
   }
 }
 
-export async function getAverageColor(src) {
+export async function getAverageColor(src: string) {
   const {getAverageColor: fastAverageColor} = await import(
     'fast-average-color-node'
   )
-  const resourceFile = path.join(process.cwd(), 'public', src)
+  const resourceFile = `public${src}`
   const color = await fastAverageColor(resourceFile)
   const {hex, isDark, isLight} = color
 
