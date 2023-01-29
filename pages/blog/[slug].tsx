@@ -11,6 +11,10 @@ import BlogTags from 'components/blog-tags'
 import {BlogPost} from 'types/blog'
 import {Alternate} from 'types'
 
+export const config = {
+  unstable_excludeFiles: ['public/**/*']
+}
+
 export default function Post({post, alternates}: PostProps) {
   const {locale} = useRouter()
   const {t} = useTranslation('blog')

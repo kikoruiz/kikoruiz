@@ -6,6 +6,10 @@ import PostsList from 'components/posts-list'
 import {BlogPost, BlogTag} from 'types/blog'
 import {Alternate} from 'types'
 
+export const config = {
+  unstable_excludeFiles: ['public/**/*']
+}
+
 export default function Blog({posts, tags, alternates}: BlogProps) {
   return (
     <>

@@ -5,6 +5,10 @@ import {paramCase} from 'change-case'
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {taggedPictures} from 'lib/gallery/pictures'
 
+export const config = {
+  unstable_excludeFiles: ['public/**/*']
+}
+
 function matchSearchKey(key: string) {
   return function (attrs: object) {
     return Object.keys(attrs).find(attr => {

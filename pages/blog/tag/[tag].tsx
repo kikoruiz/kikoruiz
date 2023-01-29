@@ -8,6 +8,10 @@ import PostsList from 'components/posts-list'
 import {BlogPost} from 'types/blog'
 import {Alternate} from 'types'
 
+export const config = {
+  unstable_excludeFiles: ['public/**/*']
+}
+
 export default function Tag({tag, posts, alternates}: TagProps) {
   return (
     <>
