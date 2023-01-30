@@ -1,6 +1,6 @@
 import {getPlaiceholder} from 'plaiceholder'
 import {getAverageColor} from 'lib/utils'
-import {HighlightedImage} from 'types/gallery'
+import {HeroImages} from 'types'
 
 const HERO_DEFAULT_DATA = {
   alt: 'Kiko Ruiz Photography',
@@ -12,23 +12,20 @@ const HERO_IMAGES = {
   desktop: '/pictures/2021-10-23_0052.jpg'
 }
 
-export async function getHeroImages() {
-  return await Object.keys(HERO_IMAGES).reduce(
-    async (acc, device): HighlightedImage => {
-      const src = HERO_IMAGES[device]
-      const {css} = await getPlaiceholder(src)
-      const averageColor = await getAverageColor(src)
+export async function getHeroImages(): Promise<HeroImages> {
+  return await Object.keys(HERO_IMAGES).reduce(async (acc, device) => {
+    const src = HERO_IMAGES[device]
+    const {css} = await getPlaiceholder(src)
+    const averageColor = await getAverageColor(src)
 
-      return {
-        ...(await acc),
-        [device]: {
-          ...HERO_DEFAULT_DATA,
-          src,
-          css,
-          averageColor
-        }
+    return {
+      ...(await acc),
+      [device]: {
+        ...HERO_DEFAULT_DATA,
+        src,
+        css,
+        averageColor
       }
-    },
-    Promise.resolve({})
-  )
+    }
+  }, Promise.resolve({} as HeroImages))
 }

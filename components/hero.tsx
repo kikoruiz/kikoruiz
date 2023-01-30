@@ -1,7 +1,7 @@
 import {useMediaQuery} from 'react-responsive'
-import {HighlightedImage} from 'types/gallery'
 import Image from './image'
 import {screens} from 'lib/utils'
+import {HeroImages} from 'types'
 
 export default function Hero({images}: HeroProps) {
   const {md, xl} = screens
@@ -37,9 +37,5 @@ export default function Hero({images}: HeroProps) {
 }
 
 interface HeroProps {
-  images: {
-    mobile: HighlightedImage
-    tablet: HighlightedImage
-    desktop: HighlightedImage
-  }
+  images: HeroImages
 }

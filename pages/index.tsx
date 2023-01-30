@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import {Alternate} from 'types'
-import {HighlightedImage} from 'types/gallery'
+import {Alternate, HeroImages} from 'types'
 import Hero from 'components/hero'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getHeroImages} from 'lib/home'
@@ -83,9 +82,5 @@ export async function getStaticProps({locales, defaultLocale}) {
 
 interface HomeProps {
   alternates: Alternate[]
-  heroImages: {
-    mobile: HighlightedImage
-    tablet: HighlightedImage
-    desktop: HighlightedImage
-  }
+  heroImages: HeroImages
 }
