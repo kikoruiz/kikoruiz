@@ -14,8 +14,8 @@ function handleRouteChange(url: string) {
 
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter()
-  const {section, post, tag, alternates, heroImage} = pageProps
-  const sectionData = {section, post, tag, hasHero: Boolean(heroImage)}
+  const {section, post, tag, alternates, heroImages} = pageProps
+  const sectionData = {section, post, tag, hasHero: Boolean(heroImages)}
   const languageData = {alternates}
 
   useEffect(() => {
