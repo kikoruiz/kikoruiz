@@ -2,7 +2,7 @@ import NextImage from 'next/image'
 import ReactMarkdown from 'react-markdown'
 
 export default function Article({content, className}: ArticleProps) {
-  const articleClassName = `max-w-full prose prose-neutral prose-h1:text-6xl prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-p:font-light prose-strong:text-neutral-300 dark:prose-invert${
+  const articleClassName = `max-w-full prose prose-neutral prose-h1:text-6xl prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-p:font-light prose-strong:text-neutral-300${
     className ? ` ${className}` : ''
   }`
   const components = {
