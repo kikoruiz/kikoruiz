@@ -1,4 +1,5 @@
 import {BlogPost} from './blog'
+import {HighlightedImage} from './gallery'
 
 export interface BreadcrumbItem {
   categories?: object[]
@@ -18,6 +19,12 @@ export interface SectionData {
   section?: string
   tag?: string
   hasHero?: boolean
+}
+
+export interface HeroImages {
+  mobile: HighlightedImage
+  tablet: HighlightedImage
+  desktop: HighlightedImage
 }
 
 export interface ThemeScreens {
