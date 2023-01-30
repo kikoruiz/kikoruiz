@@ -33,8 +33,8 @@ export default function Navigation({section, hasHero}: NavigationProps) {
     activeSection ? [activeSection.id] : []
   )
 
-  useMediaQuery({minWidth: sm}, undefined, handleMobileUpChange)
   useMediaQuery({maxWidth: sm - 1}, undefined, handleMobileDownChange)
+  useMediaQuery({minWidth: sm}, undefined, handleMobileUpChange)
 
   function handleMobileUpChange(matches) {
     if (matches) {

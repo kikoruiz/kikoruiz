@@ -1,4 +1,5 @@
 import {useEffect} from 'react'
+import {userAgentFromString} from 'next/server'
 import Script from 'next/script'
 import {useRouter} from 'next/router'
 import {AppProps} from 'next/app'
@@ -6,17 +7,29 @@ import {Analytics} from '@vercel/analytics/react'
 import Layout from 'components/layout'
 import {trackPage, GA_TRACKING_ID} from 'lib/tracking'
 import {SubcategoryContextProvider} from 'contexts/subcategory'
+import {DeviceContext} from 'contexts/device'
 import '../styles/globals.css'
 
 function handleRouteChange(url: string) {
   trackPage(url)
 }
 
-export default function App({Component, pageProps}: AppProps) {
+export default function App({Component, pageProps, userAgent}: CustomAppProps) {
   const router = useRouter()
   const {section, post, tag, alternates, heroImages} = pageProps
   const sectionData = {section, post, tag, hasHero: Boolean(heroImages)}
   const languageData = {alternates}
+  let device
+
+  switch (userAgent.device.type) {
+    case 'mobile':
+    case 'tablet':
+      device = userAgent.device.type
+      break
+    default:
+      device = 'desktop'
+      break
+  }
 
   useEffect(() => {
     trackPage(router.asPath)
@@ -51,12 +64,31 @@ export default function App({Component, pageProps}: AppProps) {
         }}
       />
 
-      <SubcategoryContextProvider>
-        <Layout {...sectionData} {...languageData}>
-          <Component {...pageProps} />
-          <Analytics />
-        </Layout>
-      </SubcategoryContextProvider>
+      <DeviceContext.Provider value={device}>
+        <SubcategoryContextProvider>
+          <Layout {...sectionData} {...languageData}>
+            <Component {...pageProps} />
+            <Analytics />
+          </Layout>
+        </SubcategoryContextProvider>
+      </DeviceContext.Provider>
     </>
   )
+}
+
+App.getInitialProps = async ({ctx}) => {
+  const ua = ctx?.req?.headers['user-agent']
+  const userAgent = userAgentFromString(ua)
+
+  return {userAgent}
+}
+
+interface CustomAppProps extends AppProps {
+  userAgent: {
+    device: {
+      model?: string
+      type?: string
+      vendor?: string
+    }
+  }
 }
