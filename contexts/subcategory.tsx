@@ -1,7 +1,8 @@
 import React, {useState, useMemo, useContext, createContext} from 'react'
 
 export const SubcategoryContext = createContext(null)
-export const SubcategoryContextProvider = ({children}) => {
+
+export const SubcategoryProvider = ({children}) => {
   const [subcategory, setSubcategory] = useState(null)
   const values = useMemo(
     () => ({
