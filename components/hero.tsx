@@ -2,22 +2,21 @@ import {useEffect, useState} from 'react'
 import {useMediaQuery} from 'react-responsive'
 import Image from './image'
 import {screens} from 'lib/utils'
-import {HeroImages} from 'types'
+import {device, HeroImages} from 'types'
 
-const DEFAULT_DEVICE = 'mobile'
 const HERO_IMAGE_CLASS_NAMES = {
   mobile: 'aspect-2/3',
   tablet: 'aspect-square',
   desktop: 'aspect-3/2'
 }
 
-export default function Hero({images}: HeroProps) {
+export default function Hero({images, device}: HeroProps) {
   const {md, xl} = screens
   const isMobile = useMediaQuery({maxWidth: md - 1})
   const isTablet = useMediaQuery({minWidth: md, maxWidth: xl - 1})
-  const [heroImage, setHeroImage] = useState(images[DEFAULT_DEVICE])
+  const [heroImage, setHeroImage] = useState(images[device])
   const [heroImageClassName, setHeroImageClassName] = useState(
-    HERO_IMAGE_CLASS_NAMES[DEFAULT_DEVICE]
+    HERO_IMAGE_CLASS_NAMES[device]
   )
 
   useEffect(() => {
@@ -49,4 +48,5 @@ export default function Hero({images}: HeroProps) {
 
 interface HeroProps {
   images: HeroImages
+  device: device
 }

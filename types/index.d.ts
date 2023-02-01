@@ -1,6 +1,8 @@
 import {BlogPost} from './blog'
 import {HighlightedImage} from './gallery'
 
+export type device = 'mobile' | 'tablet' | 'desktop'
+
 export interface BreadcrumbItem {
   categories?: object[]
   href?: string
@@ -21,12 +23,6 @@ export interface SectionData {
   hasHero?: boolean
 }
 
-export interface HeroImages {
-  mobile: HighlightedImage
-  tablet: HighlightedImage
-  desktop: HighlightedImage
-}
-
 export interface ThemeScreens {
   '2xl': string
   lg: string
@@ -41,4 +37,10 @@ export interface Screens {
   md: number
   sm: number
   xl: number
+}
+
+export interface HeroImages {
+  mobile: HighlightedImage
+  tablet: HighlightedImage
+  desktop: HighlightedImage
 }
