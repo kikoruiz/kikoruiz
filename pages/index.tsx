@@ -3,9 +3,8 @@ import {Alternate, device, HeroImages} from 'types'
 import Hero from 'components/hero'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getHeroImages} from 'lib/home'
-import {userAgentFromString} from 'next/server'
 
-export default function Home({heroImages, alternates, device}: HomeProps) {
+export default function Home({heroImages, alternates}: HomeProps) {
   return (
     <>
       <Head>
@@ -15,7 +14,7 @@ export default function Home({heroImages, alternates, device}: HomeProps) {
         ))}
       </Head>
 
-      <Hero images={heroImages} device={device} />
+      <Hero images={heroImages} />
 
       <section className="mt-48 px-3">
         <header className="mb-12 break-words text-center">
@@ -52,26 +51,14 @@ export default function Home({heroImages, alternates, device}: HomeProps) {
   )
 }
 
-export async function getServerSideProps({locales, defaultLocale, req}) {
+export async function getStaticProps({locales, defaultLocale}) {
   const heroImages = await getHeroImages()
   const alternates = (await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale}))
   )) as Alternate[]
-  const userAgent = userAgentFromString(req?.headers['user-agent'])
-  let device: device
-
-  switch (userAgent.device.type) {
-    case 'mobile':
-    case 'tablet':
-      device = userAgent.device.type
-      break
-    default:
-      device = 'desktop'
-      break
-  }
 
   return {
-    props: {heroImages, alternates, device}
+    props: {heroImages, alternates}
   }
 }
 

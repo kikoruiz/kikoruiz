@@ -4,13 +4,14 @@ import Image from './image'
 import {screens} from 'lib/utils'
 import {device, HeroImages} from 'types'
 
+const DEFAULT_DEVICE = 'mobile'
 const HERO_IMAGE_CLASS_NAMES = {
   mobile: 'aspect-2/3',
   tablet: 'aspect-square',
   desktop: 'aspect-3/2'
 }
 
-export default function Hero({images, device}: HeroProps) {
+export default function Hero({images, device = DEFAULT_DEVICE}: HeroProps) {
   const {md, xl} = screens
   const isMobile = useMediaQuery({maxWidth: md - 1})
   const isTablet = useMediaQuery({minWidth: md, maxWidth: xl - 1})
@@ -48,5 +49,5 @@ export default function Hero({images, device}: HeroProps) {
 
 interface HeroProps {
   images: HeroImages
-  device: device
+  device?: device
 }
