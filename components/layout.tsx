@@ -15,7 +15,7 @@ export default function Layout({
       <Header {...sectionData} />
 
       <main
-        className={`container mx-auto sm:pt-12${
+        className={`container mx-auto mb-auto sm:pt-12${
           hasHero ? ' border-t border-neutral-300/10' : ''
         }`}
       >
