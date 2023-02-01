@@ -12,31 +12,20 @@ const HERO_IMAGES = {
   desktop: '/pictures/2021-10-23_0052.jpg'
 }
 
-let cachedHeroImages
-
 export async function getHeroImages(): Promise<HeroImages> {
-  if (typeof cachedHeroImages !== 'undefined') return cachedHeroImages
+  return await Object.keys(HERO_IMAGES).reduce(async (acc, device) => {
+    const src = HERO_IMAGES[device]
+    const {css} = await getPlaiceholder(src)
+    const averageColor = await getAverageColor(src)
 
-  const heroImages = await Object.keys(HERO_IMAGES).reduce(
-    async (acc, device) => {
-      const src = HERO_IMAGES[device]
-      const {css} = await getPlaiceholder(src)
-      const averageColor = await getAverageColor(src)
-
-      return {
-        ...(await acc),
-        [device]: {
-          ...HERO_DEFAULT_DATA,
-          src,
-          css,
-          averageColor
-        }
+    return {
+      ...(await acc),
+      [device]: {
+        ...HERO_DEFAULT_DATA,
+        src,
+        css,
+        averageColor
       }
-    },
-    Promise.resolve({} as HeroImages)
-  )
-
-  cachedHeroImages = heroImages
-
-  return heroImages
+    }
+  }, Promise.resolve({} as HeroImages))
 }
