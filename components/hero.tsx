@@ -34,7 +34,13 @@ export default function Hero({images, device = DEFAULT_DEVICE}: HeroProps) {
   }, [isMobile, isTablet, images])
 
   return (
-    <div className="absolute inset-0 -z-10 aspect-3/2 w-screen">
+    <div
+      className="absolute inset-0 -z-10 aspect-3/2 w-screen"
+      style={{
+        WebkitMaskImage:
+          'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, transparent 100%)'
+      }}
+    >
       <Image
         src={heroImage.src}
         alt={heroImage.alt}
