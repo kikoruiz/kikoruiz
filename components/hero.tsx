@@ -2,36 +2,37 @@ import {useEffect, useState} from 'react'
 import {useMediaQuery} from 'react-responsive'
 import Image from './image'
 import {screens} from 'lib/utils'
-import {device, HeroImages} from 'types'
+import {HeroImages} from 'types'
+import useHeroContext from 'contexts/hero'
+import {DEFAULT_DEVICE} from 'config'
 
-const DEFAULT_DEVICE = 'mobile'
 const HERO_IMAGE_CLASS_NAMES = {
   mobile: 'aspect-2/3',
   tablet: 'aspect-square',
   desktop: 'aspect-3/2'
 }
 
-export default function Hero({images, device = DEFAULT_DEVICE}: HeroProps) {
+export default function Hero({images}: HeroProps) {
+  const {hero, setHero} = useHeroContext()
   const {md, xl} = screens
   const isMobile = useMediaQuery({maxWidth: md - 1})
   const isTablet = useMediaQuery({minWidth: md, maxWidth: xl - 1})
-  const [heroImage, setHeroImage] = useState(images[device])
-  const [heroImageClassName, setHeroImageClassName] = useState(
-    HERO_IMAGE_CLASS_NAMES[device]
+  const [heroClassName, setHeroClassName] = useState(
+    HERO_IMAGE_CLASS_NAMES[DEFAULT_DEVICE]
   )
 
   useEffect(() => {
     if (isMobile) {
-      setHeroImage(images.mobile)
-      setHeroImageClassName(HERO_IMAGE_CLASS_NAMES.mobile)
+      setHero(images.mobile)
+      setHeroClassName(HERO_IMAGE_CLASS_NAMES.mobile)
     } else if (isTablet) {
-      setHeroImage(images.tablet)
-      setHeroImageClassName(HERO_IMAGE_CLASS_NAMES.tablet)
+      setHero(images.tablet)
+      setHeroClassName(HERO_IMAGE_CLASS_NAMES.tablet)
     } else {
-      setHeroImage(images.desktop)
-      setHeroImageClassName(HERO_IMAGE_CLASS_NAMES.desktop)
+      setHero(images.desktop)
+      setHeroClassName(HERO_IMAGE_CLASS_NAMES.desktop)
     }
-  }, [isMobile, isTablet, images])
+  }, [isMobile, isTablet, images, setHero])
 
   return (
     <div
@@ -42,11 +43,11 @@ export default function Hero({images, device = DEFAULT_DEVICE}: HeroProps) {
       }}
     >
       <Image
-        src={heroImage.src}
-        alt={heroImage.alt}
-        fallbackStyle={heroImage.css}
-        className={`overflow-hidden ${heroImageClassName}`}
-        sizes={heroImage.sizes}
+        src={hero.src}
+        alt={hero.alt}
+        fallbackStyle={hero.css}
+        className={`overflow-hidden ${heroClassName}`}
+        sizes={hero.sizes}
         needsPreload
       />
     </div>
@@ -55,5 +56,4 @@ export default function Hero({images, device = DEFAULT_DEVICE}: HeroProps) {
 
 interface HeroProps {
   images: HeroImages
-  device?: device
 }

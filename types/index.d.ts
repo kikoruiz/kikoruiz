@@ -1,8 +1,6 @@
 import {BlogPost} from './blog'
 import {HighlightedImage} from './gallery'
 
-export type device = 'mobile' | 'tablet' | 'desktop'
-
 export interface BreadcrumbItem {
   categories?: object[]
   href?: string

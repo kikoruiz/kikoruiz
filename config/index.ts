@@ -1,6 +1,7 @@
 import {GALLERY_ALBUMS} from './gallery'
 
 export const DEFAULT_ORIGIN = 'https://kikoruiz.es'
+export const DEFAULT_DEVICE = 'mobile'
 
 export const SECTIONS = [
   {id: 'about-me'},
