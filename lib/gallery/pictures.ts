@@ -3,6 +3,7 @@ import path from 'node:path'
 import getT from 'next-translate/getT'
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {getSlug} from '../utils'
+import {RawPicture} from 'types/gallery'
 
 const picturesMetadataFile = path.join(
   process.cwd(),
@@ -11,7 +12,7 @@ const picturesMetadataFile = path.join(
   'metadata.json'
 )
 
-async function getAllPictures() {
+export async function getAllPictures(): Promise<RawPicture[]> {
   const metadata = fs.readFileSync(picturesMetadataFile, 'utf8')
 
   return JSON.parse(metadata)

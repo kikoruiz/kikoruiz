@@ -1,13 +1,13 @@
-import ProvenceIcon from 'assets/flags/fr.svg'
-import IcelandIcon from 'assets/flags/is.svg'
-import ToscanaIcon from 'assets/flags/it.svg'
-import LofotenIslandsIcon from 'assets/flags/no.svg'
+import IconProvence from 'assets/flags/fr.svg'
+import IconIceland from 'assets/flags/is.svg'
+import IconToscana from 'assets/flags/it.svg'
+import IconLofotenIslands from 'assets/flags/no.svg'
 
 const icons = {
-  ProvenceIcon,
-  IcelandIcon,
-  ToscanaIcon,
-  LofotenIslandsIcon
+  IconProvence,
+  IconIceland,
+  IconToscana,
+  IconLofotenIslands
 }
 
 export default icons

@@ -34,7 +34,13 @@ async function saveAllPicturesMetadata() {
       artist: tags.Artist,
       colorSpace: tags.ColorSpace,
       compression: tags.Compression,
-      copyright: tags.Copyright,
+      ...(tags.GPSLatitude &&
+        tags.GPSLongitude && {
+          coordinates: {
+            latitude: tags.GPSLatitude,
+            longitude: tags.GPSLongitude
+          }
+        }),
       copyright: tags.CopyrightNotice,
       createDate: tags.CreateDate.toString(),
       ...(tags.Description && {description: tags.Description}),
@@ -59,13 +65,15 @@ async function saveAllPicturesMetadata() {
       profileDescription: tags.ProfileDescription,
       rating: tags.Rating,
       rawFileName: tags.RawFileName,
+      resolution: {
+        x: tags.XResolution,
+        y: tags.YResolution
+      },
       resolutionUnit: tags.ResolutionUnit,
       shutterSpeed: tags.ShutterSpeed,
       software: tags.Software,
       title: tags.Title,
-      whiteBalance: tags.WhiteBalance,
-      xResolution: tags.XResolution,
-      yResolution: tags.YResolution
+      whiteBalance: tags.WhiteBalance
     })
   }
 

@@ -6,9 +6,7 @@ import {Analytics} from '@vercel/analytics/react'
 import Layout from 'components/layout'
 import {trackPage, GA_TRACKING_ID} from 'lib/tracking'
 import {SubcategoryProvider} from 'contexts/subcategory'
-import {HeroProvider} from 'contexts/hero'
 import '../styles/globals.css'
-import {DEFAULT_DEVICE} from 'config'
 
 function handleRouteChange(url: string) {
   trackPage(url)
@@ -16,8 +14,8 @@ function handleRouteChange(url: string) {
 
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter()
-  const {section, post, tag, alternates, heroImages} = pageProps
-  const sectionData = {section, post, tag, hasHero: Boolean(heroImages)}
+  const {section, post, tag, alternates, heroImage} = pageProps
+  const sectionData = {section, post, tag, hasHero: Boolean(heroImage)}
   const languageData = {alternates}
 
   useEffect(() => {
@@ -53,14 +51,12 @@ export default function App({Component, pageProps}: AppProps) {
         }}
       />
 
-      <HeroProvider value={heroImages?.[DEFAULT_DEVICE]}>
-        <SubcategoryProvider>
-          <Layout {...sectionData} {...languageData}>
-            <Component {...pageProps} />
-            <Analytics />
-          </Layout>
-        </SubcategoryProvider>
-      </HeroProvider>
+      <SubcategoryProvider>
+        <Layout {...sectionData} {...languageData}>
+          <Component {...pageProps} />
+          <Analytics />
+        </Layout>
+      </SubcategoryProvider>
     </>
   )
 }

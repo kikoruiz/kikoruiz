@@ -1,5 +1,4 @@
 import {BlogPost} from './blog'
-import {HighlightedImage} from './gallery'
 
 export interface BreadcrumbItem {
   categories?: object[]
@@ -35,10 +34,4 @@ export interface Screens {
   md: number
   sm: number
   xl: number
-}
-
-export interface HeroImages {
-  mobile: HighlightedImage
-  tablet: HighlightedImage
-  desktop: HighlightedImage
 }

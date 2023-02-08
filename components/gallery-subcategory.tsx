@@ -24,7 +24,7 @@ export default function GallerySubcategory({
 }: GallerySubcategoryProps) {
   const {t} = useTranslation()
   const name = t(`gallery.albums.${category}.subcategories.${id}`)
-  const Icon = icons[`${getCapitalizedName(id)}Icon`]
+  const Icon = icons[`Icon${getCapitalizedName(id)}`]
   const elementRef = useRef(null)
   const anchorRef = useRef(null)
 
