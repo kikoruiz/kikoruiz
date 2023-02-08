@@ -22,7 +22,7 @@ export default function PostCard({
         {highlightedImage && (
           <Image
             src={highlightedImage.src}
-            alt={highlightedImage.src}
+            alt={highlightedImage.alt}
             className="aspect-video"
             sizes={highlightedImage.sizes}
             fallbackStyle={highlightedImage.css}

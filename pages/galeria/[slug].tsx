@@ -16,7 +16,7 @@ import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
 
 const DynamicGalleryCarousel = dynamic(
-  () => import('../../components/gallery-carousel')
+  () => import('components/gallery-carousel')
 )
 
 export default function GalleryAlbum({

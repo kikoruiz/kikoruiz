@@ -111,3 +111,9 @@ export async function getAverageColor(src: string) {
 
   return {hex, isDark, isLight}
 }
+
+export function getAverageValue(values: number[]) {
+  const sum = values.reduce((previous, current) => (current += previous))
+
+  return sum / values.length
+}

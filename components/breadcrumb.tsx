@@ -35,7 +35,7 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
   const hasSubcategory = subcategory && categoryItem
   let Icon
   if (hasSubcategory) {
-    Icon = icons[`${getCapitalizedName(subcategory)}Icon`]
+    Icon = icons[`Icon${getCapitalizedName(subcategory)}`]
   }
 
   return items.length > 0 ? (

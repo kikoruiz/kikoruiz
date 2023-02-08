@@ -21,6 +21,49 @@ export interface ImageAverageColor {
   isLight: boolean
 }
 
+export interface RawPicture {
+  aperture: number
+  artist: string
+  colorSpace: string
+  compression: string
+  coordinates?: {
+    latitude: number
+    longitude: number
+  }
+  createDate: string
+  description?: string
+  fileName: string
+  fileSize: string
+  fileType: string
+  fileTypeExtension: string
+  firmware: string
+  focalLength: string
+  hyperfocalDistance: string
+  imageSize: string
+  iso: number
+  keywords: string[]
+  lens: string
+  make: string
+  maxApertureValue: number
+  megapixels: number
+  meteringMode: string
+  mimeType: string
+  model: string
+  offsetTime: string
+  profileDescription: string
+  rating: number
+  rawFileName: string
+  resolution: {
+    x: number
+    y: number
+  }
+  resolutionUnit: string
+  shutterSpeed: string
+  software: string
+  title: string
+  whiteBalance: string
+}
+
 export interface Picture {
   name: string
   id: string

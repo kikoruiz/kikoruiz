@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, CSSProperties} from 'react'
 import Link from 'next/link'
 import NextImage from 'next/image'
 import {ImageFallbackStyle} from 'types/gallery'
@@ -39,6 +39,7 @@ export default function Image({
   url,
   alt,
   className,
+  style = {},
   aspectRatio,
   sizes,
   needsPreload,
@@ -52,12 +53,14 @@ export default function Image({
   const [isLoaded, setIsLoaded] = useState(false)
   const wrapperClassName = `relative${isRounded ? ' rounded-sm' : ''}`
   const isFullSize = sizes === '100vw'
-  const roundedStyle =
-    isRounded || isFullRounded
+  const imageStyle = {
+    ...style,
+    ...(isRounded || isFullRounded
       ? {
           WebkitMaskImage: '-webkit-radial-gradient(white, black)'
         }
-      : {}
+      : {})
+  }
 
   function handleImageLoad() {
     setIsLoaded(true)
@@ -97,7 +100,7 @@ export default function Image({
       href={url}
       title={alt}
       className={`${className} ${wrapperClassName}${aspectClassName}`}
-      style={roundedStyle}
+      style={imageStyle}
       shallow={isShallowLink}
     >
       {content}
@@ -105,7 +108,7 @@ export default function Image({
   ) : (
     <figure
       className={`${className} ${wrapperClassName}${aspectClassName}`}
-      style={roundedStyle}
+      style={imageStyle}
     >
       {content}
     </figure>
@@ -117,6 +120,7 @@ interface ImageProps {
   url?: string
   alt: string
   className: string
+  style?: CSSProperties
   aspectRatio?: string
   sizes: string
   needsPreload?: boolean
