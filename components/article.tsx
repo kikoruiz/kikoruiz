@@ -11,25 +11,22 @@ export default function Article({content, className}: ArticleProps) {
         const image = node.children[0]
         const metastring = image.properties.alt
         const alt = metastring?.replace(/ *\{[^)]*\} */g, '')
-        const isPriority = Boolean(
+        const caption = metastring?.match(/{caption: (.*?)}/)?.pop()
+        const hasPriority = Boolean(
           metastring?.toLowerCase().match('{priority}')
         )
-        const hasCaption = metastring?.toLowerCase().includes('{caption:')
-        const caption = metastring?.match(/{caption: (.*?)}/)?.pop()
 
         return (
           <figure className="relative aspect-3/2 shadow-lg">
             <NextImage
               src={image.properties.src}
               alt={alt}
-              priority={isPriority}
+              priority={hasPriority}
               className="rounded object-cover"
               fill
               sizes="100vw"
             />
-            {hasCaption && (
-              <figcaption aria-label={caption}>{caption}</figcaption>
-            )}
+            {caption && <figcaption aria-label={caption}>{caption}</figcaption>}
           </figure>
         )
       }
