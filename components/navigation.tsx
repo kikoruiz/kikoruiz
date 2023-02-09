@@ -102,7 +102,6 @@ export default function Navigation({section, hasHero}: NavigationProps) {
           const hasCategories = Boolean(section.categories)
           const isSectionExpanded = expandedSections.includes(section.id)
           const sectionName = t(`sections.${section.id}.name`)
-          console.log({sectionName, isActiveSection, isActualSection})
           const sectionClassName = `relative px-6 font-bold after:absolute after:left-0 after:block after:from-transparent ${
             isMenuOpen
               ? 'mx-3 py-3 after:top-0 after:h-full after:w-[1px] after:bg-gradient-to-b cursor-pointer'
