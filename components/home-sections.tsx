@@ -48,7 +48,7 @@ export default function HomeSections({
                 }}
               >
                 <header
-                  className={`flex flex-col items-center px-0 py-3 group-hover:text-current sm:p-3 md:items-start md:py-4 xl:py-5 ${
+                  className={`flex flex-col items-center px-0 pt-3 pb-1.5 group-hover:text-current sm:p-3 md:items-start md:py-4 xl:py-5 ${
                     averageColor.isDark ? 'text-orange-300' : 'text-neutral-300'
                   }`}
                 >
@@ -56,7 +56,7 @@ export default function HomeSections({
                     <Icon className="mr-1.5 w-5 md:w-6 xl:w-8" />
                     {sectionName}
                   </div>
-                  <p className="mt-3 hidden text-sm opacity-75 lg:flex xl:text-base">
+                  <p className="mt-3 hidden text-sm font-light opacity-75 lg:flex xl:text-base">
                     {t(`sections.${id}.description`)}
                   </p>
                 </header>
