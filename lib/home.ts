@@ -1,6 +1,8 @@
 import {getPlaiceholder} from 'plaiceholder'
 import {getAverageColor} from 'lib/utils'
 import {HighlightedImage} from 'types/gallery'
+import {SECTIONS} from 'config'
+import {SectionImage} from 'types'
 
 const HERO_DEFAULT_DATA = {
   alt: 'Kiko Ruiz Photography'
@@ -16,6 +18,23 @@ export async function getHeroImage(): Promise<HighlightedImage> {
     ...HERO_DEFAULT_DATA,
     src,
     css,
-    averageColor
+    averageColor,
+    sizes: '100vw'
   }
+}
+
+export async function getSectionImages(): Promise<SectionImage[]> {
+  return Promise.all(
+    SECTIONS.map(async function ({id, highlightedPicture}) {
+      const src = highlightedPicture
+      const {css} = await getPlaiceholder(src)
+
+      return {
+        id,
+        src,
+        css,
+        sizes: '33vw'
+      }
+    })
+  )
 }

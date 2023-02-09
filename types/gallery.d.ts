@@ -11,7 +11,7 @@ export interface Image {
 }
 
 export interface HighlightedImage extends Image {
-  alt: string
+  alt?: string
   sizes: string
 }
 

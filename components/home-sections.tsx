@@ -1,39 +1,32 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {getSlug} from 'lib/utils'
-import {SECTIONS} from 'config'
 import Image from './image'
+import {SectionImage} from 'types'
 import {ImageAverageColor} from 'types/gallery'
 import IconFingerPrint from 'assets/icons/finger-print.svg'
 import IconPhoto from 'assets/icons/photo.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
 
-const HOME_SECTIONS = {
-  'about-me': {
-    src: '/pictures/2022-08-27_0108.jpg',
-    icon: IconFingerPrint
-  },
-  gallery: {
-    src: '/pictures/2021-12-04_0135.jpg',
-    icon: IconPhoto
-  },
-  blog: {
-    src: '/blog/2022-09-17_hello-world.jpg',
-    icon: IconDocumentText
-  }
+const icons = {
+  'about-me': IconFingerPrint,
+  gallery: IconPhoto,
+  blog: IconDocumentText
 }
 
-export default function HomeSections({averageColor}: HomeSectionsProps) {
+export default function HomeSections({
+  images,
+  averageColor
+}: HomeSectionsProps) {
   const {t} = useTranslation()
 
   return (
     <section className="rounded bg-neutral-900/60 p-1">
       <div className="flex justify-center gap-1">
-        {SECTIONS.map(({id}) => {
+        {images.map(({id, src, css, sizes}) => {
           const href = `/${getSlug(t(`sections.${id}.name`))}`
           const sectionName = t(`sections.${id}.name`)
-          const homeSection = HOME_SECTIONS[id]
-          const Icon = homeSection.icon
+          const Icon = icons[id]
 
           return (
             <Link
@@ -68,14 +61,15 @@ export default function HomeSections({averageColor}: HomeSectionsProps) {
                   </p>
                 </header>
                 <Image
-                  src={homeSection.src}
+                  src={src}
                   alt={sectionName}
                   className="aspect-square w-full overflow-hidden group-first:rounded-bl-sm group-last:rounded-br-sm"
                   style={{
                     WebkitMaskImage:
                       'linear-gradient(to top, rgba(0, 0, 0, 1) 60%, transparent 100%)'
                   }}
-                  sizes="33vw"
+                  fallbackStyle={css}
+                  sizes={sizes}
                 />
               </article>
             </Link>
@@ -87,5 +81,6 @@ export default function HomeSections({averageColor}: HomeSectionsProps) {
 }
 
 interface HomeSectionsProps {
+  images: SectionImage[]
   averageColor: ImageAverageColor
 }

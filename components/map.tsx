@@ -1,4 +1,4 @@
-import {icon} from 'leaflet'
+import {icon, LatLngExpression} from 'leaflet'
 import {MapContainer, TileLayer, Marker} from 'react-leaflet'
 import {getAverageValue, getSlug} from 'lib/utils'
 import {RawPicture} from 'types/gallery'
@@ -7,7 +7,10 @@ import 'leaflet/dist/leaflet.css'
 export default function Map({pictures}: MapProps) {
   const latitudes = pictures.map(({coordinates}) => coordinates.latitude)
   const longitudes = pictures.map(({coordinates}) => coordinates.longitude)
-  const center = [getAverageValue(latitudes), getAverageValue(longitudes)]
+  const center = [
+    getAverageValue(latitudes),
+    getAverageValue(longitudes)
+  ] as LatLngExpression
 
   return (
     <MapContainer
