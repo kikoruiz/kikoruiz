@@ -35,9 +35,9 @@ export default function Home({
       <Hero image={heroImage} />
 
       <div className="p-3">
-        <header className="mb-6 flex flex-col items-center break-words rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 py-12 px-6 xl:flex-row xl:justify-center">
+        <header className="mb-6 flex flex-col items-center break-words rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 py-12 px-6 text-white/80 xl:flex-row xl:justify-center">
           <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
-          <h1 className="break-words text-center text-4xl font-black leading-[1.125] text-white/90 drop-shadow sm:text-5xl xl:text-6xl">
+          <h1 className="break-words text-center text-4xl font-black leading-[1.125] drop-shadow sm:text-5xl xl:text-6xl">
             Kiko Ruiz <span className="font-thin">Photography</span>
           </h1>
         </header>
