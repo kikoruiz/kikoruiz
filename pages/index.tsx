@@ -1,20 +1,25 @@
 import {useState} from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-import {Alternate} from 'types'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {getHeroImage} from 'lib/home'
-import Hero from 'components/hero'
+import {getHeroImage, getSectionImages} from 'lib/home'
 import {getAllPictures} from 'lib/gallery/pictures'
-import {HighlightedImage, RawPicture} from 'types/gallery'
+import Hero from 'components/hero'
 import HomeSections from 'components/home-sections'
+import {Alternate, SectionImage} from 'types'
+import {HighlightedImage, RawPicture} from 'types/gallery'
 import Logo from 'assets/brand/logo.svg'
 
 const DynamicMap = dynamic(() => import('components/map'), {
   ssr: false
 })
 
-export default function Home({heroImage, pictures, alternates}: HomeProps) {
+export default function Home({
+  heroImage,
+  sectionImages,
+  pictures,
+  alternates
+}: HomeProps) {
   const [showMap] = useState(false)
   const {averageColor} = heroImage
 
@@ -37,7 +42,7 @@ export default function Home({heroImage, pictures, alternates}: HomeProps) {
           </h1>
         </header>
 
-        <HomeSections averageColor={averageColor} />
+        <HomeSections images={sectionImages} averageColor={averageColor} />
 
         <section className="mt-12">
           {showMap && <DynamicMap pictures={pictures} />}
@@ -53,6 +58,7 @@ export default function Home({heroImage, pictures, alternates}: HomeProps) {
 
 export async function getStaticProps({locales, defaultLocale}) {
   const heroImage = await getHeroImage()
+  const sectionImages = await getSectionImages()
   const pictures = await getAllPictures()
   const picturesWithCoordinates = pictures.filter(
     ({coordinates}) => coordinates
@@ -62,12 +68,18 @@ export async function getStaticProps({locales, defaultLocale}) {
   )) as Alternate[]
 
   return {
-    props: {heroImage, pictures: picturesWithCoordinates, alternates}
+    props: {
+      heroImage,
+      sectionImages,
+      pictures: picturesWithCoordinates,
+      alternates
+    }
   }
 }
 
 interface HomeProps {
   heroImage: HighlightedImage
+  sectionImages: SectionImage[]
   pictures: RawPicture[]
   alternates: Alternate[]
 }

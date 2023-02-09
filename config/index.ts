@@ -3,13 +3,14 @@ import {GALLERY_ALBUMS} from './gallery'
 export const DEFAULT_ORIGIN = 'https://kikoruiz.es'
 
 export const SECTIONS = [
-  {id: 'about-me'},
+  {id: 'about-me', highlightedPicture: '/pictures/2022-08-27_0108.jpg'},
   {
     id: 'gallery',
     categories: GALLERY_ALBUMS,
-    localePrefix: 'gallery.albums.'
+    localePrefix: 'gallery.albums.',
+    highlightedPicture: '/pictures/2021-12-04_0135.jpg'
   },
-  {id: 'blog'}
+  {id: 'blog', highlightedPicture: '/blog/2022-09-17_hello-world.jpg'}
 ]
 
 export const PERSONAL_INFO = {

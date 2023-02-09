@@ -13,7 +13,7 @@ export default function Hero({image}: HeroProps) {
           WebkitMaskImage:
             'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, transparent 100%)'
         }}
-        sizes="100vw"
+        sizes={image.sizes}
         needsPreload
       />
     </div>
