@@ -70,6 +70,7 @@ export default function HomeSections({
                   }}
                   fallbackStyle={css}
                   sizes={sizes}
+                  needsPreload
                 />
               </article>
             </Link>
