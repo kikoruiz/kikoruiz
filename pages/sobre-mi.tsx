@@ -29,12 +29,12 @@ export default function AboutMe({
         ))}
       </Head>
 
-      <section className="flex flex-col p-6 sm:flex-row sm:py-0">
-        <div className="mb-12 hidden w-full sm:mr-6 sm:block sm:w-1/3">
+      <section className="flex flex-col-reverse p-6 sm:flex-row sm:py-0">
+        <div className="mt-12 w-full sm:mt-0 sm:mb-12 sm:mr-6 sm:w-1/3">
           <Image
             src={avatar.src}
             alt={t('sections.about-me.name')}
-            className="mx-12 mb-6 aspect-square overflow-hidden rounded-full border-8 border-neutral-600/30 sm:mx-4 md:mx-6 xl:mx-14"
+            className="mx-12 mb-6 hidden aspect-square overflow-hidden rounded-full border-8 border-neutral-600/30 sm:mx-4 sm:block md:mx-6 xl:mx-14"
             sizes={avatar.sizes}
             fallbackStyle={avatar.css}
             isFullRounded

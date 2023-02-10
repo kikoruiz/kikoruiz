@@ -1,5 +1,7 @@
 # Hello! 👋, my name is Kiko
 
+![Kiko Ruiz {"square": true, "rounded": true, "priority": true, "mobile": true}](/avatar.jpg)
+
 and I am a passionate about **photography** 📷, a passion that has been with me for many years, but especially since I bought my first digital SLR camera in 2016, when I began to introduce myself to **landscape** photography.
 
 Some of the things that I enjoy the most about this hobby are the shared **experiences**, the **unique** moments that I try to reflect in my photographs and, probably the most, the connection that I live with **nature** as I got closer to it to represent those moments.
