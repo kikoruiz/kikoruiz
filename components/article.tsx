@@ -11,22 +11,47 @@ export default function Article({content, className}: ArticleProps) {
         const image = node.children[0]
         const metastring = image.properties.alt
         const alt = metastring?.replace(/ *\{[^)]*\} */g, '')
-        const caption = metastring?.match(/{caption: (.*?)}/)?.pop()
-        const hasPriority = Boolean(
-          metastring?.toLowerCase().match('{priority}')
-        )
+        const [properties] = metastring?.match(/\{(.*)\}/g) || []
+        let caption = ''
+        let hasPriority = false
+        let isSquare = false
+        let isRounded = false
+        let onlyInMobile = false
+
+        if (properties) {
+          const parsed = JSON.parse(properties)
+
+          if (parsed.caption) caption = parsed.caption
+          if (parsed.priority) hasPriority = parsed.priority
+          if (parsed.square) isSquare = parsed.square
+          if (parsed.rounded) isRounded = parsed.rounded
+          if (parsed.mobile) onlyInMobile = parsed.mobile
+        }
 
         return (
-          <figure className="relative aspect-3/2 shadow-lg">
+          <figure
+            className={`relative overflow-hidden shadow-lg ${
+              isSquare ? 'aspect-square' : 'aspect-3/2'
+            } ${isRounded ? 'mx-auto w-2/3 rounded-full' : 'rounded'}${
+              onlyInMobile ? ' sm:hidden' : ''
+            }`}
+          >
             <NextImage
               src={image.properties.src}
               alt={alt}
               priority={hasPriority}
-              className="rounded object-cover"
+              className="object-cover"
               fill
-              sizes="100vw"
+              sizes="100%"
             />
-            {caption && <figcaption aria-label={caption}>{caption}</figcaption>}
+            {caption && (
+              <figcaption
+                className="absolute bottom-0 px-3 py-1.5 text-xs shadow-sm"
+                aria-label={caption}
+              >
+                {caption}
+              </figcaption>
+            )}
           </figure>
         )
       }

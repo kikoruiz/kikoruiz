@@ -1,5 +1,7 @@
 # ¡Hola! 👋, mi nombre es Kiko
 
+![Kiko Ruiz {"square": true, "rounded": true, "priority": true, "mobile": true}](/avatar.jpg)
+
 y soy un apasionado de la **fotografía** 📷, una pasión que me acompaña desde hace bastantes años, pero sobre todo desde que adquirí mi primera cámara réflex digital el año 2016 y me empecé a introducir a la fotografía **de paisaje**.
 
 Algunas de las cosas que más disfruto de esta afición son las **experiencias** compartidas, los **momentos** únicos que intento reflejar en mis fotografías y, probablemente lo que más, la conexión que vivo con la **naturaleza** al acercarme más a ella para representar dichos momentos.
