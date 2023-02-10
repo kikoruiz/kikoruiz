@@ -7,6 +7,15 @@ import {SectionData} from 'types'
 import icons from './gallery-subcategory-icons'
 import {getCapitalizedName, getSlug} from 'lib/utils'
 import {GALLERY_ALBUMS} from 'config/gallery'
+import IconFingerPrint from 'assets/icons/finger-print.svg'
+import IconPhoto from 'assets/icons/photo.svg'
+import IconDocumentText from 'assets/icons/document-text.svg'
+
+const sectionIcons = {
+  'about-me': IconFingerPrint,
+  gallery: IconPhoto,
+  blog: IconDocumentText
+}
 
 function scrollToTop() {
   if (typeof window === 'undefined') return
@@ -33,14 +42,16 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
       ({id}) => getSlug(t(`gallery.albums.${id}.name`)) === category
     )
   const hasSubcategory = subcategory && categoryItem
-  let Icon
+  const needsSectionIcon = items.length === 1
+  const SectionIcon = sectionIcons[section]
+  let SubcategoryIcon
   if (hasSubcategory) {
-    Icon = icons[`Icon${getCapitalizedName(subcategory)}`]
+    SubcategoryIcon = icons[`Icon${getCapitalizedName(subcategory)}`]
   }
 
   return items.length > 0 ? (
     <div id="breadcrumb" className="bg-neutral-800/75">
-      <div className="container mx-auto py-2 px-6">
+      <div className="container mx-auto flex py-2 px-6">
         {items.map(({href, id, name}) => {
           if (href) {
             return (
@@ -48,8 +59,9 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
                 key={id}
                 href={href}
                 title={t('navigation.back-to', {section: name})}
-                className="font-light text-neutral-300/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
+                className="inline-flex font-light text-neutral-300/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
               >
+                <SectionIcon className="mr-1 w-5" />
                 {name}
               </Link>
             )
@@ -66,14 +78,17 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
               {name}
             </span>
           ) : (
-            <span key={id} className="font-bold text-orange-300/60">
+            <span key={id} className="flex font-bold text-orange-300/60">
+              {needsSectionIcon && <SectionIcon className="mr-1 w-5" />}
               {name}
             </span>
           )
         })}
         {hasSubcategory && (
           <span className="inline-flex items-center font-bold text-orange-300/60">
-            {Icon && <Icon className="mr-1.5 ml-0.5 w-3 rounded-full" />}
+            {SubcategoryIcon && (
+              <SubcategoryIcon className="mr-1.5 ml-0.5 w-3 rounded-full" />
+            )}
             {t(
               `${section}.albums.${categoryItem.id}.subcategories.${subcategory}`
             )}
