@@ -60,13 +60,14 @@ export default function HomeSections({
                     {t(`sections.${id}.description`)}
                   </p>
                 </header>
+
                 <Image
                   src={src}
                   alt={sectionName}
                   className="aspect-square w-full overflow-hidden group-first:rounded-bl-sm group-last:rounded-br-sm"
                   style={{
                     WebkitMaskImage:
-                      'linear-gradient(to top, rgba(0, 0, 0, 1) 60%, transparent 100%)'
+                      'linear-gradient(to top, rgba(0, 0, 0, 1) 75%, transparent 100%)'
                   }}
                   fallbackStyle={css}
                   sizes={sizes}
