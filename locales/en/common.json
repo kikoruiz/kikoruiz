@@ -60,6 +60,10 @@
       }
     }
   },
+  "map": {
+    "button": "Locate my pictures on the map",
+    "close": "Close map"
+  },
   "languages": {
     "selector": {
       "label": "Language:"

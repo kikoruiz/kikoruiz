@@ -60,6 +60,10 @@
       }
     }
   },
+  "map": {
+    "button": "Localitzar les meues fotos en el mapa",
+    "close": "Tancar el mapa"
+  },
   "languages": {
     "selector": {
       "label": "Llengua:"
