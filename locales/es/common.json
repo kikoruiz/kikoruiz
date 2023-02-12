@@ -60,6 +60,10 @@
       }
     }
   },
+  "map": {
+    "button": "Localizar mis fotos en el mapa",
+    "close": "Cerrar el mapa"
+  },
   "languages": {
     "selector": {
       "label": "Idioma:"
