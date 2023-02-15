@@ -19,7 +19,8 @@
     }
   },
   "album": {
-    "back-to-gallery": "Tornar a Galeria"
+    "back-to-gallery": "Tornar a Galeria",
+    "back-to-tags": "Veure tots els tags"
   },
   "sorting": {
     "label": "Ordenar per:",
@@ -36,5 +37,38 @@
       }
     },
     "direction": "Direcció d'ordenació"
+  },
+  "tags": {
+    "aurora-borealis": "Aurora boreal",
+    "blue-hour": "Hora blava",
+    "bridge": "Pont",
+    "castle": "Castell",
+    "catalunya": "Catalunya",
+    "cave": "Cova",
+    "city": "Ciutat",
+    "comunitat-valenciana": "Comunitat Valenciana",
+    "costa-blanca": "Costa Blanca",
+    "costa-brava": "Costa Brava",
+    "costa-daurada": "Costa Daurada",
+    "delta-de-l-ebre": "Delta de l'Ebre",
+    "forest": "Bosc",
+    "full-moon": "Lluna plena",
+    "golden-hour": "Hora daurada",
+    "human": "Humà",
+    "lake": "Llac",
+    "lighthouse": "Far",
+    "milky-way": "Via làctea",
+    "mountain": "Muntanya",
+    "panorama": "Panoràmica",
+    "river": "Riu",
+    "rocks": "Roques",
+    "sunrise": "Albada",
+    "sunset": "Posta de sol",
+    "sunstar": "Estrella de sol",
+    "telephoto": "Teleobjectiu",
+    "tower": "Torre",
+    "trees": "Arbres",
+    "waterfall": "Salt d'aigua",
+    "waves": "Ones"
   }
 }

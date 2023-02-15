@@ -23,7 +23,12 @@ function scrollToTop() {
   window.scrollTo({top: 0})
 }
 
-export default function Breadcrumb({section, post, tag}: SectionData) {
+export default function Breadcrumb({
+  section,
+  subSection,
+  post,
+  tag
+}: SectionData) {
   const {t} = useTranslation()
   const router = useRouter()
   const {query} = router
@@ -31,6 +36,7 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
   const category = query.slug as string
   const items = fromSectionToBreadcrumbItems({
     section,
+    subSection,
     category,
     post,
     tag,
@@ -52,7 +58,9 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
   return items.length > 0 ? (
     <div id="breadcrumb" className="bg-neutral-800/75">
       <div className="container mx-auto flex py-2 px-6">
-        {items.map(({href, id, name}) => {
+        {items.map(({href, id, name}, index) => {
+          const isFirstItem = index === 0
+
           if (href) {
             return (
               <Link
@@ -61,7 +69,7 @@ export default function Breadcrumb({section, post, tag}: SectionData) {
                 title={t('navigation.back-to', {section: name})}
                 className="inline-flex font-light text-neutral-300/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
               >
-                <SectionIcon className="mr-1 w-5" />
+                {isFirstItem && <SectionIcon className="mr-1 w-5" />}
                 {name}
               </Link>
             )

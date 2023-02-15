@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import getT from 'next-translate/getT'
-import {GALLERY_ALBUMS} from 'config/gallery'
+import {GALLERY_ALBUMS, GALLERY_TAGS} from 'config/gallery'
 import {getSlug} from '../utils'
 import {RawPicture} from 'types/gallery'
 
@@ -63,4 +63,20 @@ export async function getGalleryPictures({
   })
 
   return pictures.filter(taggedPictures({tags, excludeTags}))
+}
+
+export async function getGalleryPicturesByTag({
+  locale,
+  tag
+}: {
+  locale: string
+  tag: string
+}) {
+  const pictures = await getAllPictures()
+  const t = await getT(locale, 'gallery')
+  const originalTag = GALLERY_TAGS.find(
+    galleryTag => getSlug(t(`tags.${getSlug(galleryTag)}`)) === tag
+  )
+
+  return pictures.filter(({keywords}) => keywords.includes(originalTag))
 }

@@ -1,22 +1,25 @@
 import Head from 'next/head'
+import useTranslation from 'next-translate/useTranslation'
 import {getAllPosts} from 'lib/blog/posts'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getTagsData} from 'lib/blog/tags'
-import PostsList from 'components/posts-list'
-import {BlogPost, BlogTag} from 'types/blog'
-import {Alternate} from 'types'
+import BlogList from 'components/blog-list'
+import {BlogPost} from 'types/blog'
+import {Alternate, Tag} from 'types'
 
 export default function Blog({posts, tags, alternates}: BlogProps) {
+  const {t} = useTranslation()
+
   return (
     <>
       <Head>
-        <title>Kiko Ruiz / Blog</title>
+        <title>{`Kiko Ruiz / ${t('sections.blog.name')}`}</title>
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
       </Head>
 
-      <PostsList tags={tags} posts={posts} />
+      <BlogList tags={tags} posts={posts} />
     </>
   )
 }
@@ -31,8 +34,9 @@ export async function getStaticProps({
   defaultLocale: string
 }) {
   const section = 'blog'
+  const subSection = 'tags'
   const posts = await getAllPosts()
-  const tags = await getTagsData({locale})
+  const tags = await getTagsData({locale, subSection})
   const alternates = await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale, section}))
   )
@@ -49,6 +53,6 @@ export async function getStaticProps({
 
 interface BlogProps {
   posts: BlogPost[]
-  tags: BlogTag[]
+  tags: Tag[]
   alternates: Alternate[]
 }

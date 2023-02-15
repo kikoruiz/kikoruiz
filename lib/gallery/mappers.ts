@@ -41,9 +41,11 @@ function getPrettyDate(date: string, locale: string) {
 
 export function fromExifToGallery({
   slug,
+  tag,
   locale
 }: {
-  slug: string
+  slug?: string
+  tag?: string
   locale: string
 }) {
   return async function ({
@@ -92,7 +94,9 @@ export function fromExifToGallery({
     return {
       name: title,
       id: fileName.split('.')[0],
-      url: `/${getSlug(t('sections.gallery.name'))}/${slug}`,
+      url: `/${getSlug(t('sections.gallery.name'))}/${
+        tag ? `tags/${tag}` : slug
+      }`,
       slug: getSlug(title),
       image: {src, orientation, css} as Image,
       imageSize,

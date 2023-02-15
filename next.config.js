@@ -28,6 +28,11 @@ module.exports = withPlaiceholder(
           source: '/en/gallery/:slug',
           destination: '/en/galeria/:slug',
           locale: false
+        },
+        {
+          source: '/en/gallery/tags/:tag',
+          destination: '/en/galeria/tags/:tag',
+          locale: false
         }
       ]
     },

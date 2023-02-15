@@ -1,95 +1,34 @@
-import {useState, useEffect} from 'react'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
-import {useRouter} from 'next/router'
 import getT from 'next-translate/getT'
-import GalleryList from 'components/gallery-list'
-import GalleryHeader from 'components/gallery-header'
+import useTranslation from 'next-translate/useTranslation'
 import {getGalleryAlbums} from 'lib/gallery/albums'
 import {getGalleryPictures} from 'lib/gallery/pictures'
 import {fromExifToGallery} from 'lib/gallery/mappers'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {getSlug, sortListBy} from 'lib/utils'
-import {DEFAULT_SORTING_OPTION, GALLERY_ALBUMS} from 'config/gallery'
-import useSubcategoryContext from 'contexts/subcategory'
+import {getSlug} from 'lib/utils'
+import {GALLERY_ALBUMS} from 'config/gallery'
 import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
+import GalleryPage from 'components/gallery-page'
 
-const DynamicGalleryCarousel = dynamic(
-  () => import('components/gallery-carousel')
-)
-
-export default function GalleryAlbum({
-  pictures,
-  category,
-  subcategories,
-  alternates
-}: GalleryAlbumProps) {
-  const {query} = useRouter()
-  const {carousel} = query
-  const [isCarouselOpen, setIsCarouselOpen] = useState(false)
-  const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
-  const [isReversedSorting, setIsReversedSorting] = useState(false)
-  const [items, setItems] = useState(
-    sortListBy(pictures, sortingOption) as Picture[]
-  )
-  const {setSubcategory} = useSubcategoryContext()
-  const hasSubcategories = subcategories?.length > 0
-
-  function handleSortingChange(event) {
-    const option = event.target.value
-
-    setSortingOption(option)
-  }
-
-  function toggleSortingDirection() {
-    setIsReversedSorting(!isReversedSorting)
-  }
-
-  useEffect(() => {
-    const sortedItems = sortListBy(pictures, sortingOption) as Picture[]
-
-    setItems(isReversedSorting ? [...sortedItems].reverse() : [...sortedItems])
-  }, [pictures, sortingOption, isReversedSorting])
-
-  useEffect(() => {
-    setIsCarouselOpen(Boolean(carousel))
-  }, [setIsCarouselOpen, carousel])
-
-  // Reset subcategory value.
-  useEffect(
-    () => () => {
-      if (hasSubcategories) setSubcategory(null)
-    },
-    [hasSubcategories, setSubcategory]
-  )
+export default function GallerySlug({
+  alternates,
+  ...pageProps
+}: GallerySlugProps) {
+  const {t} = useTranslation()
 
   return (
     <>
       <Head>
-        <title>Kiko Ruiz</title>
+        <title>{`Kiko Ruiz / ${t(
+          `gallery.albums.${pageProps.category}.name`
+        )}`}</title>
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
       </Head>
 
-      <GalleryHeader />
-      <GalleryList
-        pictures={items}
-        category={category}
-        subcategories={subcategories}
-        onSort={handleSortingChange}
-        sortingOption={sortingOption}
-        toggleSortingDirection={toggleSortingDirection}
-        isReversedSorting={isReversedSorting}
-      />
-      {isCarouselOpen && (
-        <DynamicGalleryCarousel
-          pictures={items}
-          subcategories={subcategories}
-          setIsCarouselOpen={setIsCarouselOpen}
-        />
-      )}
+      <GalleryPage {...pageProps} />
     </>
   )
 }
@@ -156,7 +95,7 @@ export async function getStaticProps({
   }
 }
 
-interface GalleryAlbumProps {
+interface GallerySlugProps {
   pictures: Picture[]
   category?: string
   subcategories?: Subcategory[]

@@ -17,12 +17,20 @@ export interface Alternate {
 export interface SectionData {
   post?: BlogPost
   section?: string
+  subSection?: string
   tag?: string
   hasHero?: boolean
 }
 
 export interface SectionImage extends HighlightedImage {
   id: string
+}
+
+export interface Tag {
+  href: string
+  id: string
+  name: string
+  slug: string
 }
 
 export interface ThemeScreens {

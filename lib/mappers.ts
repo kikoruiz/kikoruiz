@@ -9,12 +9,14 @@ import {Alternate, BreadcrumbItem} from 'types'
 
 export function fromSectionToBreadcrumbItems({
   section,
+  subSection,
   category,
   post,
   tag,
   t
 }: {
   section: string
+  subSection: string
   category: string
   post: BlogPost
   tag: string
@@ -32,7 +34,7 @@ export function fromSectionToBreadcrumbItems({
   if (!sectionItem) return items
 
   // When there is more than one level.
-  if (categoryItem || post || tag) {
+  if (subSection || categoryItem || post || tag) {
     const slug = getSlug(t(`sections.${sectionItem.id}.name`))
 
     items.push({
@@ -47,9 +49,24 @@ export function fromSectionToBreadcrumbItems({
         name: post.title
       })
     } else if (tag) {
+      const isGallerySection = section === 'gallery'
+
+      items.push({
+        ...sectionItem,
+        id: `${sectionItem.id}-tags`,
+        href: `/${slug}/${getSlug(t('tags'))}`,
+        name: t('tags')
+      })
       items.push({
         id: tag,
-        name: t('blog:post.tag', {tag: t(`blog:tags.${tag}`)})
+        name: isGallerySection
+          ? `# ${t(`gallery:tags.${getSlug(tag)}`).toLowerCase()}`
+          : t(`blog:tags.${tag}`)
+      })
+    } else if (subSection) {
+      items.push({
+        id: subSection,
+        name: t(subSection)
       })
     } else {
       items.push({
@@ -70,12 +87,14 @@ export async function fromLocalesToAlternates({
   defaultLocale,
   locale: currentLocale,
   section,
+  subSection,
   category,
   tag
 }: {
   defaultLocale: string
   locale?: string
   section?: string
+  subSection?: string
   category?: string
   tag?: string
 }) {
@@ -86,6 +105,7 @@ export async function fromLocalesToAlternates({
     const localePath = locale === defaultLocale ? '' : `/${locale}`
     const sectionSlug = getSlug(t(`sections.${section}.name`))
     const sectionPath = section ? `/${sectionSlug}` : ''
+    const subSectionPath = subSection ? `/${getSlug(t(subSection))}` : ''
     const sectionData = SECTIONS.find(({id}) => section === id)
     const categoryData =
       category &&
@@ -101,15 +121,23 @@ export async function fromLocalesToAlternates({
     const categoryPath = categoryData
       ? `/${getSlug(t(`${sectionData.localePrefix}${categoryData.id}.name`))}`
       : ''
+    const isGallerySection = section === 'gallery'
+    const galleryT = await getT(locale, 'gallery')
     const blogT = await getT(locale, 'blog')
-    const tagPath = tag ? `/tag/${remove(blogT(`tags.${tag}`))}` : ''
+    let actualTag
+    if (tag) {
+      actualTag = isGallerySection
+        ? getSlug(galleryT(`tags.${getSlug(tag)}`))
+        : remove(blogT(`tags.${tag}`))
+    }
+    const tagPath = tag ? `/tags/${actualTag}` : ''
     const endingPath = justSlug || categoryPath || tagPath
 
     return {
       locale,
       href: `${
         process.env.ORIGIN || DEFAULT_ORIGIN
-      }${localePath}${sectionPath}${endingPath}`
+      }${localePath}${sectionPath}${subSectionPath}${endingPath}`
     } as Alternate
   }
 }
