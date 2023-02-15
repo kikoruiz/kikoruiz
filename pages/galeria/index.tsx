@@ -1,23 +1,27 @@
 import Head from 'next/head'
-import GalleryList from '../../components/gallery-list'
-import GalleryHeader from '../../components/gallery-header'
-import {getGalleryAlbums} from '../../lib/gallery/albums'
-import {fromAlbumToGallery} from '../../lib/gallery/mappers'
-import {fromLocalesToAlternates} from '../../lib/mappers'
+import useTranslation from 'next-translate/useTranslation'
+import GalleryList from 'components/gallery-list'
+import GalleryHeader from 'components/gallery-header'
+import {getGalleryAlbums} from 'lib/gallery/albums'
+import {fromAlbumToGallery} from 'lib/gallery/mappers'
+import {fromLocalesToAlternates} from 'lib/mappers'
 import {Picture} from 'types/gallery'
 import {Alternate} from 'types'
 
 export default function Gallery({albums, alternates}: GalleryProps) {
+  const {t} = useTranslation()
+
   return (
     <>
       <Head>
-        <title>Kiko Ruiz</title>
+        <title>{`Kiko Ruiz / ${t('sections.gallery.name')}`}</title>
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
       </Head>
 
       <GalleryHeader isAlbum />
+
       <GalleryList pictures={albums} isAlbum />
     </>
   )

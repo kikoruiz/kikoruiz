@@ -19,7 +19,8 @@
     }
   },
   "album": {
-    "back-to-gallery": "Back to Gallery"
+    "back-to-gallery": "Back to Gallery",
+    "back-to-tags": "See all tags"
   },
   "sorting": {
     "label": "Sort by:",
@@ -36,5 +37,38 @@
       }
     },
     "direction": "Sort direction"
+  },
+  "tags": {
+    "aurora-borealis": "Aurora borealis",
+    "blue-hour": "Blue hour",
+    "bridge": "Bridge",
+    "castle": "Castle",
+    "catalunya": "Catalonia",
+    "cave": "Cave",
+    "city": "City",
+    "comunitat-valenciana": "Comunitat Valenciana",
+    "costa-blanca": "Costa Blanca",
+    "costa-brava": "Costa Brava",
+    "costa-daurada": "Costa Daurada",
+    "delta-de-l-ebre": "Delta de l'Ebre",
+    "forest": "Forest",
+    "full-moon": "Full moon",
+    "golden-hour": "Golden hour",
+    "human": "Human",
+    "lake": "Lake",
+    "lighthouse": "Lighthouse",
+    "milky-way": "Milky way",
+    "mountain": "Mountain",
+    "panorama": "Panorama",
+    "river": "River",
+    "rocks": "Rocks",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "sunstar": "Sunstar",
+    "telephoto": "Telephoto",
+    "tower": "Tower",
+    "trees": "Trees",
+    "waterfall": "Waterfall",
+    "waves": "Waves"
   }
 }

@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
@@ -7,11 +8,14 @@ import {getHeroImage, getSectionImages} from 'lib/home'
 import {getAllPictures} from 'lib/gallery/pictures'
 import Hero from 'components/hero'
 import HomeSections from 'components/home-sections'
-import {Alternate, SectionImage} from 'types'
+import {Alternate, SectionImage, Tag} from 'types'
 import {HighlightedImage, RawPicture} from 'types/gallery'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
+import GalleryTags from 'components/gallery-tags'
+import {getGalleryTags} from 'lib/gallery/tags'
+import {getSlug} from 'lib/utils'
 
 const DynamicMap = dynamic(() => import('components/map'), {
   ssr: false
@@ -21,6 +25,7 @@ export default function Home({
   heroImage,
   sectionImages,
   pictures,
+  galleryTags,
   alternates
 }: HomeProps) {
   const [showMap, setShowMap] = useState(false)
@@ -70,6 +75,21 @@ export default function Home({
           )}
         </section>
 
+        <section className="mt-6 rounded bg-gradient-to-t from-neutral-800/60 to-neutral-800/30 hover:border-orange-300 lg:from-neutral-900/90 lg:to-neutral-900/80">
+          <header className="mx-3 border-b border-neutral-600/30 py-4">
+            <Link
+              href={`/${getSlug(t('sections.gallery.name'))}/${getSlug(
+                t('tags')
+              )}`}
+              title={t('home.gallery-tags')}
+              className="text-xl font-extralight text-neutral-300/30 drop-shadow hover:text-orange-300/60 md:text-2xl"
+            >
+              {t('home.gallery-tags')}
+            </Link>
+          </header>
+          <GalleryTags tags={galleryTags} />
+        </section>
+
         <section className="mt-16 flex items-center justify-center p-12">
           <Logo className="w-fit fill-white/5 xl:w-[60%]" />
         </section>
@@ -78,13 +98,14 @@ export default function Home({
   )
 }
 
-export async function getStaticProps({locales, defaultLocale}) {
+export async function getStaticProps({locale, locales, defaultLocale}) {
   const heroImage = await getHeroImage()
   const sectionImages = await getSectionImages()
   const pictures = await getAllPictures()
   const picturesWithCoordinates = pictures.filter(
     ({coordinates}) => coordinates
   )
+  const galleryTags = await getGalleryTags({locale})
   const alternates = (await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale}))
   )) as Alternate[]
@@ -94,6 +115,7 @@ export async function getStaticProps({locales, defaultLocale}) {
       heroImage,
       sectionImages,
       pictures: picturesWithCoordinates,
+      galleryTags,
       alternates
     }
   }
@@ -103,5 +125,6 @@ interface HomeProps {
   heroImage: HighlightedImage
   sectionImages: SectionImage[]
   pictures: RawPicture[]
+  galleryTags: Tag[]
   alternates: Alternate[]
 }

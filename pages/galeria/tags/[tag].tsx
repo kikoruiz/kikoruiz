@@ -1,28 +1,27 @@
 import Head from 'next/head'
 import getT from 'next-translate/getT'
 import useTranslation from 'next-translate/useTranslation'
-import {getGalleryAlbums} from 'lib/gallery/albums'
-import {getGalleryPictures} from 'lib/gallery/pictures'
+import {GALLERY_TAGS} from 'config/gallery'
 import {fromExifToGallery} from 'lib/gallery/mappers'
-import {fromLocalesToAlternates} from 'lib/mappers'
+import {getGalleryPicturesByTag} from 'lib/gallery/pictures'
 import {getSlug} from 'lib/utils'
-import {GALLERY_ALBUMS} from 'config/gallery'
-import {Picture, Subcategory} from 'types/gallery'
+import {fromLocalesToAlternates} from 'lib/mappers'
 import {Alternate} from 'types'
+import {Picture} from 'types/gallery'
 import GalleryPage from 'components/gallery-page'
 
-export default function GallerySlug({
+export default function GalleryTag({
   alternates,
   ...pageProps
-}: GallerySlugProps) {
-  const {t} = useTranslation()
+}: GalleryTagProps) {
+  const {t} = useTranslation('gallery')
 
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t(
-          `gallery.albums.${pageProps.category}.name`
-        )}`}</title>
+        <title>{`Kiko Ruiz / ${t('common:tags')} # ${t(
+          `tags.${getSlug(pageProps.tag)}`
+        ).toLowerCase()}`}</title>
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
@@ -35,17 +34,17 @@ export default function GallerySlug({
 
 export async function getStaticPaths({locales}) {
   let paths = []
-  const albums = await getGalleryAlbums()
 
   for (const locale of locales) {
-    const t = await getT(locale, 'common')
+    const t = await getT(locale, 'gallery')
 
     paths = paths.concat(
-      albums.map(({id}) => {
-        const slug = getSlug(t(`gallery.albums.${id}.name`))
+      GALLERY_TAGS.map(galleryTag => {
+        const originalSlug = getSlug(galleryTag)
+        const tag = getSlug(t(`tags.${originalSlug}`))
 
         return {
-          params: {slug},
+          params: {tag},
           locale
         }
       })
@@ -56,30 +55,27 @@ export async function getStaticPaths({locales}) {
 }
 
 export async function getStaticProps({
-  params: {slug},
+  params: {tag},
   locale,
   locales,
   defaultLocale
 }) {
   const section = 'gallery'
-  const galleryPictures = await getGalleryPictures({locale, slug})
+  const galleryPictures = await getGalleryPicturesByTag({locale, tag})
   const pictures: Picture[] = await Promise.all(
-    galleryPictures.map(fromExifToGallery({locale, slug}))
+    galleryPictures.map(fromExifToGallery({locale, tag}))
   )
-  const t = await getT(locale, 'common')
-  const category = GALLERY_ALBUMS.find(({id}) => {
-    const albumSlug = getSlug(t(`gallery.albums.${id}.name`))
-
-    return albumSlug === slug
-  })
-  const subcategories = category?.subcategories
+  const t = await getT(locale, 'gallery')
+  const actualTag = GALLERY_TAGS.find(
+    galleryTag => getSlug(t(`tags.${getSlug(galleryTag)}`)) === tag
+  )
   const alternates: Alternate[] = await Promise.all(
     locales.map(
       await fromLocalesToAlternates({
         defaultLocale,
         locale,
         section,
-        category: slug
+        tag: actualTag
       })
     )
   )
@@ -87,17 +83,15 @@ export async function getStaticProps({
   return {
     props: {
       pictures,
-      ...(category && {category: category.id}),
-      ...(subcategories && {subcategories}),
       alternates,
+      tag: actualTag,
       section
     }
   }
 }
 
-interface GallerySlugProps {
+interface GalleryTagProps {
   pictures: Picture[]
-  category?: string
-  subcategories?: Subcategory[]
+  tag: string
   alternates: Alternate[]
 }

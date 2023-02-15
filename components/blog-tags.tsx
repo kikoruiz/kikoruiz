@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
-import {BlogTag} from 'types/blog'
+import {Tag} from 'types'
 
 export default function BlogTags({tags, isPost = false}: BlogTagsProps) {
   const {t} = useTranslation('blog')
@@ -45,6 +45,6 @@ function tagClassName(tag) {
 }
 
 interface BlogTagsProps {
-  tags: BlogTag[]
+  tags: Tag[]
   isPost?: boolean
 }

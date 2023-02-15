@@ -1,3 +1,4 @@
+import {Tag} from 'types'
 import {HighlightedImage} from './gallery'
 
 export interface BlogPostContent {
@@ -14,12 +15,5 @@ export interface BlogPost extends BlogPostContent {
   href: string
   readingTime: number
   slug: string
-  blogTags: BlogTag[]
-}
-
-export interface BlogTag {
-  href: string
-  id: string
-  name: string
-  slug: string
+  blogTags: Tag[]
 }

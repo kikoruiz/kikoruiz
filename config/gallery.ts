@@ -67,6 +67,40 @@ export const DEFAULT_SORTING_OPTION = 'date'
 export const DISABLED_SORTING_OPTIONS = ['info-group', 'shot-info-group']
 export const PENDING_EVAL_SORTING_OPTIONS = ['shot-info.shutter-speed']
 
+export const GALLERY_TAGS = [
+  'aurora borealis',
+  'blue hour',
+  'bridge',
+  'castle',
+  'catalunya',
+  'cave',
+  'city',
+  'comunitat valenciana',
+  'costa blanca',
+  'costa brava',
+  'costa daurada',
+  "delta de l'ebre",
+  'forest',
+  'full moon',
+  'golden hour',
+  'human',
+  'lake',
+  'lighthouse',
+  'milky way',
+  'mountain',
+  'panorama',
+  'river',
+  'rocks',
+  'sunrise',
+  'sunset',
+  'sunstar',
+  'telephoto',
+  'tower',
+  'trees',
+  'waterfall',
+  'waves'
+]
+
 export const ALLOWED_PICTURE_TAGS = [
   'alacant',
   'arctic',
