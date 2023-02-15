@@ -44,9 +44,9 @@ export default function GalleryHeader({
         isAlbum ? 'mb-9 sm:mb-12' : 'mb-6 sm:mb-9'
       }`}
     >
-      <div className="flex flex-col items-center justify-center gap-y-3 overflow-hidden sm:flex-row">
+      <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
         <h1
-          className={`bg-gradient-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:truncate sm:text-8xl sm:leading-tight ${
+          className={`bg-gradient-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:text-8xl sm:leading-tight ${
             tag ? 'from-neutral-300/60' : 'from-orange-300'
           }`}
           title={title}
