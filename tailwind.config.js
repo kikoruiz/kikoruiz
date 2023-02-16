@@ -26,6 +26,9 @@ module.exports = {
       serif: ['Merriweather', 'serif']
     },
     extend: {
+      height: {
+        screen: ['100vh', '100dvh']
+      },
       backgroundImage: {
         'personal-info-phone':
           "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2Q0ZDRkNCI+CiAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMS41IDQuNWEzIDMgMCAwMTMtM2gxLjM3MmMuODYgMCAxLjYxLjU4NiAxLjgxOSAxLjQybDEuMTA1IDQuNDIzYTEuODc1IDEuODc1IDAgMDEtLjY5NCAxLjk1NWwtMS4yOTMuOTdjLS4xMzUuMTAxLS4xNjQuMjQ5LS4xMjYuMzUyYTExLjI4NSAxMS4yODUgMCAwMDYuNjk3IDYuNjk3Yy4xMDMuMDM4LjI1LjAwOS4zNTItLjEyNmwuOTctMS4yOTNhMS44NzUgMS44NzUgMCAwMTEuOTU1LS42OTRsNC40MjMgMS4xMDVjLjgzNC4yMDkgMS40Mi45NTkgMS40MiAxLjgyVjE5LjVhMyAzIDAgMDEtMyAzaC0yLjI1QzguNTUyIDIyLjUgMS41IDE1LjQ0OCAxLjUgNi43NVY0LjV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIC8+Cjwvc3ZnPg==')",
