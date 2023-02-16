@@ -20,7 +20,7 @@ export default function BlogTags({tags, alternates}: BlogTagsProps) {
 
       <BlogHeader tags={tags} isTagsIndex />
 
-      <section className="flex justify-center px-6 pt-6">
+      <section className="flex justify-center p-6">
         <div className="inline-flex flex-row-reverse">
           {tags.map(({id, name, href}) => (
             <Link
