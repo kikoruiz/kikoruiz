@@ -195,6 +195,16 @@ function GalleryCarousel({
 
               return (
                 <div key={id} className="embla__slide flex-[0_0_100%]">
+                  <div
+                    aria-hidden
+                    className="absolute top-0 -z-10 h-full w-full overflow-hidden opacity-60 blur-3xl"
+                    style={{
+                      ...image.css,
+                      transform: 'translate3d(0, 0, 0)',
+                      WebkitMaskImage: '-webkit-radial-gradient(white, black)'
+                    }}
+                  />
+
                   <div className="contents h-screen w-screen">
                     <Image
                       src={image.src}
