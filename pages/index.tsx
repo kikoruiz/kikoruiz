@@ -75,7 +75,7 @@ export default function Home({
           )}
         </section>
 
-        <section className="mt-6 rounded bg-gradient-to-t from-neutral-800/60 to-neutral-800/30 hover:border-orange-300 lg:from-neutral-900/90 lg:to-neutral-900/80">
+        <section className="mt-6 rounded bg-gradient-to-t from-neutral-800/60 to-neutral-800/30 hover:border-orange-300 lg:from-neutral-900 lg:to-neutral-900/90">
           <header className="mx-3 border-b border-neutral-600/30 py-4">
             <Link
               href={`/${getSlug(t('sections.gallery.name'))}/${getSlug(
