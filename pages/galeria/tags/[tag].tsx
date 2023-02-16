@@ -19,7 +19,7 @@ export default function GalleryTag({
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t('common:tags')} # ${t(
+        <title>{`Kiko Ruiz / ${t('common:tags')} / # ${t(
           `tags.${getSlug(pageProps.tag)}`
         ).toLowerCase()}`}</title>
         {alternates.map(({locale, href}) => (
