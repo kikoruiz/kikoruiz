@@ -76,15 +76,15 @@ export default function Home({
         </section>
 
         <section className="mt-6 rounded bg-gradient-to-t from-neutral-800/60 to-neutral-800/30 hover:border-orange-300 lg:from-neutral-900 lg:to-neutral-900/90">
-          <header className="mx-3 border-b border-neutral-600/30 py-4">
+          <header className="mx-3 border-b border-neutral-600/30 py-4 md:py-6">
             <Link
               href={`/${getSlug(t('sections.gallery.name'))}/${getSlug(
                 t('tags')
               )}`}
-              title={t('home.gallery-tags')}
-              className="text-xl font-extralight text-neutral-300/30 drop-shadow hover:text-orange-300/60 md:text-2xl"
+              title={t('home:gallery-tags')}
+              className="bg-gradient-to-t from-orange-300 via-orange-300/60 to-transparent bg-clip-text text-4xl font-extralight leading-tight text-transparent drop-shadow md:text-5xl"
             >
-              {t('home.gallery-tags')}
+              {t('home:gallery-tags')}
             </Link>
           </header>
           <GalleryTags tags={galleryTags} />

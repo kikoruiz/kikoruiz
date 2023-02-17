@@ -4,6 +4,7 @@ import useTranslation from 'next-translate/useTranslation'
 import {GALLERY_TAGS} from 'config/gallery'
 import {getSlug, getTitle} from 'lib/utils'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
+import IconArrowRight from 'assets/icons/arrow-right.svg'
 
 export default function GalleryHeader({
   isAlbum = false,
@@ -26,7 +27,7 @@ export default function GalleryHeader({
   if (isAlbum) {
     title = t('sections.gallery.name')
   } else if (isTagsIndex) {
-    title = t('tags')
+    title = t('gallery:header.tags')
   } else {
     title = galleryListTitle
   }
@@ -69,7 +70,7 @@ export default function GalleryHeader({
       >
         {isAlbum ? (
           <p className="mt-3 font-light text-neutral-300/60">
-            {t('sections.gallery.description')}
+            {t('sections.gallery.description')}{' '}
           </p>
         ) : (
           <Link
@@ -82,6 +83,16 @@ export default function GalleryHeader({
           </Link>
         )}
       </div>
+      {isAlbum && (
+        <Link
+          href={`/${sectionSlug}/${getSlug(t('tags'))}`}
+          title={t('gallery:header.tags')}
+          className="mt-6 inline-flex rounded-full border border-transparent bg-neutral-600/20 py-1 pl-3 pr-2.5 text-xs font-light text-neutral-300/40 hover:border-neutral-600/30 hover:bg-neutral-600/30 hover:text-neutral-300/60"
+        >
+          {t('gallery:header.go-to-tags')}{' '}
+          <IconArrowRight className="ml-1.5 w-3" />
+        </Link>
+      )}
     </header>
   )
 }

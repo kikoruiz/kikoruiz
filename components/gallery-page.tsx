@@ -21,7 +21,7 @@ export default function GalleryPage({
   const {carousel} = query
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
-  const [isReversedSorting, setIsReversedSorting] = useState(false)
+  const [isReversedSorting, setIsReversedSorting] = useState(true)
   const [items, setItems] = useState(
     sortListBy(pictures, sortingOption) as Picture[]
   )
