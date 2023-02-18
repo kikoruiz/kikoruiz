@@ -87,10 +87,10 @@ export default function GalleryHeader({
         <Link
           href={`/${sectionSlug}/${getSlug(t('tags'))}`}
           title={t('gallery:header.tags')}
-          className="mt-6 inline-flex rounded-full border border-transparent bg-neutral-600/20 py-1 pl-3 pr-2.5 text-xs font-light text-neutral-300/40 hover:border-neutral-600/30 hover:bg-neutral-600/30 hover:text-neutral-300/60"
+          className="mt-5 inline-flex items-center p-1 text-xs font-light text-orange-300/60 hover:text-orange-300/90 sm:text-sm"
         >
-          {t('gallery:header.go-to-tags')}{' '}
-          <IconArrowRight className="ml-1.5 w-3" />
+          {t('gallery:header.go-to-tags')}
+          <IconArrowRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4" />
         </Link>
       )}
     </header>

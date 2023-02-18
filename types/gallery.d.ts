@@ -1,3 +1,5 @@
+import {Tag} from 'types'
+
 export interface Subcategory {
   id: string
   tag: string
@@ -80,7 +82,7 @@ export interface Picture {
   isPano: boolean
   editingSoftware: string
   megapixels: number
-  tags: string[]
+  tags: Tag[]
 }
 
 export interface ImageFallbackStyle {
