@@ -2,7 +2,7 @@ import {getPlaiceholder} from 'plaiceholder'
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
 import {Image, Picture, ShotInfo} from 'types/gallery'
-import {GALLERY_TAGS} from 'config/gallery'
+import {ALLOWED_PICTURE_TAGS, GALLERY_TAGS} from 'config/gallery'
 import {getGalleryTags} from './tags'
 
 const DEFAULT_CANON_EF_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
@@ -123,6 +123,9 @@ export function fromExifToGallery({
         ? 'Adobe Lightroom'
         : 'Adobe Lightroom + Adobe Photoshop',
       megapixels,
+      rawTags: keywords.filter(keywords =>
+        ALLOWED_PICTURE_TAGS.includes(keywords)
+      ),
       tags
     }
   }

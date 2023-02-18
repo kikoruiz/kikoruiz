@@ -109,7 +109,7 @@ export default function GalleryList({
             category={category}
             visibleSubcategory={visibleSubcategory}
             subcategories={subcategories}
-            items={pictures.filter(({tags}) => tags.includes(tag))}
+            items={pictures.filter(({rawTags}) => rawTags.includes(tag))}
             isAlbum={isAlbum}
             sortingOption={sortingOption}
             onChange={onSubcategoryChange}

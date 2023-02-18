@@ -28,7 +28,15 @@ export default function GalleryTagsIndex({
   )
 }
 
-export async function getStaticProps({locale, locales, defaultLocale}) {
+export async function getStaticProps({
+  locale,
+  locales,
+  defaultLocale
+}: {
+  locale: string
+  locales: string[]
+  defaultLocale: string
+}) {
   const section = 'gallery'
   const subSection = 'tags'
   const tags = await getGalleryTags({locale})
