@@ -9,7 +9,7 @@ export async function getGalleryTags({
   subSection = 'tags'
 }: {
   locale: string
-  tags: string[]
+  tags?: string[]
   subSection?: string
 }): Promise<Tag[]> {
   const t = await getT(locale, 'common')

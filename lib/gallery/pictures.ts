@@ -55,7 +55,6 @@ export async function getGalleryPictures({
 }) {
   const pictures = await getAllPictures()
   const t = await getT(locale, 'common')
-
   const {tags, excludeTags} = GALLERY_ALBUMS.find(album => {
     const albumSlug = getSlug(t(`gallery.albums.${album.id}.name`))
 

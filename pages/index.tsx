@@ -98,7 +98,15 @@ export default function Home({
   )
 }
 
-export async function getStaticProps({locale, locales, defaultLocale}) {
+export async function getStaticProps({
+  locale,
+  locales,
+  defaultLocale
+}: {
+  locale: string
+  locales: string[]
+  defaultLocale: string
+}) {
   const heroImage = await getHeroImage()
   const sectionImages = await getSectionImages()
   const pictures = await getAllPictures()

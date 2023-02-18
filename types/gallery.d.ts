@@ -82,6 +82,7 @@ export interface Picture {
   isPano: boolean
   editingSoftware: string
   megapixels: number
+  rawTags: string[]
   tags: Tag[]
 }
 

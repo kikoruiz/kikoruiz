@@ -21,7 +21,7 @@ function GalleryCarousel({
     ? subcategories.reduce(
         (acc, subcategory) => [
           ...acc,
-          ...pictures.filter(({tags}) => tags.includes(subcategory.tag))
+          ...pictures.filter(({rawTags}) => rawTags.includes(subcategory.tag))
         ],
         []
       )
