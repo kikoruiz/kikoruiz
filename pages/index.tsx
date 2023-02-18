@@ -82,7 +82,7 @@ export default function Home({
                 t('tags')
               )}`}
               title={t('home:gallery-tags')}
-              className="bg-gradient-to-t from-orange-300 via-orange-300/60 to-transparent bg-clip-text text-4xl font-extralight leading-tight text-transparent drop-shadow md:text-5xl"
+              className="bg-gradient-to-t from-orange-300/80 via-orange-300/80 to-transparent bg-clip-text text-4xl font-extralight leading-tight text-transparent drop-shadow hover:from-orange-300 hover:via-orange-300 md:text-5xl"
             >
               {t('home:gallery-tags')}
             </Link>

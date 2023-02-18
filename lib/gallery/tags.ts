@@ -5,15 +5,17 @@ import {Tag} from 'types'
 
 export async function getGalleryTags({
   locale,
+  tags = GALLERY_TAGS,
   subSection = 'tags'
 }: {
   locale: string
+  tags: string[]
   subSection?: string
 }): Promise<Tag[]> {
   const t = await getT(locale, 'common')
   const galleryT = await getT(locale, 'gallery')
 
-  return GALLERY_TAGS.map(tag => {
+  return tags.map(tag => {
     const id = getSlug(tag)
     const name = galleryT(`tags.${id}`)
     const slug = getSlug(name)

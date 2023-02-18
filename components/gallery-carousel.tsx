@@ -1,5 +1,6 @@
 import {useEffect, useState, memo} from 'react'
 import {useRouter} from 'next/router'
+import Link from 'next/link'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
 import Image from './image'
@@ -16,7 +17,7 @@ function GalleryCarousel({
   subcategories,
   setIsCarouselOpen
 }: GalleryCarouselProps) {
-  const items = subcategories
+  const items: Picture[] = subcategories
     ? subcategories.reduce(
         (acc, subcategory) => [
           ...acc,
@@ -178,8 +179,8 @@ function GalleryCarousel({
                 isPano,
                 model,
                 lens,
-                editingSoftware
-                // tags
+                editingSoftware,
+                tags
               },
               index
             ) => {
@@ -229,16 +230,20 @@ function GalleryCarousel({
                             {prettyDate}
                           </time>
 
-                          {/* <div className="mt-1">
-                            {tags.map(tag => (
-                              <span
-                                key={tag}
-                                className="mr-2 mt-2 inline-flex rounded-full bg-neutral-600/20 p-2 text-xs leading-[0.5] text-neutral-500"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div> */}
+                          {tags.length > 0 && (
+                            <div className="mt-1 pb-2">
+                              {tags.map(({id, name, href}) => (
+                                <Link
+                                  key={id}
+                                  href={href}
+                                  title={name}
+                                  className="mr-2 mt-2 inline-flex rounded-full bg-gradient-to-b from-neutral-800/90 p-2 text-xs leading-[0.5] text-neutral-600 hover:text-orange-300/60"
+                                >
+                                  # {name}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
 
                           <PictureInfo
                             {...pictureInfoProps}
