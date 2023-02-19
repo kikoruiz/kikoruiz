@@ -59,7 +59,7 @@ export default function PictureInfo({
   return (
     <div className="mt-3">
       {isOpen && (
-        <dl className="relative inline-grid auto-rows-max grid-cols-2 pt-3 text-xs font-thin text-neutral-300/60 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30 sm:grid-cols-4 sm:text-sm">
+        <dl className="relative inline-grid auto-rows-max grid-cols-2 pt-3 text-xs font-extralight text-neutral-300/60 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30 sm:grid-cols-4 sm:text-sm sm:font-thin">
           {shotInfoList.map(({id, content}) => {
             const baseClassName = 'py-0.5'
 

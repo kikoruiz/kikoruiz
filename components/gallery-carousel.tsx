@@ -129,11 +129,11 @@ function GalleryCarousel({
 
   return (
     <div className="fixed inset-0 z-10 h-screen w-screen">
-      <div className="absolute top-3 right-3 z-20 flex flex-row-reverse gap-3">
+      <div className="absolute top-3 right-3 z-20 flex flex-row-reverse gap-3 sm:top-6 sm:right-6">
         <button
           aria-label={t('carousel.close')}
           title={t('carousel.close')}
-          className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none sm:top-6 sm:right-6"
+          className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
           onClick={handleButtonClose}
         >
           <span className="sr-only">{t('carousel.close')}</span>
@@ -152,7 +152,7 @@ function GalleryCarousel({
         <button
           aria-label={fullScreenButtonText}
           title={fullScreenButtonText}
-          className="group flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none sm:top-6 sm:right-6"
+          className="group flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
           onClick={toggleFullScreen}
         >
           <span className="sr-only">{fullScreenButtonText}</span>
@@ -258,13 +258,13 @@ function GalleryCarousel({
                             </time>
 
                             {tags.length > 0 && (
-                              <div className="mt-1 pb-2">
+                              <div className="mt-1.5 pb-1.5">
                                 {tags.map(({id, name, href}) => (
                                   <Link
                                     key={id}
                                     href={href}
                                     title={name}
-                                    className="mr-2 mt-2 inline-flex rounded-full border border-neutral-800/60 bg-gradient-to-b from-neutral-800 to-neutral-900 p-2 text-xs font-extralight leading-[0.5] text-neutral-300/30 hover:text-orange-300/60"
+                                    className="mr-3 inline-flex rounded-full text-xs font-extralight leading-[0.5] text-orange-300/50 drop-shadow hover:text-orange-300"
                                   >
                                     # {name}
                                   </Link>
