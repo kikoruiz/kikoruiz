@@ -258,15 +258,16 @@ function GalleryCarousel({
                             </time>
 
                             {tags.length > 0 && (
-                              <div className="mt-1.5 pb-1.5">
+                              <div className="mt-1.5 pb-3">
                                 {tags.map(({id, name, href}) => (
                                   <Link
                                     key={id}
                                     href={href}
                                     title={name}
-                                    className="mr-3 inline-flex rounded-full text-xs font-extralight leading-[0.5] text-orange-300/50 drop-shadow hover:text-orange-300"
+                                    className="mr-1.5 mt-1.5 inline-block rounded border border-neutral-800 bg-gradient-to-b from-neutral-800/60 to-neutral-800/30 px-2 py-3 text-xs font-extrabold leading-[0.5] text-neutral-300/60 drop-shadow hover:border-orange-300/60 hover:to-transparent hover:text-orange-300/60"
                                   >
-                                    # {name}
+                                    <span className="font-extralight">#</span>{' '}
+                                    {name}
                                   </Link>
                                 ))}
                               </div>
