@@ -7,8 +7,10 @@ import Image from './image'
 import PictureInfo from './picture-info'
 import {getAspectRatio, getSlug} from 'lib/utils'
 import {Picture, Subcategory} from 'types/gallery'
-import ArrowLeftIcon from 'assets/icons/arrow-left.svg'
-import ArrowRightIcon from 'assets/icons/arrow-right.svg'
+import IconArrowLeft from 'assets/icons/arrow-left.svg'
+import IconArrowRight from 'assets/icons/arrow-right.svg'
+import IconArrowsPointingIn from 'assets/icons/arrows-pointing-in.svg'
+import IconArrowsPointingOut from 'assets/icons/arrows-pointing-out.svg'
 
 let startIndex: number | undefined
 
@@ -27,6 +29,7 @@ function GalleryCarousel({
       )
     : pictures
   const [showPictureInfo, setShowPictureInfo] = useState(false)
+  const [isFullScreen, setIsFullScreen] = useState(false)
   const {t} = useTranslation('gallery')
   const {push, asPath, query} = useRouter()
   const {carousel} = query
@@ -39,6 +42,9 @@ function GalleryCarousel({
   const needsButtonNext = emblaApi
     ? emblaApi.selectedScrollSnap() !== items.length - 1
     : startIndex !== items.length - 1
+  const fullScreenButtonText = isFullScreen
+    ? t('carousel.exit-full-screen')
+    : t('carousel.enter-full-screen')
 
   function handleButtonClose() {
     const destination = asPath.split('?')[0]
@@ -54,6 +60,10 @@ function GalleryCarousel({
 
   function handleButtonNext() {
     if (emblaApi.canScrollNext()) emblaApi.scrollNext()
+  }
+
+  function toggleFullScreen() {
+    setIsFullScreen(!isFullScreen)
   }
 
   useEffect((): (() => void) => {
@@ -119,24 +129,40 @@ function GalleryCarousel({
 
   return (
     <div className="fixed inset-0 z-10 h-screen w-screen">
-      <button
-        aria-label={t('carousel.close')}
-        title={t('carousel.close')}
-        className="group absolute top-3 right-3 z-20 flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none sm:top-6 sm:right-6"
-        onClick={handleButtonClose}
-      >
-        <span className="sr-only">{t('carousel.close')}</span>
-        <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
-          <span
-            aria-hidden="true"
-            className="absolute flex h-0.5 w-5 rotate-45 transform bg-current group-hover:bg-current"
-          ></span>
-          <span
-            aria-hidden="true"
-            className="absolute flex h-0.5 w-5 -rotate-45 transform bg-current group-hover:bg-current"
-          ></span>
-        </div>
-      </button>
+      <div className="absolute top-3 right-3 z-20 flex flex-row-reverse gap-3">
+        <button
+          aria-label={t('carousel.close')}
+          title={t('carousel.close')}
+          className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none sm:top-6 sm:right-6"
+          onClick={handleButtonClose}
+        >
+          <span className="sr-only">{t('carousel.close')}</span>
+          <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
+            <span
+              aria-hidden="true"
+              className="absolute flex h-0.5 w-5 rotate-45 transform bg-current group-hover:bg-current"
+            ></span>
+            <span
+              aria-hidden="true"
+              className="absolute flex h-0.5 w-5 -rotate-45 transform bg-current group-hover:bg-current"
+            ></span>
+          </div>
+        </button>
+
+        <button
+          aria-label={fullScreenButtonText}
+          title={fullScreenButtonText}
+          className="group flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none sm:top-6 sm:right-6"
+          onClick={toggleFullScreen}
+        >
+          <span className="sr-only">{fullScreenButtonText}</span>
+          {isFullScreen ? (
+            <IconArrowsPointingIn className="w-[55%]" />
+          ) : (
+            <IconArrowsPointingOut className="w-[55%]" />
+          )}
+        </button>
+      </div>
 
       <nav className="hidden sm:block">
         {needsButtonPrevious && (
@@ -146,7 +172,7 @@ function GalleryCarousel({
             className="absolute -left-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-end rounded-full bg-gradient-to-l from-neutral-800/60 pr-3.5 text-neutral-400 hover:from-neutral-800/30 hover:text-neutral-300 focus:outline-none"
             onClick={handleButtonPrevious}
           >
-            <ArrowLeftIcon className="w-9" />
+            <IconArrowLeft className="w-9" />
           </button>
         )}
         {needsButtonNext && (
@@ -156,7 +182,7 @@ function GalleryCarousel({
             className="absolute -right-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-start rounded-full bg-gradient-to-r from-neutral-800/60 pl-3.5 text-neutral-400 hover:from-neutral-800/30 hover:text-neutral-300 focus:outline-none"
             onClick={handleButtonNext}
           >
-            <ArrowRightIcon className="w-9" />
+            <IconArrowRight className="w-9" />
           </button>
         )}
       </nav>
@@ -217,44 +243,46 @@ function GalleryCarousel({
                       fallbackStyle={image.css}
                     />
 
-                    <div className="fixed top-0 flex h-full w-full flex-col-reverse">
-                      <div className="bg-gradient-to-r from-neutral-900">
-                        <section className="mx-auto p-6 text-neutral-400 xl:max-w-5xl">
-                          <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
-                            {name}
-                          </header>
-                          <time
-                            className="flex text-neutral-300/40"
-                            dateTime={date}
-                          >
-                            {prettyDate}
-                          </time>
+                    {!isFullScreen && (
+                      <div className="fixed top-0 flex h-full w-full flex-col-reverse">
+                        <div className="bg-gradient-to-r from-neutral-900 via-neutral-900">
+                          <section className="mx-auto p-6 text-neutral-400 xl:max-w-5xl">
+                            <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
+                              {name}
+                            </header>
+                            <time
+                              className="flex text-neutral-300/40"
+                              dateTime={date}
+                            >
+                              {prettyDate}
+                            </time>
 
-                          {tags.length > 0 && (
-                            <div className="mt-1 pb-2">
-                              {tags.map(({id, name, href}) => (
-                                <Link
-                                  key={id}
-                                  href={href}
-                                  title={name}
-                                  className="mr-2 mt-2 inline-flex rounded-full bg-gradient-to-b from-neutral-800/90 p-2 text-xs leading-[0.5] text-neutral-600 hover:text-orange-300/60"
-                                >
-                                  # {name}
-                                </Link>
-                              ))}
-                            </div>
-                          )}
+                            {tags.length > 0 && (
+                              <div className="mt-1 pb-2">
+                                {tags.map(({id, name, href}) => (
+                                  <Link
+                                    key={id}
+                                    href={href}
+                                    title={name}
+                                    className="mr-2 mt-2 inline-flex rounded-full border border-neutral-800/60 bg-gradient-to-b from-neutral-800 to-neutral-900 p-2 text-xs font-extralight leading-[0.5] text-neutral-300/30 hover:text-orange-300/60"
+                                  >
+                                    # {name}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
 
-                          <PictureInfo
-                            {...pictureInfoProps}
-                            isOpen={showPictureInfo}
-                            handleToggle={() => {
-                              setShowPictureInfo(!showPictureInfo)
-                            }}
-                          />
-                        </section>
+                            <PictureInfo
+                              {...pictureInfoProps}
+                              isOpen={showPictureInfo}
+                              handleToggle={() => {
+                                setShowPictureInfo(!showPictureInfo)
+                              }}
+                            />
+                          </section>
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               )
