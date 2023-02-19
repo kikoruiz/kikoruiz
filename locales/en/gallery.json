@@ -1,6 +1,8 @@
 {
   "carousel": {
     "close": "Close carousel",
+    "enter-full-screen": "Show the full screen picture",
+    "exit-full-screen": "Show the picture information",
     "navigation": {
       "previous": "Previous",
       "next": "Next"

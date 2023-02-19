@@ -1,6 +1,8 @@
 {
   "carousel": {
     "close": "Tancar el carrusel",
+    "enter-full-screen": "Veure la foto completa",
+    "exit-full-screen": "Mosrar informació de la foto",
     "navigation": {
       "previous": "Anterior",
       "next": "Següent"
