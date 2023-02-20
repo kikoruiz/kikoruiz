@@ -74,6 +74,7 @@ export interface Picture {
   image: Image
   imageSize: string
   fileSize: string
+  aspectRatio?: string
   date: string
   prettyDate: string
   model: string
