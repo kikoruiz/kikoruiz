@@ -252,7 +252,7 @@ function GalleryCarousel({
                       <div className="fixed top-0 flex h-full w-full flex-col-reverse">
                         <div className="bg-gradient-to-r from-neutral-900 via-neutral-900">
                           <section className="mx-auto p-6 text-neutral-400 xl:max-w-5xl">
-                            <header className="mb-1 text-3xl font-black drop-shadow-xl group-hover:text-orange-300">
+                            <header className="mb-1 text-3xl font-black drop-shadow group-hover:text-orange-300">
                               {name}
                             </header>
                             <time
@@ -270,7 +270,7 @@ function GalleryCarousel({
                                     href={href}
                                     onClick={resetCarousel}
                                     title={name}
-                                    className="mr-1.5 mt-1.5 inline-block rounded border border-neutral-800 bg-gradient-to-b from-neutral-800/60 to-neutral-800/30 px-2 py-3 text-xs font-extrabold leading-[0.5] text-neutral-300/30 drop-shadow hover:border-orange-300/60 hover:to-transparent hover:text-orange-300/60"
+                                    className="mr-1.5 mt-1.5 inline-block rounded border border-neutral-800 bg-gradient-to-b from-neutral-800/60 to-neutral-800/30 px-1.5 py-2.5 text-xs font-extrabold leading-[0.5] text-neutral-300/30 drop-shadow hover:border-orange-300/30 hover:to-transparent hover:text-orange-300/60"
                                   >
                                     <span className="font-extralight">#</span>{' '}
                                     {name}
