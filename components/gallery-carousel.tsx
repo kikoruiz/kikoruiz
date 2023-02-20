@@ -33,7 +33,8 @@ function GalleryCarousel({
   const {t} = useTranslation('gallery')
   const {push, asPath, query} = useRouter()
   const {carousel} = query
-  const index = items.findIndex(({name}) => getSlug(name) === carousel)
+  const index =
+    carousel && items.findIndex(({name}) => getSlug(name) === carousel)
   if (typeof startIndex === 'undefined') startIndex = index
   const [emblaRef, emblaApi] = useEmblaCarousel({startIndex})
   const needsButtonPrevious = emblaApi
@@ -46,12 +47,16 @@ function GalleryCarousel({
     ? t('carousel.exit-full-screen')
     : t('carousel.enter-full-screen')
 
+  function resetCarousel() {
+    startIndex = undefined
+  }
+
   function handleButtonClose() {
     const destination = asPath.split('?')[0]
 
     push(destination, destination, {shallow: true})
     setIsCarouselOpen(false)
-    startIndex = undefined
+    resetCarousel()
   }
 
   function handleButtonPrevious() {
@@ -75,7 +80,7 @@ function GalleryCarousel({
 
         push(destination, destination, {shallow: true})
         setIsCarouselOpen(false)
-        startIndex = undefined
+        resetCarousel()
       }
 
       // Arrow left key.
@@ -263,6 +268,7 @@ function GalleryCarousel({
                                   <Link
                                     key={id}
                                     href={href}
+                                    onClick={resetCarousel}
                                     title={name}
                                     className="mr-1.5 mt-1.5 inline-block rounded border border-neutral-800 bg-gradient-to-b from-neutral-800/60 to-neutral-800/30 px-2 py-3 text-xs font-extrabold leading-[0.5] text-neutral-300/60 drop-shadow hover:border-orange-300/60 hover:to-transparent hover:text-orange-300/60"
                                   >
