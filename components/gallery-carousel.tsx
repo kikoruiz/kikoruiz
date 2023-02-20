@@ -270,7 +270,7 @@ function GalleryCarousel({
                                     href={href}
                                     onClick={resetCarousel}
                                     title={name}
-                                    className="mr-1.5 mt-1.5 inline-block rounded border border-neutral-800 bg-gradient-to-b from-neutral-800/60 to-neutral-800/30 px-2 py-3 text-xs font-extrabold leading-[0.5] text-neutral-300/60 drop-shadow hover:border-orange-300/60 hover:to-transparent hover:text-orange-300/60"
+                                    className="mr-1.5 mt-1.5 inline-block rounded border border-neutral-800 bg-gradient-to-b from-neutral-800/60 to-neutral-800/30 px-2 py-3 text-xs font-extrabold leading-[0.5] text-neutral-300/30 drop-shadow hover:border-orange-300/60 hover:to-transparent hover:text-orange-300/60"
                                   >
                                     <span className="font-extralight">#</span>{' '}
                                     {name}
