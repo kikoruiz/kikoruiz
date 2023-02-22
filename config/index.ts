@@ -1,6 +1,6 @@
 import {GALLERY_ALBUMS} from './gallery'
 
-export const DEFAULT_ORIGIN = 'https://kikoruiz.es'
+export const DEFAULT_ORIGIN = 'https://www.kikoruiz.es'
 
 export const SECTIONS = [
   {id: 'about-me', highlightedPicture: '/pictures/2022-08-27_0108.jpg'},
