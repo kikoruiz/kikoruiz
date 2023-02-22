@@ -1,7 +1,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import getT from 'next-translate/getT'
-import {GALLERY_ALBUMS, GALLERY_TAGS} from 'config/gallery'
+import {
+  DEFAULT_IS_ASCENDING_ORDER,
+  GALLERY_ALBUMS,
+  GALLERY_TAGS
+} from 'config/gallery'
 import {getSlug} from '../utils'
 import {RawPicture} from 'types/gallery'
 
@@ -14,8 +18,9 @@ const picturesMetadataFile = path.join(
 
 export async function getAllPictures(): Promise<RawPicture[]> {
   const metadata = fs.readFileSync(picturesMetadataFile, 'utf8')
+  const allPictures = JSON.parse(metadata) as RawPicture[]
 
-  return JSON.parse(metadata)
+  return DEFAULT_IS_ASCENDING_ORDER ? allPictures : allPictures.reverse()
 }
 
 export function taggedPictures({

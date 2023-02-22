@@ -4,7 +4,10 @@ import {useRouter} from 'next/router'
 import GalleryList from 'components/gallery-list'
 import GalleryHeader from 'components/gallery-header'
 import {sortListBy} from 'lib/utils'
-import {DEFAULT_SORTING_OPTION} from 'config/gallery'
+import {
+  DEFAULT_IS_ASCENDING_ORDER,
+  DEFAULT_SORTING_OPTION
+} from 'config/gallery'
 import useSubcategoryContext from 'contexts/subcategory'
 import {Picture, Subcategory} from 'types/gallery'
 
@@ -21,7 +24,9 @@ export default function GalleryPage({
   const {carousel} = query
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
-  const [isReversedSorting, setIsReversedSorting] = useState(true)
+  const [isAscendingOrder, setIsAscendingOrder] = useState(
+    DEFAULT_IS_ASCENDING_ORDER
+  )
   const [items, setItems] = useState(
     sortListBy(pictures, sortingOption) as Picture[]
   )
@@ -35,14 +40,14 @@ export default function GalleryPage({
   }
 
   function toggleSortingDirection() {
-    setIsReversedSorting(!isReversedSorting)
+    setIsAscendingOrder(!isAscendingOrder)
   }
 
   useEffect(() => {
     const sortedItems = sortListBy(pictures, sortingOption) as Picture[]
 
-    setItems(isReversedSorting ? [...sortedItems].reverse() : [...sortedItems])
-  }, [pictures, sortingOption, isReversedSorting])
+    setItems(isAscendingOrder ? [...sortedItems].reverse() : [...sortedItems])
+  }, [pictures, sortingOption, isAscendingOrder])
 
   useEffect(() => {
     setIsCarouselOpen(Boolean(carousel))
@@ -67,7 +72,7 @@ export default function GalleryPage({
         onSort={handleSortingChange}
         sortingOption={sortingOption}
         toggleSortingDirection={toggleSortingDirection}
-        isReversedSorting={isReversedSorting}
+        isAscendingOrder={isAscendingOrder}
       />
 
       {isCarouselOpen && (

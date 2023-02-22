@@ -2,7 +2,10 @@ import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from 'tailwind.config'
 import {paramCase, headerCase, camelCase, pascalCase} from 'change-case'
 import removeAccents from 'remove-accents'
-import {PENDING_EVAL_SORTING_OPTIONS} from 'config/gallery'
+import {
+  DEFAULT_IS_ASCENDING_ORDER,
+  PENDING_EVAL_SORTING_OPTIONS
+} from 'config/gallery'
 import {Screens, ThemeScreens} from 'types'
 
 const config = resolveConfig(tailwindConfig)
@@ -62,7 +65,7 @@ export function sortListBy(list: object[], property: string) {
     return isFirstGreaterOrEqual ? 1 : -1
   })
 
-  return sortedList
+  return DEFAULT_IS_ASCENDING_ORDER ? sortedList : sortedList.reverse()
 }
 
 export function getAspectRatio(size: string): string {

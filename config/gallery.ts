@@ -66,6 +66,7 @@ export const SORTING_OPTIONS = [
 export const DEFAULT_SORTING_OPTION = 'date'
 export const DISABLED_SORTING_OPTIONS = ['info-group', 'shot-info-group']
 export const PENDING_EVAL_SORTING_OPTIONS = ['shot-info.shutter-speed']
+export const DEFAULT_IS_ASCENDING_ORDER = false
 
 export const GALLERY_TAGS = [
   'aurora borealis',
