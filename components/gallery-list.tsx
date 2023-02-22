@@ -22,7 +22,7 @@ export default function GalleryList({
   onSort,
   sortingOption,
   toggleSortingDirection,
-  isReversedSorting
+  isAscendingOrder
 }: GalleryListProps) {
   const {t} = useTranslation()
   const [visibleSubcategory, setVisibleSubcategory] = useState(null)
@@ -90,11 +90,11 @@ export default function GalleryList({
             title={t('gallery:sorting.direction')}
           >
             <span className="text-neutral-300/60">
-              {isReversedSorting ? 'Z' : 'A'}
+              {isAscendingOrder ? 'A' : 'Z'}
             </span>
             <ArrowPathRoundedSquare className="w-6 px-1 group-hover:fill-orange-300" />
             <span className="text-neutral-300/60">
-              {isReversedSorting ? 'A' : 'Z'}
+              {isAscendingOrder ? 'Z' : 'A'}
             </span>
           </button>
         </div>
@@ -134,5 +134,5 @@ interface GalleryListProps {
   onSort?: (event: ChangeEvent) => void
   sortingOption?: string
   toggleSortingDirection?: (event: MouseEvent) => void
-  isReversedSorting?: boolean
+  isAscendingOrder?: boolean
 }
