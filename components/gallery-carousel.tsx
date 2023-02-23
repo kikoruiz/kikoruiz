@@ -14,6 +14,7 @@ import IconArrowsPointingIn from 'assets/icons/arrows-pointing-in.svg'
 import IconArrowsPointingOut from 'assets/icons/arrows-pointing-out.svg'
 import IconInformationCircle from 'assets/icons/information-circle.svg'
 import IconMap from 'assets/icons/map.svg'
+import ButtonToggle from './button-toggle'
 
 const DynamicMap = dynamic(() => import('components/map'), {
   ssr: false
@@ -316,35 +317,28 @@ function GalleryCarousel({
                           )}
 
                           <div className="mt-3 flex">
-                            <button
+                            <ButtonToggle
                               onClick={() => {
                                 setShowPictureInfo(!showPictureInfo)
                               }}
-                              aria-label={showPictureInfoText}
-                              className={`flex appearance-none items-center border border-neutral-700 py-1.5 px-3 text-xs font-light shadow-sm first:rounded-l-full last:ml-[-1px] last:rounded-r-full hover:z-0 ${
-                                showPictureInfo
-                                  ? 'bg-neutral-800/50 text-neutral-300/40 hover:border-neutral-300/30 hover:text-neutral-300/60'
-                                  : 'bg-neutral-800 text-neutral-300/60 hover:border-orange-300/60 hover:text-orange-300'
-                              }`}
+                              label={showPictureInfoText}
+                              isToggled={showPictureInfo}
                             >
                               <IconInformationCircle className="mr-1.5 w-3" />
                               {showPictureInfoText}
-                            </button>
+                            </ButtonToggle>
+
                             {item.coordinates && (
-                              <button
+                              <ButtonToggle
                                 onClick={() => {
                                   setShowPictureMap(!showPictureMap)
                                 }}
-                                aria-label={showPictureMapText}
-                                className={`flex appearance-none items-center border border-neutral-700 py-1.5 px-3 text-xs font-light shadow-sm first:rounded-l-full last:ml-[-1px] last:rounded-r-full hover:z-0 ${
-                                  showPictureMap
-                                    ? 'bg-neutral-800/50 text-neutral-300/40 hover:border-neutral-300/30 hover:text-neutral-300/60'
-                                    : 'bg-neutral-800 text-neutral-300/60 hover:border-orange-300/60 hover:text-orange-300'
-                                }`}
+                                label={showPictureMapText}
+                                isToggled={showPictureMap}
                               >
                                 <IconMap className="mr-1.5 w-3" />
                                 {showPictureMapText}
-                              </button>
+                              </ButtonToggle>
                             )}
                           </div>
                         </section>
