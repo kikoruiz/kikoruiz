@@ -7,8 +7,8 @@
       "previous": "Anterior",
       "next": "Següent"
     },
-    "show-picture-info": "Veure la informació tècnica",
-    "hide-picture-info": "Amagar",
+    "show-picture-info": "Veure més informació",
+    "hide-picture-info": "Amagar informació",
     "picture-info": {
       "model": "Càmera",
       "lens": "Objectiu",
@@ -18,7 +18,9 @@
       "focal-length": "Distància focal",
       "editing-software": "Programari d'edició",
       "aspect-ratio": "Relació d'aspecte"
-    }
+    },
+    "show-picture-map": "Veure en el mapa",
+    "hide-picture-map": "Amagar mapa"
   },
   "album": {
     "back-to-gallery": "Tornar a Galeria",

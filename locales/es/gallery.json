@@ -7,8 +7,8 @@
       "previous": "Anterior",
       "next": "Siguiente"
     },
-    "show-picture-info": "Ver la información técnica",
-    "hide-picture-info": "Ocultar",
+    "show-picture-info": "Ver más información",
+    "hide-picture-info": "Ocultar información",
     "picture-info": {
       "model": "Cámara",
       "lens": "Objetivo",
@@ -18,7 +18,9 @@
       "focal-length": "Distancia focal",
       "editing-software": "Software de edición",
       "aspect-ratio": "Relación de aspecto"
-    }
+    },
+    "show-picture-map": "Ver en el mapa",
+    "hide-picture-map": "Ocultar mapa"
   },
   "album": {
     "back-to-gallery": "Volver a Galería",

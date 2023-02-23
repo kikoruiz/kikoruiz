@@ -9,15 +9,16 @@ import {getAllPictures} from 'lib/gallery/pictures'
 import Hero from 'components/hero'
 import HomeSections from 'components/home-sections'
 import {Alternate, SectionImage, Tag} from 'types'
-import {HighlightedImage, RawPicture} from 'types/gallery'
+import {HighlightedImage, Picture} from 'types/gallery'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import GalleryTags from 'components/gallery-tags'
 import {getGalleryTags} from 'lib/gallery/tags'
 import {getSlug} from 'lib/utils'
+import {fromExifToGallery} from 'lib/gallery/mappers'
 
-const DynamicMap = dynamic(() => import('components/map'), {
+const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
 })
 
@@ -71,7 +72,7 @@ export default function Home({
           </div>
 
           {showMap && (
-            <DynamicMap pictures={pictures} setShowMap={setShowMap} />
+            <DynamicHomeMap pictures={pictures} setShowMap={setShowMap} />
           )}
         </section>
 
@@ -87,6 +88,7 @@ export default function Home({
               {t('home:gallery-tags')}
             </Link>
           </header>
+
           <GalleryTags tags={galleryTags} />
         </section>
 
@@ -109,7 +111,10 @@ export async function getStaticProps({
 }) {
   const heroImage = await getHeroImage()
   const sectionImages = await getSectionImages()
-  const pictures = await getAllPictures()
+  const allPictures = await getAllPictures()
+  const pictures: Picture[] = await Promise.all(
+    allPictures.map(fromExifToGallery({locale}))
+  )
   const picturesWithCoordinates = pictures.filter(
     ({coordinates}) => coordinates
   )
@@ -132,7 +137,7 @@ export async function getStaticProps({
 interface HomeProps {
   heroImage: HighlightedImage
   sectionImages: SectionImage[]
-  pictures: RawPicture[]
+  pictures: Picture[]
   galleryTags: Tag[]
   alternates: Alternate[]
 }

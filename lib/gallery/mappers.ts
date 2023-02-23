@@ -1,9 +1,14 @@
 import {getPlaiceholder} from 'plaiceholder'
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
-import {Image, Picture, ShotInfo} from 'types/gallery'
-import {ALLOWED_PICTURE_TAGS, GALLERY_TAGS} from 'config/gallery'
+import {Coordinates, Image, Picture, ShotInfo} from 'types/gallery'
+import {
+  ALLOWED_PICTURE_TAGS,
+  GALLERY_ALBUMS,
+  GALLERY_TAGS
+} from 'config/gallery'
 import {getGalleryTags} from './tags'
+import {taggedPictures} from './pictures'
 
 const DEFAULT_CANON_EF_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
 const DEFAULT_CANON_RF_LENS = 'Canon RF 15-35mm F2.8L IS USM'
@@ -23,6 +28,7 @@ interface ExifData {
   keywords: string[]
   rawFileName: string
   megapixels: number
+  coordinates?: Coordinates
 }
 
 function getOrientation(size: string) {
@@ -40,8 +46,27 @@ function getPrettyDate(date: string, locale: string) {
   })
 }
 
-export function fromExifToGallery({
+async function getAlbumSlug({
   slug,
+  keywords,
+  locale
+}: {
+  slug?: string
+  keywords: string[]
+  locale: string
+}) {
+  if (slug) return slug
+
+  const t = await getT(locale, 'common')
+  const album = GALLERY_ALBUMS.find(({tags, excludeTags}) =>
+    taggedPictures({tags, excludeTags})({keywords})
+  )
+
+  return getSlug(t(`gallery.albums.${album.id}.name`))
+}
+
+export function fromExifToGallery({
+  slug: albumSlug,
   tag,
   locale
 }: {
@@ -63,12 +88,23 @@ export function fromExifToGallery({
     focalLength,
     keywords,
     rawFileName,
-    megapixels
+    megapixels,
+    coordinates
   }: ExifData): Promise<Picture> {
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
     const {css} = await getPlaiceholder(src)
     const t = await getT(locale, 'common')
+    const slug = getSlug(title)
+    const url = `/${getSlug(t('sections.gallery.name'))}/${
+      tag
+        ? `tags/${tag}`
+        : await getAlbumSlug({
+            slug: albumSlug,
+            keywords,
+            locale
+          })
+    }/?carousel=${slug}`
     const isPano = keywords.includes('pano')
     const tags = await getGalleryTags({
       locale,
@@ -99,10 +135,8 @@ export function fromExifToGallery({
     return {
       name: title,
       id: fileName.split('.')[0],
-      url: `/${getSlug(t('sections.gallery.name'))}/${
-        tag ? `tags/${tag}` : slug
-      }`,
-      slug: getSlug(title),
+      url,
+      slug,
       image: {src, orientation, css} as Image,
       imageSize,
       fileSize,
@@ -126,7 +160,8 @@ export function fromExifToGallery({
       rawTags: keywords.filter(keywords =>
         ALLOWED_PICTURE_TAGS.includes(keywords)
       ),
-      tags
+      tags,
+      ...(coordinates && {coordinates})
     }
   }
 }

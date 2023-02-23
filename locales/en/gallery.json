@@ -7,8 +7,8 @@
       "previous": "Previous",
       "next": "Next"
     },
-    "show-picture-info": "Show picture info",
-    "hide-picture-info": "Hide",
+    "show-picture-info": "Show more info",
+    "hide-picture-info": "Hide info",
     "picture-info": {
       "model": "Camera",
       "lens": "Lens",
@@ -18,7 +18,9 @@
       "focal-length": "Focal length",
       "editing-software": "Editing software",
       "aspect-ratio": "Aspect ratio"
-    }
+    },
+    "show-picture-map": "See on map",
+    "hide-picture-map": "Hide map"
   },
   "album": {
     "back-to-gallery": "Back to Gallery",
