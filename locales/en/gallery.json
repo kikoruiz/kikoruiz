@@ -20,7 +20,8 @@
       "aspect-ratio": "Aspect ratio"
     },
     "show-picture-map": "See on map",
-    "hide-picture-map": "Hide map"
+    "hide-picture-map": "Hide map",
+    "share": "Share"
   },
   "album": {
     "back-to-gallery": "Back to Gallery",
