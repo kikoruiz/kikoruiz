@@ -4,7 +4,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
-import {DEFAULT_ORIGIN} from 'config'
+// import {DEFAULT_ORIGIN} from 'config'
 import Image from './image'
 import PictureInfo from './picture-info'
 import ButtonToggle from './button-toggle'
@@ -16,7 +16,7 @@ import IconArrowsPointingIn from 'assets/icons/arrows-pointing-in.svg'
 import IconArrowsPointingOut from 'assets/icons/arrows-pointing-out.svg'
 import IconInformationCircle from 'assets/icons/information-circle.svg'
 import IconMap from 'assets/icons/map.svg'
-import IconShare from 'assets/icons/share.svg'
+// import IconShare from 'assets/icons/share.svg'
 
 const DynamicMap = dynamic(() => import('components/map'), {
   ssr: false
@@ -24,15 +24,15 @@ const DynamicMap = dynamic(() => import('components/map'), {
 
 let startIndex: number | undefined
 
-function getShareData({name, url}) {
-  return {
-    title: name,
-    text: name,
-    url: `${
-      typeof window !== 'undefined' ? window.location.origin : DEFAULT_ORIGIN
-    }${url}`
-  }
-}
+// function getShareData({name, url}) {
+//   return {
+//     title: name,
+//     text: name,
+//     url: `${
+//       typeof window !== 'undefined' ? window.location.origin : DEFAULT_ORIGIN
+//     }${url}`
+//   }
+// }
 
 function GalleryCarousel({
   pictures,
@@ -57,7 +57,7 @@ function GalleryCarousel({
   const index =
     carousel && items.findIndex(({name}) => getSlug(name) === carousel)
   if (typeof startIndex === 'undefined') startIndex = index
-  const [shareData, setShareData] = useState(getShareData(items[index]))
+  // const [shareData, setShareData] = useState(getShareData(items[index]))
   const [emblaRef, emblaApi] = useEmblaCarousel({startIndex})
   const needsButtonPrevious = emblaApi
     ? emblaApi.selectedScrollSnap() !== 0
@@ -68,7 +68,7 @@ function GalleryCarousel({
   const fullScreenButtonText = isFullScreen
     ? t('carousel.exit-full-screen')
     : t('carousel.enter-full-screen')
-  const shareButtonText = t('carousel.share')
+  // const shareButtonText = t('carousel.share')
 
   function resetCarousel() {
     startIndex = undefined
@@ -157,7 +157,7 @@ function GalleryCarousel({
       const [destinationPath] = asPath.split(pathSeparator)
       const destination = `${destinationPath}${pathSeparator}${slug}`
 
-      setShareData(getShareData(item))
+      // setShareData(getShareData(item))
       push(destination, destination, {shallow: true})
     }
 
@@ -202,7 +202,7 @@ function GalleryCarousel({
           )}
         </button>
 
-        <button
+        {/* <button
           aria-label={shareButtonText}
           title={shareButtonText}
           className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
@@ -216,7 +216,7 @@ function GalleryCarousel({
         >
           <span className="sr-only">{shareButtonText}</span>
           <IconShare className="w-[55%]" />
-        </button>
+        </button> */}
       </div>
 
       <nav className="hidden sm:block">
