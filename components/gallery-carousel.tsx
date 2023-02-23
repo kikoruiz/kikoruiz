@@ -4,8 +4,10 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
+import {DEFAULT_ORIGIN} from 'config'
 import Image from './image'
 import PictureInfo from './picture-info'
+import ButtonToggle from './button-toggle'
 import {getAspectRatio, getSlug} from 'lib/utils'
 import {Picture, Subcategory} from 'types/gallery'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
@@ -14,13 +16,23 @@ import IconArrowsPointingIn from 'assets/icons/arrows-pointing-in.svg'
 import IconArrowsPointingOut from 'assets/icons/arrows-pointing-out.svg'
 import IconInformationCircle from 'assets/icons/information-circle.svg'
 import IconMap from 'assets/icons/map.svg'
-import ButtonToggle from './button-toggle'
+import IconShare from 'assets/icons/share.svg'
 
 const DynamicMap = dynamic(() => import('components/map'), {
   ssr: false
 })
 
 let startIndex: number | undefined
+
+function getShareData({name, url}) {
+  return {
+    title: name,
+    text: name,
+    url: `${
+      typeof window !== 'undefined' ? window.location.origin : DEFAULT_ORIGIN
+    }${url}`
+  }
+}
 
 function GalleryCarousel({
   pictures,
@@ -45,6 +57,7 @@ function GalleryCarousel({
   const index =
     carousel && items.findIndex(({name}) => getSlug(name) === carousel)
   if (typeof startIndex === 'undefined') startIndex = index
+  const [shareData, setShareData] = useState(getShareData(items[index]))
   const [emblaRef, emblaApi] = useEmblaCarousel({startIndex})
   const needsButtonPrevious = emblaApi
     ? emblaApi.selectedScrollSnap() !== 0
@@ -55,6 +68,7 @@ function GalleryCarousel({
   const fullScreenButtonText = isFullScreen
     ? t('carousel.exit-full-screen')
     : t('carousel.enter-full-screen')
+  const shareButtonText = t('carousel.share')
 
   function resetCarousel() {
     startIndex = undefined
@@ -137,11 +151,13 @@ function GalleryCarousel({
   useEffect((): (() => void) => {
     function handleCarouselChange() {
       const index = emblaApi.selectedScrollSnap()
-      const slug = getSlug(items[index].name)
+      const item = items[index]
+      const slug = getSlug(item.name)
       const pathSeparator = '?carousel='
       const [destinationPath] = asPath.split(pathSeparator)
       const destination = `${destinationPath}${pathSeparator}${slug}`
 
+      setShareData(getShareData(item))
       push(destination, destination, {shallow: true})
     }
 
@@ -175,7 +191,7 @@ function GalleryCarousel({
         <button
           aria-label={fullScreenButtonText}
           title={fullScreenButtonText}
-          className="group flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
           onClick={toggleFullScreen}
         >
           <span className="sr-only">{fullScreenButtonText}</span>
@@ -184,6 +200,22 @@ function GalleryCarousel({
           ) : (
             <IconArrowsPointingOut className="w-[55%]" />
           )}
+        </button>
+
+        <button
+          aria-label={shareButtonText}
+          title={shareButtonText}
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
+          onClick={async () => {
+            if (navigator.share) {
+              await navigator.share(shareData)
+            } else {
+              console.warn('This browser cannot share data via Web Share API.')
+            }
+          }}
+        >
+          <span className="sr-only">{shareButtonText}</span>
+          <IconShare className="w-[55%]" />
         </button>
       </div>
 

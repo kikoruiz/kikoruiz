@@ -20,7 +20,8 @@
       "aspect-ratio": "Relación de aspecto"
     },
     "show-picture-map": "Ver en el mapa",
-    "hide-picture-map": "Ocultar mapa"
+    "hide-picture-map": "Ocultar mapa",
+    "share": "Compartir"
   },
   "album": {
     "back-to-gallery": "Volver a Galería",
