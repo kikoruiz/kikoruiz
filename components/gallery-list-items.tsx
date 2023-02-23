@@ -16,21 +16,9 @@ export default function GalleryListItems({
     <div className="columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3 xl:gap-4 xl:space-y-4 xl:pb-4">
       {items.map(
         (
-          {
-            name,
-            id,
-            date,
-            prettyDate,
-            url,
-            slug,
-            image,
-            imageSize,
-            shotInfo,
-            isPano
-          },
+          {name, id, date, prettyDate, url, image, imageSize, shotInfo, isPano},
           index
         ) => {
-          if (!isAlbum) url = `${url}/?carousel=${slug}`
           const isFirstImage = index === 0
           const isSecondImage = index === 1
           const needsPreload =

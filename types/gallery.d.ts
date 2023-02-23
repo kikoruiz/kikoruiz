@@ -23,15 +23,17 @@ export interface ImageAverageColor {
   isLight: boolean
 }
 
+export interface Coordinates {
+  latitude: number
+  longitude: number
+}
+
 export interface RawPicture {
   aperture: number
   artist: string
   colorSpace: string
   compression: string
-  coordinates?: {
-    latitude: number
-    longitude: number
-  }
+  coordinates?: Coordinates
   createDate: string
   description?: string
   fileName: string
@@ -85,6 +87,7 @@ export interface Picture {
   megapixels: number
   rawTags: string[]
   tags: Tag[]
+  coordinates?: Coordinates
 }
 
 export interface ImageFallbackStyle {
