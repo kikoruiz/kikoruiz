@@ -83,22 +83,29 @@ function GalleryCarousel({
         resetCarousel()
       }
 
-      // Arrow left key.
-      if (event.keyCode === 37) {
-        event.preventDefault()
-        if (emblaApi.canScrollPrev()) emblaApi.scrollPrev()
-      }
-
-      // Arrow right key.
-      if (event.keyCode === 39) {
-        event.preventDefault()
-        if (emblaApi.canScrollNext()) emblaApi.scrollNext()
-      }
-
-      // Key "I".
-      if (event.keyCode === 73) {
-        event.preventDefault()
-        setShowPictureInfo(!showPictureInfo)
+      switch (event.keyCode) {
+        // Arrow left key.
+        case 37:
+          event.preventDefault()
+          if (emblaApi.canScrollPrev()) emblaApi.scrollPrev()
+          break
+        // Arrow right key.
+        case 39:
+          event.preventDefault()
+          if (emblaApi.canScrollNext()) emblaApi.scrollNext()
+          break
+        // Key "i".
+        case 73:
+          event.preventDefault()
+          setShowPictureInfo(!showPictureInfo)
+          break
+        // Key "f".
+        case 70:
+          event.preventDefault()
+          setIsFullScreen(!isFullScreen)
+          break
+        default:
+          break
       }
     }
 
@@ -113,7 +120,9 @@ function GalleryCarousel({
     setIsCarouselOpen,
     emblaApi,
     setShowPictureInfo,
-    showPictureInfo
+    showPictureInfo,
+    setIsFullScreen,
+    isFullScreen
   ])
 
   useEffect((): (() => void) => {
