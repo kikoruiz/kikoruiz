@@ -7,7 +7,8 @@ import {
   GALLERY_TAGS
 } from 'config/gallery'
 import {getSlug} from '../utils'
-import {RawPicture} from 'types/gallery'
+import {PictureOnMap, RawPicture} from 'types/gallery'
+import {fromExifToGallery} from './mappers'
 
 const picturesMetadataFile = path.join(
   process.cwd(),
@@ -83,4 +84,23 @@ export async function getGalleryPicturesByTag({
   )
 
   return pictures.filter(({keywords}) => keywords.includes(originalTag))
+}
+
+export async function getAllPicturesOnMap({
+  locale
+}: {
+  locale: string
+}): Promise<PictureOnMap[]> {
+  const allPictures = await getAllPictures()
+  const pictures = await Promise.all(
+    allPictures.map(fromExifToGallery({locale}))
+  )
+  const picturesWithCoordinates = pictures.filter(
+    ({coordinates}) => coordinates
+  )
+
+  return picturesWithCoordinates.map(({slug, coordinates}) => ({
+    slug,
+    coordinates
+  }))
 }

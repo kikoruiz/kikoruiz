@@ -5,18 +5,17 @@ import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getHeroImage, getSectionImages} from 'lib/home'
-import {getAllPictures} from 'lib/gallery/pictures'
+import {getAllPicturesOnMap} from 'lib/gallery/pictures'
 import Hero from 'components/hero'
 import HomeSections from 'components/home-sections'
 import {Alternate, SectionImage, Tag} from 'types'
-import {HighlightedImage, Picture} from 'types/gallery'
+import {HighlightedImage, PictureOnMap} from 'types/gallery'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import GalleryTags from 'components/gallery-tags'
 import {getGalleryTags} from 'lib/gallery/tags'
 import {getSlug} from 'lib/utils'
-import {fromExifToGallery} from 'lib/gallery/mappers'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
@@ -111,13 +110,7 @@ export async function getStaticProps({
 }) {
   const heroImage = await getHeroImage()
   const sectionImages = await getSectionImages()
-  const allPictures = await getAllPictures()
-  const pictures: Picture[] = await Promise.all(
-    allPictures.map(fromExifToGallery({locale}))
-  )
-  const picturesWithCoordinates = pictures.filter(
-    ({coordinates}) => coordinates
-  )
+  const pictures = await getAllPicturesOnMap({locale})
   const galleryTags = await getGalleryTags({locale})
   const alternates = (await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale}))
@@ -127,7 +120,7 @@ export async function getStaticProps({
     props: {
       heroImage,
       sectionImages,
-      pictures: picturesWithCoordinates,
+      pictures,
       galleryTags,
       alternates
     }
@@ -137,7 +130,7 @@ export async function getStaticProps({
 interface HomeProps {
   heroImage: HighlightedImage
   sectionImages: SectionImage[]
-  pictures: Picture[]
+  pictures: PictureOnMap[]
   galleryTags: Tag[]
   alternates: Alternate[]
 }

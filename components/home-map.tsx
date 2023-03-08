@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation'
-import {Picture} from 'types/gallery'
+import {PictureOnMap} from 'types/gallery'
 import Map from './map'
 
 export default function HomeMap({pictures, setShowMap}: HomeMapProps) {
@@ -45,6 +45,6 @@ export default function HomeMap({pictures, setShowMap}: HomeMapProps) {
 }
 
 interface HomeMapProps {
-  pictures: Picture[]
+  pictures: PictureOnMap[]
   setShowMap: (showMap: boolean) => void
 }
