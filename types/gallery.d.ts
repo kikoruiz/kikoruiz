@@ -90,6 +90,11 @@ export interface Picture {
   coordinates?: Coordinates
 }
 
+export interface PictureOnMap {
+  slug: string
+  coordinates: Coordinates
+}
+
 export interface ImageFallbackStyle {
   backgroundImage: string
   backgroundPosition: string

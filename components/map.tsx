@@ -1,10 +1,13 @@
 import {icon, LatLngExpression} from 'leaflet'
 import {MapContainer, TileLayer, Marker} from 'react-leaflet'
 import {getAverageValue} from 'lib/utils'
-import {Picture} from 'types/gallery'
+import {PictureOnMap} from 'types/gallery'
 import 'leaflet/dist/leaflet.css'
+import {memo} from 'react'
 
-export default function Map({pictures, zoom = 5}: MapProps) {
+const arePropsEqual = () => true
+
+function Map({pictures, zoom = 5}: MapProps) {
   const latitudes = pictures.map(({coordinates}) => coordinates.latitude)
   const longitudes = pictures.map(({coordinates}) => coordinates.longitude)
   const center = [
@@ -41,6 +44,8 @@ export default function Map({pictures, zoom = 5}: MapProps) {
 }
 
 interface MapProps {
-  pictures: Picture[]
+  pictures: PictureOnMap[]
   zoom?: number
 }
+
+export default memo(Map, arePropsEqual)

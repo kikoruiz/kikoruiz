@@ -1,26 +1,16 @@
 import {useEffect, useState, memo} from 'react'
 import {useRouter} from 'next/router'
-import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
 // import {DEFAULT_ORIGIN} from 'config'
-import Image from './image'
-import PictureInfo from './picture-info'
-import ButtonToggle from './button-toggle'
-import {getAspectRatio, getSlug} from 'lib/utils'
+import {getSlug} from 'lib/utils'
 import {Picture, Subcategory} from 'types/gallery'
+import PictureDetail from './picture-detail'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconArrowRight from 'assets/icons/arrow-right.svg'
 import IconArrowsPointingIn from 'assets/icons/arrows-pointing-in.svg'
 import IconArrowsPointingOut from 'assets/icons/arrows-pointing-out.svg'
-import IconInformationCircle from 'assets/icons/information-circle.svg'
-import IconMap from 'assets/icons/map.svg'
 // import IconShare from 'assets/icons/share.svg'
-
-const DynamicMap = dynamic(() => import('components/map'), {
-  ssr: false
-})
 
 let startIndex: number | undefined
 
@@ -48,8 +38,6 @@ function GalleryCarousel({
         []
       )
     : pictures
-  const [showPictureInfo, setShowPictureInfo] = useState(false)
-  const [showPictureMap, setShowPictureMap] = useState(false)
   const [isFullScreen, setIsFullScreen] = useState(false)
   const {t} = useTranslation('gallery')
   const {push, asPath, query} = useRouter()
@@ -117,11 +105,11 @@ function GalleryCarousel({
           event.preventDefault()
           if (emblaApi.canScrollNext()) emblaApi.scrollNext()
           break
-        // Key "i".
-        case 73:
-          event.preventDefault()
-          setShowPictureInfo(!showPictureInfo)
-          break
+        // // Key "i".
+        // case 73:
+        //   event.preventDefault()
+        //   setShowInfo(!showInfo)
+        //   break
         // Key "f".
         case 70:
           event.preventDefault()
@@ -137,16 +125,7 @@ function GalleryCarousel({
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [
-    asPath,
-    push,
-    setIsCarouselOpen,
-    emblaApi,
-    setShowPictureInfo,
-    showPictureInfo,
-    setIsFullScreen,
-    isFullScreen
-  ])
+  }, [emblaApi, asPath, push, setIsCarouselOpen, setIsFullScreen, isFullScreen])
 
   useEffect((): (() => void) => {
     function handleCarouselChange() {
@@ -247,140 +226,14 @@ function GalleryCarousel({
         ref={emblaRef}
       >
         <div className="embla__container flex h-full w-full items-center">
-          {items.map((item, currentIndex) => {
-            const {
-              name,
-              id,
-              image,
-              imageSize,
-              date,
-              prettyDate,
-              shotInfo,
-              isPano,
-              model,
-              lens,
-              editingSoftware,
-              tags
-            } = item
-            const aspectRatio = getAspectRatio(imageSize)
-            const pictureInfoProps = {
-              shotInfo,
-              isPano,
-              model,
-              lens,
-              editingSoftware,
-              aspectRatio
-            }
-            const showPictureInfoText = showPictureInfo
-              ? t('carousel.hide-picture-info')
-              : t('carousel.show-picture-info')
-            const showPictureMapText = showPictureMap
-              ? t('carousel.hide-picture-map')
-              : t('carousel.show-picture-map')
-            const showMap =
-              showPictureMap &&
-              item.coordinates &&
-              (index === currentIndex ||
-                index === currentIndex - 1 ||
-                index === currentIndex + 1)
-
-            return (
-              <div key={id} className="embla__slide flex-[0_0_100%]">
-                <div
-                  aria-hidden
-                  className="absolute top-0 -z-10 h-full w-full overflow-hidden opacity-60 blur-3xl"
-                  style={{
-                    ...image.css,
-                    transform: 'translate3d(0, 0, 0)',
-                    WebkitMaskImage: '-webkit-radial-gradient(white, black)'
-                  }}
-                />
-
-                <div className="contents h-screen w-screen">
-                  <Image
-                    src={image.src}
-                    alt={name}
-                    className="m-auto max-h-screen overflow-hidden"
-                    aspectRatio={aspectRatio}
-                    sizes="100vw"
-                    fallbackStyle={image.css}
-                  />
-
-                  {!isFullScreen && (
-                    <div className="fixed top-0 flex h-full w-full flex-col-reverse">
-                      <div className="bg-gradient-to-r from-neutral-900 via-neutral-900">
-                        <section className="mx-auto p-6 text-neutral-400 xl:max-w-5xl">
-                          <header className="mb-1 text-3xl font-black drop-shadow group-hover:text-orange-300">
-                            {name}
-                          </header>
-                          <time
-                            className="flex text-neutral-300/40"
-                            dateTime={date}
-                          >
-                            {prettyDate}
-                          </time>
-
-                          {tags.length > 0 && (
-                            <div className="mt-1.5 pb-3">
-                              {tags.map(({id, name, href}) => (
-                                <Link
-                                  key={id}
-                                  href={href}
-                                  onClick={resetCarousel}
-                                  title={name}
-                                  className="mr-1.5 mt-1.5 inline-block rounded border border-neutral-800 bg-gradient-to-b from-neutral-800/60 to-neutral-800/30 px-1.5 py-2.5 text-xs font-extrabold leading-[0.5] text-neutral-300/30 drop-shadow hover:border-orange-300/30 hover:to-transparent hover:text-orange-300/60"
-                                >
-                                  <span className="font-extralight">#</span>{' '}
-                                  {name}
-                                </Link>
-                              ))}
-                            </div>
-                          )}
-
-                          <PictureInfo
-                            {...pictureInfoProps}
-                            isOpen={showPictureInfo}
-                          />
-
-                          {showMap && (
-                            <div className="h-60 w-full overflow-hidden rounded-sm drop-shadow">
-                              <DynamicMap pictures={[item]} zoom={10} />
-                            </div>
-                          )}
-
-                          <div className="mt-3 flex">
-                            <ButtonToggle
-                              onClick={() => {
-                                setShowPictureInfo(!showPictureInfo)
-                              }}
-                              label={showPictureInfoText}
-                              isToggled={showPictureInfo}
-                            >
-                              <IconInformationCircle className="mr-1.5 w-3" />
-                              {showPictureInfoText}
-                            </ButtonToggle>
-
-                            {item.coordinates && (
-                              <ButtonToggle
-                                onClick={() => {
-                                  setShowPictureMap(!showPictureMap)
-                                }}
-                                label={showPictureMapText}
-                                isToggled={showPictureMap}
-                              >
-                                <IconMap className="mr-1.5 w-3" />
-                                {showPictureMapText}
-                              </ButtonToggle>
-                            )}
-                          </div>
-                        </section>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )
-          })}
+          {items.map(item => (
+            <PictureDetail
+              key={item.slug}
+              picture={item}
+              isFullScreen={isFullScreen}
+              onTagClick={resetCarousel}
+            />
+          ))}
         </div>
       </div>
     </div>
