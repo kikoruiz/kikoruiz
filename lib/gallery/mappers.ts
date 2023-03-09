@@ -105,7 +105,7 @@ export function fromExifToGallery({
             locale
           })
     }/?carousel=${slug}`
-    const isPano = keywords.includes('pano')
+    const isPano = keywords.includes('panorama')
     const tags = await getGalleryTags({
       locale,
       tags: keywords.filter(keyword => GALLERY_TAGS.includes(keyword))
