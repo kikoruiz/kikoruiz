@@ -33,6 +33,18 @@ export interface Tag {
   slug: string
 }
 
+export interface SearchItem {
+  title: string
+  slug: string
+  // Blog
+  excerpt?: string
+  tags?: string
+  // Gallery
+  keywords?: string[]
+  fileName?: string
+  album?: string
+}
+
 export interface ThemeScreens {
   '2xl': string
   lg: string
