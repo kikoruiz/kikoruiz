@@ -4,7 +4,7 @@ import {getAverageColor} from 'lib/utils'
 import {getAllPictures} from './gallery/pictures'
 import {fromExifToGallery} from './gallery/mappers'
 import {SectionImage} from 'types'
-import {HighlightedImage} from 'types/gallery'
+import {HighlightedImage, Picture} from 'types/gallery'
 
 const HERO_DEFAULT_DATA = {
   alt: 'Kiko Ruiz Photography'
@@ -25,7 +25,11 @@ export async function getHeroImage(): Promise<HighlightedImage> {
   }
 }
 
-export async function getLastPicture({locale}: {locale: string}): Picture {
+export async function getLastPicture({
+  locale
+}: {
+  locale: string
+}): Promise<Picture> {
   const [lastPicture] = await getAllPictures()
 
   return fromExifToGallery({locale})(lastPicture)
