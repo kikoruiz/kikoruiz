@@ -21,7 +21,7 @@ export default function HomeSections({
   const {t} = useTranslation()
 
   return (
-    <section className="rounded bg-neutral-900/60 p-1">
+    <section className="mt-6 rounded bg-neutral-900/60 p-1">
       <div className="flex justify-center gap-1">
         {images.map(({id, src, css, sizes}) => {
           const href = `/${getSlug(t(`sections.${id}.name`))}`

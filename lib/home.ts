@@ -1,8 +1,10 @@
 import {getPlaiceholder} from 'plaiceholder'
-import {getAverageColor} from 'lib/utils'
-import {HighlightedImage} from 'types/gallery'
 import {SECTIONS} from 'config'
+import {getAverageColor} from 'lib/utils'
+import {getAllPictures} from './gallery/pictures'
+import {fromExifToGallery} from './gallery/mappers'
 import {SectionImage} from 'types'
+import {HighlightedImage} from 'types/gallery'
 
 const HERO_DEFAULT_DATA = {
   alt: 'Kiko Ruiz Photography'
@@ -21,6 +23,12 @@ export async function getHeroImage(): Promise<HighlightedImage> {
     averageColor,
     sizes: '100vw'
   }
+}
+
+export async function getLastPicture({locale}: {locale: string}): Picture {
+  const [lastPicture] = await getAllPictures()
+
+  return fromExifToGallery({locale})(lastPicture)
 }
 
 export async function getSectionImages(): Promise<SectionImage[]> {

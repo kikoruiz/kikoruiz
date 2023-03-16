@@ -4,18 +4,19 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {getHeroImage, getSectionImages} from 'lib/home'
+import {getHeroImage, getSectionImages, getLastPicture} from 'lib/home'
 import {getAllPicturesOnMap} from 'lib/gallery/pictures'
 import Hero from 'components/hero'
 import HomeSections from 'components/home-sections'
 import {Alternate, SectionImage, Tag} from 'types'
-import {HighlightedImage, PictureOnMap} from 'types/gallery'
+import {HighlightedImage, PictureOnMap, Picture} from 'types/gallery'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import GalleryTags from 'components/gallery-tags'
 import {getGalleryTags} from 'lib/gallery/tags'
 import {getSlug} from 'lib/utils'
+import {HomeLastPicture} from 'components/home-last-picture'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
@@ -23,6 +24,7 @@ const DynamicHomeMap = dynamic(() => import('components/home-map'), {
 
 export default function Home({
   heroImage,
+  lastPicture,
   sectionImages,
   pictures,
   galleryTags,
@@ -44,12 +46,14 @@ export default function Home({
       <Hero image={heroImage} />
 
       <div className="p-3">
-        <header className="mb-6 flex flex-col items-center break-words rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 py-12 px-6 text-white/80 xl:flex-row xl:justify-center">
+        <header className="flex flex-col items-center break-words rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 py-12 px-6 text-white/80 xl:flex-row xl:justify-center">
           <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
           <h1 className="break-words text-center text-4xl font-black leading-[1.125] drop-shadow sm:text-5xl xl:text-6xl">
             Kiko Ruiz <span className="font-thin">Photography</span>
           </h1>
         </header>
+
+        <HomeLastPicture {...lastPicture} />
 
         <HomeSections images={sectionImages} averageColor={averageColor} />
 
@@ -109,6 +113,7 @@ export async function getStaticProps({
   defaultLocale: string
 }) {
   const heroImage = await getHeroImage()
+  const lastPicture = await getLastPicture({locale})
   const sectionImages = await getSectionImages()
   const pictures = await getAllPicturesOnMap({locale})
   const galleryTags = await getGalleryTags({locale})
@@ -119,6 +124,7 @@ export async function getStaticProps({
   return {
     props: {
       heroImage,
+      lastPicture,
       sectionImages,
       pictures,
       galleryTags,
@@ -129,6 +135,7 @@ export async function getStaticProps({
 
 interface HomeProps {
   heroImage: HighlightedImage
+  lastPicture: Picture
   sectionImages: SectionImage[]
   pictures: PictureOnMap[]
   galleryTags: Tag[]
