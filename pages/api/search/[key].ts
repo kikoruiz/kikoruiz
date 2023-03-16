@@ -4,6 +4,7 @@ import picturesMetadata from 'data/pictures/metadata.json'
 import {paramCase} from 'change-case'
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {taggedPictures} from 'lib/gallery/pictures'
+import {SearchItem} from 'types'
 
 function matchSearchKey(key: string) {
   return function (attrs: object) {
@@ -21,7 +22,7 @@ function matchSearchKey(key: string) {
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const {key} = req.query as {key: string}
-  const results = [
+  const results: SearchItem[] = [
     ...searchContent.filter(matchSearchKey(key)),
     ...picturesMetadata
       .map(({description, keywords, title, fileName}) => {

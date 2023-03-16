@@ -5,6 +5,7 @@ import useTranslation from 'next-translate/useTranslation'
 import {debounce} from 'lodash'
 import {fetcher, getSlug} from 'lib/utils'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
+import SearchList from './search-list'
 
 const STATUS_OPTIONS = {
   IDLE: 'idle',
@@ -160,39 +161,11 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
           className="max-h-[calc(100vh-20rem)] overflow-y-auto"
         >
           {isMenuOpen && (
-            <ul>
-              {items.map((item, index) => {
-                return (
-                  <li
-                    {...getItemProps({item, index})}
-                    key={item.slug}
-                    className={`p-4 cursor-pointer${
-                      highlightedIndex === index ? ' bg-neutral-900/30' : ''
-                    }`}
-                  >
-                    {item.excerpt ? (
-                      <div className="font-bold text-neutral-300/90">
-                        {item.title}
-                      </div>
-                    ) : (
-                      <>
-                        <header className="font-bold text-neutral-300/90">
-                          {item.title}
-                        </header>
-                        <dl className="flex text-xs">
-                          <dt className="text-neutral-300/30 after:content-[':\00a0']">
-                            {t('gallery.album')}
-                          </dt>
-                          <dd className="text-orange-300/60">
-                            {t(`gallery.albums.${item.album}.name`)}
-                          </dd>
-                        </dl>
-                      </>
-                    )}
-                  </li>
-                )
-              })}
-            </ul>
+            <SearchList
+              items={items}
+              getItemProps={getItemProps}
+              highlightedIndex={highlightedIndex}
+            />
           )}
         </div>
       </form>
