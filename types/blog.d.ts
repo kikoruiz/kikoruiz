@@ -15,5 +15,9 @@ export interface BlogPost extends BlogPostContent {
   href: string
   readingTime: number
   slug: string
-  blogTags: Tag[]
+  blogTags?: Tag[]
+}
+
+export interface Tutorial {
+  href: string
 }

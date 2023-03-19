@@ -61,7 +61,7 @@ export function fromSectionToBreadcrumbItems({
         id: tag,
         name: isGallerySection
           ? `# ${t(`gallery:tags.${getSlug(tag)}`).toLowerCase()}`
-          : t(`blog:tags.${tag}`)
+          : t(`blog.tags.${tag}`)
       })
     } else if (subSection) {
       items.push({
@@ -123,12 +123,11 @@ export async function fromLocalesToAlternates({
       : ''
     const isGallerySection = section === 'gallery'
     const galleryT = await getT(locale, 'gallery')
-    const blogT = await getT(locale, 'blog')
     let actualTag
     if (tag) {
       actualTag = isGallerySection
         ? getSlug(galleryT(`tags.${getSlug(tag)}`))
-        : remove(blogT(`tags.${tag}`))
+        : remove(t(`blog.tags.${tag}`))
     }
     const tagPath = tag ? `/tags/${actualTag}` : ''
     const endingPath = justSlug || categoryPath || tagPath

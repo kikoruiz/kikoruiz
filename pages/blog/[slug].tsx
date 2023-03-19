@@ -10,6 +10,7 @@ import Article from 'components/article'
 import BlogTags from 'components/blog-tags'
 import {BlogPost} from 'types/blog'
 import {Alternate} from 'types'
+import PostTitle from 'components/post-title'
 
 export default function Post({post, alternates}: PostProps) {
   const {locale} = useRouter()
@@ -29,7 +30,7 @@ export default function Post({post, alternates}: PostProps) {
         <header className="pt-9 text-center sm:pt-0">
           <div>
             <time
-              className="rounded bg-gradient-to-br from-neutral-800/60 p-2 text-orange-300/60"
+              className="rounded bg-gradient-to-br from-neutral-800/60 p-2 font-light text-orange-300/60"
               dateTime={post.createdAt}
             >
               {getPrettyDate(post.createdAt, locale)}
@@ -40,9 +41,11 @@ export default function Post({post, alternates}: PostProps) {
             </span>
           </div>
 
-          <h1 className="my-3 text-6xl font-black sm:text-8xl">{post.title}</h1>
+          <h1 className="my-6 text-6xl font-black sm:text-8xl">
+            <PostTitle title={post.title} />
+          </h1>
 
-          <div className="font-extralight text-neutral-300/60">
+          <div className="font-thin text-neutral-300/60">
             {t('post.by', {author})}
           </div>
         </header>

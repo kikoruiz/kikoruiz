@@ -1,10 +1,12 @@
 import {getPlaiceholder} from 'plaiceholder'
 import {SECTIONS} from 'config'
 import {getAverageColor} from 'lib/utils'
-import {getAllPictures} from './gallery/pictures'
-import {fromExifToGallery} from './gallery/mappers'
+// import {getAllPictures} from './gallery/pictures'
+// import {fromExifToGallery} from './gallery/mappers'
+import {getAllPosts} from './blog/posts'
 import {SectionImage} from 'types'
-import {HighlightedImage, Picture} from 'types/gallery'
+import {HighlightedImage} from 'types/gallery'
+import {BlogPost} from 'types/blog'
 
 const HERO_DEFAULT_DATA = {
   alt: 'Kiko Ruiz Photography'
@@ -25,15 +27,24 @@ export async function getHeroImage(): Promise<HighlightedImage> {
   }
 }
 
-export async function getLastPicture({
-  locale
-}: {
-  locale: string
-}): Promise<Picture> {
-  const [lastPicture] = await getAllPictures()
+export async function getLatestContent(): Promise<BlogPost[]> {
+  const TAG_TUTORIAL = 'tutorial'
+  const allPosts = await getAllPosts()
+  const latestTutorial = allPosts.find(({tags}) => tags.includes(TAG_TUTORIAL))
+  const latestPost = allPosts.find(({tags}) => !tags.includes(TAG_TUTORIAL))
 
-  return fromExifToGallery({locale})(lastPicture)
+  return [latestTutorial, latestPost]
 }
+
+// export async function getLastPicture({
+//   locale
+// }: {
+//   locale: string
+// }): Promise<Picture> {
+//   const [lastPicture] = await getAllPictures()
+
+//   return fromExifToGallery({locale})(lastPicture)
+// }
 
 export async function getSectionImages(): Promise<SectionImage[]> {
   return Promise.all(
