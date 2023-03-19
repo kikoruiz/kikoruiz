@@ -7,6 +7,7 @@ import {ImageAverageColor} from 'types/gallery'
 import IconFingerPrint from 'assets/icons/finger-print.svg'
 import IconPhoto from 'assets/icons/photo.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
+import HomeBlock from './home-block'
 
 const icons = {
   'about-me': IconFingerPrint,
@@ -21,7 +22,7 @@ export default function HomeSections({
   const {t} = useTranslation()
 
   return (
-    <section className="mt-6 rounded bg-neutral-900/60 p-1">
+    <HomeBlock className="rounded bg-neutral-900/60 p-1">
       <div className="flex justify-center gap-1">
         {images.map(({id, src, css, sizes}) => {
           const href = `/${getSlug(t(`sections.${id}.name`))}`
@@ -77,7 +78,7 @@ export default function HomeSections({
           )
         })}
       </div>
-    </section>
+    </HomeBlock>
   )
 }
 

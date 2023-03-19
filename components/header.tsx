@@ -8,7 +8,7 @@ export default function Header({...sectionData}: SectionData) {
   const {hasHero, section} = sectionData
   const logo = (
     <Logo
-      className={`w-24 fill-neutral-300${
+      className={`w-24 fill-neutral-100${
         section ? ' transition-colors ease-in-out hover:fill-orange-200' : ''
       }`}
     />

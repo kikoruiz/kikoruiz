@@ -10,12 +10,12 @@ import {BlogPost} from 'types/blog'
 import {Alternate} from 'types'
 
 export default function Tag({tag, posts, alternates}: TagProps) {
-  const {t} = useTranslation('blog')
+  const {t} = useTranslation()
 
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t('common:tags')} / ${t(`tags.${tag}`)}`}</title>
+        <title>{`Kiko Ruiz / ${t('tags')} / ${t(`blog.tags.${tag}`)}`}</title>
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
@@ -30,12 +30,12 @@ export async function getStaticPaths({locales}) {
   let paths = []
 
   for (const locale of locales) {
-    const t = await getT(locale, 'blog')
+    const t = await getT(locale, 'common')
 
     paths = paths.concat(
       BLOG.TAGS.map(tag => ({
         params: {
-          tag: remove(t(`tags.${tag}`))
+          tag: remove(t(`blog.tags.${tag}`))
         },
         locale
       }))
@@ -56,9 +56,9 @@ export async function getStaticProps({
 }) {
   const section = 'blog'
   const posts = await getAllPosts()
-  const t = await getT(locale, 'blog')
+  const t = await getT(locale, 'common')
   const actualTag = BLOG.TAGS.find(
-    currentTag => tag === remove(t(`tags.${currentTag}`))
+    currentTag => tag === remove(t(`blog.tags.${currentTag}`))
   )
   const alternates = await Promise.all(
     locales.map(

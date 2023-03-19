@@ -1,4 +1,5 @@
 import {Tag} from 'types'
+import {Tutorial} from './blog'
 
 export interface Subcategory {
   id: string
@@ -88,6 +89,7 @@ export interface Picture {
   rawTags: string[]
   tags: Tag[]
   coordinates?: Coordinates
+  tutorial?: Tutorial
 }
 
 export interface PictureOnMap {

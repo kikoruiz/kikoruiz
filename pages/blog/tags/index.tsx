@@ -22,10 +22,11 @@ export default function BlogTags({tags, alternates}: BlogTagsProps) {
 
       <section className="flex justify-center p-6">
         <div className="inline-flex flex-row-reverse">
-          {tags.map(({id, name, href}) => (
+          {tags.reverse().map(({id, name, href}) => (
             <Link
               key={id}
               href={href}
+              title={name}
               className={`relative -ml-3 mt-3 rotate-12 rounded-r rounded-l-3xl border p-2 pl-6 text-neutral-900 transition-transform duration-300 ease-in-out before:absolute before:left-2 before:top-1/2 before:mt-[-4.5px] before:h-[9px] before:w-[9px] before:rounded-full before:border before:bg-neutral-900 last:ml-0 hover:translate-x-1 hover:rotate-3 lg:ml-9 lg:scale-150 ${tagClassName(
                 id
               )}`}

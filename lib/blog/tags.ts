@@ -11,13 +11,12 @@ export async function getTagsData({
   subSection?: string
   locale: string
 }) {
-  const t = await getT(locale, 'blog')
   const commonT = await getT(locale, 'common')
 
   return tags
     .filter(tag => BLOG.TAGS.includes(tag))
     .map(tag => {
-      const name = t(`tags.${tag}`)
+      const name = commonT(`blog.tags.${tag}`)
       const slug = getSlug(name)
       const sectionSlug = getSlug(commonT('sections.blog.name'))
       const subSectionSlug = getSlug(commonT(subSection))

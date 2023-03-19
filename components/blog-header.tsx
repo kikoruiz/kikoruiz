@@ -15,10 +15,10 @@ export default function BlogHeader({
   const titleClassName = tag
     ? 'inline-block text-5xl sm:text-6xl'
     : 'truncate text-6xl sm:text-8xl'
-  const currentTag = tag && t(`tags.${tag}`)
+  const currentTag = tag && t(`common:blog.tags.${tag}`)
   const sectionSlug = getSlug(t('common:sections.blog.name'))
   const backButtonHref = tag
-    ? `/${sectionSlug}/${getSlug(t('tags'))}`
+    ? `/${sectionSlug}/${getSlug(t('common:tags'))}`
     : `/${sectionSlug}`
   const backButtonTitle = tag ? t('list.back-to-tags') : t('list.back-to-all')
 

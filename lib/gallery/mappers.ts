@@ -9,6 +9,7 @@ import {
 } from 'config/gallery'
 import {getGalleryTags} from './tags'
 import {taggedPictures} from './pictures'
+import {getPostSlugByPictureSlug} from 'lib/blog/posts'
 
 const DEFAULT_CANON_EF_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
 const DEFAULT_CANON_RF_LENS = 'Canon RF 15-35mm F2.8L IS USM'
@@ -110,6 +111,7 @@ export function fromExifToGallery({
       locale,
       tags: keywords.filter(keyword => GALLERY_TAGS.includes(keyword))
     })
+    const tutorialSlug = getPostSlugByPictureSlug(`tutorial-${slug}`)
 
     // Replace incorrect models.
     model = model.replace(/(\[)(Canon EOS R)(\])/, '$2')
@@ -161,7 +163,10 @@ export function fromExifToGallery({
         ALLOWED_PICTURE_TAGS.includes(keywords)
       ),
       tags,
-      ...(coordinates && {coordinates})
+      ...(coordinates && {coordinates}),
+      ...(tutorialSlug && {
+        tutorial: {href: `/${getSlug(t('sections.blog.name'))}/${tutorialSlug}`}
+      })
     }
   }
 }

@@ -8,9 +8,9 @@ export default function BlogList({tag, tags, posts}: BlogListProps) {
     <>
       <BlogHeader tag={tag} tags={tags} />
 
-      <section className="grid p-4 sm:grid-cols-2 sm:gap-2 lg:grid-cols-3">
+      <section className="grid p-4 pt-0 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
         {posts.map(post => (
-          <PostCard key={post.slug} {...post} />
+          <PostCard key={post.slug} {...post} className="mt-4" />
         ))}
       </section>
     </>

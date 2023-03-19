@@ -1,22 +1,30 @@
 import {useState} from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
+// import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {getHeroImage, getSectionImages, getLastPicture} from 'lib/home'
+import {
+  getHeroImage,
+  getSectionImages,
+  // getLastPicture,
+  getLatestContent
+} from 'lib/home'
 import {getAllPicturesOnMap} from 'lib/gallery/pictures'
 import Hero from 'components/hero'
 import HomeSections from 'components/home-sections'
 import {Alternate, SectionImage, Tag} from 'types'
-import {HighlightedImage, PictureOnMap, Picture} from 'types/gallery'
+import {HighlightedImage, PictureOnMap} from 'types/gallery'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import GalleryTags from 'components/gallery-tags'
 import {getGalleryTags} from 'lib/gallery/tags'
-import {getSlug} from 'lib/utils'
-import {HomeLastPicture} from 'components/home-last-picture'
+// import {getSlug} from 'lib/utils'
+import HomeLatestContent from 'components/home-latest-content'
+import HomeBlock from 'components/home-block'
+import {BlogPost} from 'types/blog'
+import HomeModule from 'components/home-module'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
@@ -24,7 +32,8 @@ const DynamicHomeMap = dynamic(() => import('components/home-map'), {
 
 export default function Home({
   heroImage,
-  lastPicture,
+  latestContent,
+  // lastPicture,
   sectionImages,
   pictures,
   galleryTags,
@@ -46,18 +55,18 @@ export default function Home({
       <Hero image={heroImage} />
 
       <div className="p-3">
-        <header className="flex flex-col items-center break-words rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 py-12 px-6 text-white/80 xl:flex-row xl:justify-center">
+        <header className="flex flex-col items-center break-words rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 py-12 px-6 text-white/90 xl:flex-row xl:justify-center">
           <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
           <h1 className="break-words text-center text-4xl font-black leading-[1.125] drop-shadow sm:text-5xl xl:text-6xl">
             Kiko Ruiz <span className="font-thin">Photography</span>
           </h1>
         </header>
 
-        <HomeLastPicture {...lastPicture} />
+        <HomeLatestContent posts={latestContent} />
 
         <HomeSections images={sectionImages} averageColor={averageColor} />
 
-        <section className="mt-6">
+        <HomeBlock>
           <div
             className="group relative flex w-full cursor-pointer justify-center overflow-hidden rounded border border-neutral-700/60 bg-gradient-to-t from-neutral-900 to-neutral-900/80 p-6 hover:border-orange-300 sm:justify-end lg:p-12"
             onClick={() => {
@@ -77,27 +86,15 @@ export default function Home({
           {showMap && (
             <DynamicHomeMap pictures={pictures} setShowMap={setShowMap} />
           )}
-        </section>
+        </HomeBlock>
 
-        <section className="mt-6 rounded bg-gradient-to-t from-neutral-800/60 to-neutral-800/30 hover:border-orange-300 lg:from-neutral-900 lg:to-neutral-900/90">
-          <header className="mx-3 border-b border-neutral-600/30 py-4 md:py-6">
-            <Link
-              href={`/${getSlug(t('sections.gallery.name'))}/${getSlug(
-                t('tags')
-              )}`}
-              title={t('home:gallery-tags')}
-              className="bg-gradient-to-t from-orange-300/80 via-orange-300/80 to-transparent bg-clip-text text-4xl font-extralight leading-tight text-transparent drop-shadow hover:from-orange-300 hover:via-orange-300 md:text-5xl"
-            >
-              {t('home:gallery-tags')}
-            </Link>
-          </header>
-
+        <HomeModule title={t('home:gallery-tags')}>
           <GalleryTags tags={galleryTags} />
-        </section>
+        </HomeModule>
 
-        <section className="mt-16 flex items-center justify-center p-12">
+        <HomeBlock className="flex items-center justify-center p-12 pt-20">
           <Logo className="w-fit fill-white/5 xl:w-[60%]" />
-        </section>
+        </HomeBlock>
       </div>
     </>
   )
@@ -113,8 +110,9 @@ export async function getStaticProps({
   defaultLocale: string
 }) {
   const heroImage = await getHeroImage()
-  const lastPicture = await getLastPicture({locale})
+  // const lastPicture = await getLastPicture({locale})
   const sectionImages = await getSectionImages()
+  const latestContent = await getLatestContent()
   const pictures = await getAllPicturesOnMap({locale})
   const galleryTags = await getGalleryTags({locale})
   const alternates = (await Promise.all(
@@ -124,7 +122,8 @@ export async function getStaticProps({
   return {
     props: {
       heroImage,
-      lastPicture,
+      latestContent,
+      // lastPicture,
       sectionImages,
       pictures,
       galleryTags,
@@ -135,7 +134,8 @@ export async function getStaticProps({
 
 interface HomeProps {
   heroImage: HighlightedImage
-  lastPicture: Picture
+  latestContent: BlogPost[]
+  // lastPicture: Picture
   sectionImages: SectionImage[]
   pictures: PictureOnMap[]
   galleryTags: Tag[]

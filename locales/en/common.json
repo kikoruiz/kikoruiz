@@ -74,5 +74,21 @@
       "ca": "Català"
     }
   },
-  "tags": "Tags"
+  "tags": "Tags",
+  "blog": {
+    "tags": {
+      "photography": "photography",
+      "personal": "personal",
+      "tutorial": "tutorial"
+    },
+    "post": {
+      "latest-tutorial": "New tutorial",
+      "latest-post": "New post",
+      "reading-time-message": {
+        "0": "less than a min read",
+        "1": "{{count}} min read",
+        "other": "{{count}} min read"
+      }
+    }
+  }
 }
