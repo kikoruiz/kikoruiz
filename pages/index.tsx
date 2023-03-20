@@ -55,16 +55,19 @@ export default function Home({
       <Hero image={heroImage} />
 
       <div className="p-3">
-        <header className="flex flex-col items-center break-words rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 py-12 px-6 text-white/90 xl:flex-row xl:justify-center">
-          <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
-          <h1 className="break-words text-center text-4xl font-black leading-[1.125] drop-shadow sm:text-5xl xl:text-6xl">
-            Kiko Ruiz <span className="font-thin">Photography</span>
-          </h1>
+        <header className="rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pt-12 pb-6 text-white/90 md:px-6">
+          <div className="mb-6 flex flex-col items-center break-words xl:mb-9 xl:flex-row xl:justify-center">
+            <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
+
+            <h1 className="break-words text-center text-4xl font-black leading-normal drop-shadow sm:text-5xl sm:leading-normal xl:text-6xl">
+              Kiko Ruiz <span className="font-thin">Photography</span>
+            </h1>
+          </div>
+
+          <HomeSections images={sectionImages} averageColor={averageColor} />
         </header>
 
         <HomeLatestContent posts={latestContent} />
-
-        <HomeSections images={sectionImages} averageColor={averageColor} />
 
         <HomeBlock>
           <div
@@ -75,7 +78,7 @@ export default function Home({
           >
             <IconGlobe className="absolute -top-14 -left-8 w-64 fill-neutral-600/90 group-hover:fill-orange-300 lg:-top-24 lg:left-0 lg:w-[45%] xl:-top-48 xl:-left-12 xl:w-[60%]" />
             <button
-              aria-label=""
+              aria-label={t('map.button')}
               className="z-0 flex appearance-none items-center rounded-full border border-neutral-700 bg-neutral-800/90 p-6 py-3 font-semibold text-neutral-300/60 shadow-sm drop-shadow group-hover:border-orange-300/60"
             >
               <IconMapPin className="-ml-1 mr-1.5 w-6" />

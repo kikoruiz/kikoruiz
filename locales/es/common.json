@@ -83,7 +83,9 @@
     },
     "post": {
       "latest-tutorial": "Nuevo tutorial",
-      "latest-post": "Nuevo post",
+      "read-tutorial": "Leer tutorial",
+      "latest-post": "Nuevo artículo",
+      "read-post": "Leer artículo",
       "reading-time-message": {
         "0": "menos de un min. de lectura",
         "1": "{{count}} min. de lectura",

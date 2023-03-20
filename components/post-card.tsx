@@ -5,6 +5,7 @@ import Image from './image'
 import {getPrettyDate} from 'lib/blog/date'
 import {HighlightedImage} from 'types/gallery'
 import PostTitle from './post-title'
+import IconChevronRight from 'assets/icons/chevron-right.svg'
 
 export default function PostCard({
   title,
@@ -100,6 +101,28 @@ export default function PostCard({
           >
             {excerpt}
           </p>
+
+          {isLatest && (
+            <div className="mt-3 flex justify-end">
+              <button
+                aria-label={
+                  isLatestTutorial
+                    ? t('blog.post.read-tutorial')
+                    : t('blog.post.read-post')
+                }
+                className={`pointer-events-none flex appearance-none items-center rounded-full border border-neutral-700 bg-neutral-800 py-2 px-4 text-sm font-light shadow-sm ${
+                  isLatestTutorial
+                    ? 'text-orange-300/60 group-hover:text-orange-300'
+                    : 'text-neutral-300/60 group-hover:text-neutral-300'
+                }`}
+              >
+                {isLatestTutorial
+                  ? t('blog.post.read-tutorial')
+                  : t('blog.post.read-post')}
+                <IconChevronRight className="invisible relative -left-3 w-0 transition-all group-hover:visible group-hover:left-0 group-hover:ml-1 group-hover:-mr-1 group-hover:w-4" />
+              </button>
+            </div>
+          )}
         </div>
       </article>
     </Link>
