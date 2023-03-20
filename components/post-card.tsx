@@ -15,7 +15,8 @@ export default function PostCard({
   excerpt,
   highlightedImage,
   className = '',
-  isLatest = false
+  isLatest = false,
+  needsPreload = false
 }: PostCardProps) {
   const {locale} = useRouter()
   const {t} = useTranslation()
@@ -65,6 +66,7 @@ export default function PostCard({
               className="aspect-3/2 transition-transform group-hover:scale-105"
               sizes={highlightedImage.sizes}
               fallbackStyle={highlightedImage.css}
+              needsPreload={needsPreload}
             />
           </div>
         )}
@@ -103,14 +105,14 @@ export default function PostCard({
           </p>
 
           {isLatest && (
-            <div className="mt-3 flex justify-end">
+            <div className="mt-3 hidden justify-end sm:flex">
               <button
                 aria-label={
                   isLatestTutorial
                     ? t('blog.post.read-tutorial')
                     : t('blog.post.read-post')
                 }
-                className={`pointer-events-none flex appearance-none items-center rounded-full border border-neutral-700 bg-neutral-800 py-2 px-4 text-sm font-light shadow-sm ${
+                className={`pointer-events-none flex appearance-none items-center rounded-full border border-neutral-600/30 bg-neutral-800 py-2 px-4 text-sm font-light shadow-sm ${
                   isLatestTutorial
                     ? 'text-orange-300/60 group-hover:text-orange-300'
                     : 'text-neutral-300/60 group-hover:text-neutral-300'
@@ -138,4 +140,5 @@ interface PostCardProps {
   highlightedImage: HighlightedImage
   className?: string
   isLatest?: boolean
+  needsPreload?: boolean
 }
