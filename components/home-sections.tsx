@@ -21,7 +21,7 @@ export default function HomeSections({
   const {t} = useTranslation()
 
   return (
-    <section className="w-full rounded-full bg-neutral-900/60 p-1 lg:rounded-2xl">
+    <section className="w-full rounded-2xl bg-neutral-900/60 p-1">
       <div className="flex justify-center gap-1">
         {images.map(({id, src, css, sizes}) => {
           const href = `/${getSlug(t(`sections.${id}.name`))}`
@@ -34,7 +34,7 @@ export default function HomeSections({
               href={href}
               title={sectionName}
               aria-label={sectionName}
-              className="group flex flex-1 overflow-hidden drop-shadow-sm first:rounded-l-full last:rounded-r-full lg:first:rounded-l-xl lg:last:rounded-r-xl"
+              className="group flex flex-1 overflow-hidden drop-shadow-sm first:rounded-l-xl last:rounded-r-xl"
             >
               <article
                 className={`flex w-full flex-col justify-between bg-white/30 p-[1px] font-extralight transition-colors ${
@@ -52,7 +52,7 @@ export default function HomeSections({
                     averageColor.isDark ? 'text-orange-300' : 'text-neutral-300'
                   }`}
                 >
-                  <div className="-ml-1.5 flex text-sm sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
+                  <div className="text -ml-1.5 flex sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
                     <Icon className="mr-1 w-4 sm:w-5 md:mr-1.5 md:w-6 xl:w-8" />
                     {sectionName}
                   </div>

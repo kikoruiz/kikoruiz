@@ -10,7 +10,7 @@ export default function HomeLatestContent({posts}: HomeLatestContentProps) {
     <HomeModule title={t('latest-content')}>
       <div className="mt-3 grid gap-3 p-3 pt-0 sm:grid-cols-2">
         {posts.map(post => (
-          <PostCard key={post.slug} {...post} isLatest />
+          <PostCard key={post.slug} {...post} isLatest needsPreload />
         ))}
       </div>
     </HomeModule>
