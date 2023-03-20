@@ -13,7 +13,7 @@ export default function BlogTags({tags, isPost = false}: BlogTagsProps) {
     >
       {!isPost && <span className="font-light">{t('list.filter-by')}</span>}
       <ul className="flex flex-row-reverse gap-3 text-xs">
-        {tags.reverse().map(({name, id, slug, href}) => {
+        {tags.map(({name, id, slug, href}) => {
           return (
             <li className="-ml-6 flex last:ml-0" key={slug}>
               <Link
