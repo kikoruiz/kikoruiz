@@ -29,4 +29,5 @@ export async function getTagsData({
         href
       }
     })
+    .reverse()
 }

@@ -22,7 +22,7 @@ export default function BlogTags({tags, alternates}: BlogTagsProps) {
 
       <section className="flex justify-center p-6">
         <div className="inline-flex flex-row-reverse">
-          {tags.reverse().map(({id, name, href}) => (
+          {tags.map(({id, name, href}) => (
             <Link
               key={id}
               href={href}

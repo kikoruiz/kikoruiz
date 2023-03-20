@@ -37,7 +37,9 @@ export default function Post({post, alternates}: PostProps) {
             </time>
 
             <span className="text-neutral-600/60 before:content-['\00a0·\00a0']">
-              {t('post.reading-time-message', {count: post.readingTime})}
+              {t('common:blog.post.reading-time-message', {
+                count: post.readingTime
+              })}
             </span>
           </div>
 
