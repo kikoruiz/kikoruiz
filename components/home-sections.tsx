@@ -7,7 +7,6 @@ import {ImageAverageColor} from 'types/gallery'
 import IconFingerPrint from 'assets/icons/finger-print.svg'
 import IconPhoto from 'assets/icons/photo.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
-import HomeBlock from './home-block'
 
 const icons = {
   'about-me': IconFingerPrint,
@@ -22,7 +21,7 @@ export default function HomeSections({
   const {t} = useTranslation()
 
   return (
-    <HomeBlock className="rounded bg-neutral-900/60 p-1">
+    <section className="w-full rounded-full bg-neutral-900/60 p-1 lg:rounded-2xl">
       <div className="flex justify-center gap-1">
         {images.map(({id, src, css, sizes}) => {
           const href = `/${getSlug(t(`sections.${id}.name`))}`
@@ -35,10 +34,10 @@ export default function HomeSections({
               href={href}
               title={sectionName}
               aria-label={sectionName}
-              className="group flex flex-1 overflow-hidden drop-shadow-sm first:rounded-l-sm last:rounded-r-sm"
+              className="group flex flex-1 overflow-hidden drop-shadow-sm first:rounded-l-full last:rounded-r-full lg:first:rounded-l-xl lg:last:rounded-r-xl"
             >
               <article
-                className={`flex w-full flex-col justify-between bg-white/30 p-[1px] font-extralight ${
+                className={`flex w-full flex-col justify-between bg-white/30 p-[1px] font-extralight transition-colors ${
                   averageColor.isDark
                     ? 'hover:!bg-orange-300'
                     : 'hover:!bg-neutral-300'
@@ -49,14 +48,15 @@ export default function HomeSections({
                 }}
               >
                 <header
-                  className={`flex flex-col items-center px-0 pt-3 pb-1.5 group-hover:text-current sm:p-3 md:items-start md:py-4 xl:py-5 ${
+                  className={`flex flex-col items-center px-0 py-3 group-hover:text-current md:p-4 lg:items-start xl:p-5 ${
                     averageColor.isDark ? 'text-orange-300' : 'text-neutral-300'
                   }`}
                 >
-                  <div className="-ml-1.5 flex md:ml-0 md:text-2xl xl:text-3xl">
-                    <Icon className="mr-1 w-5 md:mr-1.5 md:w-6 xl:w-8" />
+                  <div className="-ml-1.5 flex text-sm sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
+                    <Icon className="mr-1 w-4 sm:w-5 md:mr-1.5 md:w-6 xl:w-8" />
                     {sectionName}
                   </div>
+
                   <p className="mt-3 hidden text-sm font-light opacity-75 lg:flex xl:text-base">
                     {t(`sections.${id}.description`)}
                   </p>
@@ -65,7 +65,7 @@ export default function HomeSections({
                 <Image
                   src={src}
                   alt={sectionName}
-                  className="aspect-square w-full overflow-hidden group-first:rounded-bl-sm group-last:rounded-br-sm"
+                  className="hidden aspect-square w-full overflow-hidden group-first:rounded-bl-sm group-last:rounded-br-sm"
                   style={{
                     WebkitMaskImage:
                       'linear-gradient(to top, rgba(0, 0, 0, 1) 75%, transparent 100%)'
@@ -78,7 +78,7 @@ export default function HomeSections({
           )
         })}
       </div>
-    </HomeBlock>
+    </section>
   )
 }
 

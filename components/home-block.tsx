@@ -2,7 +2,7 @@ import {ReactNode} from 'react'
 
 export default function HomeBlock({children, className = ''}: HomeBlockProps) {
   return (
-    <section className={`mt-9${className ? ` ${className}` : ''}`}>
+    <section className={`mt-12${className ? ` ${className}` : ''}`}>
       {children}
     </section>
   )
