@@ -83,19 +83,20 @@ export default function PictureDetail({
                 <header className="mb-1 text-3xl font-black drop-shadow group-hover:text-orange-300">
                   {name}
                 </header>
+
                 <time className="flex text-neutral-300/40" dateTime={date}>
                   {prettyDate}
                 </time>
 
                 {tags.length > 0 && (
-                  <div className="mt-1.5 pb-3">
+                  <div className="py-1.5">
                     {tags.map(({id, name, href}) => (
                       <Link
                         key={id}
                         href={href}
                         onClick={onTagClick}
                         title={name}
-                        className="mr-1.5 mt-1.5 inline-block rounded border border-neutral-800 bg-gradient-to-b from-neutral-800/60 to-neutral-800/30 px-1.5 py-2.5 text-xs font-extrabold leading-[0.5] text-neutral-300/30 drop-shadow hover:border-orange-300/30 hover:to-transparent hover:text-orange-300/60"
+                        className="inline-block px-1.5 py-1.5 text-xs font-extrabold leading-[0.5] text-neutral-600/60 drop-shadow-sm first:pl-0 hover:text-orange-300/60"
                       >
                         <span className="font-extralight">#</span> {name}
                       </Link>
@@ -106,7 +107,7 @@ export default function PictureDetail({
                 <PictureInfo {...pictureInfoProps} isOpen={showInfo} />
 
                 {showMap && coordinates && (
-                  <div className="h-60 w-full overflow-hidden rounded-sm drop-shadow">
+                  <div className="h-60 w-full overflow-hidden rounded-sm py-3 drop-shadow">
                     <DynamicMap pictures={[{slug, coordinates}]} zoom={10} />
                   </div>
                 )}
