@@ -14,7 +14,7 @@ export default function PictureCard({
   children
 }: PictureCardProps) {
   const {src, css} = image
-  const imageClassName = `group inline-flex flex-col-reverse w-full after:absolute after:inset-0 after:h-full after:w-full after:border after:border-transparent hover:after:border-orange-300${
+  const imageClassName = `group inline-flex flex-col-reverse w-full h-full after:absolute after:inset-0 after:h-full after:w-full after:border after:border-transparent hover:after:border-orange-300${
     className ? ` ${className}` : ''
   }`
   const captionBaseClassName =
