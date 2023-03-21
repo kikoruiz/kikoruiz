@@ -5,7 +5,7 @@ import {getAllPictures} from './gallery/pictures'
 import {fromExifToGallery} from './gallery/mappers'
 import {getAllPosts} from './blog/posts'
 import {SectionImage} from 'types'
-import {HighlightedImage} from 'types/gallery'
+import {HighlightedImage, Picture} from 'types/gallery'
 import {BlogPost} from 'types/blog'
 
 const HERO_DEFAULT_DATA = {

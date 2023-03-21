@@ -10,20 +10,20 @@ import {
   getLatestContent
 } from 'lib/home'
 import {getAllPicturesOnMap} from 'lib/gallery/pictures'
+import {getGalleryTags} from 'lib/gallery/tags'
 import Hero from 'components/hero'
 import HomeSections from 'components/home-sections'
+import GalleryTags from 'components/gallery-tags'
+import HomeLatestContent from 'components/home-latest-content'
+import HomeBlock from 'components/home-block'
+import HomeModule from 'components/home-module'
+import HomeLatestPictures from 'components/home-latest-pictures'
 import {Alternate, SectionImage, Tag} from 'types'
-import {HighlightedImage, PictureOnMap} from 'types/gallery'
+import {HighlightedImage, Picture, PictureOnMap} from 'types/gallery'
+import {BlogPost} from 'types/blog'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
-import GalleryTags from 'components/gallery-tags'
-import {getGalleryTags} from 'lib/gallery/tags'
-import HomeLatestContent from 'components/home-latest-content'
-import HomeBlock from 'components/home-block'
-import {BlogPost} from 'types/blog'
-import HomeModule from 'components/home-module'
-import HomeLatestPictures from 'components/home-latest-pictures'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
