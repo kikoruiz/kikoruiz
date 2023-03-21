@@ -1,8 +1,8 @@
 import {getPlaiceholder} from 'plaiceholder'
 import {SECTIONS} from 'config'
 import {getAverageColor} from 'lib/utils'
-// import {getAllPictures} from './gallery/pictures'
-// import {fromExifToGallery} from './gallery/mappers'
+import {getAllPictures} from './gallery/pictures'
+import {fromExifToGallery} from './gallery/mappers'
 import {getAllPosts} from './blog/posts'
 import {SectionImage} from 'types'
 import {HighlightedImage} from 'types/gallery'
@@ -12,6 +12,7 @@ const HERO_DEFAULT_DATA = {
   alt: 'Kiko Ruiz Photography'
 }
 const HERO_IMAGE = '/pictures/2021-12-10_0008.jpg'
+const LATEST_PICTURES_LENGTH = 6
 
 export async function getHeroImage(): Promise<HighlightedImage> {
   const src = HERO_IMAGE
@@ -36,15 +37,16 @@ export async function getLatestContent(): Promise<BlogPost[]> {
   return [latestTutorial, latestPost]
 }
 
-// export async function getLastPicture({
-//   locale
-// }: {
-//   locale: string
-// }): Promise<Picture> {
-//   const [lastPicture] = await getAllPictures()
+export async function getLatestPictures({
+  locale
+}: {
+  locale: string
+}): Promise<Picture[]> {
+  const allPictures = await getAllPictures()
+  const latestPictures = allPictures.slice(0, LATEST_PICTURES_LENGTH)
 
-//   return fromExifToGallery({locale})(lastPicture)
-// }
+  return Promise.all(latestPictures.map(fromExifToGallery({locale})))
+}
 
 export async function getSectionImages(): Promise<SectionImage[]> {
   return Promise.all(

@@ -10,6 +10,7 @@ import {GALLERY_ALBUMS} from 'config/gallery'
 import IconFingerPrint from 'assets/icons/finger-print.svg'
 import IconPhoto from 'assets/icons/photo.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
+import {BLOG} from 'config'
 
 const sectionIcons = {
   'about-me': IconFingerPrint,
@@ -88,7 +89,17 @@ export default function Breadcrumb({
           ) : (
             <span key={id} className="flex font-bold text-orange-300/60">
               {needsSectionIcon && <SectionIcon className="mr-1 w-5" />}
-              {name}
+              {post ? (
+                <>
+                  <span className="mr-1 font-light">
+                    {name.split(BLOG.TITLE_SEPARATOR)[0]}
+                    {BLOG.TITLE_SEPARATOR}
+                  </span>
+                  {name.split(BLOG.TITLE_SEPARATOR)[1]}
+                </>
+              ) : (
+                <>{name}</>
+              )}
             </span>
           )
         })}
