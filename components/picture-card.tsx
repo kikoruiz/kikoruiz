@@ -54,7 +54,7 @@ export default function PictureCard({
 }
 
 interface PictureCardProps extends PropsWithChildren {
-  aspectRatio: string
+  aspectRatio?: string
   title: string
   url: string
   image: ImageType
