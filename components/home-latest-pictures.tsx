@@ -74,7 +74,6 @@ export default function HomeLatestPictures({
           {latestPictures.map(({id, name, url, image, prettyDate, date}) => (
             <PictureCard
               key={id}
-              aspectRatio="1:1"
               title={name}
               url={url}
               image={image}
