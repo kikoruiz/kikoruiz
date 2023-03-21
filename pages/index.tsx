@@ -75,7 +75,7 @@ export default function Home({
             }}
             className="group relative flex w-full cursor-pointer justify-center overflow-hidden rounded border border-neutral-700/60 bg-gradient-to-t from-neutral-900 to-neutral-900/80 p-6 hover:border-orange-300/60 sm:justify-end lg:p-12"
           >
-            <IconGlobe className="absolute -top-14 -left-8 w-64 fill-neutral-600/90 transition-transform group-hover:scale-125 group-hover:fill-orange-300 lg:-top-24 lg:left-0 lg:w-[45%] xl:-top-48 xl:-left-12 xl:w-[60%]" />
+            <IconGlobe className="absolute -top-14 -left-8 w-64 fill-neutral-600/90 transition-transform group-hover:scale-125 group-hover:fill-orange-300 lg:-top-24 lg:left-0 lg:w-[45%] lg:group-hover:scale-110 xl:-top-48 xl:-left-12 xl:w-[60%]" />
             <button
               aria-label={t('map.button')}
               title={t('map.button')}

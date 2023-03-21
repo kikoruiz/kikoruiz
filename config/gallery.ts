@@ -16,7 +16,7 @@ export const GALLERY_ALBUMS = [
   {
     id: 'astro',
     tags: ['moon', 'sun'],
-    excludeTags: ['landscape', 'seascape', 'travel'],
+    excludeTags: ['landscape', 'seascape', 'travel', 'aurora borealis'],
     highlightedPicture: '2018-11-24_0178.jpg'
   },
   {

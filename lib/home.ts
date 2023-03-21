@@ -45,7 +45,9 @@ export async function getLatestPictures({
   const allPictures = await getAllPictures()
   const latestPictures = allPictures.slice(0, LATEST_PICTURES_LENGTH)
 
-  return Promise.all(latestPictures.map(fromExifToGallery({locale})))
+  return Promise.all(
+    latestPictures.map(fromExifToGallery({locale, skipGalleryPath: true}))
+  )
 }
 
 export async function getSectionImages(): Promise<SectionImage[]> {
