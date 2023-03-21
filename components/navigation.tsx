@@ -8,8 +8,16 @@ import {getSlug, screens} from 'lib/utils'
 import SearchBar from './search-bar'
 import IconChevronDown from 'assets/icons/chevron-down.svg'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
+import IconFingerPrint from 'assets/icons/finger-print.svg'
+import IconPhoto from 'assets/icons/photo.svg'
+import IconDocumentText from 'assets/icons/document-text.svg'
 
 const {sm} = screens
+const sectionIcons = {
+  'about-me': IconFingerPrint,
+  gallery: IconPhoto,
+  blog: IconDocumentText
+}
 
 export default function Navigation({section, hasHero}: NavigationProps) {
   const {t} = useTranslation()
@@ -101,6 +109,7 @@ export default function Navigation({section, hasHero}: NavigationProps) {
           const isActualSection = path === href
           const hasCategories = Boolean(section.categories)
           const isSectionExpanded = expandedSections.includes(section.id)
+          const SectionIcon = sectionIcons[section.id]
           const sectionName = t(`sections.${section.id}.name`)
           const sectionClassName = `relative px-6 font-bold after:absolute after:left-0 after:block after:from-transparent ${
             isMenuOpen
@@ -117,7 +126,10 @@ export default function Navigation({section, hasHero}: NavigationProps) {
           }`
           const content = (
             <div className="relative flex items-center">
-              <span>{sectionName}</span>
+              <span className="inline-flex items-center">
+                <SectionIcon className="mr-1 w-5 sm:hidden" />
+                {sectionName}
+              </span>
               {hasCategories && (
                 <>
                   <IconChevronDown
