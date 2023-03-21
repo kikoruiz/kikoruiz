@@ -89,7 +89,7 @@ export default function PictureDetail({
                 </time>
 
                 {tags.length > 0 && (
-                  <div className="-ml-1.5 py-1.5">
+                  <div className="-ml-1.5 mb-3 pt-1.5">
                     {tags.map(({id, name, href}) => (
                       <Link
                         key={id}
@@ -107,12 +107,12 @@ export default function PictureDetail({
                 <PictureInfo {...pictureInfoProps} isOpen={showInfo} />
 
                 {showMap && coordinates && (
-                  <div className="h-60 w-full overflow-hidden rounded-sm py-3 drop-shadow">
+                  <div className="mb-5 h-60 w-full overflow-hidden rounded drop-shadow">
                     <DynamicMap pictures={[{slug, coordinates}]} zoom={10} />
                   </div>
                 )}
 
-                <div className="mt-3 flex">
+                <div className="flex">
                   <ButtonToggle
                     onClick={() => {
                       setShowPictureInfo(!showInfo)
