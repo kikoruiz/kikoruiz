@@ -1,9 +1,10 @@
 import {useRef, useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import {throttle} from 'lodash'
+import {themeScreens} from 'lib/utils'
 import HomeModule from './home-module'
 import PictureCard from './picture-card'
-import {themeScreens} from 'lib/utils'
+import {Picture} from 'types/gallery'
 
 const SCROLL_POSITIONS = {
   LEFT: 'left',
@@ -17,15 +18,15 @@ export default function HomeLatestPictures({
   const {sm, xl} = themeScreens
   const sizes = `(min-width: ${xl}) 25vw, (min-width: ${sm}) 33vw, 50vw`
   const {t} = useTranslation('home')
-  const elementRef = useRef()
+  const elementRef = useRef(null)
   const [scrollPosition, setScrollPosition] = useState(SCROLL_POSITIONS.LEFT)
 
   function handleScroll() {
-    const isOnLeft = elementRef.current.scrollLeft === 0
+    const isOnLeft = elementRef.current?.scrollLeft === 0
     const isOnRight =
-      elementRef.current.scrollLeft ===
-      elementRef.current.scrollWidth -
-        elementRef.current.getBoundingClientRect().width
+      elementRef.current?.scrollLeft ===
+      elementRef.current?.scrollWidth -
+        elementRef.current?.getBoundingClientRect().width
 
     if (isOnLeft) {
       setScrollPosition(SCROLL_POSITIONS.LEFT)
@@ -41,9 +42,8 @@ export default function HomeLatestPictures({
       <div
         style={{
           ...(scrollPosition !== SCROLL_POSITIONS.LEFT && {
-            WebkitMaskImage: [
+            WebkitMaskImage:
               'linear-gradient(to left, rgba(0, 0, 0, 1) 90%, transparent 100%)'
-            ]
           })
         }}
       >
@@ -52,9 +52,8 @@ export default function HomeLatestPictures({
           className="flex h-60 gap-3 overflow-x-scroll p-3 lg:h-96"
           style={{
             ...(scrollPosition !== SCROLL_POSITIONS.RIGHT && {
-              WebkitMaskImage: [
+              WebkitMaskImage:
                 'linear-gradient(to right, rgba(0, 0, 0, 1) 90%, transparent 100%)'
-              ]
             })
           }}
           onScroll={throttle(handleScroll)}
