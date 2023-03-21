@@ -52,7 +52,7 @@ export default function HomeSections({
                     averageColor.isDark ? 'text-orange-300' : 'text-neutral-300'
                   }`}
                 >
-                  <div className="text -ml-1.5 flex sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
+                  <div className="-ml-1.5 flex font-semibold sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
                     <Icon className="mr-1 w-4 sm:w-5 md:mr-1.5 md:w-6 xl:w-8" />
                     {sectionName}
                   </div>

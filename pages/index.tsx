@@ -1,13 +1,12 @@
 import {useState} from 'react'
 import Head from 'next/head'
-// import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {
   getHeroImage,
   getSectionImages,
-  // getLastPicture,
+  getLatestPictures,
   getLatestContent
 } from 'lib/home'
 import {getAllPicturesOnMap} from 'lib/gallery/pictures'
@@ -20,11 +19,11 @@ import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import GalleryTags from 'components/gallery-tags'
 import {getGalleryTags} from 'lib/gallery/tags'
-// import {getSlug} from 'lib/utils'
 import HomeLatestContent from 'components/home-latest-content'
 import HomeBlock from 'components/home-block'
 import {BlogPost} from 'types/blog'
 import HomeModule from 'components/home-module'
+import HomeLatestPictures from 'components/home-latest-pictures'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
@@ -33,7 +32,7 @@ const DynamicHomeMap = dynamic(() => import('components/home-map'), {
 export default function Home({
   heroImage,
   latestContent,
-  // lastPicture,
+  latestPictures,
   sectionImages,
   pictures,
   galleryTags,
@@ -71,15 +70,16 @@ export default function Home({
 
         <HomeBlock>
           <div
-            className="group relative flex w-full cursor-pointer justify-center overflow-hidden rounded border border-neutral-700/60 bg-gradient-to-t from-neutral-900 to-neutral-900/80 p-6 hover:border-orange-300 sm:justify-end lg:p-12"
             onClick={() => {
               setShowMap(true)
             }}
+            className="group relative flex w-full cursor-pointer justify-center overflow-hidden rounded border border-neutral-700/60 bg-gradient-to-t from-neutral-900 to-neutral-900/80 p-6 hover:border-orange-300/60 sm:justify-end lg:p-12"
           >
-            <IconGlobe className="absolute -top-14 -left-8 w-64 fill-neutral-600/90 group-hover:fill-orange-300 lg:-top-24 lg:left-0 lg:w-[45%] xl:-top-48 xl:-left-12 xl:w-[60%]" />
+            <IconGlobe className="absolute -top-14 -left-8 w-64 fill-neutral-600/90 transition-transform group-hover:scale-125 group-hover:fill-orange-300 lg:-top-24 lg:left-0 lg:w-[45%] xl:-top-48 xl:-left-12 xl:w-[60%]" />
             <button
               aria-label={t('map.button')}
-              className="z-0 flex appearance-none items-center rounded-full border border-neutral-700 bg-neutral-800/90 p-6 py-3 font-semibold text-neutral-300/60 shadow-sm drop-shadow group-hover:border-orange-300/60"
+              title={t('map.button')}
+              className="z-0 flex appearance-none items-center rounded-full border border-neutral-600/30 bg-neutral-800/90 p-6 py-3 font-semibold text-neutral-300/60 drop-shadow transition-all hover:drop-shadow-lg group-hover:text-orange-300/90"
             >
               <IconMapPin className="-ml-1 mr-1.5 w-6" />
               {t('map.button')}
@@ -90,6 +90,8 @@ export default function Home({
             <DynamicHomeMap pictures={pictures} setShowMap={setShowMap} />
           )}
         </HomeBlock>
+
+        <HomeLatestPictures latestPictures={latestPictures} />
 
         <HomeModule title={t('home:gallery-tags')}>
           <GalleryTags tags={galleryTags} />
@@ -113,7 +115,7 @@ export async function getStaticProps({
   defaultLocale: string
 }) {
   const heroImage = await getHeroImage()
-  // const lastPicture = await getLastPicture({locale})
+  const latestPictures = await getLatestPictures({locale})
   const sectionImages = await getSectionImages()
   const latestContent = await getLatestContent()
   const pictures = await getAllPicturesOnMap({locale})
@@ -126,7 +128,7 @@ export async function getStaticProps({
     props: {
       heroImage,
       latestContent,
-      // lastPicture,
+      latestPictures,
       sectionImages,
       pictures,
       galleryTags,
@@ -138,7 +140,7 @@ export async function getStaticProps({
 interface HomeProps {
   heroImage: HighlightedImage
   latestContent: BlogPost[]
-  // lastPicture: Picture
+  latestPictures: Picture[]
   sectionImages: SectionImage[]
   pictures: PictureOnMap[]
   galleryTags: Tag[]

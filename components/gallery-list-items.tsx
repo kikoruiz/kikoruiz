@@ -1,7 +1,7 @@
 import useTranslation from 'next-translate/useTranslation'
-import Image from './image'
 import {getAspectRatio, themeScreens} from 'lib/utils'
 import {Picture} from 'types/gallery'
+import PictureCard from './picture-card'
 
 export default function GalleryListItems({
   items,
@@ -24,106 +24,87 @@ export default function GalleryListItems({
           const needsPreload =
             isFirstImage ||
             (isSecondImage && items[0].image.orientation === 'horizontal')
-          const {src, css} = image
-          const className = `group inline-flex flex-col-reverse break-inside-avoid-column w-full after:absolute after:inset-0 after:h-full after:w-full after:border after:border-transparent hover:after:border-orange-300${
+          const className = `break-inside-avoid-column${
             isFirstImage ? ' mt-3 xl:mt-4' : ''
           }`
-          const captionBaseClassName =
-            'relative bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
-          const captionClassName = isAlbum
-            ? `${captionBaseClassName} px-3 py-6 overflow-hidden`
-            : `${captionBaseClassName} p-3.5 text-neutral-400`
           const sortedPropertyClassName = 'font-bold text-neutral-300/40'
           const aspectRatio = isAlbum ? '1:1' : getAspectRatio(imageSize)
 
           return (
-            <Image
+            <PictureCard
               key={id}
-              src={src}
-              url={url}
-              alt={name ?? t(`gallery.albums.${id}.name`)}
-              className={className}
               aspectRatio={aspectRatio}
+              title={name ?? t(`gallery.albums.${id}.name`)}
+              url={url}
+              image={image}
               sizes={sizes}
               needsPreload={needsPreload}
-              fallbackStyle={css}
-              isRounded
-              isShallowLink={!isAlbum}
+              isAlbum={isAlbum}
+              className={className}
             >
-              <figcaption className={captionClassName}>
-                <header
-                  className={`drop-shadow group-hover:text-orange-300 ${
-                    isAlbum
-                      ? 'break-words text-6xl font-thin leading-none text-neutral-300/90 sm:text-5xl md:text-6xl'
-                      : 'text-sm font-bold'
-                  }`}
-                >
-                  {name ?? t(`gallery.albums.${id}.name`)}
-                </header>
-                {!isAlbum && !sortingOption?.includes('name') && (
-                  <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow">
-                    {sortingOption.includes('date') && (
-                      <time className="text-neutral-300/40" dateTime={date}>
-                        {prettyDate}
-                      </time>
-                    )}
-                    {shotInfo && sortingOption.includes('shot-info') && (
-                      <>
-                        <span
-                          className={`${
-                            sortingOption.includes('shutter-speed')
-                              ? sortedPropertyClassName
-                              : ''
-                          }`}
-                        >
-                          {shotInfo.shutterSpeed}s
-                        </span>
-                        {' ·'}
-                        {shotInfo.aperture && (
-                          <>
-                            <span
-                              className={`inline-block${
-                                sortingOption.includes('aperture')
-                                  ? ` ${sortedPropertyClassName}`
-                                  : ''
-                              }`}
-                            >
-                              <span className="italic">f</span>/
-                              {shotInfo.aperture}
-                            </span>
-                            {' ·'}
-                          </>
-                        )}
-                        <span
-                          className={`${
-                            sortingOption.includes('iso')
-                              ? sortedPropertyClassName
-                              : ''
-                          }`}
-                        >
-                          ISO {shotInfo.iso}
-                        </span>
-                        {shotInfo.focalLength && (
-                          <>
-                            {' ·'}
-                            <span
-                              className={`${
-                                sortingOption.includes('focal-length')
-                                  ? `${sortedPropertyClassName}`
-                                  : ''
-                              }`}
-                            >
-                              {shotInfo.focalLength} mm
-                              {isPano && ' (pano)'}
-                            </span>
-                          </>
-                        )}
-                      </>
-                    )}
-                  </div>
-                )}
-              </figcaption>
-            </Image>
+              {!isAlbum && !sortingOption?.includes('name') && (
+                <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow">
+                  {sortingOption.includes('date') && (
+                    <time className="text-neutral-300/40" dateTime={date}>
+                      {prettyDate}
+                    </time>
+                  )}
+                  {shotInfo && sortingOption.includes('shot-info') && (
+                    <>
+                      <span
+                        className={`${
+                          sortingOption.includes('shutter-speed')
+                            ? sortedPropertyClassName
+                            : ''
+                        }`}
+                      >
+                        {shotInfo.shutterSpeed}s
+                      </span>
+                      {' ·'}
+                      {shotInfo.aperture && (
+                        <>
+                          <span
+                            className={`inline-block${
+                              sortingOption.includes('aperture')
+                                ? ` ${sortedPropertyClassName}`
+                                : ''
+                            }`}
+                          >
+                            <span className="italic">f</span>/
+                            {shotInfo.aperture}
+                          </span>
+                          {' ·'}
+                        </>
+                      )}
+                      <span
+                        className={`${
+                          sortingOption.includes('iso')
+                            ? sortedPropertyClassName
+                            : ''
+                        }`}
+                      >
+                        ISO {shotInfo.iso}
+                      </span>
+                      {shotInfo.focalLength && (
+                        <>
+                          {' ·'}
+                          <span
+                            className={`${
+                              sortingOption.includes('focal-length')
+                                ? `${sortedPropertyClassName}`
+                                : ''
+                            }`}
+                          >
+                            {shotInfo.focalLength} mm
+                            {isPano && ' (pano)'}
+                          </span>
+                        </>
+                      )}
+                    </>
+                  )}
+                </div>
+              )}
+            </PictureCard>
           )
         }
       )}
