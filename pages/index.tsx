@@ -58,7 +58,7 @@ export default function Home({
           <div className="mb-6 flex flex-col items-center break-words xl:mb-9 xl:flex-row xl:justify-center">
             <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
 
-            <h1 className="break-words text-center text-4xl font-black leading-normal drop-shadow sm:text-5xl sm:leading-normal xl:text-6xl">
+            <h1 className="break-words text-center text-4xl font-black leading-tight drop-shadow sm:text-5xl sm:leading-normal xl:text-6xl">
               Kiko Ruiz <span className="font-thin">Photography</span>
             </h1>
           </div>
