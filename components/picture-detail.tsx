@@ -89,14 +89,14 @@ export default function PictureDetail({
                 </time>
 
                 {tags.length > 0 && (
-                  <div className="py-1.5">
+                  <div className="-ml-1.5 py-1.5">
                     {tags.map(({id, name, href}) => (
                       <Link
                         key={id}
                         href={href}
                         onClick={onTagClick}
                         title={name}
-                        className="inline-block px-1.5 py-1.5 text-xs font-extrabold leading-[0.5] text-neutral-600/60 drop-shadow-sm first:pl-0 hover:text-orange-300/60"
+                        className="inline-block px-1.5 py-1.5 text-xs font-extrabold leading-[0.5] text-neutral-600/60 drop-shadow-sm hover:text-orange-300/60"
                       >
                         <span className="font-extralight">#</span> {name}
                       </Link>
