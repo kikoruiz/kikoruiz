@@ -198,6 +198,12 @@ function GalleryCarousel({
         </button> */}
       </div>
 
+      {!isFullScreen && (
+        <span className="pointer-events-none absolute top-6 left-6 z-10 rounded-full bg-gradient-to-t from-neutral-800 py-1.5 px-3 text-xs font-extralight text-neutral-400 drop-shadow-xl">
+          {index + 1} <span className="opacity-60">/ {items.length}</span>
+        </span>
+      )}
+
       <nav className="hidden sm:block">
         {needsButtonPrevious && (
           <button
