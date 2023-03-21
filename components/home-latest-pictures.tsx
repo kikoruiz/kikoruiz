@@ -31,9 +31,9 @@ export default function HomeLatestPictures({
   const [scrollPosition, setScrollPosition] = useState(SCROLL_POSITIONS.LEFT)
 
   function handleScroll() {
-    const isOnLeft = elementRef.current?.scrollLeft === 0
+    const isOnLeft = elementRef.current?.scrollLeft <= 0
     const isOnRight =
-      elementRef.current?.scrollLeft ===
+      elementRef.current?.scrollLeft >=
       elementRef.current?.scrollWidth -
         elementRef.current?.getBoundingClientRect().width
 
