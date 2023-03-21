@@ -1,4 +1,6 @@
-import {useRef, useState} from 'react'
+import {useRef, useState, useEffect} from 'react'
+import dynamic from 'next/dynamic'
+import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {throttle} from 'lodash'
 import {themeScreens} from 'lib/utils'
@@ -12,9 +14,16 @@ const SCROLL_POSITIONS = {
   RIGHT: 'right'
 }
 
+const DynamicGalleryCarousel = dynamic(
+  () => import('components/gallery-carousel')
+)
+
 export default function HomeLatestPictures({
   latestPictures
 }: HomeLatestPicturesProps) {
+  const {query} = useRouter()
+  const {carousel} = query
+  const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const {sm, xl} = themeScreens
   const sizes = `(min-width: ${xl}) 25vw, (min-width: ${sm}) 33vw, 50vw`
   const {t} = useTranslation('home')
@@ -37,6 +46,10 @@ export default function HomeLatestPictures({
     }
   }
 
+  useEffect(() => {
+    setIsCarouselOpen(Boolean(carousel))
+  }, [setIsCarouselOpen, carousel])
+
   return (
     <HomeModule title={t('latest-pictures')}>
       <div
@@ -49,7 +62,7 @@ export default function HomeLatestPictures({
       >
         <div
           ref={elementRef}
-          className="flex h-60 gap-3 overflow-x-scroll p-3 lg:h-96"
+          className="flex h-60 gap-3 overflow-x-scroll p-3 lg:h-80"
           style={{
             ...(scrollPosition !== SCROLL_POSITIONS.RIGHT && {
               WebkitMaskImage:
@@ -58,7 +71,7 @@ export default function HomeLatestPictures({
           }}
           onScroll={throttle(handleScroll)}
         >
-          {latestPictures.map(({id, name, url, image}) => (
+          {latestPictures.map(({id, name, url, image, prettyDate, date}) => (
             <PictureCard
               key={id}
               aspectRatio="1:1"
@@ -66,10 +79,23 @@ export default function HomeLatestPictures({
               url={url}
               image={image}
               sizes={sizes}
-            />
+            >
+              <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow">
+                <time className="text-neutral-300/40" dateTime={date}>
+                  {prettyDate}
+                </time>
+              </div>
+            </PictureCard>
           ))}
         </div>
       </div>
+
+      {isCarouselOpen && (
+        <DynamicGalleryCarousel
+          pictures={latestPictures}
+          setIsCarouselOpen={setIsCarouselOpen}
+        />
+      )}
     </HomeModule>
   )
 }

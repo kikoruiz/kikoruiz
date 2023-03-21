@@ -69,11 +69,13 @@ async function getAlbumSlug({
 export function fromExifToGallery({
   slug: albumSlug,
   tag,
-  locale
+  locale,
+  skipGalleryPath = false
 }: {
   slug?: string
   tag?: string
   locale: string
+  skipGalleryPath?: boolean
 }) {
   return async function ({
     fileName,
@@ -97,15 +99,18 @@ export function fromExifToGallery({
     const {css} = await getPlaiceholder(src)
     const t = await getT(locale, 'common')
     const slug = getSlug(title)
-    const url = `/${getSlug(t('sections.gallery.name'))}/${
-      tag
-        ? `tags/${tag}`
-        : await getAlbumSlug({
-            slug: albumSlug,
-            keywords,
-            locale
-          })
-    }/?carousel=${slug}`
+    const path = skipGalleryPath
+      ? ''
+      : `/${getSlug(t('sections.gallery.name'))}/${
+          tag
+            ? `tags/${tag}`
+            : await getAlbumSlug({
+                slug: albumSlug,
+                keywords,
+                locale
+              })
+        }`
+    const url = `${path}/?carousel=${slug}`
     const isPano = keywords.includes('panorama')
     const tags = await getGalleryTags({
       locale,
