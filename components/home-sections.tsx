@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {getSlug} from 'lib/utils'
-import Image from './image'
+// import Image from './image'
 import {SectionImage} from 'types'
 import {ImageAverageColor} from 'types/gallery'
 import IconFingerPrint from 'assets/icons/finger-print.svg'
@@ -53,7 +53,7 @@ export default function HomeSections({
                   }`}
                 >
                   <div className="-ml-1.5 flex font-semibold sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
-                    <Icon className="mr-1 w-4 sm:w-5 md:mr-1.5 md:w-6 xl:w-8" />
+                    <Icon className="mr-1 w-5 md:mr-1.5 md:w-7 xl:mr-2 xl:w-8" />
                     {sectionName}
                   </div>
 
@@ -62,17 +62,17 @@ export default function HomeSections({
                   </p>
                 </header>
 
-                <Image
+                {/* <Image
                   src={src}
                   alt={sectionName}
-                  className="hidden aspect-square w-full overflow-hidden group-first:rounded-bl-sm group-last:rounded-br-sm"
+                  className="aspect-square w-full overflow-hidden group-first:rounded-bl-sm group-last:rounded-br-sm"
                   style={{
                     WebkitMaskImage:
                       'linear-gradient(to top, rgba(0, 0, 0, 1) 75%, transparent 100%)'
                   }}
                   fallbackStyle={css}
                   sizes={sizes}
-                />
+                /> */}
               </article>
             </Link>
           )
