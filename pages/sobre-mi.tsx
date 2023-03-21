@@ -1,3 +1,4 @@
+import {ReactNode} from 'react'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
@@ -30,7 +31,7 @@ export default function AboutMe({
       </Head>
 
       <section className="flex flex-col-reverse p-6 sm:flex-row sm:py-0">
-        <div className="mt-12 w-full sm:mt-0 sm:mb-12 sm:mr-6 sm:w-1/3">
+        <div className="mt-16 w-full sm:mt-0 sm:mb-12 sm:mr-6 sm:w-1/3 lg:mr-12">
           <Image
             src={avatar.src}
             alt={t('sections.about-me.name')}
@@ -44,7 +45,7 @@ export default function AboutMe({
             {Object.keys(PERSONAL_INFO).map(key => {
               const value = PERSONAL_INFO[key]
 
-              function description() {
+              function description(): ReactNode {
                 switch (key) {
                   case 'phone':
                     return (
@@ -141,7 +142,7 @@ export async function getStaticProps({locales, locale, defaultLocale}) {
   }
 }
 
-function personalInfoBackground(key) {
+function personalInfoBackground(key: string) {
   switch (key) {
     case 'phone':
       return 'bg-personal-info-phone'

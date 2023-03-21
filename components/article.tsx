@@ -2,7 +2,7 @@ import NextImage from 'next/image'
 import ReactMarkdown from 'react-markdown'
 
 export default function Article({content, className}: ArticleProps) {
-  const articleClassName = `max-w-full prose prose-neutral prose-h1:text-6xl prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-p:font-light prose-strong:text-neutral-300${
+  const articleClassName = `max-w-full prose prose-neutral prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-p:font-light prose-strong:text-neutral-300${
     className ? ` ${className}` : ''
   }`
   const components = {
@@ -32,9 +32,11 @@ export default function Article({content, className}: ArticleProps) {
           <figure
             className={`relative overflow-hidden shadow-lg ${
               isSquare ? 'aspect-square' : 'aspect-3/2'
-            } ${isRounded ? 'mx-auto w-2/3 rounded-full' : 'rounded'}${
-              onlyInMobile ? ' sm:hidden' : ''
-            }`}
+            } ${
+              isRounded
+                ? 'mx-auto w-2/3 rounded-full border-8 border-neutral-600/30'
+                : 'rounded'
+            }${onlyInMobile ? ' sm:hidden' : ''}`}
           >
             <NextImage
               src={image.properties.src}
