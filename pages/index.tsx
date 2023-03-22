@@ -93,7 +93,7 @@ export default function Home({
 
         <HomeLatestPictures latestPictures={latestPictures} />
 
-        <HomeModule title={t('home:gallery-tags')}>
+        <HomeModule title={t('home:gallery-tags')} className="pb-3">
           <GalleryTags tags={galleryTags} />
         </HomeModule>
 
