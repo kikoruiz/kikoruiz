@@ -18,8 +18,9 @@ const DynamicMap = dynamic(() => import('./map'), {
 export default function PictureDetail({
   picture,
   isFullScreen,
-  onTagClick
-}: PictureDetailProp) {
+  onTagClick,
+  trackEvent
+}: PictureDetailProps) {
   const {
     name,
     id,
@@ -117,6 +118,11 @@ export default function PictureDetail({
                 <div className="flex">
                   <ButtonToggle
                     onClick={() => {
+                      if (showInfo) {
+                        trackEvent('hide_info', name)
+                      } else {
+                        trackEvent('show_info', name)
+                      }
                       setShowPictureInfo(!showInfo)
                     }}
                     label={showInfoText}
@@ -129,6 +135,11 @@ export default function PictureDetail({
                   {coordinates && (
                     <ButtonToggle
                       onClick={() => {
+                        if (showMap) {
+                          trackEvent('hide_map', name)
+                        } else {
+                          trackEvent('show_map', name)
+                        }
                         setShowPictureMap(!showMap)
                       }}
                       label={showMapText}
@@ -144,7 +155,7 @@ export default function PictureDetail({
                   <Link
                     href={tutorial.href}
                     title={t('common:blog.post.read-tutorial')}
-                    className="mt-3 inline-flex items-center rounded-full border border-orange-600/60 bg-gradient-to-bl from-orange-300 to-orange-200 py-1.5 px-3 text-xs font-light text-orange-700/90 shadow-sm hover:border-orange-900/90 hover:from-orange-400 hover:to-orange-300 hover:text-orange-900/90"
+                    className="mt-3 inline-flex items-center rounded-full border border-orange-600/60 bg-gradient-to-br from-orange-300 to-orange-200 py-1.5 px-3 text-xs font-light text-orange-700/90 shadow-sm hover:border-orange-900/90 hover:from-orange-400 hover:to-orange-300 hover:text-orange-900/90"
                   >
                     <IconDocumentText className="mr-1.5 w-3" />
                     {t('common:blog.post.read-tutorial')}
@@ -159,8 +170,9 @@ export default function PictureDetail({
   )
 }
 
-interface PictureDetailProp {
+interface PictureDetailProps {
   picture: Picture
   isFullScreen: boolean
   onTagClick: () => void
+  trackEvent: (action: string, name?: string) => void
 }
