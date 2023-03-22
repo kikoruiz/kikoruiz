@@ -248,7 +248,7 @@ function GalleryCarousel({
               key={item.slug}
               picture={item}
               isFullScreen={isFullScreen}
-              onTagClick={resetCarousel}
+              onExit={resetCarousel}
               trackEvent={trackCarouselEvent}
             />
           ))}

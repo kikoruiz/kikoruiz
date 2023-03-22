@@ -10,6 +10,7 @@ import ButtonToggle from './button-toggle'
 import IconInformationCircle from 'assets/icons/information-circle.svg'
 import IconMap from 'assets/icons/map.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
+import IconChevronRight from 'assets/icons/chevron-right.svg'
 
 const DynamicMap = dynamic(() => import('./map'), {
   ssr: false
@@ -18,7 +19,7 @@ const DynamicMap = dynamic(() => import('./map'), {
 export default function PictureDetail({
   picture,
   isFullScreen,
-  onTagClick,
+  onExit,
   trackEvent
 }: PictureDetailProps) {
   const {
@@ -97,7 +98,7 @@ export default function PictureDetail({
                       <Link
                         key={id}
                         href={href}
-                        onClick={onTagClick}
+                        onClick={onExit}
                         title={name}
                         className="inline-block px-1.5 py-1.5 text-xs font-extrabold leading-[0.5] text-neutral-600/60 drop-shadow-sm hover:text-orange-300/60"
                       >
@@ -154,11 +155,13 @@ export default function PictureDetail({
                 {tutorial?.href && (
                   <Link
                     href={tutorial.href}
+                    onClick={onExit}
                     title={t('common:blog.post.read-tutorial')}
-                    className="mt-3 inline-flex items-center rounded-full border border-orange-600/60 bg-gradient-to-br from-orange-300 to-orange-200 py-1.5 px-3 text-xs font-light text-orange-700/90 shadow-sm hover:border-orange-900/90 hover:from-orange-400 hover:to-orange-300 hover:text-orange-900/90"
+                    className="group mt-3 inline-flex items-center rounded-full border border-orange-600/60 bg-gradient-to-tr from-orange-300 to-orange-200 py-1.5 px-3 text-xs font-light text-orange-700/90 shadow-sm transition-colors hover:from-orange-400 hover:to-orange-300 hover:text-orange-900/90"
                   >
                     <IconDocumentText className="mr-1.5 w-3" />
                     {t('common:blog.post.read-tutorial')}
+                    <IconChevronRight className="invisible relative -left-3 w-0 transition-all group-hover:visible group-hover:left-0 group-hover:ml-1 group-hover:-mr-1 group-hover:w-3" />
                   </Link>
                 )}
               </section>
@@ -173,6 +176,6 @@ export default function PictureDetail({
 interface PictureDetailProps {
   picture: Picture
   isFullScreen: boolean
-  onTagClick: () => void
+  onExit: () => void
   trackEvent: (action: string, name?: string) => void
 }
