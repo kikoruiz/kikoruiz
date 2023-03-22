@@ -12,7 +12,7 @@ export default function HomeModule({
         className ? ` ${className}` : ''
       }`}
     >
-      <header className="mx-3 border-b border-neutral-600/30 py-4">
+      <header className="mx-3 border-b border-neutral-600/30 py-2 sm:py-3">
         <h2 className="bg-gradient-to-t from-orange-300 via-orange-300/80 to-orange-300/40 bg-clip-text text-3xl font-extralight leading-tight text-transparent drop-shadow md:text-5xl md:leading-snug">
           {title}
         </h2>
