@@ -54,20 +54,18 @@ export default function HomeLatestPictures({
     <HomeModule title={t('latest-pictures')}>
       <div
         style={{
-          ...(scrollPosition !== SCROLL_POSITIONS.LEFT && {
-            WebkitMaskImage:
-              'linear-gradient(to left, rgba(0, 0, 0, 1) 90%, transparent 100%)'
-          })
+          WebkitMaskImage: `linear-gradient(to left, rgba(0, 0, 0, 1) ${
+            scrollPosition !== SCROLL_POSITIONS.LEFT ? '90%' : '100%'
+          }, transparent 100%)`
         }}
       >
         <div
           ref={elementRef}
           className="flex h-60 gap-3 overflow-x-scroll p-3 lg:h-80"
           style={{
-            ...(scrollPosition !== SCROLL_POSITIONS.RIGHT && {
-              WebkitMaskImage:
-                'linear-gradient(to right, rgba(0, 0, 0, 1) 90%, transparent 100%)'
-            })
+            WebkitMaskImage: `linear-gradient(to right, rgba(0, 0, 0, 1) ${
+              scrollPosition !== SCROLL_POSITIONS.RIGHT ? '90%' : '100%'
+            }, transparent 100%)`
           }}
           onScroll={throttle(handleScroll)}
         >
