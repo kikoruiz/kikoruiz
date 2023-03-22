@@ -10,6 +10,7 @@ import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconArrowRight from 'assets/icons/arrow-right.svg'
 import IconArrowsPointingIn from 'assets/icons/arrows-pointing-in.svg'
 import IconArrowsPointingOut from 'assets/icons/arrows-pointing-out.svg'
+import {trackEvent} from 'lib/tracking'
 // import IconShare from 'assets/icons/share.svg'
 
 let startIndex: number | undefined
@@ -62,23 +63,38 @@ function GalleryCarousel({
     startIndex = undefined
   }
 
+  function trackCarouselEvent(action: string, name?: string) {
+    const index = emblaApi?.selectedScrollSnap()
+    const label = name || (index && items[index].name)
+
+    trackEvent({action, category: 'carousel', ...(label && {label})})
+  }
+
   function handleButtonClose() {
     const destination = asPath.split('?')[0]
 
     push(destination, destination, {shallow: true})
     setIsCarouselOpen(false)
     resetCarousel()
+    trackCarouselEvent('close')
   }
 
   function handleButtonPrevious() {
     if (emblaApi.canScrollPrev()) emblaApi.scrollPrev()
+    trackCarouselEvent('go_to_previous')
   }
 
   function handleButtonNext() {
     if (emblaApi.canScrollNext()) emblaApi.scrollNext()
+    trackCarouselEvent('go_to_next')
   }
 
   function toggleFullScreen() {
+    if (isFullScreen) {
+      trackCarouselEvent('exit_full_screen')
+    } else {
+      trackCarouselEvent('enter_full_screen')
+    }
     setIsFullScreen(!isFullScreen)
   }
 
@@ -86,24 +102,19 @@ function GalleryCarousel({
     function handleKeyDown(event) {
       if (event.key === 'Escape') {
         event.preventDefault()
-
-        const destination = asPath.split('?')[0]
-
-        push(destination, destination, {shallow: true})
-        setIsCarouselOpen(false)
-        resetCarousel()
+        handleButtonClose()
       }
 
       switch (event.keyCode) {
         // Arrow left key.
         case 37:
           event.preventDefault()
-          if (emblaApi.canScrollPrev()) emblaApi.scrollPrev()
+          handleButtonPrevious()
           break
         // Arrow right key.
         case 39:
           event.preventDefault()
-          if (emblaApi.canScrollNext()) emblaApi.scrollNext()
+          handleButtonNext()
           break
         // // Key "i".
         // case 73:
@@ -113,7 +124,7 @@ function GalleryCarousel({
         // Key "f".
         case 70:
           event.preventDefault()
-          setIsFullScreen(!isFullScreen)
+          toggleFullScreen()
           break
         default:
           break
@@ -125,7 +136,7 @@ function GalleryCarousel({
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [emblaApi, asPath, push, setIsCarouselOpen, setIsFullScreen, isFullScreen])
+  })
 
   useEffect((): (() => void) => {
     function handleCarouselChange() {
@@ -238,6 +249,7 @@ function GalleryCarousel({
               picture={item}
               isFullScreen={isFullScreen}
               onTagClick={resetCarousel}
+              trackEvent={trackCarouselEvent}
             />
           ))}
         </div>
