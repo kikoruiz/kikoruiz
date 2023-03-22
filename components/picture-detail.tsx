@@ -9,6 +9,7 @@ import PictureInfo from './picture-info'
 import ButtonToggle from './button-toggle'
 import IconInformationCircle from 'assets/icons/information-circle.svg'
 import IconMap from 'assets/icons/map.svg'
+import IconDocumentText from 'assets/icons/document-text.svg'
 
 const DynamicMap = dynamic(() => import('./map'), {
   ssr: false
@@ -33,7 +34,8 @@ export default function PictureDetail({
     lens,
     editingSoftware,
     tags,
-    coordinates
+    coordinates,
+    tutorial
   } = picture
   const {t} = useTranslation('gallery')
   const [showInfo, setShowPictureInfo] = useState(false)
@@ -137,6 +139,17 @@ export default function PictureDetail({
                     </ButtonToggle>
                   )}
                 </div>
+
+                {tutorial?.href && (
+                  <Link
+                    href={tutorial.href}
+                    title={t('common:blog.post.read-tutorial')}
+                    className="mt-3 inline-flex items-center rounded-full border border-orange-600/60 bg-gradient-to-bl from-orange-300 to-orange-200 py-1.5 px-3 text-xs font-light text-orange-700/90 shadow-sm hover:border-orange-900/90 hover:from-orange-400 hover:to-orange-300 hover:text-orange-900/90"
+                  >
+                    <IconDocumentText className="mr-1.5 w-3" />
+                    {t('common:blog.post.read-tutorial')}
+                  </Link>
+                )}
               </section>
             </div>
           </div>
