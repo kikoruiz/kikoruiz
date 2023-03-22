@@ -89,7 +89,7 @@ export default function Breadcrumb({
           ) : (
             <span key={id} className="flex font-bold text-orange-300/60">
               {needsSectionIcon && <SectionIcon className="mr-1 w-5" />}
-              {post ? (
+              {post && name.includes(BLOG.TITLE_SEPARATOR) ? (
                 <>
                   <span className="mr-1 font-light">
                     {name.split(BLOG.TITLE_SEPARATOR)[0]}
