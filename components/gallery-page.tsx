@@ -78,6 +78,7 @@ export default function GalleryPage({
       {isCarouselOpen && (
         <DynamicGalleryCarousel
           pictures={items}
+          category={category}
           subcategories={subcategories}
           setIsCarouselOpen={setIsCarouselOpen}
         />
