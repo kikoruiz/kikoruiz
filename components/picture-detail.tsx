@@ -1,8 +1,9 @@
 import {useState} from 'react'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
-import {getAspectRatio} from 'lib/utils'
+import {getAspectRatio, getSlug} from 'lib/utils'
 import {Picture} from 'types/gallery'
 import Image from './image'
 import PictureInfo from './picture-info'
@@ -40,6 +41,8 @@ export default function PictureDetail({
     tutorial
   } = picture
   const {t} = useTranslation('gallery')
+  const {query} = useRouter()
+  const {tag} = query
   const [showInfo, setShowPictureInfo] = useState(false)
   const [showMap, setShowPictureMap] = useState(false)
   const aspectRatio = getAspectRatio(imageSize)
@@ -94,17 +97,34 @@ export default function PictureDetail({
 
                 {tags.length > 0 && (
                   <div className="-ml-1.5 mb-3 pt-1.5">
-                    {tags.map(({id, name, href}) => (
-                      <Link
-                        key={id}
-                        href={href}
-                        onClick={onExit}
-                        title={name}
-                        className="inline-block px-1.5 py-1.5 text-xs font-extrabold leading-[0.5] text-neutral-600/60 drop-shadow-sm hover:text-orange-300/60"
-                      >
-                        <span className="font-extralight">#</span> {name}
-                      </Link>
-                    ))}
+                    {tags.map(({id, name, href}) => {
+                      const currentTag = getSlug(t(`tags.${id}`))
+                      const baseClassName =
+                        'inline-block px-1.5 py-1.5 text-xs font-extrabold leading-[0.5] text-neutral-600/60 drop-shadow-sm'
+                      const content = (
+                        <>
+                          <span className="font-extralight">#</span> {name}
+                        </>
+                      )
+
+                      return tag === currentTag ? (
+                        <div
+                          className={`${baseClassName} rounded-full border border-neutral-600/30 first:ml-1.5`}
+                        >
+                          {content}
+                        </div>
+                      ) : (
+                        <Link
+                          key={id}
+                          href={href}
+                          onClick={onExit}
+                          title={name}
+                          className={`${baseClassName} hover:text-orange-300/60`}
+                        >
+                          {content}
+                        </Link>
+                      )
+                    })}
                   </div>
                 )}
 
