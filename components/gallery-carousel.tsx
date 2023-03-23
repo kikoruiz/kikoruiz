@@ -3,13 +3,14 @@ import {useRouter} from 'next/router'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
 // import {DEFAULT_ORIGIN} from 'config'
-import {getSlug} from 'lib/utils'
+import {getCapitalizedName, getSlug} from 'lib/utils'
 import {Picture, Subcategory} from 'types/gallery'
 import PictureDetail from './picture-detail'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconArrowRight from 'assets/icons/arrow-right.svg'
 import IconArrowsPointingIn from 'assets/icons/arrows-pointing-in.svg'
 import IconArrowsPointingOut from 'assets/icons/arrows-pointing-out.svg'
+import subcategoryIcons from './gallery-subcategory-icons'
 import {trackEvent} from 'lib/tracking'
 // import IconShare from 'assets/icons/share.svg'
 
@@ -27,6 +28,7 @@ let startIndex: number | undefined
 
 function GalleryCarousel({
   pictures,
+  category,
   subcategories,
   setIsCarouselOpen
 }: GalleryCarouselProps) {
@@ -34,7 +36,9 @@ function GalleryCarousel({
     ? subcategories.reduce(
         (acc, subcategory) => [
           ...acc,
-          ...pictures.filter(({rawTags}) => rawTags.includes(subcategory.tag))
+          ...pictures
+            .filter(({rawTags}) => rawTags.includes(subcategory.tag))
+            .map(attrs => ({...attrs, subcategory: subcategory.tag}))
         ],
         []
       )
@@ -58,6 +62,18 @@ function GalleryCarousel({
     ? t('carousel.exit-full-screen')
     : t('carousel.enter-full-screen')
   // const shareButtonText = t('carousel.share')
+  const item = items[index]
+  let subcategoryName
+  let SubcategoryIcon
+  if (subcategories) {
+    subcategoryName = t(
+      `common:gallery.albums.${category}.subcategories.${getSlug(
+        item.subcategory
+      )}`
+    )
+    SubcategoryIcon =
+      subcategoryIcons[`Icon${getCapitalizedName(item.subcategory)}`]
+  }
 
   function resetCarousel() {
     startIndex = undefined
@@ -210,9 +226,22 @@ function GalleryCarousel({
       </div>
 
       {!isFullScreen && (
-        <span className="pointer-events-none absolute top-6 left-6 z-10 rounded-full bg-gradient-to-t from-neutral-800 py-1.5 px-3 text-xs font-extralight text-neutral-400 drop-shadow-xl">
-          {index + 1} <span className="opacity-60">/ {items.length}</span>
-        </span>
+        <div className="pointer-events-none absolute top-6 left-6 z-10 flex rounded-full bg-gradient-to-t from-neutral-800 px-3 text-xs font-extralight text-neutral-400 drop-shadow-xl">
+          <span className="py-1.5">
+            {index + 1} <span className="opacity-60">/ {items.length}</span>
+          </span>
+
+          {subcategoryName && (
+            <span className="relative ml-3 flex pl-3 after:absolute after:left-0 after:top-0 after:block after:h-full after:w-[1px] after:bg-gradient-to-b after:from-transparent after:via-neutral-600/60">
+              <span className="inline-flex items-center pl-[1px]">
+                {SubcategoryIcon && (
+                  <SubcategoryIcon className="mr-1.5 w-3 rounded-full opacity-90" />
+                )}
+                {subcategoryName}
+              </span>
+            </span>
+          )}
+        </div>
       )}
 
       <nav className="hidden sm:block">
@@ -262,6 +291,7 @@ export default memo(GalleryCarousel)
 
 interface GalleryCarouselProps {
   pictures: Picture[]
+  category?: string
   subcategories?: Subcategory[]
   setIsCarouselOpen: (isCarouselOpen: boolean) => void
 }

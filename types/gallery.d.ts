@@ -88,6 +88,7 @@ export interface Picture {
   megapixels: number
   rawTags: string[]
   tags: Tag[]
+  subcategory?: string
   coordinates?: Coordinates
   tutorial?: Tutorial
 }
