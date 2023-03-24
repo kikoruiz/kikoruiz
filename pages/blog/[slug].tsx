@@ -11,11 +11,22 @@ import BlogTags from 'components/blog-tags'
 import {BlogPost} from 'types/blog'
 import {Alternate} from 'types'
 import PostTitle from 'components/post-title'
+import {getSlug} from 'lib/utils'
 
 export default function Post({post, alternates}: PostProps) {
   const {locale} = useRouter()
   const {t} = useTranslation('blog')
   const author = BLOG.AUTHORS.find(({slug}) => post.author === slug).name
+
+  function createAuthorMarkup() {
+    return {
+      __html: t('post.by', {
+        author: `<a href="/${getSlug(
+          t('common:sections.about-me.name')
+        )}" title="${author}" class="underline hover:no-underline hover:text-neutral-300">${author}</a>`
+      })
+    }
+  }
 
   return (
     <>
@@ -47,9 +58,10 @@ export default function Post({post, alternates}: PostProps) {
             <PostTitle title={post.title} />
           </h1>
 
-          <div className="font-thin text-neutral-300/60">
-            {t('post.by', {author})}
-          </div>
+          <div
+            className="font-thin text-neutral-300/60"
+            dangerouslySetInnerHTML={createAuthorMarkup()}
+          />
         </header>
 
         <Article
