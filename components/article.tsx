@@ -2,7 +2,7 @@ import NextImage from 'next/image'
 import ReactMarkdown from 'react-markdown'
 
 export default function Article({content, className}: ArticleProps) {
-  const articleClassName = `max-w-full prose prose-neutral prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-p:font-light prose-strong:text-neutral-300${
+  const articleClassName = `max-w-full prose prose-neutral prose-code:text-neutral-300 prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-p:font-light prose-strong:text-neutral-300${
     className ? ` ${className}` : ''
   }`
   const components = {
@@ -12,7 +12,7 @@ export default function Article({content, className}: ArticleProps) {
         const metastring = image.properties.alt
         const alt = metastring?.replace(/ *\{[^)]*\} */g, '')
         const [properties] = metastring?.match(/\{(.*)\}/g) || []
-        let caption = ''
+        let caption = alt
         let hasPriority = false
         let isSquare = false
         let isRounded = false
@@ -41,6 +41,7 @@ export default function Article({content, className}: ArticleProps) {
             <NextImage
               src={image.properties.src}
               alt={alt}
+              title={alt}
               priority={hasPriority}
               className="object-cover"
               fill
@@ -48,7 +49,7 @@ export default function Article({content, className}: ArticleProps) {
             />
             {caption && (
               <figcaption
-                className="absolute bottom-0 px-3 py-1.5 text-xs shadow-sm"
+                className="absolute bottom-1 left-1 rounded-sm bg-neutral-300/60 px-3 py-1.5 text-xs font-extralight text-neutral-600 shadow-sm"
                 aria-label={caption}
               >
                 {caption}

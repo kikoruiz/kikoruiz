@@ -27,7 +27,7 @@ export default function PostCard({
     : 'border-neutral-300/30 hover:border-neutral-300/60'
   const latestTagClassName = isLatestTutorial
     ? 'border-orange-600/60 from-orange-300/90 to-orange-200'
-    : 'border-neutral-600/60 from-neutral-300/90 to-neutral-200'
+    : 'border-neutral-600/30 from-neutral-300/90 to-neutral-200'
   const latestTagTextClassName = isLatestTutorial
     ? 'from-orange-400 via-orange-600 to-orange-800'
     : 'from-neutral-400 via-neutral-600 to-neutral-800'
