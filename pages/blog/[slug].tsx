@@ -23,7 +23,7 @@ export default function Post({post, alternates}: PostProps) {
       __html: t('post.by', {
         author: `<a href="/${getSlug(
           t('common:sections.about-me.name')
-        )}" title="${author}" class="underline hover:no-underline hover:text-neutral-300">${author}</a>`
+        )}" title="${author}" class="underline hover:no-underline hover:text-neutral-300/90">${author}</a>`
       })
     }
   }
