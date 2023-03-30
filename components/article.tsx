@@ -7,6 +7,20 @@ export default function Article({content, className}: ArticleProps) {
   }`
   const components = {
     p({children, node}) {
+      if (
+        node.children[0].type === 'text' &&
+        node.children[0].value.match(
+          /<a[\s]+([^>]+)>((?:.(?!\<\/a\>))*.)<\/a>/g
+        )
+      ) {
+        console.log(node.children[0])
+        // const metastring = image.properties.alt
+        // const alt = metastring?.replace(/ *\{[^)]*\} */g, '')
+        // const [properties] = metastring?.match(/\{(.*)\}/g) || []
+
+        return <b>ESTO ES UN LINK</b>
+      }
+
       if (node.children[0].tagName === 'img') {
         const image = node.children[0]
         const metastring = image.properties.alt
