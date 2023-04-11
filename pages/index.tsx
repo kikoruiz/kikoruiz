@@ -66,7 +66,9 @@ export default function Home({
           <HomeSections images={sectionImages} averageColor={averageColor} />
         </header>
 
-        <HomeLatestContent posts={latestContent} />
+        {latestContent.length > 0 && (
+          <HomeLatestContent posts={latestContent} />
+        )}
 
         <HomeBlock>
           <div

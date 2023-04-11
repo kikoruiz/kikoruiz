@@ -7,5 +7,6 @@
     "filter-by": "Filter by:",
     "back-to-all": "Back to all articles",
     "back-to-tags": "See all tags"
-  }
+  },
+  "no-content": "Content creation in progress..."
 }
