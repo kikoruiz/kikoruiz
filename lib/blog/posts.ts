@@ -3,11 +3,12 @@ import path from 'node:path'
 import {getPlaiceholder} from 'plaiceholder'
 import {getMarkdownContent} from '../content'
 import {themeScreens} from '../utils'
-
-const DEFAULT_WORDS_PER_MINUTE = 225
-const POST_FILE_EXTENSION = '.md'
-const POST_FILE_SEPARATOR = '_'
-const POST_FILE_DRAFT_PLACEHOLDER = 'draft'
+import {
+  DEFAULT_WORDS_PER_MINUTE,
+  POST_FILE_EXTENSION,
+  POST_FILE_SEPARATOR,
+  POST_FILE_DRAFT_PLACEHOLDER
+} from 'config/blog'
 
 const postsDirectory = path.join(process.cwd(), 'data', 'posts')
 
@@ -66,7 +67,9 @@ export function getPostSlugByPictureSlug(slug: string): string {
   if (!postFilePath) return
 
   const [postFileName] = postFilePath.split(POST_FILE_EXTENSION)
-  const [, postSlug] = postFileName.split(POST_FILE_SEPARATOR)
+  const [, postSlug, draftSlug] = postFileName.split(POST_FILE_SEPARATOR)
+
+  if (draftSlug === POST_FILE_DRAFT_PLACEHOLDER) return
 
   return postSlug
 }

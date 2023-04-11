@@ -27,13 +27,15 @@ async function saveSearchContent() {
   if (fs.existsSync(searchContentFile)) fs.unlinkSync(searchContentFile)
 
   const filenames = fs.readdirSync(postsDirectory)
-  const posts = filenames.map(filename => {
-    const rawSlug = filename.replace(/\.md$/, '')
-    const post = getMarkdownContent(`${postsDirectory}/${rawSlug}.md`)
-    const {excerpt, title, tags} = post
+  const posts = filenames
+    .filter(filename => !filename.includes('_draft.md'))
+    .map(filename => {
+      const rawSlug = filename.replace(/\.md$/, '')
+      const post = getMarkdownContent(`${postsDirectory}/${rawSlug}.md`)
+      const {excerpt, title, tags} = post
 
-    return {excerpt, title, tags, slug: paramCase(removeAccents(title))}
-  })
+      return {excerpt, title, tags, slug: paramCase(removeAccents(title))}
+    })
 
   fs.writeFileSync(searchContentFile, JSON.stringify(posts))
 }
