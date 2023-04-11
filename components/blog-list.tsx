@@ -6,13 +6,15 @@ import BlogHeader from './blog-header'
 export default function BlogList({tag, tags, posts}: BlogListProps) {
   return (
     <>
-      <BlogHeader tag={tag} tags={tags} />
+      <BlogHeader tag={tag} tags={tags} hasNoContent={posts.length === 0} />
 
-      <section className="grid p-4 pt-0 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
-        {posts.map(post => (
-          <PostCard key={post.slug} {...post} className="mt-4" />
-        ))}
-      </section>
+      {posts.length > 0 && (
+        <section className="grid p-4 pt-0 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
+          {posts.map(post => (
+            <PostCard key={post.slug} {...post} className="mt-4" />
+          ))}
+        </section>
+      )}
     </>
   )
 }

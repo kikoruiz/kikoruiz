@@ -1,6 +1,8 @@
 import {BlogPost} from './blog'
 import {HighlightedImage} from './gallery'
 
+export type orientation = 'horizontal' | 'vertical'
+
 export interface BreadcrumbItem {
   categories?: object[]
   href?: string
