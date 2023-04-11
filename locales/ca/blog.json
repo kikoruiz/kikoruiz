@@ -7,5 +7,6 @@
     "filter-by": "Filtrar per:",
     "back-to-all": "Tornar a tots els articles",
     "back-to-tags": "Veure tots els tags"
-  }
+  },
+  "no-content": "Contingut en procés de desenvolupament..."
 }

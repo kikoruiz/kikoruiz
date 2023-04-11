@@ -31,10 +31,13 @@ export async function getHeroImage(): Promise<HighlightedImage> {
 export async function getLatestContent(): Promise<BlogPost[]> {
   const TAG_TUTORIAL = 'tutorial'
   const allPosts = await getAllPosts()
+  const latestContent = []
   const latestTutorial = allPosts.find(({tags}) => tags.includes(TAG_TUTORIAL))
+  if (latestTutorial) latestContent.push(latestTutorial)
   const latestPost = allPosts.find(({tags}) => !tags.includes(TAG_TUTORIAL))
+  if (latestPost) latestContent.push(latestPost)
 
-  return [latestTutorial, latestPost]
+  return latestContent
 }
 
 export async function getLatestPictures({

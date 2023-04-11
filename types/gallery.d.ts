@@ -1,4 +1,4 @@
-import {Tag} from 'types'
+import {orientation, Tag} from 'types'
 import {Tutorial} from './blog'
 
 export interface Subcategory {
@@ -8,7 +8,7 @@ export interface Subcategory {
 
 export interface Image {
   src: string
-  orientation?: 'horizontal' | 'vertical'
+  orientation?: orientation
   css: ImageFallbackStyle
   averageColor?: ImageAverageColor
 }

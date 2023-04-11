@@ -7,6 +7,7 @@ import {themeScreens} from '../utils'
 const DEFAULT_WORDS_PER_MINUTE = 225
 const POST_FILE_EXTENSION = '.md'
 const POST_FILE_SEPARATOR = '_'
+const POST_FILE_DRAFT_PLACEHOLDER = 'draft'
 
 const postsDirectory = path.join(process.cwd(), 'data', 'posts')
 
@@ -17,6 +18,12 @@ function getPostBySlug(slug: string) {
 export async function getAllPosts() {
   let filenames = fs.readdirSync(postsDirectory)
   filenames = filenames.reverse()
+  filenames = filenames.filter(
+    filename =>
+      !filename.includes(
+        `${POST_FILE_SEPARATOR}${POST_FILE_DRAFT_PLACEHOLDER}${POST_FILE_EXTENSION}`
+      )
+  )
 
   return Promise.all(
     filenames.map(async filename => {
