@@ -10,7 +10,7 @@ Valoro todos y cada uno de los pasos del **proceso creativo** por el cual me tra
 
 ## Otra de mis pasiones
 
-es (desde hace muchos años también) el **diseño** 🎨. En realidad me inicié en él en 2003, poco después de dejar a medias la carrera universitaria de Bellas Artes (en Altea, en la facultad perteneciente a la Universidad Miguel Hernández de Elche). Y fue en mis _Estudios Superiores de Diseño Gráfico_, en Alicante, donde tuve mi primer contacto con el diseño de **interfaces digitales** (web). Desde aquel momento hasta la fecha, es donde he ido forjando mi actual profesión.
+es (desde hace muchos años también) el **diseño** 🎨. En realidad me inicié en él en 2003, poco después de dejar a medias la carrera universitaria de Bellas Artes (en Altea, en la facultad perteneciente a la Universidad Miguel Hernández de Elche). Y fue en mis Estudios Superiores de Diseño Gráfico, en Alicante, donde tuve mi primer contacto con el diseño de **interfaces digitales** (web). Desde aquel momento hasta la fecha, es donde he ido forjando mi actual profesión.
 
 ## Actualmente
 
