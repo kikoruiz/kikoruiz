@@ -10,7 +10,7 @@ I value each and every one of the steps of my **creative process** through which
 
 ## Another of my passions
 
-it's (for many years also) the **design** 🎨. Actually I started in it in 2003, shortly after leaving the university degree in Fine Arts (in Altea, in the faculty belonging to the Miguel Hernández University of Elche). And it was in my _Higher Graphic Design Studies_, in Alicante, where I had my first contact with design of **digital interfaces** (web). From that moment to date, it's where I have been forging my current profession.
+it's (for many years also) the **design** 🎨. Actually I started in it in 2003, shortly after leaving the university degree in Fine Arts (in Altea, in the faculty belonging to the Miguel Hernández University of Elche). And it was in my Higher Graphic Design Studies, in Alicante, where I had my first contact with design of **digital interfaces** (web). From that moment to date, it's where I have been forging my current profession.
 
 ## Currently
 
