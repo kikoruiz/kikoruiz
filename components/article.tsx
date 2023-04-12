@@ -1,4 +1,5 @@
 import NextImage from 'next/image'
+import NextLink from 'next/link'
 import ReactMarkdown from 'react-markdown'
 
 export default function Article({content, className}: ArticleProps) {
@@ -7,6 +8,22 @@ export default function Article({content, className}: ArticleProps) {
   }`
   const components = {
     p({children, node}) {
+      node.children.forEach((attrs, index) => {
+        const {type, tagName, properties} = attrs
+
+        if (
+          type === 'element' &&
+          tagName === 'a' &&
+          !properties.href.includes('https')
+        ) {
+          const {props} = children[index]
+
+          children[index] = (
+            <NextLink href={props.href}>{props.children}</NextLink>
+          )
+        }
+      })
+
       if (node.children[0].tagName === 'img') {
         const image = node.children[0]
         const metastring = image.properties.alt
