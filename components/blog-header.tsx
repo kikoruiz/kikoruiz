@@ -2,13 +2,15 @@ import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {getSlug} from 'lib/utils'
 import BlogTags from './blog-tags'
-import ArrowLeft from 'assets/icons/arrow-left.svg'
+import IconArrowLeft from 'assets/icons/arrow-left.svg'
+import IconExclamationTriangle from 'assets/icons/exclamation-triangle.svg'
 import {Tag} from 'types'
 
 export default function BlogHeader({
   tag,
   tags,
-  isTagsIndex = false
+  isTagsIndex = false,
+  hasNoContent = false
 }: BlogHeaderProps) {
   const {t} = useTranslation('blog')
   const title = isTagsIndex ? t('common:tags') : t('common:sections.blog.name')
@@ -46,7 +48,7 @@ export default function BlogHeader({
             title={backButtonTitle}
             className="inline-flex items-center text-xs font-light text-neutral-300/30 hover:text-neutral-300/90 sm:text-sm"
           >
-            <ArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+            <IconArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
             {backButtonTitle}
           </Link>
         </div>
@@ -57,7 +59,14 @@ export default function BlogHeader({
             {t('common:sections.blog.description')}
           </p>
 
-          <BlogTags tags={tags} />
+          {!hasNoContent ? (
+            <BlogTags tags={tags} />
+          ) : (
+            <h2 className="mt-12 flex flex-col items-center justify-center text-xl font-bold sm:flex-row">
+              <IconExclamationTriangle className="h-12 w-12 sm:mr-3" />
+              {t('no-content')}
+            </h2>
+          )}
         </>
       )}
     </header>
@@ -68,4 +77,5 @@ interface BlogHeaderProps {
   tag?: string
   tags?: Tag[]
   isTagsIndex?: boolean
+  hasNoContent?: boolean
 }

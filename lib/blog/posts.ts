@@ -3,10 +3,12 @@ import path from 'node:path'
 import {getPlaiceholder} from 'plaiceholder'
 import {getMarkdownContent} from '../content'
 import {themeScreens} from '../utils'
-
-const DEFAULT_WORDS_PER_MINUTE = 225
-const POST_FILE_EXTENSION = '.md'
-const POST_FILE_SEPARATOR = '_'
+import {
+  DEFAULT_WORDS_PER_MINUTE,
+  POST_FILE_EXTENSION,
+  POST_FILE_SEPARATOR,
+  POST_FILE_DRAFT_PLACEHOLDER
+} from 'config/blog'
 
 const postsDirectory = path.join(process.cwd(), 'data', 'posts')
 
@@ -17,6 +19,12 @@ function getPostBySlug(slug: string) {
 export async function getAllPosts() {
   let filenames = fs.readdirSync(postsDirectory)
   filenames = filenames.reverse()
+  filenames = filenames.filter(
+    filename =>
+      !filename.includes(
+        `${POST_FILE_SEPARATOR}${POST_FILE_DRAFT_PLACEHOLDER}${POST_FILE_EXTENSION}`
+      )
+  )
 
   return Promise.all(
     filenames.map(async filename => {
@@ -59,7 +67,9 @@ export function getPostSlugByPictureSlug(slug: string): string {
   if (!postFilePath) return
 
   const [postFileName] = postFilePath.split(POST_FILE_EXTENSION)
-  const [, postSlug] = postFileName.split(POST_FILE_SEPARATOR)
+  const [, postSlug, draftSlug] = postFileName.split(POST_FILE_SEPARATOR)
+
+  if (draftSlug === POST_FILE_DRAFT_PLACEHOLDER) return
 
   return postSlug
 }

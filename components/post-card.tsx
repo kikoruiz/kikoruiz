@@ -6,6 +6,7 @@ import {getPrettyDate} from 'lib/blog/date'
 import {HighlightedImage} from 'types/gallery'
 import PostTitle from './post-title'
 import IconChevronRight from 'assets/icons/chevron-right.svg'
+import {orientation} from 'types'
 
 export default function PostCard({
   title,
@@ -16,10 +17,12 @@ export default function PostCard({
   highlightedImage,
   className = '',
   isLatest = false,
-  needsPreload = false
+  needsPreload = false,
+  orientation = 'vertical'
 }: PostCardProps) {
   const {locale} = useRouter()
   const {t} = useTranslation()
+  const isHorizontal = orientation === 'horizontal'
   const isTutorial = title.toLowerCase().includes(t('blog.tags.tutorial'))
   const isLatestTutorial = isLatest && isTutorial
   const latestWrapperClassName = isLatestTutorial
@@ -36,9 +39,11 @@ export default function PostCard({
     <Link href={href} title={title} className={className}>
       <article
         className={`group flex flex-col overflow-hidden rounded border bg-gradient-to-t from-neutral-900/90 to-neutral-900/30 shadow-md hover:shadow-black/20${
+          isHorizontal ? ' md:flex-row' : ''
+        } ${
           isLatest
-            ? ` relative ${latestWrapperClassName}`
-            : ' border-neutral-600/60 hover:border-orange-300/60'
+            ? `relative ${latestWrapperClassName}`
+            : 'border-neutral-600/60 hover:border-orange-300/60'
         }`}
       >
         {isLatest && (
@@ -59,11 +64,17 @@ export default function PostCard({
           </div>
         )}
         {highlightedImage && (
-          <div className="overflow-hidden">
+          <div
+            className={`overflow-hidden w-full${
+              isHorizontal ? ' md:w-80' : ''
+            }`}
+          >
             <Image
               src={highlightedImage.src}
               alt={highlightedImage.alt}
-              className="aspect-3/2 transition-transform group-hover:scale-105"
+              className={`aspect-3/2 transition-transform group-hover:scale-105${
+                isHorizontal ? ' md:aspect-square' : ''
+              }`}
               sizes={highlightedImage.sizes}
               fallbackStyle={highlightedImage.css}
               needsPreload={needsPreload}
@@ -71,7 +82,7 @@ export default function PostCard({
           </div>
         )}
 
-        <div className="p-4 text-sm">
+        <div className="flex grow flex-col p-4 text-sm">
           <header className="flex items-start justify-between">
             {isLatest ? (
               <h3 className="text-2xl font-black">
@@ -105,14 +116,14 @@ export default function PostCard({
           </p>
 
           {isLatest && (
-            <div className="mt-3 hidden justify-end sm:flex">
+            <div className="mt-3 hidden self-end sm:flex md:grow">
               <button
                 aria-label={
                   isLatestTutorial
                     ? t('blog.post.read-tutorial')
                     : t('blog.post.read-post')
                 }
-                className={`pointer-events-none flex appearance-none items-center rounded-full border border-neutral-600/30 bg-neutral-800 py-2 px-4 text-sm font-light shadow-sm ${
+                className={`pointer-events-none flex appearance-none items-center self-end rounded-full border border-neutral-600/30 bg-neutral-800 py-2 px-4 text-sm font-light shadow-sm ${
                   isLatestTutorial
                     ? 'text-orange-300/60 group-hover:text-orange-300'
                     : 'text-neutral-300/60 group-hover:text-neutral-300'
@@ -141,4 +152,5 @@ interface PostCardProps {
   className?: string
   isLatest?: boolean
   needsPreload?: boolean
+  orientation?: orientation
 }
