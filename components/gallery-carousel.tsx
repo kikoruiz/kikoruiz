@@ -174,7 +174,7 @@ function GalleryCarousel({
 
   return (
     <div className="fixed inset-0 z-10 h-screen w-screen">
-      <div className="absolute top-3 right-3 z-20 flex flex-row-reverse gap-3 sm:top-6 sm:right-6">
+      <div className="absolute right-3 top-3 z-20 flex flex-row-reverse gap-3 sm:right-6 sm:top-6">
         <button
           aria-label={t('carousel.close')}
           title={t('carousel.close')}
@@ -225,24 +225,22 @@ function GalleryCarousel({
         </button> */}
       </div>
 
-      {!isFullScreen && (
-        <div className="pointer-events-none absolute top-6 left-6 z-10 flex rounded-full bg-gradient-to-t from-neutral-800 px-3 text-xs font-extralight text-neutral-400 drop-shadow-xl">
-          <span className="py-1.5">
-            {index + 1} <span className="opacity-60">/ {items.length}</span>
-          </span>
+      <div className="pointer-events-none absolute left-6 top-6 z-10 flex rounded-full bg-gradient-to-t from-neutral-800 px-3 text-xs font-extralight text-neutral-400 drop-shadow-xl">
+        <span className="py-1.5">
+          {index + 1} <span className="opacity-60">/ {items.length}</span>
+        </span>
 
-          {subcategoryName && (
-            <span className="relative ml-3 flex pl-3 after:absolute after:left-0 after:top-0 after:block after:h-full after:w-[1px] after:bg-gradient-to-b after:from-transparent after:via-neutral-600/60">
-              <span className="inline-flex items-center pl-[1px]">
-                {SubcategoryIcon && (
-                  <SubcategoryIcon className="mr-1.5 w-3 rounded-full opacity-90" />
-                )}
-                {subcategoryName}
-              </span>
+        {subcategoryName && (
+          <span className="relative ml-3 flex pl-3 after:absolute after:left-0 after:top-0 after:block after:h-full after:w-[1px] after:bg-gradient-to-b after:from-transparent after:via-neutral-600/60">
+            <span className="inline-flex items-center pl-[1px]">
+              {SubcategoryIcon && (
+                <SubcategoryIcon className="mr-1.5 w-3 rounded-full opacity-90" />
+              )}
+              {subcategoryName}
             </span>
-          )}
-        </div>
-      )}
+          </span>
+        )}
+      </div>
 
       <nav className="hidden sm:block">
         {needsButtonPrevious && (
