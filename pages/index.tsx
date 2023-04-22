@@ -54,7 +54,7 @@ export default function Home({
       <Hero image={heroImage} />
 
       <div className="p-3">
-        <header className="rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pt-12 pb-6 text-white/90 md:px-6">
+        <header className="rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pb-6 pt-12 text-white/90 md:px-6">
           <div className="mb-6 flex flex-col items-center break-words xl:mb-9 xl:flex-row xl:justify-center">
             <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
 
@@ -70,6 +70,8 @@ export default function Home({
           <HomeLatestContent posts={latestContent} />
         )}
 
+        <HomeLatestPictures latestPictures={latestPictures} />
+
         <HomeBlock>
           <div
             onClick={() => {
@@ -77,7 +79,7 @@ export default function Home({
             }}
             className="group relative flex w-full cursor-pointer justify-center overflow-hidden rounded border border-neutral-700/60 bg-gradient-to-t from-neutral-900 to-neutral-900/80 p-6 hover:border-orange-300/60 sm:justify-end lg:p-12"
           >
-            <IconGlobe className="absolute -top-14 -left-8 w-64 fill-neutral-600/90 transition-transform group-hover:scale-125 group-hover:fill-orange-300 lg:-top-24 lg:left-0 lg:w-[45%] lg:group-hover:scale-110 xl:-top-48 xl:-left-12 xl:w-[60%]" />
+            <IconGlobe className="absolute -left-8 -top-14 w-64 fill-neutral-600/90 transition-transform group-hover:scale-125 group-hover:fill-orange-300 lg:-top-24 lg:left-0 lg:w-[45%] lg:group-hover:scale-110 xl:-left-12 xl:-top-48 xl:w-[60%]" />
             <button
               aria-label={t('map.button')}
               title={t('map.button')}
@@ -92,8 +94,6 @@ export default function Home({
             <DynamicHomeMap pictures={pictures} setShowMap={setShowMap} />
           )}
         </HomeBlock>
-
-        <HomeLatestPictures latestPictures={latestPictures} />
 
         <HomeModule title={t('home:gallery-tags')} className="pb-3">
           <GalleryTags tags={galleryTags} />
