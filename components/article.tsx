@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import ReactMarkdown from 'react-markdown'
 
 export default function Article({content, className}: ArticleProps) {
-  const articleClassName = `max-w-full prose prose-neutral prose-code:text-neutral-300 prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-code:before:content-[''] prose-code:after:content-[''] prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-p:font-light prose-strong:text-neutral-300${
+  const articleClassName = `max-w-full overflow-hidden prose prose-neutral prose-code:text-neutral-300 prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-code:before:content-[''] prose-code:after:content-[''] prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-p:font-light prose-strong:text-neutral-300${
     className ? ` ${className}` : ''
   }`
   const components = {
@@ -19,7 +19,9 @@ export default function Article({content, className}: ArticleProps) {
           const {props} = children[index]
 
           children[index] = (
-            <NextLink href={props.href}>{props.children}</NextLink>
+            <NextLink href={props.href} key={index}>
+              {props.children}
+            </NextLink>
           )
         }
       })
@@ -34,6 +36,9 @@ export default function Article({content, className}: ArticleProps) {
         let isSquare = false
         let isRounded = false
         let onlyInMobile = false
+        let alignToLeft = false
+        let alignToRight = false
+        let isVertical = false
 
         if (properties) {
           const parsed = JSON.parse(properties)
@@ -43,17 +48,28 @@ export default function Article({content, className}: ArticleProps) {
           if (parsed.square) isSquare = parsed.square
           if (parsed.rounded) isRounded = parsed.rounded
           if (parsed.mobile) onlyInMobile = parsed.mobile
+          if (parsed.align === 'left') alignToLeft = true
+          if (parsed.align === 'right') alignToRight = true
+          if (parsed.orientation === 'vertical') isVertical = true
         }
 
         return (
           <figure
-            className={`relative overflow-hidden shadow-lg ${
-              isSquare ? 'aspect-square' : 'aspect-3/2'
+            className={`relative overflow-hidden shadow-lg lg:clear-both ${
+              isSquare
+                ? 'aspect-square'
+                : isVertical
+                ? 'aspect-2/3'
+                : 'aspect-3/2'
             } ${
               isRounded
                 ? 'mx-auto w-2/3 rounded-full border-8 border-neutral-600/30'
                 : 'rounded'
-            }${onlyInMobile ? ' sm:hidden' : ''}`}
+            }${onlyInMobile ? ' sm:hidden' : ''}${
+              alignToLeft || alignToRight ? ' lg:my-2 lg:w-1/2' : ''
+            }${alignToLeft ? ' lg:float-left lg:mr-6' : ''}${
+              alignToRight ? ' lg:float-right lg:ml-6' : ''
+            }`}
           >
             <NextImage
               src={image.properties.src}
@@ -66,7 +82,7 @@ export default function Article({content, className}: ArticleProps) {
             />
             {caption && (
               <figcaption
-                className="absolute bottom-1 left-1 rounded-sm bg-neutral-300/60 px-3 py-1.5 text-xs font-extralight text-neutral-600 shadow-sm"
+                className="absolute bottom-1 left-1 rounded-sm bg-neutral-300/30 px-2 py-1 text-xs font-extralight text-neutral-900 drop-shadow-sm"
                 aria-label={caption}
               >
                 {caption}
