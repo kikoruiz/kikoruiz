@@ -86,6 +86,7 @@ export const GALLERY_TAGS = [
   'human',
   'lake',
   'lighthouse',
+  'long exposure',
   'milky way',
   'mountain',
   'panorama',
