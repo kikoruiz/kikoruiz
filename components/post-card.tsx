@@ -48,7 +48,7 @@ export default function PostCard({
       >
         {isLatest && (
           <div
-            className={`pointer-events-none absolute top-3 left-3 z-[1] flex items-center justify-center rounded-xl border bg-gradient-to-t py-1 px-2 text-center drop-shadow${
+            className={`pointer-events-none absolute left-3 top-3 z-[1] flex items-center justify-center rounded-xl border bg-gradient-to-t px-2 py-1 text-center drop-shadow${
               isLatest ? ` ${latestTagClassName}` : ''
             }`}
           >
@@ -94,26 +94,16 @@ export default function PostCard({
               </h2>
             )}
 
-            {!isLatest && (
-              <span className="w-1/4 text-right text-xs text-neutral-600/60">
-                {t('blog.post.reading-time-message', {count: readingTime})}
-              </span>
-            )}
+            <span className="w-1/4 text-right text-xs text-neutral-600/60">
+              {t('blog.post.reading-time-message', {count: readingTime})}
+            </span>
           </header>
 
-          {!isLatest && (
-            <time className="text-orange-300/60" dateTime={createdAt}>
-              {getPrettyDate(createdAt, locale)}
-            </time>
-          )}
+          <time className="text-orange-300/60" dateTime={createdAt}>
+            {getPrettyDate(createdAt, locale)}
+          </time>
 
-          <p
-            className={`font-light text-neutral-600 ${
-              isLatest ? 'mt-1' : 'mt-3'
-            }`}
-          >
-            {excerpt}
-          </p>
+          <p className="mt-3 font-light text-neutral-600">{excerpt}</p>
 
           {isLatest && (
             <div className="mt-3 hidden self-end sm:flex md:grow">
@@ -123,7 +113,7 @@ export default function PostCard({
                     ? t('blog.post.read-tutorial')
                     : t('blog.post.read-post')
                 }
-                className={`pointer-events-none flex appearance-none items-center self-end rounded-full border border-neutral-600/30 bg-neutral-800 py-2 px-4 text-sm font-light shadow-sm ${
+                className={`pointer-events-none flex appearance-none items-center self-end rounded-full border border-neutral-600/30 bg-neutral-800 px-4 py-2 text-sm font-light shadow-sm ${
                   isLatestTutorial
                     ? 'text-orange-300/60 group-hover:text-orange-300'
                     : 'text-neutral-300/60 group-hover:text-neutral-300'
@@ -132,7 +122,7 @@ export default function PostCard({
                 {isLatestTutorial
                   ? t('blog.post.read-tutorial')
                   : t('blog.post.read-post')}
-                <IconChevronRight className="invisible relative -left-3 w-0 transition-all group-hover:visible group-hover:left-0 group-hover:ml-1 group-hover:-mr-1 group-hover:w-4" />
+                <IconChevronRight className="invisible relative -left-3 w-0 transition-all group-hover:visible group-hover:left-0 group-hover:-mr-1 group-hover:ml-1 group-hover:w-4" />
               </button>
             </div>
           )}
