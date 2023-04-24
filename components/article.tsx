@@ -55,7 +55,7 @@ export default function Article({content, className}: ArticleProps) {
 
         return (
           <figure
-            className={`relative overflow-hidden shadow-lg lg:clear-both ${
+            className={`relative mb-12 shadow-lg lg:clear-both ${
               isSquare
                 ? 'aspect-square'
                 : isVertical
@@ -66,7 +66,7 @@ export default function Article({content, className}: ArticleProps) {
                 ? 'mx-auto w-2/3 rounded-full border-8 border-neutral-600/30'
                 : 'rounded'
             }${onlyInMobile ? ' sm:hidden' : ''}${
-              alignToLeft || alignToRight ? ' lg:my-2 lg:w-1/2' : ''
+              alignToLeft || alignToRight ? ' lg:mt-2 lg:w-1/2' : ''
             }${alignToLeft ? ' lg:float-left lg:mr-6' : ''}${
               alignToRight ? ' lg:float-right lg:ml-6' : ''
             }`}
@@ -76,13 +76,17 @@ export default function Article({content, className}: ArticleProps) {
               alt={alt}
               title={alt}
               priority={hasPriority}
-              className="object-cover"
+              className={`object-cover ${
+                isRounded
+                  ? 'mx-auto w-2/3 rounded-full border-8 border-neutral-600/30'
+                  : 'rounded'
+              }`}
               fill
               sizes="100%"
             />
             {caption && !isSquare && (
               <figcaption
-                className="absolute bottom-1 left-1 rounded-sm bg-neutral-300/30 px-2 py-1 text-xs font-extralight text-neutral-900 drop-shadow-sm"
+                className="absolute left-0 top-full z-20 m-0 py-1 text-xs font-extralight italic text-neutral-600 drop-shadow-sm"
                 aria-label={caption}
               >
                 {caption}

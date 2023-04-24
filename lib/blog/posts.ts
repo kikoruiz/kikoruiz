@@ -32,7 +32,9 @@ export async function getAllPosts() {
       const post = getPostBySlug(rawSlug)
       const [createdAt, slug] = rawSlug.split(POST_FILE_SEPARATOR)
       const readingTime = getReadingTime(post.content)
-      const image = post.content.match(/!\[(.*)\]\((.*.jpg)\)/)
+      const image =
+        (post.picture && post.excerpt && [, post.excerpt, post.picture]) ||
+        post.content.match(/!\[(.*)\]\((.*.jpg)\)/)
       let highlightedImage
       const {sm} = themeScreens
 
