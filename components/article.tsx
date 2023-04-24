@@ -80,7 +80,7 @@ export default function Article({content, className}: ArticleProps) {
               fill
               sizes="100%"
             />
-            {caption && (
+            {caption && !isSquare && (
               <figcaption
                 className="absolute bottom-1 left-1 rounded-sm bg-neutral-300/30 px-2 py-1 text-xs font-extralight text-neutral-900 drop-shadow-sm"
                 aria-label={caption}
