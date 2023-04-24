@@ -1,6 +1,6 @@
 ---
 title: '¡Hola, mundo!'
-excerpt: 'Echando un vistazo atrás para etender lo que está por venir.'
+excerpt: 'Echando un vistazo atrás para entender lo que está por venir.'
 author: 'kiko-ruiz'
 tags: 'photography, personal'
 ---
