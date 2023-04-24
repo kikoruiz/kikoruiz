@@ -7,6 +7,7 @@ export interface BlogPostContent {
   excerpt: string
   tags: string
   title: string
+  picture?: string
 }
 
 export interface BlogPost extends BlogPostContent {
