@@ -17,6 +17,7 @@ export interface BlogPost extends BlogPostContent {
   readingTime: number
   slug: string
   blogTags?: Tag[]
+  isDraft: boolean
 }
 
 export interface Tutorial {

@@ -22,11 +22,7 @@ export const PERSONAL_INFO = {
 
 export const BLOG = {
   AUTHORS: [{slug: 'kiko-ruiz', name: 'Kiko Ruiz'}],
-  TAGS: [
-    'photography',
-    'personal'
-    // 'tutorial'
-  ],
+  TAGS: ['photography', 'personal', 'tutorial'],
   TITLE_SEPARATOR: ':'
 }
 
