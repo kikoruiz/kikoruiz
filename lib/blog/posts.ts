@@ -19,12 +19,6 @@ function getPostBySlug(slug: string) {
 export async function getAllPosts() {
   let filenames = fs.readdirSync(postsDirectory)
   filenames = filenames.reverse()
-  filenames = filenames.filter(
-    filename =>
-      !filename.includes(
-        `${POST_FILE_SEPARATOR}${POST_FILE_DRAFT_PLACEHOLDER}${POST_FILE_EXTENSION}`
-      )
-  )
 
   return Promise.all(
     filenames.map(async filename => {
@@ -55,7 +49,10 @@ export async function getAllPosts() {
         createdAt,
         readingTime,
         ...(highlightedImage && {highlightedImage}),
-        href: `/blog/${slug}`
+        href: `/blog/${slug}`,
+        isDraft: filename.includes(
+          `${POST_FILE_SEPARATOR}${POST_FILE_DRAFT_PLACEHOLDER}${POST_FILE_EXTENSION}`
+        )
       }
     })
   )

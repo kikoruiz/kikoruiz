@@ -3,7 +3,6 @@ title: '¡Hola, mundo!'
 excerpt: 'Echando un vistazo atrás para etender lo que está por venir.'
 author: 'kiko-ruiz'
 tags: 'photography, personal'
-picture: '/blog/2023-04-23_hola-mundo_primera-larga-exposicion.jpg'
 ---
 
 Como un simple programa informático escrito en un lenguaje de programación aún por aprender, un `¡Hola, mundo!`, así empiezo esta aventura que ya hace mucho quise emprender. Ya se sabe, "en casa del herrero, cuchillo de palo", siempre he tendido a dejar de lado lo mío, un lugar donde poder compartir mi forma de expresión y los conocimientos que he ido adquiriendo por el camino. Un camino en el que he pisado diferentes charcos pero quizá sea en el creativo en el que más me haya mojado, bien sea a través del diseño gráfico o en el de interfaces gráficas, aunque también, especialmente en los últimos años, en el de la [fotografía](/galeria).

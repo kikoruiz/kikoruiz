@@ -18,7 +18,8 @@ export default function PostCard({
   className = '',
   isLatest = false,
   needsPreload = false,
-  orientation = 'vertical'
+  orientation = 'vertical',
+  isDraft
 }: PostCardProps) {
   const {locale} = useRouter()
   const {t} = useTranslation()
@@ -36,7 +37,13 @@ export default function PostCard({
     : 'from-neutral-400 via-neutral-600 to-neutral-800'
 
   return (
-    <Link href={href} title={title} className={className}>
+    <Link
+      href={href}
+      title={title}
+      className={`${className}${
+        isDraft ? ' pointer-events-none cursor-not-allowed opacity-60' : ''
+      }`}
+    >
       <article
         className={`group flex flex-col overflow-hidden rounded border bg-gradient-to-t from-neutral-900/90 to-neutral-900/30 shadow-md hover:shadow-black/20${
           isHorizontal ? ' md:flex-row' : ''
@@ -44,7 +51,7 @@ export default function PostCard({
           isLatest
             ? `relative ${latestWrapperClassName}`
             : 'border-neutral-600/60 hover:border-orange-300/60'
-        }`}
+        }${isDraft ? 'hover:border-transparent' : ''}`}
       >
         {isLatest && (
           <div
@@ -72,8 +79,8 @@ export default function PostCard({
             <Image
               src={highlightedImage.src}
               alt={highlightedImage.alt}
-              className={`aspect-3/2 transition-transform group-hover:scale-105${
-                isHorizontal ? ' md:aspect-square' : ''
+              className={`aspect-3/2${isHorizontal ? ' md:aspect-square' : ''}${
+                !isDraft ? ' transition-transform group-hover:scale-105' : ''
               }`}
               sizes={highlightedImage.sizes}
               fallbackStyle={highlightedImage.css}
@@ -94,18 +101,20 @@ export default function PostCard({
               </h2>
             )}
 
-            <span className="w-1/4 text-right text-xs text-neutral-600/60">
-              {t('blog.post.reading-time-message', {count: readingTime})}
-            </span>
+            {!isDraft && (
+              <span className="w-1/4 text-right text-xs text-neutral-600/60">
+                {t('blog.post.reading-time-message', {count: readingTime})}
+              </span>
+            )}
           </header>
 
           <time className="text-orange-300/60" dateTime={createdAt}>
-            {getPrettyDate(createdAt, locale)}
+            {isDraft ? t('blog.post.draft') : getPrettyDate(createdAt, locale)}
           </time>
 
           <p className="mt-3 font-light text-neutral-600">{excerpt}</p>
 
-          {isLatest && (
+          {isLatest && !isDraft && (
             <div className="mt-3 hidden self-end sm:flex md:grow">
               <button
                 aria-label={
@@ -143,4 +152,5 @@ interface PostCardProps {
   isLatest?: boolean
   needsPreload?: boolean
   orientation?: orientation
+  isDraft: boolean
 }
