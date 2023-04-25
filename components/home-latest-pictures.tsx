@@ -69,21 +69,24 @@ export default function HomeLatestPictures({
           }}
           onScroll={throttle(handleScroll)}
         >
-          {latestPictures.map(({id, name, url, image, prettyDate, date}) => (
-            <PictureCard
-              key={id}
-              title={name}
-              url={url}
-              image={image}
-              sizes={sizes}
-            >
-              <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow">
-                <time className="text-neutral-300/40" dateTime={date}>
-                  {prettyDate}
-                </time>
-              </div>
-            </PictureCard>
-          ))}
+          {latestPictures.map(
+            ({id, name, url, image, prettyDate, date}, index) => (
+              <PictureCard
+                key={id}
+                title={name}
+                url={url}
+                image={image}
+                sizes={sizes}
+                needsPreload={index === 0 || index === 1}
+              >
+                <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow">
+                  <time className="text-neutral-300/40" dateTime={date}>
+                    {prettyDate}
+                  </time>
+                </div>
+              </PictureCard>
+            )
+          )}
         </div>
       </div>
 
