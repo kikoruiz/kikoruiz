@@ -173,7 +173,7 @@ function GalleryCarousel({
   }, [emblaApi, items, push, asPath])
 
   return (
-    <div className="fixed inset-0 z-10 h-screen w-screen">
+    <div className="fixed inset-0 z-20 h-screen w-screen">
       <div className="absolute right-3 top-3 z-20 flex flex-row-reverse gap-3 sm:right-6 sm:top-6">
         <button
           aria-label={t('carousel.close')}
