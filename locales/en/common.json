@@ -92,6 +92,9 @@
         "other": "{{count}} min read"
       },
       "draft": "Coming soon..."
+    },
+    "available-locales": {
+      "warning": "Blog contents are only available in spanish language"
     }
   }
 }

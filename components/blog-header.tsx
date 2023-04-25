@@ -1,10 +1,14 @@
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {getSlug} from 'lib/utils'
 import BlogTags from './blog-tags'
+import Tooltip from './tooltip'
+import IconInformationCircle from 'assets/icons/information-circle.svg'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconExclamationTriangle from 'assets/icons/exclamation-triangle.svg'
 import {Tag} from 'types'
+import {BLOG} from 'config'
 
 export default function BlogHeader({
   tag,
@@ -12,6 +16,7 @@ export default function BlogHeader({
   isTagsIndex = false,
   hasNoContent = false
 }: BlogHeaderProps) {
+  const {locale} = useRouter()
   const {t} = useTranslation('blog')
   const title = isTagsIndex ? t('common:tags') : t('common:sections.blog.name')
   const titleClassName = tag
@@ -28,7 +33,7 @@ export default function BlogHeader({
     <header
       className={`my-9 px-6 text-center ${tag ? 'sm:-mt-1' : 'sm:-mt-3'}`}
     >
-      <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
+      <div className="flex items-center justify-center gap-y-3 sm:flex-row">
         <h1
           className={`bg-gradient-to-t from-orange-300 to-neutral-900 bg-clip-text font-black leading-tight text-transparent drop-shadow sm:leading-tight ${titleClassName}`}
           title={title}
@@ -36,9 +41,18 @@ export default function BlogHeader({
           {title}
         </h1>
         {currentTag && (
-          <span className="relative ml-3 inline-flex rounded-l-[2.4rem] rounded-r-md bg-gradient-to-t from-neutral-600/30 to-neutral-600/60 p-3 pl-11 text-3xl font-medium leading-tight text-neutral-900 before:absolute before:left-4 before:top-1/2 before:mt-[-8px] before:h-[16px] before:w-[16px] before:rounded-full before:bg-neutral-900 sm:rounded-r-lg sm:rounded-l-[4.8rem] sm:pl-20 sm:pr-6 sm:text-6xl sm:leading-tight sm:before:left-7 sm:before:mt-[-15px] sm:before:h-[30px] sm:before:w-[30px]">
+          <span className="relative ml-3 inline-flex rounded-l-[2.4rem] rounded-r-md bg-gradient-to-t from-neutral-600/30 to-neutral-600/60 p-3 pl-11 text-3xl font-medium leading-tight text-neutral-900 before:absolute before:left-4 before:top-1/2 before:mt-[-8px] before:h-[16px] before:w-[16px] before:rounded-full before:bg-neutral-900 sm:rounded-l-[4.8rem] sm:rounded-r-lg sm:pl-20 sm:pr-6 sm:text-6xl sm:leading-tight sm:before:left-7 sm:before:mt-[-15px] sm:before:h-[30px] sm:before:w-[30px]">
             {currentTag}
           </span>
+        )}
+
+        {!BLOG.AVAILABLE_LOCALES.includes(locale) && (
+          <Tooltip
+            message={t('common:blog.available-locales.warning')}
+            icon={IconInformationCircle}
+            className="ml-3"
+            direction="bottom"
+          />
         )}
       </div>
       {(currentTag || isTagsIndex) && (
@@ -55,7 +69,7 @@ export default function BlogHeader({
       )}
       {!currentTag && !isTagsIndex && (
         <>
-          <p className="relative mt-3 pb-6 font-light text-neutral-300/60 after:absolute after:left-0 after:bottom-[-1px] after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60">
+          <p className="relative mt-3 pb-6 font-light text-neutral-300/60 after:absolute after:bottom-[-1px] after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60">
             {t('common:sections.blog.description')}
           </p>
 
