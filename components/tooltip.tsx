@@ -1,4 +1,5 @@
 import {FunctionComponent, useState} from 'react'
+import {UAParser} from 'ua-parser-js'
 
 export default function Tooltip({
   message,
@@ -12,7 +13,7 @@ export default function Tooltip({
   switch (direction) {
     case 'left':
       directionClassName =
-        'right-0 top-0 h-full mr-11 text-right after:left-full after:border-y-4 after:border-l-4 after:border-y-transparent after:border-l-neutral-800'
+        'right-0 top-0 h-full mr-11 after:left-full after:border-y-4 after:border-l-4 after:border-y-transparent after:border-l-neutral-800'
       break
     case 'bottom':
       directionClassName =
@@ -26,13 +27,19 @@ export default function Tooltip({
         className ? ` ${className}` : ''
       }`}
       onClick={() => {
-        setIsOpen(!isOpen)
+        const {device} = UAParser()
+
+        if (device.type) setIsOpen(!isOpen)
       }}
       onMouseEnter={() => {
-        setIsOpen(true)
+        const {device} = UAParser()
+
+        if (!device.type) setIsOpen(true)
       }}
       onMouseLeave={() => {
-        setIsOpen(false)
+        const {device} = UAParser()
+
+        if (!device.type) setIsOpen(false)
       }}
     >
       <Icon className="w-6" />
@@ -41,7 +48,7 @@ export default function Tooltip({
         <div
           className={`absolute z-10 flex w-52 select-none items-center text-xs font-extralight leading-normal drop-shadow-lg after:absolute after:inline-block after:h-0 after:w-0 after:align-middle sm:w-max ${directionClassName}`}
         >
-          <p className="rounded-sm bg-neutral-800 px-2 py-1">{message}</p>
+          <p className="rounded-sm bg-neutral-800 px-3 py-1.5">{message}</p>
         </div>
       )}
     </div>
