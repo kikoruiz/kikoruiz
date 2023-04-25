@@ -1,4 +1,4 @@
-import {ReactNode, useState} from 'react'
+import {FunctionComponent, useState} from 'react'
 
 export default function Tooltip({
   message,
@@ -48,9 +48,13 @@ export default function Tooltip({
   )
 }
 
+type IconProps = {
+  className: string
+}
+
 interface TooltipProps {
   message: string
-  icon: ReactNode
-  className: string
+  icon: FunctionComponent<IconProps>
+  className?: string
   direction?: 'left' | 'bottom'
 }
