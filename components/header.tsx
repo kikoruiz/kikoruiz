@@ -15,7 +15,7 @@ export default function Header({...sectionData}: SectionData) {
   )
 
   return (
-    <header className="sticky top-0 z-10 w-full backdrop-blur">
+    <header className="sticky top-0 z-20 w-full backdrop-blur">
       <div className={`${hasHero ? 'bg-transparent' : 'bg-neutral-900/90'}`}>
         <div className="container mx-auto flex justify-between pl-5 pr-3">
           <div className="flex justify-center py-8">

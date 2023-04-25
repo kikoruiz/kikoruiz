@@ -33,7 +33,7 @@ export default function BlogHeader({
     <header
       className={`my-9 px-6 text-center ${tag ? 'sm:-mt-1' : 'sm:-mt-3'}`}
     >
-      <div className="flex items-center justify-center gap-y-3 sm:flex-row">
+      <div className="flex flex-wrap items-center justify-center gap-y-3 sm:flex-row">
         <h1
           className={`bg-gradient-to-t from-orange-300 to-neutral-900 bg-clip-text font-black leading-tight text-transparent drop-shadow sm:leading-tight ${titleClassName}`}
           title={title}
