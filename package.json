@@ -29,7 +29,8 @@
     "react-leaflet": "4",
     "react-markdown": "8",
     "react-responsive": "9",
-    "remove-accents": "0"
+    "remove-accents": "0",
+    "ua-parser-js": "1"
   },
   "devDependencies": {
     "@plaiceholder/next": "2",
