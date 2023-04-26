@@ -10,7 +10,7 @@ export default function HomeMap({pictures, setShowMap}: HomeMapProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-10 h-screen w-screen">
+    <div className="fixed inset-0 z-20 h-screen w-screen">
       <button
         aria-hidden="true"
         tabIndex={-1}
@@ -22,7 +22,7 @@ export default function HomeMap({pictures, setShowMap}: HomeMapProps) {
         <button
           aria-label={t('map.close')}
           title={t('map.close')}
-          className="group absolute top-3 right-3 z-[500] flex h-11 w-11 rounded-full border-2 border-neutral-900/40 bg-gradient-to-t from-neutral-100 to-neutral-200 text-neutral-900/80 hover:to-neutral-300 hover:text-neutral-900 focus:outline-none sm:top-4 sm:right-4"
+          className="group absolute right-3 top-3 z-[500] flex h-11 w-11 rounded-full border-2 border-neutral-900/40 bg-gradient-to-t from-neutral-100 to-neutral-200 text-neutral-900/80 hover:to-neutral-300 hover:text-neutral-900 focus:outline-none sm:right-4 sm:top-4"
           onClick={handleMapClose}
         >
           <span className="sr-only">{t('map.close')}</span>
