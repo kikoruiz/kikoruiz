@@ -65,8 +65,8 @@ export default function Article({
 
         return (
           <div
-            className={`relative mb-12 lg:clear-both${
-              isRounded ? ' mx-auto' : ''
+            className={`relative lg:clear-both ${
+              isRounded ? 'my-12 flex justify-center' : 'mx-auto mb-12'
             }${onlyInMobile ? ' sm:hidden' : ''}${
               alignToLeft || alignToRight ? ' lg:mt-2 lg:w-1/2' : ''
             }${alignToLeft ? ' lg:float-left lg:mr-6' : ''}${
@@ -77,10 +77,10 @@ export default function Article({
               src={image.properties.src}
               alt={alt}
               needsPreload={hasPriority}
-              className={`m-0 shadow-lg${
+              className={`shadow-lg ${
                 isRounded
-                  ? ' w-2/3 overflow-hidden rounded-full border-8 border-neutral-600/30'
-                  : ''
+                  ? 'm-0 w-2/3 overflow-hidden rounded-full border-8 border-neutral-600/30'
+                  : 'lg:m-0'
               }`}
               isRounded={!isRounded}
               isFullRounded={isRounded}
