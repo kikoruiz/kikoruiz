@@ -47,11 +47,11 @@ export default function Post({post, alternates}: PostProps) {
               {getPrettyDate(post.createdAt, locale)}
             </time>
 
-            <span className="text-neutral-600/60 before:content-['\00a0·\00a0']">
+            <div className="inline-block text-neutral-600/60 before:content-['\00a0·\00a0']">
               {t('common:blog.post.reading-time-message', {
                 count: post.readingTime
               })}
-            </span>
+            </div>
           </div>
 
           <h1 className="my-6 text-6xl font-black sm:text-8xl">
@@ -66,6 +66,7 @@ export default function Post({post, alternates}: PostProps) {
 
         <Article
           content={post.content}
+          contentImages={post.contentImages}
           className="relative mx-auto mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600"
         />
 

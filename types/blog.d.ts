@@ -1,5 +1,5 @@
 import {Tag} from 'types'
-import {HighlightedImage} from './gallery'
+import {HighlightedImage, Image} from './gallery'
 
 export interface BlogPostContent {
   author: string
@@ -18,6 +18,7 @@ export interface BlogPost extends BlogPostContent {
   slug: string
   blogTags?: Tag[]
   isDraft: boolean
+  contentImages: Image[]
 }
 
 export interface Tutorial {

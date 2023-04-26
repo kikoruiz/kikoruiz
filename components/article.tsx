@@ -1,8 +1,14 @@
-import NextImage from 'next/image'
+import {themeScreens} from 'lib/utils'
+import Image from './image'
 import NextLink from 'next/link'
 import ReactMarkdown from 'react-markdown'
+import {Image as ImageInterface} from 'types/gallery'
 
-export default function Article({content, className}: ArticleProps) {
+export default function Article({
+  content,
+  contentImages,
+  className
+}: ArticleProps) {
   const articleClassName = `max-w-full overflow-hidden prose prose-neutral prose-code:text-neutral-300 prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-code:before:content-[''] prose-code:after:content-[''] prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-p:font-light prose-strong:text-neutral-300${
     className ? ` ${className}` : ''
   }`
@@ -52,47 +58,50 @@ export default function Article({content, className}: ArticleProps) {
           if (parsed.align === 'right') alignToRight = true
           if (parsed.orientation === 'vertical') isVertical = true
         }
+        const fallbackImage = contentImages?.find(
+          ({src}) => src === image.properties.src
+        )
+        const {md} = themeScreens
 
         return (
-          <figure
-            className={`relative mb-12 shadow-lg lg:clear-both ${
-              isSquare
-                ? 'aspect-square'
-                : isVertical
-                ? 'aspect-2/3'
-                : 'aspect-3/2'
-            } ${
-              isRounded
-                ? 'mx-auto w-2/3 rounded-full border-8 border-neutral-600/30'
-                : 'rounded'
+          <div
+            className={`relative mb-12 lg:clear-both${
+              isRounded ? ' mx-auto' : ''
             }${onlyInMobile ? ' sm:hidden' : ''}${
               alignToLeft || alignToRight ? ' lg:mt-2 lg:w-1/2' : ''
             }${alignToLeft ? ' lg:float-left lg:mr-6' : ''}${
               alignToRight ? ' lg:float-right lg:ml-6' : ''
             }`}
           >
-            <NextImage
+            <Image
               src={image.properties.src}
               alt={alt}
-              title={alt}
-              priority={hasPriority}
-              className={`object-cover ${
+              needsPreload={hasPriority}
+              className={`m-0 shadow-lg${
                 isRounded
-                  ? 'mx-auto w-2/3 rounded-full border-8 border-neutral-600/30'
-                  : 'rounded'
+                  ? ' w-2/3 overflow-hidden rounded-full border-8 border-neutral-600/30'
+                  : ''
               }`}
-              fill
-              sizes="100%"
+              isRounded={!isRounded}
+              isFullRounded={isRounded}
+              aspectRatio={isSquare ? '1:1' : isVertical ? '2:3' : '3:2'}
+              sizes={
+                alignToLeft || alignToRight
+                  ? `(min-width: ${md}) 50vw, 100vw`
+                  : '100%'
+              }
+              fallbackStyle={fallbackImage ? fallbackImage.css : {}}
             />
+
             {caption && !isSquare && (
-              <figcaption
-                className="absolute left-0 top-full z-20 m-0 py-1 text-xs font-extralight italic text-neutral-600 drop-shadow-sm"
+              <span
+                className="absolute left-0 top-full z-20 m-0 py-1 text-xs font-extralight italic text-neutral-300/50 drop-shadow-sm"
                 aria-label={caption}
               >
                 {caption}
-              </figcaption>
+              </span>
             )}
-          </figure>
+          </div>
         )
       }
 
@@ -109,5 +118,6 @@ export default function Article({content, className}: ArticleProps) {
 
 interface ArticleProps {
   content: string
+  contentImages?: ImageInterface[]
   className: string
 }

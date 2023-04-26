@@ -32,21 +32,31 @@ export async function getAllPosts() {
       const post = getPostBySlug(rawSlug)
       const [createdAt, slug] = rawSlug.split(POST_FILE_SEPARATOR)
       const readingTime = getReadingTime(post.content)
-      const image =
-        (post.picture && post.excerpt && [, post.excerpt, post.picture]) ||
-        post.content.match(/!\[(.*)\]\((.*.jpg)\)/)
-      let highlightedImage
-      const {sm} = themeScreens
+      const matchedImages = post.content.match(/!\[(.*)\]\((.*.jpg)\)/g)
+      let contentImages = []
+      if (matchedImages) {
+        contentImages = await Promise.all(
+          matchedImages.map(async matchedImage => {
+            const [, alt, src] = matchedImage.match(/!\[(.*)\]\((.*.jpg)\)/)
+            const {css} = await getPlaiceholder(src)
 
-      if (image) {
-        const [, alt, src] = image
-        const {css} = await getPlaiceholder(src)
-        highlightedImage = {
-          src,
-          alt,
-          css,
-          sizes: `(min-width: ${sm}) 50vw, 100vw`
-        }
+            return {src, alt: alt.replace(/ *\{[^)]*\} */g, ''), css}
+          })
+        )
+      }
+
+      const hasStaticImage = post.picture && post.excerpt
+      const {sm} = themeScreens
+      const highlightedImage = {
+        sizes: `(min-width: ${sm}) 50vw, 100vw`,
+        ...(hasStaticImage
+          ? {src: post.picture, alt: post.excerpt}
+          : contentImages[0])
+      }
+      if (hasStaticImage) {
+        const plaiceholder = await getPlaiceholder(post.picture)
+
+        highlightedImage.css = plaiceholder.css
       }
 
       return {
@@ -58,7 +68,8 @@ export async function getAllPosts() {
         href: `/blog/${slug}`,
         isDraft: filename.includes(
           `${POST_FILE_SEPARATOR}${POST_FILE_DRAFT_PLACEHOLDER}${POST_FILE_EXTENSION}`
-        )
+        ),
+        contentImages: contentImages.map(({src, css}) => ({src, css}))
       }
     })
   )

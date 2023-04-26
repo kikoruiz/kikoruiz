@@ -124,7 +124,7 @@ interface ImageProps {
   aspectRatio?: string
   sizes: string
   needsPreload?: boolean
-  fallbackStyle: ImageFallbackStyle
+  fallbackStyle: ImageFallbackStyle | object
   isRounded?: boolean
   isFullRounded?: boolean
   isShallowLink?: boolean
