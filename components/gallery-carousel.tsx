@@ -2,7 +2,6 @@ import {useEffect, useState, memo} from 'react'
 import {useRouter} from 'next/router'
 import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
-// import {DEFAULT_ORIGIN} from 'config'
 import {getCapitalizedName, getSlug} from 'lib/utils'
 import {Picture, Subcategory} from 'types/gallery'
 import PictureDetail from './picture-detail'
@@ -12,19 +11,8 @@ import IconArrowsPointingIn from 'assets/icons/arrows-pointing-in.svg'
 import IconArrowsPointingOut from 'assets/icons/arrows-pointing-out.svg'
 import subcategoryIcons from './gallery-subcategory-icons'
 import {trackEvent} from 'lib/tracking'
-// import IconShare from 'assets/icons/share.svg'
 
 let startIndex: number | undefined
-
-// function getShareData({name, url}) {
-//   return {
-//     title: name,
-//     text: name,
-//     url: `${
-//       typeof window !== 'undefined' ? window.location.origin : DEFAULT_ORIGIN
-//     }${url}`
-//   }
-// }
 
 function GalleryCarousel({
   pictures,
@@ -50,7 +38,6 @@ function GalleryCarousel({
   const index =
     carousel && items.findIndex(({name}) => getSlug(name) === carousel)
   if (typeof startIndex === 'undefined') startIndex = index
-  // const [shareData, setShareData] = useState(getShareData(items[index]))
   const [emblaRef, emblaApi] = useEmblaCarousel({startIndex})
   const needsButtonPrevious = emblaApi
     ? emblaApi.selectedScrollSnap() !== 0
@@ -61,7 +48,6 @@ function GalleryCarousel({
   const fullScreenButtonText = isFullScreen
     ? t('carousel.exit-full-screen')
     : t('carousel.enter-full-screen')
-  // const shareButtonText = t('carousel.share')
   const item = items[index]
   let subcategoryName
   let SubcategoryIcon
@@ -207,22 +193,6 @@ function GalleryCarousel({
             <IconArrowsPointingOut className="w-[55%]" />
           )}
         </button>
-
-        {/* <button
-          aria-label={shareButtonText}
-          title={shareButtonText}
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
-          onClick={async () => {
-            if (navigator.share) {
-              await navigator.share(shareData)
-            } else {
-              console.warn('This browser cannot share data via Web Share API.')
-            }
-          }}
-        >
-          <span className="sr-only">{shareButtonText}</span>
-          <IconShare className="w-[55%]" />
-        </button> */}
       </div>
 
       <div className="pointer-events-none absolute left-6 top-6 z-10 flex rounded-full bg-gradient-to-t from-neutral-800 px-3 text-xs font-extralight text-neutral-400 drop-shadow-xl">
