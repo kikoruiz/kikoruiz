@@ -38,7 +38,7 @@ export default function HomeMap({pictures, setShowMap}: HomeMapProps) {
           </div>
         </button>
 
-        <Map pictures={pictures} />
+        <Map pictures={pictures} isInteractive />
       </div>
     </div>
   )

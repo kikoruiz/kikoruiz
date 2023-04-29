@@ -97,3 +97,10 @@ export const BRANDS = {
     }
   ]
 }
+
+export const REQUEST_STATUS_OPTIONS = {
+  IDLE: 'idle',
+  PENDING: 'pending',
+  RESOLVED: 'resolved',
+  REJECTED: 'rejected'
+}
