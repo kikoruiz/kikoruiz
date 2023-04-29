@@ -70,12 +70,14 @@ export function fromExifToGallery({
   slug: albumSlug,
   tag,
   locale,
-  skipGalleryPath = false
+  skipGalleryPath = false,
+  openInCarousel = true
 }: {
   slug?: string
   tag?: string
   locale: string
   skipGalleryPath?: boolean
+  openInCarousel?: boolean
 }) {
   return async function ({
     fileName,
@@ -110,7 +112,7 @@ export function fromExifToGallery({
                 locale
               })
         }`
-    const url = `${path}/?carousel=${slug}`
+    const url = `${path}/?${openInCarousel ? 'carousel' : 'picture'}=${slug}`
     const isPano = keywords.includes('panorama')
     const tags = await getGalleryTags({
       locale,

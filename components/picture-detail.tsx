@@ -21,7 +21,8 @@ export default function PictureDetail({
   picture,
   isFullScreen,
   onExit,
-  trackEvent
+  trackEvent,
+  wrapperClassName
 }: PictureDetailProps) {
   const {
     name,
@@ -62,7 +63,12 @@ export default function PictureDetail({
     : t('carousel.show-picture-map')
 
   return (
-    <div key={id} className="embla__slide flex-[0_0_100%]">
+    <div
+      key={id}
+      className={`${
+        wrapperClassName ? `${wrapperClassName} ` : ''
+      }flex-[0_0_100%]`}
+    >
       <div
         aria-hidden
         className="absolute top-0 -z-10 h-full w-full overflow-hidden opacity-60 blur-3xl"
@@ -109,6 +115,7 @@ export default function PictureDetail({
 
                       return tag === currentTag ? (
                         <div
+                          key={id}
                           className={`${baseClassName} rounded-full border border-neutral-600/30 first:ml-1.5`}
                         >
                           {content}
@@ -177,11 +184,11 @@ export default function PictureDetail({
                     href={tutorial.href}
                     onClick={onExit}
                     title={t('common:blog.post.read-tutorial')}
-                    className="group mt-3 inline-flex items-center rounded-full border border-orange-600/60 bg-gradient-to-tr from-orange-300 to-orange-200 py-1.5 px-3 text-xs font-light text-orange-700/90 shadow-sm transition-colors hover:from-orange-400 hover:to-orange-300 hover:text-orange-900/90"
+                    className="group mt-3 inline-flex items-center rounded-full border border-orange-600/60 bg-gradient-to-tr from-orange-300 to-orange-200 px-3 py-1.5 text-xs font-light text-orange-700/90 shadow-sm transition-colors hover:from-orange-400 hover:to-orange-300 hover:text-orange-900/90"
                   >
                     <IconDocumentText className="mr-1.5 w-3" />
                     {t('common:blog.post.read-tutorial')}
-                    <IconChevronRight className="invisible relative -left-3 w-0 transition-all group-hover:visible group-hover:left-0 group-hover:ml-1 group-hover:-mr-1 group-hover:w-3" />
+                    <IconChevronRight className="invisible relative -left-3 w-0 transition-all group-hover:visible group-hover:left-0 group-hover:-mr-1 group-hover:ml-1 group-hover:w-3" />
                   </Link>
                 )}
               </section>
@@ -198,4 +205,5 @@ interface PictureDetailProps {
   isFullScreen: boolean
   onExit: () => void
   trackEvent: (action: string, name?: string) => void
+  wrapperClassName?: string
 }
