@@ -17,14 +17,14 @@ export default forwardRef(function PictureViewer(
     translationsPrefix = 'carousel',
     onExit,
     onClose,
-    needsPrevious,
+    needsPrevious = false,
     onPrevious,
-    needsNext,
+    needsNext = false,
     onNext,
     paginationInfo,
     trackEvent
   }: PictureViewerProps,
-  ref: LegacyRef
+  ref?: LegacyRef<HTMLDivElement>
 ) {
   const [isFullScreen, setIsFullScreen] = useState(false)
   const needsPagination = Boolean(pictures.length > 1)
@@ -151,10 +151,10 @@ export default forwardRef(function PictureViewer(
       )}
 
       <div
+        ref={ref}
         className={`${
           rootClassName ? `${rootClassName} ` : ''
         }h-full w-full overflow-hidden bg-neutral-900`}
-        ref={ref}
       >
         <div
           className={`${
@@ -184,7 +184,7 @@ interface PictureViewerProps {
   containerClassName?: string
   detailClassName?: string
   translationsPrefix?: string
-  onExit: () => void
+  onExit?: () => void
   onClose: () => void
   needsPrevious?: boolean
   onPrevious?: () => void

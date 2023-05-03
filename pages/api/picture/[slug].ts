@@ -8,7 +8,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const {slug, locale} = req.query as {slug: string}
+  const {slug, locale} = req.query as {slug: string; locale: string}
   const allPictures = await getAllPictures()
   const rawPicture = allPictures.find(({title}) => getSlug(title) === slug)
   const picture: Picture = await fromExifToGallery({

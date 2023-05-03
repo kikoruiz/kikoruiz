@@ -1,28 +1,29 @@
+import {Dispatch, SetStateAction, useState} from 'react'
 import {useRouter} from 'next/router'
-import Link from 'next/link'
 import {icon} from 'leaflet'
 import {Popup, Marker} from 'react-leaflet'
 import {REQUEST_STATUS_OPTIONS} from 'config'
 import {fetcher} from 'lib/utils'
-import {useState} from 'react'
 import {Coordinates, Picture} from 'types/gallery'
 import Image from './image'
 
 export default function MapPicture({
   slug,
   coordinates,
-  isInteractive
+  isInteractive,
+  setPictureToView
 }: MapPictureProps) {
   const {locale} = useRouter()
-  const [picture, setPicture]: [Picture, () => void] = useState(null)
-  const [status, setStatus]: [string, () => void] = useState(
-    REQUEST_STATUS_OPTIONS.IDLE
-  )
+  const [picture, setPicture]: [
+    Picture,
+    Dispatch<SetStateAction<Picture | null>>
+  ] = useState()
+  const [status, setStatus] = useState(REQUEST_STATUS_OPTIONS.IDLE)
 
   function handlePopupOpen(slug) {
     return async function () {
       setStatus(REQUEST_STATUS_OPTIONS.PENDING)
-      let picture = null
+      let picture: Picture = null
 
       if (slug) {
         try {
@@ -66,34 +67,37 @@ export default function MapPicture({
         minWidth={120}
       >
         {picture && (
-          <Link
-            href={picture.url}
-            title={picture.name}
-            className="group block max-w-[120px] hover:opacity-90"
-            shallow
-          >
-            <div className="overflow-hidden rounded">
-              <Image
-                src={picture.image.src}
-                alt={picture.name}
-                aspectRatio="1:1"
-                sizes="25vw"
-                className="transition-transform group-hover:scale-105"
-                fallbackStyle={picture.image.css}
-              />
-            </div>
-
-            <span className="mb-1 mt-2 inline-block text-sm font-bold leading-tight">
-              {picture.name}
-            </span>
-
-            <time
-              className="flex text-xs text-neutral-600/60"
-              dateTime={picture.date}
+          <>
+            <button
+              title={picture.name}
+              className="group block w-[120px] text-left hover:opacity-90"
+              onClick={() => {
+                setPictureToView(picture)
+              }}
             >
-              {picture.prettyDate}
-            </time>
-          </Link>
+              <div className="overflow-hidden rounded">
+                <Image
+                  src={picture.image.src}
+                  alt={picture.name}
+                  aspectRatio="1:1"
+                  sizes="25vw"
+                  className="transition-transform group-hover:scale-105"
+                  fallbackStyle={picture.image.css}
+                />
+              </div>
+
+              <span className="mb-1 mt-2 inline-block text-sm font-bold leading-tight">
+                {picture.name}
+              </span>
+
+              <time
+                className="flex text-xs text-neutral-600/60"
+                dateTime={picture.date}
+              >
+                {picture.prettyDate}
+              </time>
+            </button>
+          </>
         )}
       </Popup>
     </Marker>
@@ -104,4 +108,5 @@ interface MapPictureProps {
   slug: string
   coordinates: Coordinates
   isInteractive: boolean
+  setPictureToView?: (picture: Picture) => void
 }
