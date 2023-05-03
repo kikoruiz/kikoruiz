@@ -6,36 +6,30 @@ import {debounce} from 'lodash'
 import {fetcher, getSlug} from 'lib/utils'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
 import SearchList from './search-list'
-
-const STATUS_OPTIONS = {
-  IDLE: 'idle',
-  PENDING: 'pending',
-  RESOLVED: 'resolved',
-  REJECTED: 'rejected'
-}
+import {REQUEST_STATUS_OPTIONS} from 'config'
 
 export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const {t} = useTranslation()
   const {locale, push} = useRouter()
   const inputRef = useRef(null)
   const [items, setItems] = useState([])
-  const [status, setStatus] = useState(STATUS_OPTIONS.IDLE)
+  const [status, setStatus] = useState(REQUEST_STATUS_OPTIONS.IDLE)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedChangeHandler = useCallback(
     debounce(async ({inputValue}) => {
-      setStatus(STATUS_OPTIONS.PENDING)
+      setStatus(REQUEST_STATUS_OPTIONS.PENDING)
       let items = []
 
       if (inputValue) {
         try {
           items = await fetcher.get(`/api/search/${inputValue}`)
-          setStatus(STATUS_OPTIONS.RESOLVED)
+          setStatus(REQUEST_STATUS_OPTIONS.RESOLVED)
         } catch (error) {
           console.error(error)
-          setStatus(STATUS_OPTIONS.REJECTED)
+          setStatus(REQUEST_STATUS_OPTIONS.REJECTED)
         }
       } else {
-        setStatus(STATUS_OPTIONS.IDLE)
+        setStatus(REQUEST_STATUS_OPTIONS.IDLE)
       }
 
       setItems(items)
@@ -76,7 +70,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
     onInputValueChange: debouncedChangeHandler,
     onStateChange: ({isOpen}) => {
       if (isOpen === false) {
-        setStatus(STATUS_OPTIONS.IDLE)
+        setStatus(REQUEST_STATUS_OPTIONS.IDLE)
         reset()
       }
     }
@@ -94,7 +88,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
         event.preventDefault()
         reset()
         setIsOpen(false)
-        setStatus(STATUS_OPTIONS.IDLE)
+        setStatus(REQUEST_STATUS_OPTIONS.IDLE)
       }
     }
 
@@ -119,7 +113,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
 
         if (localName !== 'input') {
           setIsOpen(false)
-          setStatus(STATUS_OPTIONS.IDLE)
+          setStatus(REQUEST_STATUS_OPTIONS.IDLE)
         }
       }}
     >
@@ -143,14 +137,14 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
             placeholder={t('navigation.search')}
             required
           />
-          {status === STATUS_OPTIONS.PENDING && (
+          {status === REQUEST_STATUS_OPTIONS.PENDING && (
             <div
               aria-hidden
               role="status"
               className="absolute inset-0 flex h-full w-full items-center justify-end pr-4"
             >
               <div className="relative h-7 w-7 animate-spin rounded-full bg-gradient-to-r from-orange-300 via-neutral-800 to-orange-400">
-                <div className="absolute top-1/2 left-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-neutral-800" />
+                <div className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-neutral-800" />
               </div>
             </div>
           )}
