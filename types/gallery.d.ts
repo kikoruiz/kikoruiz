@@ -94,11 +94,8 @@ export interface Picture {
 }
 
 export interface PictureOnMap {
-  name?: string
-  url?: string
   slug: string
   coordinates: Coordinates
-  css?: ImageFallbackStyle
 }
 
 export interface ImageFallbackStyle {

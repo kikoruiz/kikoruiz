@@ -38,7 +38,7 @@ export default function Image({
   src,
   url,
   alt,
-  className,
+  className = '',
   style = {},
   aspectRatio,
   sizes,
@@ -99,7 +99,9 @@ export default function Image({
     <Link
       href={url}
       title={alt}
-      className={`${className} ${wrapperClassName}${aspectClassName}`}
+      className={`${
+        className ? `${className} ` : ''
+      }${wrapperClassName}${aspectClassName}`}
       style={imageStyle}
       shallow={isShallowLink}
     >
@@ -107,7 +109,9 @@ export default function Image({
     </Link>
   ) : (
     <figure
-      className={`${className} ${wrapperClassName}${aspectClassName}`}
+      className={`${
+        className ? `${className} ` : ''
+      }${wrapperClassName}${aspectClassName}`}
       style={imageStyle}
     >
       {content}
