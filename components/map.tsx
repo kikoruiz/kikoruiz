@@ -3,13 +3,13 @@ import {LatLngExpression} from 'leaflet'
 import {MapContainer, TileLayer} from 'react-leaflet'
 import {getAverageValue} from 'lib/utils'
 import MapPicture from './map-picture'
-import {PictureOnMap} from 'types/gallery'
+import {Picture, PictureOnMap} from 'types/gallery'
 
 import 'leaflet/dist/leaflet.css'
 
 const arePropsEqual = () => true
 
-function Map({pictures, zoom = 5, isInteractive}: MapProps) {
+function Map({pictures, zoom = 5, isInteractive, setPictureToView}: MapProps) {
   const latitudes = pictures.map(({coordinates}) => coordinates.latitude)
   const longitudes = pictures.map(({coordinates}) => coordinates.longitude)
   const center = [
@@ -35,6 +35,7 @@ function Map({pictures, zoom = 5, isInteractive}: MapProps) {
           slug={slug}
           coordinates={coordinates}
           isInteractive={isInteractive}
+          setPictureToView={setPictureToView}
         />
       ))}
     </MapContainer>
@@ -44,7 +45,8 @@ function Map({pictures, zoom = 5, isInteractive}: MapProps) {
 interface MapProps {
   pictures: PictureOnMap[]
   zoom?: number
-  isInteractive: boolean
+  isInteractive?: boolean
+  setPictureToView?: (picture: Picture) => void
 }
 
 export default memo(Map, arePropsEqual)

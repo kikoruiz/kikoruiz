@@ -203,7 +203,7 @@ export default function PictureDetail({
 interface PictureDetailProps {
   picture: Picture
   isFullScreen: boolean
-  onExit: () => void
+  onExit?: () => void
   trackEvent: (action: string, name?: string) => void
   wrapperClassName?: string
 }
