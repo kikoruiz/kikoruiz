@@ -96,7 +96,7 @@ export interface Picture {
 export interface PictureOnMap {
   slug: string
   coordinates: Coordinates
-  image: Image
+  image?: Image
 }
 
 export interface ImageFallbackStyle {
