@@ -1,3 +1,4 @@
+import nodePath from 'node:path'
 import {getPlaiceholder} from 'plaiceholder'
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
@@ -98,7 +99,9 @@ export function fromExifToGallery({
   }: ExifData): Promise<Picture> {
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
-    const {css} = await getPlaiceholder(src)
+    const {css} = await getPlaiceholder(src, {
+      dir: nodePath.resolve('./public')
+    })
     const t = await getT(locale, 'common')
     const slug = getSlug(title)
     const path = skipGalleryPath
