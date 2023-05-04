@@ -1,4 +1,3 @@
-import path from 'node:path'
 import type {NextApiRequest, NextApiResponse} from 'next'
 import {fromExifToGallery} from 'lib/gallery/mappers'
 import {getAllPictures} from 'lib/gallery/pictures'
@@ -16,7 +15,7 @@ export default async function handler(
     locale,
     skipGalleryPath: true,
     openInCarousel: false,
-    publicDir: path.resolve('./public')
+    needsImage: false
   })(rawPicture)
 
   if (picture) {

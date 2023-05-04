@@ -72,14 +72,14 @@ export function fromExifToGallery({
   locale,
   skipGalleryPath = false,
   openInCarousel = true,
-  publicDir = './public'
+  needsImage = true
 }: {
   slug?: string
   tag?: string
   locale: string
   skipGalleryPath?: boolean
   openInCarousel?: boolean
-  publicDir?: string
+  needsImage?: boolean
 }) {
   return async function ({
     fileName,
@@ -100,9 +100,11 @@ export function fromExifToGallery({
   }: ExifData): Promise<Picture> {
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
-    const {css} = await getPlaiceholder(src, {
-      dir: publicDir
-    })
+    let image: Image
+    if (needsImage) {
+      const {css} = await getPlaiceholder(src)
+      image = {src, orientation, css}
+    }
     const t = await getT(locale, 'common')
     const slug = getSlug(title)
     const path = skipGalleryPath
@@ -150,7 +152,7 @@ export function fromExifToGallery({
       id: fileName.split('.')[0],
       url,
       slug,
-      image: {src, orientation, css} as Image,
+      ...(image && {image}),
       imageSize,
       fileSize,
       date: createDate,
