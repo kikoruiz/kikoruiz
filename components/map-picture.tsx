@@ -4,12 +4,13 @@ import {icon} from 'leaflet'
 import {Popup, Marker} from 'react-leaflet'
 import {REQUEST_STATUS_OPTIONS} from 'config'
 import {fetcher} from 'lib/utils'
-import {Coordinates, Picture} from 'types/gallery'
+import {Coordinates, Image as ImageInterface, Picture} from 'types/gallery'
 import Image from './image'
 
 export default function MapPicture({
   slug,
   coordinates,
+  image,
   isInteractive,
   setPictureToView
 }: MapPictureProps) {
@@ -37,7 +38,7 @@ export default function MapPicture({
         setStatus(REQUEST_STATUS_OPTIONS.IDLE)
       }
 
-      setPicture(picture)
+      setPicture({...picture, image})
     }
   }
 
@@ -107,6 +108,7 @@ export default function MapPicture({
 interface MapPictureProps {
   slug: string
   coordinates: Coordinates
+  image: ImageInterface
   isInteractive: boolean
   setPictureToView?: (picture: Picture) => void
 }

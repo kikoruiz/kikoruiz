@@ -43,11 +43,6 @@ module.exports = withPlaiceholder(
       })
 
       return config
-    },
-    experimental: {
-      outputFileTracingExcludes: {
-        'api/picture/[slug]': ['./node_modules/**/*']
-      }
     }
   })
 )

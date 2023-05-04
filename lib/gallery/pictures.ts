@@ -99,8 +99,9 @@ export async function getAllPicturesOnMap({
     ({coordinates}) => coordinates
   )
 
-  return picturesWithCoordinates.map(({slug, coordinates}) => ({
+  return picturesWithCoordinates.map(({slug, coordinates, image}) => ({
     slug,
-    coordinates
+    coordinates,
+    image
   }))
 }

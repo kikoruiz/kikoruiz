@@ -74,7 +74,7 @@ export interface Picture {
   id: string
   url: string
   slug: string
-  image: Image
+  image?: Image
   imageSize: string
   fileSize: string
   aspectRatio?: string
@@ -96,6 +96,7 @@ export interface Picture {
 export interface PictureOnMap {
   slug: string
   coordinates: Coordinates
+  image: Image
 }
 
 export interface ImageFallbackStyle {
