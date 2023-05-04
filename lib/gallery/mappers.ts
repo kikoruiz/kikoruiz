@@ -1,4 +1,3 @@
-import nodePath from 'node:path'
 import {getPlaiceholder} from 'plaiceholder'
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
@@ -72,13 +71,15 @@ export function fromExifToGallery({
   tag,
   locale,
   skipGalleryPath = false,
-  openInCarousel = true
+  openInCarousel = true,
+  publicDir = './public'
 }: {
   slug?: string
   tag?: string
   locale: string
   skipGalleryPath?: boolean
   openInCarousel?: boolean
+  publicDir?: string
 }) {
   return async function ({
     fileName,
@@ -100,7 +101,7 @@ export function fromExifToGallery({
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
     const {css} = await getPlaiceholder(src, {
-      dir: nodePath.resolve('./public')
+      dir: publicDir
     })
     const t = await getT(locale, 'common')
     const slug = getSlug(title)
