@@ -108,7 +108,7 @@ export default function MapPicture({
 interface MapPictureProps {
   slug: string
   coordinates: Coordinates
-  image: ImageInterface
+  image?: ImageInterface
   isInteractive: boolean
   setPictureToView?: (picture: Picture) => void
 }
