@@ -1,12 +1,12 @@
 import {useEffect, memo} from 'react'
 import {useRouter} from 'next/router'
-import useEmblaCarousel from 'embla-carousel-react'
 import useTranslation from 'next-translate/useTranslation'
+import useEmblaCarousel from 'embla-carousel-react'
 import {getCapitalizedName, getSlug} from 'lib/utils'
-import {Picture, Subcategory} from 'types/gallery'
+import {trackEvent} from 'lib/tracking'
 import PictureViewer from './picture-viewer'
 import subcategoryIcons from './gallery-subcategory-icons'
-import {trackEvent} from 'lib/tracking'
+import {Picture, Subcategory} from 'types/gallery'
 
 let startIndex: number | undefined
 
@@ -16,6 +16,8 @@ function GalleryCarousel({
   subcategories,
   setIsCarouselOpen
 }: GalleryCarouselProps) {
+  const {push, asPath, query} = useRouter()
+  const {carousel: slug} = query
   const items: Picture[] = subcategories
     ? subcategories.reduce(
         (acc, subcategory) => [
@@ -28,10 +30,7 @@ function GalleryCarousel({
       )
     : pictures
   const {t} = useTranslation('gallery')
-  const {push, asPath, query} = useRouter()
-  const {carousel} = query
-  const index =
-    carousel && items.findIndex(({name}) => getSlug(name) === carousel)
+  const index = slug && items.findIndex(({name}) => getSlug(name) === slug)
   if (typeof startIndex === 'undefined') startIndex = index
   const [emblaRef, emblaApi] = useEmblaCarousel({startIndex})
   const needsButtonPrevious = emblaApi
@@ -99,7 +98,7 @@ function GalleryCarousel({
   )
 
   useEffect((): (() => void) => {
-    function handleCarouselChange() {
+    function handleSelect() {
       const index = emblaApi.selectedScrollSnap()
       const item = items[index]
       const slug = getSlug(item.name)
@@ -107,14 +106,13 @@ function GalleryCarousel({
       const [destinationPath] = asPath.split(pathSeparator)
       const destination = `${destinationPath}${pathSeparator}${slug}`
 
-      // setShareData(getShareData(item))
       push(destination, destination, {shallow: true})
     }
 
-    emblaApi?.on('select', handleCarouselChange)
+    emblaApi?.on('select', handleSelect)
 
-    return () => emblaApi?.off('select', handleCarouselChange)
-  }, [emblaApi, items, push, asPath])
+    return () => emblaApi?.off('select', handleSelect)
+  }, [emblaApi, items, asPath, push])
 
   return (
     <PictureViewer

@@ -93,7 +93,7 @@ export async function getAllPicturesOnMap({
 }): Promise<PictureOnMap[]> {
   const allPictures = await getAllPictures()
   const pictures = await Promise.all(
-    allPictures.map(fromExifToGallery({locale, skipGalleryPath: true}))
+    allPictures.map(fromExifToGallery({locale}))
   )
   const picturesWithCoordinates = pictures.filter(
     ({coordinates}) => coordinates
