@@ -27,7 +27,6 @@ export default function MapPicture({
       let picture: Picture = null
 
       if (slug && locale) {
-        console.log({slug, locale})
         try {
           picture = await fetcher.get(`/api/picture/${slug}?locale=${locale}`)
           setStatus(REQUEST_STATUS_OPTIONS.RESOLVED)
