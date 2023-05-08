@@ -34,7 +34,7 @@ export default function Home({
   latestContent,
   latestPictures,
   sectionImages,
-  pictures,
+  picturesOnMap,
   galleryTags,
   alternates
 }: HomeProps) {
@@ -91,7 +91,7 @@ export default function Home({
           </div>
 
           {showMap && (
-            <DynamicHomeMap pictures={pictures} setShowMap={setShowMap} />
+            <DynamicHomeMap pictures={picturesOnMap} setShowMap={setShowMap} />
           )}
         </HomeBlock>
 
@@ -120,7 +120,7 @@ export async function getStaticProps({
   const latestPictures = await getLatestPictures({locale})
   const sectionImages = await getSectionImages()
   const latestContent = await getLatestContent()
-  const pictures = await getAllPicturesOnMap({locale})
+  const picturesOnMap = await getAllPicturesOnMap({locale})
   const galleryTags = await getGalleryTags({locale})
   const alternates = (await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale}))
@@ -132,7 +132,7 @@ export async function getStaticProps({
       latestContent,
       latestPictures,
       sectionImages,
-      pictures,
+      picturesOnMap,
       galleryTags,
       alternates
     }
@@ -144,7 +144,7 @@ interface HomeProps {
   latestContent: BlogPost[]
   latestPictures: Picture[]
   sectionImages: SectionImage[]
-  pictures: PictureOnMap[]
+  picturesOnMap: PictureOnMap[]
   galleryTags: Tag[]
   alternates: Alternate[]
 }

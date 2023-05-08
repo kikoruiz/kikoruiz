@@ -1,5 +1,6 @@
 import {Dispatch, SetStateAction, useState} from 'react'
 import {useRouter} from 'next/router'
+import Link from 'next/link'
 import {icon} from 'leaflet'
 import {Popup, Marker} from 'react-leaflet'
 import {REQUEST_STATUS_OPTIONS} from 'config'
@@ -11,8 +12,7 @@ export default function MapPicture({
   slug,
   coordinates,
   image,
-  isInteractive,
-  setPictureToView
+  isInteractive
 }: MapPictureProps) {
   const {locale} = useRouter()
   const [picture, setPicture]: [
@@ -26,7 +26,8 @@ export default function MapPicture({
       setStatus(REQUEST_STATUS_OPTIONS.PENDING)
       let picture: Picture = null
 
-      if (slug) {
+      if (slug && locale) {
+        console.log({slug, locale})
         try {
           picture = await fetcher.get(`/api/picture/${slug}?locale=${locale}`)
           setStatus(REQUEST_STATUS_OPTIONS.RESOLVED)
@@ -62,19 +63,18 @@ export default function MapPicture({
         popupclose: handlePopupClose
       }}
     >
-      <Popup
-        closeButton={false}
-        className="ml-[.5px] [&>div:first-child>div]:!m-0 [&>div:first-child>div]:!p-3 [&>div:first-child]:!rounded-xl [&>div:first-child]:bg-gradient-to-b [&>div:first-child]:!from-neutral-300 [&>div:first-child]:!via-transparent [&>div:first-child]:!text-neutral-600 [&>div>div>a]:!text-neutral-600"
-        minWidth={120}
-      >
-        {picture && (
-          <>
-            <button
+      {isInteractive && (
+        <Popup
+          closeButton={false}
+          className="ml-[.5px] [&>div:first-child>div]:!m-0 [&>div:first-child>div]:!p-3 [&>div:first-child]:!rounded-xl [&>div:first-child]:bg-gradient-to-b [&>div:first-child]:!from-neutral-300 [&>div:first-child]:!via-transparent [&>div:first-child]:!text-neutral-600 [&>div>div>a]:!text-neutral-600"
+          minWidth={120}
+        >
+          {picture && (
+            <Link
+              href={picture.url}
               title={picture.name}
-              className="group block w-[120px] text-left hover:opacity-90"
-              onClick={() => {
-                setPictureToView(picture)
-              }}
+              className="group block max-w-[120px] hover:opacity-90"
+              shallow
             >
               <div className="overflow-hidden rounded">
                 <Image
@@ -97,10 +97,10 @@ export default function MapPicture({
               >
                 {picture.prettyDate}
               </time>
-            </button>
-          </>
-        )}
-      </Popup>
+            </Link>
+          )}
+        </Popup>
+      )}
     </Marker>
   )
 }
@@ -108,7 +108,6 @@ export default function MapPicture({
 interface MapPictureProps {
   slug: string
   coordinates: Coordinates
-  image?: ImageInterface
+  image: ImageInterface
   isInteractive: boolean
-  setPictureToView?: (picture: Picture) => void
 }

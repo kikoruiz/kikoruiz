@@ -95,7 +95,7 @@ export interface Picture {
 
 export interface PictureOnMap {
   slug: string
-  coordinates: Coordinates
+  coordinates?: Coordinates
   image?: Image
 }
 
