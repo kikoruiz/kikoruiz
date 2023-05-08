@@ -3,13 +3,15 @@ import {fromExifToGallery} from 'lib/gallery/mappers'
 import {getAllPictures} from 'lib/gallery/pictures'
 import {getSlug} from 'lib/utils'
 import {Picture} from 'types/gallery'
+import i18n from 'i18n'
+
+global.i18nConfig = i18n
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const {slug, locale} = req.query as {slug: string; locale: string}
-  console.log({slug, locale})
   const allPictures = await getAllPictures()
   const rawPicture = allPictures.find(({title}) => getSlug(title) === slug)
   const picture: Picture = await fromExifToGallery({locale, needsImage: false})(

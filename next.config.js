@@ -9,8 +9,7 @@ module.exports = withPlaiceholder(
     },
     i18n: {
       locales: ['es', 'ca', 'en'],
-      defaultLocale: 'es',
-      localeDetection: false
+      defaultLocale: 'es'
     },
     async rewrites() {
       return [
