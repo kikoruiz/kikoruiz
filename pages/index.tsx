@@ -24,6 +24,10 @@ import {BlogPost} from 'types/blog'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
+import IconEnvelope from 'assets/icons/envelope.svg'
+import IconEnvelopeOpen from 'assets/icons/envelope-open.svg'
+import LogoWhatsApp from 'assets/logos/social/whatsapp.svg'
+import {PERSONAL_INFO} from 'config'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
@@ -93,6 +97,33 @@ export default function Home({
           {showMap && (
             <DynamicHomeMap pictures={picturesOnMap} setShowMap={setShowMap} />
           )}
+        </HomeBlock>
+
+        <HomeBlock className="p-12 text-center">
+          <header className="mb-12 text-lg font-bold text-orange-300/60">
+            ¿Hablamos? 👋
+          </header>
+
+          <div className="flex items-center justify-center gap-6">
+            <a
+              href={`mailto:${PERSONAL_INFO.email}`}
+              className="group flex items-center gap-6 rounded-xl border p-9 text-6xl font-thin drop-shadow-md transition-transform hover:scale-105 hover:border-orange-300 hover:text-orange-300"
+              title={PERSONAL_INFO.email}
+            >
+              <IconEnvelope className="w-12 group-hover:hidden" />
+              <IconEnvelopeOpen className="hidden w-12 group-hover:block" />
+              {PERSONAL_INFO.email}
+            </a>
+
+            <a
+              href={`mailto:${PERSONAL_INFO.email}`}
+              className="group flex items-center gap-6 rounded-xl border p-9 text-6xl font-thin drop-shadow-md transition-transform hover:scale-105 hover:text-orange-300"
+              title={PERSONAL_INFO.email}
+            >
+              <LogoWhatsApp className="w-12" />
+              {PERSONAL_INFO.email}
+            </a>
+          </div>
         </HomeBlock>
 
         <HomeModule title={t('home:gallery-tags')} className="pb-3">
