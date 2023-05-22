@@ -1,0 +1,44 @@
+import useTranslation from 'next-translate/useTranslation'
+import HomeBlock from './home-block'
+import IconEnvelope from 'assets/icons/envelope.svg'
+import IconEnvelopeOpen from 'assets/icons/envelope-open.svg'
+import LogoWhatsApp from 'assets/logos/social/whatsapp.svg'
+import {PERSONAL_INFO, BRANDS} from 'config'
+
+const altContactInfo = BRANDS.SOCIAL.find(({slug}) => slug === 'whatsapp')
+
+export default function HomeContact() {
+  const {t} = useTranslation('home')
+
+  return (
+    <HomeBlock className="relative p-16 text-center before:absolute before:bottom-0 before:left-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-orange-300/30 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30">
+      <header className="mb-12">
+        <h2 className="bg-gradient-to-t from-orange-300 via-orange-300/80 to-orange-300/40 bg-clip-text text-3xl font-extralight leading-tight text-transparent drop-shadow md:text-5xl md:leading-snug">
+          {t('contact')}
+        </h2>
+      </header>
+
+      <div className="flex items-center justify-center gap-6 text-4xl font-black [&>a]:flex [&>a]:items-center [&>a]:gap-6 [&>a]:rounded-xl [&>a]:border [&>a]:border-neutral-600 [&>a]:bg-gradient-to-b [&>a]:from-neutral-800/60 [&>a]:p-9 [&>a]:drop-shadow-md [&>a]:transition-transform">
+        <a
+          href={`mailto:${PERSONAL_INFO.email}`}
+          className="group hover:scale-105 hover:border-orange-300 hover:text-orange-300"
+          title={PERSONAL_INFO.email}
+        >
+          <IconEnvelope className="absolute w-12 transition-opacity group-hover:opacity-0" />
+          <IconEnvelopeOpen className="w-12 opacity-0 transition-opacity group-hover:opacity-100" />
+          {PERSONAL_INFO.email}
+        </a>
+
+        <a
+          href={altContactInfo.url}
+          target="_blank"
+          className="hover:scale-105 hover:border-[currentColor] hover:text-[#25d366]"
+          title={altContactInfo.name}
+        >
+          <LogoWhatsApp className="w-12" />
+          {altContactInfo.name}
+        </a>
+      </div>
+    </HomeBlock>
+  )
+}

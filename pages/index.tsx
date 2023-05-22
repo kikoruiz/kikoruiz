@@ -24,6 +24,7 @@ import {BlogPost} from 'types/blog'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
+import HomeContact from 'components/home-contact'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
@@ -94,6 +95,8 @@ export default function Home({
             <DynamicHomeMap pictures={picturesOnMap} setShowMap={setShowMap} />
           )}
         </HomeBlock>
+
+        <HomeContact />
 
         <HomeModule title={t('home:gallery-tags')} className="pb-3">
           <GalleryTags tags={galleryTags} />
