@@ -96,11 +96,11 @@ export default function Home({
           )}
         </HomeBlock>
 
-        <HomeContact />
-
         <HomeModule title={t('home:gallery-tags')} className="pb-3">
           <GalleryTags tags={galleryTags} />
         </HomeModule>
+
+        <HomeContact />
 
         <HomeBlock className="flex items-center justify-center p-12 pt-16">
           <Logo className="w-fit fill-white/5 xl:w-[60%]" />
