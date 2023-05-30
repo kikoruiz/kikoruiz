@@ -1,4 +1,4 @@
-const nextTranslate = require('next-translate')
+const nextTranslate = require('next-translate-plugin')
 const {withPlaiceholder} = require('@plaiceholder/next')
 
 module.exports = withPlaiceholder(
