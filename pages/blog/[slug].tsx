@@ -41,8 +41,8 @@ export default function Post({post, alternates}: PostProps) {
       <article className="mx-auto p-6 xl:max-w-5xl">
         <header className="pt-9 text-center sm:pt-0">
           {!BLOG.AVAILABLE_LOCALES.includes(locale) && (
-            <div className="mb-12 w-full text-sm font-extralight text-left sm:text-center leading-normal drop-shadow-lg">
-              <p className="flex items-baseline sm:items-center justify-center gap-1.5 rounded bg-orange-800 px-6 py-3 drop-shadow">
+            <div className="mb-12 w-full text-left text-sm font-extralight leading-normal drop-shadow-lg sm:text-center">
+              <p className="flex items-start justify-center gap-1.5 rounded bg-orange-800 px-6 py-3 drop-shadow sm:items-center">
                 <IconInformationCircle className="w-6" />
                 {t('common:blog.post.available-locales.warning')}
               </p>
