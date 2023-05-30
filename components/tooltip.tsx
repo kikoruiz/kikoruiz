@@ -5,7 +5,8 @@ export default function Tooltip({
   message,
   icon: Icon,
   className,
-  direction = 'left'
+  direction = 'left',
+  type = 'info'
 }: TooltipProps) {
   const [isOpen, setIsOpen] = useState(false)
   let directionClassName
@@ -25,7 +26,7 @@ export default function Tooltip({
     <div
       className={`relative flex max-w-full items-center rounded-full bg-neutral-800 p-1.5 hover:cursor-help${
         className ? ` ${className}` : ''
-      } ${isOpen ? 'text-neutral-300' : 'text-neutral-300/60'}`}
+      } ${typeClassName({type, isOpen})}`}
       onClick={() => {
         const {device} = UAParser()
 
@@ -64,4 +65,20 @@ interface TooltipProps {
   icon: FunctionComponent<IconProps>
   className?: string
   direction?: 'left' | 'bottom'
+  type?: 'info' | 'warning'
+}
+
+function typeClassName({
+  type,
+  isOpen
+}: {
+  type: string
+  isOpen: boolean
+}): string {
+  switch (type) {
+    case 'warning':
+      return isOpen ? 'text-orange-500' : 'text-orange-500/60'
+    case 'info':
+      return isOpen ? 'text-neutral-300' : 'text-neutral-300/60'
+  }
 }

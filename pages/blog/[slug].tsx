@@ -11,6 +11,7 @@ import BlogTags from 'components/blog-tags'
 import {BlogPost} from 'types/blog'
 import {Alternate} from 'types'
 import PostTitle from 'components/post-title'
+import IconInformationCircle from 'assets/icons/information-circle.svg'
 import {getSlug} from 'lib/utils'
 
 export default function Post({post, alternates}: PostProps) {
@@ -39,6 +40,15 @@ export default function Post({post, alternates}: PostProps) {
 
       <article className="mx-auto p-6 xl:max-w-5xl">
         <header className="pt-9 text-center sm:pt-0">
+          {!BLOG.AVAILABLE_LOCALES.includes(locale) && (
+            <div className="mb-12 w-full text-sm font-extralight leading-normal drop-shadow-lg">
+              <p className="flex items-center justify-center gap-1.5 rounded bg-neutral-800 px-6 py-3 text-orange-500 drop-shadow">
+                <IconInformationCircle className="w-6" />
+                {t('common:blog.post.available-locales.warning')}
+              </p>
+            </div>
+          )}
+
           <div>
             <time
               className="rounded bg-gradient-to-br from-neutral-800/60 p-2 font-light text-orange-300/60"
