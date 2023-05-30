@@ -91,7 +91,10 @@
         "1": "{{count}} min read",
         "other": "{{count}} min read"
       },
-      "draft": "Coming soon..."
+      "draft": "Coming soon...",
+      "available-locales": {
+        "warning": "This post content is only available in spanish language"
+      }
     },
     "available-locales": {
       "warning": "Blog contents are only available in spanish language"

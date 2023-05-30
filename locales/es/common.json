@@ -91,10 +91,13 @@
         "1": "{{count}} min. de lectura",
         "other": "{{count}} min. de lectura"
       },
-      "draft": "Próximamente..."
+      "draft": "Próximamente...",
+      "available-locales": {
+        "warning": "El contenido de este artículo sólo está disponible en castellano"
+      }
     },
     "available-locales": {
-      "warning": "El contenido de los artículos sólo está disponible en lengua castellana"
+      "warning": "El contenido de los artículos sólo está disponible en castellano"
     }
   }
 }
