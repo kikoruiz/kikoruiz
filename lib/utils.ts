@@ -97,6 +97,8 @@ export function getAspectRatio(size: string): string {
       return '3:5'
     case 1.78:
       return '16:9'
+    case 0.56:
+      return '9:16'
     case 1.6:
       return '16:10'
     default:
