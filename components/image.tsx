@@ -27,6 +27,8 @@ function getAspectRatioClassName(aspectRatio: string): string {
       return 'aspect-3/5'
     case '16:9':
       return 'aspect-16/9'
+    case '9:16':
+      return 'aspect-9/16'
     case '16:10':
       return 'aspect-16/10'
     default:
