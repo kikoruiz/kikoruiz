@@ -11,7 +11,7 @@ import Article from 'components/article'
 import Image from 'components/image'
 import {BlogPostContent} from 'types/blog'
 import {Alternate} from 'types'
-import {ImageFallbackStyle} from 'types/gallery'
+import {Image as ImageInterface, ImageFallbackStyle} from 'types/gallery'
 
 export default function AboutMe({
   avatar,
@@ -20,6 +20,7 @@ export default function AboutMe({
 }: AboutMeProps) {
   const {locale} = useRouter()
   const {t} = useTranslation()
+  const contentImage = avatar as ImageInterface
 
   return (
     <>
@@ -117,6 +118,7 @@ export default function AboutMe({
 
         <Article
           content={description.content}
+          contentImages={[contentImage]}
           className="mt-9 flex-1 sm:mt-0"
         />
       </section>
