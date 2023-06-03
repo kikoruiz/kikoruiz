@@ -71,6 +71,7 @@ export interface RawPicture {
 
 export interface Picture {
   name: string
+  description?: string
   id: string
   url: string
   slug: string

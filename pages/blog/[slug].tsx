@@ -33,6 +33,7 @@ export default function Post({post, alternates}: PostProps) {
     <>
       <Head>
         <title>{`Kiko Ruiz / ${post.title}`}</title>
+        <meta name="description" content={post.excerpt} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}

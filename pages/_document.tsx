@@ -4,7 +4,6 @@ export default function Document({locale}: DocumentProps) {
   return (
     <Html lang={locale} className="scroll-smooth">
       <Head>
-        <meta name="description" content="Kiko Ruiz" />
         <meta name="theme-color" content="#171717" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

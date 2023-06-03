@@ -25,13 +25,14 @@ export default function AboutMe({
     <>
       <Head>
         <title>{`Kiko Ruiz / ${t('sections.about-me.name')}`}</title>
+        <meta name="description" content={t('sections.about-me.description')} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
       </Head>
 
       <section className="flex flex-col-reverse p-6 sm:flex-row sm:py-0">
-        <div className="mt-16 w-full sm:mt-0 sm:mb-12 sm:mr-6 sm:w-1/3 lg:mr-12">
+        <div className="mt-16 w-full sm:mb-12 sm:mr-6 sm:mt-0 sm:w-1/3 lg:mr-12">
           <Image
             src={avatar.src}
             alt={t('sections.about-me.name')}

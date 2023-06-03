@@ -23,6 +23,7 @@ export default function GallerySlug({
         <title>{`Kiko Ruiz / ${t(
           `gallery.albums.${pageProps.category}.name`
         )}`}</title>
+        <meta name="description" content={t('sections.gallery.description')} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}

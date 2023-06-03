@@ -17,6 +17,7 @@ const DEFAULT_CANON_RF_LENS = 'Canon RF 15-35mm F2.8L IS USM'
 interface ExifData {
   fileName: string
   title: string
+  description?: string
   createDate: string
   model: string
   lens: string
@@ -84,6 +85,7 @@ export function fromExifToGallery({
   return async function ({
     fileName,
     title,
+    description,
     createDate,
     model,
     lens,
@@ -148,10 +150,11 @@ export function fromExifToGallery({
     }
 
     return {
-      name: title,
       id: fileName.split('.')[0],
-      url,
       slug,
+      name: title,
+      ...(description && {description}),
+      url,
       ...(image && {image}),
       imageSize,
       fileSize,
