@@ -70,7 +70,10 @@ export default function GalleryPage({
         <Head>
           <title>Kiko Ruiz / {openPicture.name}</title>
           {openPicture.description && (
-            <meta name="description" content={openPicture.description} />
+            <meta
+              name="description"
+              content={openPicture.description.replaceAll(/\n\n/g, ' ')}
+            />
           )}
         </Head>
       )}
