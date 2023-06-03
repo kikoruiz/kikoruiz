@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import GalleryList from 'components/gallery-list'
@@ -32,6 +33,8 @@ export default function GalleryPage({
   )
   const {setSubcategory} = useSubcategoryContext()
   const hasSubcategories = subcategories?.length > 0
+  const openPicture =
+    isCarouselOpen && items.find(item => item.slug === carousel)
 
   function handleSortingChange(event) {
     const option = event.target.value
@@ -63,6 +66,15 @@ export default function GalleryPage({
 
   return (
     <>
+      {openPicture && (
+        <Head>
+          <title>Kiko Ruiz / {openPicture.name}</title>
+          {openPicture.description && (
+            <meta name="description" content={openPicture.description} />
+          )}
+        </Head>
+      )}
+
       <GalleryHeader />
 
       <GalleryList

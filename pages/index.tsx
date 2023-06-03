@@ -25,6 +25,7 @@ import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import HomeContact from 'components/home-contact'
+import {GALLERY_ALBUMS} from 'config/gallery'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
@@ -42,11 +43,19 @@ export default function Home({
   const [showMap, setShowMap] = useState(false)
   const {averageColor} = heroImage
   const {t} = useTranslation()
+  const galleryCategories = GALLERY_ALBUMS.map(({id}) =>
+    t(`gallery.albums.${id}.name`).toLowerCase()
+  )
+  const seoDescription = `${t('sections.gallery.description').replace(
+    '.',
+    ':'
+  )} ${galleryCategories.join(', ')}. ${t('sections.blog.description')}`
 
   return (
     <>
       <Head>
         <title>Kiko Ruiz</title>
+        <meta name="description" content={seoDescription} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}

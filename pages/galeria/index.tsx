@@ -15,6 +15,7 @@ export default function Gallery({albums, alternates}: GalleryProps) {
     <>
       <Head>
         <title>{`Kiko Ruiz / ${t('sections.gallery.name')}`}</title>
+        <meta name="description" content={t('sections.gallery.description')} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}

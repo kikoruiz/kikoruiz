@@ -16,6 +16,7 @@ export default function GalleryTagsIndex({
     <>
       <Head>
         <title>{`Kiko Ruiz / ${t('tags')}`}</title>
+        <meta name="description" content={t('sections.gallery.description')} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}

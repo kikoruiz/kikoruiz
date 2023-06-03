@@ -14,6 +14,7 @@ export default function Blog({posts, tags, alternates}: BlogProps) {
     <>
       <Head>
         <title>{`Kiko Ruiz / ${t('sections.blog.name')}`}</title>
+        <meta name="description" content={t('sections.blog.description')} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
