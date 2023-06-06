@@ -122,6 +122,8 @@ export function fromExifToGallery({
         }`
     const url = `${path}/?${openInCarousel ? 'carousel' : 'picture'}=${slug}`
     const isPano = keywords.includes('panorama')
+    console.log({keywords})
+    const isStarTracked = keywords.includes('star tracker')
     const tags = await getGalleryTags({
       locale,
       tags: keywords.filter(keyword => GALLERY_TAGS.includes(keyword))
@@ -171,6 +173,7 @@ export function fromExifToGallery({
         })
       } as ShotInfo,
       isPano,
+      isStarTracked,
       editingSoftware: rawFileName.includes('.cr2')
         ? 'Adobe Lightroom'
         : 'Adobe Lightroom + Adobe Photoshop',

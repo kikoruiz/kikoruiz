@@ -17,7 +17,8 @@
       "shutter-speed": "Velocidad de obturación",
       "focal-length": "Distancia focal",
       "editing-software": "Software de edición",
-      "aspect-ratio": "Relación de aspecto"
+      "aspect-ratio": "Relación de aspecto",
+      "star-tracked": "con seguimiento de estrellas"
     },
     "show-picture-map": "Ver localización",
     "hide-picture-map": "Ocultar localización",

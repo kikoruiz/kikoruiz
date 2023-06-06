@@ -17,7 +17,8 @@
       "shutter-speed": "Shutter speed",
       "focal-length": "Focal length",
       "editing-software": "Editing software",
-      "aspect-ratio": "Aspect ratio"
+      "aspect-ratio": "Aspect ratio",
+      "star-tracked": "star tracked"
     },
     "show-picture-map": "Show location",
     "hide-picture-map": "Hide location",

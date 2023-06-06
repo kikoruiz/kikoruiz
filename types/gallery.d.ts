@@ -85,6 +85,7 @@ export interface Picture {
   lens: string
   shotInfo: ShotInfo
   isPano: boolean
+  isStarTracked: boolean
   editingSoftware: string
   megapixels: number
   rawTags: string[]

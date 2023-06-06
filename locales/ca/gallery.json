@@ -17,7 +17,8 @@
       "shutter-speed": "Velocitat d'obturació",
       "focal-length": "Distància focal",
       "editing-software": "Programari d'edició",
-      "aspect-ratio": "Relació d'aspecte"
+      "aspect-ratio": "Relació d'aspecte",
+      "star-tracked": "amb rastrejament d'estrelles"
     },
     "show-picture-map": "Veure localització",
     "hide-picture-map": "Amagar localització",
