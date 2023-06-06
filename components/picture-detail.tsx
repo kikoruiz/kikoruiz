@@ -34,6 +34,7 @@ export default function PictureDetail({
     prettyDate,
     shotInfo,
     isPano,
+    isStarTracked,
     model,
     lens,
     editingSoftware,
@@ -50,6 +51,7 @@ export default function PictureDetail({
   const pictureInfoProps = {
     shotInfo,
     isPano,
+    isStarTracked,
     model,
     lens,
     editingSoftware,

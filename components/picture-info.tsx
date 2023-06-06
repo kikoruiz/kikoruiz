@@ -5,6 +5,7 @@ import {ShotInfo as ShotInfoInterface} from 'types/gallery'
 export default function PictureInfo({
   shotInfo,
   isPano,
+  isStarTracked,
   model,
   lens,
   aspectRatio,
@@ -23,7 +24,12 @@ export default function PictureInfo({
     },
     {
       id: 'shutter-speed',
-      content: <>{shotInfo.shutterSpeed}s</>
+      content: (
+        <>
+          {shotInfo.shutterSpeed}s
+          {isStarTracked && ` (${t('carousel.picture-info.star-tracked')})`}
+        </>
+      )
     },
     {
       id: 'aperture',
@@ -78,6 +84,7 @@ export default function PictureInfo({
 interface PictureInfoProps {
   shotInfo: ShotInfoInterface
   isPano: boolean
+  isStarTracked: boolean
   model: string
   lens: string
   aspectRatio: string
