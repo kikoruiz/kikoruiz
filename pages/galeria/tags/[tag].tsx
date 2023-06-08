@@ -22,7 +22,10 @@ export default function GalleryTag({
         <title>{`Kiko Ruiz / ${t('common:tags')} / # ${t(
           `tags.${getSlug(pageProps.tag)}`
         ).toLowerCase()}`}</title>
-        <meta name="description" content={t('sections.gallery.description')} />
+        <meta
+          name="description"
+          content={t('common:sections.gallery.description')}
+        />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
