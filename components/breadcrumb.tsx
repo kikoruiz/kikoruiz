@@ -19,9 +19,7 @@ const sectionIcons = {
 }
 
 function scrollToTop() {
-  if (typeof window === 'undefined') return
-
-  window.scrollTo({top: 0})
+  window?.scrollTo({top: 0})
 }
 
 export default function Breadcrumb({
@@ -58,7 +56,7 @@ export default function Breadcrumb({
 
   return items.length > 0 ? (
     <div id="breadcrumb" className="bg-neutral-800/75">
-      <div className="container mx-auto flex py-2 px-6">
+      <div className="container mx-auto flex px-6 py-2">
         {items.map(({href, id, name}, index) => {
           const isFirstItem = index === 0
 
@@ -106,7 +104,7 @@ export default function Breadcrumb({
         {hasSubcategory && (
           <span className="inline-flex items-center font-bold text-orange-300/60">
             {SubcategoryIcon && (
-              <SubcategoryIcon className="mr-1.5 ml-0.5 w-3 rounded-full" />
+              <SubcategoryIcon className="ml-0.5 mr-1.5 w-3 rounded-full" />
             )}
             {t(
               `${section}.albums.${categoryItem.id}.subcategories.${subcategory}`
