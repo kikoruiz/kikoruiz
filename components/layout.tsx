@@ -1,6 +1,8 @@
+import {ReactNode, useEffect} from 'react'
+import {useRouter} from 'next/router'
 import Header from './header'
 import Footer from './footer'
-import {ReactNode} from 'react'
+import useSubcategoryContext from 'contexts/subcategory'
 import {Alternate, SectionData} from 'types'
 
 export default function Layout({
@@ -8,7 +10,22 @@ export default function Layout({
   alternates,
   ...sectionData
 }: LayoutProps) {
+  const router = useRouter()
   const {hasHero} = sectionData
+  const {setSubcategory} = useSubcategoryContext()
+
+  useEffect(() => {
+    function handleRouteChangeStart() {
+      // Reset subcategory value.
+      setSubcategory(null)
+    }
+
+    router.events.on('routeChangeStart', handleRouteChangeStart)
+
+    return function () {
+      router.events.off('routeChangeStart', handleRouteChangeStart)
+    }
+  }, [router.events, setSubcategory])
 
   return (
     <div className="flex min-h-screen flex-col">

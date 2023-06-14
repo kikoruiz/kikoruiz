@@ -8,7 +8,7 @@ import {trackPage, GA_TRACKING_ID} from 'lib/tracking'
 import {SubcategoryProvider} from 'contexts/subcategory'
 import '../styles/globals.css'
 
-function handleRouteChange(url: string) {
+function handleRouteChangeComplete(url: string) {
   trackPage(url)
 }
 
@@ -29,10 +29,10 @@ export default function App({Component, pageProps}: AppProps) {
   }, [router.asPath])
 
   useEffect(() => {
-    router.events.on('routeChangeComplete', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChangeComplete)
 
     return function () {
-      router.events.off('routeChangeComplete', handleRouteChange)
+      router.events.off('routeChangeComplete', handleRouteChangeComplete)
     }
   }, [router.events])
 
