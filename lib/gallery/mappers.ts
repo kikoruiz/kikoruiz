@@ -122,7 +122,6 @@ export function fromExifToGallery({
         }`
     const url = `${path}/?${openInCarousel ? 'carousel' : 'picture'}=${slug}`
     const isPano = keywords.includes('panorama')
-    console.log({keywords})
     const isStarTracked = keywords.includes('star tracker')
     const tags = await getGalleryTags({
       locale,
