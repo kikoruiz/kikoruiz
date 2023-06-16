@@ -9,7 +9,6 @@ import {
   DEFAULT_IS_ASCENDING_ORDER,
   DEFAULT_SORTING_OPTION
 } from 'config/gallery'
-import useSubcategoryContext from 'contexts/subcategory'
 import {Picture, Subcategory} from 'types/gallery'
 
 const DynamicGalleryCarousel = dynamic(
@@ -31,8 +30,6 @@ export default function GalleryPage({
   const [items, setItems] = useState(
     sortListBy(pictures, sortingOption) as Picture[]
   )
-  const {setSubcategory} = useSubcategoryContext()
-  const hasSubcategories = subcategories?.length > 0
   const openPicture =
     isCarouselOpen && items.find(item => item.slug === carousel)
 
@@ -55,14 +52,6 @@ export default function GalleryPage({
   useEffect(() => {
     setIsCarouselOpen(Boolean(carousel))
   }, [setIsCarouselOpen, carousel])
-
-  // Reset subcategory value.
-  useEffect(
-    () => () => {
-      if (hasSubcategories) setSubcategory(null)
-    },
-    [hasSubcategories, setSubcategory]
-  )
 
   return (
     <>
