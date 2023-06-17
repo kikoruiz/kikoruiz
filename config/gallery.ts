@@ -53,6 +53,8 @@ export const GALLERY_ALBUMS = [
   }
 ]
 
+export const PICTURE_QUERY_KEY = 'carousel'
+
 export const SORTING_OPTIONS = [
   'info-group',
   'date',

@@ -7,6 +7,7 @@ import {trackEvent} from 'lib/tracking'
 import PictureViewer from './picture-viewer'
 import subcategoryIcons from './gallery-subcategory-icons'
 import {Picture, Subcategory} from 'types/gallery'
+import {PICTURE_QUERY_KEY} from 'config/gallery'
 
 let startIndex: number | undefined
 
@@ -17,7 +18,7 @@ function GalleryCarousel({
   setIsCarouselOpen
 }: GalleryCarouselProps) {
   const {push, asPath, query} = useRouter()
-  const {carousel: slug} = query
+  const {[PICTURE_QUERY_KEY]: slug} = query
   const items: Picture[] = subcategories
     ? subcategories.reduce(
         (acc, subcategory) => [
@@ -102,7 +103,7 @@ function GalleryCarousel({
       const index = emblaApi.selectedScrollSnap()
       const item = items[index]
       const slug = getSlug(item.name)
-      const pathSeparator = '?carousel='
+      const pathSeparator = `?${PICTURE_QUERY_KEY}=`
       const [destinationPath] = asPath.split(pathSeparator)
       const destination = `${destinationPath}${pathSeparator}${slug}`
 

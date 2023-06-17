@@ -46,7 +46,9 @@ export default function Breadcrumb({
     GALLERY_ALBUMS.find(
       ({id}) => getSlug(t(`gallery.albums.${id}.name`)) === category
     )
-  const hasSubcategory = subcategory && categoryItem
+  const hasSubcategory = categoryItem?.subcategories?.find(
+    ({id}) => subcategory === id
+  )
   const needsSectionIcon = items.length === 1
   const SectionIcon = sectionIcons[section]
   let SubcategoryIcon

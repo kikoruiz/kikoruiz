@@ -7,7 +7,7 @@ import GallerySubcategory from './gallery-subcategory'
 import {Picture, Subcategory} from 'types/gallery'
 import useSubcategoryContext from 'contexts/subcategory'
 import icons from './gallery-subcategory-icons'
-import {getCapitalizedName} from 'lib/utils'
+import {getCapitalizedName, getSlug} from 'lib/utils'
 import {
   SORTING_OPTIONS,
   DEFAULT_SORTING_OPTION,
@@ -26,11 +26,15 @@ export default function GalleryList({
 }: GalleryListProps) {
   const {t} = useTranslation()
   const [visibleSubcategory, setVisibleSubcategory] = useState(null)
-  const {setSubcategory} = useSubcategoryContext()
+  const {setSubcategory} = useSubcategoryContext(null)
 
   function onSubcategoryChange({visible: nextVisible, overlapped}) {
-    if (typeof nextVisible !== 'undefined') setVisibleSubcategory(nextVisible)
-    if (typeof overlapped !== 'undefined') setSubcategory(overlapped)
+    if (typeof nextVisible !== 'undefined') {
+      setVisibleSubcategory(nextVisible)
+    }
+    if (typeof overlapped !== 'undefined') {
+      setSubcategory(overlapped)
+    }
   }
 
   return (
@@ -44,10 +48,10 @@ export default function GalleryList({
             return (
               <Link
                 key={id}
-                href={`#${id}`}
+                href={`#${getSlug(name)}`}
                 title={name}
                 scroll={false}
-                className="flex items-center rounded-lg bg-gradient-to-t from-neutral-600/20 to-neutral-600/10 py-2 px-3 text-neutral-300/60 hover:bg-neutral-600/10 hover:text-orange-300"
+                className="flex items-center rounded-lg bg-gradient-to-t from-neutral-600/20 to-neutral-600/10 px-3 py-2 text-neutral-300/60 hover:bg-neutral-600/10 hover:text-orange-300"
               >
                 {Icon && <Icon className="mr-2 w-4 rounded-full opacity-90" />}
                 {name}

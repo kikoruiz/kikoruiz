@@ -7,6 +7,7 @@ import {themeScreens} from 'lib/utils'
 import HomeModule from './home-module'
 import PictureCard from './picture-card'
 import {Picture} from 'types/gallery'
+import {PICTURE_QUERY_KEY} from 'config/gallery'
 
 const SCROLL_POSITIONS = {
   LEFT: 'left',
@@ -22,7 +23,7 @@ export default function HomeLatestPictures({
   latestPictures
 }: HomeLatestPicturesProps) {
   const {query} = useRouter()
-  const {carousel} = query
+  const {[PICTURE_QUERY_KEY]: querySlug} = query
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const {sm, xl} = themeScreens
   const sizes = `(min-width: ${xl}) 25vw, (min-width: ${sm}) 33vw, 50vw`
@@ -47,8 +48,8 @@ export default function HomeLatestPictures({
   }
 
   useEffect(() => {
-    setIsCarouselOpen(Boolean(carousel))
-  }, [setIsCarouselOpen, carousel])
+    setIsCarouselOpen(Boolean(querySlug))
+  }, [setIsCarouselOpen, querySlug])
 
   return (
     <HomeModule title={t('latest-pictures')}>
