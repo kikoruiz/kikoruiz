@@ -26,7 +26,7 @@ export default function GalleryList({
 }: GalleryListProps) {
   const {t} = useTranslation()
   const [visibleSubcategory, setVisibleSubcategory] = useState(null)
-  const {setSubcategory} = useSubcategoryContext(null)
+  const {setSubcategory} = useSubcategoryContext()
 
   function onSubcategoryChange({visible: nextVisible, overlapped}) {
     if (typeof nextVisible !== 'undefined') {
