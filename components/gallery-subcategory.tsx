@@ -3,7 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import {Picture, Subcategory} from 'types/gallery'
 import GalleryListItems from './gallery-list-items'
 import icons from './gallery-subcategory-icons'
-import {getCapitalizedName} from 'lib/utils'
+import {getCapitalizedName, getSlug} from 'lib/utils'
 
 function getOffset(element: Element, side: 'top' | 'bottom' = 'top') {
   const elementRect = element?.getBoundingClientRect()
@@ -77,10 +77,16 @@ export default function GallerySubcategory({
     name,
     t
   ])
+  const subcategoryId = t(`gallery.albums.${category}.subcategories.${id}`)
 
   return (
     <div className={`relative ${index === 0 ? 'mt-3' : 'mt-12'}`}>
-      <span id={id} ref={anchorRef} aria-hidden="true" className="absolute" />
+      <span
+        id={getSlug(subcategoryId)}
+        ref={anchorRef}
+        aria-hidden="true"
+        className="absolute"
+      />
       <header
         ref={elementRef}
         className="flex items-center rounded bg-gradient-to-r from-neutral-800/30 p-3 text-3xl font-extrabold text-orange-300/60 drop-shadow-sm"

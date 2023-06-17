@@ -7,6 +7,7 @@ import {fetcher, getSlug} from 'lib/utils'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
 import SearchList from './search-list'
 import {REQUEST_STATUS_OPTIONS} from 'config'
+import {PICTURE_QUERY_KEY} from 'config/gallery'
 
 export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const {t} = useTranslation()
@@ -58,7 +59,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
       } else if (selectedItem?.album) {
         destination = `/${getSlug(t('sections.gallery.name'))}/${getSlug(
           t(`gallery.albums.${selectedItem.album}.name`)
-        )}?carousel=${selectedItem.slug}`
+        )}?${PICTURE_QUERY_KEY}=${selectedItem.slug}`
       }
 
       if (!destination) return

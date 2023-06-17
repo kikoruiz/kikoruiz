@@ -7,7 +7,8 @@ import GalleryHeader from 'components/gallery-header'
 import {sortListBy} from 'lib/utils'
 import {
   DEFAULT_IS_ASCENDING_ORDER,
-  DEFAULT_SORTING_OPTION
+  DEFAULT_SORTING_OPTION,
+  PICTURE_QUERY_KEY
 } from 'config/gallery'
 import {Picture, Subcategory} from 'types/gallery'
 
@@ -21,7 +22,7 @@ export default function GalleryPage({
   subcategories
 }: GalleryPageProps) {
   const {query} = useRouter()
-  const {carousel} = query
+  const {[PICTURE_QUERY_KEY]: querySlug} = query
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
   const [isAscendingOrder, setIsAscendingOrder] = useState(
@@ -31,7 +32,7 @@ export default function GalleryPage({
     sortListBy(pictures, sortingOption) as Picture[]
   )
   const openPicture =
-    isCarouselOpen && items.find(item => item.slug === carousel)
+    isCarouselOpen && items.find(item => item.slug === querySlug)
 
   function handleSortingChange(event) {
     const option = event.target.value
@@ -50,8 +51,8 @@ export default function GalleryPage({
   }, [pictures, sortingOption, isAscendingOrder])
 
   useEffect(() => {
-    setIsCarouselOpen(Boolean(carousel))
-  }, [setIsCarouselOpen, carousel])
+    setIsCarouselOpen(Boolean(querySlug))
+  }, [setIsCarouselOpen, querySlug])
 
   return (
     <>
