@@ -1,4 +1,5 @@
-import {ChangeEvent, MouseEvent, useState} from 'react'
+import {ChangeEvent, MouseEvent, useEffect, useState} from 'react'
+import {useRouter} from 'next/router'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import ArrowPathRoundedSquare from 'assets/icons/arrow-path-rounded-square.svg'
@@ -25,6 +26,8 @@ export default function GalleryList({
   isAscendingOrder
 }: GalleryListProps) {
   const {t} = useTranslation()
+  const router = useRouter()
+  const [newRouteIsChanging, setNewRouteIsChanging] = useState(false)
   const [visibleSubcategory, setVisibleSubcategory] = useState(null)
   const {setSubcategory} = useSubcategoryContext()
 
@@ -32,10 +35,40 @@ export default function GalleryList({
     if (typeof nextVisible !== 'undefined') {
       setVisibleSubcategory(nextVisible)
     }
-    if (typeof overlapped !== 'undefined') {
+    if (!newRouteIsChanging && typeof overlapped !== 'undefined') {
       setSubcategory(overlapped)
     }
   }
+
+  useEffect(() => {
+    function handleRouteChangeStart(url, {shallow}) {
+      if (!shallow) {
+        setNewRouteIsChanging(true)
+      }
+    }
+
+    router.events.on('routeChangeStart', handleRouteChangeStart)
+
+    return function () {
+      router.events.off('routeChangeStart', handleRouteChangeStart)
+    }
+  }, [router.events])
+
+  useEffect(() => {
+    function handleRouteChangeComplete(url, {shallow}) {
+      if (!shallow) {
+        setNewRouteIsChanging(false)
+        // Reset subcategory value on complete route change.
+        setSubcategory(null)
+      }
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChangeComplete)
+
+    return function () {
+      router.events.off('routeChangeComplete', handleRouteChangeComplete)
+    }
+  }, [router.events, setSubcategory])
 
   return (
     <section className="px-3">
