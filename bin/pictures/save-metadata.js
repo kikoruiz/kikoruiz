@@ -55,6 +55,15 @@ async function saveAllPicturesMetadata() {
       iso: tags.ISO,
       keywords: tags.Keywords,
       lens: tags.LensID,
+      ...(tags.City &&
+        tags.Country &&
+        tags.State && {
+          location: {
+            city: tags.City,
+            state: tags.State,
+            country: tags.Country
+          }
+        }),
       make: tags.Make,
       maxApertureValue: tags.MaxApertureValue,
       megapixels: tags.Megapixels,
