@@ -1,7 +1,7 @@
 import {getPlaiceholder} from 'plaiceholder'
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
-import {Coordinates, Image, Picture, ShotInfo} from 'types/gallery'
+import {Coordinates, Image, Location, Picture, ShotInfo} from 'types/gallery'
 import {
   ALLOWED_PICTURE_TAGS,
   GALLERY_ALBUMS,
@@ -32,6 +32,7 @@ interface ExifData {
   rawFileName: string
   megapixels: number
   coordinates?: Coordinates
+  location?: Location
 }
 
 function getOrientation(size: string) {
@@ -97,7 +98,8 @@ export function fromExifToGallery({
     keywords,
     rawFileName,
     megapixels,
-    coordinates
+    coordinates,
+    location
   }: ExifData): Promise<Picture> {
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
@@ -181,6 +183,7 @@ export function fromExifToGallery({
       ),
       tags,
       ...(coordinates && {coordinates}),
+      ...(location && {location}),
       ...(tutorialSlug && {
         tutorial: {href: `/${getSlug(t('sections.blog.name'))}/${tutorialSlug}`}
       })

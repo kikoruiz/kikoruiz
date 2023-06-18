@@ -40,6 +40,7 @@ export default function PictureDetail({
     editingSoftware,
     tags,
     coordinates,
+    location,
     tutorial
   } = picture
   const {t} = useTranslation('gallery')
@@ -99,9 +100,25 @@ export default function PictureDetail({
                   {name}
                 </header>
 
-                <time className="flex text-neutral-300/40" dateTime={date}>
-                  {prettyDate}
-                </time>
+                <div className="mb-2 flex flex-col gap-1.5">
+                  <time className="flex text-neutral-300/40" dateTime={date}>
+                    {prettyDate}
+                  </time>
+
+                  {location && coordinates && (
+                    <address className="text-xs font-extralight not-italic text-orange-300/60">
+                      <Link
+                        href={`https://www.google.es/maps/place/${coordinates.latitude},${coordinates.longitude}`}
+                        target="_blank"
+                        title=""
+                      >
+                        {location.city},{' '}
+                        {location.state.replace('Province', '')} (
+                        {location.country})
+                      </Link>
+                    </address>
+                  )}
+                </div>
 
                 {tags.length > 0 && (
                   <div className="-ml-1.5 mb-3 pt-1.5">

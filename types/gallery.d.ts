@@ -30,6 +30,12 @@ export interface Coordinates {
   longitude: number
 }
 
+export interface Location {
+  city: string
+  state: string
+  country: string
+}
+
 export interface RawPicture {
   aperture: number
   artist: string
@@ -93,6 +99,7 @@ export interface Picture {
   tags: Tag[]
   subcategory?: string
   coordinates?: Coordinates
+  location?: Location
   tutorial?: Tutorial
 }
 
