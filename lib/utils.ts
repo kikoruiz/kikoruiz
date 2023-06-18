@@ -163,7 +163,7 @@ export function autoSortSeasons(currentDate = new Date(Date.now())) {
     }
   ]
   const currentSeason = seasonsConfig
-    .filter(({date}) => date <= currentDate)
+    .filter(({date}) => date <= currentDate.getTime())
     .slice(-1)[0] || {
     id: 'winter'
   }

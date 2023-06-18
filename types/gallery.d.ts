@@ -4,6 +4,7 @@ import {Tutorial} from './blog'
 export interface Subcategory {
   id: string
   tag: string
+  emoji?: string
 }
 
 export interface Image {

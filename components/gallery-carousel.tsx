@@ -7,7 +7,7 @@ import {trackEvent} from 'lib/tracking'
 import PictureViewer from './picture-viewer'
 import subcategoryIcons from './gallery-subcategory-icons'
 import {Picture, Subcategory} from 'types/gallery'
-import {PICTURE_QUERY_KEY} from 'config/gallery'
+import {GALLERY_ALBUMS, PICTURE_QUERY_KEY} from 'config/gallery'
 
 let startIndex: number | undefined
 
@@ -42,6 +42,7 @@ function GalleryCarousel({
     : startIndex !== items.length - 1
   const item = items[index]
   let subcategoryName
+  let subcategoryEmoji
   let SubcategoryIcon
   if (subcategories) {
     subcategoryName = t(
@@ -49,6 +50,9 @@ function GalleryCarousel({
         item.subcategory
       )}`
     )
+    subcategoryEmoji = GALLERY_ALBUMS.find(
+      ({id}) => id === category
+    ).subcategories?.find(({id}) => id === item.subcategory).emoji
     SubcategoryIcon =
       subcategoryIcons[`Icon${getCapitalizedName(item.subcategory)}`]
   }
@@ -93,7 +97,9 @@ function GalleryCarousel({
         {SubcategoryIcon && (
           <SubcategoryIcon className="mr-1.5 w-3 rounded-full opacity-90" />
         )}
-        {subcategoryName}
+        {subcategoryEmoji
+          ? `${subcategoryEmoji} ${subcategoryName}`
+          : subcategoryName}
       </span>
     </span>
   )

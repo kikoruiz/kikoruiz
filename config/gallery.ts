@@ -40,10 +40,10 @@ export const GALLERY_ALBUMS = [
     tags: ['seasonal', 'winter', 'spring', 'summer', 'autumn'],
     highlightedPicture: '2022-11-13_0023.jpg',
     subcategories: [
-      {id: 'spring', tag: 'spring'},
-      {id: 'summer', tag: 'summer'},
-      {id: 'autumn', tag: 'autumn'},
-      {id: 'winter', tag: 'winter'}
+      {id: 'spring', tag: 'spring', emoji: '🌿'},
+      {id: 'summer', tag: 'summer', emoji: '🌞'},
+      {id: 'autumn', tag: 'autumn', emoji: '🍁'},
+      {id: 'winter', tag: 'winter', emoji: '❄️'}
     ] as Subcategory[]
   },
   {

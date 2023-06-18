@@ -14,6 +14,7 @@ function getOffset(element: Element, side: 'top' | 'bottom' = 'top') {
 export default function GallerySubcategory({
   index,
   id,
+  emoji,
   category,
   visibleSubcategory,
   subcategories,
@@ -89,10 +90,18 @@ export default function GallerySubcategory({
       />
       <header
         ref={elementRef}
-        className="flex items-center rounded bg-gradient-to-r from-neutral-800/30 p-3 text-3xl font-extrabold text-orange-300/60 drop-shadow-sm"
+        className={`rounded bg-gradient-to-r from-neutral-800/30 p-3 text-3xl font-extrabold text-orange-300/60 drop-shadow-sm ${
+          emoji ? 'inline-block' : 'flex items-center'
+        }`}
       >
         {Icon && <Icon className="mr-3 w-9 rounded-full opacity-90" />}
-        {name}
+        {emoji ? (
+          <>
+            <span className="text-neutral-900">{emoji}</span> {name}
+          </>
+        ) : (
+          name
+        )}
       </header>
 
       <GalleryListItems
@@ -107,6 +116,7 @@ export default function GallerySubcategory({
 interface GallerySubcategoryProps {
   index: number
   id: string
+  emoji?: string
   category?: string
   visibleSubcategory?: string
   subcategories: Subcategory[]
