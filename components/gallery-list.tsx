@@ -74,7 +74,7 @@ export default function GalleryList({
     <section className="px-3">
       {category && subcategories && (
         <div className="mx-auto mb-12 flex max-w-xs flex-wrap justify-center gap-3 font-extralight sm:max-w-none">
-          {subcategories.map(({id}) => {
+          {subcategories.map(({id, emoji}) => {
             const name = t(`gallery.albums.${category}.subcategories.${id}`)
             const Icon = icons[`Icon${getCapitalizedName(id)}`]
 
@@ -84,10 +84,18 @@ export default function GalleryList({
                 href={`#${getSlug(name)}`}
                 title={name}
                 scroll={false}
-                className="flex items-center rounded-lg bg-gradient-to-t from-neutral-600/20 to-neutral-600/10 px-3 py-2 text-neutral-300/60 hover:bg-neutral-600/10 hover:text-orange-300"
+                className={`rounded-lg bg-gradient-to-t from-neutral-600/20 to-neutral-600/10 px-3 py-2 text-neutral-300/60 hover:bg-neutral-600/10 hover:text-orange-300 ${
+                  emoji ? 'inline-block' : 'flex items-center'
+                }`}
               >
                 {Icon && <Icon className="mr-2 w-4 rounded-full opacity-90" />}
-                {name}
+                {emoji ? (
+                  <>
+                    <span className="text-neutral-900">{emoji}</span> {name}
+                  </>
+                ) : (
+                  name
+                )}
               </Link>
             )
           })}
@@ -138,11 +146,12 @@ export default function GalleryList({
       )}
 
       {category && subcategories ? (
-        subcategories.map(({id, tag}, index) => (
+        subcategories.map(({id, tag, emoji}, index) => (
           <GallerySubcategory
             key={id}
             index={index}
             id={id}
+            emoji={emoji}
             category={category}
             visibleSubcategory={visibleSubcategory}
             subcategories={subcategories}

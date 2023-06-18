@@ -46,13 +46,13 @@ export default function Breadcrumb({
     GALLERY_ALBUMS.find(
       ({id}) => getSlug(t(`gallery.albums.${id}.name`)) === category
     )
-  const hasSubcategory = categoryItem?.subcategories?.find(
+  const subcategoryData = categoryItem?.subcategories?.find(
     ({id}) => subcategory === id
   )
   const needsSectionIcon = items.length === 1
   const SectionIcon = sectionIcons[section]
   let SubcategoryIcon
-  if (hasSubcategory) {
+  if (subcategoryData) {
     SubcategoryIcon = icons[`Icon${getCapitalizedName(subcategory)}`]
   }
 
@@ -76,7 +76,7 @@ export default function Breadcrumb({
             )
           }
 
-          return hasSubcategory ? (
+          return subcategoryData ? (
             <span
               key={id}
               aria-label={t('navigation.album.scroll-to-top')}
@@ -103,10 +103,23 @@ export default function Breadcrumb({
             </span>
           )
         })}
-        {hasSubcategory && (
-          <span className="inline-flex items-center font-bold text-orange-300/60">
+        {subcategoryData && (
+          <span
+            className={`font-bold text-orange-300/60 ${
+              subcategoryData.emoji
+                ? 'inline-block'
+                : 'inline-flex items-center'
+            }`}
+          >
             {SubcategoryIcon && (
               <SubcategoryIcon className="ml-0.5 mr-1.5 w-3 rounded-full" />
+            )}
+            {subcategoryData.emoji && (
+              <>
+                <span className="text-neutral-900">
+                  {subcategoryData.emoji}
+                </span>{' '}
+              </>
             )}
             {t(
               `${section}.albums.${categoryItem.id}.subcategories.${subcategory}`
