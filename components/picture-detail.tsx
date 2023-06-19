@@ -10,6 +10,7 @@ import PictureInfo from './picture-info'
 import ButtonToggle from './button-toggle'
 import IconInformationCircle from 'assets/icons/information-circle.svg'
 import IconMap from 'assets/icons/map.svg'
+import IconMapPin from 'assets/icons/map-pin.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
 import IconChevronRight from 'assets/icons/chevron-right.svg'
 
@@ -64,6 +65,11 @@ export default function PictureDetail({
   const showMapText = showMap
     ? t('carousel.hide-picture-map')
     : t('carousel.show-picture-map')
+  const locationName =
+    location &&
+    `${location.city}, ${location.state.replace('Province', '')} (${
+      location.country
+    })`
 
   return (
     <div
@@ -105,16 +111,16 @@ export default function PictureDetail({
                     {prettyDate}
                   </time>
 
-                  {location && coordinates && (
-                    <address className="text-xs font-extralight not-italic text-orange-300/60">
+                  {locationName && coordinates && (
+                    <address className="text-xs font-extralight not-italic">
                       <Link
                         href={`https://www.google.es/maps/place/${coordinates.latitude},${coordinates.longitude}`}
                         target="_blank"
-                        title=""
+                        title={locationName}
+                        className="inline-flex items-center text-orange-300/60 hover:text-orange-300/90"
                       >
-                        {location.city},{' '}
-                        {location.state.replace('Province', '')} (
-                        {location.country})
+                        <IconMapPin className="mr-1 w-3" />
+                        {locationName}
                       </Link>
                     </address>
                   )}
