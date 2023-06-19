@@ -151,7 +151,7 @@ export default function PictureDetail({
                           href={href}
                           onClick={onExit}
                           title={name}
-                          className={`${baseClassName} hover:text-orange-300/60`}
+                          className={`${baseClassName} hover:text-neutral-300/60`}
                         >
                           {content}
                         </Link>

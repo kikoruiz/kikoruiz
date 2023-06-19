@@ -20,8 +20,8 @@
       "aspect-ratio": "Relació d'aspecte",
       "star-tracked": "amb rastrejament d'estrelles"
     },
-    "show-picture-map": "Veure localització",
-    "hide-picture-map": "Amagar localització",
+    "show-picture-map": "Veure en el mapa",
+    "hide-picture-map": "Amagar mapa",
     "share": "Compartir"
   },
   "album": {
