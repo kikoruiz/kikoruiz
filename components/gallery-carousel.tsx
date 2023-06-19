@@ -52,7 +52,7 @@ function GalleryCarousel({
     )
     subcategoryEmoji = GALLERY_ALBUMS.find(
       ({id}) => id === category
-    ).subcategories?.find(({id}) => id === item.subcategory).emoji
+    ).subcategories?.find(({id}) => id === item.subcategory)?.emoji
     SubcategoryIcon =
       subcategoryIcons[`Icon${getCapitalizedName(item.subcategory)}`]
   }
