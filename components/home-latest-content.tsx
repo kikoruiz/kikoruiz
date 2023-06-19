@@ -14,7 +14,6 @@ export default function HomeLatestContent({posts}: HomeLatestContentProps) {
     <Tooltip
       message={t('common:blog.available-locales.warning')}
       icon={IconInformationCircle}
-      type="warning"
     />
   )
   const props = {
