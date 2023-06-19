@@ -20,8 +20,8 @@
       "aspect-ratio": "Aspect ratio",
       "star-tracked": "star tracked"
     },
-    "show-picture-map": "Show location",
-    "hide-picture-map": "Hide location",
+    "show-picture-map": "Show on map",
+    "hide-picture-map": "Hide map",
     "share": "Share"
   },
   "album": {

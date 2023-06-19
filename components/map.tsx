@@ -1,7 +1,8 @@
 import {memo} from 'react'
 import {LatLngExpression} from 'leaflet'
 import {MapContainer, TileLayer} from 'react-leaflet'
-import {getAverageValue} from 'lib/utils'
+import {useMediaQuery} from 'react-responsive'
+import {getAverageValue, screens} from 'lib/utils'
 import MapPicture from './map-picture'
 import {PictureOnMap} from 'types/gallery'
 
@@ -10,6 +11,8 @@ import 'leaflet/dist/leaflet.css'
 const arePropsEqual = () => true
 
 function Map({pictures, zoom = 5, isInteractive}: MapProps) {
+  const {sm} = screens
+  const isDesktopOrLaptop = useMediaQuery({minWidth: sm})
   const latitudes = pictures.map(({coordinates}) => coordinates.latitude)
   const longitudes = pictures.map(({coordinates}) => coordinates.longitude)
   const center = [
@@ -23,6 +26,7 @@ function Map({pictures, zoom = 5, isInteractive}: MapProps) {
       className="h-full w-full"
       center={center}
       zoom={zoom}
+      zoomControl={isDesktopOrLaptop}
       scrollWheelZoom={false}
     >
       <TileLayer
