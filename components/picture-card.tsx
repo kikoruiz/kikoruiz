@@ -38,7 +38,7 @@ export default function PictureCard({
     >
       <figcaption className={captionClassName}>
         <header
-          className={`drop-shadow group-hover:text-orange-300 ${
+          className={`drop-shadow transition-colors group-hover:text-orange-300 ${
             isAlbum
               ? 'break-words text-6xl font-thin leading-none text-neutral-300/90 sm:text-5xl md:text-6xl'
               : 'text-sm font-bold'
