@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+@media (hover: none) {
+  .navigation-section-icon {
+    display: none;
+  }
+}
