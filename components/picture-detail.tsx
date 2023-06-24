@@ -96,6 +96,7 @@ export default function PictureDetail({
           aspectRatio={aspectRatio}
           sizes="100vw"
           fallbackStyle={image.css}
+          isLazy={false}
         />
 
         {!isFullScreen && (

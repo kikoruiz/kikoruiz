@@ -45,6 +45,7 @@ export default function Image({
   aspectRatio,
   sizes,
   needsPreload,
+  isLazy = true,
   fallbackStyle,
   isRounded,
   isFullRounded,
@@ -85,6 +86,7 @@ export default function Image({
         alt={alt}
         className={`object-cover ${isLoaded ? 'visible' : 'invisible'}`}
         priority={needsPreload}
+        loading={isLazy && !needsPreload ? 'lazy' : 'eager'}
         onLoad={handleImageLoad}
         sizes={sizes}
         fill
@@ -130,6 +132,7 @@ interface ImageProps {
   aspectRatio?: string
   sizes: string
   needsPreload?: boolean
+  isLazy?: boolean
   fallbackStyle: ImageFallbackStyle | object
   isRounded?: boolean
   isFullRounded?: boolean
