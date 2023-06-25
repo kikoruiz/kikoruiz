@@ -111,7 +111,7 @@ export default function Home({
 
         <HomeContact />
 
-        <HomeBlock className="flex items-center justify-center p-12 pb-16">
+        <HomeBlock className="flex items-center justify-center px-12 py-16">
           <Logo className="w-fit fill-white/5 xl:w-[60%]" />
         </HomeBlock>
       </div>
