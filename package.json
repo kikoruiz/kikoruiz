@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "analyze": "ANALYZE=true npm run build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "npm run save:metadata && npm run save:content",
@@ -34,6 +35,7 @@
     "ua-parser-js": "1"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "13",
     "@plaiceholder/next": "2",
     "@svgr/webpack": "6",
     "@tailwindcss/typography": "0",
