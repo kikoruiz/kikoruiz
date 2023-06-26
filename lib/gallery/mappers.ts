@@ -5,8 +5,7 @@ import {Coordinates, Image, Location, Picture, ShotInfo} from 'types/gallery'
 import {
   ALLOWED_PICTURE_TAGS,
   GALLERY_ALBUMS,
-  GALLERY_TAGS,
-  PICTURE_QUERY_KEY
+  GALLERY_TAGS
 } from 'config/gallery'
 import {getGalleryTags} from './tags'
 import {taggedPictures} from './pictures'
@@ -121,7 +120,8 @@ export function fromExifToGallery({
                 locale
               })
         }`
-    const url = `${path}/?${PICTURE_QUERY_KEY}=${slug}`
+    const queryKey = t('gallery.carousel.query-key')
+    const url = `${path}/?${queryKey}=${slug}`
     const isPano = keywords.includes('panorama')
     const isStarTracked = keywords.includes('star tracker')
     const tags = await getGalleryTags({

@@ -2,13 +2,13 @@ import {useState, useEffect} from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 import GalleryList from 'components/gallery-list'
 import GalleryHeader from 'components/gallery-header'
 import {sortListBy} from 'lib/utils'
 import {
   DEFAULT_IS_ASCENDING_ORDER,
-  DEFAULT_SORTING_OPTION,
-  PICTURE_QUERY_KEY
+  DEFAULT_SORTING_OPTION
 } from 'config/gallery'
 import {Picture, Subcategory} from 'types/gallery'
 
@@ -22,7 +22,9 @@ export default function GalleryPage({
   subcategories
 }: GalleryPageProps) {
   const {query} = useRouter()
-  const {[PICTURE_QUERY_KEY]: querySlug} = query
+  const {t} = useTranslation('gallery')
+  const queryKey = t('common:gallery.carousel.query-key')
+  const {[queryKey]: querySlug} = query
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
   const [isAscendingOrder, setIsAscendingOrder] = useState(

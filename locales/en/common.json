@@ -58,7 +58,8 @@
       "night": {
         "name": "Night"
       }
-    }
+    },
+    "carousel": {"query-key": "picture"}
   },
   "map": {
     "button": "Locate pictures on the map",
