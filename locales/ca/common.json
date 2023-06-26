@@ -58,7 +58,8 @@
       "night": {
         "name": "Nocturnes"
       }
-    }
+    },
+    "carousel": {"query-key": "foto"}
   },
   "map": {
     "button": "Localitzar fotos al mapa",
