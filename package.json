@@ -9,8 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "npm run save:metadata && npm run save:content",
-    "save:metadata": "node ./bin/pictures/save-metadata.js",
-    "save:content": "node ./bin/search/save-content.js",
+    "save:metadata": "ts-node --esm ./bin/pictures/save-metadata.mts",
+    "save:content": "ts-node --esm ./bin/search/save-content.mts",
     "check:types": "tsc"
   },
   "dependencies": {
@@ -53,7 +53,8 @@
     "postcss": "8",
     "prettier": "2",
     "prettier-plugin-tailwindcss": "0",
-    "tailwindcss": "3"
+    "tailwindcss": "3",
+    "ts-node": "10"
   },
   "overrides": {
     "json5": "2.2.2",

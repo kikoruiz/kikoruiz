@@ -1,10 +1,11 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true'
-})
-const nextTranslate = require('next-translate-plugin')
-const {withPlaiceholder} = require('@plaiceholder/next')
+import withBundleAnalyzer from '@next/bundle-analyzer'
+import nextTranslate from 'next-translate-plugin'
+import {withPlaiceholder} from '@plaiceholder/next'
 
-module.exports = withBundleAnalyzer(
+/** @type {import('next').NextConfig} */
+const nextConfig = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true'
+})(
   withPlaiceholder(
     nextTranslate({
       reactStrictMode: true,
@@ -50,3 +51,5 @@ module.exports = withBundleAnalyzer(
     })
   )
 )
+
+export default nextConfig

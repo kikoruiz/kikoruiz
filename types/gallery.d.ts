@@ -42,13 +42,15 @@ export interface RawPicture {
   colorSpace: string
   compression: string
   coordinates?: Coordinates
+  copyright: string
   createDate: string
+  processingDate?: string
   description?: string
   fileName: string
   fileSize: string
   fileType: string
   fileTypeExtension: string
-  firmware: string
+  firmware: number
   focalLength: string
   hyperfocalDistance: string
   imageSize: string
@@ -87,6 +89,7 @@ export interface Picture {
   fileSize: string
   aspectRatio?: string
   date: string
+  processingDate?: string
   prettyDate: string
   model: string
   lens: string
@@ -101,6 +104,11 @@ export interface Picture {
   coordinates?: Coordinates
   location?: Location
   tutorial?: Tutorial
+}
+
+export interface LatestPictures {
+  byCreationDate: Picture[]
+  byProcessingDate: Picture[]
 }
 
 export interface PictureOnMap {
