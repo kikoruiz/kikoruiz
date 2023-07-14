@@ -5,7 +5,12 @@ import {getAllPictures} from './gallery/pictures'
 import {fromExifToGallery} from './gallery/mappers'
 import {getAllPosts} from './blog/posts'
 import {SectionImage} from 'types'
-import {HighlightedImage, LatestPictures, RawPicture} from 'types/gallery'
+import {
+  HighlightedImage,
+  LatestPictures,
+  RawPicture,
+  Picture
+} from 'types/gallery'
 import {BlogPost} from 'types/blog'
 
 const HERO_DEFAULT_DATA = {
@@ -59,9 +64,11 @@ export async function getLatestPictures({
     0,
     LATEST_PICTURES_LENGTH
   )
-  const latestPicturesByProcessingDate = sortListBy(
-    allPictures.filter(({processingDate}) => Boolean(processingDate)),
-    'processingDate'
+  const latestPicturesByProcessingDate = (
+    sortListBy(
+      allPictures.filter(({processingDate}) => Boolean(processingDate)),
+      'processingDate'
+    ) as RawPicture[]
   ).slice(0, LATEST_PICTURES_LENGTH)
   const byCreationDate = await mapPictures(latestPicturesByCreationDate, {
     locale
