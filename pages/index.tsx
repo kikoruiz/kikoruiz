@@ -19,7 +19,7 @@ import HomeBlock from 'components/home-block'
 import HomeModule from 'components/home-module'
 import HomeLatestPictures from 'components/home-latest-pictures'
 import {Alternate, SectionImage, Tag} from 'types'
-import {HighlightedImage, Picture, PictureOnMap} from 'types/gallery'
+import {HighlightedImage, LatestPictures, PictureOnMap} from 'types/gallery'
 import {BlogPost} from 'types/blog'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
@@ -154,7 +154,7 @@ export async function getStaticProps({
 interface HomeProps {
   heroImage: HighlightedImage
   latestContent: BlogPost[]
-  latestPictures: Picture[]
+  latestPictures: LatestPictures
   sectionImages: SectionImage[]
   picturesOnMap: PictureOnMap[]
   galleryTags: Tag[]

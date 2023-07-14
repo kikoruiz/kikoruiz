@@ -6,7 +6,7 @@ import ArrowPathRoundedSquare from 'assets/icons/arrow-path-rounded-square.svg'
 import GalleryListItems from './gallery-list-items'
 import GallerySubcategory from './gallery-subcategory'
 import {Picture, Subcategory} from 'types/gallery'
-import useSubcategoryContext from 'contexts/subcategory'
+import useSubcategoryContext from 'contexts/Subcategory'
 import icons from './gallery-subcategory-icons'
 import {getCapitalizedName, getSlug} from 'lib/utils'
 import {

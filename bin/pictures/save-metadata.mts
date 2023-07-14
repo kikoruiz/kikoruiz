@@ -1,7 +1,10 @@
 #!/usr/bin/env node
-const fs = require('node:fs')
-const path = require('node:path')
-const {exiftool} = require('exiftool-vendored')
+import fs from 'node:fs'
+import path from 'node:path'
+import {ExifDateTime, ResourceEvent, exiftool} from 'exiftool-vendored'
+import {RawPicture} from 'types/gallery'
+
+const PROCESSING_SOFTWATRE_REGEX = /Adobe Photoshop (\d+)\.(\d+) \(Macintosh\)/
 
 const picturesDir = path.join(process.cwd(), 'public', 'pictures')
 const picturesMetadataFile = path.join(
@@ -19,7 +22,7 @@ const files = fs
 async function saveAllPicturesMetadata() {
   if (fs.existsSync(picturesMetadataFile)) fs.unlinkSync(picturesMetadataFile)
 
-  let pictures = []
+  const pictures: RawPicture[] = []
 
   for (const file of files) {
     const tags = await exiftool.read(file)
@@ -28,6 +31,16 @@ async function saveAllPicturesMetadata() {
     if (pictures.find(picture => picture.fileName === fileName)) {
       continue
     }
+
+    const history = tags.History as ResourceEvent[]
+    const processingHistory = history
+      .filter(
+        ({Changed, SoftwareAgent}) =>
+          Changed === '/' && SoftwareAgent.match(PROCESSING_SOFTWATRE_REGEX)
+      )
+      ?.reverse()
+    const [lastProcessingSave] = processingHistory
+    const processingDate = lastProcessingSave?.When as ExifDateTime
 
     pictures.push({
       aperture: tags.Aperture,
@@ -43,6 +56,9 @@ async function saveAllPicturesMetadata() {
         }),
       copyright: tags.CopyrightNotice,
       createDate: tags.CreateDate.toString(),
+      ...(processingDate && {
+        processingDate: processingDate.toString()
+      }),
       ...(tags.Description && {description: tags.Description}),
       fileName,
       fileSize: tags.FileSize,
@@ -53,7 +69,7 @@ async function saveAllPicturesMetadata() {
       hyperfocalDistance: tags.HyperfocalDistance,
       imageSize: tags.ImageSize,
       iso: tags.ISO,
-      keywords: tags.Keywords,
+      keywords: tags.Keywords as string[],
       lens: tags.LensID,
       ...(tags.City &&
         tags.Country &&

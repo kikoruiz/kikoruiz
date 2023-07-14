@@ -6,7 +6,10 @@ import {throttle} from 'lodash'
 import {themeScreens} from 'lib/utils'
 import HomeModule from './home-module'
 import PictureCard from './picture-card'
-import {Picture} from 'types/gallery'
+import {LatestPictures} from 'types/gallery'
+import useLatestPicturesContext from 'contexts/LatestPictures'
+import ButtonToggle from './button-toggle'
+import {paramCase} from 'change-case'
 
 const SCROLL_POSITIONS = {
   LEFT: 'left',
@@ -26,6 +29,9 @@ export default function HomeLatestPictures({
   const queryKey = t('common:gallery.carousel.query-key')
   const {[queryKey]: querySlug} = query
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
+  const {latestPictures: sortingOrder, setLatestPictures: setSortingOrder} =
+    useLatestPicturesContext()
+  const pictures = latestPictures[sortingOrder]
   const {sm, xl} = themeScreens
   const sizes = `(min-width: ${xl}) 25vw, (min-width: ${sm}) 33vw, 50vw`
   const elementRef = useRef(null)
@@ -51,8 +57,32 @@ export default function HomeLatestPictures({
     setIsCarouselOpen(Boolean(querySlug))
   }, [setIsCarouselOpen, querySlug])
 
+  const sortingButtons = () => (
+    <nav className="flex items-center">
+      {Object.keys(latestPictures).map(order => {
+        const isActive = sortingOrder === order
+
+        return (
+          <ButtonToggle
+            key={order}
+            isToggled={isActive}
+            isDisabled={isActive}
+            onClick={() => {
+              setSortingOrder(order)
+            }}
+          >
+            {t(`latest-pictures.sorting-order.${paramCase(order)}`)}
+          </ButtonToggle>
+        )
+      })}
+    </nav>
+  )
+
   return (
-    <HomeModule title={t('latest-pictures')}>
+    <HomeModule
+      title={t('latest-pictures.title')}
+      additionalInfo={sortingButtons()}
+    >
       <div
         style={{
           WebkitMaskImage: `linear-gradient(to left, rgba(0, 0, 0, 1) ${
@@ -70,30 +100,28 @@ export default function HomeLatestPictures({
           }}
           onScroll={throttle(handleScroll)}
         >
-          {latestPictures.map(
-            ({id, name, url, image, prettyDate, date}, index) => (
-              <PictureCard
-                key={id}
-                title={name}
-                url={url}
-                image={image}
-                sizes={sizes}
-                needsPreload={index === 0 || index === 1}
-              >
-                <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow">
-                  <time className="text-neutral-300/40" dateTime={date}>
-                    {prettyDate}
-                  </time>
-                </div>
-              </PictureCard>
-            )
-          )}
+          {pictures.map(({id, name, url, image, prettyDate, date}, index) => (
+            <PictureCard
+              key={id}
+              title={name}
+              url={url}
+              image={image}
+              sizes={sizes}
+              needsPreload={index === 0 || index === 1}
+            >
+              <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow">
+                <time className="text-neutral-300/40" dateTime={date}>
+                  {prettyDate}
+                </time>
+              </div>
+            </PictureCard>
+          ))}
         </div>
       </div>
 
       {isCarouselOpen && (
         <DynamicGalleryCarousel
-          pictures={latestPictures}
+          pictures={pictures}
           setIsCarouselOpen={setIsCarouselOpen}
         />
       )}
@@ -102,5 +130,5 @@ export default function HomeLatestPictures({
 }
 
 interface HomeLatestPicturesProps {
-  latestPictures: Picture[]
+  latestPictures: LatestPictures
 }
