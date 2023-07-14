@@ -59,19 +59,21 @@ export default function HomeLatestPictures({
 
   const sortingButtons = () => (
     <nav className="flex items-center">
-      {Object.keys(latestPictures).map(order => {
+      {Object.keys(latestPictures).map((order: keyof LatestPictures) => {
         const isActive = sortingOrder === order
+        const title = t(`latest-pictures.sorting-order.${paramCase(order)}`)
 
         return (
           <ButtonToggle
             key={order}
+            label={title}
             isToggled={isActive}
             isDisabled={isActive}
             onClick={() => {
               setSortingOrder(order)
             }}
           >
-            {t(`latest-pictures.sorting-order.${paramCase(order)}`)}
+            {title}
           </ButtonToggle>
         )
       })}

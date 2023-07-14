@@ -19,6 +19,7 @@ interface ExifData {
   title: string
   description?: string
   createDate: string
+  processingDate?: string
   model: string
   lens: string
   imageSize: string
