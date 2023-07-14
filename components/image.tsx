@@ -108,6 +108,7 @@ export default function Image({
       }${wrapperClassName}${aspectClassName}`}
       style={imageStyle}
       shallow={isShallowLink}
+      scroll={false}
     >
       {content}
     </Link>
