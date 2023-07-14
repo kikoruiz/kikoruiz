@@ -19,7 +19,7 @@ export default function MapPicture({
     Picture,
     Dispatch<SetStateAction<Picture | null>>
   ] = useState()
-  const [status, setStatus] = useState(REQUEST_STATUS_OPTIONS.IDLE)
+  const [setStatus] = useState(REQUEST_STATUS_OPTIONS.IDLE)
 
   function handlePopupOpen(slug) {
     return async function () {

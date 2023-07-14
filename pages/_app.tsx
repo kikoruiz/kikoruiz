@@ -6,10 +6,7 @@ import {Analytics} from '@vercel/analytics/react'
 import Layout from 'components/layout'
 import {trackPage, GA_TRACKING_ID} from 'lib/tracking'
 import {SubcategoryProvider} from 'contexts/Subcategory'
-import {
-  LatestPicturesContext,
-  LatestPicturesProvider
-} from 'contexts/LatestPictures'
+import {LatestPicturesProvider} from 'contexts/LatestPictures'
 import '../styles/globals.css'
 
 function handleRouteChangeComplete(url: string) {
