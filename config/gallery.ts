@@ -2,16 +2,16 @@ import {Subcategory} from 'types/gallery'
 
 export const GALLERY_ALBUMS = [
   {
-    id: 'landscapes',
-    tags: ['landscape'],
-    excludeTags: ['travel', 'seascape', 'seasonal'],
-    highlightedPicture: '2020-10-17_0213.jpg'
-  },
-  {
     id: 'seascapes',
     tags: ['seascape'],
     excludeTags: ['landscape'],
     highlightedPicture: '2021-12-04_0135.jpg'
+  },
+  {
+    id: 'landscapes',
+    tags: ['landscape'],
+    excludeTags: ['travel', 'seascape', 'seasonal'],
+    highlightedPicture: '2020-10-17_0213.jpg'
   },
   {
     id: 'astro',
