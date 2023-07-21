@@ -91,6 +91,7 @@ export interface Picture {
   date: string
   processingDate?: string
   prettyDate: string
+  prettyProcessingDate?: string
   model: string
   lens: string
   shotInfo: ShotInfo

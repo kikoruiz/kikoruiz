@@ -5,7 +5,9 @@
     "sorting-order": {
       "by-creation-date": "By creation date",
       "by-processing-date": "By processing date"
-    }
+    },
+    "creation-date": "{{date}} (creation date)",
+    "processing-date": "{{date}} (processing date)"
   },
   "gallery-tags": "Gallery tags",
   "contact": "Shall we talk? 👋"
