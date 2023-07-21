@@ -31,6 +31,7 @@ export default function HomeLatestPictures({
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const {latestPictures: sortingOrder, setLatestPictures: setSortingOrder} =
     useLatestPicturesContext()
+  const isSortedByProcessingDate = sortingOrder === 'byProcessingDate'
   const pictures = latestPictures[sortingOrder]
   const {sm, xl} = themeScreens
   const sizes = `(min-width: ${xl}) 25vw, (min-width: ${sm}) 33vw, 50vw`
@@ -102,22 +103,50 @@ export default function HomeLatestPictures({
           }}
           onScroll={throttle(handleScroll)}
         >
-          {pictures.map(({id, name, url, image, prettyDate, date}, index) => (
-            <PictureCard
-              key={id}
-              title={name}
-              url={url}
-              image={image}
-              sizes={sizes}
-              needsPreload={index === 0 || index === 1}
-            >
-              <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow">
-                <time className="text-neutral-300/40" dateTime={date}>
-                  {prettyDate}
-                </time>
-              </div>
-            </PictureCard>
-          ))}
+          {pictures.map(
+            (
+              {
+                id,
+                name,
+                url,
+                image,
+                date,
+                prettyDate,
+                processingDate,
+                prettyProcessingDate
+              },
+              index
+            ) => (
+              <PictureCard
+                key={id}
+                title={name}
+                url={url}
+                image={image}
+                sizes={sizes}
+                needsPreload={index === 0 || index === 1}
+              >
+                <div className="flex flex-col text-xs font-light text-neutral-600 drop-shadow">
+                  {isSortedByProcessingDate && processingDate ? (
+                    <time
+                      className="leading-normal text-neutral-300/40"
+                      dateTime={processingDate}
+                    >
+                      {t('latest-pictures.processing-date', {
+                        date: prettyProcessingDate
+                      })}
+                    </time>
+                  ) : (
+                    <time
+                      className="leading-normal text-neutral-300/40"
+                      dateTime={date}
+                    >
+                      {prettyDate}
+                    </time>
+                  )}
+                </div>
+              </PictureCard>
+            )
+          )}
         </div>
       </div>
 
