@@ -61,7 +61,7 @@ export function sortListBy(list: object[], property: string) {
   const sortedList = list.sort((a, b) => {
     const isFirstGreaterOrEqual = isDeepProperty
       ? getDeepProperty(a, property) >= getDeepProperty(b, property)
-      : a[property] >= b[property]
+      : a[camelCase(property)] >= b[camelCase(property)]
 
     return isFirstGreaterOrEqual ? 1 : -1
   })

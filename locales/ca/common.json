@@ -59,6 +59,10 @@
         "name": "Nocturnes"
       }
     },
+    "picture": {
+      "creation-date": "{{date}} (creació)",
+      "processing-date": "{{date}} (edició)"
+    },
     "carousel": {"query-key": "foto"}
   },
   "map": {

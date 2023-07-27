@@ -17,6 +17,7 @@
       "shutter-speed": "Velocitat d'obturació",
       "focal-length": "Distància focal",
       "editing-software": "Programari d'edició",
+      "processing-date": "Data d'edició",
       "aspect-ratio": "Relació d'aspecte",
       "star-tracked": "amb rastrejament d'estrelles"
     },
@@ -32,7 +33,8 @@
     "label": "Ordenar per:",
     "options": {
       "info-group": "Informació general",
-      "date": "Data",
+      "date": "Data de creació",
+      "processing-date": "Data d'edició",
       "name": "Títol",
       "shot-info-group": "Informació tècnica",
       "shot-info": {

@@ -131,7 +131,7 @@ export default function HomeLatestPictures({
                       className="leading-normal text-neutral-300/40"
                       dateTime={processingDate}
                     >
-                      {t('latest-pictures.processing-date', {
+                      {t('common:gallery.picture.processing-date', {
                         date: prettyProcessingDate
                       })}
                     </time>
