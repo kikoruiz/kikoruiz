@@ -5,9 +5,7 @@
     "sorting-order": {
       "by-creation-date": "Per data de creació",
       "by-processing-date": "Per data d'edició"
-    },
-    "creation-date": "{{date}} (creació)",
-    "processing-date": "{{date}} (edició)"
+    }
   },
   "gallery-tags": "Tags de la galeria",
   "contact": "En parlem? 👋"

@@ -164,10 +164,10 @@ export function fromExifToGallery({
       fileSize,
       date: createDate,
       prettyDate: getPrettyDate(createDate, locale),
-      ...(processingDate && {
-        processingDate,
-        prettyProcessingDate: getPrettyDate(processingDate, locale)
-      }),
+      processingDate: processingDate ?? createDate,
+      prettyProcessingDate: processingDate
+        ? getPrettyDate(processingDate, locale)
+        : getPrettyDate(createDate, locale),
       model,
       lens,
       shotInfo: {

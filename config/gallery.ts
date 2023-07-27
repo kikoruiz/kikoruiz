@@ -56,6 +56,7 @@ export const GALLERY_ALBUMS = [
 export const SORTING_OPTIONS = [
   'info-group',
   'date',
+  'processing-date',
   'name',
   'shot-info-group',
   'shot-info.shutter-speed',

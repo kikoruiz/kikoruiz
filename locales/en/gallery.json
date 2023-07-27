@@ -16,7 +16,8 @@
       "aperture": "Aperture",
       "shutter-speed": "Shutter speed",
       "focal-length": "Focal length",
-      "editing-software": "Editing software",
+      "editing-software": "Processing software",
+      "processing-date": "Processing date",
       "aspect-ratio": "Aspect ratio",
       "star-tracked": "star tracked"
     },
@@ -32,7 +33,8 @@
     "label": "Sort by:",
     "options": {
       "info-group": "General information",
-      "date": "Date",
+      "date": "Creation date",
+      "processing-date": "Processing date",
       "name": "Title",
       "shot-info-group": "Shot information",
       "shot-info": {

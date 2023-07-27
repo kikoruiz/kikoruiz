@@ -32,7 +32,9 @@ export default function PictureDetail({
     image,
     imageSize,
     date,
+    processingDate,
     prettyDate,
+    prettyProcessingDate,
     shotInfo,
     isPano,
     isStarTracked,
@@ -57,7 +59,9 @@ export default function PictureDetail({
     model,
     lens,
     editingSoftware,
-    aspectRatio
+    aspectRatio,
+    processingDate,
+    prettyProcessingDate
   }
   const showInfoText = showInfo
     ? t('carousel.hide-picture-info')
