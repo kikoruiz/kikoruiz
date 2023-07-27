@@ -15,14 +15,15 @@ import IconInformationCircle from 'assets/icons/information-circle.svg'
 import {getSlug} from 'lib/utils'
 
 export default function Post({post, alternates}: PostProps) {
-  const {locale} = useRouter()
+  const {locale, defaultLocale} = useRouter()
   const {t} = useTranslation('blog')
   const author = BLOG.AUTHORS.find(({slug}) => post.author === slug).name
+  const localePath = defaultLocale === locale ? '' : `/${locale}`
 
   function createAuthorMarkup() {
     return {
       __html: t('post.by', {
-        author: `<a href="/${getSlug(
+        author: `<a href="${localePath}/${getSlug(
           t('common:sections.about-me.name')
         )}" title="${author}" class="underline hover:no-underline hover:text-neutral-300/90">${author}</a>`
       })
