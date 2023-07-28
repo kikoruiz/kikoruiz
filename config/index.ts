@@ -28,7 +28,7 @@ export const BLOG = {
     // 'tutorial'
   ],
   TITLE_SEPARATOR: ':',
-  AVAILABLE_LOCALES: ['es']
+  AVAILABLE_LOCALES: ['es', 'en', 'ca']
 }
 
 export const BRANDS = {

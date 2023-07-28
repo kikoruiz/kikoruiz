@@ -130,7 +130,7 @@ export function fromExifToGallery({
       locale,
       tags: keywords.filter(keyword => GALLERY_TAGS.includes(keyword))
     })
-    const tutorialSlug = getPostSlugByPictureSlug(`tutorial-${slug}`)
+    const tutorialSlug = getPostSlugByPictureSlug(`tutorial-${slug}`, {locale})
 
     // Replace incorrect models.
     model = model.replace(/(\[)(Canon EOS R)(\])/, '$2')

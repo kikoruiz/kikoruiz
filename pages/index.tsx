@@ -131,7 +131,7 @@ export async function getStaticProps({
   const heroImage = await getHeroImage()
   const latestPictures = await getLatestPictures({locale})
   const sectionImages = await getSectionImages()
-  const latestContent = await getLatestContent()
+  const latestContent = await getLatestContent({locale})
   const picturesOnMap = await getAllPicturesOnMap({locale})
   const galleryTags = await getGalleryTags({locale})
   const alternates = (await Promise.all(
