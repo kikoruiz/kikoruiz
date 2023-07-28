@@ -17,15 +17,15 @@ export default function Article({
       node.children.forEach((attrs, index) => {
         const {type, tagName, properties} = attrs
 
-        if (
-          type === 'element' &&
-          tagName === 'a' &&
-          !properties.href.includes('https')
-        ) {
+        if (type === 'element' && tagName === 'a') {
           const {props} = children[index]
 
           children[index] = (
-            <NextLink href={props.href} key={index}>
+            <NextLink
+              href={props.href}
+              target={properties.href.includes('https') ? '_blank' : '_self'}
+              key={index}
+            >
               {props.children}
             </NextLink>
           )

@@ -89,10 +89,11 @@ export default function Post({post, alternates}: PostProps) {
 }
 
 export async function getStaticPaths({locales}) {
-  const posts = await getAllPosts()
   let paths = []
 
   for (const locale of locales) {
+    const posts = await getAllPosts(locale)
+
     paths = paths.concat(
       posts.map(post => ({
         params: {
@@ -116,7 +117,7 @@ export async function getStaticProps({
   defaultLocale
 }) {
   const section = 'blog'
-  const posts = await getAllPosts()
+  const posts = await getAllPosts(locale)
   const post = posts.find(post => post.slug === slug)
   const blogTags = await getTagsData({tags: post.tags.split(', '), locale})
   const alternates = await Promise.all(

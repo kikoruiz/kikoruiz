@@ -33,9 +33,13 @@ export async function getHeroImage(): Promise<HighlightedImage> {
   }
 }
 
-export async function getLatestContent(): Promise<BlogPost[]> {
+export async function getLatestContent({
+  locale
+}: {
+  locale: string
+}): Promise<BlogPost[]> {
   const TAG_TUTORIAL = 'tutorial'
-  const allPosts = await getAllPosts()
+  const allPosts = await getAllPosts(locale)
   const latestContent = []
   const latestTutorial = allPosts.find(({tags}) => tags.includes(TAG_TUTORIAL))
   if (latestTutorial) latestContent.push(latestTutorial)

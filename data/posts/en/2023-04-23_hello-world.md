@@ -1,0 +1,20 @@
+---
+title: 'Hello, world!'
+excerpt: 'Taking a look back to understand what is to come.'
+author: 'kiko-ruiz'
+tags: 'photography, personal'
+---
+
+As a simple computer program written in a programming language yet to be learned, a `Hello, world!` That's how I start this adventure that I've long wanted to embark on. You know how they say, "the cobbler's children go barefoot." I've always tended to set aside my own things, a place where I can share my way of expression and the knowledge I've been acquiring along the way. A path where I've stepped on different puddles, but perhaps it's in the creative one where I've gotten wet the most, be it through graphic design or graphic interfaces, although also, especially in recent years, in the world of [photography](/en/gallery).
+
+![Savia Magazine sketches {"priority": true, "align": "left"}](/blog/2023-04-23_hola-mundo_bocetos-savia-magazine.jpg)
+
+The reality is that in my professional field, I leaned towards the programming side, specifically web development, a world I discovered back in 2004, almost twenty years ago now 😅, while I was studying **Graphic Design** at [EASDA](https://easda.es/) (School of Art and Superior Design of Alicante). Maybe that's why, when I remember my origins in the world of web development, I feel some nostalgia for that aspect where I dedicated myself more to conceptualizing and developing corporate, typographic, or editorial identity projects, like the final project I presented titled [Savia Magazine](/documents/savia-magazine.pdf) (with real interviews to creative people of the time) or other works I collected for [my first portfolio](/documents/portafolio-kikoruiz-2006.pdf).
+
+Over time, I realized that I was focusing too much on developing in the world of programming but not so much on the creative side, and I felt like something was missing. Probably because of that, and also because I had an interest in it before, in 2016 I bought my first digital SLR camera, a **Canon EOS 6D**, which I still keep in good condition. With it, I started immersing myself in [landscapes](/en/gallery/landscapes), and after a few months, I also bought some filters (neutral density, gradient...) to begin capturing [seascapes](/en/gallery/seascapes) and [long exposures](/en/gallery/tags/long-exposure), which is what I felt most drawn to during the first years.
+
+![My first long exposure of coastal landscape {"align": "right"}](/blog/2023-04-23_hola-mundo_primera-larga-exposicion.jpg)
+
+So, I could say that since 2017, I have increasingly become fond of photography. I've been learning a lot on my own and also thanks to the people I've met and learned from through courses, YouTube videos, tutorials, etc... Currently, I have several role models and professional photographers worth mentioning, who have guided me in many aspects. Among them, I would highlight [Pablo Ruiz García](https://pabloruizgarcia.com/) or [David Aguilar](https://www.davidaguilarphoto.com/) for the local scene, and [Albert Dros](https://www.albertdros.com/) or [Michael Shainblum](https://www.shainblumphoto.com/) on the international stage.
+
+With all this, even though today I still dedicate myself to photography as an amateur and can't dedicate all the time I'd like to it (due to family and work reasons, etc...), I consider that I've gained experience and knowledge that I'd like to share through this channel, **my new website** (I would say it's the one I've given the most affection 🥰), where I not only want to share my works in great detail and all the information possible but also start creating some **photography tutorials** covering aspects such as planning, editing, and even printing. In fact, I would also like to set up a direct channel for selling prints of my photos, but this is still in the ideation process. I don't rule out writing articles about web development and programming, which is what I'm currently dedicated to, as well as about my personal life and another of my great passions: trail running. But we'll see how it goes, for now, it's time to let everything flow... **welcome to my website!** [You can start exploring it now](/en/gallery) 🕵️

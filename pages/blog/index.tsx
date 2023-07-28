@@ -36,7 +36,7 @@ export async function getStaticProps({
 }) {
   const section = 'blog'
   const subSection = 'tags'
-  const posts = await getAllPosts()
+  const posts = await getAllPosts(locale)
   const tags = await getTagsData({locale, subSection})
   const alternates = await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale, section}))
