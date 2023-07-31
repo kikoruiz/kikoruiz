@@ -23,7 +23,9 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
 
       if (inputValue) {
         try {
-          items = await fetcher.get(`/api/search/${inputValue}`)
+          items = await fetcher.get(
+            `/api/search/${inputValue}?locale=${locale}`
+          )
           setStatus(REQUEST_STATUS_OPTIONS.RESOLVED)
         } catch (error) {
           console.error(error)

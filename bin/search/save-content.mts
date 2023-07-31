@@ -30,20 +30,30 @@ function getMarkdownContent(filename: string): BlogPostContent {
   }
 }
 
-async function saveSearchContent() {
-  if (fs.existsSync(searchContentFile)) fs.unlinkSync(searchContentFile)
+function getPosts(locale: string): BlogPostContent[] {
+  const localeDirectory = `${postsDirectory}/${locale}`
+  const filenames = fs.readdirSync(localeDirectory)
 
-  const filenames = fs.readdirSync(postsDirectory)
-  const posts: BlogPostContent[] = filenames
+  return filenames
     .filter(filename => !filename.includes('_draft.md'))
     .map(filename => {
       const rawSlug = filename.replace(/\.md$/, '')
-      const post = getMarkdownContent(`${postsDirectory}/${rawSlug}.md`)
+      const post = getMarkdownContent(`${localeDirectory}/${rawSlug}.md`)
 
       return post
     })
+}
 
-  fs.writeFileSync(searchContentFile, JSON.stringify(posts))
+async function saveSearchContent() {
+  if (fs.existsSync(searchContentFile)) fs.unlinkSync(searchContentFile)
+
+  const locales = fs.readdirSync(postsDirectory)
+  const postsByLocale = locales.reduce(
+    (posts, locale) => ({...posts, [locale]: getPosts(locale)}),
+    {}
+  )
+
+  fs.writeFileSync(searchContentFile, JSON.stringify(postsByLocale))
 }
 
 saveSearchContent()
