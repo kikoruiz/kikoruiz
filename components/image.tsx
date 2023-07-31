@@ -50,6 +50,7 @@ export default function Image({
   isRounded,
   isFullRounded,
   isShallowLink,
+  scrollToTop = false,
   children
 }: ImageProps) {
   const isLink = Boolean(url)
@@ -108,7 +109,7 @@ export default function Image({
       }${wrapperClassName}${aspectClassName}`}
       style={imageStyle}
       shallow={isShallowLink}
-      scroll={false}
+      scroll={scrollToTop}
     >
       {content}
     </Link>
@@ -138,5 +139,6 @@ interface ImageProps {
   isRounded?: boolean
   isFullRounded?: boolean
   isShallowLink?: boolean
+  scrollToTop?: boolean
   children?: JSX.Element
 }
