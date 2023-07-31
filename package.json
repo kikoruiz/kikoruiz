@@ -17,7 +17,7 @@
     "@vercel/analytics": "0",
     "change-case": "4",
     "downshift": "6",
-    "embla-carousel-react": "7",
+    "embla-carousel-react": "8.0.0-rc11",
     "fast-average-color-node": "2",
     "gray-matter": "4",
     "leaflet": "1",
