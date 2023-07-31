@@ -35,6 +35,7 @@ export default function PictureCard({
       fallbackStyle={css}
       isRounded
       isShallowLink={!isAlbum}
+      scrollToTop={isAlbum}
     >
       <figcaption className={captionClassName}>
         <header
