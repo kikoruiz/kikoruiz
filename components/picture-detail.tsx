@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
-import {getAspectRatio, getSlug} from 'lib/utils'
+import {getAspectRatio, getSlug, themeScreens} from 'lib/utils'
 import {Picture} from 'types/gallery'
 import Image from './image'
 import PictureInfo from './picture-info'
@@ -63,6 +63,11 @@ export default function PictureDetail({
     processingDate,
     prettyProcessingDate
   }
+  const {sm, lg} = themeScreens
+  const sizes =
+    image.orientation === 'vertical'
+      ? `(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`
+      : '100vw'
   const showInfoText = showInfo
     ? t('carousel.hide-picture-info')
     : t('carousel.show-picture-info')
@@ -98,7 +103,7 @@ export default function PictureDetail({
           alt={name}
           className="m-auto max-h-screen overflow-hidden"
           aspectRatio={aspectRatio}
-          sizes="100vw"
+          sizes={sizes}
           fallbackStyle={image.css}
           isLazy={false}
         />
