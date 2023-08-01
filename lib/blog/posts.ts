@@ -9,6 +9,7 @@ import {
   POST_FILE_SEPARATOR,
   POST_FILE_DRAFT_PLACEHOLDER
 } from 'config/blog'
+import {BlogPost} from 'types/blog'
 
 const postsDirectory = path.join(process.cwd(), 'data', 'posts')
 
@@ -18,7 +19,7 @@ function getPostBySlug(slug: string, {locale}: {locale: string}) {
   )
 }
 
-export async function getAllPosts(locale: string) {
+export async function getAllPosts(locale: string): Promise<BlogPost[]> {
   let filenames = fs.readdirSync(`${postsDirectory}/${locale}`)
   filenames = filenames.reverse()
   filenames = filenames.filter(

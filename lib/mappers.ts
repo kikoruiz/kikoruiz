@@ -6,6 +6,7 @@ import {getSlug} from './utils'
 import {Translate} from 'next-translate'
 import {BlogPost} from 'types/blog'
 import {Alternate, BreadcrumbItem} from 'types'
+import searchContent from 'data/search/content.json'
 
 export function fromSectionToBreadcrumbItems({
   section,
@@ -89,7 +90,8 @@ export async function fromLocalesToAlternates({
   section,
   subSection,
   category,
-  tag
+  tag,
+  post
 }: {
   defaultLocale: string
   locale?: string
@@ -97,6 +99,7 @@ export async function fromLocalesToAlternates({
   subSection?: string
   category?: string
   tag?: string
+  post?: BlogPost
 }) {
   const currentT = currentLocale && (await getT(currentLocale, 'common'))
 
@@ -116,6 +119,13 @@ export async function fromLocalesToAlternates({
 
         return category === categorySlug
       })
+    const postSlug = post
+      ? `/${
+          searchContent[locale]?.find(
+            ({createdAt}) => post.createdAt === createdAt
+          ).slug
+        }`
+      : ''
     const justSlug =
       !sectionData?.localePrefix && category ? `/${category}` : ''
     const categoryPath = categoryData
@@ -130,7 +140,7 @@ export async function fromLocalesToAlternates({
         : remove(t(`blog.tags.${tag}`))
     }
     const tagPath = tag ? `/tags/${actualTag}` : ''
-    const endingPath = justSlug || categoryPath || tagPath
+    const endingPath = postSlug || justSlug || categoryPath || tagPath
 
     return {
       locale,

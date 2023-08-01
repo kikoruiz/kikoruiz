@@ -126,7 +126,7 @@ export async function getStaticProps({
         defaultLocale,
         locale,
         section,
-        category: slug
+        post
       })
     )
   )
