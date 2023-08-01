@@ -5,6 +5,9 @@ import matter from 'gray-matter'
 import {paramCase} from 'change-case'
 import removeAccents from 'remove-accents'
 import {BlogPostContent} from 'types/blog'
+// import {POST_FILE_SEPARATOR} from 'config/blog'
+
+const POST_FILE_SEPARATOR = '_'
 
 const postsDirectory = path.join(process.cwd(), 'data', 'posts')
 const searchContentFile = path.join(
@@ -39,8 +42,9 @@ function getPosts(locale: string): BlogPostContent[] {
     .map(filename => {
       const rawSlug = filename.replace(/\.md$/, '')
       const post = getMarkdownContent(`${localeDirectory}/${rawSlug}.md`)
+      const [createdAt] = rawSlug.split(POST_FILE_SEPARATOR)
 
-      return post
+      return {...post, createdAt}
     })
 }
 
