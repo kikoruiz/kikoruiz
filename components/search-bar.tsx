@@ -10,6 +10,7 @@ import {REQUEST_STATUS_OPTIONS} from 'config'
 
 export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const {t} = useTranslation()
+  const queryKey = t('gallery.carousel.query-key')
   const {locale, push} = useRouter()
   const inputRef = useRef(null)
   const [items, setItems] = useState([])
@@ -22,7 +23,9 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
 
       if (inputValue) {
         try {
-          items = await fetcher.get(`/api/search/${inputValue}`)
+          items = await fetcher.get(
+            `/api/search/${inputValue}?locale=${locale}`
+          )
           setStatus(REQUEST_STATUS_OPTIONS.RESOLVED)
         } catch (error) {
           console.error(error)
@@ -58,7 +61,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
       } else if (selectedItem?.album) {
         destination = `/${getSlug(t('sections.gallery.name'))}/${getSlug(
           t(`gallery.albums.${selectedItem.album}.name`)
-        )}?carousel=${selectedItem.slug}`
+        )}?${queryKey}=${selectedItem.slug}`
       }
 
       if (!destination) return

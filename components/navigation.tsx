@@ -133,7 +133,7 @@ export default function Navigation({section, hasHero}: NavigationProps) {
               {hasCategories && (
                 <>
                   <IconChevronDown
-                    className={`ml-2 h-[12px] w-[12px] transition-transform ease-in-out${
+                    className={`navigation-section-icon ml-2 h-[12px] w-[12px] transition-transform ease-in-out${
                       !isMenuOpen || isSectionExpanded
                         ? ' -rotate-180 sm:rotate-0 sm:group-hover:-rotate-180'
                         : ''

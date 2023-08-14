@@ -4,6 +4,7 @@ import {Tutorial} from './blog'
 export interface Subcategory {
   id: string
   tag: string
+  emoji?: string
 }
 
 export interface Image {
@@ -29,19 +30,27 @@ export interface Coordinates {
   longitude: number
 }
 
+export interface Location {
+  city: string
+  state: string
+  country: string
+}
+
 export interface RawPicture {
   aperture: number
   artist: string
   colorSpace: string
   compression: string
   coordinates?: Coordinates
+  copyright: string
   createDate: string
+  processingDate?: string
   description?: string
   fileName: string
   fileSize: string
   fileType: string
   fileTypeExtension: string
-  firmware: string
+  firmware: number
   focalLength: string
   hyperfocalDistance: string
   imageSize: string
@@ -80,7 +89,9 @@ export interface Picture {
   fileSize: string
   aspectRatio?: string
   date: string
+  processingDate?: string
   prettyDate: string
+  prettyProcessingDate?: string
   model: string
   lens: string
   shotInfo: ShotInfo
@@ -92,7 +103,13 @@ export interface Picture {
   tags: Tag[]
   subcategory?: string
   coordinates?: Coordinates
+  location?: Location
   tutorial?: Tutorial
+}
+
+export interface LatestPictures {
+  byCreationDate: Picture[]
+  byProcessingDate: Picture[]
 }
 
 export interface PictureOnMap {

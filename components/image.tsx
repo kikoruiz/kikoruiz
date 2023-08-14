@@ -45,10 +45,12 @@ export default function Image({
   aspectRatio,
   sizes,
   needsPreload,
+  isLazy = true,
   fallbackStyle,
   isRounded,
   isFullRounded,
   isShallowLink,
+  scrollToTop = false,
   children
 }: ImageProps) {
   const isLink = Boolean(url)
@@ -85,6 +87,7 @@ export default function Image({
         alt={alt}
         className={`object-cover ${isLoaded ? 'visible' : 'invisible'}`}
         priority={needsPreload}
+        loading={isLazy && !needsPreload ? 'lazy' : 'eager'}
         onLoad={handleImageLoad}
         sizes={sizes}
         fill
@@ -106,6 +109,7 @@ export default function Image({
       }${wrapperClassName}${aspectClassName}`}
       style={imageStyle}
       shallow={isShallowLink}
+      scroll={scrollToTop}
     >
       {content}
     </Link>
@@ -130,9 +134,11 @@ interface ImageProps {
   aspectRatio?: string
   sizes: string
   needsPreload?: boolean
+  isLazy?: boolean
   fallbackStyle: ImageFallbackStyle | object
   isRounded?: boolean
   isFullRounded?: boolean
   isShallowLink?: boolean
+  scrollToTop?: boolean
   children?: JSX.Element
 }

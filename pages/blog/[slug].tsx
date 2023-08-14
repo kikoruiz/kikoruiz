@@ -15,14 +15,15 @@ import IconInformationCircle from 'assets/icons/information-circle.svg'
 import {getSlug} from 'lib/utils'
 
 export default function Post({post, alternates}: PostProps) {
-  const {locale} = useRouter()
+  const {locale, defaultLocale} = useRouter()
   const {t} = useTranslation('blog')
   const author = BLOG.AUTHORS.find(({slug}) => post.author === slug).name
+  const localePath = defaultLocale === locale ? '' : `/${locale}`
 
   function createAuthorMarkup() {
     return {
       __html: t('post.by', {
-        author: `<a href="/${getSlug(
+        author: `<a href="${localePath}/${getSlug(
           t('common:sections.about-me.name')
         )}" title="${author}" class="underline hover:no-underline hover:text-neutral-300/90">${author}</a>`
       })
@@ -43,7 +44,7 @@ export default function Post({post, alternates}: PostProps) {
         <header className="pt-9 text-center sm:pt-0">
           {!BLOG.AVAILABLE_LOCALES.includes(locale) && (
             <div className="mb-12 w-full text-left text-sm font-extralight leading-normal drop-shadow-lg sm:text-center">
-              <p className="flex items-start justify-center gap-1.5 rounded bg-orange-800 px-6 py-3 drop-shadow sm:items-center">
+              <p className="flex items-start justify-center gap-1.5 rounded bg-neutral-600/90 px-6 py-3 drop-shadow sm:items-center">
                 <IconInformationCircle className="w-6" />
                 {t('common:blog.post.available-locales.warning')}
               </p>
@@ -88,10 +89,11 @@ export default function Post({post, alternates}: PostProps) {
 }
 
 export async function getStaticPaths({locales}) {
-  const posts = await getAllPosts()
   let paths = []
 
   for (const locale of locales) {
+    const posts = await getAllPosts(locale)
+
     paths = paths.concat(
       posts.map(post => ({
         params: {
@@ -115,7 +117,7 @@ export async function getStaticProps({
   defaultLocale
 }) {
   const section = 'blog'
-  const posts = await getAllPosts()
+  const posts = await getAllPosts(locale)
   const post = posts.find(post => post.slug === slug)
   const blogTags = await getTagsData({tags: post.tags.split(', '), locale})
   const alternates = await Promise.all(
@@ -124,7 +126,7 @@ export async function getStaticProps({
         defaultLocale,
         locale,
         section,
-        category: slug
+        post
       })
     )
   )

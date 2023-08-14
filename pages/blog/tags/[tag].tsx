@@ -56,7 +56,7 @@ export async function getStaticProps({
   defaultLocale
 }) {
   const section = 'blog'
-  const posts = await getAllPosts()
+  const posts = await getAllPosts(locale)
   const t = await getT(locale, 'common')
   const actualTag = BLOG.TAGS.find(
     currentTag => tag === remove(t(`blog.tags.${currentTag}`))

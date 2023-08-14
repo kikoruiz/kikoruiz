@@ -1,4 +1,4 @@
-module.exports = {
+const i18 = {
   defaultNS: 'common',
   pages: {
     '*': ['common'],
@@ -8,5 +8,7 @@ module.exports = {
     'rgx:/blog*': ['blog']
   },
   loadLocaleFrom: (lang, ns) =>
-    import(`./locales/${lang}/${ns}.json`).then(m => m.default)
+    import(`./locales/${lang}/${ns}.json`).then(module => module.default)
 }
+
+module.exports = i18

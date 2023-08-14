@@ -1,6 +1,12 @@
 {
   "latest-content": "El més recent",
-  "latest-pictures": "Últimes fotos",
+  "latest-pictures": {
+    "title": "Últimes fotos",
+    "sorting-order": {
+      "by-creation-date": "Per data de creació",
+      "by-processing-date": "Per data d'edició"
+    }
+  },
   "gallery-tags": "Tags de la galeria",
   "contact": "En parlem? 👋"
 }

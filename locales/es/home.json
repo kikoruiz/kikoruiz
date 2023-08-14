@@ -1,6 +1,12 @@
 {
   "latest-content": "Lo más reciente",
-  "latest-pictures": "Últimas fotos",
+  "latest-pictures": {
+    "title": "Últimas fotos",
+    "sorting-order": {
+      "by-creation-date": "Por fecha de disparo",
+      "by-processing-date": "Por fecha de edición"
+    }
+  },
   "gallery-tags": "Tags de la galería",
   "contact": "¿Hablamos? 👋"
 }

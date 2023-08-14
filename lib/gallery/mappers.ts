@@ -1,7 +1,7 @@
 import {getPlaiceholder} from 'plaiceholder'
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
-import {Coordinates, Image, Picture, ShotInfo} from 'types/gallery'
+import {Coordinates, Image, Location, Picture, ShotInfo} from 'types/gallery'
 import {
   ALLOWED_PICTURE_TAGS,
   GALLERY_ALBUMS,
@@ -19,6 +19,7 @@ interface ExifData {
   title: string
   description?: string
   createDate: string
+  processingDate?: string
   model: string
   lens: string
   imageSize: string
@@ -31,6 +32,7 @@ interface ExifData {
   rawFileName: string
   megapixels: number
   coordinates?: Coordinates
+  location?: Location
 }
 
 function getOrientation(size: string) {
@@ -72,14 +74,12 @@ export function fromExifToGallery({
   tag,
   locale,
   skipGalleryPath = false,
-  openInCarousel = true,
   needsImage = true
 }: {
   slug?: string
   tag?: string
   locale: string
   skipGalleryPath?: boolean
-  openInCarousel?: boolean
   needsImage?: boolean
 }) {
   return async function ({
@@ -87,6 +87,7 @@ export function fromExifToGallery({
     title,
     description,
     createDate,
+    processingDate,
     model,
     lens,
     imageSize,
@@ -98,7 +99,8 @@ export function fromExifToGallery({
     keywords,
     rawFileName,
     megapixels,
-    coordinates
+    coordinates,
+    location
   }: ExifData): Promise<Picture> {
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
@@ -120,14 +122,15 @@ export function fromExifToGallery({
                 locale
               })
         }`
-    const url = `${path}/?${openInCarousel ? 'carousel' : 'picture'}=${slug}`
+    const queryKey = t('gallery.carousel.query-key')
+    const url = `${path}/?${queryKey}=${slug}`
     const isPano = keywords.includes('panorama')
     const isStarTracked = keywords.includes('star tracker')
     const tags = await getGalleryTags({
       locale,
       tags: keywords.filter(keyword => GALLERY_TAGS.includes(keyword))
     })
-    const tutorialSlug = getPostSlugByPictureSlug(`tutorial-${slug}`)
+    const tutorialSlug = getPostSlugByPictureSlug(`tutorial-${slug}`, {locale})
 
     // Replace incorrect models.
     model = model.replace(/(\[)(Canon EOS R)(\])/, '$2')
@@ -161,6 +164,10 @@ export function fromExifToGallery({
       fileSize,
       date: createDate,
       prettyDate: getPrettyDate(createDate, locale),
+      processingDate: processingDate ?? createDate,
+      prettyProcessingDate: processingDate
+        ? getPrettyDate(processingDate, locale)
+        : getPrettyDate(createDate, locale),
       model,
       lens,
       shotInfo: {
@@ -182,6 +189,7 @@ export function fromExifToGallery({
       ),
       tags,
       ...(coordinates && {coordinates}),
+      ...(location && {location}),
       ...(tutorialSlug && {
         tutorial: {href: `/${getSlug(t('sections.blog.name'))}/${tutorialSlug}`}
       })

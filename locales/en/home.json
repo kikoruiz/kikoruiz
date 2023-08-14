@@ -1,6 +1,12 @@
 {
   "latest-content": "The latest",
-  "latest-pictures": "Latest pictures",
+  "latest-pictures": {
+    "title": "Latest pictures",
+    "sorting-order": {
+      "by-creation-date": "By creation date",
+      "by-processing-date": "By processing date"
+    }
+  },
   "gallery-tags": "Gallery tags",
   "contact": "Shall we talk? 👋"
 }
