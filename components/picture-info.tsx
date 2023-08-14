@@ -10,7 +10,9 @@ export default function PictureInfo({
   lens,
   aspectRatio,
   editingSoftware,
-  isOpen
+  isOpen,
+  processingDate,
+  prettyProcessingDate
 }: PictureInfoProps) {
   const {t} = useTranslation('gallery')
   const shotInfoList = [
@@ -52,7 +54,15 @@ export default function PictureInfo({
       )
     },
     {id: 'aspect-ratio', content: <>{aspectRatio}</>},
-    {id: 'editing-software', content: <>{editingSoftware}</>}
+    {id: 'editing-software', content: <>{editingSoftware}</>},
+    {
+      id: 'processing-date',
+      content: (
+        <>
+          <time dateTime={processingDate}>{prettyProcessingDate}</time>
+        </>
+      )
+    }
   ]
 
   return (
@@ -93,4 +103,6 @@ interface PictureInfoProps {
   fileSize?: string
   imageSize?: string
   isOpen: boolean
+  processingDate: string
+  prettyProcessingDate: string
 }

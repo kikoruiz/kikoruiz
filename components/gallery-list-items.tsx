@@ -16,7 +16,19 @@ export default function GalleryListItems({
     <div className="columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3 xl:gap-4 xl:space-y-4 xl:pb-4">
       {items.map(
         (
-          {name, id, date, prettyDate, url, image, imageSize, shotInfo, isPano},
+          {
+            name,
+            id,
+            date,
+            processingDate,
+            prettyDate,
+            prettyProcessingDate,
+            url,
+            image,
+            imageSize,
+            shotInfo,
+            isPano
+          },
           index
         ) => {
           const isFirstImage = index === 0
@@ -44,9 +56,19 @@ export default function GalleryListItems({
             >
               {!isAlbum && !sortingOption?.includes('name') && (
                 <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow">
-                  {sortingOption.includes('date') && (
+                  {sortingOption === 'date' && (
                     <time className="text-neutral-300/40" dateTime={date}>
                       {prettyDate}
+                    </time>
+                  )}
+                  {sortingOption === 'processing-date' && (
+                    <time
+                      className="text-neutral-300/40"
+                      dateTime={processingDate}
+                    >
+                      {t('gallery.picture.processing-date', {
+                        date: prettyProcessingDate
+                      })}
                     </time>
                   )}
                   {shotInfo && sortingOption.includes('shot-info') && (

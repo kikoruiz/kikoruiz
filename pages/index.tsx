@@ -19,7 +19,7 @@ import HomeBlock from 'components/home-block'
 import HomeModule from 'components/home-module'
 import HomeLatestPictures from 'components/home-latest-pictures'
 import {Alternate, SectionImage, Tag} from 'types'
-import {HighlightedImage, Picture, PictureOnMap} from 'types/gallery'
+import {HighlightedImage, LatestPictures, PictureOnMap} from 'types/gallery'
 import {BlogPost} from 'types/blog'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
@@ -76,11 +76,11 @@ export default function Home({
           <HomeSections images={sectionImages} averageColor={averageColor} />
         </header>
 
-        <HomeLatestPictures latestPictures={latestPictures} />
-
         {latestContent.length > 0 && (
           <HomeLatestContent posts={latestContent} />
         )}
+
+        <HomeLatestPictures latestPictures={latestPictures} />
 
         <HomeBlock>
           <div
@@ -111,7 +111,7 @@ export default function Home({
 
         <HomeContact />
 
-        <HomeBlock className="flex items-center justify-center p-12 pb-16">
+        <HomeBlock className="flex items-center justify-center px-12 py-16">
           <Logo className="w-fit fill-white/5 xl:w-[60%]" />
         </HomeBlock>
       </div>
@@ -131,7 +131,7 @@ export async function getStaticProps({
   const heroImage = await getHeroImage()
   const latestPictures = await getLatestPictures({locale})
   const sectionImages = await getSectionImages()
-  const latestContent = await getLatestContent()
+  const latestContent = await getLatestContent({locale})
   const picturesOnMap = await getAllPicturesOnMap({locale})
   const galleryTags = await getGalleryTags({locale})
   const alternates = (await Promise.all(
@@ -154,7 +154,7 @@ export async function getStaticProps({
 interface HomeProps {
   heroImage: HighlightedImage
   latestContent: BlogPost[]
-  latestPictures: Picture[]
+  latestPictures: LatestPictures
   sectionImages: SectionImage[]
   picturesOnMap: PictureOnMap[]
   galleryTags: Tag[]

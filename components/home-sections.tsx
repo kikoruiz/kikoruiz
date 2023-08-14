@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {getSlug} from 'lib/utils'
-// import Image from './image'
+import Image from './image'
 import {SectionImage} from 'types'
 import {ImageAverageColor} from 'types/gallery'
 import IconFingerPrint from 'assets/icons/finger-print.svg'
@@ -62,17 +62,18 @@ export default function HomeSections({
                   </p>
                 </header>
 
-                {/* <Image
+                <Image
                   src={src}
                   alt={sectionName}
-                  className="aspect-square w-full overflow-hidden group-first:rounded-bl-sm group-last:rounded-br-sm"
+                  className="aspect-square w-full overflow-hidden group-first:rounded-bl-xl group-last:rounded-br-xl"
                   style={{
                     WebkitMaskImage:
                       'linear-gradient(to top, rgba(0, 0, 0, 1) 75%, transparent 100%)'
                   }}
                   fallbackStyle={css}
                   sizes={sizes}
-                /> */}
+                  needsPreload
+                />
               </article>
             </Link>
           )

@@ -9,15 +9,18 @@ import {
   POST_FILE_SEPARATOR,
   POST_FILE_DRAFT_PLACEHOLDER
 } from 'config/blog'
+import {BlogPost} from 'types/blog'
 
 const postsDirectory = path.join(process.cwd(), 'data', 'posts')
 
-function getPostBySlug(slug: string) {
-  return getMarkdownContent(`${postsDirectory}/${slug}${POST_FILE_EXTENSION}`)
+function getPostBySlug(slug: string, {locale}: {locale: string}) {
+  return getMarkdownContent(
+    `${postsDirectory}/${locale}/${slug}${POST_FILE_EXTENSION}`
+  )
 }
 
-export async function getAllPosts() {
-  let filenames = fs.readdirSync(postsDirectory)
+export async function getAllPosts(locale: string): Promise<BlogPost[]> {
+  let filenames = fs.readdirSync(`${postsDirectory}/${locale}`)
   filenames = filenames.reverse()
   filenames = filenames.filter(
     filename =>
@@ -29,7 +32,7 @@ export async function getAllPosts() {
   return Promise.all(
     filenames.map(async filename => {
       const rawSlug = filename.replace(/\.md$/, '')
-      const post = getPostBySlug(rawSlug)
+      const post = getPostBySlug(rawSlug, {locale})
       const [createdAt, slug] = rawSlug.split(POST_FILE_SEPARATOR)
       const readingTime = getReadingTime(post.content)
       const matchedImages = post.content.match(/!\[(.*)\]\((.*.jpg)\)/g)
@@ -75,9 +78,12 @@ export async function getAllPosts() {
   )
 }
 
-export function getPostSlugByPictureSlug(slug: string): string {
+export function getPostSlugByPictureSlug(
+  slug: string,
+  {locale}: {locale: string}
+): string {
   const postFilePath = fs
-    .readdirSync(postsDirectory)
+    .readdirSync(`${postsDirectory}/${locale}`)
     .find(file => file.includes(slug))
 
   if (!postFilePath) return

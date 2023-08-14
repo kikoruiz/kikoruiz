@@ -5,7 +5,7 @@ import {getGalleryAlbums} from 'lib/gallery/albums'
 import {getGalleryPictures} from 'lib/gallery/pictures'
 import {fromExifToGallery} from 'lib/gallery/mappers'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {getSlug} from 'lib/utils'
+import {autoSortSeasons, getSlug} from 'lib/utils'
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
@@ -73,7 +73,8 @@ export async function getStaticProps({
 
     return albumSlug === slug
   })
-  const subcategories = category?.subcategories
+  const subcategories =
+    category.id === 'seasonal' ? autoSortSeasons() : category?.subcategories
   const alternates: Alternate[] = await Promise.all(
     locales.map(
       await fromLocalesToAlternates({

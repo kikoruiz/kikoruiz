@@ -3,13 +3,14 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
-import {getAspectRatio, getSlug} from 'lib/utils'
+import {getAspectRatio, getSlug, themeScreens} from 'lib/utils'
 import {Picture} from 'types/gallery'
 import Image from './image'
 import PictureInfo from './picture-info'
 import ButtonToggle from './button-toggle'
 import IconInformationCircle from 'assets/icons/information-circle.svg'
 import IconMap from 'assets/icons/map.svg'
+import IconMapPin from 'assets/icons/map-pin.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
 import IconChevronRight from 'assets/icons/chevron-right.svg'
 
@@ -31,7 +32,9 @@ export default function PictureDetail({
     image,
     imageSize,
     date,
+    processingDate,
     prettyDate,
+    prettyProcessingDate,
     shotInfo,
     isPano,
     isStarTracked,
@@ -40,6 +43,7 @@ export default function PictureDetail({
     editingSoftware,
     tags,
     coordinates,
+    location,
     tutorial
   } = picture
   const {t} = useTranslation('gallery')
@@ -55,14 +59,26 @@ export default function PictureDetail({
     model,
     lens,
     editingSoftware,
-    aspectRatio
+    aspectRatio,
+    processingDate,
+    prettyProcessingDate
   }
+  const {sm, lg} = themeScreens
+  const sizes =
+    image.orientation === 'vertical'
+      ? `(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`
+      : '100vw'
   const showInfoText = showInfo
     ? t('carousel.hide-picture-info')
     : t('carousel.show-picture-info')
   const showMapText = showMap
     ? t('carousel.hide-picture-map')
     : t('carousel.show-picture-map')
+  const locationName =
+    location &&
+    `${location.city}, ${location.state.replace('Province', '')} (${
+      location.country
+    })`
 
   return (
     <div
@@ -87,8 +103,9 @@ export default function PictureDetail({
           alt={name}
           className="m-auto max-h-screen overflow-hidden"
           aspectRatio={aspectRatio}
-          sizes="100vw"
+          sizes={sizes}
           fallbackStyle={image.css}
+          isLazy={false}
         />
 
         {!isFullScreen && (
@@ -99,9 +116,25 @@ export default function PictureDetail({
                   {name}
                 </header>
 
-                <time className="flex text-neutral-300/40" dateTime={date}>
-                  {prettyDate}
-                </time>
+                <div className="mb-2 flex flex-col gap-1.5">
+                  <time className="flex text-neutral-300/40" dateTime={date}>
+                    {prettyDate}
+                  </time>
+
+                  {locationName && coordinates && (
+                    <address className="text-xs font-extralight not-italic">
+                      <Link
+                        href={`https://www.google.es/maps/place/${coordinates.latitude},${coordinates.longitude}`}
+                        target="_blank"
+                        title={locationName}
+                        className="inline-flex items-center text-orange-300/60 hover:text-orange-300/90"
+                      >
+                        <IconMapPin className="mr-1 w-3" />
+                        {locationName}
+                      </Link>
+                    </address>
+                  )}
+                </div>
 
                 {tags.length > 0 && (
                   <div className="-ml-1.5 mb-3 pt-1.5">
@@ -128,7 +161,7 @@ export default function PictureDetail({
                           href={href}
                           onClick={onExit}
                           title={name}
-                          className={`${baseClassName} hover:text-orange-300/60`}
+                          className={`${baseClassName} hover:text-neutral-300/60`}
                         >
                           {content}
                         </Link>

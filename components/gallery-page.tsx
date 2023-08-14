@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 import GalleryList from 'components/gallery-list'
 import GalleryHeader from 'components/gallery-header'
 import {sortListBy} from 'lib/utils'
@@ -21,7 +22,9 @@ export default function GalleryPage({
   subcategories
 }: GalleryPageProps) {
   const {query} = useRouter()
-  const {carousel} = query
+  const {t} = useTranslation('gallery')
+  const queryKey = t('common:gallery.carousel.query-key')
+  const {[queryKey]: querySlug} = query
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
   const [isAscendingOrder, setIsAscendingOrder] = useState(
@@ -31,7 +34,7 @@ export default function GalleryPage({
     sortListBy(pictures, sortingOption) as Picture[]
   )
   const openPicture =
-    isCarouselOpen && items.find(item => item.slug === carousel)
+    isCarouselOpen && items.find(item => item.slug === querySlug)
 
   function handleSortingChange(event) {
     const option = event.target.value
@@ -50,8 +53,8 @@ export default function GalleryPage({
   }, [pictures, sortingOption, isAscendingOrder])
 
   useEffect(() => {
-    setIsCarouselOpen(Boolean(carousel))
-  }, [setIsCarouselOpen, carousel])
+    setIsCarouselOpen(Boolean(querySlug))
+  }, [setIsCarouselOpen, querySlug])
 
   return (
     <>

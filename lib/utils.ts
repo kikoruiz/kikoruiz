@@ -4,6 +4,7 @@ import {paramCase, headerCase, camelCase, pascalCase} from 'change-case'
 import removeAccents from 'remove-accents'
 import {
   DEFAULT_IS_ASCENDING_ORDER,
+  GALLERY_ALBUMS,
   PENDING_EVAL_SORTING_OPTIONS
 } from 'config/gallery'
 import {Screens, ThemeScreens} from 'types'
@@ -60,7 +61,7 @@ export function sortListBy(list: object[], property: string) {
   const sortedList = list.sort((a, b) => {
     const isFirstGreaterOrEqual = isDeepProperty
       ? getDeepProperty(a, property) >= getDeepProperty(b, property)
-      : a[property] >= b[property]
+      : a[camelCase(property)] >= b[camelCase(property)]
 
     return isFirstGreaterOrEqual ? 1 : -1
   })
@@ -121,4 +122,59 @@ export function getAverageValue(values: number[]) {
   const sum = values.reduce((previous, current) => (current += previous))
 
   return sum / values.length
+}
+
+export function autoSortSeasons(currentDate = new Date(Date.now())) {
+  const seasons = [
+    ...GALLERY_ALBUMS.find(({id}) => id === 'seasonal').subcategories
+  ]
+  const seasonsConfig = [
+    {
+      id: 'winter',
+      date: new Date(
+        currentDate.getFullYear(),
+        11,
+        currentDate.getFullYear() % 4 === 0 ? 20 : 21
+      ).getTime()
+    },
+    {
+      id: 'spring',
+      date: new Date(
+        currentDate.getFullYear(),
+        2,
+        currentDate.getFullYear() % 4 === 0 ? 19 : 20
+      ).getTime()
+    },
+    {
+      id: 'summer',
+      date: new Date(
+        currentDate.getFullYear(),
+        5,
+        currentDate.getFullYear() % 4 === 0 ? 20 : 21
+      ).getTime()
+    },
+    {
+      id: 'autumn',
+      date: new Date(
+        currentDate.getFullYear(),
+        8,
+        currentDate.getFullYear() % 4 === 0 ? 22 : 23
+      ).getTime()
+    }
+  ]
+  const currentSeason = seasonsConfig
+    .filter(({date}) => date <= currentDate.getTime())
+    .slice(-1)[0] || {
+    id: 'winter'
+  }
+  const currentSeasonData = seasons.find(({id}) => id === currentSeason.id)
+  const currentIndex = seasons.indexOf(currentSeasonData)
+
+  if (currentIndex === 0) return seasons
+
+  const movedSeasons = seasons.slice(currentIndex)
+
+  seasons.splice(currentIndex)
+
+  return [...movedSeasons, ...seasons]
 }

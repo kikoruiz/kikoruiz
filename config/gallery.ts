@@ -2,16 +2,16 @@ import {Subcategory} from 'types/gallery'
 
 export const GALLERY_ALBUMS = [
   {
-    id: 'landscapes',
-    tags: ['landscape'],
-    excludeTags: ['travel', 'seascape', 'seasonal'],
-    highlightedPicture: '2020-10-17_0213.jpg'
-  },
-  {
     id: 'seascapes',
     tags: ['seascape'],
     excludeTags: ['landscape'],
     highlightedPicture: '2021-12-04_0135.jpg'
+  },
+  {
+    id: 'landscapes',
+    tags: ['landscape'],
+    excludeTags: ['travel', 'seascape', 'seasonal'],
+    highlightedPicture: '2020-10-17_0213.jpg'
   },
   {
     id: 'astro',
@@ -40,10 +40,10 @@ export const GALLERY_ALBUMS = [
     tags: ['seasonal', 'winter', 'spring', 'summer', 'autumn'],
     highlightedPicture: '2022-11-13_0023.jpg',
     subcategories: [
-      {id: 'spring', tag: 'spring'},
-      {id: 'summer', tag: 'summer'},
-      {id: 'autumn', tag: 'autumn'},
-      {id: 'winter', tag: 'winter'}
+      {id: 'spring', tag: 'spring', emoji: '🌿'},
+      {id: 'summer', tag: 'summer', emoji: '🌞'},
+      {id: 'autumn', tag: 'autumn', emoji: '🍁'},
+      {id: 'winter', tag: 'winter', emoji: '❄️'}
     ] as Subcategory[]
   },
   {
@@ -56,6 +56,7 @@ export const GALLERY_ALBUMS = [
 export const SORTING_OPTIONS = [
   'info-group',
   'date',
+  'processing-date',
   'name',
   'shot-info-group',
   'shot-info.shutter-speed',

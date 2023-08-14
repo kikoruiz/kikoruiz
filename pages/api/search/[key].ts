@@ -21,9 +21,9 @@ function matchSearchKey(key: string) {
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const {key} = req.query as {key: string}
+  const {key, locale} = req.query as {key: string; locale: string}
   const results: SearchItem[] = [
-    ...searchContent.filter(matchSearchKey(key)),
+    ...searchContent[locale]?.filter(matchSearchKey(key)),
     ...picturesMetadata
       .map(({description, keywords, title, fileName}) => {
         const album = GALLERY_ALBUMS.find(({tags, excludeTags}) =>

@@ -54,7 +54,7 @@ export default function Footer({alternates}: FooterProps) {
       </div>
 
       <div className="mt-12">
-        <p className="mb-8 flex self-center md:mb-0">{`Copyright © ${year} Kiko Ruiz`}</p>
+        <p className="flex self-center">{`Copyright © ${year} Kiko Ruiz`}</p>
       </div>
     </footer>
   )

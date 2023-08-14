@@ -13,7 +13,7 @@ La realidad es que en el ámbito profesional me fui decantando hacia la vertient
 
 Con el paso del tiempo me di cuenta que me estaba centrando mucho en desarrollarme en el mundo de la programación pero ya no en lo creativo, y sentía que me faltaba algo, seguramente por ello, y porque también había tenido afición anteriormente, en 2016 me compré mi primera cámara réflex digital, una **Canon EOS 6D** que aún conservo en buen estado. Con ella empecé a introducirme a los [paisajes](/galeria/paisajes) y al cabo de unos meses también me compré algunos filtros (de densidad neutra, degradados...) para empezar a hacer [paisaje de costa](/galeria/costa) y [largas exposiciones](/galeria/tags/larga-exposicion), que durante los primeros años es lo que más me apeteció a hacer.
 
-![Mi primera larga exposición de paisaje en costa {"priority": true, "align": "right"}](/blog/2023-04-23_hola-mundo_primera-larga-exposicion.jpg)
+![Mi primera larga exposición de paisaje en costa {"align": "right"}](/blog/2023-04-23_hola-mundo_primera-larga-exposicion.jpg)
 
 Así, podría decir que desde 2017 empecé a aficionarme cada vez más a la fotografía, he ido aprendiendo mucho por mi cuenta y también gracias a la gente con la que me he ido juntando o de la que he aprendido mediante cursos, vídeos en YouTube, tutoriales, etc... Actualmente tengo varios referentes y fotógafos profesionales a los que cabría mencionar y que me han servido de guía en muchos aspectos, pero destacaría a [Pablo Ruiz García](https://pabloruizgarcia.com/) o [David Aguilar](https://www.davidaguilarphoto.com/) en lo que respecta al panorama estatal y [Albert Dros](https://www.albertdros.com/) o [Michael Shainblum](https://www.shainblumphoto.com/) en el internacional.
 

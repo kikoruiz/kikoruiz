@@ -7,6 +7,7 @@ import {trackEvent} from 'lib/tracking'
 import PictureViewer from './picture-viewer'
 import subcategoryIcons from './gallery-subcategory-icons'
 import {Picture, Subcategory} from 'types/gallery'
+import {GALLERY_ALBUMS} from 'config/gallery'
 
 let startIndex: number | undefined
 
@@ -17,7 +18,9 @@ function GalleryCarousel({
   setIsCarouselOpen
 }: GalleryCarouselProps) {
   const {push, asPath, query} = useRouter()
-  const {carousel: slug} = query
+  const {t} = useTranslation('gallery')
+  const queryKey = t('common:gallery.carousel.query-key')
+  const {[queryKey]: slug} = query
   const items: Picture[] = subcategories
     ? subcategories.reduce(
         (acc, subcategory) => [
@@ -29,7 +32,6 @@ function GalleryCarousel({
         []
       )
     : pictures
-  const {t} = useTranslation('gallery')
   const index = slug && items.findIndex(({name}) => getSlug(name) === slug)
   if (typeof startIndex === 'undefined') startIndex = index
   const [emblaRef, emblaApi] = useEmblaCarousel({startIndex})
@@ -41,6 +43,7 @@ function GalleryCarousel({
     : startIndex !== items.length - 1
   const item = items[index]
   let subcategoryName
+  let subcategoryEmoji
   let SubcategoryIcon
   if (subcategories) {
     subcategoryName = t(
@@ -48,6 +51,9 @@ function GalleryCarousel({
         item.subcategory
       )}`
     )
+    subcategoryEmoji = GALLERY_ALBUMS.find(
+      ({id}) => id === category
+    ).subcategories?.find(({id}) => id === item.subcategory)?.emoji
     SubcategoryIcon =
       subcategoryIcons[`Icon${getCapitalizedName(item.subcategory)}`]
   }
@@ -92,7 +98,9 @@ function GalleryCarousel({
         {SubcategoryIcon && (
           <SubcategoryIcon className="mr-1.5 w-3 rounded-full opacity-90" />
         )}
-        {subcategoryName}
+        {subcategoryEmoji
+          ? `${subcategoryEmoji} ${subcategoryName}`
+          : subcategoryName}
       </span>
     </span>
   )
@@ -102,7 +110,7 @@ function GalleryCarousel({
       const index = emblaApi.selectedScrollSnap()
       const item = items[index]
       const slug = getSlug(item.name)
-      const pathSeparator = '?carousel='
+      const pathSeparator = `?${queryKey}=`
       const [destinationPath] = asPath.split(pathSeparator)
       const destination = `${destinationPath}${pathSeparator}${slug}`
 
@@ -112,7 +120,7 @@ function GalleryCarousel({
     emblaApi?.on('select', handleSelect)
 
     return () => emblaApi?.off('select', handleSelect)
-  }, [emblaApi, items, asPath, push])
+  }, [emblaApi, items, asPath, push, queryKey])
 
   return (
     <PictureViewer

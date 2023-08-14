@@ -52,7 +52,6 @@ export default function BlogHeader({
             icon={IconInformationCircle}
             className="ml-3"
             direction="bottom"
-            type="warning"
           />
         )}
       </div>
