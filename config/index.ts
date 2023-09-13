@@ -13,6 +13,8 @@ export const SECTIONS = [
   {id: 'about-me', highlightedPicture: '/pictures/2022-08-27_0108.jpg'}
 ]
 
+export const LEGAL_PAGES = ['privacy-policy']
+
 export const PERSONAL_INFO = {
   phone: '+34619602535',
   email: 'hola@kikoruiz.es',

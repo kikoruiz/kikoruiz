@@ -77,8 +77,8 @@ export default function Post({post, alternates}: PostProps) {
         </header>
 
         <Article
-          content={post.content}
-          contentImages={post.contentImages}
+          content={post.body}
+          contentImages={post.bodyImages}
           className="relative mx-auto mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600"
         />
 

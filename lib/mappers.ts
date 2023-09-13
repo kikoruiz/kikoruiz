@@ -1,7 +1,7 @@
 import {paramCase} from 'change-case'
 import {remove} from 'remove-accents'
 import getT from 'next-translate/getT'
-import {SECTIONS, DEFAULT_ORIGIN} from 'config'
+import {SECTIONS, DEFAULT_ORIGIN, LEGAL_PAGES} from 'config'
 import {getSlug} from './utils'
 import {Translate} from 'next-translate'
 import {BlogPost} from 'types/blog'
@@ -90,6 +90,7 @@ export async function fromLocalesToAlternates({
   section,
   subSection,
   category,
+  page,
   tag,
   post
 }: {
@@ -98,6 +99,7 @@ export async function fromLocalesToAlternates({
   section?: string
   subSection?: string
   category?: string
+  page?: string
   tag?: string
   post?: BlogPost
 }) {
@@ -112,19 +114,19 @@ export async function fromLocalesToAlternates({
     const sectionData = SECTIONS.find(({id}) => section === id)
     const categoryData =
       category &&
-      sectionData.categories?.find(({id}) => {
+      sectionData?.categories?.find(({id}) => {
         const categorySlug = getSlug(
           currentT(`${sectionData.localePrefix}${id}.name`)
         )
 
         return category === categorySlug
       })
+    const pageSlug =
+      page && category ? `/${getSlug(t(`${category}.pages.${page}`))}` : ''
     const postSlug = post
-      ? `/${
-          searchContent[locale]?.find(
-            ({createdAt}) => post.createdAt === createdAt
-          ).slug
-        }`
+      ? `/${searchContent[locale]?.find(
+          ({createdAt}) => post.createdAt === createdAt
+        ).slug}`
       : ''
     const justSlug =
       !sectionData?.localePrefix && category ? `/${category}` : ''
@@ -140,7 +142,8 @@ export async function fromLocalesToAlternates({
         : remove(t(`blog.tags.${tag}`))
     }
     const tagPath = tag ? `/tags/${actualTag}` : ''
-    const endingPath = postSlug || justSlug || categoryPath || tagPath
+    const endingPath =
+      pageSlug || postSlug || justSlug || categoryPath || tagPath
 
     return {
       locale,

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {useMediaQuery} from 'react-responsive'
 import useTranslation from 'next-translate/useTranslation'
-import {SECTIONS} from 'config'
+import {LEGAL_PAGES, SECTIONS} from 'config'
 import {getSlug, screens} from 'lib/utils'
 import SearchBar from './search-bar'
 import IconChevronDown from 'assets/icons/chevron-down.svg'
@@ -23,17 +23,19 @@ export default function Navigation({section, hasHero}: NavigationProps) {
   const {t} = useTranslation()
   const router = useRouter()
   const {asPath} = router
-  let path = section
-    ? asPath.replace(
-        /(\/[a-z,-]+)/,
-        `/${getSlug(t(`sections.${section}.name`))}`
-      )
-    : asPath
+  const isLegalPage = LEGAL_PAGES.includes(section)
+  let path =
+    section && !isLegalPage
+      ? asPath.replace(
+          /(\/[a-z,-]+)/,
+          `/${getSlug(t(`sections.${section}.name`))}`
+        )
+      : asPath
   if (path.includes('#')) path = path.split('#')[0]
   const activeSection = SECTIONS.find(({id, categories}) => {
     const sectionSlug = getSlug(t(`sections.${id}.name`))
 
-    return path.includes(sectionSlug) && categories
+    return sectionSlug && path.includes(sectionSlug) && categories
   })
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
