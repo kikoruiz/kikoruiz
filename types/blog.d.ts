@@ -1,12 +1,9 @@
-import {Tag} from 'types'
+import {StaticContent, Tag} from 'types'
 import {HighlightedImage, Image} from './gallery'
 
-export interface BlogPostContent {
-  slug: string
-  title: string
+export interface BlogPostContent extends StaticContent {
   excerpt: string
   author: string
-  content: string
   picture?: string
   tags: string
 }
@@ -18,7 +15,7 @@ export interface BlogPost extends BlogPostContent {
   readingTime: number
   blogTags?: Tag[]
   isDraft: boolean
-  contentImages: Image[]
+  bodyImages: Image[]
 }
 
 export interface Tutorial {

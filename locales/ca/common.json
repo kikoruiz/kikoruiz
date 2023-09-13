@@ -104,5 +104,11 @@
     "available-locales": {
       "warning": "El contingut dels artícles nomès està disponible en llengua castellana"
     }
+  },
+  "legal": {
+    "name": "Legal",
+    "pages": {
+      "privacy-policy": "Política de Privacitat"
+    }
   }
 }

@@ -37,6 +37,16 @@ const nextConfig = withBundleAnalyzer({
             source: '/en/gallery/tags/:tag',
             destination: '/en/galeria/tags/:tag',
             locale: false
+          },
+          {
+            source: '/ca/politica-de-privacitat',
+            destination: '/ca/politica-de-privacidad',
+            locale: false
+          },
+          {
+            source: '/en/privacy-policy',
+            destination: '/en/politica-de-privacidad',
+            locale: false
           }
         ]
       },

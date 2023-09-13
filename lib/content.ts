@@ -1,5 +1,8 @@
 import fs from 'node:fs'
+import path from 'node:path'
 import matter from 'gray-matter'
+import getT from 'next-translate/getT'
+import {StaticContent} from 'types'
 import {BlogPostContent} from 'types/blog'
 
 export function getMarkdownContent(filename: string) {
@@ -8,6 +11,26 @@ export function getMarkdownContent(filename: string) {
 
   return {
     ...data,
-    content
-  } as BlogPostContent
+    body: content
+  } as StaticContent | BlogPostContent
+}
+
+export async function getContent({
+  locale,
+  page,
+  category
+}: {
+  locale: string
+  page: string
+  category?: string
+}) {
+  const t = await getT(locale, 'common')
+  const directory = path.join(process.cwd(), 'data', 'pages', page)
+  const content = getMarkdownContent(`${directory}/${locale}.md`)
+  const needsTitle = Boolean(category)
+
+  return {
+    ...content,
+    ...(needsTitle && {title: t(`${category}.pages.${page}`)})
+  } as StaticContent
 }

@@ -7,8 +7,10 @@ const i18 = {
     'rgx:/galeria*': ['gallery'],
     'rgx:/blog*': ['blog']
   },
-  loadLocaleFrom: (lang, ns) =>
-    import(`./locales/${lang}/${ns}.json`).then(module => module.default)
+  loadLocaleFrom: (locale, namespace) =>
+    import(`./locales/${locale}/${namespace}.json`).then(
+      module => module.default
+    )
 }
 
 module.exports = i18
