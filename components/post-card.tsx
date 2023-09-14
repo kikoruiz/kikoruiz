@@ -142,7 +142,7 @@ export default function PostCard({
 }
 
 interface PostCardProps {
-  title: string
+  title?: string
   href: string
   createdAt: string
   readingTime: number

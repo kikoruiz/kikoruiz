@@ -20,14 +20,14 @@ const searchContentFile = path.join(
 function getMarkdownContent(filename: string): BlogPostContent {
   const file = fs.readFileSync(filename, 'utf8')
   const {data} = matter(file)
-  const {title, excerpt, author, content, picture, tags} = data
+  const {title, excerpt, author, body, picture, tags} = data
 
   return {
     slug: paramCase(removeAccents(title)),
     title,
     excerpt,
     author,
-    content,
+    body,
     picture,
     tags
   }
