@@ -1,4 +1,4 @@
-Última actualización: **13 de septiembre de 2023**
+Última actualización: **14 de septiembre de 2023**
 
 Agradecemos tu visita a [kikoruiz.es](kikoruiz.es) (en adelante, "el Sitio"). En esta página, te explicaremos cómo recopilamos, utilizamos y protegemos la información personal que obtenemos de los visitantes del Sitio, teniendo en cuenta que hacemos uso de Google Analytics 4 para realizar seguimiento de visitas y eventos.
 
@@ -12,9 +12,9 @@ Utilizamos Google Analytics 4, un servicio de análisis web proporcionado por Go
 
 Google Analytics recopila datos como la dirección IP del visitante, la ubicación geográfica, el tipo de navegador, el sistema operativo y la fuente de referencia. Los informes generados por Google Analytics nos ayudan a comprender el comportamiento de los usuarios y a tomar decisiones informadas sobre el contenido y la estructura del Sitio.
 
-Para obtener más información sobre cómo Google recopila y procesa datos a través de Google Analytics, te recomendamos revisar la Política de Privacidad de Google: https://policies.google.com/privacy
+Para obtener más información sobre cómo Google recopila y procesa datos a través de Google Analytics, te recomendamos revisar la Política de Privacidad de Google: [https://policies.google.com/privacy](https://policies.google.com/privacy)
 
-Puedes optar por no participar en la recopilación de datos de Google Analytics configurando las preferencias de cookies en tu navegador o utilizando el complemento de exclusión de Google Analytics disponible aquí: https://tools.google.com/dlpage/gaoptout
+Puedes optar por no participar en la recopilación de datos de Google Analytics configurando las preferencias de cookies en tu navegador o utilizando el complemento de exclusión de Google Analytics disponible aquí: [https://tools.google.com/dlpage/gaoptout](https://tools.google.com/dlpage/gaoptout)
 
 ## Uso de la información
 

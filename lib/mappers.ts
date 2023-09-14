@@ -1,7 +1,7 @@
 import {paramCase} from 'change-case'
 import {remove} from 'remove-accents'
 import getT from 'next-translate/getT'
-import {SECTIONS, DEFAULT_ORIGIN, LEGAL_PAGES} from 'config'
+import {SECTIONS, DEFAULT_ORIGIN} from 'config'
 import {getSlug} from './utils'
 import {Translate} from 'next-translate'
 import {BlogPost} from 'types/blog'

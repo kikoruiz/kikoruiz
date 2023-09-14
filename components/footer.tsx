@@ -24,8 +24,8 @@ export default function Footer({alternates}: FooterProps) {
 
   return (
     <footer className="container relative mx-auto mt-12 px-6 pb-12 pt-16 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600 sm:mt-0 sm:pb-16 sm:pt-32 sm:after:top-16">
-      <div className="md:flex md:items-start md:justify-between">
-        <div className="mb-12 flex items-center text-sm md:mb-0">
+      <div className="flex gap-12 flex-col lg:flex-row items-start justify-between">
+        <div className="flex items-center text-sm md:mb-0">
           <label
             htmlFor="languages"
             aria-label={t('languages.selector.label')}
