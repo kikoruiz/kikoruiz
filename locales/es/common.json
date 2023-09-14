@@ -104,5 +104,11 @@
     "available-locales": {
       "warning": "El contenido de los artículos sólo está disponible en castellano"
     }
+  },
+  "legal": {
+    "name": "Legal",
+    "pages": {
+      "privacy-policy": "Política de privacidad"
+    }
   }
 }

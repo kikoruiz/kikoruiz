@@ -2,13 +2,15 @@ import {ReactNode} from 'react'
 import Header from './header'
 import Footer from './footer'
 import {Alternate, SectionData} from 'types'
+import { LEGAL_PAGES } from 'config'
 
 export default function Layout({
   children,
   alternates,
   ...sectionData
 }: LayoutProps) {
-  const {hasHero} = sectionData
+  const {hasHero, section} = sectionData
+  const needsBorder = hasHero || LEGAL_PAGES.includes(section)
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -16,7 +18,7 @@ export default function Layout({
 
       <main
         className={`container mx-auto mb-auto overflow-hidden sm:pt-12${
-          hasHero ? ' border-t border-neutral-300/10' : ''
+          needsBorder ? ' border-t border-neutral-300/10' : ''
         }`}
       >
         {children}

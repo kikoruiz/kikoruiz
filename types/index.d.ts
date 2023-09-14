@@ -62,3 +62,9 @@ export interface Screens {
   sm: number
   xl: number
 }
+
+export interface StaticContent {
+  slug?: string
+  title?: string
+  body: string
+}

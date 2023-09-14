@@ -104,5 +104,11 @@
     "available-locales": {
       "warning": "Blog contents are only available in spanish language"
     }
+  },
+  "legal": {
+    "name": "Legal",
+    "pages": {
+      "privacy-policy": "Privacy policy"
+    }
   }
 }
