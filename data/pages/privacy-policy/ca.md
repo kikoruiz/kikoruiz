@@ -1,6 +1,6 @@
 Última actualització: **14 de setembre de 2023**
 
-Agraïm la teua visita a [kikoruiz.es](kikoruiz.es) (d'ara endavant, "el Lloc"). En aquesta pàgina, t'explicarem com recopilem, utilitzem i protegim la informació personal que obtenim dels visitants del Lloc, tenint en compte que fem servir Google Analytics 4 per fer seguiment de visites i esdeveniments.
+Agraïm la teua visita a [kikoruiz.es](/) (d'ara endavant, "el Lloc"). En aquesta pàgina, t'explicarem com recopilem, utilitzem i protegim la informació personal que obtenim dels visitants del Lloc, tenint en compte que fem servir Google Analytics 4 per fer seguiment de visites i esdeveniments.
 
 ## Recopilació d'informació personal
 
@@ -46,4 +46,4 @@ Ens reservem el dret d'actualitzar aquesta política de privacitat en qualsevol 
 
 Si tens alguna pregunta o inquietud sobre aquesta política de privacitat o sobre còm gestionem les teues dades personals, no dubtes a contactar-nos mitjançant la informació de contacte proporcionada al Lloc.
 
-Gràcies per confiar en nosaltres i per visitar [kikoruiz.es](kikoruiz.es). Estem compromesos a protegir la teua privacitat i a mantindre la confiança que has dipositat en nosaltres.
+Gràcies per confiar en nosaltres i per visitar [kikoruiz.es](/). Estem compromesos a protegir la teua privacitat i a mantindre la confiança que has dipositat en nosaltres.

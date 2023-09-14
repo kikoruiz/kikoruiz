@@ -1,6 +1,6 @@
 Last updated: **September 14, 2023**
 
-We appreciate your visit to [kikoruiz.es](kikoruiz.es) (hereinafter, "the Site"). On this page, we will explain how we collect, use, and protect the personal information we obtain from visitors to the Site, bearing in mind that we use Google Analytics 4 to track visits and events.
+We appreciate your visit to [kikoruiz.es](/) (hereinafter, "the Site"). On this page, we will explain how we collect, use, and protect the personal information we obtain from visitors to the Site, bearing in mind that we use Google Analytics 4 to track visits and events.
 
 ## Collection of Personal Information
 
@@ -46,4 +46,4 @@ We reserve the right to update this privacy policy at any time. We recommend tha
 
 If you have any questions or concerns about this privacy policy or how we handle your personal data, please do not hesitate to contact us using the contact information provided on the Site.
 
-Thank you for trusting us and for visiting [kikoruiz.es](kikoruiz.es). We are committed to protecting your privacy and maintaining the trust you have placed in us.
+Thank you for trusting us and for visiting [kikoruiz.es](/). We are committed to protecting your privacy and maintaining the trust you have placed in us.
