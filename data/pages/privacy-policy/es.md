@@ -1,6 +1,6 @@
 Última actualización: **14 de septiembre de 2023**
 
-Agradecemos tu visita a [kikoruiz.es](kikoruiz.es) (en adelante, "el Sitio"). En esta página, te explicaremos cómo recopilamos, utilizamos y protegemos la información personal que obtenemos de los visitantes del Sitio, teniendo en cuenta que hacemos uso de Google Analytics 4 para realizar seguimiento de visitas y eventos.
+Agradecemos tu visita a [kikoruiz.es](/) (en adelante, "el Sitio"). En esta página, te explicaremos cómo recopilamos, utilizamos y protegemos la información personal que obtenemos de los visitantes del Sitio, teniendo en cuenta que hacemos uso de Google Analytics 4 para realizar seguimiento de visitas y eventos.
 
 ## Recopilación de información personal
 
@@ -46,4 +46,4 @@ Nos reservamos el derecho de actualizar esta política de privacidad en cualquie
 
 Si tienes alguna pregunta o inquietud sobre esta política de privacidad o sobre cómo manejamos tus datos personales, no dudes en contactarnos a través de la información de contacto proporcionada en el Sitio.
 
-Gracias por confiar en nosotros y por visitar [kikoruiz.es](kikoruiz.es). Estamos comprometidos con proteger tu privacidad y mantener la confianza que has depositado en nosotros.
+Gracias por confiar en nosotros y por visitar [kikoruiz.es](/). Estamos comprometidos con proteger tu privacidad y mantener la confianza que has depositado en nosotros.
