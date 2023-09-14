@@ -19,7 +19,7 @@ export default function PrivacyPolicy({
       </Head>
 
       <section className="mx-auto px-6 xl:max-w-5xl">
-        <header className="pt-6 text-center">
+        <header className="pt-12 sm:pt-6 text-center">
           <h1 className="text-6xl font-black sm:text-8xl">
             {content.title}
           </h1>
