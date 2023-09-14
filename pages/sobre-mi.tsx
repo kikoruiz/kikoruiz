@@ -4,14 +4,13 @@ import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {getPlaiceholder} from 'plaiceholder'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {getDescription} from 'lib/about-me'
 import {themeScreens} from 'lib/utils'
 import {PERSONAL_INFO} from 'config'
 import Article from 'components/article'
 import Image from 'components/image'
-import {BlogPostContent} from 'types/blog'
-import {Alternate} from 'types'
+import {Alternate, StaticContent} from 'types'
 import {Image as ImageInterface, ImageFallbackStyle} from 'types/gallery'
+import {getContent} from 'lib/content'
 
 export default function AboutMe({
   avatar,
@@ -20,7 +19,7 @@ export default function AboutMe({
 }: AboutMeProps) {
   const {locale} = useRouter()
   const {t} = useTranslation()
-  const contentImage = avatar as ImageInterface
+  const bodyImage = avatar as ImageInterface
 
   return (
     <>
@@ -117,8 +116,8 @@ export default function AboutMe({
         </div>
 
         <Article
-          content={description.content}
-          contentImages={[contentImage]}
+          content={description.body}
+          contentImages={[bodyImage]}
           className="mt-9 flex-1 sm:mt-0"
         />
       </section>
@@ -135,10 +134,10 @@ export async function getStaticProps({locales, locale, defaultLocale}) {
   const {css} = await getPlaiceholder(avatar.src)
   avatar.css = css
   const section = 'about-me'
+  const description = await getContent({locale, page: section})
   const alternates = await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale, section}))
   )
-  const description = getDescription({locale})
 
   return {
     props: {avatar, description, section, alternates}
@@ -166,6 +165,6 @@ type Avatar = {
 
 interface AboutMeProps {
   avatar: Avatar
-  description: BlogPostContent
+  description: StaticContent
   alternates: Alternate[]
 }
