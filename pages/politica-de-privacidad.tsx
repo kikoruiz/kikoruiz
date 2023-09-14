@@ -2,7 +2,7 @@ import Article from 'components/article'
 import {getContent} from 'lib/content'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import Head from 'next/head'
-import {StaticContent} from 'types'
+import {Alternate, StaticContent} from 'types'
 
 export default function PrivacyPolicy({
   content,
