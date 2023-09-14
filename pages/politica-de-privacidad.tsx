@@ -25,7 +25,7 @@ export default function PrivacyPolicy({
           </h1>
         </header>
 
-        <Article content={content.body} className="relative mx-auto mt-16 pt-16 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"/>
+        <Article content={content.body} className="relative mx-auto mt-12 pt-12 sm:mt-16 sm:pt-16 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"/>
       </section>
     </>
   )
