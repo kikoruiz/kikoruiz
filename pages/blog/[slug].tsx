@@ -79,7 +79,7 @@ export default function Post({post, alternates}: PostProps) {
         <Article
           content={post.body}
           contentImages={post.bodyImages}
-          className="relative mx-auto mt-12 pt-12 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600"
+          className="relative mx-auto mt-12 pt-12 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"
         />
 
         {post.tags && <BlogTags tags={post.blogTags} isPost />}
