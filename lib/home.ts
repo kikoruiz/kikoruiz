@@ -16,7 +16,7 @@ import {BlogPost} from 'types/blog'
 const HERO_DEFAULT_DATA = {
   alt: 'Kiko Ruiz Photography'
 }
-const HERO_IMAGE = '/pictures/2021-12-04_0153.jpg'
+const HERO_IMAGE = '/pictures/2021-12-10_0008.jpg'
 const LATEST_PICTURES_LENGTH = 6
 
 export async function getHeroImage(): Promise<HighlightedImage> {
