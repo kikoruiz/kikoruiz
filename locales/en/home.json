@@ -8,5 +8,8 @@
     }
   },
   "gallery-tags": "Gallery tags",
-  "contact": "Shall we talk? 👋"
+  "contact": {
+    "title": "Shall we talk? 👋",
+    "name": "Contacte"
+  }
 }

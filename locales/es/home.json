@@ -8,5 +8,8 @@
     }
   },
   "gallery-tags": "Tags de la galería",
-  "contact": "¿Hablamos? 👋"
+  "contact": {
+    "title": "¿Hablamos? 👋",
+    "name": "Contacte"
+  }
 }

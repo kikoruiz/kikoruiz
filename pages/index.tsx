@@ -140,6 +140,7 @@ export async function getStaticProps({
 
   return {
     props: {
+      section: 'home',
       heroImage,
       latestContent,
       latestPictures,

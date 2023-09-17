@@ -2,7 +2,7 @@ import {ReactNode} from 'react'
 import Header from './header'
 import Footer from './footer'
 import {Alternate, SectionData} from 'types'
-import { LEGAL_PAGES } from 'config'
+import {LEGAL_PAGES} from 'config'
 
 export default function Layout({
   children,

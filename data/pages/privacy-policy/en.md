@@ -44,6 +44,6 @@ We reserve the right to update this privacy policy at any time. We recommend tha
 
 ## Contact
 
-If you have any questions or concerns about this privacy policy or how we handle your personal data, please do not hesitate to contact us using the contact information provided on the Site.
+If you have any questions or concerns about this privacy policy or how we handle your personal data, please do not hesitate to contact us [using the contact information provided on the Site](/#contact).
 
 Thank you for trusting us and for visiting [kikoruiz.es](/). We are committed to protecting your privacy and maintaining the trust you have placed in us.
