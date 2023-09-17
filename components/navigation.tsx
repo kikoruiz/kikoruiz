@@ -128,11 +128,7 @@ export default function Navigation({section, hasHero}: NavigationProps) {
               : ''
           }`
           const content = (
-            <div
-              className={`relative flex items-center${
-                isHome ? ' text-white group-hover:text-current' : ''
-              }`}
-            >
+            <div className="relative flex items-center">
               <span className="inline-flex items-center">
                 <SectionIcon className="mr-1 w-5 sm:hidden" />
 
