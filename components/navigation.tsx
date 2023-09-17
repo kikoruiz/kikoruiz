@@ -23,6 +23,7 @@ export default function Navigation({section, hasHero}: NavigationProps) {
   const {t} = useTranslation()
   const router = useRouter()
   const {asPath} = router
+  const isHome = section === 'home'
   const isLegalPage = LEGAL_PAGES.includes(section)
   let path =
     section && !isLegalPage
@@ -127,11 +128,17 @@ export default function Navigation({section, hasHero}: NavigationProps) {
               : ''
           }`
           const content = (
-            <div className="relative flex items-center">
+            <div
+              className={`relative flex items-center${
+                isHome ? ' text-white group-hover:text-current' : ''
+              }`}
+            >
               <span className="inline-flex items-center">
                 <SectionIcon className="mr-1 w-5 sm:hidden" />
+
                 {sectionName}
               </span>
+
               {hasCategories && (
                 <>
                   <IconChevronDown

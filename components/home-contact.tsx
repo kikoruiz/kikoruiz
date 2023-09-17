@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import HomeBlock from './home-block'
 import IconEnvelope from 'assets/icons/envelope.svg'
@@ -9,6 +10,7 @@ import {getSlug} from 'lib/utils'
 const altContactInfo = BRANDS.SOCIAL.find(({slug}) => slug === 'whatsapp')
 
 export default function HomeContact() {
+  const [headerHeight, setHeaderHeight] = useState(0)
   const {t} = useTranslation('home')
   const links = [
     {
@@ -32,11 +34,24 @@ export default function HomeContact() {
     }
   ]
 
+  useEffect(() => {
+    const headerElement = document.getElementById('header')
+
+    setHeaderHeight(headerElement.offsetHeight)
+  }, [])
+
   return (
     <HomeBlock className="relative px-3 py-12 text-center before:absolute before:bottom-0 before:left-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-orange-300/30 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30 md:p-16">
+      <span
+        id={getSlug(t('contact.name'))}
+        aria-hidden="true"
+        className="absolute"
+        style={{top: `-${headerHeight}px`}}
+      />
+
       <header className="mb-9 md:mb-12">
         <h2 className="bg-gradient-to-t from-orange-300 via-orange-300/80 to-orange-300/40 bg-clip-text text-3xl font-extralight leading-tight text-transparent drop-shadow md:text-5xl md:leading-snug">
-          {t('contact')}
+          {t('contact.title')}
         </h2>
       </header>
 
