@@ -10,7 +10,9 @@ export default function Layout({
   ...sectionData
 }: LayoutProps) {
   const {hasHero, section} = sectionData
-  const needsBorder = hasHero || LEGAL_PAGES.includes(section)
+  const isLegalPage = LEGAL_PAGES.includes(section)
+  const isErrorPage = section === 'error'
+  const needsBorder = hasHero || isLegalPage || isErrorPage
 
   return (
     <div className="flex min-h-screen flex-col">

@@ -23,10 +23,9 @@ export default function Navigation({section, hasHero}: NavigationProps) {
   const {t} = useTranslation()
   const router = useRouter()
   const {asPath} = router
-  const isHome = section === 'home'
-  const isLegalPage = LEGAL_PAGES.includes(section)
+  const isStaticPage = LEGAL_PAGES.includes(section) || section === 'error'
   let path =
-    section && !isLegalPage
+    section && !isStaticPage
       ? asPath.replace(
           /(\/[a-z,-]+)/,
           `/${getSlug(t(`sections.${section}.name`))}`
