@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import HomeBlock from './home-block'
 import IconEnvelope from 'assets/icons/envelope.svg'
@@ -6,11 +5,13 @@ import IconEnvelopeOpen from 'assets/icons/envelope-open.svg'
 import LogoWhatsApp from 'assets/logos/social/whatsapp.svg'
 import {PERSONAL_INFO, BRANDS} from 'config'
 import {getSlug} from 'lib/utils'
+import useLayoutContext from 'contexts/Layout'
 
 const altContactInfo = BRANDS.SOCIAL.find(({slug}) => slug === 'whatsapp')
 
 export default function HomeContact() {
-  const [headerHeight, setHeaderHeight] = useState(0)
+  const {layout} = useLayoutContext()
+  const headerHeight = layout?.headerHeight || 0
   const {t} = useTranslation('home')
   const links = [
     {
@@ -33,12 +34,6 @@ export default function HomeContact() {
       icon: <LogoWhatsApp className="w-6 md:w-9 lg:w-12" />
     }
   ]
-
-  useEffect(() => {
-    const headerElement = document.getElementById('header')
-
-    setHeaderHeight(headerElement.offsetHeight)
-  }, [])
 
   return (
     <HomeBlock className="relative px-3 py-12 text-center before:absolute before:bottom-0 before:left-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-orange-300/30 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30 md:p-16">

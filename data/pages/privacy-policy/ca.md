@@ -44,6 +44,6 @@ Ens reservem el dret d'actualitzar aquesta política de privacitat en qualsevol 
 
 ## Contacte
 
-Si tens alguna pregunta o inquietud sobre aquesta política de privacitat o sobre còm gestionem les teues dades personals, no dubtes a contactar-nos [mitjançant la informació de contacte proporcionada al Lloc](/#contacte).
+Si tens alguna pregunta o inquietud sobre aquesta política de privacitat o sobre còm gestionem les teues dades personals, no dubtes a [contactar-nos](/#contacte) mitjançant la informació de contacte proporcionada al Lloc.
 
 Gràcies per confiar en nosaltres i per visitar [kikoruiz.es](/). Estem compromesos a protegir la teua privacitat i a mantindre la confiança que has dipositat en nosaltres.

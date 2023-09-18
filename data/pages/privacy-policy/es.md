@@ -44,6 +44,6 @@ Nos reservamos el derecho de actualizar esta política de privacidad en cualquie
 
 ## Contacto
 
-Si tienes alguna pregunta o inquietud sobre esta política de privacidad o sobre cómo manejamos tus datos personales, no dudes en contactarnos [a través de la información de contacto proporcionada en el Sitio](/#contacto).
+Si tienes alguna pregunta o inquietud sobre esta política de privacidad o sobre cómo manejamos tus datos personales, no dudes en [contactarnos](/#contacto) a través de la información de contacto proporcionada en el Sitio.
 
 Gracias por confiar en nosotros y por visitar [kikoruiz.es](/). Estamos comprometidos con proteger tu privacidad y mantener la confianza que has depositado en nosotros.

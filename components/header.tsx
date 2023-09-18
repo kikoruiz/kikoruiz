@@ -1,10 +1,14 @@
+import {useEffect, useRef} from 'react'
 import Link from 'next/link'
 import Breadcrumb from './breadcrumb'
 import Navigation from './navigation'
 import Logo from 'assets/brand/photo-logo.svg'
 import {SectionData} from 'types'
+import useLayoutContext from 'contexts/Layout'
 
 export default function Header({...sectionData}: SectionData) {
+  const headerRef = useRef(null)
+  const {setLayout} = useLayoutContext()
   const {hasHero, section} = sectionData
   const isHome = section === 'home'
   const logo = (
@@ -15,8 +19,12 @@ export default function Header({...sectionData}: SectionData) {
     />
   )
 
+  useEffect(() => {
+    setLayout({headerHeight: headerRef.current.offsetHeight})
+  }, [setLayout])
+
   return (
-    <header id="header" className="sticky top-0 z-20 w-full backdrop-blur">
+    <header ref={headerRef} className="sticky top-0 z-20 w-full backdrop-blur">
       <div className={`${hasHero ? 'bg-transparent' : 'bg-neutral-900/90'}`}>
         <div className="container mx-auto flex justify-between pl-5 pr-3">
           <div className="flex justify-center py-8">
