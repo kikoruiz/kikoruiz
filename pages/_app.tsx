@@ -8,6 +8,7 @@ import {trackPage, GA_TRACKING_ID} from 'lib/tracking'
 import {SubcategoryProvider} from 'contexts/Subcategory'
 import {LatestPicturesProvider} from 'contexts/LatestPictures'
 import '../styles/globals.css'
+import {LayoutProvider} from 'contexts/Layout'
 
 function handleRouteChangeComplete(url: string) {
   trackPage(url)
@@ -58,14 +59,16 @@ export default function App({Component, pageProps}: AppProps) {
         }}
       />
 
-      <SubcategoryProvider>
-        <LatestPicturesProvider>
-          <Layout {...sectionData} {...languageData}>
-            <Component {...pageProps} />
-            <Analytics />
-          </Layout>
-        </LatestPicturesProvider>
-      </SubcategoryProvider>
+      <LayoutProvider>
+        <SubcategoryProvider>
+          <LatestPicturesProvider>
+            <Layout {...sectionData} {...languageData}>
+              <Component {...pageProps} />
+              <Analytics />
+            </Layout>
+          </LatestPicturesProvider>
+        </SubcategoryProvider>
+      </LayoutProvider>
     </>
   )
 }

@@ -20,12 +20,13 @@ export default function PrivacyPolicy({
 
       <section className="mx-auto px-6 xl:max-w-5xl">
         <header className="pt-12 sm:pt-6 text-center">
-          <h1 className="text-6xl font-black sm:text-8xl">
-            {content.title}
-          </h1>
+          <h1 className="text-6xl font-black sm:text-8xl">{content.title}</h1>
         </header>
 
-        <Article content={content.body} className="relative mx-auto mt-12 pt-12 sm:mt-16 sm:pt-16 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"/>
+        <Article
+          content={content.body}
+          className="relative mx-auto mt-12 pt-12 sm:mt-16 sm:pt-16 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"
+        />
       </section>
     </>
   )
