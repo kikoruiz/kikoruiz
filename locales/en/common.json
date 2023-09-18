@@ -108,7 +108,8 @@
   "legal": {
     "name": "Legal",
     "pages": {
-      "privacy-policy": "Privacy Policy"
+      "privacy-policy": "Privacy Policy",
+      "cookies-policy": "Cookies Policy"
     }
   },
   "error": {

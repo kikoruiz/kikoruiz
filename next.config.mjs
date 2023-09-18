@@ -47,6 +47,11 @@ const nextConfig = withBundleAnalyzer({
             source: '/en/privacy-policy',
             destination: '/en/politica-de-privacidad',
             locale: false
+          },
+          {
+            source: '/en/cookies-policy',
+            destination: '/en/politica-de-cookies',
+            locale: false
           }
         ]
       },
