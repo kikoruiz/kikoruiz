@@ -291,7 +291,7 @@ export default function Navigation({section, hasHero}: NavigationProps) {
             : 'pointer-events-none touch-auto opacity-0 sm:hidden'
         }`}
         onClick={handleElementClick}
-      ></button>
+      />
 
       <SearchBar isOpen={isSearchBarOpen} setIsOpen={setIsSearchBarOpen} />
     </nav>

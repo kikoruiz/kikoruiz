@@ -14,6 +14,7 @@
     "check:types": "tsc"
   },
   "dependencies": {
+    "@use-cookie-consent/react": "0",
     "@vercel/analytics": "0",
     "change-case": "4",
     "downshift": "6",

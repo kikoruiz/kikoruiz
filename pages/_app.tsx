@@ -3,12 +3,13 @@ import Script from 'next/script'
 import {useRouter} from 'next/router'
 import {AppProps} from 'next/app'
 import {Analytics} from '@vercel/analytics/react'
+import {CookieConsentProvider} from '@use-cookie-consent/react'
 import Layout from 'components/layout'
 import {trackPage, GA_TRACKING_ID} from 'lib/tracking'
 import {SubcategoryProvider} from 'contexts/Subcategory'
 import {LatestPicturesProvider} from 'contexts/LatestPictures'
-import '../styles/globals.css'
 import {LayoutProvider} from 'contexts/Layout'
+import '../styles/globals.css'
 
 function handleRouteChangeComplete(url: string) {
   trackPage(url)
@@ -59,16 +60,18 @@ export default function App({Component, pageProps}: AppProps) {
         }}
       />
 
-      <LayoutProvider>
-        <SubcategoryProvider>
-          <LatestPicturesProvider>
-            <Layout {...sectionData} {...languageData}>
-              <Component {...pageProps} />
-              <Analytics />
-            </Layout>
-          </LatestPicturesProvider>
-        </SubcategoryProvider>
-      </LayoutProvider>
+      <CookieConsentProvider>
+        <LayoutProvider>
+          <SubcategoryProvider>
+            <LatestPicturesProvider>
+              <Layout {...sectionData} {...languageData}>
+                <Component {...pageProps} />
+                <Analytics />
+              </Layout>
+            </LatestPicturesProvider>
+          </SubcategoryProvider>
+        </LayoutProvider>
+      </CookieConsentProvider>
     </>
   )
 }

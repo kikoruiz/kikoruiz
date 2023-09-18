@@ -3,6 +3,7 @@ import Header from './header'
 import Footer from './footer'
 import {Alternate, SectionData} from 'types'
 import {LEGAL_PAGES} from 'config'
+import CookiesBanner from './cookies-banner'
 
 export default function Layout({
   children,
@@ -25,6 +26,8 @@ export default function Layout({
       >
         {children}
       </main>
+
+      <CookiesBanner />
 
       <Footer alternates={alternates} />
     </div>
