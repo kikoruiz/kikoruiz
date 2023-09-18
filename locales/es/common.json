@@ -110,5 +110,9 @@
     "pages": {
       "privacy-policy": "Política de privacidad"
     }
+  },
+  "error": {
+    "404": "Página no encontrada 🙃",
+    "500": "Error de servidor 😱"
   }
 }
