@@ -110,6 +110,19 @@
     "pages": {
       "privacy-policy": "Política de privacitat",
       "cookies-policy": "Política de cookies"
+    },
+    "cookies": {
+      "necessary": {
+        "description": "",
+        "purpose": ""
+      },
+      "third-party": {
+        "description": "",
+        "google-analytics": {
+          "purpose": "",
+          "expiration": ""
+        }
+      }
     }
   },
   "error": {

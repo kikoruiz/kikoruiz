@@ -110,8 +110,22 @@
     "pages": {
       "privacy-policy": "Privacy Policy",
       "cookies-policy": "Cookies Policy"
+    },
+    "cookies": {
+      "necessary": {
+        "description": "",
+        "purpose": ""
+      },
+      "third-party": {
+        "description": "",
+        "google-analytics": {
+          "purpose": "",
+          "expiration": ""
+        }
+      }
     }
   },
+
   "error": {
     "404": "Page not found 🙃",
     "500": "Server-side error occurred 😱"
