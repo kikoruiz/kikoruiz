@@ -15,6 +15,11 @@ export const SECTIONS = [
 
 export const LEGAL_PAGES = ['privacy-policy', 'cookies-policy']
 
+export const COOKIES_BY_TYPE = {
+  NECESSARY: true,
+  THIRD_PARTY: [{id: 'google-analytics', cookieKey: '_ga'}]
+}
+
 export const PERSONAL_INFO = {
   phone: '+34619602535',
   email: 'hola@kikoruiz.es',

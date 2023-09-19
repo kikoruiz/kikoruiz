@@ -1,26 +1,11 @@
-import {PropsWithChildren, useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useCookieConsentContext} from '@use-cookie-consent/react'
 import CookiesModal from './cookies-modal'
-
-const Button = ({
-  children,
-  title,
-  ...props
-}: PropsWithChildren<HTMLButtonElement>) => {
-  return (
-    <button
-      {...props}
-      title={title}
-      className="py-1.5 px-3 rounded font-light bg-gradient-to-b transition-shadow hover:ring hover:ring-orange-300 hover:text-black hover:from-white hover:to-neutral-200 from-neutral-100 to-neutral-300 text-neutral-900"
-    >
-      {children}
-    </button>
-  )
-}
+import CookiesButton from './cookies-button'
 
 export default function CookiesBanner() {
-  const {consent, acceptAllCookies, declineAllCookies} =
-    useCookieConsentContext()
+  const {consent, acceptAllCookies} = useCookieConsentContext()
+  console.log({consent})
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [needsBanner, setNeedsBanner] = useState(false)
 
@@ -42,30 +27,24 @@ export default function CookiesBanner() {
             ¡Hola! 🍪 Utilizamos <span className="font-bold">cookies</span>{' '}
             propias y de terceros para mejorar tu experiencia en nuestro sitio
             web y ofrecerte contenido personalizado. Puedes aceptar todas las
-            cookies o configurarlas según tus preferencias.
+            cookies o configurarlas según tus preferencias. Para más
+            información, consulta nuestra Política de cookies.
           </p>
 
           <div className="flex flex-col-reverse lg:flex-row-reverse gap-3 mt-6">
-            <Button
+            <CookiesButton
               onClick={acceptAllCookies}
               title="Acepta el uso de todas las cookies en nuestro sitio web. Esto nos ayuda a mejorar nuestros servicios y ofrecerte una experiencia personalizada."
             >
               <span className="font-medium">Aceptar todas las cookies</span>
-            </Button>
+            </CookiesButton>
 
-            <Button
-              onClick={declineAllCookies}
-              title="Declina el uso de todas las cookies, aunque esto puede afectar la funcionalidad de nuestro sitio web. Para más información, consulta nuestra Política de cookies."
-            >
-              Rechazar todas las cookies
-            </Button>
-
-            <Button
+            <CookiesButton
               onClick={openModal}
               title="Personaliza tu configuración de cookies u obtén más información sobre cómo las utilizamos."
             >
               Configurar cookies
-            </Button>
+            </CookiesButton>
           </div>
         </div>
       )}
