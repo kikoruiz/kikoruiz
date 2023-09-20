@@ -3,13 +3,13 @@ import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {throttle} from 'lodash'
+import {paramCase} from 'change-case'
 import {themeScreens} from 'lib/utils'
 import HomeModule from './home-module'
 import PictureCard from './picture-card'
 import {LatestPictures} from 'types/gallery'
 import useLatestPicturesContext from 'contexts/LatestPictures'
 import ButtonToggle from './button-toggle'
-import {paramCase} from 'change-case'
 
 const SCROLL_POSITIONS = {
   LEFT: 'left',

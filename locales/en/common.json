@@ -108,9 +108,48 @@
   "legal": {
     "name": "Legal",
     "pages": {
-      "privacy-policy": "Privacy Policy"
+      "privacy-policy": "Privacy Policy",
+      "cookies-policy": "Cookies Policy"
+    },
+    "cookies": {
+      "banner": {
+        "description": "Hello! 🍪 We use our own and third-party **cookies** to enhance your experience on our website and provide you with personalized content. You can accept all cookies or configure them according to your preferences. For more information, please see our [cookies policy](/cookies-policy)."
+      },
+      "modal": {
+        "close": "Close",
+        "title": "Cookie Settings 🍪",
+        "actions": {
+          "accept-all": {
+            "name": "Accept All Cookies",
+            "description": "Accept the use of all cookies on our website. This helps us improve our services and provide you with a personalized experience."
+          },
+          "reject-all": {
+            "name": "Reject",
+            "description": "Reject the use of all cookies, although this may affect the functionality of our website."
+          },
+          "open-modal": {
+            "name": "Cookie Settings",
+            "description": "Customize your cookie settings or learn more about how we use them."
+          },
+          "save": {
+            "name": "Save Settings",
+            "description": "Save the selected cookie settings."
+          }
+        }
+      },
+      "types": {
+        "necessary": {
+          "description": "Essential Cookies",
+          "purpose": "These cookies are necessary for our website to function correctly. They do not collect personal information and cannot be disabled."
+        },
+        "third-party": {
+          "description": "Analytics or Tracking Cookies",
+          "purpose": "Analytics cookies allow our website and third parties to collect data on how you interact. This information may include visited pages, time spent on the site, clicks made, browsing preferences, and similar data. Data collected through these cookies is used to create user profiles and better understand user preferences and online behavior."
+        }
+      }
     }
   },
+
   "error": {
     "404": "Page not found 🙃",
     "500": "Server-side error occurred 😱"
