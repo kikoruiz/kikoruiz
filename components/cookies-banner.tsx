@@ -4,10 +4,12 @@ import {useCookieConsentContext} from '@use-cookie-consent/react'
 import CookiesModal from './cookies-modal'
 import CookiesButton from './cookies-button'
 import Article from './article'
+import {COOKIES_BY_TYPE} from 'config'
+import {camelCase} from 'change-case'
 
 export default function CookiesBanner() {
   const {t} = useTranslation()
-  const {consent, acceptAllCookies} = useCookieConsentContext()
+  const {consent, acceptAllCookies, cookies} = useCookieConsentContext()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [needsBanner, setNeedsBanner] = useState(false)
 
@@ -18,8 +20,34 @@ export default function CookiesBanner() {
   useEffect(() => {
     const consents = Object.keys(consent)
 
+    function cleanCookies() {
+      const cookiesByType = Object.keys(COOKIES_BY_TYPE)
+      const cookieTypes = cookiesByType.filter(type => type !== 'NECESSARY')
+      const allCookies = Object.keys(cookies.getAll())
+      let cookiesToClean = []
+
+      cookieTypes.forEach(type => {
+        const cookieType = camelCase(type)
+        const hasToBeCleaned = !consent[cookieType]
+
+        if (hasToBeCleaned) {
+          COOKIES_BY_TYPE[type].forEach(({prefix}) => {
+            cookiesToClean = [
+              ...cookiesToClean,
+              ...allCookies.filter(key => key.includes(prefix))
+            ]
+          })
+        }
+      })
+
+      cookiesToClean.forEach(key => {
+        cookies.remove(key)
+      })
+    }
+
+    cleanCookies()
     setNeedsBanner(consents.length === 1 && consents.includes('necessary'))
-  }, [consent, setNeedsBanner])
+  }, [consent, cookies, setNeedsBanner])
 
   return (
     <>

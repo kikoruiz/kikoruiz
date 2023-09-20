@@ -17,7 +17,7 @@ export const LEGAL_PAGES = ['privacy-policy', 'cookies-policy']
 
 export const COOKIES_BY_TYPE = {
   NECESSARY: true,
-  THIRD_PARTY: [{id: 'google-analytics', cookieKey: '_ga'}]
+  THIRD_PARTY: [{id: 'google-analytics', prefix: '_ga'}]
 }
 
 export const PERSONAL_INFO = {
