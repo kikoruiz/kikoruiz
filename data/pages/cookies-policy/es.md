@@ -20,7 +20,7 @@ Utilizamos cookies por varias razones, que incluyen:
 
 ## Tipos de cookies que utilizamos
 
-A continuación, se describen los tipos de cookies que utilizamos en KikoRuiz.es:
+A continuación, se describen los tipos de cookies que utilizamos en [kikoruiz.es](/):
 
 - **Cookies esenciales:** Estas cookies son necesarias para que nuestro sitio web funcione correctamente. No recopilan información personal y no se pueden desactivar.
 
