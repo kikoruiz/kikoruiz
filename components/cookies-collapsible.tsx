@@ -23,11 +23,11 @@ export default function CookiesCollapsible({
         }}
         className="flex hover:text-orange-300 transition-colors cursor-pointer gap-6 justify-between py-3 px-6 items-center"
       >
-        <span className="font-thin drop-shadow text-lg">
+        <span className="font-thin text-lg">
           {t(`legal.cookies.types.${slug}.description`)}
         </span>
 
-        <button className="flex p-3 rounded-full bg-gradient-to-t from-neutral-600/30 drop-shadow-xs group-hover:drop-shadow-xl hover:text-neutral-300 focus:outline-none">
+        <button className="flex p-3 rounded-full bg-gradient-to-t from-neutral-600/30 group-hover:text-neutral-300 focus:outline-none">
           <IconChevronDown
             className={`h-4 w-4 transition-transform ease-in-out${
               isOpen ? ' -rotate-180' : ''

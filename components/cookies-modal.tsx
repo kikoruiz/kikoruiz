@@ -34,12 +34,12 @@ export default function CookiesModal({
         onClick={closeModal}
       />
 
-      <div className="fixed flex flex-col w-screen h-screen sm:h-auto sm:max-h-[calc(100vh-3rem)] overflow-y-auto text-sm top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 max-w-xl bg-neutral-900 drop-shadow-xl rounded border border-neutral-800 p-12">
+      <div className="fixed flex flex-col w-screen h-screen sm:h-auto sm:max-h-[calc(100vh-3rem)] overflow-y-auto text-sm top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 max-w-xl bg-neutral-900 rounded border border-neutral-800 p-12">
         <div className="absolute right-3 top-3 z-20 flex flex-row-reverse gap-3 sm:right-6 sm:top-6">
           <button
             aria-label={t('legal.cookies.modal.close')}
             title={t('legal.cookies.modal.close')}
-            className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
+            className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none"
             onClick={closeModal}
           >
             <span className="sr-only">{t('legal.cookies.modal.close')}</span>
