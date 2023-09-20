@@ -117,11 +117,8 @@
         "purpose": "Estas cookies son necesarias para que nuestro sitio web funcione correctamente. No recopilan información personal y no se pueden desactivar."
       },
       "third-party": {
-        "description": "Cookie de análisis o seguimiento (cookie de terceros).",
-        "google-analytics": {
-          "purpose": "La cookie `_ga` se utiliza para recopilar información sobre cómo los usuarios interactúan con un sitio web. Su principal función es asignar un identificador único a cada visitante, lo que permite a Google Analytics realizar un seguimiento de las visitas de usuarios individuales a lo largo del tiempo. Esto es esencial para generar estadísticas de uso del sitio, como el número de visitantes únicos, la duración promedio de la visita, las páginas visitadas y otros datos relevantes. Estos datos ayudan a los propietarios de sitios web a comprender mejor el comportamiento de los usuarios y a tomar decisiones informadas para mejorar la experiencia del usuario y el rendimiento del sitio.",
-          "expiration": "La cookie `_ga` suele tener una caducidad de 2 años, lo que significa que permanece en el dispositivo del usuario durante ese período, a menos que se elimine antes de su vencimiento."
-        }
+        "description": "Cookies de análisis o seguimiento",
+        "purpose": "Las cookies de análisis permiten a nuestro sitio web y a terceros recopilar datos sobre cómo interactúas. Esta información puede incluir páginas visitadas, tiempo dedicado en el sitio, clics realizados, preferencias de navegación y otros datos similares. Los datos recopilados a través de estas cookies se utilizan para crear perfiles de usuario y comprender mejor las preferencias y el comportamiento del usuario en línea."
       }
     }
   },

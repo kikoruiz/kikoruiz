@@ -4,6 +4,7 @@ import Footer from './footer'
 import {Alternate, SectionData} from 'types'
 import {LEGAL_PAGES} from 'config'
 import CookiesBanner from './cookies-banner'
+import ThirdPartyScripts from './third-party-scripts'
 
 export default function Layout({
   children,
@@ -27,9 +28,11 @@ export default function Layout({
         {children}
       </main>
 
+      <Footer alternates={alternates} />
+
       <CookiesBanner />
 
-      <Footer alternates={alternates} />
+      <ThirdPartyScripts />
     </div>
   )
 }
