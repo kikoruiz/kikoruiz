@@ -23,7 +23,7 @@ export default function CookiesCollapsible({
         }}
         className="flex hover:text-orange-300 transition-colors cursor-pointer gap-6 justify-between py-3 px-6 items-center"
       >
-        <span className="font-thin text-lg">
+        <span className="font-extralight text-lg">
           {t(`legal.cookies.types.${slug}.description`)}
         </span>
 
