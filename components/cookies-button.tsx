@@ -12,7 +12,7 @@ const cookiesButtonStyles = cva(
         dark: 'from-neutral-800 to-neutral-900 text-neutral-300 hover:ring-1 hover:ring-orange-300/90 hover:text-white hover:to-black/30 hover:drop-shadow-xl'
       },
       size: {
-        medium: 'py-1.5 px-3',
+        medium: 'py-1.5 px-3 text-sm',
         large: 'py-3 px-6 text-base leading-snug'
       }
     }
