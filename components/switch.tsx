@@ -60,5 +60,5 @@ interface SwitchProps {
   className?: string
   isChecked?: boolean
   isLocked?: boolean
-  onSwitch: () => void
+  onSwitch: (nextIsChecked: boolean) => void
 }

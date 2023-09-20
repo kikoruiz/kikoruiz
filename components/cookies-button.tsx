@@ -1,4 +1,4 @@
-import {PropsWithChildren} from 'react'
+import {ButtonHTMLAttributes, PropsWithChildren} from 'react'
 import {cva} from 'class-variance-authority'
 import type {VariantProps} from 'class-variance-authority'
 
@@ -20,7 +20,8 @@ const cookiesButtonStyles = cva(
 )
 
 type CookiesButtonProps = PropsWithChildren<
-  HTMLButtonElement & VariantProps<typeof cookiesButtonStyles>
+  ButtonHTMLAttributes<HTMLButtonElement> &
+    VariantProps<typeof cookiesButtonStyles>
 >
 
 export default function CookiesButton({
