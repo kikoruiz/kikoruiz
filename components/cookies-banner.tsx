@@ -24,7 +24,7 @@ export default function CookiesBanner() {
   return (
     <>
       {needsBanner && (
-        <div className="fixed bottom-6 right-6 left-6 sm:left-auto bg-gradient-to-b from-neutral-800 to-neutral-900 drop-shadow-2xl rounded border-2 border-neutral-600 sm:w-1/2 p-3 md:p-6 z-20">
+        <div className="fixed bottom-3 right-3 left-3 md:bottom-6 md:right-6 md:left-auto bg-gradient-to-b from-neutral-800 to-neutral-900 drop-shadow-2xl rounded border-2 border-neutral-600 md:w-1/2 p-3 md:p-6 z-20">
           <Article
             content={t('legal.cookies.banner.description')}
             className="prose-p:text-sm prose-p:font-thin prose-p:text-neutral-300 prose-p:leading-relaxed"
