@@ -40,8 +40,11 @@ export default function CookiesBanner() {
         }
       })
 
+      const options =
+        window.location.hostname === 'localhost' ? {} : {domain: '.kikoruiz.es'}
+
       cookiesToClean.forEach(key => {
-        cookies.remove(key)
+        cookies.remove(key, options)
       })
     }
 
