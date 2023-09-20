@@ -9,7 +9,7 @@ const cookiesButtonStyles = cva(
       intent: {
         light:
           'from-neutral-100 to-neutral-300 text-neutral-900 hover:ring-2 hover:ring-orange-300 hover:text-black hover:from-white hover:to-neutral-200',
-        dark: 'from-neutral-800 to-neutral-900 text-neutral-300 hover:ring-1 hover:ring-orange-300/90 hover:text-white hover:to-black/30 hover:drop-shadow-xl'
+        dark: 'from-neutral-800 to-neutral-900 text-neutral-300 hover:ring-1 hover:ring-orange-300/90 hover:text-white hover:to-black/30'
       },
       size: {
         medium: 'py-1.5 px-3 text-sm',
