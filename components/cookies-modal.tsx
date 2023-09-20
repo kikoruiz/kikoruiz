@@ -37,12 +37,12 @@ export default function CookiesModal({
       <div className="fixed w-screen h-screen sm:h-auto sm:max-h-[calc(100vh-3rem)] overflow-y-auto text-sm top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 max-w-xl bg-neutral-900 drop-shadow-xl rounded border border-neutral-800 p-12">
         <div className="absolute right-3 top-3 z-20 flex flex-row-reverse gap-3 sm:right-6 sm:top-6">
           <button
-            aria-label={t('cookies.modal.close')}
-            title={t('cookies.modal.close')}
+            aria-label={t('legal.cookies.modal.close')}
+            title={t('legal.cookies.modal.close')}
             className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
             onClick={closeModal}
           >
-            <span className="sr-only">{t('cookies.modal.close')}</span>
+            <span className="sr-only">{t('legal.cookies.modal.close')}</span>
 
             <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
               <span
@@ -59,7 +59,7 @@ export default function CookiesModal({
         </div>
 
         <header className="font-bold text-3xl mr-12 mt-6">
-          Configuración de cookies 🍪
+          {t('legal.cookies.modal.title')}
         </header>
 
         <div className="flex flex-col justify-between">
@@ -86,9 +86,11 @@ export default function CookiesModal({
                 acceptAllCookies()
                 closeModal()
               }}
-              title="Acepta el uso de todas las cookies en nuestro sitio web. Esto nos ayuda a mejorar nuestros servicios y ofrecerte una experiencia personalizada."
+              title={t('legal.cookies.modal.actions.accept-all.description')}
             >
-              <span className="font-medium">Aceptar todas las cookies</span>
+              <span className="font-medium">
+                {t('legal.cookies.modal.actions.accept-all.name')}
+              </span>
             </CookiesButton>
 
             <CookiesButton
@@ -97,9 +99,9 @@ export default function CookiesModal({
                 acceptCookies({...consents})
                 closeModal()
               }}
-              title="Guarda la configuración de cookies seleccionada."
+              title={t('legal.cookies.modal.actions.save.description')}
             >
-              Guardar configuración
+              {t('legal.cookies.modal.actions.save.name')}
             </CookiesButton>
 
             <CookiesButton
@@ -108,9 +110,9 @@ export default function CookiesModal({
                 declineAllCookies()
                 closeModal()
               }}
-              title="Declina el uso de todas las cookies, aunque esto puede afectar la funcionalidad de nuestro sitio web."
+              title={t('legal.cookies.modal.actions.reject-all.description')}
             >
-              Rechazar
+              {t('legal.cookies.modal.actions.reject-all.name')}
             </CookiesButton>
           </div>
         </div>

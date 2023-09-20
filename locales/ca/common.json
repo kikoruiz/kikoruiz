@@ -109,18 +109,42 @@
     "name": "Legal",
     "pages": {
       "privacy-policy": "Política de privacitat",
-      "cookies-policy": "Política de cookies"
+      "cookies-policy": "Política de galetes"
     },
     "cookies": {
-      "necessary": {
-        "description": "",
-        "purpose": ""
+      "banner": {
+        "description": "Hola! 🍪 Utilitzem **galetes** pròpies i de tercers per millorar la teva experiència al nostre lloc web i oferir-te contingut personalitzat. Pots acceptar totes les galetes o configurar-les segons les teves preferències. Per a més informació, consulta la nostra [política de galetes](/politica-de-galetes)."
       },
-      "third-party": {
-        "description": "",
-        "google-analytics": {
-          "purpose": "",
-          "expiration": ""
+      "modal": {
+        "close": "Tancar",
+        "title": "Configuració de galetes 🍪",
+        "actions": {
+          "accept-all": {
+            "name": "Acceptar totes les galetes",
+            "description": "Accepta l'ús de totes les galetes al nostre lloc web. Això ens ajuda a millorar els nostres serveis i oferir-te una experiència personalitzada."
+          },
+          "reject-all": {
+            "name": "Rebutjar",
+            "description": "Rebutja l'ús de totes les galetes, tot i que això pot afectar la funcionalitat del nostre lloc web."
+          },
+          "open-modal": {
+            "name": "Configurar galetes",
+            "description": "Personalitza la teva configuració de galetes o obtén més informació sobre com les utilitzem."
+          },
+          "save": {
+            "name": "Desar configuració",
+            "description": "Desa la configuració de galetes seleccionada."
+          }
+        }
+      },
+      "types": {
+        "necessary": {
+          "description": "Galetes essencials",
+          "purpose": "Aquestes galetes són necessàries perquè el nostre lloc web funcioni correctament. No recopilen informació personal i no es poden desactivar."
+        },
+        "third-party": {
+          "description": "Galetes d'anàlisi o seguiment",
+          "purpose": "Les galetes d'anàlisi permeten al nostre lloc web i a tercers recopilar dades sobre com interactues. Aquesta informació pot incloure pàgines visitades, temps dedicat al lloc, clics realitzats, preferències de navegació i altres dades similars. Les dades recopilades a través d'aquestes galetes s'utilitzen per crear perfils d'usuari i comprendre millor les preferències i el comportament de l'usuari en línia."
         }
       }
     }

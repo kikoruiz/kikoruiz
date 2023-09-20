@@ -112,13 +112,40 @@
       "cookies-policy": "Política de cookies"
     },
     "cookies": {
-      "necessary": {
-        "description": "Cookies esenciales",
-        "purpose": "Estas cookies son necesarias para que nuestro sitio web funcione correctamente. No recopilan información personal y no se pueden desactivar."
+      "banner": {
+        "description": "¡Hola! 🍪 Utilizamos **cookies** propias y de terceros para mejorar tu experiencia en nuestro sitio web y ofrecerte contenido personalizado. Puedes aceptar todas las cookies o configurarlas según tus preferencias. Para más información, consulta nuestra [política de cookies](/politica-de-cookies)."
       },
-      "third-party": {
-        "description": "Cookies de análisis o seguimiento",
-        "purpose": "Las cookies de análisis permiten a nuestro sitio web y a terceros recopilar datos sobre cómo interactúas. Esta información puede incluir páginas visitadas, tiempo dedicado en el sitio, clics realizados, preferencias de navegación y otros datos similares. Los datos recopilados a través de estas cookies se utilizan para crear perfiles de usuario y comprender mejor las preferencias y el comportamiento del usuario en línea."
+      "modal": {
+        "close": "Cerrar",
+        "title": "Configuración de cookies 🍪",
+        "actions": {
+          "accept-all": {
+            "name": "Aceptar todas las cookies",
+            "description": "Acepta el uso de todas las cookies en nuestro sitio web. Esto nos ayuda a mejorar nuestros servicios y ofrecerte una experiencia personalizada."
+          },
+          "reject-all": {
+            "name": "Rechazar",
+            "description": "Rechaza el uso de todas las cookies, aunque esto puede afectar la funcionalidad de nuestro sitio web."
+          },
+          "open-modal": {
+            "name": "Configurar cookies",
+            "description": "Personaliza tu configuración de cookies u obtén más información sobre cómo las utilizamos."
+          },
+          "save": {
+            "name": "Guardar configuración",
+            "description": "Guarda la configuración de cookies seleccionada."
+          }
+        }
+      },
+      "types": {
+        "necessary": {
+          "description": "Cookies esenciales",
+          "purpose": "Estas cookies son necesarias para que nuestro sitio web funcione correctamente. No recopilan información personal y no se pueden desactivar."
+        },
+        "third-party": {
+          "description": "Cookies de análisis o seguimiento",
+          "purpose": "Las cookies de análisis permiten a nuestro sitio web y a terceros recopilar datos sobre cómo interactúas. Esta información puede incluir páginas visitadas, tiempo dedicado en el sitio, clics realizados, preferencias de navegación y otros datos similares. Los datos recopilados a través de estas cookies se utilizan para crear perfiles de usuario y comprender mejor las preferencias y el comportamiento del usuario en línea."
+        }
       }
     }
   },

@@ -1,57 +1,43 @@
-**Última actualización: [Fecha de la última actualización]**
+Last updated: **September 20, 2023**
 
-**1. Introducción**
+## Introduction
 
-Esta Política de Cookies explica cómo KikoRuiz.es utiliza cookies y tecnologías similares para recopilar y almacenar información cuando visitas nuestro sitio web. Esta política es parte de nuestra política de privacidad y está diseñada para ayudarte a comprender mejor cómo utilizamos estas tecnologías y por qué lo hacemos. Al continuar utilizando nuestro sitio web, aceptas el uso de cookies de acuerdo con esta política.
+This cookie policy explains how [kikoruiz.es](/) uses cookies and similar technologies to collect and store information when you visit our website. This policy is part of our privacy policy and is designed to help you better understand how we use these technologies and why we do so. By continuing to use our website, you agree to the use of cookies in accordance with this policy.
 
-**2. ¿Qué son las cookies?**
+## What are cookies?
 
-Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (computadora, teléfono móvil o tablet) cuando visitas un sitio web. Estos archivos de texto se utilizan para recordar información sobre tu visita, como tus preferencias y las páginas que has visitado. Pueden ser temporales (cookies de sesión) o permanecer en tu dispositivo durante un tiempo más prolongado (cookies persistentes).
+Cookies are small text files that are stored on your device (computer, mobile phone, or tablet) when you visit a website. These text files are used to remember information about your visit, such as your preferences and the pages you have visited. They can be temporary (session cookies) or remain on your device for a longer period (persistent cookies).
 
-**3. ¿Por qué utilizamos cookies?**
+## Why do we use cookies?
 
-Utilizamos cookies por varias razones, que incluyen:
+We use cookies for various reasons, including:
 
-- **Mejorar la experiencia del usuario:** Las cookies nos ayudan a personalizar tu experiencia en nuestro sitio web, como recordar tus preferencias y mostrarte contenido relevante.
+- **Improving the user experience:** Cookies help us personalize your experience on our website, such as remembering your preferences and showing you relevant content.
 
-- **Analítica web:** Utilizamos cookies para recopilar datos estadísticos sobre el uso de nuestro sitio web, lo que nos ayuda a entender cómo los visitantes interactúan con él y a mejorar su funcionamiento.
+- **Web analytics:** We use cookies to collect statistical data about the use of our website, which helps us understand how visitors interact with it and improve its functionality.
 
-- **Publicidad personalizada:** Podemos utilizar cookies para mostrar anuncios personalizados en función de tus intereses y comportamiento de navegación.
+- **Personalized advertising:** We may use third-party cookies to display personalized ads based on your interests and browsing behavior.
 
-**4. Tipos de cookies que utilizamos**
+## Types of cookies we use
 
-A continuación, se describen los tipos de cookies que utilizamos en KikoRuiz.es:
+Below are the types of cookies we use on [kikoruiz.es](/):
 
-- **Cookies esenciales:** Estas cookies son necesarias para que nuestro sitio web funcione correctamente. No recopilan información personal y no se pueden desactivar.
+- **Essential cookies:** These cookies are necessary for our website to function correctly. They do not collect personal information and cannot be disabled.
 
-- **Cookies de rendimiento:** Estas cookies recopilan información anónima sobre cómo los visitantes utilizan nuestro sitio web, como las páginas que visitan con más frecuencia. Estas cookies nos ayudan a mejorar la funcionalidad del sitio.
+- **Performance cookies:** These cookies collect anonymous information about how visitors use our website, such as the pages they visit most frequently. These cookies help us improve site functionality.
 
-- **Cookies de funcionalidad:** Estas cookies permiten que nuestro sitio web recuerde tus preferencias y elecciones, como tu idioma preferido, para proporcionarte una experiencia más personalizada.
+- **Functionality cookies:** These cookies allow our website to remember your preferences and choices, such as your preferred language, to provide you with a more personalized experience.
 
-- **Cookies de publicidad y seguimiento:** Podemos utilizar cookies de terceros para mostrar anuncios personalizados y realizar un seguimiento de la eficacia de nuestras campañas publicitarias.
+- **Advertising and tracking cookies:** We may use third-party cookies to display personalized ads and track the effectiveness of our advertising campaigns.
 
-**5. Gestión de cookies**
+## Cookie management
 
-Puedes gestionar tus preferencias de cookies en cualquier momento a través de la configuración de tu navegador. La mayoría de los navegadores te permiten rechazar o aceptar cookies, así como eliminar las cookies que ya se han almacenado en tu dispositivo. Ten en cuenta que la desactivación de cookies esenciales puede afectar la funcionalidad de nuestro sitio web.
+You can manage your cookie preferences at any time through your browser settings. Most browsers allow you to reject or accept cookies, as well as delete cookies that have already been stored on your device. Please note that disabling essential cookies may affect the functionality of our website.
 
-**6. Cambios en nuestra política de cookies**
+## Changes to our cookie policy
 
-Nos reservamos el derecho de modificar esta política de cookies en cualquier momento. Cualquier cambio significativo se comunicará a través de nuestro sitio web. Te recomendamos revisar esta política regularmente para mantenerte informado sobre cómo utilizamos las cookies.
+We reserve the right to modify this cookie policy at any time. Any significant changes will be communicated through our website. We recommend checking this policy regularly to stay informed about how we use cookies.
 
-**7. Contacto**
+## Contact
 
-Si tienes alguna pregunta o comentario sobre nuestra política de cookies, no dudes en ponerte en contacto con nosotros a través de [tu dirección de correo electrónico de contacto].
-
---
-
-La cookie "\_ga" es una cookie utilizada por Google Analytics, una herramienta de análisis web muy comúnmente empleada por los sitios web para rastrear y analizar el comportamiento de los visitantes en el sitio. Esta cookie en particular se asocia con Google Analytics y se utiliza para distinguir a los usuarios únicos cuando visitan un sitio web. Aquí hay más detalles sobre la cookie "\_ga":
-
-**Tipo de Cookie:** Cookie de análisis o seguimiento (cookie de terceros).
-
-**Propósito:** La cookie "\_ga" se utiliza para recopilar información sobre cómo los usuarios interactúan con un sitio web. Su principal función es asignar un identificador único a cada visitante, lo que permite a Google Analytics realizar un seguimiento de las visitas de usuarios individuales a lo largo del tiempo. Esto es esencial para generar estadísticas de uso del sitio, como el número de visitantes únicos, la duración promedio de la visita, las páginas visitadas y otros datos relevantes. Estos datos ayudan a los propietarios de sitios web a comprender mejor el comportamiento de los usuarios y a tomar decisiones informadas para mejorar la experiencia del usuario y el rendimiento del sitio.
-
-**Caducidad:** La cookie "\_ga" suele tener una caducidad de 2 años, lo que significa que permanece en el dispositivo del usuario durante ese período, a menos que se elimine antes de su vencimiento.
-
-Es importante señalar que, debido a la privacidad y las regulaciones de protección de datos, muchos sitios web y servicios ahora implementan prácticas y configuraciones que anonimizan la dirección IP de los usuarios antes de que se almacene en Google Analytics, lo que ayuda a proteger la privacidad del usuario.
-
-Los usuarios suelen tener la opción de gestionar las cookies, incluida la "\_ga", a través de la configuración de su navegador o mediante el consentimiento de cookies en el sitio web. Además, los sitios web suelen incluir una política de cookies que informa a los usuarios sobre las cookies utilizadas y cómo pueden gestionarlas.
+If you have any questions or comments about our cookie policy, please do not hesitate to [contact us](/#contact).

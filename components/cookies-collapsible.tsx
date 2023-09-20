@@ -24,7 +24,7 @@ export default function CookiesCollapsible({
         className="flex hover:text-orange-300 transition-colors cursor-pointer gap-6 justify-between py-3 px-6 items-center"
       >
         <span className="font-thin drop-shadow text-lg">
-          {t(`legal.cookies.${slug}.description`)}
+          {t(`legal.cookies.types.${slug}.description`)}
         </span>
 
         <button className="flex p-3 rounded-full bg-gradient-to-t from-neutral-600/30 drop-shadow-xs group-hover:drop-shadow-xl hover:text-neutral-300 focus:outline-none">
@@ -39,12 +39,12 @@ export default function CookiesCollapsible({
       {isOpen && (
         <div className="p-6">
           <div className="text-neutral-300/60">
-            {t(`legal.cookies.${slug}.purpose`)}
+            {t(`legal.cookies.types.${slug}.purpose`)}
           </div>
 
           <div className="flex justify-end">
             <Switch
-              label={t(`legal.cookies.${slug}.description`)}
+              label={t(`legal.cookies.types.${slug}.description`)}
               isChecked={isChecked}
               isLocked={isNecessary}
               className="mt-6"

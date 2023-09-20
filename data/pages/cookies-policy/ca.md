@@ -1,57 +1,43 @@
-**Última actualización: [Fecha de la última actualización]**
+Última actualització: **20 de setembre de 2023**
 
-**1. Introducción**
+## Introducció
 
-Esta Política de Cookies explica cómo KikoRuiz.es utiliza cookies y tecnologías similares para recopilar y almacenar información cuando visitas nuestro sitio web. Esta política es parte de nuestra política de privacidad y está diseñada para ayudarte a comprender mejor cómo utilizamos estas tecnologías y por qué lo hacemos. Al continuar utilizando nuestro sitio web, aceptas el uso de cookies de acuerdo con esta política.
+Aquesta política de galetes explica com [kikoruiz.es](/) utilitza galetes i tecnologies similars per recopilar i emmagatzemar informació quan visites el nostre lloc web. Aquesta política és part de la nostra política de privadesa i està dissenyada per ajudar-te a comprendre millor com utilitzem aquestes tecnologies i per què ho fem. En continuar utilitzant el nostre lloc web, acceptes l'ús de galetes d'acord amb aquesta política.
 
-**2. ¿Qué son las cookies?**
+## Què són les galetes?
 
-Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (computadora, teléfono móvil o tablet) cuando visitas un sitio web. Estos archivos de texto se utilizan para recordar información sobre tu visita, como tus preferencias y las páginas que has visitado. Pueden ser temporales (cookies de sesión) o permanecer en tu dispositivo durante un tiempo más prolongado (cookies persistentes).
+Les galetes són petits fitxers de text que es emmagatzemen al teu dispositiu (ordinador, telèfon mòbil o tauleta) quan visites un lloc web. Aquests fitxers de text s'utilitzen per recordar informació sobre la teua visita, com les teues preferències i les pàgines que has visitat. Poden ser temporals (galetes de sessió) o romandre al teu dispositiu durant un temps més llarg (galetes persistents).
 
-**3. ¿Por qué utilizamos cookies?**
+## Per què utilitzem galetes?
 
-Utilizamos cookies por varias razones, que incluyen:
+Utilitzem galetes per diverses raons, que inclouen:
 
-- **Mejorar la experiencia del usuario:** Las cookies nos ayudan a personalizar tu experiencia en nuestro sitio web, como recordar tus preferencias y mostrarte contenido relevante.
+- **Millorar l'experiència de l'usuari:** Les galetes ens ajuden a personalitzar la teua experiència al nostre lloc web, com recordar les teues preferències i mostrar-te contingut rellevant.
 
-- **Analítica web:** Utilizamos cookies para recopilar datos estadísticos sobre el uso de nuestro sitio web, lo que nos ayuda a entender cómo los visitantes interactúan con él y a mejorar su funcionamiento.
+- **Analítica web:** Utilitzem galetes per recopilar dades estadístiques sobre l'ús del nostre lloc web, el que ens ajuda a entendre com els visitants hi interactuen i a millorar el seu funcionament.
 
-- **Publicidad personalizada:** Podemos utilizar cookies para mostrar anuncios personalizados en función de tus intereses y comportamiento de navegación.
+- **Publicitat personalitzada:** Podem utilitzar galetes de tercers per mostrar anuncis personalitzats en funció dels teus interessos i comportament de navegació.
 
-**4. Tipos de cookies que utilizamos**
+## Tipus de galetes que utilitzem
 
-A continuación, se describen los tipos de cookies que utilizamos en KikoRuiz.es:
+A continuació, es descriuen els tipus de galetes que utilitzem a [kikoruiz.es](/):
 
-- **Cookies esenciales:** Estas cookies son necesarias para que nuestro sitio web funcione correctamente. No recopilan información personal y no se pueden desactivar.
+- **Galetes essencials:** Aquestes galetes són necessàries perquè el nostre lloc web funcioni correctament. No recopilen informació personal i no es poden desactivar.
 
-- **Cookies de rendimiento:** Estas cookies recopilan información anónima sobre cómo los visitantes utilizan nuestro sitio web, como las páginas que visitan con más frecuencia. Estas cookies nos ayudan a mejorar la funcionalidad del sitio.
+- **Galetes de rendiment:** Aquestes galetes recopilen informació anònima sobre com els visitants utilitzen el nostre lloc web, com les pàgines que visiten amb més freqüència. Aquestes galetes ens ajuden a millorar la funcionalitat del lloc.
 
-- **Cookies de funcionalidad:** Estas cookies permiten que nuestro sitio web recuerde tus preferencias y elecciones, como tu idioma preferido, para proporcionarte una experiencia más personalizada.
+- **Galetes de funcionalitat:** Aquestes galetes permeten que el nostre lloc web recorde les teues preferències i eleccions, com el teu idioma preferit, per proporcionar-te una experiència més personalitzada.
 
-- **Cookies de publicidad y seguimiento:** Podemos utilizar cookies de terceros para mostrar anuncios personalizados y realizar un seguimiento de la eficacia de nuestras campañas publicitarias.
+- **Galetes de publicitat i seguiment:** Podem utilitzar galetes de tercers per mostrar anuncis personalitzats i fer un seguiment de l'eficàcia de les nostres campanyes publicitàries.
 
-**5. Gestión de cookies**
+## Gestió de galetes
 
-Puedes gestionar tus preferencias de cookies en cualquier momento a través de la configuración de tu navegador. La mayoría de los navegadores te permiten rechazar o aceptar cookies, así como eliminar las cookies que ya se han almacenado en tu dispositivo. Ten en cuenta que la desactivación de cookies esenciales puede afectar la funcionalidad de nuestro sitio web.
+Pots gestionar les teues preferències de galetes en qualsevol moment a través de la configuració del teu navegador. La majoria dels navegadors et permeten rebutjar o acceptar galetes, així com eliminar les galetes que ja s'han emmagatzemat al teu dispositiu. Tingues en compte que la desactivació de galetes essencials pot afectar la funcionalitat del nostre lloc web.
 
-**6. Cambios en nuestra política de cookies**
+## Canvis en la nostra política de galetes
 
-Nos reservamos el derecho de modificar esta política de cookies en cualquier momento. Cualquier cambio significativo se comunicará a través de nuestro sitio web. Te recomendamos revisar esta política regularmente para mantenerte informado sobre cómo utilizamos las cookies.
+Ens reservem el dret de modificar aquesta política de galetes en qualsevol moment. Qualsevol canvi significatiu es comunicarà a través del nostre lloc web. Et recomanem revisar aquesta política regularment per mantenir-te informat sobre com utilitzem les galetes.
 
-**7. Contacto**
+## Contacte
 
-Si tienes alguna pregunta o comentario sobre nuestra política de cookies, no dudes en ponerte en contacto con nosotros a través de [tu dirección de correo electrónico de contacto].
-
---
-
-La cookie "\_ga" es una cookie utilizada por Google Analytics, una herramienta de análisis web muy comúnmente empleada por los sitios web para rastrear y analizar el comportamiento de los visitantes en el sitio. Esta cookie en particular se asocia con Google Analytics y se utiliza para distinguir a los usuarios únicos cuando visitan un sitio web. Aquí hay más detalles sobre la cookie "\_ga":
-
-**Tipo de Cookie:** Cookie de análisis o seguimiento (cookie de terceros).
-
-**Propósito:** La cookie "\_ga" se utiliza para recopilar información sobre cómo los usuarios interactúan con un sitio web. Su principal función es asignar un identificador único a cada visitante, lo que permite a Google Analytics realizar un seguimiento de las visitas de usuarios individuales a lo largo del tiempo. Esto es esencial para generar estadísticas de uso del sitio, como el número de visitantes únicos, la duración promedio de la visita, las páginas visitadas y otros datos relevantes. Estos datos ayudan a los propietarios de sitios web a comprender mejor el comportamiento de los usuarios y a tomar decisiones informadas para mejorar la experiencia del usuario y el rendimiento del sitio.
-
-**Caducidad:** La cookie "\_ga" suele tener una caducidad de 2 años, lo que significa que permanece en el dispositivo del usuario durante ese período, a menos que se elimine antes de su vencimiento.
-
-Es importante señalar que, debido a la privacidad y las regulaciones de protección de datos, muchos sitios web y servicios ahora implementan prácticas y configuraciones que anonimizan la dirección IP de los usuarios antes de que se almacene en Google Analytics, lo que ayuda a proteger la privacidad del usuario.
-
-Los usuarios suelen tener la opción de gestionar las cookies, incluida la "\_ga", a través de la configuración de su navegador o mediante el consentimiento de cookies en el sitio web. Además, los sitios web suelen incluir una política de cookies que informa a los usuarios sobre las cookies utilizadas y cómo pueden gestionarlas.
+Si tens alguna pregunta o comentari sobre la nostra política de galetes, no dubtes en [contactar-nos](/#contacte).

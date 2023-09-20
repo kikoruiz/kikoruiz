@@ -1,4 +1,4 @@
-Última actualización: **19 de septiembre de 2023**
+Última actualización: **20 de septiembre de 2023**
 
 ## Introducción
 
@@ -40,4 +40,4 @@ Nos reservamos el derecho de modificar esta política de cookies en cualquier mo
 
 ## Contacto
 
-Si tienes alguna pregunta o comentario sobre nuestra política de cookies, no dudes en ponerte en contacto con nosotros a través de [tu dirección de correo electrónico de contacto].
+Si tienes alguna pregunta o comentario sobre nuestra política de cookies, no dudes en [contactarnos](/#contacto).

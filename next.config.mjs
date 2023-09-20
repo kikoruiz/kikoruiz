@@ -49,6 +49,11 @@ const nextConfig = withBundleAnalyzer({
             locale: false
           },
           {
+            source: '/ca/politica-de-galetes',
+            destination: '/ca/politica-de-cookies',
+            locale: false
+          },
+          {
             source: '/en/cookies-policy',
             destination: '/en/politica-de-cookies',
             locale: false
