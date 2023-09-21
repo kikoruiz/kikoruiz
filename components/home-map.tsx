@@ -18,7 +18,7 @@ export default function HomeMap({pictures, setShowMap}: HomeMapProps) {
         onClick={handleMapClose}
       ></button>
 
-      <div className="container absolute inset-0 mx-auto overflow-hidden drop-shadow-xl sm:top-[6rem] sm:max-h-[calc(100%-12rem)] sm:rounded-lg">
+      <div className="container absolute inset-0 mx-auto overflow-hidden drop-shadow-xl sm:top-[6rem] sm:max-h-[calc(100%-12rem)] sm:rounded">
         <button
           aria-label={t('map.close')}
           title={t('map.close')}
@@ -26,15 +26,17 @@ export default function HomeMap({pictures, setShowMap}: HomeMapProps) {
           onClick={handleMapClose}
         >
           <span className="sr-only">{t('map.close')}</span>
+
           <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
             <span
               aria-hidden="true"
               className="absolute flex h-0.5 w-5 rotate-45 transform bg-current group-hover:bg-current"
-            ></span>
+            />
+
             <span
               aria-hidden="true"
               className="absolute flex h-0.5 w-5 -rotate-45 transform bg-current group-hover:bg-current"
-            ></span>
+            />
           </div>
         </button>
 
