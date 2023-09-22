@@ -12,9 +12,9 @@ Fem servir Google Analytics 4, un servei d'anàlisi web proporcionat per Google,
 
 Google Analytics recopila dades com l'adreça IP del visitant, la ubicació geogràfica, el tipus de navegador, el sistema operatiu i la font de referència. Els informes generats per Google Analytics ens ajuden a comprendre el comportament dels usuaris i a prendre decisions informades sobre el contingut i l'estructura del Lloc.
 
-Per obtindre més informació sobre com Google recopila i processa dades mitjançant Google Analytics, et recomanem revisar la Política de Privacitat de Google: [https://policies.google.com/privacy](https://policies.google.com/privacy)
+Per obtindre més informació sobre com Google recopila i processa dades mitjançant Google Analytics, et recomanem revisar la Política de Privacitat de Google: [https://policies.google.com/privacy](https://policies.google.com/privacy).
 
-Pots optar per no participar en la recopilació de dades de Google Analytics configurant les preferències de cookies al teu navegador o utilitzant el complement de sortida de Google Analytics disponible aquí: [https://tools.google.com/dlpage/gaoptout](https://tools.google.com/dlpage/gaoptout)
+Pots optar per no participar en la recopilació de dades de Google Analytics configurant les preferències de cookies al teu navegador o utilitzant el complement de sortida de Google Analytics disponible aquí: [https://tools.google.com/dlpage/gaoptout](https://tools.google.com/dlpage/gaoptout).
 
 ## Ús de la informació
 
