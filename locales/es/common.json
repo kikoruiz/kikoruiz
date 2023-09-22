@@ -65,10 +65,6 @@
     },
     "carousel": {"query-key": "foto"}
   },
-  "map": {
-    "button": "Localizar fotos en el mapa",
-    "close": "Cerrar el mapa"
-  },
   "languages": {
     "selector": {
       "label": "Idioma"

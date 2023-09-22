@@ -13,18 +13,18 @@ import {getAllPicturesOnMap} from 'lib/gallery/pictures'
 import {getGalleryTags} from 'lib/gallery/tags'
 import Hero from 'components/hero'
 import HomeSections from 'components/home-sections'
-import GalleryTags from 'components/gallery-tags'
+import HomeLatestPictures from 'components/home-latest-pictures'
 import HomeLatestContent from 'components/home-latest-content'
 import HomeBlock from 'components/home-block'
 import HomeModule from 'components/home-module'
-import HomeLatestPictures from 'components/home-latest-pictures'
+import GalleryTags from 'components/gallery-tags'
+import HomeContact from 'components/home-contact'
 import {Alternate, SectionImage, Tag} from 'types'
 import {HighlightedImage, LatestPictures, PictureOnMap} from 'types/gallery'
 import {BlogPost} from 'types/blog'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
-import HomeContact from 'components/home-contact'
 import {GALLERY_ALBUMS} from 'config/gallery'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
@@ -82,28 +82,33 @@ export default function Home({
 
         <HomeLatestPictures latestPictures={latestPictures} />
 
-        <HomeBlock>
-          <div
-            onClick={() => {
-              setShowMap(true)
-            }}
-            className="group relative flex w-full cursor-pointer justify-center overflow-hidden rounded border border-neutral-700/60 bg-gradient-to-t from-neutral-900 to-neutral-900/80 p-6 hover:border-orange-300/60 sm:justify-end lg:p-12"
-          >
-            <IconGlobe className="absolute -left-8 -top-14 w-64 fill-neutral-600/90 transition-transform group-hover:scale-125 group-hover:fill-orange-300 lg:-top-24 lg:left-0 lg:w-[45%] lg:group-hover:scale-110 xl:-left-12 xl:-top-48 xl:w-[60%]" />
-            <button
-              aria-label={t('map.button')}
-              title={t('map.button')}
-              className="z-0 flex appearance-none items-center rounded-full border border-neutral-600/30 bg-neutral-800/90 p-6 py-3 font-semibold text-neutral-300/60 drop-shadow transition-all hover:drop-shadow-lg group-hover:text-orange-300/90"
+        <HomeModule title={t('home:map.title')}>
+          <div className="p-3">
+            <div
+              onClick={() => {
+                setShowMap(true)
+              }}
+              className="group relative flex w-full cursor-pointer justify-center overflow-hidden rounded border border-neutral-700/60 bg-gradient-to-t from-neutral-900 to-neutral-900/80 p-6 hover:border-orange-300/60 sm:justify-end lg:p-12"
             >
-              <IconMapPin className="-ml-1 mr-1.5 w-6" />
-              {t('map.button')}
-            </button>
-          </div>
+              <IconGlobe className="absolute -left-8 -top-14 w-64 fill-neutral-600/90 transition-transform group-hover:scale-125 group-hover:fill-orange-300 lg:-top-24 lg:left-0 lg:w-[45%] lg:group-hover:scale-110 xl:-left-12 xl:-top-48 xl:w-[60%]" />
+              <button
+                aria-label={t('home:map.button')}
+                title={t('home:map.button')}
+                className="z-0 flex appearance-none items-center rounded-full border border-neutral-600/30 bg-neutral-800/90 p-6 py-3 font-semibold text-neutral-300/60 drop-shadow transition-all hover:drop-shadow-lg group-hover:text-orange-300/90"
+              >
+                <IconMapPin className="-ml-1 mr-1.5 w-6" />
+                {t('home:map.button')}
+              </button>
+            </div>
 
-          {showMap && (
-            <DynamicHomeMap pictures={picturesOnMap} setShowMap={setShowMap} />
-          )}
-        </HomeBlock>
+            {showMap && (
+              <DynamicHomeMap
+                pictures={picturesOnMap}
+                setShowMap={setShowMap}
+              />
+            )}
+          </div>
+        </HomeModule>
 
         <HomeModule title={t('home:gallery-tags')} className="pb-3">
           <GalleryTags tags={galleryTags} />

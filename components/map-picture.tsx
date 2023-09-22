@@ -66,14 +66,14 @@ export default function MapPicture({
       {isInteractive && (
         <Popup
           closeButton={false}
-          className="ml-[.5px] [&>div:first-child>div]:!m-0 [&>div:first-child>div]:!p-2 [&>div:first-child]:!rounded-lg [&>div:first-child]:bg-gradient-to-b [&>div:first-child]:!from-neutral-300 [&>div:first-child]:!via-transparent [&>div:first-child]:!text-neutral-600 [&>div>div>a]:!text-neutral-600"
+          className="ml-[.5px] [&>div:first-child>div]:!m-0 [&>div:first-child>div]:!p-2 [&>div:first-child]:!rounded-lg [&>div:first-child]:!min-h-[165px] [&>div:first-child]:bg-gradient-to-b [&>div:first-child]:!from-neutral-300 [&>div:first-child]:!via-transparent [&>div:first-child]:!text-neutral-600 [&>div>div>a]:!text-neutral-600"
           minWidth={120}
         >
           {picture && (
             <Link
               href={picture.url}
               title={picture.name}
-              className="group block max-w-[120px] hover:opacity-90 min-h-[120px]"
+              className="group block max-w-[120px] hover:opacity-90"
               shallow
             >
               <div className="overflow-hidden rounded">

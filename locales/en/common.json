@@ -65,10 +65,6 @@
     },
     "carousel": {"query-key": "picture"}
   },
-  "map": {
-    "button": "Locate pictures on the map",
-    "close": "Close the map"
-  },
   "languages": {
     "selector": {
       "label": "Language"
