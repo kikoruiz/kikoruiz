@@ -11,5 +11,10 @@
   "contact": {
     "title": "En parlem? 👋",
     "name": "Contacte"
+  },
+  "map": {
+    "title": "Mapa",
+    "button": "Localitzar fotos al mapa",
+    "close": "Tancar el mapa"
   }
 }
