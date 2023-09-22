@@ -3,7 +3,7 @@ import {PictureOnMap} from 'types/gallery'
 import Map from './map'
 
 export default function HomeMap({pictures, setShowMap}: HomeMapProps) {
-  const {t} = useTranslation()
+  const {t} = useTranslation('home')
 
   function handleMapClose() {
     setShowMap(false)
