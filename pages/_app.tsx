@@ -20,7 +20,9 @@ export default function App({Component, pageProps}: AppProps) {
 
   return (
     <>
-      <CookieConsentProvider>
+      <CookieConsentProvider
+        useCookieConsentHooksOptions={{consentCookieAttributes: {expires: 365}}}
+      >
         <LayoutProvider>
           <SubcategoryProvider>
             <LatestPicturesProvider>
