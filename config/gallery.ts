@@ -5,7 +5,7 @@ export const GALLERY_ALBUMS = [
     id: 'seascapes',
     tags: ['seascape'],
     excludeTags: ['landscape'],
-    highlightedPicture: '2021-12-04_0135.jpg'
+    highlightedPicture: '2021-12-04_0153.jpg'
   },
   {
     id: 'landscapes',
