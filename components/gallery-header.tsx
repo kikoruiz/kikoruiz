@@ -70,7 +70,7 @@ export default function GalleryHeader({
       >
         {isAlbum ? (
           <p className="mt-3 font-light text-neutral-300/60">
-            {t('sections.gallery.description')}{' '}
+            {t('sections.gallery.description')}
           </p>
         ) : (
           <Link

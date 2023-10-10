@@ -34,7 +34,8 @@
     "react-responsive": "9",
     "remove-accents": "0",
     "typescript": "5",
-    "ua-parser-js": "1"
+    "ua-parser-js": "1",
+    "use-snipcart": "1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "13",

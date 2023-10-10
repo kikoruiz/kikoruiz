@@ -4,19 +4,11 @@ import useTranslation from 'next-translate/useTranslation'
 import {fromSectionToBreadcrumbItems} from 'lib/mappers'
 import useSubcategoryContext from 'contexts/Subcategory'
 import {SectionData} from 'types'
-import icons from './gallery-subcategory-icons'
+import sectionIcons from './section-icons'
+import subcategoryIcons from './gallery-subcategory-icons'
 import {getCapitalizedName, getSlug} from 'lib/utils'
 import {GALLERY_ALBUMS} from 'config/gallery'
-import IconFingerPrint from 'assets/icons/finger-print.svg'
-import IconPhoto from 'assets/icons/photo.svg'
-import IconDocumentText from 'assets/icons/document-text.svg'
 import {BLOG} from 'config'
-
-const sectionIcons = {
-  'about-me': IconFingerPrint,
-  gallery: IconPhoto,
-  blog: IconDocumentText
-}
 
 function scrollToTop() {
   window?.scrollTo({top: 0})
@@ -50,10 +42,10 @@ export default function Breadcrumb({
     ({id}) => subcategory === id
   )
   const needsSectionIcon = items.length === 1
-  const SectionIcon = sectionIcons[section]
+  const SectionIcon = sectionIcons[`Icon${getCapitalizedName(section)}`]
   let SubcategoryIcon
   if (subcategoryData) {
-    SubcategoryIcon = icons[`Icon${getCapitalizedName(subcategory)}`]
+    SubcategoryIcon = subcategoryIcons[`Icon${getCapitalizedName(subcategory)}`]
   }
 
   return items.length > 0 ? (

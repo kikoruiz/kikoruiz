@@ -20,6 +20,10 @@
     "blog": {
       "name": "Blog",
       "description": "Artículos sobre fotografía, desarrollo web y algunas experiencias propias."
+    },
+    "store": {
+      "name": "Tienda",
+      "description": "Pide impresiones de mis fotos."
     }
   },
   "gallery": {
@@ -64,6 +68,13 @@
       "processing-date": "{{date}} (edición)"
     },
     "carousel": {"query-key": "foto"}
+  },
+  "store": {
+    "categories": {
+      "prints": {
+        "name": "Impresiones"
+      }
+    }
   },
   "languages": {
     "selector": {

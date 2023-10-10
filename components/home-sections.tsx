@@ -1,18 +1,10 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
-import {getSlug} from 'lib/utils'
+import {getCapitalizedName, getSlug} from 'lib/utils'
 import Image from './image'
 import {SectionImage} from 'types'
 import {ImageAverageColor} from 'types/gallery'
-import IconFingerPrint from 'assets/icons/finger-print.svg'
-import IconPhoto from 'assets/icons/photo.svg'
-import IconDocumentText from 'assets/icons/document-text.svg'
-
-const icons = {
-  'about-me': IconFingerPrint,
-  gallery: IconPhoto,
-  blog: IconDocumentText
-}
+import sectionIcons from './section-icons'
 
 export default function HomeSections({
   images,
@@ -22,11 +14,11 @@ export default function HomeSections({
 
   return (
     <section className="w-full rounded-2xl bg-neutral-900/60 p-1">
-      <div className="flex justify-center gap-1">
+      <div className="columns-2 md:flex space-y-1 md:space-y-0 gap-1">
         {images.map(({id, src, css, sizes}) => {
           const href = `/${getSlug(t(`sections.${id}.name`))}`
           const sectionName = t(`sections.${id}.name`)
-          const Icon = icons[id]
+          const Icon = sectionIcons[`Icon${getCapitalizedName(id)}`]
 
           return (
             <Link
@@ -34,7 +26,7 @@ export default function HomeSections({
               href={href}
               title={sectionName}
               aria-label={sectionName}
-              className="group flex flex-1 overflow-hidden drop-shadow-sm first:rounded-l-xl last:rounded-r-xl"
+              className="group flex flex-1 overflow-hidden drop-shadow-sm first:rounded-tl-xl [&:nth-child(2)]:rounded-bl-xl [&:nth-child(3)]:rounded-tr-xl last:rounded-br-xl md:first:rounded-l-xl md:[&:nth-child(2)]:rounded-none md:[&:nth-child(3)]:rounded-none md:last:rounded-r-xl"
             >
               <article
                 className={`flex w-full flex-col justify-between bg-white/30 p-[1px] font-extralight transition-colors ${
@@ -47,8 +39,10 @@ export default function HomeSections({
                   color: averageColor.hex
                 }}
               >
+                {/* first:rounded-l-xl last:rounded-r-xl
+                group-first:rounded-tl-xl group-last:rounded-br-xl */}
                 <header
-                  className={`flex flex-col items-center px-0 py-3 group-hover:text-current md:p-4 lg:items-start xl:p-5 ${
+                  className={`flex flex-col items-center px-0 pt-4 group-hover:text-current md:p-6 lg:items-start xl:p-5 ${
                     averageColor.isDark ? 'text-orange-300' : 'text-neutral-300'
                   }`}
                 >
@@ -65,7 +59,7 @@ export default function HomeSections({
                 <Image
                   src={src}
                   alt={sectionName}
-                  className="aspect-square w-full overflow-hidden group-first:rounded-bl-xl group-last:rounded-br-xl"
+                  className="aspect-square w-full overflow-hidden group-first:rounded-tl-xl group-[&:nth-child(2)]:rounded-bl-xl group-[&:nth-child(3)]:rounded-tr-xl group-last:rounded-br-xl md:group-first:rounded-l-xl md:group-[&:nth-child(2)]:rounded-none md:group-[&:nth-child(3)]:rounded-none md:group-last:rounded-r-xl"
                   style={{
                     WebkitMaskImage:
                       'linear-gradient(to top, rgba(0, 0, 0, 1) 75%, transparent 100%)'

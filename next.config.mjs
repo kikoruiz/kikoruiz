@@ -19,11 +19,6 @@ const nextConfig = withBundleAnalyzer({
       async rewrites() {
         return [
           {
-            source: '/en/about-me',
-            destination: '/en/sobre-mi',
-            locale: false
-          },
-          {
             source: '/en/gallery',
             destination: '/en/galeria',
             locale: false
@@ -36,6 +31,31 @@ const nextConfig = withBundleAnalyzer({
           {
             source: '/en/gallery/tags/:tag',
             destination: '/en/galeria/tags/:tag',
+            locale: false
+          },
+          {
+            source: '/ca/tenda',
+            destination: '/ca/tienda',
+            locale: false
+          },
+          {
+            source: '/en/store',
+            destination: '/en/tienda',
+            locale: false
+          },
+          {
+            source: '/ca/tenda/impressions',
+            destination: '/ca/tienda/impresiones',
+            locale: false
+          },
+          {
+            source: '/en/store/prints',
+            destination: '/en/tienda/impresiones',
+            locale: false
+          },
+          {
+            source: '/en/about-me',
+            destination: '/en/sobre-mi',
             locale: false
           },
           {
