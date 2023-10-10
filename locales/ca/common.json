@@ -20,6 +20,10 @@
     "blog": {
       "name": "Blog",
       "description": "Articles sobre fotografia, desenvolupament web i algunes experiències propies."
+    },
+    "store": {
+      "name": "Tenda",
+      "description": "Demana impressions de les meues fotos."
     }
   },
   "gallery": {
@@ -64,6 +68,13 @@
       "processing-date": "{{date}} (edició)"
     },
     "carousel": {"query-key": "foto"}
+  },
+  "store": {
+    "categories": {
+      "prints": {
+        "name": "Impressions"
+      }
+    }
   },
   "languages": {
     "selector": {

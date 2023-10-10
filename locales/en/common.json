@@ -20,6 +20,10 @@
     "blog": {
       "name": "Blog",
       "description": "Articles about photography, web development and some experiencies of my own."
+    },
+    "store": {
+      "name": "Store",
+      "description": "Order prints of my photos."
     }
   },
   "gallery": {
@@ -64,6 +68,13 @@
       "processing-date": "{{date}} (processing date)"
     },
     "carousel": {"query-key": "picture"}
+  },
+  "store": {
+    "categories": {
+      "prints": {
+        "name": "Prints"
+      }
+    }
   },
   "languages": {
     "selector": {

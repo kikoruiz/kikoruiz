@@ -9,6 +9,12 @@ export const SECTIONS = [
     localePrefix: 'gallery.albums.',
     highlightedPicture: '/pictures/2022-01-04_0125.jpg'
   },
+  {
+    id: 'store',
+    categories: [{id: 'prints'}],
+    localePrefix: 'store.categories.',
+    highlightedPicture: '/pictures/2018-07-16_0021.jpg'
+  },
   {id: 'blog', highlightedPicture: '/blog/_default.jpg'},
   {id: 'about-me', highlightedPicture: '/pictures/2022-08-27_0108.jpg'}
 ]
