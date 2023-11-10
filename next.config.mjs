@@ -16,6 +16,70 @@ const nextConfig = withBundleAnalyzer({
         locales: ['es', 'ca', 'en'],
         defaultLocale: 'es'
       },
+      async redirects() {
+        return [
+          {
+            source: '/en/galeria',
+            destination: '/en/gallery',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/ca/tienda',
+            destination: '/ca/tenda',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/en/tienda',
+            destination: '/en/store',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/ca/tienda/impresiones',
+            destination: '/ca/tenda/impressions',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/en/tienda/impresiones',
+            destination: '/en/store/prints',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/en/sobre-mi',
+            destination: '/en/about-me',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/ca/politica-de-privacidad',
+            destination: '/ca/politica-de-privacitat',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/en/politica-de-privacidad',
+            destination: '/en/privacy-policy',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/ca/politica-de-cookies',
+            destination: '/ca/politica-de-galetes',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/en/politica-de-cookies',
+            destination: '/en/cookies-policy',
+            locale: false,
+            permanent: true
+          }
+        ]
+      },
       async rewrites() {
         return [
           {
