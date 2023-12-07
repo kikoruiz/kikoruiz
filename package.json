@@ -19,7 +19,7 @@
     "change-case": "4",
     "class-variance-authority": "0",
     "downshift": "6",
-    "embla-carousel-react": "8.0.0-rc14",
+    "embla-carousel-react": "8.0.0-rc15",
     "fast-average-color-node": "2",
     "gray-matter": "4",
     "leaflet": "1",
@@ -60,6 +60,7 @@
   },
   "overrides": {
     "json5": "2.2.2",
-    "semver": "7.5.2"
+    "semver": "7.5.2",
+    "sharp": "0.32.6"
   }
 }
