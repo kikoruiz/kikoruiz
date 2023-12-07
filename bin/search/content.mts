@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
 import path from 'node:path'
+
 import matter from 'gray-matter'
 import {paramCase} from 'change-case'
 import removeAccents from 'remove-accents'

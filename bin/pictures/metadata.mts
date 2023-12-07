@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
 import path from 'node:path'
+
 import {ExifDateTime, ResourceEvent, exiftool} from 'exiftool-vendored'
 import {RawPicture} from 'types/gallery'
 
