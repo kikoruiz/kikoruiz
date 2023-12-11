@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "13",
-    "@plaiceholder/next": "2",
+    "@plaiceholder/next": "3",
     "@svgr/webpack": "6",
     "@tailwindcss/typography": "0",
     "@types/gtag.js": "0",
