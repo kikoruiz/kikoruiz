@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
 import path from 'node:path'
+import fs from 'node:fs'
 
 import {ExifDateTime, ResourceEvent, exiftool} from 'exiftool-vendored'
 import {RawPicture} from 'types/gallery'
+import {getPlaiceholder} from 'plaiceholder'
 
 const PROCESSING_SOFTWATRE_REGEX = /Adobe Photoshop (\d+)\.(\d+) \(Macintosh\)/
 
@@ -34,6 +36,8 @@ async function saveAllPicturesMetadata() {
     }
 
     const history = tags.History as ResourceEvent[]
+    const buffer = await fs.readFile(path.join('./public', fileName))
+    const imagePlaceholder = getPlaiceholder(buffer, {size: 10})
     const processingHistory = history
       .filter(
         ({Changed, SoftwareAgent}) =>
@@ -68,6 +72,7 @@ async function saveAllPicturesMetadata() {
       firmware: tags.Firmware,
       focalLength: tags.FocalLength,
       hyperfocalDistance: tags.HyperfocalDistance,
+      imagePlaceholder,
       imageSize: tags.ImageSize,
       iso: tags.ISO,
       keywords: tags.Keywords as string[],
