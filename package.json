@@ -27,7 +27,7 @@
     "lodash": "4",
     "next": "13",
     "next-translate": "2",
-    "plaiceholder": "2",
+    "plaiceholder": "3",
     "react": "18",
     "react-dom": "18",
     "react-leaflet": "4",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "13",
-    "@plaiceholder/next": "2",
+    "@plaiceholder/next": "3",
     "@svgr/webpack": "6",
     "@tailwindcss/typography": "0",
     "@types/gtag.js": "0",

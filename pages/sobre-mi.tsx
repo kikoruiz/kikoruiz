@@ -2,9 +2,9 @@ import {ReactNode} from 'react'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import {getPlaiceholder} from 'plaiceholder'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {themeScreens} from 'lib/utils'
+import {getImagePlaceholder} from 'lib/gallery/image'
 import {PERSONAL_INFO} from 'config'
 import Article from 'components/article'
 import Image from 'components/image'
@@ -131,8 +131,10 @@ export async function getStaticProps({locales, locale, defaultLocale}) {
     src: '/avatar.jpg',
     sizes: `(min-width: ${sm}) 33vw, 100vw`
   } as Avatar
-  const {css} = await getPlaiceholder(avatar.src)
+  const {css} = await getImagePlaceholder(avatar.src)
+
   avatar.css = css
+
   const section = 'about-me'
   const description = await getContent({locale, page: section})
   const alternates = await Promise.all(

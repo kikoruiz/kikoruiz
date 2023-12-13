@@ -1,6 +1,6 @@
-import {getPlaiceholder} from 'plaiceholder'
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
+import {getImagePlaceholder} from '../gallery/image'
 import {Coordinates, Image, Location, Picture, ShotInfo} from 'types/gallery'
 import {
   ALLOWED_PICTURE_TAGS,
@@ -106,7 +106,7 @@ export function fromExifToGallery({
     const src = `/pictures/${fileName}`
     let image: Image
     if (needsImage) {
-      const {css} = await getPlaiceholder(src)
+      const {css} = await getImagePlaceholder(src)
       image = {src, orientation, css}
     }
     const t = await getT(locale, 'common')
@@ -200,7 +200,7 @@ export function fromExifToGallery({
 export function fromAlbumToGallery(locale: string) {
   return async function ({id, highlightedPicture}) {
     const src = `/pictures/${highlightedPicture.fileName}`
-    const {css} = await getPlaiceholder(src)
+    const {css} = await getImagePlaceholder(src)
     const t = await getT(locale, 'common')
     const albumSlug = getSlug(t(`gallery.albums.${id}.name`))
 
