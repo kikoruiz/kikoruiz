@@ -1,5 +1,6 @@
 import {orientation, Tag} from 'types'
 import {Tutorial} from './blog'
+import {GetPlaiceholderReturn} from 'plaiceholder'
 
 export interface Subcategory {
   id: string
@@ -12,6 +13,10 @@ export interface Image {
   orientation?: orientation
   css: ImageFallbackStyle
   averageColor?: ImageAverageColor
+}
+
+export interface ImagePlaceholder {
+  css: GetPlaiceholderReturn['css']
 }
 
 export interface HighlightedImage extends Image {
@@ -53,6 +58,7 @@ export interface RawPicture {
   firmware: number
   focalLength: string
   hyperfocalDistance: string
+  imagePlaceholder: ImagePlaceholder
   imageSize: string
   iso: number
   keywords: string[]

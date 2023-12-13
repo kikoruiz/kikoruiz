@@ -1,6 +1,6 @@
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
-import {getImagePlaceholder} from '../gallery/image'
+import {getImagePlaceholder} from '../utils/image'
 import {Coordinates, Image, Location, Picture, ShotInfo} from 'types/gallery'
 import {
   ALLOWED_PICTURE_TAGS,
