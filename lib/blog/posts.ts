@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import {getMarkdownContent} from '../content'
 import {themeScreens} from '../utils'
-import {getImagePlaceholder} from '../gallery/image'
+import {getImagePlaceholder} from '../utils/image'
 import {
   DEFAULT_WORDS_PER_MINUTE,
   POST_FILE_EXTENSION,
