@@ -1,7 +1,8 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+import defaultTheme from 'tailwindcss/defaultTheme'
+import typography from '@tailwindcss/typography'
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   content: ['./pages/**/*.{js,tsx}', './components/**/*.{js,tsx}'],
   theme: {
     screens: {
@@ -57,8 +58,10 @@ module.exports = {
       }
     }
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [typography],
   future: {
     hoverOnlyWhenSupported: true
   }
 }
+
+export default config

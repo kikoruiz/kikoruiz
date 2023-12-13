@@ -1,6 +1,6 @@
 import withBundleAnalyzer from '@next/bundle-analyzer'
 import nextTranslate from 'next-translate-plugin'
-import {withPlaiceholder} from '@plaiceholder/next'
+import withPlaiceholder from '@plaiceholder/next'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withBundleAnalyzer({
