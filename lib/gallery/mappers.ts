@@ -1,7 +1,13 @@
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
-import {getImagePlaceholder} from '../utils/image'
-import {Coordinates, Image, Location, Picture, ShotInfo} from 'types/gallery'
+import {
+  Coordinates,
+  Image,
+  ImagePlaceholder,
+  Location,
+  Picture,
+  ShotInfo
+} from 'types/gallery'
 import {
   ALLOWED_PICTURE_TAGS,
   GALLERY_ALBUMS,
@@ -10,6 +16,7 @@ import {
 import {getGalleryTags} from './tags'
 import {taggedPictures} from './pictures'
 import {getPostSlugByPictureSlug} from 'lib/blog/posts'
+import {getImagePlaceholder} from 'lib/utils/image'
 
 const DEFAULT_CANON_EF_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
 const DEFAULT_CANON_RF_LENS = 'Canon RF 15-35mm F2.8L IS USM'
@@ -23,6 +30,7 @@ interface ExifData {
   model: string
   lens: string
   imageSize: string
+  imagePlaceholder: ImagePlaceholder
   fileSize: string
   iso: number
   aperture: number
@@ -100,13 +108,14 @@ export function fromExifToGallery({
     rawFileName,
     megapixels,
     coordinates,
-    location
+    location,
+    imagePlaceholder
   }: ExifData): Promise<Picture> {
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
     let image: Image
     if (needsImage) {
-      const {css} = await getImagePlaceholder(src)
+      const {css} = imagePlaceholder
       image = {src, orientation, css}
     }
     const t = await getT(locale, 'common')
