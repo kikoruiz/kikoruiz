@@ -1,6 +1,6 @@
-import {getPlaiceholder} from 'plaiceholder'
 import {SECTIONS} from 'config'
-import {getAverageColor, sortListBy} from 'lib/utils'
+import {getAverageColor, sortListBy} from './utils'
+import {getImagePlaceholder} from './gallery/image'
 import {getAllPictures} from './gallery/pictures'
 import {fromExifToGallery} from './gallery/mappers'
 import {getAllPosts} from './blog/posts'
@@ -21,7 +21,7 @@ const LATEST_PICTURES_LENGTH = 6
 
 export async function getHeroImage(): Promise<HighlightedImage> {
   const src = HERO_IMAGE
-  const {css} = await getPlaiceholder(src)
+  const {css} = await getImagePlaceholder(src)
   const averageColor = await getAverageColor(src)
 
   return {
@@ -88,7 +88,7 @@ export async function getSectionImages(): Promise<SectionImage[]> {
   return Promise.all(
     SECTIONS.map(async function ({id, highlightedPicture}) {
       const src = highlightedPicture
-      const {css} = await getPlaiceholder(src)
+      const {css} = await getImagePlaceholder(src)
 
       return {
         id,
