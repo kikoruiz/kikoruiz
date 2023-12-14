@@ -1,15 +1,22 @@
 import path from 'node:path'
 import fs from 'node:fs'
-import {getPlaiceholder} from 'plaiceholder'
-import {ImagePlaceholder} from 'types/gallery'
+import {ImagePlaceholder, RawImagePlaceholder} from 'types/gallery'
 
-const publicDir = path.join(process.cwd(), 'public')
+const imagePlaceholdersFile = path.join(
+  process.cwd(),
+  'data',
+  'image',
+  'placeholders.json'
+)
 
 export async function getImagePlaceholder(
   src: string
 ): Promise<ImagePlaceholder> {
-  const imageFile = fs.readFileSync(`${publicDir}${src}`)
-  const imagePlaceholder = await getPlaiceholder(imageFile)
+  const data = fs.readFileSync(imagePlaceholdersFile, 'utf8')
+  const imagePlaceholders = JSON.parse(data) as RawImagePlaceholder[]
+  const imagePlaceholder = imagePlaceholders.find(
+    ({image}) => image === `public${src}`
+  )
 
   return {css: imagePlaceholder.css}
 }

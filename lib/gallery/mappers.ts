@@ -1,13 +1,6 @@
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
-import {
-  Coordinates,
-  Image,
-  ImagePlaceholder,
-  Location,
-  Picture,
-  ShotInfo
-} from 'types/gallery'
+import {Coordinates, Image, Location, Picture, ShotInfo} from 'types/gallery'
 import {
   ALLOWED_PICTURE_TAGS,
   GALLERY_ALBUMS,
@@ -30,7 +23,6 @@ interface ExifData {
   model: string
   lens: string
   imageSize: string
-  imagePlaceholder: ImagePlaceholder
   fileSize: string
   iso: number
   aperture: number
@@ -108,14 +100,13 @@ export function fromExifToGallery({
     rawFileName,
     megapixels,
     coordinates,
-    location,
-    imagePlaceholder
+    location
   }: ExifData): Promise<Picture> {
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
     let image: Image
     if (needsImage) {
-      const {css} = imagePlaceholder
+      const {css} = await getImagePlaceholder(src)
       image = {src, orientation, css}
     }
     const t = await getT(locale, 'common')

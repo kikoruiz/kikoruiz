@@ -7,11 +7,13 @@ export interface Subcategory {
   tag: string
   emoji?: string
 }
+export interface RawImagePlaceholder extends ImagePlaceholder {
+  image: string
+}
 
-export interface Image {
+export interface Image extends ImagePlaceholder {
   src: string
   orientation?: orientation
-  css: ImageFallbackStyle
   averageColor?: ImageAverageColor
 }
 
@@ -58,7 +60,6 @@ export interface RawPicture {
   firmware: number
   focalLength: string
   hyperfocalDistance: string
-  imagePlaceholder: ImagePlaceholder
   imageSize: string
   iso: number
   keywords: string[]
@@ -124,12 +125,7 @@ export interface PictureOnMap {
   image?: Image
 }
 
-export interface ImageFallbackStyle {
-  backgroundImage: string
-  backgroundPosition: string
-  backgroundRepeat: string
-  backgroundSize: string
-}
+export type ImageFallbackStyle = ImagePlaceholder
 
 export interface ShotInfo {
   iso: number
