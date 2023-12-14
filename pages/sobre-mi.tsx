@@ -162,7 +162,7 @@ function personalInfoBackground(key: string) {
 type Avatar = {
   src: string
   sizes: string
-  css?: ImageFallbackStyle
+  css?: ImageFallbackStyle['css']
 }
 
 interface AboutMeProps {

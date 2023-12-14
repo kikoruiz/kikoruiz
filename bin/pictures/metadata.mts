@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
 import path from 'node:path'
-import {getPlaiceholder} from 'plaiceholder'
 import {ExifDateTime, ResourceEvent, exiftool} from 'exiftool-vendored'
-import {ImagePlaceholder, RawPicture} from 'types/gallery'
+import {RawPicture} from 'types/gallery'
 
 const PROCESSING_SOFTWATRE_REGEX = /Adobe Photoshop (\d+)\.(\d+) \(Macintosh\)/
 
@@ -41,8 +40,6 @@ async function saveAllPicturesMetadata() {
       ?.reverse()
     const [lastProcessingSave] = processingHistory
     const processingDate = lastProcessingSave?.When as ExifDateTime
-    const imageFile = fs.readFileSync(`${picturesDir}/${fileName}`)
-    const imagePlaceholder = await getPlaiceholder(imageFile)
 
     pictures.push({
       aperture: tags.Aperture,
@@ -69,7 +66,6 @@ async function saveAllPicturesMetadata() {
       firmware: tags.Firmware,
       focalLength: tags.FocalLength,
       hyperfocalDistance: tags.HyperfocalDistance,
-      imagePlaceholder: {css: imagePlaceholder.css} as ImagePlaceholder,
       imageSize: tags.ImageSize,
       iso: tags.ISO,
       keywords: tags.Keywords as string[],

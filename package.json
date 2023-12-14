@@ -9,8 +9,9 @@
     "analyze": "ANALYZE=true npm run build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npm run save:metadata && npm run save:content",
+    "postinstall": "npm run save:placeholders && npm run save:metadata && npm run save:content",
     "save": "node --import 'data:text/javascript,import{register}from\"node:module\";import{pathToFileURL}from\"node:url\";register(\"ts-node/esm\", pathToFileURL(\"./\"));' ./bin/$FILE.mts",
+    "save:placeholders": "FILE=image/placeholders npm run save",
     "save:metadata": "FILE=pictures/metadata npm run save",
     "save:content": "FILE=search/content npm run save",
     "check:types": "tsc"
@@ -53,6 +54,7 @@
     "eslint-config-next": "13",
     "eslint-config-prettier": "8",
     "exiftool-vendored": "17",
+    "glob": "10",
     "next-translate-plugin": "2",
     "postcss": "8",
     "prettier": "3",
