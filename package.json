@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:data": "npm run save:placeholders && npm run save:metadata && npm run save:content",
     "analyze": "ANALYZE=true npm run build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npm run save:placeholders && npm run save:metadata && npm run save:content",
     "save": "node --import 'data:text/javascript,import{register}from\"node:module\";import{pathToFileURL}from\"node:url\";register(\"ts-node/esm\", pathToFileURL(\"./\"));' ./bin/$FILE.mts",
     "save:placeholders": "FILE=image/placeholders npm run save",
     "save:metadata": "FILE=pictures/metadata npm run save",
