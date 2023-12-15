@@ -44,7 +44,6 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
     getLabelProps,
     getMenuProps,
     getInputProps,
-    getComboboxProps,
     highlightedIndex,
     getItemProps,
     reset
@@ -71,8 +70,8 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
     },
     itemToString: () => '',
     onInputValueChange: debouncedChangeHandler,
-    onStateChange: ({isOpen}) => {
-      if (isOpen === false) {
+    onStateChange: ({isOpen, type}) => {
+      if (isOpen === false && type !== '__input_click__') {
         setStatus(REQUEST_STATUS_OPTIONS.IDLE)
         reset()
       }
@@ -128,10 +127,11 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
         >
           {t('navigation.search')}
         </label>
-        <div {...getComboboxProps()} className="relative">
+        <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <IconMagnifyingGlass className="w-6 fill-neutral-600" />
           </div>
+
           <input
             {...getInputProps({ref: inputRef})}
             type="text"
@@ -140,6 +140,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
             placeholder={t('navigation.search')}
             required
           />
+
           {status === REQUEST_STATUS_OPTIONS.PENDING && (
             <div
               aria-hidden
