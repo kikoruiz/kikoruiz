@@ -14,13 +14,15 @@ export default function Article({
   }`
   const components = {
     p({children, node}) {
+      const nextChildren = {}
+
       node.children.forEach((attrs, index) => {
         const {type, tagName, properties} = attrs
 
         if (type === 'element' && tagName === 'a') {
           const {props} = children[index]
 
-          children[index] = (
+          nextChildren[index] = (
             <NextLink
               href={props.href}
               target={properties.href.includes('https') ? '_blank' : '_self'}
@@ -105,7 +107,17 @@ export default function Article({
         )
       }
 
-      return <p>{children}</p>
+      return (
+        <p>
+          {Array.isArray(children)
+            ? children.map((element, index) => {
+                if (nextChildren[index]) return nextChildren[index]
+
+                return element
+              })
+            : children}
+        </p>
+      )
     }
   }
 
