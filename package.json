@@ -51,7 +51,7 @@
     "@typescript-eslint/eslint-plugin": "6",
     "autoprefixer": "10",
     "eslint": "8",
-    "eslint-config-next": "13",
+    "eslint-config-next": "14",
     "eslint-config-prettier": "8",
     "exiftool-vendored": "17",
     "glob": "10",
