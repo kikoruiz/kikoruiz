@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 import {useCombobox} from 'downshift'
 import useTranslation from 'next-translate/useTranslation'
 import {debounce} from 'lodash'
-import {fetcher, getSlug} from 'lib/utils'
+import {getSlug} from 'lib/utils'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
 import SearchList from './search-list'
 import {REQUEST_STATUS_OPTIONS} from 'config'
@@ -17,15 +17,15 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const [status, setStatus] = useState(REQUEST_STATUS_OPTIONS.IDLE)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedChangeHandler = useCallback(
-    debounce(async ({inputValue}) => {
+    debounce(async ({inputValue}: {inputValue: string}) => {
       setStatus(REQUEST_STATUS_OPTIONS.PENDING)
-      let items = []
+      let items: SearchItem[] | [] = []
 
       if (inputValue) {
         try {
-          items = await fetcher.get(
-            `/api/search/${inputValue}?locale=${locale}`
-          )
+          const search = (await import('lib/search')).default
+          items = search({key: inputValue, locale})
+
           setStatus(REQUEST_STATUS_OPTIONS.RESOLVED)
         } catch (error) {
           console.error(error)
@@ -36,7 +36,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
       }
 
       setItems(items)
-    }, 600),
+    }, 300),
     []
   )
   const {
@@ -44,7 +44,6 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
     getLabelProps,
     getMenuProps,
     getInputProps,
-    getComboboxProps,
     highlightedIndex,
     getItemProps,
     reset
@@ -71,8 +70,8 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
     },
     itemToString: () => '',
     onInputValueChange: debouncedChangeHandler,
-    onStateChange: ({isOpen}) => {
-      if (isOpen === false) {
+    onStateChange: ({isOpen, type}) => {
+      if (isOpen === false && type !== '__input_click__') {
         setStatus(REQUEST_STATUS_OPTIONS.IDLE)
         reset()
       }
@@ -128,18 +127,25 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
         >
           {t('navigation.search')}
         </label>
-        <div {...getComboboxProps()} className="relative">
+        <div className="relative">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <IconMagnifyingGlass className="w-6 fill-neutral-600" />
           </div>
+
           <input
-            {...getInputProps({ref: inputRef})}
+            {...getInputProps({
+              ref: inputRef,
+              onClick: event => {
+                event.nativeEvent.preventDownshiftDefault = true
+              }
+            })}
             type="text"
             id="search"
             className="block w-full appearance-none rounded-md border border-transparent bg-transparent p-4 pl-12 text-neutral-300 placeholder-neutral-600 focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
             placeholder={t('navigation.search')}
             required
           />
+
           {status === REQUEST_STATUS_OPTIONS.PENDING && (
             <div
               aria-hidden
