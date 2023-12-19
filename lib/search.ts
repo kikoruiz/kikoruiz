@@ -1,9 +1,8 @@
-import type {NextApiRequest, NextApiResponse} from 'next'
 import searchContent from 'data/search/content.json'
 import picturesMetadata from 'data/pictures/metadata.json'
 import {paramCase} from 'change-case'
 import {GALLERY_ALBUMS} from 'config/gallery'
-import {taggedPictures} from 'lib/gallery/pictures'
+import {taggedPictures} from 'lib/utils/pictures'
 import {SearchItem} from 'types'
 
 function matchSearchKey(key: string) {
@@ -20,8 +19,13 @@ function matchSearchKey(key: string) {
   }
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const {key, locale} = req.query as {key: string; locale: string}
+export default function search({
+  key,
+  locale
+}: {
+  key: string
+  locale: string
+}): SearchItem[] {
   const results: SearchItem[] = [
     ...searchContent[locale]?.filter(matchSearchKey(key)),
     ...picturesMetadata
@@ -42,5 +46,5 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       .filter(matchSearchKey(key))
   ]
 
-  res.status(200).json(results)
+  return results
 }
