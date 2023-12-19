@@ -7,8 +7,8 @@ import {
   GALLERY_TAGS
 } from 'config/gallery'
 import {getGalleryTags} from './tags'
-import {taggedPictures} from './pictures'
 import {getPostSlugByPictureSlug} from 'lib/blog/posts'
+import {taggedPictures} from 'lib/utils/pictures'
 import {getImagePlaceholder} from 'lib/utils/image'
 
 const DEFAULT_CANON_EF_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'

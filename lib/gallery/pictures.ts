@@ -6,9 +6,10 @@ import {
   GALLERY_ALBUMS,
   GALLERY_TAGS
 } from 'config/gallery'
-import {getSlug} from '../utils'
+import {getSlug} from 'lib/utils'
 import {PictureOnMap, RawPicture} from 'types/gallery'
 import {fromExifToGallery} from './mappers'
+import {taggedPictures} from 'lib/utils/pictures'
 
 const picturesMetadataFile = path.join(
   process.cwd(),
@@ -22,21 +23,6 @@ export async function getAllPictures(): Promise<RawPicture[]> {
   const allPictures = JSON.parse(metadata) as RawPicture[]
 
   return DEFAULT_IS_ASCENDING_ORDER ? allPictures : allPictures.reverse()
-}
-
-export function taggedPictures({
-  tags,
-  excludeTags = []
-}: {
-  tags: string[]
-  excludeTags: string[]
-}) {
-  return function ({keywords}: {keywords: string[]}) {
-    return (
-      tags.some(tag => keywords.includes(tag)) &&
-      keywords.every(keyword => !excludeTags.includes(keyword))
-    )
-  }
 }
 
 export async function getHighlightedPicture(highlightedPicture) {
