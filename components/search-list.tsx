@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation'
-import {PropGetters} from 'downshift'
+import {UseComboboxPropGetters} from 'downshift'
 import {SearchItem} from 'types'
 
 export default function SearchList({
@@ -46,6 +46,6 @@ export default function SearchList({
 
 interface SearchListProps {
   items: SearchItem[]
-  getItemProps: PropGetters<SearchItem>['getItemProps']
+  getItemProps: UseComboboxPropGetters<SearchItem>['getItemProps']
   highlightedIndex: number
 }

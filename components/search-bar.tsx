@@ -7,6 +7,12 @@ import {getSlug} from 'lib/utils'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
 import SearchList from './search-list'
 import {REQUEST_STATUS_OPTIONS} from 'config'
+import {SearchItem} from 'types'
+
+interface SearchBarProps {
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
+}
 
 export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const {t} = useTranslation()
@@ -19,6 +25,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const debouncedChangeHandler = useCallback(
     debounce(async ({inputValue}: {inputValue: string}) => {
       setStatus(REQUEST_STATUS_OPTIONS.PENDING)
+
       let items: SearchItem[] | [] = []
 
       if (inputValue) {
@@ -136,7 +143,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
             {...getInputProps({
               ref: inputRef,
               onClick: event => {
-                event.nativeEvent.preventDownshiftDefault = true
+                event['preventDownshiftDefault'] = true
               }
             })}
             type="text"
@@ -174,9 +181,4 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
       </form>
     </div>
   )
-}
-
-interface SearchBarProps {
-  isOpen: boolean
-  setIsOpen: (isOpen: boolean) => void
 }
