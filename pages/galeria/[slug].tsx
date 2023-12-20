@@ -22,10 +22,6 @@ export default function GallerySlug({
   alternates,
   ...pageProps
 }: GallerySlugProps) {
-  console.log({
-    alternates,
-    pageProps
-  })
   const {t} = useTranslation()
 
   return (

@@ -8,9 +8,6 @@ const nextConfig = withBundleAnalyzer({
 })(
   withPlaiceholder(
     nextTranslate({
-      typescript: {
-        ignoreBuildErrors: true
-      },
       reactStrictMode: true,
       images: {
         formats: ['image/avif', 'image/webp']
