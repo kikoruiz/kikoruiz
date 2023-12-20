@@ -1,4 +1,4 @@
-import {paramCase} from 'change-case'
+import {kebabCase} from 'change-case'
 import {remove} from 'remove-accents'
 import getT from 'next-translate/getT'
 import {SECTIONS, DEFAULT_ORIGIN} from 'config'
@@ -46,7 +46,7 @@ export function fromSectionToBreadcrumbItems({
 
     if (post) {
       items.push({
-        id: paramCase(post.title),
+        id: kebabCase(post.title),
         name: post.title
       })
     } else if (tag) {
