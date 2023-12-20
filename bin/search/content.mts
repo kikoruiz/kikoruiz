@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 import matter from 'gray-matter'
-import {paramCase} from 'change-case'
+import {kebabCase} from 'change-case'
 import removeAccents from 'remove-accents'
 import {BlogPostContent} from 'types/blog'
 // import {POST_FILE_SEPARATOR} from 'config/blog'
@@ -24,7 +24,7 @@ function getMarkdownContent(filename: string): BlogPostContent {
   const {title, excerpt, author, body, picture, tags} = data
 
   return {
-    slug: paramCase(removeAccents(title)),
+    slug: kebabCase(removeAccents(title)),
     title,
     excerpt,
     author,

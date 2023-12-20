@@ -16,7 +16,7 @@
   "dependencies": {
     "@use-cookie-consent/react": "0",
     "@vercel/analytics": "0",
-    "change-case": "4",
+    "change-case": "5",
     "class-variance-authority": "0",
     "downshift": "8",
     "embla-carousel-react": "8.0.0-rc15",
