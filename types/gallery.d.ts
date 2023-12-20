@@ -57,7 +57,7 @@ export interface RawPicture {
   fileSize: string
   fileType: string
   fileTypeExtension: string
-  firmware: number
+  firmware: string
   focalLength: string
   hyperfocalDistance: string
   imageSize: string
