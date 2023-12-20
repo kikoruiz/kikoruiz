@@ -6,7 +6,7 @@
   "scripts": {
     "analyze": "ANALYZE=true npm run build",
     "build:data": "make save_placeholders && make save_metadata && make save_content",
-    "build": "tsc && next build",
+    "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
