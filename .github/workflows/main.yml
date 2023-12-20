@@ -1,0 +1,40 @@
+name: kikoruiz.es CI
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Checks, Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+
+      - name: Install Vercel
+        run: npm install --global vercel@latest
+
+      - name: Pull Environment Information
+        env:
+          ENVIRONMENT: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+        run: vercel pull --yes --environment=$ENVIRONMENT --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}${{ github.event_name == 'pull_request' && '' || ' --prod' }}
+
+      - name: Deploy
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}${{ github.event_name == 'pull_request' && '' || ' --prod' }}
