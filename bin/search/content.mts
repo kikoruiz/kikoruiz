@@ -53,10 +53,9 @@ async function saveSearchContent() {
   if (fs.existsSync(searchContentFile)) fs.unlinkSync(searchContentFile)
 
   const locales = fs.readdirSync(postsDirectory)
-  const postsByLocale = locales.reduce(
-    (posts, locale) => ({...posts, [locale]: getPosts(locale)}),
-    {}
-  )
+  const postsByLocale = locales
+    .filter(item => item !== '.DS_Store')
+    .reduce((posts, locale) => ({...posts, [locale]: getPosts(locale)}), {})
 
   fs.writeFileSync(searchContentFile, JSON.stringify(postsByLocale))
 }
