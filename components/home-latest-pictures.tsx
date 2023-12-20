@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {throttle} from 'lodash'
-import {paramCase} from 'change-case'
+import {kebabCase} from 'change-case'
 import {themeScreens} from 'lib/utils'
 import HomeModule from './home-module'
 import PictureCard from './picture-card'
@@ -62,7 +62,7 @@ export default function HomeLatestPictures({
     <nav className="flex items-center">
       {Object.keys(latestPictures).map((order: keyof LatestPictures) => {
         const isActive = sortingOrder === order
-        const title = t(`latest-pictures.sorting-order.${paramCase(order)}`)
+        const title = t(`latest-pictures.sorting-order.${kebabCase(order)}`)
 
         return (
           <ButtonToggle

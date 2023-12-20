@@ -1,6 +1,6 @@
 import searchContent from 'data/search/content.json'
 import picturesMetadata from 'data/pictures/metadata.json'
-import {paramCase} from 'change-case'
+import {kebabCase} from 'change-case'
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {taggedPictures} from 'lib/utils/pictures'
 import {SearchItem} from 'types'
@@ -35,7 +35,7 @@ export default function search({
         )
 
         return {
-          slug: paramCase(title),
+          slug: kebabCase(title),
           description,
           keywords,
           title,
