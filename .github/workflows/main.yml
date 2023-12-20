@@ -12,8 +12,8 @@ on:
       - main
 
 jobs:
-  checks-build-deploy:
-    name: Checks, Build & Deploy
+  build-checks-deploy:
+    name: Build, Checks & Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,9 +26,6 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'package-lock.json'
 
-      - name: Tests
-        run: npm run test
-
       - name: Install Vercel
         run: npm install --global vercel@latest
 
@@ -37,6 +34,9 @@ jobs:
 
       - name: Build
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}${{ env.PRODUCTION == 'true' && ' --prod' || '' }}
+
+      - name: Tests
+        run: npm run test
 
       - name: Deploy
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}${{ env.PRODUCTION == 'true' && ' --prod' || '' }}
