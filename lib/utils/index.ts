@@ -1,6 +1,6 @@
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from 'tailwind.config.mjs'
-import {paramCase, headerCase, camelCase, pascalCase} from 'change-case'
+import {kebabCase, capitalCase, camelCase, pascalCase} from 'change-case'
 import removeAccents from 'remove-accents'
 import {
   DEFAULT_IS_ASCENDING_ORDER,
@@ -31,7 +31,7 @@ export const screens = Object.keys(themeScreens).reduce(
 )
 
 export function getTitle(slug: string) {
-  return headerCase(slug)
+  return capitalCase(slug)
 }
 
 export function getCapitalizedName(slug: string) {
@@ -39,7 +39,7 @@ export function getCapitalizedName(slug: string) {
 }
 
 export function getSlug(name: string) {
-  return paramCase(removeAccents(name))
+  return kebabCase(removeAccents(name))
 }
 
 function getDeepProperty(obj: object, property: string) {
