@@ -6,7 +6,6 @@ env:
   PRODUCTION: ${{ github.event_name == 'pull_request' && 'false' || 'true' }}
 
 on:
-  pull_request:
   push:
     branches:
       - main
