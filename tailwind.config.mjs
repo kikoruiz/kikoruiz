@@ -10,20 +10,7 @@ const config = {
       '2xl': defaultTheme.screens.xl
     },
     fontFamily: {
-      sans: [
-        'Inter',
-        '-apple-system',
-        'BlinkMacSystemFont',
-        'Segoe UI',
-        'Roboto',
-        'Oxygen',
-        'Ubuntu',
-        'Cantarell',
-        'Fira Sans',
-        'Droid Sans',
-        'Helvetica Neue',
-        'sans-serif'
-      ],
+      sans: ['var(--font-inter)'],
       serif: ['Merriweather', 'serif']
     },
     extend: {
