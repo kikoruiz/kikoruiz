@@ -11,6 +11,13 @@ import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
 import GalleryPage from 'components/gallery-page'
 
+interface GallerySlugProps {
+  pictures: Picture[]
+  category?: string
+  subcategories?: Subcategory[]
+  alternates: Alternate[]
+}
+
 export default function GallerySlug({
   alternates,
   ...pageProps
@@ -95,11 +102,4 @@ export async function getStaticProps({
       section
     }
   }
-}
-
-interface GallerySlugProps {
-  pictures: Picture[]
-  category?: string
-  subcategories?: Subcategory[]
-  alternates: Alternate[]
 }

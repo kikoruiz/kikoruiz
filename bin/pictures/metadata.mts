@@ -13,7 +13,6 @@ const picturesMetadataFile = path.join(
   'pictures',
   'metadata.json'
 )
-
 const files = fs
   .readdirSync(picturesDir)
   .filter(filename => filename.includes('jpg'))

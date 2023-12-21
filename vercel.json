@@ -1,5 +1,3 @@
 {
-  "github": {
-    "enabled": false
-  }
+  "buildCommand": "npm test && next build"
 }

@@ -1,8 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import {getPlaiceholder} from 'plaiceholder'
 import {getMarkdownContent} from '../content'
 import {themeScreens} from '../utils'
+import {getImagePlaceholder} from '../utils/image'
 import {
   DEFAULT_WORDS_PER_MINUTE,
   POST_FILE_EXTENSION,
@@ -41,7 +41,7 @@ export async function getAllPosts(locale: string): Promise<BlogPost[]> {
         bodyImages = await Promise.all(
           matchedImages.map(async matchedImage => {
             const [, alt, src] = matchedImage.match(/!\[(.*)\]\((.*.jpg)\)/)
-            const {css} = await getPlaiceholder(src)
+            const {css} = await getImagePlaceholder(src)
 
             return {src, alt: alt.replace(/ *\{[^)]*\} */g, ''), css}
           })
@@ -57,9 +57,9 @@ export async function getAllPosts(locale: string): Promise<BlogPost[]> {
           : bodyImages[0])
       }
       if (hasStaticImage) {
-        const plaiceholder = await getPlaiceholder(post.picture)
+        const imagePlaceholder = await getImagePlaceholder(post.picture)
 
-        highlightedImage.css = plaiceholder.css
+        highlightedImage.css = imagePlaceholder.css
       }
 
       return {
