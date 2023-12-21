@@ -1,5 +1,6 @@
 import {AppProps} from 'next/app'
 import {Analytics} from '@vercel/analytics/react'
+import {SpeedInsights} from '@vercel/speed-insights/next'
 import {CookieConsentProvider} from '@use-cookie-consent/react'
 import Layout from 'components/layout'
 import {SubcategoryProvider} from 'contexts/Subcategory'
@@ -30,6 +31,7 @@ export default function App({Component, pageProps}: AppProps) {
                 <Component {...pageProps} />
 
                 <Analytics />
+                <SpeedInsights />
               </Layout>
             </LatestPicturesProvider>
           </SubcategoryProvider>
