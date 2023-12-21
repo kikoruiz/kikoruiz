@@ -8,10 +8,6 @@
 # testing
 /coverage
 
-# generated data
-/data/pictures/metadata.json
-/data/search/content.json
-
 # next.js
 /.next/
 /out/

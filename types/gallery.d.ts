@@ -1,17 +1,24 @@
 import {orientation, Tag} from 'types'
 import {Tutorial} from './blog'
+import {GetPlaiceholderReturn} from 'plaiceholder'
 
 export interface Subcategory {
   id: string
   tag: string
   emoji?: string
 }
+export interface RawImagePlaceholder extends ImagePlaceholder {
+  image: string
+}
 
-export interface Image {
+export interface Image extends ImagePlaceholder {
   src: string
   orientation?: orientation
-  css: ImageFallbackStyle
   averageColor?: ImageAverageColor
+}
+
+export interface ImagePlaceholder {
+  css: GetPlaiceholderReturn['css']
 }
 
 export interface HighlightedImage extends Image {
@@ -118,12 +125,7 @@ export interface PictureOnMap {
   image?: Image
 }
 
-export interface ImageFallbackStyle {
-  backgroundImage: string
-  backgroundPosition: string
-  backgroundRepeat: string
-  backgroundSize: string
-}
+export type ImageFallbackStyle = ImagePlaceholder
 
 export interface ShotInfo {
   iso: number

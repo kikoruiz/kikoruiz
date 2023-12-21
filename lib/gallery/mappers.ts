@@ -1,4 +1,3 @@
-import {getPlaiceholder} from 'plaiceholder'
 import getT from 'next-translate/getT'
 import {getSlug} from '../utils'
 import {Coordinates, Image, Location, Picture, ShotInfo} from 'types/gallery'
@@ -8,8 +7,9 @@ import {
   GALLERY_TAGS
 } from 'config/gallery'
 import {getGalleryTags} from './tags'
-import {taggedPictures} from './pictures'
 import {getPostSlugByPictureSlug} from 'lib/blog/posts'
+import {taggedPictures} from 'lib/utils/pictures'
+import {getImagePlaceholder} from 'lib/utils/image'
 
 const DEFAULT_CANON_EF_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
 const DEFAULT_CANON_RF_LENS = 'Canon RF 15-35mm F2.8L IS USM'
@@ -106,7 +106,7 @@ export function fromExifToGallery({
     const src = `/pictures/${fileName}`
     let image: Image
     if (needsImage) {
-      const {css} = await getPlaiceholder(src)
+      const {css} = await getImagePlaceholder(src)
       image = {src, orientation, css}
     }
     const t = await getT(locale, 'common')
@@ -200,7 +200,7 @@ export function fromExifToGallery({
 export function fromAlbumToGallery(locale: string) {
   return async function ({id, highlightedPicture}) {
     const src = `/pictures/${highlightedPicture.fileName}`
-    const {css} = await getPlaiceholder(src)
+    const {css} = await getImagePlaceholder(src)
     const t = await getT(locale, 'common')
     const albumSlug = getSlug(t(`gallery.albums.${id}.name`))
 
