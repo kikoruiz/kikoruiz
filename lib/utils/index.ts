@@ -42,6 +42,17 @@ export function getSlug(name: string) {
   return kebabCase(removeAccents(name))
 }
 
+export function isNew(date: string, currentDate?: string) {
+  const MONTHS_AS_NEW = 6
+  const pointerDate = currentDate ? new Date(currentDate) : new Date()
+
+  pointerDate.setMonth(pointerDate.getMonth() - MONTHS_AS_NEW)
+
+  const itemDate = new Date(date)
+
+  return itemDate.getTime() > pointerDate.getTime()
+}
+
 function getDeepProperty(obj: object, property: string) {
   const propertyValue = property.split('.').reduce((acc, key) => {
     const value = acc[camelCase(key)]

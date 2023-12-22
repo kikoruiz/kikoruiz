@@ -1,3 +1,4 @@
+import {Inter} from 'next/font/google'
 import {ReactNode} from 'react'
 import Header from './header'
 import Footer from './footer'
@@ -5,6 +6,11 @@ import {Alternate, SectionData} from 'types'
 import {LEGAL_PAGES} from 'config'
 import CookiesBanner from './cookies-banner'
 import ThirdPartyScripts from './third-party-scripts'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter'
+})
 
 export default function Layout({
   children,
@@ -17,7 +23,7 @@ export default function Layout({
   const needsBorder = hasHero || isLegalPage || isErrorPage
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className={`${inter.variable} font-sans flex min-h-screen flex-col`}>
       <Header {...sectionData} />
 
       <main

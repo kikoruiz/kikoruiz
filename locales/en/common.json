@@ -131,7 +131,7 @@
             "description": "Accept the use of all cookies on our website. This helps us improve our services and provide you with a personalized experience."
           },
           "reject-all": {
-            "name": "Reject",
+            "name": "Reject All Cookies",
             "description": "Reject the use of all cookies, although this may affect the functionality of our website."
           },
           "open-modal": {
