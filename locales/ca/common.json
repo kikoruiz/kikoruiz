@@ -120,7 +120,7 @@
             "description": "Accepta l'ús de totes les galetes al nostre lloc web. Això ens ajuda a millorar els nostres serveis i oferir-te una experiència personalitzada."
           },
           "reject-all": {
-            "name": "Rebutjar",
+            "name": "Rebutjar totes les galetes",
             "description": "Rebutja l'ús de totes les galetes, tot i que això pot afectar la funcionalitat del nostre lloc web."
           },
           "open-modal": {
