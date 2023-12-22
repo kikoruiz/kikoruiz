@@ -69,7 +69,8 @@ export default function Home({
             <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
 
             <h1 className="break-words text-center text-4xl font-black leading-tight drop-shadow sm:text-5xl sm:leading-normal xl:text-6xl">
-              Kiko Ruiz <span className="font-thin">Photography</span>
+              Kiko Ruiz{' '}
+              <span className="font-thin">{t('home:title-addon')}</span>
             </h1>
           </div>
 
