@@ -7,6 +7,7 @@ import {HighlightedImage} from 'types/gallery'
 import PostTitle from './post-title'
 import IconChevronRight from 'assets/icons/chevron-right.svg'
 import {orientation} from 'types'
+import {isNew} from 'lib/utils'
 
 export default function PostCard({
   title,
@@ -53,7 +54,7 @@ export default function PostCard({
             : 'border-neutral-600/60 hover:border-orange-300/60'
         }${isDraft ? 'hover:border-transparent' : ''}`}
       >
-        {isLatest && (
+        {isLatest && isNew(createdAt) && (
           <div
             className={`pointer-events-none absolute left-3 top-3 z-[1] flex items-center justify-center rounded-xl border bg-gradient-to-t px-2 py-1 text-center drop-shadow${
               isLatest ? ` ${latestTagClassName}` : ''
