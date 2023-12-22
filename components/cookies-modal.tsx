@@ -81,7 +81,6 @@ export default function CookiesModal({
           <div className="flex flex-col-reverse lg:flex-row-reverse gap-3">
             <CookiesButton
               size="large"
-              intent="light"
               onClick={() => {
                 acceptAllCookies()
                 closeModal()
@@ -89,21 +88,7 @@ export default function CookiesModal({
               title={t('legal.cookies.modal.actions.accept-all.description')}
               className="lg:flex-grow"
             >
-              <span className="font-medium">
-                {t('legal.cookies.modal.actions.accept-all.name')}
-              </span>
-            </CookiesButton>
-
-            <CookiesButton
-              size="large"
-              onClick={() => {
-                acceptCookies({...consents})
-                closeModal()
-              }}
-              title={t('legal.cookies.modal.actions.save.description')}
-              className="lg:flex-grow"
-            >
-              {t('legal.cookies.modal.actions.save.name')}
+              {t('legal.cookies.modal.actions.accept-all.name')}
             </CookiesButton>
 
             <CookiesButton
@@ -116,6 +101,21 @@ export default function CookiesModal({
               className="lg:flex-grow"
             >
               {t('legal.cookies.modal.actions.reject-all.name')}
+            </CookiesButton>
+
+            <CookiesButton
+              size="large"
+              intent="light"
+              onClick={() => {
+                acceptCookies({...consents})
+                closeModal()
+              }}
+              title={t('legal.cookies.modal.actions.save.description')}
+              className="lg:flex-grow"
+            >
+              <span className="font-medium">
+                {t('legal.cookies.modal.actions.save.name')}
+              </span>
             </CookiesButton>
           </div>
         </div>

@@ -9,7 +9,8 @@ import {camelCase} from 'change-case'
 
 export default function CookiesBanner() {
   const {t} = useTranslation()
-  const {consent, acceptAllCookies, cookies} = useCookieConsentContext()
+  const {consent, acceptAllCookies, declineAllCookies, cookies} =
+    useCookieConsentContext()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [needsBanner, setNeedsBanner] = useState(false)
 
@@ -63,20 +64,27 @@ export default function CookiesBanner() {
 
           <div className="flex flex-col-reverse lg:flex-row-reverse gap-3 mt-6">
             <CookiesButton
-              intent="light"
               onClick={acceptAllCookies}
               title={t('legal.cookies.modal.actions.accept-all.description')}
             >
-              <span className="font-medium">
-                {t('legal.cookies.modal.actions.accept-all.name')}
-              </span>
+              {t('legal.cookies.modal.actions.accept-all.name')}
             </CookiesButton>
 
             <CookiesButton
+              onClick={declineAllCookies}
+              title={t('legal.cookies.modal.actions.reject-all.description')}
+            >
+              {t('legal.cookies.modal.actions.reject-all.name')}
+            </CookiesButton>
+
+            <CookiesButton
+              intent="light"
               onClick={openModal}
               title={t('legal.cookies.modal.actions.open-modal.description')}
             >
-              {t('legal.cookies.modal.actions.open-modal.name')}
+              <span className="font-medium">
+                {t('legal.cookies.modal.actions.open-modal.name')}
+              </span>
             </CookiesButton>
           </div>
         </div>

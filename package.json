@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@use-cookie-consent/react": "0",
-    "@vercel/analytics": "0",
+    "@vercel/analytics": "1",
+    "@vercel/speed-insights": "1",
     "change-case": "5",
     "class-variance-authority": "0",
     "downshift": "8",

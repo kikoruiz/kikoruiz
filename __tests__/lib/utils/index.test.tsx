@@ -1,5 +1,5 @@
 import {describe, it, expect} from 'vitest'
-import {getSlug, getTitle} from 'lib/utils'
+import {getSlug, getTitle, isNew} from 'lib/utils'
 
 describe('utils lib', () => {
   it('gets a slug from an uppercase name', () => {
@@ -24,5 +24,13 @@ describe('utils lib', () => {
 
   it('gets a title from a name with special characters', () => {
     expect(getTitle('John (Boy)')).toBe('John Boy')
+  })
+
+  it('says an item from 2023-04-23 is new if today was 2023-10-22', () => {
+    expect(isNew('2023-04-23', '2023-10-22')).to.be.true
+  })
+
+  it('says an item from 2023-04-23 is not new if today was 2023-10-24', () => {
+    expect(isNew('2023-04-23', '2023-10-24')).to.be.false
   })
 })
