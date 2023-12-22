@@ -16,5 +16,6 @@
     "title": "Map",
     "button": "Locate pictures on the map",
     "close": "Close the map"
-  }
+  },
+  "title-addon": "Photography"
 }
