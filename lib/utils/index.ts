@@ -135,50 +135,35 @@ export function getAverageValue(values: number[]) {
   return sum / values.length
 }
 
-export function autoSortSeasons(currentDate = new Date(Date.now())) {
+function getSeason(date = new Date()) {
+  const dayOfYear = getDayOfYear(date)
+
+  if (dayOfYear >= 80 && dayOfYear <= 171) {
+    return 'spring'
+  } else if (dayOfYear >= 172 && dayOfYear <= 263) {
+    return 'summer'
+  } else if (dayOfYear >= 264 && dayOfYear <= 354) {
+    return 'autumn'
+  } else {
+    return 'winter'
+  }
+}
+
+function getDayOfYear(date = new Date()) {
+  const startOfYear = new Date(date.getFullYear(), 0, 0)
+  const difference = date.getTime() - startOfYear.getTime()
+  const oneDayInMilliseconds = 24 * 60 * 60 * 1000 // hours * minutes * seconds * milliseconds
+  const dayOfYear = Math.floor(difference / oneDayInMilliseconds)
+
+  return dayOfYear
+}
+
+export function autoSortSeasons() {
   const seasons = [
     ...GALLERY_ALBUMS.find(({id}) => id === 'seasonal').subcategories
   ]
-  const seasonsConfig = [
-    {
-      id: 'winter',
-      date: new Date(
-        currentDate.getFullYear(),
-        11,
-        currentDate.getFullYear() % 4 === 0 ? 20 : 21
-      ).getTime()
-    },
-    {
-      id: 'spring',
-      date: new Date(
-        currentDate.getFullYear(),
-        2,
-        currentDate.getFullYear() % 4 === 0 ? 19 : 20
-      ).getTime()
-    },
-    {
-      id: 'summer',
-      date: new Date(
-        currentDate.getFullYear(),
-        5,
-        currentDate.getFullYear() % 4 === 0 ? 20 : 21
-      ).getTime()
-    },
-    {
-      id: 'autumn',
-      date: new Date(
-        currentDate.getFullYear(),
-        8,
-        currentDate.getFullYear() % 4 === 0 ? 22 : 23
-      ).getTime()
-    }
-  ]
-  const currentSeason = seasonsConfig
-    .filter(({date}) => date <= currentDate.getTime())
-    .slice(-1)[0] || {
-    id: 'winter'
-  }
-  const currentSeasonData = seasons.find(({id}) => id === currentSeason.id)
+  const currentSeason = getSeason()
+  const currentSeasonData = seasons.find(({id}) => id === currentSeason)
   const currentIndex = seasons.indexOf(currentSeasonData)
 
   if (currentIndex === 0) return seasons
