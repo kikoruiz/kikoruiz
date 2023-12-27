@@ -38,7 +38,7 @@
     "ua-parser-js": "1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "13",
+    "@next/bundle-analyzer": "14",
     "@plaiceholder/next": "3",
     "@svgr/webpack": "8",
     "@tailwindcss/typography": "0",
