@@ -5,9 +5,10 @@ import GalleryHeader from 'components/gallery-header'
 import {getGalleryAlbums} from 'lib/gallery/albums'
 import {fromAlbumToGallery} from 'lib/gallery/mappers'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {DEFAULT_ORIGIN, SECTIONS} from 'config'
+import {SECTIONS} from 'config'
 import {Picture} from 'types/gallery'
 import {Alternate} from 'types'
+import {getAbsoluteUrl} from 'lib/utils'
 
 export default function Gallery({albums, alternates}: GalleryProps) {
   const {t} = useTranslation()
@@ -26,14 +27,14 @@ export default function Gallery({albums, alternates}: GalleryProps) {
           content={`Kiko Ruiz / ${t('sections.gallery.name')}`}
         />
         <meta
-          property="og:image"
-          content={`${process.env.ORIGIN || DEFAULT_ORIGIN}${
-            SECTIONS.find(({id}) => id === 'gallery').highlightedPicture
-          }`}
-        />
-        <meta
           property="og:description"
           content={t('sections.gallery.description')}
+        />
+        <meta
+          property="og:image"
+          content={getAbsoluteUrl(
+            SECTIONS.find(({id}) => id === 'gallery').highlightedPicture
+          )}
         />
       </Head>
 
