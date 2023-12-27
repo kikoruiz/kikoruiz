@@ -35,6 +35,10 @@ export default function GalleryPage({
   )
   const openPicture =
     isCarouselOpen && items.find(item => item.slug === querySlug)
+  const openPictureDescription = openPicture?.description?.replaceAll(
+    /\n\n/g,
+    ' '
+  )
 
   function handleSortingChange(event) {
     const option = event.target.value
@@ -61,11 +65,19 @@ export default function GalleryPage({
       {openPicture && (
         <Head>
           <title>Kiko Ruiz / {openPicture.name}</title>
+          <meta
+            property="og:title"
+            content={`Kiko Ruiz / ${openPicture.name}`}
+          />
+          <meta property="og:image" content={openPicture.image.src} />
           {openPicture.description && (
-            <meta
-              name="description"
-              content={openPicture.description.replaceAll(/\n\n/g, ' ')}
-            />
+            <>
+              <meta name="description" content={openPictureDescription} />
+              <meta
+                property="og:description"
+                content={openPictureDescription}
+              />
+            </>
           )}
         </Head>
       )}
