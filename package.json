@@ -20,7 +20,7 @@
     "change-case": "5",
     "class-variance-authority": "0",
     "downshift": "8",
-    "embla-carousel-react": "8.0.0-rc15",
+    "embla-carousel-react": "8.0.0-rc17",
     "fast-average-color-node": "2",
     "gray-matter": "4",
     "leaflet": "1",
@@ -39,7 +39,7 @@
     "use-snipcart": "1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "13",
+    "@next/bundle-analyzer": "14",
     "@plaiceholder/next": "3",
     "@svgr/webpack": "8",
     "@tailwindcss/typography": "0",
@@ -53,7 +53,7 @@
     "autoprefixer": "10",
     "eslint": "8",
     "eslint-config-next": "14",
-    "eslint-config-prettier": "8",
+    "eslint-config-prettier": "9",
     "exiftool-vendored": "24",
     "glob": "10",
     "jsdom": "23",
