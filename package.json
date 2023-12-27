@@ -52,7 +52,7 @@
     "autoprefixer": "10",
     "eslint": "8",
     "eslint-config-next": "14",
-    "eslint-config-prettier": "8",
+    "eslint-config-prettier": "9",
     "exiftool-vendored": "24",
     "glob": "10",
     "jsdom": "23",
