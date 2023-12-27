@@ -5,6 +5,7 @@ import {getAllPosts} from 'lib/blog/posts'
 import {getPrettyDate} from 'lib/blog/date'
 import {getTagsData} from 'lib/blog/tags'
 import {fromLocalesToAlternates} from 'lib/mappers'
+import {getAbsoluteUrl, getSlug} from 'lib/utils'
 import {BLOG} from 'config'
 import Article from 'components/article'
 import BlogTags from 'components/blog-tags'
@@ -12,13 +13,13 @@ import {BlogPost} from 'types/blog'
 import {Alternate} from 'types'
 import PostTitle from 'components/post-title'
 import IconInformationCircle from 'assets/icons/information-circle.svg'
-import {getSlug} from 'lib/utils'
 
 export default function Post({post, alternates}: PostProps) {
   const {locale, defaultLocale} = useRouter()
   const {t} = useTranslation('blog')
   const author = BLOG.AUTHORS.find(({slug}) => post.author === slug).name
   const localePath = defaultLocale === locale ? '' : `/${locale}`
+  const title = `Kiko Ruiz / ${post.title}`
 
   function createAuthorMarkup() {
     return {
@@ -33,8 +34,21 @@ export default function Post({post, alternates}: PostProps) {
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${post.title}`}</title>
+        <title>{title}</title>
         <meta name="description" content={post.excerpt} />
+
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={title} />
+        <meta property="og:article:published_time" content={post.createdAt} />
+        <meta property="og:article:author" content={post.author} />
+        {post.blogTags.map(({id, slug}) => (
+          <meta key={id} property="og:article:tag" content={slug} />
+        ))}
+        <meta
+          property="og:image"
+          content={getAbsoluteUrl(post.bodyImages[0].src)}
+        />
+
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
