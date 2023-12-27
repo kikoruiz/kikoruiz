@@ -135,14 +135,14 @@ export function getAverageValue(values: number[]) {
   return sum / values.length
 }
 
-function getSeason(date = new Date()) {
+export function getSeason(date = new Date()) {
   const dayOfYear = getDayOfYear(date)
 
-  if (dayOfYear >= 80 && dayOfYear <= 171) {
+  if (dayOfYear >= 80 && dayOfYear <= 172) {
     return 'spring'
-  } else if (dayOfYear >= 172 && dayOfYear <= 263) {
+  } else if (dayOfYear >= 173 && dayOfYear <= 265) {
     return 'summer'
-  } else if (dayOfYear >= 264 && dayOfYear <= 354) {
+  } else if (dayOfYear >= 266 && dayOfYear <= 355) {
     return 'autumn'
   } else {
     return 'winter'
