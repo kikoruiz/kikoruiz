@@ -61,6 +61,7 @@ export default function Home({
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
 
+        <meta property="og:type" content="website" />
         <meta property="og:title" content="Kiko Ruiz" />
         <meta property="og:image" content={getAbsoluteUrl('/logo.png')} />
         <meta property="og:image:type" content="image/png" />

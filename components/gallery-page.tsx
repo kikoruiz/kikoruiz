@@ -67,6 +67,7 @@ export default function GalleryPage({
         {openPicture ? (
           <>
             <title>Kiko Ruiz / {openPicture.name}</title>
+
             <meta
               property="og:title"
               content={`Kiko Ruiz / ${openPicture.name}`}
@@ -91,25 +92,27 @@ export default function GalleryPage({
             )}
           </>
         ) : (
-          <>
-            <meta
-              property="og:title"
-              content={`Kiko Ruiz / ${t(`gallery.albums.${category}.name`)}`}
-            />
-            <meta
-              property="og:description"
-              content={t('sections.gallery.description')}
-            />
-            <meta
-              property="og:image"
-              content={getAbsoluteUrl(
-                `/pictures/${
-                  GALLERY_ALBUMS.find(({id}) => id === category)
-                    .highlightedPicture
-                }`
-              )}
-            />
-          </>
+          category && (
+            <>
+              <meta
+                property="og:title"
+                content={`Kiko Ruiz / ${t(`gallery.albums.${category}.name`)}`}
+              />
+              <meta
+                property="og:description"
+                content={t('sections.gallery.description')}
+              />
+              <meta
+                property="og:image"
+                content={getAbsoluteUrl(
+                  `/pictures/${
+                    GALLERY_ALBUMS.find(({id}) => id === category)
+                      .highlightedPicture
+                  }`
+                )}
+              />
+            </>
+          )
         )}
       </Head>
 

@@ -32,6 +32,8 @@ export default function GallerySlug({
         )}`}</title>
         <meta name="description" content={t('sections.gallery.description')} />
 
+        <meta property="og:type" content="website" />
+
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}

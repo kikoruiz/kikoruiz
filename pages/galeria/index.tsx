@@ -10,7 +10,7 @@ import {Picture} from 'types/gallery'
 import {Alternate} from 'types'
 import {getAbsoluteUrl} from 'lib/utils'
 
-export default function Gallery({albums, alternates}: GalleryProps) {
+export default function Gallery({albums, alternates, section}: GalleryProps) {
   const {t} = useTranslation()
 
   return (
@@ -22,6 +22,7 @@ export default function Gallery({albums, alternates}: GalleryProps) {
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
 
+        <meta property="og:type" content="website" />
         <meta
           property="og:title"
           content={`Kiko Ruiz / ${t('sections.gallery.name')}`}
@@ -33,7 +34,7 @@ export default function Gallery({albums, alternates}: GalleryProps) {
         <meta
           property="og:image"
           content={getAbsoluteUrl(
-            SECTIONS.find(({id}) => id === 'gallery').highlightedPicture
+            SECTIONS.find(({id}) => id === section).highlightedPicture
           )}
         />
       </Head>
@@ -63,4 +64,5 @@ export async function getStaticProps({locale, locales, defaultLocale}) {
 interface GalleryProps {
   albums: Picture[]
   alternates: Alternate[]
+  section: string
 }

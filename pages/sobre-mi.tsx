@@ -3,29 +3,43 @@ import Head from 'next/head'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {themeScreens} from 'lib/utils'
+import {getAbsoluteUrl, themeScreens} from 'lib/utils'
 import {getImagePlaceholder} from 'lib/utils/image'
-import {PERSONAL_INFO} from 'config'
+import {getContent} from 'lib/content'
+import {PERSONAL_INFO, SECTIONS} from 'config'
 import Article from 'components/article'
 import Image from 'components/image'
 import {Alternate, StaticContent} from 'types'
 import {Image as ImageInterface, ImageFallbackStyle} from 'types/gallery'
-import {getContent} from 'lib/content'
 
 export default function AboutMe({
   avatar,
   description,
-  alternates
+  alternates,
+  section
 }: AboutMeProps) {
   const {locale} = useRouter()
   const {t} = useTranslation()
   const bodyImage = avatar as ImageInterface
+  const title = `Kiko Ruiz / ${t('sections.about-me.name')}`
+  const metaDescription = t('sections.about-me.description')
 
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t('sections.about-me.name')}`}</title>
-        <meta name="description" content={t('sections.about-me.description')} />
+        <title>{title}</title>
+        <meta name="description" content={metaDescription} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={metaDescription} />
+        <meta
+          property="og:image"
+          content={getAbsoluteUrl(
+            SECTIONS.find(({id}) => id === section).highlightedPicture
+          )}
+        />
+
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
@@ -169,4 +183,5 @@ interface AboutMeProps {
   avatar: Avatar
   description: StaticContent
   alternates: Alternate[]
+  section: string
 }
