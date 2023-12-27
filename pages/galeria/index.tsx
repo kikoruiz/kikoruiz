@@ -5,6 +5,7 @@ import GalleryHeader from 'components/gallery-header'
 import {getGalleryAlbums} from 'lib/gallery/albums'
 import {fromAlbumToGallery} from 'lib/gallery/mappers'
 import {fromLocalesToAlternates} from 'lib/mappers'
+import {DEFAULT_ORIGIN, SECTIONS} from 'config'
 import {Picture} from 'types/gallery'
 import {Alternate} from 'types'
 
@@ -19,6 +20,21 @@ export default function Gallery({albums, alternates}: GalleryProps) {
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
+
+        <meta
+          property="og:title"
+          content={`Kiko Ruiz / ${t('sections.gallery.name')}`}
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.ORIGIN || DEFAULT_ORIGIN}${
+            SECTIONS.find(({id}) => id === 'gallery').highlightedPicture
+          }`}
+        />
+        <meta
+          property="og:description"
+          content={t('sections.gallery.description')}
+        />
       </Head>
 
       <GalleryHeader isAlbum />

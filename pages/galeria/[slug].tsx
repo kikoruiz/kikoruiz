@@ -10,6 +10,7 @@ import {GALLERY_ALBUMS} from 'config/gallery'
 import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
 import GalleryPage from 'components/gallery-page'
+import {DEFAULT_ORIGIN} from 'config'
 
 interface GallerySlugProps {
   pictures: Picture[]
@@ -23,17 +24,30 @@ export default function GallerySlug({
   ...pageProps
 }: GallerySlugProps) {
   const {t} = useTranslation()
+  const title = `Kiko Ruiz / ${t(`gallery.albums.${pageProps.category}.name`)}`
 
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t(
-          `gallery.albums.${pageProps.category}.name`
-        )}`}</title>
+        <title>{title}</title>
         <meta name="description" content={t('sections.gallery.description')} />
+
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
+
+        <meta property="og:title" content={title} />
+        <meta
+          property="og:description"
+          content={t('sections.gallery.description')}
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.ORIGIN || DEFAULT_ORIGIN}/pictures/${
+            GALLERY_ALBUMS.find(({id}) => id === pageProps.category)
+              .highlightedPicture
+          }`}
+        />
       </Head>
 
       <GalleryPage {...pageProps} />
