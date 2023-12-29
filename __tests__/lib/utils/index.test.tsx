@@ -1,5 +1,5 @@
 import {describe, it, expect} from 'vitest'
-import {getSeason, getSlug, getTitle, isNew} from 'lib/utils'
+import {getAbsoluteUrl, getSeason, getSlug, getTitle, isNew} from 'lib/utils'
 
 describe('utils lib', () => {
   // Tests for `getSlug`.
@@ -60,5 +60,15 @@ describe('utils lib', () => {
 
   it('checks it is winter season based on a selected day from 2024', () => {
     expect(getSeason(new Date('2024-12-21'))).toBe('winter')
+  })
+
+  // Tests for `getAbsoluteUrl`.
+
+  it('gets the absolute url for a path', () => {
+    expect(getAbsoluteUrl('foo.bar')).toBe('http://test/foo.bar')
+  })
+
+  it('gets the absolute url for a path starting with a trailing slash', () => {
+    expect(getAbsoluteUrl('/foo.bar')).toBe('http://test/foo.bar')
   })
 })

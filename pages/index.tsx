@@ -26,7 +26,7 @@ import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import {GALLERY_ALBUMS} from 'config/gallery'
-import {DEFAULT_ORIGIN} from 'config'
+import {getAbsoluteUrl} from 'lib/utils'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
@@ -61,11 +61,9 @@ export default function Home({
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
 
+        <meta property="og:type" content="website" />
         <meta property="og:title" content="Kiko Ruiz" />
-        <meta
-          property="og:image"
-          content={`${process.env.ORIGIN || DEFAULT_ORIGIN}/public/logo.png`}
-        />
+        <meta property="og:image" content={getAbsoluteUrl('/logo.png')} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:description" content={description} />
       </Head>

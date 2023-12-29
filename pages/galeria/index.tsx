@@ -5,11 +5,12 @@ import GalleryHeader from 'components/gallery-header'
 import {getGalleryAlbums} from 'lib/gallery/albums'
 import {fromAlbumToGallery} from 'lib/gallery/mappers'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {DEFAULT_ORIGIN, SECTIONS} from 'config'
+import {SECTIONS} from 'config'
 import {Picture} from 'types/gallery'
 import {Alternate} from 'types'
+import {getAbsoluteUrl} from 'lib/utils'
 
-export default function Gallery({albums, alternates}: GalleryProps) {
+export default function Gallery({albums, alternates, section}: GalleryProps) {
   const {t} = useTranslation()
 
   return (
@@ -21,19 +22,20 @@ export default function Gallery({albums, alternates}: GalleryProps) {
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
 
+        <meta property="og:type" content="website" />
         <meta
           property="og:title"
           content={`Kiko Ruiz / ${t('sections.gallery.name')}`}
         />
         <meta
-          property="og:image"
-          content={`${process.env.ORIGIN || DEFAULT_ORIGIN}${
-            SECTIONS.find(({id}) => id === 'gallery').highlightedPicture
-          }`}
-        />
-        <meta
           property="og:description"
           content={t('sections.gallery.description')}
+        />
+        <meta
+          property="og:image"
+          content={getAbsoluteUrl(
+            SECTIONS.find(({id}) => id === section).highlightedPicture
+          )}
         />
       </Head>
 
@@ -62,4 +64,5 @@ export async function getStaticProps({locale, locales, defaultLocale}) {
 interface GalleryProps {
   albums: Picture[]
   alternates: Alternate[]
+  section: string
 }

@@ -7,6 +7,7 @@ import {
   GALLERY_ALBUMS,
   PENDING_EVAL_SORTING_OPTIONS
 } from 'config/gallery'
+import {DEFAULT_ORIGIN} from 'config'
 import {Screens, ThemeScreens} from 'types'
 
 const config = resolveConfig(tailwindConfig)
@@ -173,4 +174,10 @@ export function autoSortSeasons() {
   seasons.splice(currentIndex)
 
   return [...movedSeasons, ...seasons]
+}
+
+export function getAbsoluteUrl(path: string) {
+  return `${process.env.ORIGIN || DEFAULT_ORIGIN}${
+    path.startsWith('/') ? '' : '/'
+  }${path}`
 }
