@@ -5,10 +5,11 @@ import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import GalleryList from 'components/gallery-list'
 import GalleryHeader from 'components/gallery-header'
-import {sortListBy} from 'lib/utils'
+import {getAbsoluteUrl, sortListBy} from 'lib/utils'
 import {
   DEFAULT_IS_ASCENDING_ORDER,
-  DEFAULT_SORTING_OPTION
+  DEFAULT_SORTING_OPTION,
+  GALLERY_ALBUMS
 } from 'config/gallery'
 import {Picture, Subcategory} from 'types/gallery'
 
@@ -22,8 +23,8 @@ export default function GalleryPage({
   subcategories
 }: GalleryPageProps) {
   const {query} = useRouter()
-  const {t} = useTranslation('gallery')
-  const queryKey = t('common:gallery.carousel.query-key')
+  const {t} = useTranslation()
+  const queryKey = t('gallery.carousel.query-key')
   const {[queryKey]: querySlug} = query
   const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const [sortingOption, setSortingOption] = useState(DEFAULT_SORTING_OPTION)
@@ -62,25 +63,58 @@ export default function GalleryPage({
 
   return (
     <>
-      {openPicture && (
-        <Head>
-          <title>Kiko Ruiz / {openPicture.name}</title>
-          <meta
-            property="og:title"
-            content={`Kiko Ruiz / ${openPicture.name}`}
-          />
-          <meta property="og:image" content={openPicture.image.src} />
-          {openPicture.description && (
-            <>
-              <meta name="description" content={openPictureDescription} />
+      <Head>
+        {openPicture ? (
+          <>
+            <title>Kiko Ruiz / {openPicture.name}</title>
+
+            <meta
+              property="og:title"
+              content={`Kiko Ruiz / ${openPicture.name}`}
+            />
+            <meta
+              property="og:image"
+              content={getAbsoluteUrl(openPicture.image.src)}
+            />
+            {openPictureDescription ? (
+              <>
+                <meta name="description" content={openPictureDescription} />
+                <meta
+                  property="og:description"
+                  content={openPictureDescription}
+                />
+              </>
+            ) : (
               <meta
                 property="og:description"
-                content={openPictureDescription}
+                content={t('sections.gallery.description')}
+              />
+            )}
+          </>
+        ) : (
+          category && (
+            <>
+              <meta
+                property="og:title"
+                content={`Kiko Ruiz / ${t(`gallery.albums.${category}.name`)}`}
+              />
+              <meta
+                property="og:description"
+                content={t('sections.gallery.description')}
+              />
+              <meta
+                property="og:image"
+                content={getAbsoluteUrl(
+                  `/pictures/${
+                    GALLERY_ALBUMS.find(({id}) => id === category)
+                      .highlightedPicture
+                  }`
+                )}
               />
             </>
-          )}
-        </Head>
-      )}
+          )
+        )}
+      </Head>
 
       <GalleryHeader />
 

@@ -5,7 +5,6 @@ export default function Document({locale}: DocumentProps) {
     <Html lang={locale} className="scroll-smooth">
       <Head>
         <meta name="theme-color" content="#171717" />
-        <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

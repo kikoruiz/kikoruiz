@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import getT from 'next-translate/getT'
 import useTranslation from 'next-translate/useTranslation'
+import GalleryPage from 'components/gallery-page'
 import {getGalleryAlbums} from 'lib/gallery/albums'
 import {getGalleryPictures} from 'lib/gallery/pictures'
 import {fromExifToGallery} from 'lib/gallery/mappers'
@@ -9,8 +10,6 @@ import {autoSortSeasons, getSlug} from 'lib/utils'
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
-import GalleryPage from 'components/gallery-page'
-import {DEFAULT_ORIGIN} from 'config'
 
 interface GallerySlugProps {
   pictures: Picture[]
@@ -24,30 +23,20 @@ export default function GallerySlug({
   ...pageProps
 }: GallerySlugProps) {
   const {t} = useTranslation()
-  const title = `Kiko Ruiz / ${t(`gallery.albums.${pageProps.category}.name`)}`
 
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{`Kiko Ruiz / ${t(
+          `gallery.albums.${pageProps.category}.name`
+        )}`}</title>
         <meta name="description" content={t('sections.gallery.description')} />
+
+        <meta property="og:type" content="website" />
 
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
-
-        <meta property="og:title" content={title} />
-        <meta
-          property="og:description"
-          content={t('sections.gallery.description')}
-        />
-        <meta
-          property="og:image"
-          content={`${process.env.ORIGIN || DEFAULT_ORIGIN}/pictures/${
-            GALLERY_ALBUMS.find(({id}) => id === pageProps.category)
-              .highlightedPicture
-          }`}
-        />
       </Head>
 
       <GalleryPage {...pageProps} />

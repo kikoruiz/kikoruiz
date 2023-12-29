@@ -3,18 +3,33 @@ import useTranslation from 'next-translate/useTranslation'
 import {getAllPosts} from 'lib/blog/posts'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getTagsData} from 'lib/blog/tags'
+import {getAbsoluteUrl} from 'lib/utils'
 import BlogList from 'components/blog-list'
 import {BlogPost} from 'types/blog'
 import {Alternate, Tag} from 'types'
+import {SECTIONS} from 'config'
 
-export default function Blog({posts, tags, alternates}: BlogProps) {
+export default function Blog({posts, tags, alternates, section}: BlogProps) {
   const {t} = useTranslation()
+  const title = `Kiko Ruiz / ${t('sections.blog.name')}`
+  const description = t('sections.blog.description')
 
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t('sections.blog.name')}`}</title>
-        <meta name="description" content={t('sections.blog.description')} />
+        <title>{}</title>
+        <meta name="description" content={description} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta
+          property="og:image"
+          content={getAbsoluteUrl(
+            SECTIONS.find(({id}) => id === section).highlightedPicture
+          )}
+        />
+
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
@@ -56,4 +71,5 @@ interface BlogProps {
   posts: BlogPost[]
   tags: Tag[]
   alternates: Alternate[]
+  section: string
 }
