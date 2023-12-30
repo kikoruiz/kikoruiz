@@ -1,21 +1,30 @@
 import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
+import getT from 'next-translate/getT'
 import {Alternate} from 'types'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getSlug, themeScreens} from 'lib/utils'
+import {getImagePlaceholder} from 'lib/utils/image'
 import PictureCard from 'components/picture-card'
 import {SECTIONS} from 'config'
+import {Image} from 'types/gallery'
 
-interface StoreProps {
-  section: string
-  alternates: Alternate[]
+type StoreCategory = {
+  id: string
+  href: string
+  title: string
+  image: Image
 }
 
-export default function Store({section, alternates}: StoreProps) {
+interface StoreProps {
+  alternates: Alternate[]
+  categories: StoreCategory[]
+}
+
+export default function Store({alternates, categories}: StoreProps) {
   const {sm, lg} = themeScreens
   const {t} = useTranslation()
   const title = t('sections.store.name')
-  const store = SECTIONS.find(({id}) => id === section)
 
   return (
     <>
@@ -46,36 +55,47 @@ export default function Store({section, alternates}: StoreProps) {
 
       <section className="px-3">
         <div className="columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3 xl:gap-4 xl:space-y-4 xl:pb-4">
-          {store.categories.map(({id}) => {
-            const slug = getSlug(t(`${store.localePrefix}${id}.name`))
-            const href = `/${getSlug(t(`sections.${section}.name`))}/${slug}`
-
-            return (
-              <PictureCard
-                key={id}
-                aspectRatio="1:1"
-                title={t(`${store.localePrefix}${id}.name`)}
-                url={href}
-                image={{src: `/store/${id}.jpg`}}
-                sizes={`(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`}
-                needsPreload
-                isAlbum
-              />
-            )
-          })}
+          {categories.map(({id, href, title, image}) => (
+            <PictureCard
+              key={id}
+              aspectRatio="1:1"
+              title={title}
+              url={href}
+              image={image}
+              sizes={`(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`}
+              needsPreload
+              isAlbum
+            />
+          ))}
         </div>
       </section>
     </>
   )
 }
 
-export async function getStaticProps({locales, defaultLocale}) {
+export async function getStaticProps({locale, locales, defaultLocale}) {
   const section = 'store'
   const alternates = await Promise.all(
     locales.map(await fromLocalesToAlternates({defaultLocale, section}))
   )
+  const t = await getT(locale, 'common')
+  const store = SECTIONS.find(({id}) => id === section)
+  const categories = await Promise.all(
+    store.categories.map(async ({id}): Promise<StoreCategory> => {
+      const slug = getSlug(t(`${store.localePrefix}${id}.name`))
+      const src = `/store/${id}.jpg`
+      const {css} = await getImagePlaceholder(src)
+
+      return {
+        id,
+        href: `/${getSlug(t(`sections.${section}.name`))}/${slug}`,
+        title: t(`${store.localePrefix}${id}.name`),
+        image: {src, css}
+      }
+    })
+  )
 
   return {
-    props: {section, alternates}
+    props: {section, alternates, categories}
   }
 }
