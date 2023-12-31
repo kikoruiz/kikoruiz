@@ -3,7 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import {Alternate} from 'types'
 import {fromLocalesToAlternates} from 'lib/mappers'
 
-export default function Prints({alternates}: PrintsProps) {
+export default function PrintsPage({alternates}: PrintsPageProps) {
   const {t} = useTranslation()
   const title = t('store.categories.prints.name')
 
@@ -39,15 +39,22 @@ export default function Prints({alternates}: PrintsProps) {
 
 export async function getStaticProps({locales, defaultLocale}) {
   const section = 'store'
+  const subSection = 'prints'
   const alternates = await Promise.all(
-    locales.map(await fromLocalesToAlternates({defaultLocale, section}))
+    locales.map(
+      await fromLocalesToAlternates({
+        defaultLocale,
+        section,
+        subSection
+      })
+    )
   )
 
   return {
-    props: {section, alternates}
+    props: {section, subSection, alternates}
   }
 }
 
-interface PrintsProps {
+interface PrintsPageProps {
   alternates: Alternate[]
 }

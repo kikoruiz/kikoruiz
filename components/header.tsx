@@ -9,7 +9,7 @@ import useLayoutContext from 'contexts/Layout'
 export default function Header({...sectionData}: SectionData) {
   const headerRef = useRef(null)
   const {setLayout} = useLayoutContext()
-  const {hasHero, section} = sectionData
+  const {hasHero, section, subSection} = sectionData
   const isHome = section === 'home'
   const logo = (
     <Logo
@@ -37,7 +37,11 @@ export default function Header({...sectionData}: SectionData) {
             )}
           </div>
 
-          <Navigation section={section} hasHero={hasHero} />
+          <Navigation
+            section={section}
+            subSection={subSection}
+            hasHero={hasHero}
+          />
         </div>
       </div>
 
