@@ -1,5 +1,5 @@
 import {kebabCase} from 'change-case'
-import {remove} from 'remove-accents'
+import {remove as removeAccents} from 'remove-accents'
 import getT from 'next-translate/getT'
 import {SECTIONS, DEFAULT_ORIGIN} from 'config'
 import {getSlug} from './utils'
@@ -65,9 +65,13 @@ export function fromSectionToBreadcrumbItems({
           : t(`blog.tags.${tag}`)
       })
     } else if (subSection) {
+      const localePrefix = sectionItem?.localePrefix
+
       items.push({
         id: subSection,
-        name: t(subSection)
+        name: localePrefix
+          ? t(`${localePrefix}${subSection}.name`)
+          : t(subSection)
       })
     } else {
       items.push({
@@ -110,8 +114,14 @@ export async function fromLocalesToAlternates({
     const localePath = locale === defaultLocale ? '' : `/${locale}`
     const sectionSlug = getSlug(t(`sections.${section}.name`))
     const sectionPath = section ? `/${sectionSlug}` : ''
-    const subSectionPath = subSection ? `/${getSlug(t(subSection))}` : ''
     const sectionData = SECTIONS.find(({id}) => section === id)
+    const localePrefix = sectionData?.localePrefix
+    const subSectionSlug =
+      subSection &&
+      (localePrefix
+        ? getSlug(t(`${localePrefix}${subSection}.name`))
+        : getSlug(t(subSection)))
+    const subSectionPath = subSectionSlug ? `/${subSectionSlug}` : ''
     const categoryData =
       category &&
       sectionData?.categories?.find(({id}) => {
@@ -139,7 +149,7 @@ export async function fromLocalesToAlternates({
     if (tag) {
       actualTag = isGallerySection
         ? getSlug(galleryT(`tags.${getSlug(tag)}`))
-        : remove(t(`blog.tags.${tag}`))
+        : removeAccents(t(`blog.tags.${tag}`))
     }
     const tagPath = tag ? `/tags/${actualTag}` : ''
     const endingPath =

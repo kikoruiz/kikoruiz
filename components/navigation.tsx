@@ -10,19 +10,36 @@ import sectionIcons from './section-icons'
 import IconChevronDown from 'assets/icons/chevron-down.svg'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
 
+interface NavigationProps {
+  section: string
+  subSection?: string
+  hasHero?: boolean
+}
+
 const {sm} = screens
 
-export default function Navigation({section, hasHero}: NavigationProps) {
+export default function Navigation({
+  section,
+  subSection,
+  hasHero
+}: NavigationProps) {
   const {t} = useTranslation()
   const router = useRouter()
   const {asPath} = router
   const isNotSectionPage =
     LEGAL_PAGES.includes(section) || section === 'error' || section === 'home'
+  const sectionData = SECTIONS.find(({id}) => id === section)
   let path =
     section && !isNotSectionPage
       ? asPath.replace(
-          /(\/[a-z,-]+)/,
-          `/${getSlug(t(`sections.${section}.name`))}`
+          /(\/[a-z,-]+)(\/[a-z,-]+)?/,
+          `/${getSlug(t(`sections.${section}.name`))}${
+            subSection && sectionData?.localePrefix
+              ? `/${getSlug(
+                  t(`${sectionData?.localePrefix}${subSection}.name`)
+                )}`
+              : '$2'
+          }`
         )
       : asPath
   if (path.includes('#')) path = path.split('#')[0]
@@ -291,9 +308,4 @@ export default function Navigation({section, hasHero}: NavigationProps) {
       <SearchBar isOpen={isSearchBarOpen} setIsOpen={setIsSearchBarOpen} />
     </nav>
   )
-}
-
-interface NavigationProps {
-  section: string
-  hasHero?: boolean
 }
