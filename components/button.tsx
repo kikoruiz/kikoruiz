@@ -2,12 +2,14 @@ import {ButtonHTMLAttributes, PropsWithChildren} from 'react'
 import {cva, cx} from 'class-variance-authority'
 import type {VariantProps} from 'class-variance-authority'
 
-const cookiesButtonStyles = cva('', {
+const buttonStyles = cva('', {
   variants: {
     intent: {
       light:
         'from-neutral-100 to-neutral-300 text-neutral-900 hover:ring-2 hover:ring-orange-300 hover:text-black hover:from-white hover:to-neutral-200',
-      dark: 'from-neutral-800 to-neutral-900 text-neutral-300 hover:ring-1 hover:ring-orange-300/90 hover:text-white hover:to-black/30'
+      dark: 'from-neutral-800 to-neutral-900 text-neutral-300 hover:ring-1 hover:ring-orange-300/90 hover:text-white hover:to-black/30',
+      accent:
+        'from-orange-200 to-orange-400 text-orange-900 hover:ring-2 hover:ring-orange-500 hover:text-orange-900 hover:from-orange-300 hover:to-orange-500'
     },
     size: {
       medium: 'rounded-md py-1.5 px-3 text-sm',
@@ -16,24 +18,23 @@ const cookiesButtonStyles = cva('', {
   }
 })
 
-type CookiesButtonProps = PropsWithChildren<
-  ButtonHTMLAttributes<HTMLButtonElement> &
-    VariantProps<typeof cookiesButtonStyles>
+type ButtonProps = PropsWithChildren<
+  ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonStyles>
 >
 
-export default function CookiesButton({
+export default function Button({
   children,
   title,
   size = 'medium',
   intent = 'dark',
   className,
   ...props
-}: CookiesButtonProps) {
+}: ButtonProps) {
   return (
     <button
       {...props}
       title={title}
-      className={cookiesButtonStyles({
+      className={buttonStyles({
         size,
         intent,
         class: cx(

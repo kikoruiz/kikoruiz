@@ -6,6 +6,11 @@ import {SectionImage} from 'types'
 import {ImageAverageColor} from 'types/gallery'
 import sectionIcons from './section-icons'
 
+interface HomeSectionsProps {
+  images: SectionImage[]
+  averageColor: ImageAverageColor
+}
+
 export default function HomeSections({
   images,
   averageColor
@@ -39,8 +44,6 @@ export default function HomeSections({
                   color: averageColor.hex
                 }}
               >
-                {/* first:rounded-l-xl last:rounded-r-xl
-                group-first:rounded-tl-xl group-last:rounded-br-xl */}
                 <header
                   className={`flex flex-col items-center px-0 pt-4 group-hover:text-current md:p-6 lg:items-start xl:p-5 ${
                     averageColor.isDark ? 'text-orange-300' : 'text-neutral-300'
@@ -75,9 +78,4 @@ export default function HomeSections({
       </div>
     </section>
   )
-}
-
-interface HomeSectionsProps {
-  images: SectionImage[]
-  averageColor: ImageAverageColor
 }

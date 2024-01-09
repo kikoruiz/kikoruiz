@@ -3,10 +3,11 @@ import useTranslation from 'next-translate/useTranslation'
 import {Alternate} from 'types'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getPrints} from 'lib/store/prints'
+import {themeScreens} from 'lib/utils'
 import {Print} from 'types/store'
 import Image from 'components/image'
+import Button from 'components/button'
 import Logo from 'assets/brand/photo-logo.svg'
-import {themeScreens} from 'lib/utils'
 
 interface PrintsPageProps {
   alternates: Alternate[]
@@ -64,10 +65,12 @@ export default function PrintsPage({alternates, prints}: PrintsPageProps) {
                   <Logo className="absolute left-[calc(10%+1em)] bottom-[calc(10%)] w-9 fill-white/80" />
                 </div>
 
-                <div className="mt-3">
+                <div className="flex items-center justify-between mt-3 py-1.5 pl-1.5">
                   <span className="font-black text-xl">
                     {t('store:price', {count: price})}
                   </span>
+
+                  <Button intent="accent">Add to cart</Button>
                 </div>
               </div>
             )
