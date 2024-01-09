@@ -2,8 +2,19 @@ import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 import {Alternate} from 'types'
 import {fromLocalesToAlternates} from 'lib/mappers'
+import {getPrints} from 'lib/store/prints'
+import {Print} from 'types/store'
+import Image from 'components/image'
+import Logo from 'assets/brand/photo-logo.svg'
+import {themeScreens} from 'lib/utils'
 
-export default function PrintsPage({alternates}: PrintsPageProps) {
+interface PrintsPageProps {
+  alternates: Alternate[]
+  prints: Print[]
+}
+
+export default function PrintsPage({alternates, prints}: PrintsPageProps) {
+  const {sm, lg} = themeScreens
   const {t} = useTranslation()
   const title = t('store.categories.prints.name')
 
@@ -27,17 +38,47 @@ export default function PrintsPage({alternates}: PrintsPageProps) {
           </h1>
         </div>
 
-        <div className="relative after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent pb-6 after:bottom-[-1px] after:via-neutral-600"></div>
+        <div className="relative after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent pb-6 after:bottom-[-1px] after:via-neutral-600" />
       </header>
 
-      <section className="px-3">
-        <div className="columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3 xl:gap-4 xl:space-y-4 xl:pb-4"></div>
+      <section className="px-6">
+        <div className="columns-1 gap-6 space-y-6 sm:columns-2 lg:columns-3 xl:gap-12 xl:space-y-12">
+          {prints.map(({id, name, url, price, image, aspectRatio}) => {
+            const {css, src} = image
+
+            return (
+              <div
+                key={id}
+                className="p-3 bg-white/10 rounded break-inside-avoid-column"
+              >
+                <div className="relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 p-[10%] drop-shadow-md">
+                  <Image
+                    src={src}
+                    url={url}
+                    alt={name}
+                    aspectRatio={aspectRatio}
+                    sizes={`(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`}
+                    fallbackStyle={css}
+                  />
+
+                  <Logo className="absolute left-[calc(10%+1em)] bottom-[calc(10%)] w-9 fill-white/80" />
+                </div>
+
+                <div className="mt-3">
+                  <span className="font-black text-xl">
+                    {t('store:price', {count: price})}
+                  </span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </section>
     </>
   )
 }
 
-export async function getStaticProps({locales, defaultLocale}) {
+export async function getStaticProps({locale, locales, defaultLocale}) {
   const section = 'store'
   const subSection = 'prints'
   const alternates = await Promise.all(
@@ -49,12 +90,9 @@ export async function getStaticProps({locales, defaultLocale}) {
       })
     )
   )
+  const prints = await getPrints({locale})
 
   return {
-    props: {section, subSection, alternates}
+    props: {section, subSection, alternates, prints}
   }
-}
-
-interface PrintsPageProps {
-  alternates: Alternate[]
 }
