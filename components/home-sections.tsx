@@ -41,7 +41,9 @@ export default function HomeSections({
                 }`}
                 style={{
                   backgroundColor: averageColor.hex,
-                  color: averageColor.hex
+                  color: averageColor.hex,
+                  WebkitMaskImage:
+                    'linear-gradient(to top, rgba(0, 0, 0, 1) 100%, transparent 100%)'
                 }}
               >
                 <header
