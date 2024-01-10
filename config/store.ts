@@ -1,7 +1,7 @@
 export const PICTURES_FOR_PRINTING = [
-  '2018-02-11_0022',
-  '2020-01-18_0131',
-  '2020-01-25_0040'
+  {id: '2018-02-11_0022'},
+  {id: '2020-01-18_0131'},
+  {id: '2020-01-25_0040'}
 ]
 
 export const PRINT_SIZES = {
@@ -18,6 +18,22 @@ export const PRINT_SIZES = {
   A10: {mm: '26x37', cm: '2.6x3.7', in: '1.0x1.5'}
 }
 export const DEFAULT_PRINT_SIZE = 'A2'
+
 export const DEFAULT_PRINT_PRICE = 45
+
 export const UNITS_OF_MEASUREMENT = ['mm', 'cm', 'in']
 export const DEFAULT_UNIT_OF_MEASUREMENT = 'mm'
+
+export const PRINT_PAPERS = [
+  {
+    brand: 'Hahnemühle',
+    type: 'Photo Pearl 310',
+    gsm: 310,
+    url: {
+      en: 'https://www.hahnemuehle.com/en/digital-fineart/hahnemuehle-photo/p/Product/show/37/649.html',
+      es: 'https://www.hahnemuehle.com/es/digital-fineart/hahnemuehle-photo/p/Product/show/37/649.html',
+      ca: 'https://www.hahnemuehle.com/es/digital-fineart/hahnemuehle-photo/p/Product/show/37/649.html'
+    }
+  }
+]
+export const DEFAULT_PRINT_PAPER = 'hahnemuehle-photo-pearl-310'

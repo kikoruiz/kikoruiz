@@ -19,6 +19,8 @@ export const SECTIONS = [
   {id: 'about-me', highlightedPicture: '/pictures/2022-08-27_0108.jpg'}
 ]
 
+export const SPECIAL_SUBSECTIONS = ['tags']
+
 export const LEGAL_PAGES = ['privacy-policy', 'cookies-policy']
 
 export const COOKIES_BY_TYPE = {

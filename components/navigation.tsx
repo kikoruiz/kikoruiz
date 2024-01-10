@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {useMediaQuery} from 'react-responsive'
 import useTranslation from 'next-translate/useTranslation'
-import {LEGAL_PAGES, SECTIONS} from 'config'
+import {LEGAL_PAGES, SECTIONS, SPECIAL_SUBSECTIONS} from 'config'
 import {getCapitalizedName, getSlug, screens} from 'lib/utils'
 import SearchBar from './search-bar'
 import sectionIcons from './section-icons'
@@ -29,12 +29,13 @@ export default function Navigation({
   const isNotSectionPage =
     LEGAL_PAGES.includes(section) || section === 'error' || section === 'home'
   const sectionData = SECTIONS.find(({id}) => id === section)
+  const isSpecialSubsection = SPECIAL_SUBSECTIONS.includes(subSection)
   let path =
     section && !isNotSectionPage
       ? asPath.replace(
           /(\/[a-z,-]+)(\/[a-z,-]+)?/,
           `/${getSlug(t(`sections.${section}.name`))}${
-            subSection && sectionData?.localePrefix
+            subSection && sectionData?.localePrefix && !isSpecialSubsection
               ? `/${getSlug(
                   t(`${sectionData?.localePrefix}${subSection}.name`)
                 )}`
