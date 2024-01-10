@@ -1,12 +1,14 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {Alternate} from 'types'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getPrints} from 'lib/store/prints'
-import {themeScreens} from 'lib/utils'
+import {getSlug, themeScreens} from 'lib/utils'
 import {Print} from 'types/store'
 import Image from 'components/image'
 import Button from 'components/button'
+import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import Logo from 'assets/brand/photo-logo.svg'
 
 interface PrintsPageProps {
@@ -18,6 +20,9 @@ export default function PrintsPage({alternates, prints}: PrintsPageProps) {
   const {sm, lg} = themeScreens
   const {t} = useTranslation()
   const title = t('store.categories.prints.name')
+  const sectionSlug = getSlug(t('common:sections.store.name'))
+  const backButtonHref = `/${sectionSlug}`
+  const backButtonTitle = 'Back to Store'
 
   return (
     <>
@@ -39,7 +44,16 @@ export default function PrintsPage({alternates, prints}: PrintsPageProps) {
           </h1>
         </div>
 
-        <div className="relative after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent pb-6 after:bottom-[-1px] after:via-neutral-600" />
+        <div className="relative mt-6 pt-3 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600">
+          <Link
+            href={backButtonHref}
+            title={backButtonTitle}
+            className="inline-flex items-center text-xs font-light text-neutral-300/30 hover:text-neutral-300/90 sm:text-sm"
+          >
+            <IconArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
+            {backButtonTitle}
+          </Link>
+        </div>
       </header>
 
       <section className="px-6">
@@ -50,9 +64,9 @@ export default function PrintsPage({alternates, prints}: PrintsPageProps) {
             return (
               <div
                 key={id}
-                className="p-3 bg-white/10 rounded break-inside-avoid-column"
+                className="group p-3 bg-white/10 hover:bg-white/15 rounded break-inside-avoid-column"
               >
-                <div className="relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 p-[10%] drop-shadow-md">
+                <div className="relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 p-[10%] drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl">
                   <Image
                     src={src}
                     url={url}
@@ -66,7 +80,7 @@ export default function PrintsPage({alternates, prints}: PrintsPageProps) {
                 </div>
 
                 <div className="flex items-center justify-between mt-3 py-1.5 pl-1.5">
-                  <span className="font-black text-xl">
+                  <span className="font-black text-xl group-hover:text-neutral-100">
                     {t('store:price', {count: price})}
                   </span>
 

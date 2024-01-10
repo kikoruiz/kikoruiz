@@ -1,4 +1,5 @@
 import {
+  DEFAULT_PRINT_PAPER,
   DEFAULT_PRINT_PRICE,
   DEFAULT_PRINT_SIZE,
   PICTURES_FOR_PRINTING
@@ -14,16 +15,14 @@ export async function getPrints({locale}: {locale: string}): Promise<Print[]> {
     rawPictures.map(fromExifToGallery({locale}))
   )
   const picturesForPrinting = mappedPictures.filter(({id}) =>
-    PICTURES_FOR_PRINTING.includes(id)
+    PICTURES_FOR_PRINTING.find(picture => picture.id === id)
   )
 
   return picturesForPrinting.map(({id, name, slug, url, image, imageSize}) => ({
     id,
     name,
     slug,
-    url: '',
-    description: '',
-    paper: '',
+    paper: DEFAULT_PRINT_PAPER,
     size: DEFAULT_PRINT_SIZE,
     price: DEFAULT_PRINT_PRICE,
     image,

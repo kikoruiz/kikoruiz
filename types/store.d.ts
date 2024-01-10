@@ -4,7 +4,7 @@ export interface Print {
   id: string
   name: string
   slug: string
-  url: string
+  url?: string
   description?: string
   paper: Paper['id']
   size: string
@@ -21,5 +21,5 @@ export interface Paper {
   type: string
   gsm: number
   description: string
-  url: string
+  url: string | {en: string; es: string; ca: string}
 }
