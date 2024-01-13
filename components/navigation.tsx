@@ -298,7 +298,7 @@ export default function Navigation({
       <button
         aria-hidden="true"
         tabIndex={-1}
-        className={`fixed inset-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity ${
+        className={`fixed z-10 inset-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity ${
           isMenuOpen || isSearchBarOpen
             ? 'opacity-1 touch-none'
             : 'pointer-events-none touch-auto opacity-0 sm:hidden'

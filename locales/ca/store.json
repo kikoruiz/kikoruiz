@@ -1,3 +1,8 @@
 {
-  "price": "{{count, price}}"
+  "price": "{{count, price}}",
+  "shopping-cart": {
+    "0": "Veure carret de la compra",
+    "1": "Veure carret de la compra ({{count}} article)",
+    "other": "Veure carret de la compra ({{count}} articles)"
+  }
 }
