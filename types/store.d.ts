@@ -23,3 +23,10 @@ export interface Paper {
   description: string
   url: string | {en: string; es: string; ca: string}
 }
+
+export interface Cart {
+  items?: {
+    count?: number
+  }
+  subtotal?: number
+}

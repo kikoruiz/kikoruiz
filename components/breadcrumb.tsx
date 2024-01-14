@@ -11,6 +11,7 @@ import subcategoryIcons from './gallery-subcategory-icons'
 import IconShoppingCart from 'assets/icons/shopping-cart.svg'
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {BLOG} from 'config'
+import {Cart} from 'types/store'
 
 function scrollToTop() {
   window?.scrollTo({top: 0})
@@ -23,7 +24,11 @@ export default function Breadcrumb({
   tag
 }: SectionData) {
   const {t} = useTranslation()
-  const {cart}: {cart?: object} = useSnipcart()
+  const {
+    cart
+  }: {
+    cart?: Cart
+  } = useSnipcart()
   const router = useRouter()
   const {query} = router
   const {subcategory} = useSubcategoryContext()
