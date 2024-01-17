@@ -18,7 +18,7 @@ interface ImageProps {
   isFullRounded?: boolean
   isShallowLink?: boolean
   scrollToTop?: boolean
-  onLoad: () => void
+  onLoad?: () => void
   children?: JSX.Element
 }
 
