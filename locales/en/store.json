@@ -4,5 +4,7 @@
     "0": "See shopping cart",
     "1": "See shopping cart ({{count}} article)",
     "other": "See shopping cart ({{count}} articles)"
-  }
+  },
+  "back-to-store": "Back to store",
+  "add-to-cart": "Add to cart"
 }

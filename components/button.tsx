@@ -9,13 +9,28 @@ const buttonStyles = cva('', {
         'from-neutral-100 to-neutral-300 text-neutral-900 hover:ring-2 hover:ring-orange-300 hover:text-black hover:from-white hover:to-neutral-200',
       dark: 'from-neutral-800 to-neutral-900 text-neutral-300 hover:ring-1 hover:ring-orange-300/90 hover:text-white hover:to-black/30',
       accent:
-        'from-orange-200 to-orange-400 text-orange-800 hover:ring-2 hover:ring-orange-300 hover:text-orange-900 hover:from-orange-300 hover:to-orange-500'
+        'from-orange-200 to-orange-400 text-orange-800 hover:ring-2 hover:ring-orange-200 hover:text-orange-900 hover:from-orange-300 hover:to-orange-500'
     },
     size: {
-      medium: 'rounded-md py-1.5 px-3 text-sm',
-      large: 'rounded-lg py-3 px-6 text-base leading-snug'
+      medium: 'py-1.5 px-3 text-sm',
+      large: 'py-3 px-6 text-base leading-snug'
+    },
+    isRounded: {
+      true: 'rounded-full'
     }
-  }
+  },
+  compoundVariants: [
+    {
+      size: 'medium',
+      isRounded: false,
+      class: 'rounded-md'
+    },
+    {
+      size: 'large',
+      isRounded: false,
+      class: 'rounded-lg'
+    }
+  ]
 })
 
 type ButtonProps = PropsWithChildren<
@@ -27,6 +42,7 @@ export default function Button({
   title,
   size = 'medium',
   intent = 'dark',
+  isRounded = false,
   className,
   ...props
 }: ButtonProps) {
@@ -37,6 +53,7 @@ export default function Button({
       className={buttonStyles({
         size,
         intent,
+        isRounded,
         class: cx(
           className,
           'font-light bg-gradient-to-b transition-shadow drop-shadow-md'

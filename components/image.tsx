@@ -18,6 +18,7 @@ interface ImageProps {
   isFullRounded?: boolean
   isShallowLink?: boolean
   scrollToTop?: boolean
+  onLoad: () => void
   children?: JSX.Element
 }
 
@@ -36,6 +37,7 @@ export default function Image({
   isFullRounded,
   isShallowLink,
   scrollToTop = false,
+  onLoad = () => {},
   children
 }: ImageProps) {
   const isLink = Boolean(url)
@@ -53,6 +55,7 @@ export default function Image({
 
   function handleImageLoad() {
     setIsLoaded(true)
+    onLoad()
   }
 
   const content = (
@@ -67,6 +70,7 @@ export default function Image({
           transform: 'translate3d(0, 0, 0)'
         }}
       />
+
       <NextImage
         src={src}
         alt={alt}
@@ -77,6 +81,7 @@ export default function Image({
         sizes={sizes}
         fill
       />
+
       {children}
     </>
   )

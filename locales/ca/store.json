@@ -4,5 +4,7 @@
     "0": "Veure carret de la compra",
     "1": "Veure carret de la compra ({{count}} article)",
     "other": "Veure carret de la compra ({{count}} articles)"
-  }
+  },
+  "back-to-store": "Tornar a la tenda",
+  "add-to-cart": "Afegir al carret"
 }
