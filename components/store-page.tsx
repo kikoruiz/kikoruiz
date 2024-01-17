@@ -22,9 +22,9 @@ export default function StorePage({
   children
 }: StorePageProps) {
   const {t} = useTranslation()
-  const sectionSlug = getSlug(t('common:sections.store.name'))
+  const sectionSlug = getSlug(t('sections.store.name'))
   const backButtonHref = `/${sectionSlug}`
-  const backButtonTitle = 'Back to Store'
+  const backButtonTitle = t('store:back-to-store')
 
   return (
     <>

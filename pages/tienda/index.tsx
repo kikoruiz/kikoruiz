@@ -33,7 +33,7 @@ export default function Store({alternates, categories}: StoreProps) {
       isIndex
     >
       <section className="px-3">
-        <div className="columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3 xl:gap-4 xl:space-y-4 xl:pb-4">
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-3 xl:gap-4 space-y-3 xl:space-y-4 pb-3 xl:pb-4">
           {categories.map(({id, href, title, image}) => (
             <PictureCard
               key={id}

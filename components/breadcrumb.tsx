@@ -135,7 +135,7 @@ export default function Breadcrumb({
         {needsShoppingCart && (
           <button
             className="snipcart-checkout group flex items-center p-2 rounded-full bg-neutral-900/60 leading-none drop-shadow ring-1 ring-neutral-700/90 hover:ring-orange-300 transition-shadow"
-            title={t('store:shopping-cart', {count: cart?.items?.count})}
+            title={t('store:shopping-cart', {count: cart?.items?.count ?? 0})}
           >
             <div className="relative">
               <IconShoppingCart className="w-4 fill-orange-300" />
