@@ -55,7 +55,7 @@
     "eslint-config-prettier": "9",
     "exiftool-vendored": "24",
     "glob": "10",
-    "jsdom": "23",
+    "jsdom": "24",
     "next-translate-plugin": "2",
     "postcss": "8",
     "prettier": "3",
