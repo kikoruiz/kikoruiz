@@ -6,5 +6,7 @@
     "other": "Veure carret de la compra ({{count}} articles)"
   },
   "back-to-store": "Tornar a la tenda",
-  "add-to-cart": "Afegir al carret"
+  "add-to-cart": "Afegir al carret",
+  "size": "Size",
+  "paper": "Paper"
 }

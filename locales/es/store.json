@@ -6,5 +6,7 @@
     "other": "Ver carrito de la compra ({{count}} artículos)"
   },
   "back-to-store": "Volver a la tienda",
-  "add-to-cart": "Añadir al carrito"
+  "add-to-cart": "Añadir al carrito",
+  "size": "Tamaño",
+  "paper": "Papel"
 }

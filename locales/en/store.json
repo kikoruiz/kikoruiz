@@ -6,5 +6,7 @@
     "other": "See shopping cart ({{count}} articles)"
   },
   "back-to-store": "Back to store",
-  "add-to-cart": "Add to cart"
+  "add-to-cart": "Add to cart",
+  "size": "Size",
+  "paper": "Paper"
 }
