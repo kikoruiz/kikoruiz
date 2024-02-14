@@ -60,6 +60,25 @@ const nextConfig = withBundleAnalyzer({
           }
         ]
       },
+      async headers() {
+        return [
+          {
+            source: '/:path*',
+            has: [
+              {
+                type: 'host',
+                value: 'kikoruiz.vercel.app'
+              }
+            ],
+            headers: [
+              {
+                key: 'X-Robots-Tag',
+                value: 'noindex'
+              }
+            ]
+          }
+        ]
+      },
       webpack: config => {
         config.module.rules.push({
           test: /\.svg$/,
