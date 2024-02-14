@@ -1,6 +1,7 @@
 export const PICTURES_FOR_PRINTING = [
   {id: '2018-02-11_0022'},
   {id: '2020-01-18_0131'},
+  {id: '2019-03-05_0363'},
   {id: '2020-01-25_0040'}
 ]
 
@@ -36,4 +37,4 @@ export const PRINT_PAPERS = [
     }
   }
 ]
-export const DEFAULT_PRINT_PAPER = 'hahnemuehle-photo-pearl-310'
+export const DEFAULT_PRINT_PAPER = 'hahnemuhle-photo-pearl-310'
