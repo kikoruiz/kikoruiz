@@ -3,6 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Image from 'components/image'
 import Button from 'components/button'
 import Logo from 'assets/brand/photo-logo.svg'
+import IconArrowTopRightOnSquare from 'assets/icons/arrow-top-right-on-square.svg'
 import {getSlug, themeScreens} from 'lib/utils'
 import {
   DEFAULT_UNIT_OF_MEASUREMENT,
@@ -17,6 +18,7 @@ export default function PrintCard({
   id,
   name,
   url,
+  picture,
   price,
   image,
   aspectRatio,
@@ -33,7 +35,6 @@ export default function PrintCard({
   )
   const paperName = `${paperData.brand} ${paperData.type}`
   const isVertical = orientation === 'vertical'
-  const sizeLabel = `${size} (${PRINT_SIZES[size][DEFAULT_UNIT_OF_MEASUREMENT]} ${DEFAULT_UNIT_OF_MEASUREMENT})`
 
   return (
     <div
@@ -43,7 +44,6 @@ export default function PrintCard({
       <div className="relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 p-[10%] drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em]">
         <Image
           src={src}
-          url={url}
           alt={name}
           aspectRatio={aspectRatio}
           sizes={`(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`}
@@ -62,16 +62,30 @@ export default function PrintCard({
 
       <div className="flex items-start justify-between mt-3 py-1.5 pl-1.5">
         <div className="flex flex-col gap-1.5">
-          <header className="font-thin text-2xl">{name}</header>
+          <header className="font-thin text-2xl">
+            <Link href={picture} className="hover:text-neutral-100">
+              {name}
+            </Link>
+          </header>
 
           <dl className="text-sm my-3">
-            <dt className="font-light text-neutral-300/40">{t('size')}</dt>
-            <dd className="font-medium">{sizeLabel}</dd>
-
-            <dt className="font-light text-neutral-300/40">{t('paper')}</dt>
-            <dd className="font-medium">
-              <Link href={paperData.url[locale]} target="_blank">
+            <dt className="font-light text-neutral-300/30">{t('size')}</dt>
+            <dd className="font-medium text-neutral-300/60">
+              {size}{' '}
+              <span className="font-thin">
+                ({PRINT_SIZES[size][DEFAULT_UNIT_OF_MEASUREMENT]}{' '}
+                {DEFAULT_UNIT_OF_MEASUREMENT})
+              </span>
+            </dd>
+            <dt className="font-light text-neutral-300/30">{t('paper')}</dt>
+            <dd className="font-medium text-neutral-300/60">
+              <Link
+                href={paperData.url[locale]}
+                target="_blank"
+                className="flex items-center w-max underline hover:no-underline hover:text-neutral-300"
+              >
                 {paperName}
+                <IconArrowTopRightOnSquare className="inline size-3 ml-1.5" />
               </Link>
             </dd>
           </dl>

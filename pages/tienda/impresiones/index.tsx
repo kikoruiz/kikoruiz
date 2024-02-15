@@ -21,7 +21,7 @@ export default function PrintsPage({alternates, prints}: PrintsPageProps) {
       alternates={alternates}
     >
       <section className="px-6">
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 xl:gap-9 space-y-6 xl:space-y-9">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 xl:gap-9 space-y-6 xl:space-y-9">
           {prints.map(print => (
             <PrintCard key={print.id} {...print} />
           ))}
