@@ -21,7 +21,12 @@ export const SECTIONS = [
 
 export const SPECIAL_SUBSECTIONS = ['tags']
 
-export const LEGAL_PAGES = ['privacy-policy', 'cookies-policy']
+export const LEGAL_PAGES = [
+  'privacy-policy',
+  'cookies-policy',
+  'terms-and-conditions',
+  'copyright'
+]
 
 export const COOKIES_BY_TYPE = {
   NECESSARY: true,
