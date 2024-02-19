@@ -116,7 +116,9 @@
     "name": "Legal",
     "pages": {
       "privacy-policy": "Política de privacidad",
-      "cookies-policy": "Política de cookies"
+      "cookies-policy": "Política de cookies",
+      "terms-and-conditions": "Términos y condiciones",
+      "copyright": "Derechos de autor"
     },
     "cookies": {
       "banner": {

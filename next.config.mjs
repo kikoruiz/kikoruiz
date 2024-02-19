@@ -77,6 +77,30 @@ const nextConfig = withBundleAnalyzer({
             destination: '/en/cookies-policy',
             locale: false,
             permanent: true
+          },
+          {
+            source: '/ca/derechos-de-autor',
+            destination: '/ca/drets-d-autor',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/en/derechos-de-autor',
+            destination: '/en/copyright',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/ca/terminos-y-condiciones',
+            destination: '/ca/termes-i-condicions',
+            locale: false,
+            permanent: true
+          },
+          {
+            source: '/en/terminos-y-condiciones',
+            destination: '/en/terms-and-conditions',
+            locale: false,
+            permanent: true
           }
         ]
       },
@@ -140,6 +164,26 @@ const nextConfig = withBundleAnalyzer({
           {
             source: '/en/cookies-policy',
             destination: '/en/politica-de-cookies',
+            locale: false
+          },
+          {
+            source: '/ca/drets-d-autor',
+            destination: '/ca/derechos-de-autor',
+            locale: false
+          },
+          {
+            source: '/en/copyright',
+            destination: '/en/derechos-de-autor',
+            locale: false
+          },
+          {
+            source: '/ca/termes-i-condicions',
+            destination: '/ca/terminos-y-condiciones',
+            locale: false
+          },
+          {
+            source: '/en/terms-and-conditions',
+            destination: '/en/terminos-y-condiciones',
             locale: false
           }
         ]
