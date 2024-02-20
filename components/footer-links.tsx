@@ -23,10 +23,11 @@ export default function FooterLinks() {
             return (
               <li key={slug} className="font-light">
                 {isCurrentPage ? (
-                  <span className="text-orange-300">{pageName}</span>
+                  <span className="text-neutral-300">{pageName}</span>
                 ) : (
                   <Link
                     href={href}
+                    title={pageName}
                     className="text-neutral-300/60 hover:text-neutral-300 transition-colors"
                   >
                     {pageName}
