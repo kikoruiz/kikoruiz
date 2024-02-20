@@ -1,3 +1,5 @@
+Última actualización: **20 de febrero de 2024**
+
 ## Aceptación de los términos y condiciones
 
 Al acceder y utilizar este sitio web y realizar compras en nuestra tienda en línea, aceptas y te comprometes a cumplir con los siguientes términos y condiciones. Si no estás de acuerdo con estos términos, te pedimos que no utilices este sitio.

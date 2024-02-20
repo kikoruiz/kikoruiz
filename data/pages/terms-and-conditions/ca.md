@@ -1,3 +1,5 @@
+Última actualització: **20 de febrer de 2024**
+
 ## Acceptació dels termes i condicions
 
 En accedir i utilitzar aquest lloc web i fer compres a la nostra botiga en línia, accepteu i us comprometeu a complir amb els següents termes i condicions. Si no esteu d'acord amb aquests termes, us demanem que no utilitzeu aquest lloc.

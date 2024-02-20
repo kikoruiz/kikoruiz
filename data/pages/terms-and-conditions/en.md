@@ -1,3 +1,5 @@
+Last updated: **February 20, 2024**
+
 ## Acceptance of terms and conditions
 
 By accessing and using this website and making purchases in our online store, you agree to and are bound by the following terms and conditions. If you do not agree to these terms, we ask that you do not use this site.
