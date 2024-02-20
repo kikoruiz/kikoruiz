@@ -5,6 +5,10 @@ import IconLanguage from 'assets/icons/language.svg'
 import {Alternate} from 'types'
 import FooterLinks from './footer-links'
 
+interface FooterProps {
+  alternates: Alternate[]
+}
+
 export default function Footer({alternates}: FooterProps) {
   const {locales, locale: currentLocale, push} = useRouter()
   const {t} = useTranslation()
@@ -61,8 +65,4 @@ export default function Footer({alternates}: FooterProps) {
       </div>
     </footer>
   )
-}
-
-interface FooterProps {
-  alternates: Alternate[]
 }
