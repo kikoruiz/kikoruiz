@@ -23,7 +23,8 @@
     },
     "show-picture-map": "Veure en el mapa",
     "hide-picture-map": "Amagar mapa",
-    "share": "Compartir"
+    "share": "Compartir",
+    "order-print": "Demanar impressió"
   },
   "album": {
     "back-to-gallery": "Tornar a la galeria",
