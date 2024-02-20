@@ -1,3 +1,5 @@
+Last updated: **February 20, 2024**
+
 ## Copyright statement
 
 All images, photographs, and visual content on this website are property of [kikoruiz.es](/), unless otherwise stated. They are protected by copyright laws and may not be used without the express permission of [kikoruiz.es](/).

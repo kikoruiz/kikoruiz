@@ -1,3 +1,5 @@
+Última actualització: **20 de febrer de 2024**
+
 ## Declaració de drets d'autor
 
 Totes les imatges, fotografies i contingut visual en aquest lloc web són propietat de [kikoruiz.es](/), llevat que s'indique el contrari. Estan protegits per les lleis de drets d'autor i no poden ser utilitzats sense el permís exprés de [kikoruiz.es](/).

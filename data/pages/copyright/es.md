@@ -1,3 +1,5 @@
+Última actualización: **20 de febrero de 2024**
+
 ## Declaración de derechos de autor
 
 Todas las imágenes, fotografías y contenido visual en este sitio web son propiedad de [kikoruiz.es](/), a menos que se indique lo contrario. Están protegidos por las leyes de derechos de autor y no pueden ser utilizados sin el permiso expreso de [kikoruiz.es](/).
