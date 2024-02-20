@@ -12,7 +12,16 @@ import IconInformationCircle from 'assets/icons/information-circle.svg'
 import IconMap from 'assets/icons/map.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
-import IconChevronRight from 'assets/icons/chevron-right.svg'
+import IconShoppingBag from 'assets/icons/shopping-bag.svg'
+import ButtonLink from './button-link'
+
+interface PictureDetailProps {
+  picture: Picture
+  isFullScreen: boolean
+  onExit?: () => void
+  trackEvent: (action: string, name?: string) => void
+  wrapperClassName?: string
+}
 
 const DynamicMap = dynamic(() => import('./map'), {
   ssr: false
@@ -44,7 +53,8 @@ export default function PictureDetail({
     tags,
     coordinates,
     location,
-    tutorial
+    tutorial,
+    print
   } = picture
   const {t} = useTranslation('gallery')
   const {query} = useRouter()
@@ -178,54 +188,68 @@ export default function PictureDetail({
                   </div>
                 )}
 
-                <div className="flex">
-                  <ButtonToggle
-                    onClick={() => {
-                      if (showInfo) {
-                        trackEvent('hide_info', name)
-                      } else {
-                        trackEvent('show_info', name)
-                      }
-                      setShowPictureInfo(!showInfo)
-                    }}
-                    label={showInfoText}
-                    isToggled={showInfo}
-                  >
-                    <IconInformationCircle className="mr-1.5 w-3" />
-                    {showInfoText}
-                  </ButtonToggle>
-
-                  {coordinates && (
+                <div className="flex flex-col gap-3">
+                  <div className="flex">
                     <ButtonToggle
                       onClick={() => {
-                        if (showMap) {
-                          trackEvent('hide_map', name)
+                        if (showInfo) {
+                          trackEvent('hide_info', name)
                         } else {
-                          trackEvent('show_map', name)
+                          trackEvent('show_info', name)
                         }
-                        setShowPictureMap(!showMap)
+                        setShowPictureInfo(!showInfo)
                       }}
-                      label={showMapText}
-                      isToggled={showMap}
+                      label={showInfoText}
+                      isToggled={showInfo}
                     >
-                      <IconMap className="mr-1.5 w-3" />
-                      {showMapText}
+                      <IconInformationCircle className="mr-1.5 w-3" />
+                      {showInfoText}
                     </ButtonToggle>
-                  )}
-                </div>
 
-                {tutorial?.href && (
-                  <Link
-                    href={tutorial.href}
-                    onClick={onExit}
-                    title={t('common:blog.post.read-tutorial')}
-                    className="group mt-3 inline-flex items-center rounded-full border border-orange-600/60 bg-gradient-to-tr from-orange-300 to-orange-200 px-3 py-1.5 text-xs font-light text-orange-700/90 shadow-sm transition-colors hover:from-orange-400 hover:to-orange-300 hover:text-orange-900/90"
-                  >
-                    <IconDocumentText className="mr-1.5 w-3" />
-                    {t('common:blog.post.read-tutorial')}
-                    <IconChevronRight className="invisible relative -left-3 w-0 transition-all group-hover:visible group-hover:left-0 group-hover:-mr-1 group-hover:ml-1 group-hover:w-3" />
-                  </Link>
-                )}
+                    {coordinates && (
+                      <ButtonToggle
+                        onClick={() => {
+                          if (showMap) {
+                            trackEvent('hide_map', name)
+                          } else {
+                            trackEvent('show_map', name)
+                          }
+                          setShowPictureMap(!showMap)
+                        }}
+                        label={showMapText}
+                        isToggled={showMap}
+                      >
+                        <IconMap className="mr-1.5 w-3" />
+                        {showMapText}
+                      </ButtonToggle>
+                    )}
+                  </div>
+
+                  <div className="flex gap-1.5">
+                    {print && (
+                      <ButtonLink
+                        href={print}
+                        onClick={onExit}
+                        title={t('carousel.order-print')}
+                        intent="primary"
+                      >
+                        <IconShoppingBag className="mr-1.5 w-3" />
+                        {t('carousel.order-print')}
+                      </ButtonLink>
+                    )}
+
+                    {tutorial?.href && (
+                      <ButtonLink
+                        href={tutorial.href}
+                        onClick={onExit}
+                        title={t('common:blog.post.read-tutorial')}
+                      >
+                        <IconDocumentText className="mr-1.5 w-3" />
+                        {t('common:blog.post.read-tutorial')}
+                      </ButtonLink>
+                    )}
+                  </div>
+                </div>
               </section>
             </div>
           </div>
@@ -233,12 +257,4 @@ export default function PictureDetail({
       </div>
     </div>
   )
-}
-
-interface PictureDetailProps {
-  picture: Picture
-  isFullScreen: boolean
-  onExit?: () => void
-  trackEvent: (action: string, name?: string) => void
-  wrapperClassName?: string
 }
