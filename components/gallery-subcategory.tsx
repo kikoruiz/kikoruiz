@@ -3,13 +3,7 @@ import useTranslation from 'next-translate/useTranslation'
 import {Picture, Subcategory} from 'types/gallery'
 import GalleryListItems from './gallery-list-items'
 import icons from './gallery-subcategory-icons'
-import {getCapitalizedName, getSlug} from 'lib/utils'
-
-function getOffset(element: Element, side: 'top' | 'bottom' = 'top') {
-  const elementRect = element?.getBoundingClientRect()
-
-  return Math.ceil(elementRect?.[side])
-}
+import {getCapitalizedName, getSlug, getOffset} from 'lib/utils'
 
 export default function GallerySubcategory({
   index,
@@ -65,6 +59,7 @@ export default function GallerySubcategory({
     anchor.style.top = `-${
       breadcrumbOffsetBottom - element.getBoundingClientRect().height
     }px`
+
     observer.observe(element)
 
     return () => observer.unobserve(element)
@@ -78,6 +73,7 @@ export default function GallerySubcategory({
     name,
     t
   ])
+
   const subcategoryId = t(`gallery.albums.${category}.subcategories.${id}`)
 
   return (

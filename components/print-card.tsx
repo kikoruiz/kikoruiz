@@ -13,6 +13,7 @@ import {
 import {Print} from 'types/store'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
+import useLayoutContext from 'contexts/Layout'
 
 export default function PrintCard({
   id,
@@ -35,12 +36,20 @@ export default function PrintCard({
   )
   const paperName = `${paperData.brand} ${paperData.type}`
   const isVertical = orientation === 'vertical'
+  const {layout} = useLayoutContext()
+  const headerHeight = layout?.headerHeight || 0
 
   return (
     <div
       key={id}
-      className="group p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md break-inside-avoid-column"
+      className="relative group h-fit p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md"
     >
+      <span
+        id={getSlug(name)}
+        aria-hidden="true"
+        className="absolute"
+        style={{top: `calc(-${headerHeight}px - 1.5em)`}}
+      />
       <div className="relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 p-[10%] drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em]">
         <Image
           src={src}

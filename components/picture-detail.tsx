@@ -225,7 +225,7 @@ export default function PictureDetail({
                     )}
                   </div>
 
-                  <div className="flex gap-1.5">
+                  <div className="flex gap-1.5 empty:hidden">
                     {print && (
                       <ButtonLink
                         href={print}
