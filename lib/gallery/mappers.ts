@@ -198,7 +198,7 @@ export function fromExifToGallery({
         tutorial: {href: `/${getSlug(t('sections.blog.name'))}/${tutorialSlug}`}
       }),
       ...(isPrintable && {
-        print: `/${getSlug(t('sections.store.name'))}/${getSlug(t('store.categories.prints.name'))}`
+        print: `/${getSlug(t('sections.store.name'))}/${getSlug(t('store.categories.prints.name'))}#${slug}`
       })
     }
   }

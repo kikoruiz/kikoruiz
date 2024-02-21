@@ -43,6 +43,12 @@ export function getSlug(name: string) {
   return kebabCase(removeAccents(name))
 }
 
+export function getOffset(element: Element, side: 'top' | 'bottom' = 'top') {
+  const elementRect = element?.getBoundingClientRect()
+
+  return Math.ceil(elementRect?.[side])
+}
+
 export function isNew(date: string, currentDate?: string) {
   const MONTHS_AS_NEW = 6
   const pointerDate = currentDate ? new Date(currentDate) : new Date()
