@@ -26,7 +26,8 @@ export default function PrintCard({
   paper,
   size
 }: Print) {
-  const {locale} = useRouter()
+  const {locale, asPath} = useRouter()
+  const [, hash] = asPath.split('#')
   const [isImageLoaded, setIsImageLoaded] = useState(false)
   const {t} = useTranslation('store')
   const {sm, lg} = themeScreens
@@ -38,14 +39,16 @@ export default function PrintCard({
   const isVertical = orientation === 'vertical'
   const {layout} = useLayoutContext()
   const headerHeight = layout?.headerHeight || 0
+  const slug = getSlug(name)
+  const isActive = slug === hash
 
   return (
     <div
       key={id}
-      className="relative group h-fit p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md"
+      className={`relative group h-fit p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md${isActive ? ' ring-1 ring-inset ring-orange-300/60' : ''}`}
     >
       <span
-        id={getSlug(name)}
+        id={slug}
         aria-hidden="true"
         className="absolute"
         style={{top: `calc(-${headerHeight}px - 1.5em)`}}
