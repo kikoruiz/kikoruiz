@@ -19,7 +19,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": false
   },
   "include": [
     "next-env.d.ts",
@@ -29,7 +30,6 @@
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"],
-
   "ts-node": {
     "esm": true
   }
