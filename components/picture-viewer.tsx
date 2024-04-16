@@ -42,8 +42,8 @@ export default forwardRef(function PictureViewer(
     setIsFullScreen(!isFullScreen)
   }
 
-  useEffect((): (() => void) => {
-    function handleKeyDown(event) {
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         event.preventDefault()
         onClose()

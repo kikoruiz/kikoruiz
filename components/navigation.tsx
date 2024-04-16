@@ -108,6 +108,21 @@ export default function Navigation({
     setExpandedSections(activeSection ? [activeSection.id] : [])
   }, [activeSection])
 
+  useEffect(() => {
+    // Set "⌘K" keyboard shortcut.
+    function handleKeyDown({keyCode, metaKey}: KeyboardEvent) {
+      if (keyCode === 75 && metaKey && !isSearchBarOpen) {
+        setIsSearchBarOpen(true)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  })
+
   return (
     <nav className={`my-auto flex gap-3${isMenuOpen ? ' relative' : ''}`}>
       <ul
