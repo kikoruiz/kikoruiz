@@ -9,11 +9,13 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
+    "phoenix": "rm -rf node_modules && rm -rf package-lock.json && rm -rf tsconfig.tsbuildinfo && npm i",
     "start": "next start",
     "test": "ORIGIN=\"http://test\" vitest",
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@stripe/stripe-js": "3",
     "@use-cookie-consent/react": "0",
     "@vercel/analytics": "1",
     "@vercel/speed-insights": "1",
@@ -36,7 +38,7 @@
     "remove-accents": "0",
     "typescript": "5",
     "ua-parser-js": "1",
-    "use-snipcart": "1"
+    "use-shopping-cart": "3"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "14",

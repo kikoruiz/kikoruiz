@@ -11,15 +11,3 @@ body {
     display: none;
   }
 }
-
-/* Snipcart styles */
-
-:root {
-  --bgColor-buttonPrimary: #1a4db3;
-}
-
-button {
-  &.snipcart-button-primary {
-    background-color: var(--bgColor-buttonPrimary);
-  }
-}

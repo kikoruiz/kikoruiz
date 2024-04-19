@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import {useSnipcart} from 'use-snipcart'
+import {useShoppingCart} from 'use-shopping-cart'
 import {fromSectionToBreadcrumbItems} from 'lib/mappers'
 import {getCapitalizedName, getSlug} from 'lib/utils'
 import useSubcategoryContext from 'contexts/Subcategory'
@@ -11,7 +11,6 @@ import subcategoryIcons from './gallery-subcategory-icons'
 import IconShoppingCart from 'assets/icons/shopping-cart.svg'
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {BLOG} from 'config'
-import {Cart} from 'types/store'
 
 function scrollToTop() {
   window?.scrollTo({top: 0})
@@ -24,11 +23,6 @@ export default function Breadcrumb({
   tag
 }: SectionData) {
   const {t} = useTranslation()
-  const {
-    cart
-  }: {
-    cart?: Cart
-  } = useSnipcart()
   const router = useRouter()
   const {query} = router
   const {subcategory} = useSubcategoryContext()
@@ -56,6 +50,7 @@ export default function Breadcrumb({
     SubcategoryIcon = subcategoryIcons[`Icon${getCapitalizedName(subcategory)}`]
   }
   const needsShoppingCart = section === 'store'
+  const {handleCartHover, cartCount, totalPrice} = useShoppingCart()
 
   return items.length > 0 ? (
     <div id="breadcrumb" className="bg-neutral-800/75">
@@ -134,20 +129,23 @@ export default function Breadcrumb({
 
         {needsShoppingCart && (
           <button
-            className="snipcart-checkout group flex items-center p-2 rounded-full bg-neutral-900/60 leading-none drop-shadow ring-1 ring-neutral-700/90 hover:ring-orange-300 transition-shadow"
-            title={t('store:shopping-cart', {count: cart?.items?.count ?? 0})}
+            className="group flex items-center p-2 rounded-full bg-neutral-900/60 leading-none drop-shadow ring-1 ring-neutral-700/90 hover:ring-orange-300 transition-shadow"
+            title={t('store:shopping-cart', {count: cartCount})}
+            onClick={() => {
+              handleCartHover()
+            }}
           >
             <div className="relative">
               <IconShoppingCart className="w-4 fill-orange-300" />
 
               <span className="empty:hidden absolute -top-[75%] -right-[75%] rounded-full drop-shadow-lg bg-gradient-to-tl from-neutral-600 to-neutral-800 px-1.5 py-1 leading-none font-light text-[.5em] text-neutral-300/60 group-hover:text-orange-300">
-                {cart?.items?.count}
+                {cartCount}
               </span>
             </div>
 
-            {Boolean(cart?.subtotal) && (
+            {Boolean(totalPrice) && (
               <span className="text-[.75em] font-light text-neutral-300/60 pl-3">
-                {t('store:price', {count: cart?.subtotal})}
+                {t('store:price', {count: totalPrice})}
               </span>
             )}
           </button>

@@ -5,8 +5,6 @@ export default function Document({locale}: DocumentProps) {
     <Html lang={locale} className="scroll-smooth">
       <Head>
         <meta name="theme-color" content="#171717" />
-        <link rel="preconnect" href="https://app.snipcart.com" />
-        <link rel="preconnect" href="https://cdn.snipcart.com" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
