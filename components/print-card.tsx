@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import {useShoppingCart} from 'use-shopping-cart'
 import Image from 'components/image'
 import Button from 'components/button'
 import Logo from 'assets/brand/photo-logo.svg'
@@ -18,7 +19,6 @@ import useLayoutContext from 'contexts/Layout'
 export default function PrintCard({
   id,
   name,
-  url,
   picture,
   price,
   image,
@@ -41,6 +41,7 @@ export default function PrintCard({
   const headerHeight = layout?.headerHeight || 0
   const slug = getSlug(name)
   const isActive = slug === hash
+  const {addItem, handleCartHover} = useShoppingCart()
 
   return (
     <div
@@ -110,13 +111,27 @@ export default function PrintCard({
         <Button
           intent="accent"
           isRounded
-          className="snipcart-add-item"
           title={t('add-to-cart')}
-          data-item-id={id}
-          data-item-name={name}
-          data-item-price={price}
-          data-item-url={url}
-          data-item-image={src}
+          onClick={() => {
+            addItem(
+              {
+                id,
+                name,
+                price,
+                image: src,
+                currency: 'EUR'
+              },
+              {
+                count: 1,
+                product_metadata: {
+                  image: {aspectRatio, css},
+                  paper,
+                  size
+                }
+              }
+            )
+            handleCartHover()
+          }}
         >
           {t('add-to-cart')}
         </Button>

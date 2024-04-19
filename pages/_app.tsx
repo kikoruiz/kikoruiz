@@ -2,7 +2,7 @@ import {AppProps} from 'next/app'
 import {Analytics} from '@vercel/analytics/react'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {CookieConsentProvider} from '@use-cookie-consent/react'
-import {SnipcartProvider} from 'use-snipcart'
+import {CartProvider} from 'use-shopping-cart'
 import I18nProvider from 'next-translate/I18nProvider'
 import useTranslation from 'next-translate/useTranslation'
 import {SubcategoryProvider} from 'contexts/Subcategory'
@@ -29,7 +29,17 @@ export default function App({Component, pageProps}: AppProps) {
       <CookieConsentProvider
         useCookieConsentHooksOptions={{consentCookieAttributes: {expires: 365}}}
       >
-        <SnipcartProvider>
+        <CartProvider
+          mode="payment"
+          cartMode="client-only"
+          stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string}
+          successUrl="/checkout/success"
+          cancelUrl="/checkout/fail"
+          currency="EUR"
+          allowedCountries={['ES']}
+          billingAddressCollection
+          shouldPersist
+        >
           <I18nProvider lang={lang} namespaces={{commonES}}>
             <LayoutProvider>
               <SubcategoryProvider>
@@ -44,7 +54,7 @@ export default function App({Component, pageProps}: AppProps) {
               </SubcategoryProvider>
             </LayoutProvider>
           </I18nProvider>
-        </SnipcartProvider>
+        </CartProvider>
       </CookieConsentProvider>
     </>
   )
