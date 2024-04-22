@@ -158,7 +158,6 @@
       }
     }
   },
-
   "error": {
     "404": "Page not found 🙃",
     "500": "Server-side error occurred 😱"

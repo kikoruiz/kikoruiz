@@ -13,7 +13,6 @@ export default async function handler(
     try {
       const items = JSON.parse(req.body)
       const lineItems = validateCartItems(inventory, items)
-      const origin = process.env.ORIGIN ?? 'https://www.kikoruiz.es'
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
         payment_method_types: ['card', 'link'],
@@ -21,8 +20,8 @@ export default async function handler(
         shipping_address_collection: {
           allowed_countries: ['ES']
         },
-        success_url: `${origin}/checkout/success`,
-        cancel_url: `${origin}/checkout/error`,
+        success_url: `${req.headers.origin}/store/checkout/success`,
+        cancel_url: `${req.headers.origin}/store/checkout/error`,
         line_items: lineItems,
         automatic_tax: {enabled: true}
       })
