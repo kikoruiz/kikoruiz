@@ -4,17 +4,17 @@ import {Alternate} from 'types'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import SimplePage from 'components/simple-page'
 
-export default function Custom404() {
+export default function CheckoutError() {
   const {t} = useTranslation()
 
   return (
     <>
       <Head>
-        <title>Kiko Ruiz | 404</title>
+        <title>Kiko Ruiz | Checkout Error</title>
         <meta name="robots" content="noindex,nofollow" />
       </Head>
 
-      <SimplePage title={t('error.404')} />
+      <SimplePage title={t('checkout.success')} />
     </>
   )
 }
@@ -32,7 +32,7 @@ export async function getStaticProps({
 
   return {
     props: {
-      section: 'error',
+      section: 'checkout',
       alternates
     }
   }

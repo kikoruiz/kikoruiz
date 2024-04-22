@@ -1,12 +1,7 @@
-import {
-  DEFAULT_PRINT_PAPER,
-  DEFAULT_PRINT_PRICE,
-  DEFAULT_PRINT_SIZE,
-  PICTURES_FOR_PRINTING
-} from 'config/store'
 import {fromExifToGallery} from 'lib/gallery/mappers'
 import {getAllPictures} from 'lib/gallery/pictures'
 import {getAspectRatio} from 'lib/utils'
+import products from 'data/store/products.json'
 import {Print} from 'types/store'
 
 export async function getPrints({locale}: {locale: string}): Promise<Print[]> {
@@ -15,19 +10,26 @@ export async function getPrints({locale}: {locale: string}): Promise<Print[]> {
     rawPictures.map(fromExifToGallery({locale}))
   )
   const picturesForPrinting = mappedPictures.filter(({id}) =>
-    PICTURES_FOR_PRINTING.find(picture => picture.id === id)
+    products.find(product => product.id === id)
   )
 
-  return picturesForPrinting.map(({id, name, slug, url, image, imageSize}) => ({
-    id,
-    name,
-    slug,
-    paper: DEFAULT_PRINT_PAPER,
-    size: DEFAULT_PRINT_SIZE,
-    price: DEFAULT_PRINT_PRICE,
-    image,
-    aspectRatio: getAspectRatio(imageSize),
-    imageSize,
-    picture: url
-  }))
+  return picturesForPrinting.map(({id, name, slug, url, image, imageSize}) => {
+    const {
+      price,
+      metadata: {print_paper: paper, print_size: size}
+    } = products.find(product => product.id === id)
+
+    return {
+      id,
+      name,
+      slug,
+      paper,
+      size,
+      price: price / 100,
+      image,
+      aspectRatio: getAspectRatio(imageSize),
+      imageSize,
+      picture: url
+    }
+  })
 }

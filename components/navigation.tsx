@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {useMediaQuery} from 'react-responsive'
 import useTranslation from 'next-translate/useTranslation'
-import {LEGAL_PAGES, SECTIONS, SPECIAL_SUBSECTIONS} from 'config'
+import {LEGAL_PAGES, SECTIONS, SIMPLE_PAGES, SPECIAL_SUBSECTIONS} from 'config'
 import {getCapitalizedName, getSlug, screens} from 'lib/utils'
 import SearchBar from './search-bar'
 import sectionIcons from './section-icons'
@@ -27,7 +27,9 @@ export default function Navigation({
   const router = useRouter()
   const {asPath} = router
   const isNotSectionPage =
-    LEGAL_PAGES.includes(section) || section === 'error' || section === 'home'
+    LEGAL_PAGES.includes(section) ||
+    SIMPLE_PAGES.includes(section) ||
+    section === 'home'
   const sectionData = SECTIONS.find(({id}) => id === section)
   const isSpecialSubsection = SPECIAL_SUBSECTIONS.includes(subSection)
   let path =

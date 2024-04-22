@@ -137,9 +137,11 @@ export async function fromLocalesToAlternates({
     const pageSlug =
       page && category ? `/${getSlug(t(`${category}.pages.${page}`))}` : ''
     const postSlug = post
-      ? `/${searchContent[locale]?.find(
-          ({createdAt}) => post.createdAt === createdAt
-        ).slug}`
+      ? `/${
+          searchContent[locale]?.find(
+            ({createdAt}) => post.createdAt === createdAt
+          ).slug
+        }`
       : ''
     const justSlug =
       !sectionData?.localePrefix && category ? `/${category}` : ''

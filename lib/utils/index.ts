@@ -20,6 +20,14 @@ export const fetcher = {
     const response = await fetch(url, options)
 
     return response.json()
+  },
+  post: async (url: RequestInfo, options?: RequestInit) => {
+    const response = await fetch(url, {
+      method: 'post',
+      ...options
+    })
+
+    return response.json()
   }
 }
 

@@ -1,10 +1,3 @@
-export const PICTURES_FOR_PRINTING = [
-  {id: '2018-02-11_0022'},
-  {id: '2020-01-18_0131'},
-  {id: '2019-03-05_0363'},
-  {id: '2020-01-25_0040'}
-]
-
 export const PRINT_SIZES = {
   A0: {mm: '841x1189', cm: '84.1x118.9', in: '33.1x46.8'},
   A1: {mm: '594x841', cm: '59.5x84.1', in: '23.4x33.1'},
@@ -18,9 +11,6 @@ export const PRINT_SIZES = {
   A9: {mm: '37x52', cm: '3.7x5.3', in: '1.5x2.0'},
   A10: {mm: '26x37', cm: '2.6x3.7', in: '1.0x1.5'}
 }
-export const DEFAULT_PRINT_SIZE = 'A2'
-
-export const DEFAULT_PRINT_PRICE = 45
 
 export const UNITS_OF_MEASUREMENT = ['mm', 'cm', 'in']
 export const DEFAULT_UNIT_OF_MEASUREMENT = 'mm'
@@ -37,4 +27,3 @@ export const PRINT_PAPERS = [
     }
   }
 ]
-export const DEFAULT_PRINT_PAPER = 'hahnemuhle-photo-pearl-310'
