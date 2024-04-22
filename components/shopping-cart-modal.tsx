@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {useShoppingCart} from 'use-shopping-cart'
 import ShoppingCartItem from './shopping-cart-item'
@@ -9,6 +10,7 @@ import {fetcher} from 'lib/utils'
 
 function ShoppingCartModal() {
   const {t} = useTranslation('store')
+  const {locale} = useRouter()
   const {
     shouldDisplayCart,
     cartCount,
@@ -21,9 +23,12 @@ function ShoppingCartModal() {
 
   async function handleCheckoutClick() {
     try {
-      const session = await fetcher.post(`/api/store/checkout/create-session`, {
-        body: JSON.stringify(cartDetails)
-      })
+      const session = await fetcher.post(
+        `/api/store/checkout/create-session?locale=${locale}`,
+        {
+          body: JSON.stringify(cartDetails)
+        }
+      )
 
       if (session?.url) window.location.replace(session.url)
     } catch (error) {

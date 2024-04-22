@@ -1,9 +1,9 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
+import i18n from 'i18n'
 import {fromExifToGallery} from 'lib/gallery/mappers'
 import {getAllPictures} from 'lib/gallery/pictures'
 import {getSlug} from 'lib/utils'
 import {Picture} from 'types/gallery'
-import i18n from 'i18n'
 
 global.i18nConfig = i18n
 
