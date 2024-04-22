@@ -34,14 +34,9 @@ export default function App({Component, pageProps}: AppProps) {
         }}
       >
         <CartProvider
-          mode="payment"
           cartMode="checkout-session"
           stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string}
-          successUrl="http://localhost:3000/tienda/checkout/success"
-          cancelUrl="http://localhost:3000/tienda/checkout/fail"
           currency="EUR"
-          allowedCountries={['ES']}
-          billingAddressCollection
           shouldPersist
         >
           <I18nProvider lang={lang} namespaces={{commonES}}>
