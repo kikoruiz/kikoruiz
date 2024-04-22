@@ -1,11 +1,14 @@
 import {PropsWithChildren} from 'react'
+import {useRouter} from 'next/router'
 import Head from 'next/head'
-// import Script from 'next/script'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
+import Alert from './alert'
 import ShoppingCartModal from './shopping-cart-modal'
 import {getSlug} from 'lib/utils'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
+import IconCheckCircle from 'assets/icons/check-circle.svg'
+import IconXCircle from 'assets/icons/x-circle.svg'
 import {Alternate} from 'types'
 
 interface StorePageProps extends PropsWithChildren {
@@ -23,9 +26,17 @@ export default function StorePage({
   children
 }: StorePageProps) {
   const {t} = useTranslation()
+  const {
+    query: {checkout}
+  } = useRouter()
   const sectionSlug = getSlug(t('sections.store.name'))
   const backButtonHref = `/${sectionSlug}`
   const backButtonTitle = t('store:back-to-store')
+  const comesFromCheckout = Boolean(checkout)
+  const alertConfig = {
+    success: {icon: IconCheckCircle, status: 'success'},
+    cancel: {icon: IconXCircle, status: 'error'}
+  }
 
   return (
     <>
@@ -37,7 +48,17 @@ export default function StorePage({
         ))}
       </Head>
 
-      <header className="mt-9 px-6 text-center sm:-mt-3 mb-9 sm:mb-12">
+      {comesFromCheckout && (
+        <Alert
+          title="¡La compra se ha realizado con éxito!"
+          message="Revisa la bandeja de tu correo electrónico para conocer el estado de tu pedido."
+          icon={alertConfig[checkout]?.icon}
+          status={alertConfig[checkout]?.status}
+          className="mx-6 mt-6 sm:mt-0 mb-9"
+        />
+      )}
+
+      <header className="mt-9 px-6 text-center sm:-mt-3 mb-12 sm:mb-16">
         <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
           <h1
             className={`bg-gradient-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:text-8xl sm:leading-tight ${
