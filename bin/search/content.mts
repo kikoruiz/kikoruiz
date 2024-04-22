@@ -62,7 +62,7 @@ async function saveSearchContent() {
 
 saveSearchContent()
   .then(() => {
-    console.log('Search content has been saved.')
+    console.log('\n✅ Search content has been saved.\n')
     process.exit(0)
   })
   .catch(error => {

@@ -27,6 +27,7 @@ export const LEGAL_PAGES = [
   'terms-and-conditions',
   'copyright'
 ]
+export const SIMPLE_PAGES = ['error', 'checkout']
 
 export const COOKIES_BY_TYPE = {
   NECESSARY: true,

@@ -33,7 +33,7 @@ async function saveAllImagePlaceholders() {
 
 saveAllImagePlaceholders()
   .then(() => {
-    console.log('Image placeholders have been saved.')
+    console.log('\n✅ Image placeholders have been saved.\n')
     process.exit(0)
   })
   .catch(error => {

@@ -12,6 +12,8 @@ import Layout from 'components/layout'
 import commonES from '../locales/es/common.json'
 import '../styles/globals.css'
 
+const ONE_YEAR = 365
+
 export default function App({Component, pageProps}: AppProps) {
   const {section, subSection, post, tag, alternates, heroImage} = pageProps
   const sectionData = {
@@ -27,14 +29,16 @@ export default function App({Component, pageProps}: AppProps) {
   return (
     <>
       <CookieConsentProvider
-        useCookieConsentHooksOptions={{consentCookieAttributes: {expires: 365}}}
+        useCookieConsentHooksOptions={{
+          consentCookieAttributes: {expires: ONE_YEAR}
+        }}
       >
         <CartProvider
           mode="payment"
-          cartMode="client-only"
+          cartMode="checkout-session"
           stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string}
-          successUrl="/checkout/success"
-          cancelUrl="/checkout/fail"
+          successUrl="http://localhost:3000/tienda/checkout/success"
+          cancelUrl="http://localhost:3000/tienda/checkout/fail"
           currency="EUR"
           allowedCountries={['ES']}
           billingAddressCollection

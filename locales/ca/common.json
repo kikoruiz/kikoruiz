@@ -161,5 +161,9 @@
   "error": {
     "404": "No s'ha trobat la pàgina 🙃",
     "500": "Error de servidor 😱"
+  },
+  "checkout": {
+    "success": "La compra s'ha realitzat amb èxit 🎉",
+    "error": "Hi ha hagut un error fent la compra 🫤"
   }
 }
