@@ -52,8 +52,8 @@ export default function StorePage({
         <Alert
           title="¡La compra se ha realizado con éxito!"
           message="Revisa la bandeja de tu correo electrónico para conocer el estado de tu pedido."
-          icon={alertConfig[checkout]?.icon}
-          status={alertConfig[checkout]?.status}
+          icon={alertConfig[checkout as string]?.icon}
+          status={alertConfig[checkout as string]?.status}
           className="mx-6 mt-6 sm:mt-0 mb-9"
         />
       )}
