@@ -284,7 +284,7 @@ export default function Navigation({
         }
         className={`relative flex h-11 w-11 rounded-full bg-gradient-to-t text-neutral-400 hover:text-neutral-300 focus:outline-none sm:hidden ${
           hasHero ? 'from-neutral-300/10' : 'from-neutral-800'
-        }${isMenuOpen ? ' z-10' : ''}`}
+        }${isMenuOpen ? ' z-20' : ''}`}
         onClick={toggleMenu}
       >
         <span className="sr-only">
