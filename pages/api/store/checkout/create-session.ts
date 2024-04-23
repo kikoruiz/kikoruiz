@@ -21,6 +21,7 @@ export default async function handler(
       const {referer} = req.headers
       const storePath = getSlug(t('sections.store.name'))
       const [baseUrl] = referer.split(storePath)
+      const [refererBaseUrl] = referer.split('?')
       const items = JSON.parse(req.body)
       const lineItems = validateCartItems(inventory, items)
       const session = await stripe.checkout.sessions.create({
@@ -31,7 +32,7 @@ export default async function handler(
           allowed_countries: ['ES']
         },
         success_url: `${baseUrl}${storePath}?checkout=success`,
-        cancel_url: `${referer}?checkout=cancel`,
+        cancel_url: `${refererBaseUrl}?checkout=cancel`,
         line_items: lineItems,
         automatic_tax: {enabled: true}
       })
