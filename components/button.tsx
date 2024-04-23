@@ -48,6 +48,7 @@ export default function Button({
   isRounded = false,
   disabled: isDisabled = false,
   className,
+  onClick,
   ...props
 }: ButtonProps) {
   return (
@@ -64,6 +65,7 @@ export default function Button({
           'font-light bg-gradient-to-b transition-shadow drop-shadow-md'
         )
       })}
+      onClick={!isDisabled ? onClick : () => {}}
     >
       {children}
     </button>

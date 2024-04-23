@@ -24,6 +24,7 @@ function ShoppingCartModal() {
   const [status, setStatus] = useState(REQUEST_STATUS_OPTIONS.IDLE)
   const cartItems = Object.values(cartDetails ?? {})
   const isCartEmpty = cartCount === 0 && !cartItems.length
+  const isCheckoutLoading = status === REQUEST_STATUS_OPTIONS.PENDING
 
   async function handleCheckoutClick() {
     try {
@@ -89,7 +90,11 @@ function ShoppingCartModal() {
             ) : (
               <>
                 {cartItems.map(cartItem => (
-                  <ShoppingCartItem key={cartItem.id} {...cartItem} />
+                  <ShoppingCartItem
+                    key={cartItem.id}
+                    {...cartItem}
+                    isCheckoutLoading={isCheckoutLoading}
+                  />
                 ))}
               </>
             )}
@@ -128,10 +133,10 @@ function ShoppingCartModal() {
                     size="large"
                     className="flex items-center gap-1.5"
                     onClick={handleCheckoutClick}
-                    disabled={status === REQUEST_STATUS_OPTIONS.PENDING}
+                    disabled={isCheckoutLoading}
                   >
                     Checkout
-                    {status === REQUEST_STATUS_OPTIONS.PENDING ? (
+                    {isCheckoutLoading ? (
                       <IconArrowPath className="size-5 animate-spin" />
                     ) : (
                       <IconArrowRight className="size-5" />
