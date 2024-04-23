@@ -70,7 +70,7 @@ function GalleryCarousel({
   }
 
   function handleButtonClose() {
-    const destination = asPath.split('?')[0]
+    const [destination] = asPath.split('?')
 
     push(destination, destination, {shallow: true})
     setIsCarouselOpen(false)

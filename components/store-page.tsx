@@ -27,7 +27,9 @@ export default function StorePage({
 }: StorePageProps) {
   const {t} = useTranslation()
   const {
-    query: {checkout}
+    query: {checkout},
+    push,
+    asPath
   } = useRouter()
   const sectionSlug = getSlug(t('sections.store.name'))
   const backButtonHref = `/${sectionSlug}`
@@ -55,6 +57,11 @@ export default function StorePage({
           icon={checkoutAlert.icon}
           status={checkoutAlert.status}
           className="mx-6 mt-6 sm:mt-0 mb-9"
+          onClose={() => {
+            const [destination] = asPath.split('?')
+
+            push(destination, destination, {shallow: true})
+          }}
         />
       )}
 

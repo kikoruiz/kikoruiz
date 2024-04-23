@@ -19,7 +19,7 @@ const buttonStyles = cva('', {
       true: 'rounded-full'
     },
     isDisabled: {
-      true: 'opacity-60 hover:ring-0 hover:cursor-not-allowed'
+      true: 'opacity-60 hover:ring-0 hover:ring-transparent hover:cursor-not-allowed'
     }
   },
   compoundVariants: [
