@@ -17,6 +17,9 @@ const buttonStyles = cva('', {
     },
     isRounded: {
       true: 'rounded-full'
+    },
+    isDisabled: {
+      true: 'opacity-60'
     }
   },
   compoundVariants: [
@@ -43,6 +46,7 @@ export default function Button({
   size = 'medium',
   intent = 'dark',
   isRounded = false,
+  disabled: isDisabled = false,
   className,
   ...props
 }: ButtonProps) {
@@ -54,6 +58,7 @@ export default function Button({
         size,
         intent,
         isRounded,
+        isDisabled,
         class: cx(
           className,
           'font-light bg-gradient-to-b transition-shadow drop-shadow-md'
