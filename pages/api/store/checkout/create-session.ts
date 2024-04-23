@@ -2,9 +2,8 @@ import type {NextApiRequest, NextApiResponse} from 'next'
 import getT from 'next-translate/getT'
 import i18n from 'i18n'
 import Stripe from 'stripe'
-import {validateCartItems} from 'use-shopping-cart/utilities'
+import {formatLineItems} from 'use-shopping-cart/utilities'
 import {getSlug} from 'lib/utils'
-import inventory from 'data/store/products.json'
 
 global.i18nConfig = i18n
 
@@ -23,7 +22,7 @@ export default async function handler(
       const [baseUrl] = referer.split(`/${storePath}`)
       const [refererBaseUrl] = referer.split('?')
       const items = JSON.parse(req.body)
-      const lineItems = validateCartItems(inventory, items)
+      const lineItems = formatLineItems(items)
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
         payment_method_types: ['card', 'link'],
