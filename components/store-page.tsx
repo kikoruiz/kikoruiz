@@ -1,8 +1,9 @@
-import {PropsWithChildren} from 'react'
+import {PropsWithChildren, useEffect} from 'react'
 import {useRouter} from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
+import {useShoppingCart} from 'use-shopping-cart'
 import Alert from './alert'
 import ShoppingCartModal from './shopping-cart-modal'
 import {getSlug} from 'lib/utils'
@@ -26,6 +27,7 @@ export default function StorePage({
   children
 }: StorePageProps) {
   const {t} = useTranslation()
+  const {clearCart} = useShoppingCart()
   const {
     query: {checkout},
     push,
@@ -39,6 +41,12 @@ export default function StorePage({
     cancel: {icon: IconXCircle, status: 'error'}
   }
   const checkoutAlert = alertConfig[checkout as string]
+
+  useEffect(() => {
+    if (checkout === 'success') {
+      clearCart()
+    }
+  }, [checkout]) // eslint-disable-line
 
   return (
     <>
