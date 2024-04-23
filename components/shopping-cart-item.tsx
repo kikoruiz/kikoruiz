@@ -1,11 +1,14 @@
 import useTranslation from 'next-translate/useTranslation'
 import {useShoppingCart} from 'use-shopping-cart'
 import {CartEntry} from 'use-shopping-cart/core'
-import Image from 'components/image'
+import Image from './image'
+import ButtonSymbol from './button-symbol'
 import {themeScreens} from 'lib/utils'
 import {GetPlaiceholderReturn} from 'plaiceholder'
 
-interface ShoppingCartItemProps extends CartEntry {}
+interface ShoppingCartItemProps extends CartEntry {
+  isCheckoutLoading?: boolean
+}
 interface ProductDataInterface {
   image: {
     aspectRatio: string
@@ -15,13 +18,14 @@ interface ProductDataInterface {
   size: string
 }
 
-function ShoppingCartItem({
+export default function ShoppingCartItem({
   id,
   name,
   image: src,
   quantity,
   value,
-  product_data: productData
+  product_data: productData,
+  isCheckoutLoading = false
 }: ShoppingCartItemProps) {
   const {sm} = themeScreens
   const {decrementItem, incrementItem} = useShoppingCart()
@@ -48,39 +52,33 @@ function ShoppingCartItem({
             {t('price', {count: value})}
           </span>
 
-          <div className="flex items-center gap-1.5 rounded-full border border-neutral-600 p-1">
-            <button
+          <div
+            className={`flex items-center gap-1.5 rounded-full border border-neutral-600 p-1${isCheckoutLoading ? ' opacity-60' : ''}`}
+          >
+            <ButtonSymbol
               title="Decrease quantity"
-              className="text-sm size-6 rounded-full bg-gradient-to-b from-neutral-600 text-neutral-300/60 transition-colors hover:text-neutral-100 hover:from-neutral-600/80"
               onClick={() => {
                 decrementItem(id)
               }}
+              disabled={isCheckoutLoading}
             >
-              <span aria-hidden className="sr-only">
-                Decrease quantity
-              </span>
               -
-            </button>
+            </ButtonSymbol>
 
             <span className="text-xs">{quantity}</span>
 
-            <button
+            <ButtonSymbol
               title="Increase quantity"
-              className="text-sm size-6 rounded-full bg-gradient-to-b from-neutral-600 text-neutral-300/60 transition-colors hover:text-neutral-100 hover:from-neutral-600/80"
               onClick={() => {
                 incrementItem(id)
               }}
+              disabled={isCheckoutLoading}
             >
-              <span aria-hidden className="sr-only">
-                Increase quantity
-              </span>
               +
-            </button>
+            </ButtonSymbol>
           </div>
         </div>
       </div>
     </div>
   )
 }
-
-export default ShoppingCartItem
