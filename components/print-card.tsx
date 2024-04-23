@@ -15,6 +15,7 @@ import {Print} from 'types/store'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import useLayoutContext from 'contexts/Layout'
+import inventory from 'data/store/products.json'
 
 export default function PrintCard({
   id,
@@ -42,6 +43,7 @@ export default function PrintCard({
   const slug = getSlug(name)
   const isActive = slug === hash
   const {addItem, handleCartHover} = useShoppingCart()
+  const {price_id: priceId} = inventory.find(product => product.id === id)
 
   return (
     <div
@@ -115,13 +117,13 @@ export default function PrintCard({
           onClick={() => {
             addItem(
               {
-                id,
+                id: priceId,
                 name,
                 price,
                 image: src,
                 currency: 'EUR',
                 product_data: {
-                  metadata: {paper, size}
+                  metadata: {pictureId: id, paper, size}
                 }
               },
               {

@@ -67,6 +67,9 @@ async function saveInventory() {
         name,
         currency,
         price,
+        ...(stripeProduct.default_price && {
+          price_id: stripeProduct.default_price
+        }),
         image,
         metadata
       }
