@@ -1,10 +1,16 @@
 import useTranslation from 'next-translate/useTranslation'
 import {useShoppingCart} from 'use-shopping-cart'
 import {CartEntry} from 'use-shopping-cart/core'
+import {GetPlaiceholderReturn} from 'plaiceholder'
 import Image from './image'
 import ButtonSymbol from './button-symbol'
-import {themeScreens} from 'lib/utils'
-import {GetPlaiceholderReturn} from 'plaiceholder'
+import IconTrash from 'assets/icons/trash.svg'
+import {
+  DEFAULT_UNIT_OF_MEASUREMENT,
+  PRINT_PAPERS,
+  PRINT_SIZES
+} from 'config/store'
+import {getSlug, themeScreens} from 'lib/utils'
 
 interface ShoppingCartItemProps extends CartEntry {
   isCheckoutLoading?: boolean
@@ -14,8 +20,10 @@ interface ProductDataInterface {
     aspectRatio: string
     css: GetPlaiceholderReturn['css']
   }
-  paper: string
-  size: string
+  metadata: {
+    paper: string
+    size: string
+  }
 }
 
 export default function ShoppingCartItem({
@@ -27,14 +35,21 @@ export default function ShoppingCartItem({
   product_data: productData,
   isCheckoutLoading = false
 }: ShoppingCartItemProps) {
-  const {sm} = themeScreens
-  const {decrementItem, incrementItem} = useShoppingCart()
-  const {image} = productData as ProductDataInterface
   const {t} = useTranslation('store')
+  const {sm} = themeScreens
+  const {decrementItem, incrementItem, removeItem} = useShoppingCart()
+  const {
+    image,
+    metadata: {size, paper}
+  } = productData as ProductDataInterface
+  const paperData = PRINT_PAPERS.find(
+    ({brand, type}) => paper === `${getSlug(brand)}-${getSlug(type)}`
+  )
+  const paperName = `${paperData.brand} ${paperData.type}`
 
   return (
-    <div className="relative flex flex-row gap-3 md:gap-6 w-full py-6 sm:p-6 after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:bottom-[-1px] after:via-neutral-300/30 hover:bg-neutral-600/10 hover:rounded transition-colors">
-      <div className="relative w-1/3 bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 p-6 drop-shadow-md">
+    <div className="relative flex flex-row items-start gap-3 md:gap-6 w-full py-6 sm:p-6 after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:bottom-[-1px] after:via-neutral-300/30 hover:bg-neutral-600/10 hover:rounded transition-colors">
+      <div className="relative w-1/3 bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 p-5 drop-shadow-md">
         <Image
           src={src}
           alt={name}
@@ -44,11 +59,41 @@ export default function ShoppingCartItem({
         />
       </div>
 
-      <div className="flex flex-col justify-between grow text-lg">
-        <header className="font-extralight">{name}</header>
+      <div className="flex flex-col justify-between grow text-lg h-full">
+        <div className="flex justify-between items-baseline gap-3">
+          <div>
+            <header className="font-extralight leading-tight">{name}</header>
 
-        <div className="flex items-center justify-between">
-          <span className="font-black text-xl text-orange-300">
+            <dl className="text-xs my-3 opacity-75">
+              <dt className="font-light text-neutral-300/30">{t('size')}</dt>
+              <dd className="font-medium text-neutral-300/60">
+                {size}{' '}
+                <span className="font-thin">
+                  ({PRINT_SIZES[size][DEFAULT_UNIT_OF_MEASUREMENT]}{' '}
+                  {DEFAULT_UNIT_OF_MEASUREMENT})
+                </span>
+              </dd>
+              <dt className="mt-1.5 font-light text-neutral-300/30">
+                {t('paper')}
+              </dt>
+              <dd className="font-medium text-neutral-300/60">{paperName}</dd>
+            </dl>
+          </div>
+
+          <button
+            title="Remove item"
+            className={`p-1.5 border border-red-600/30 rounded-full scale-90 ${isCheckoutLoading ? 'opacity-60 cursor-not-allowed' : 'group hover:border-red-600/60'}`}
+            onClick={() => {
+              if (!isCheckoutLoading) removeItem(id)
+            }}
+            disabled={isCheckoutLoading}
+          >
+            <IconTrash className="size-4 text-red-600/60 group-hover:text-red-600/90" />
+          </button>
+        </div>
+
+        <div className="flex items-end justify-between">
+          <span className="font-black text-xl text-orange-300 leading-none">
             {t('price', {count: value})}
           </span>
 
