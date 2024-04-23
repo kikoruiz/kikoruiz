@@ -22,6 +22,7 @@ interface AlertProps extends VariantProps<typeof alertStyles> {
   message: string
   icon?: FunctionComponent<IconProps>
   className?: string
+  onClose?: () => void
 }
 
 export default function Alert({
@@ -29,6 +30,7 @@ export default function Alert({
   message,
   icon: Icon,
   className,
+  onClose = () => {},
   status = 'success'
 }: AlertProps) {
   const [isOpen, setIsOpen] = useState(true)
@@ -56,6 +58,7 @@ export default function Alert({
         className="absolute top-2 right-2 opacity-60 rounded-full p-1 transition-colors hover:opacity-100 hover:bg-neutral-900/30"
         onClick={() => {
           setIsOpen(false)
+          onClose()
         }}
       >
         <IconXMark className="size-4" />
