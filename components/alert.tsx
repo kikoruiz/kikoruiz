@@ -39,11 +39,13 @@ export default function Alert({
         status,
         class: cx(
           className,
-          'relative flex items-center gap-3 rounded p-6 bg-gradient-to-bl'
+          'relative flex items-center gap-3 rounded py-6 pl-5 pr-9 bg-gradient-to-bl'
         )
       })}
     >
-      {Icon && <Icon className="size-9" />}
+      {Icon && (
+        <Icon className="size-9 self-start -mt-1 sm:self-auto sm:mt-0" />
+      )}
 
       <div>
         <header className="font-extrabold">{title}</header>

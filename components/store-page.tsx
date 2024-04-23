@@ -32,11 +32,11 @@ export default function StorePage({
   const sectionSlug = getSlug(t('sections.store.name'))
   const backButtonHref = `/${sectionSlug}`
   const backButtonTitle = t('store:back-to-store')
-  const comesFromCheckout = Boolean(checkout)
   const alertConfig = {
     success: {icon: IconCheckCircle, status: 'success'},
     cancel: {icon: IconXCircle, status: 'error'}
   }
+  const checkoutAlert = alertConfig[checkout as string]
 
   return (
     <>
@@ -48,12 +48,12 @@ export default function StorePage({
         ))}
       </Head>
 
-      {comesFromCheckout && (
+      {checkoutAlert && (
         <Alert
           title="¡La compra se ha realizado con éxito!"
           message="Revisa la bandeja de tu correo electrónico para conocer el estado de tu pedido."
-          icon={alertConfig[checkout as string]?.icon}
-          status={alertConfig[checkout as string]?.status}
+          icon={checkoutAlert.icon}
+          status={checkoutAlert.status}
           className="mx-6 mt-6 sm:mt-0 mb-9"
         />
       )}
