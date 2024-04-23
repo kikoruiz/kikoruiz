@@ -14,6 +14,8 @@ interface NavigationProps {
   section: string
   subSection?: string
   hasHero?: boolean
+  isMenuOpen: boolean
+  setIsMenuOpen: (isMenuOpen: boolean) => void
 }
 
 const {sm} = screens
@@ -21,7 +23,9 @@ const {sm} = screens
 export default function Navigation({
   section,
   subSection,
-  hasHero
+  hasHero,
+  isMenuOpen,
+  setIsMenuOpen
 }: NavigationProps) {
   const {t} = useTranslation()
   const router = useRouter()
@@ -51,7 +55,6 @@ export default function Navigation({
 
     return sectionSlug && path.includes(sectionSlug) && categories
   })
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const [expandedSections, setExpandedSections] = useState(
     activeSection ? [activeSection.id] : []
