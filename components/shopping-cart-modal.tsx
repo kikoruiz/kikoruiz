@@ -60,7 +60,7 @@ function ShoppingCartModal() {
       <div
         className={`absolute top-0 right-0 w-full sm:w-2/3 md:w-1/2 xl:w-1/3 h-full overflow-hidden drop-shadow-lg transition-transform duration-500 ease-in-out ${shouldDisplayCart ? '' : 'translate-x-full'}`}
       >
-        <div className="flex flex-col items-center justify-between gap-6 h-full overflow-y-auto p-6 bg-gradient-to-t from-neutral-900 to-neutral-800">
+        <div className="flex flex-col items-center justify-between gap-9 h-full overflow-y-auto p-6 bg-gradient-to-t from-neutral-900 to-neutral-800">
           <header className="relative py-3 px-11 flex items-center justify-center gap-3 w-full">
             <button
               aria-label="Back to store"
@@ -86,7 +86,7 @@ function ShoppingCartModal() {
             className={`flex flex-col justify-center items-center w-full ${isCartEmpty ? '' : 'relative after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:top-[-1px] after:via-neutral-300/30'}`}
           >
             {isCartEmpty ? (
-              'Your cart is empty.'
+              <span className="text-xl font-thin">Your cart is empty 😧</span>
             ) : (
               <>
                 {cartItems.map(cartItem => (
@@ -115,11 +115,11 @@ function ShoppingCartModal() {
               </Button>
             ) : (
               <>
-                <div className="mt-3 font-light text-neutral-300/30">
+                <div className="font-light text-neutral-300/30">
                   Shipping and taxes will be calculated at checkout.
                 </div>
 
-                <div className="flex w-full justify-between items-center">
+                <div className="flex w-full justify-between items-center gap-3">
                   <div className="text-3xl font-thin text-orange-300">
                     Subtotal:{' '}
                     <span className="font-black">

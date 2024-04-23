@@ -119,14 +119,15 @@ export default function PrintCard({
                 name,
                 price,
                 image: src,
-                currency: 'EUR'
+                currency: 'EUR',
+                product_data: {
+                  metadata: {paper, size}
+                }
               },
               {
                 count: 1,
                 product_metadata: {
-                  image: {aspectRatio, css},
-                  paper,
-                  size
+                  image: {aspectRatio, css}
                 }
               }
             )
