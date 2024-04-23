@@ -1,11 +1,14 @@
+import {useState} from 'react'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {useShoppingCart} from 'use-shopping-cart'
 import ShoppingCartItem from './shopping-cart-item'
 import Button from './button'
+import {REQUEST_STATUS_OPTIONS} from 'config'
 import IconShoppingCart from 'assets/icons/shopping-cart.svg'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconArrowRight from 'assets/icons/arrow-right.svg'
+import IconArrowPath from 'assets/icons/arrow-path.svg'
 import {fetcher} from 'lib/utils'
 
 function ShoppingCartModal() {
@@ -18,11 +21,14 @@ function ShoppingCartModal() {
     handleCloseCart,
     totalPrice
   } = useShoppingCart()
+  const [status, setStatus] = useState(REQUEST_STATUS_OPTIONS.IDLE)
   const cartItems = Object.values(cartDetails ?? {})
   const isCartEmpty = cartCount === 0 && !cartItems.length
 
   async function handleCheckoutClick() {
     try {
+      setStatus(REQUEST_STATUS_OPTIONS.PENDING)
+
       const session = await fetcher.post(
         `/api/store/checkout/create-session?locale=${locale}`,
         {
@@ -32,6 +38,7 @@ function ShoppingCartModal() {
 
       if (session?.url) window.location.replace(session.url)
     } catch (error) {
+      setStatus(REQUEST_STATUS_OPTIONS.REJECTED)
       console.error(error)
     }
   }
@@ -121,9 +128,14 @@ function ShoppingCartModal() {
                     size="large"
                     className="flex items-center gap-1.5"
                     onClick={handleCheckoutClick}
+                    disabled={status === REQUEST_STATUS_OPTIONS.PENDING}
                   >
                     Checkout
-                    <IconArrowRight className="size-5" />
+                    {status === REQUEST_STATUS_OPTIONS.PENDING ? (
+                      <IconArrowPath className="size-5 animate-spin" />
+                    ) : (
+                      <IconArrowRight className="size-5" />
+                    )}
                   </Button>
                 </div>
               </>
