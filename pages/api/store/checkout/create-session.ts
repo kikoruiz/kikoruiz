@@ -20,7 +20,7 @@ export default async function handler(
       const t = await getT(locale, 'common')
       const {referer} = req.headers
       const storePath = getSlug(t('sections.store.name'))
-      const [baseUrl] = referer.split(storePath)
+      const [baseUrl] = referer.split(`/${storePath}`)
       const [refererBaseUrl] = referer.split('?')
       const items = JSON.parse(req.body)
       const lineItems = validateCartItems(inventory, items)
@@ -31,7 +31,7 @@ export default async function handler(
         shipping_address_collection: {
           allowed_countries: ['ES']
         },
-        success_url: `${baseUrl}${storePath}?checkout=success`,
+        success_url: `${baseUrl}/${storePath}?checkout=success`,
         cancel_url: `${refererBaseUrl}?checkout=cancel`,
         line_items: lineItems,
         automatic_tax: {enabled: true}
