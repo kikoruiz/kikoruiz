@@ -8,5 +8,9 @@
   "back-to-store": "Tornar a la tenda",
   "add-to-cart": "Afegir al carret",
   "size": "Size",
-  "paper": "Paper"
+  "paper": "Paper",
+  "filters": {
+    "with-border": "Amb marge",
+    "borderless": "Sense marge"
+  }
 }

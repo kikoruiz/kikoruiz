@@ -8,5 +8,9 @@
   "back-to-store": "Back to store",
   "add-to-cart": "Add to cart",
   "size": "Size",
-  "paper": "Paper"
+  "paper": "Paper",
+  "filters": {
+    "with-border": "With border",
+    "borderless": "Borderless"
+  }
 }
