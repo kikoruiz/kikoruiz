@@ -31,7 +31,7 @@
     "back-to-tags": "See all tags"
   },
   "sorting": {
-    "label": "Sort by:",
+    "label": "Sort by",
     "options": {
       "info-group": "General information",
       "date": "Creation date",

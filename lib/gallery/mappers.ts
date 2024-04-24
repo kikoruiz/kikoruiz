@@ -103,6 +103,7 @@ export function fromExifToGallery({
     coordinates,
     location
   }: ExifData): Promise<Picture> {
+    const id = fileName.split('.')[0]
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
     let image: Image
@@ -132,7 +133,9 @@ export function fromExifToGallery({
       tags: keywords.filter(keyword => GALLERY_TAGS.includes(keyword))
     })
     const tutorialSlug = getPostSlugByPictureSlug(`tutorial-${slug}`, {locale})
-    const isPrintable = Boolean(products.find(({id}) => fileName.includes(id)))
+    const isPrintable = Boolean(
+      products.find(({pictureId}) => pictureId === id)
+    )
 
     // Replace incorrect models.
     model = model.replace(/(\[)(Canon EOS R)(\])/, '$2')
@@ -156,7 +159,7 @@ export function fromExifToGallery({
     }
 
     return {
-      id: fileName.split('.')[0],
+      id,
       slug,
       name: title,
       ...(description && {description}),

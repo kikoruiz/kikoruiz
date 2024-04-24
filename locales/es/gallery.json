@@ -31,7 +31,7 @@
     "back-to-tags": "Ver todos los tags"
   },
   "sorting": {
-    "label": "Ordenar por:",
+    "label": "Ordenar por",
     "options": {
       "info-group": "Información general",
       "date": "Fecha de disparo",

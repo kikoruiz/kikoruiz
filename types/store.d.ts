@@ -8,6 +8,7 @@ export interface Print {
   description?: string
   paper: Paper['id']
   size: string
+  isBorderless: boolean
   price: number
   image?: Image
   aspectRatio?: string

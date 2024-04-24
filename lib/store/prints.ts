@@ -9,15 +9,11 @@ export async function getPrints({locale}: {locale: string}): Promise<Print[]> {
   const mappedPictures = await Promise.all(
     rawPictures.map(fromExifToGallery({locale}))
   )
-  const picturesForPrinting = mappedPictures.filter(({id}) =>
-    products.find(product => product.id === id)
-  )
 
-  return picturesForPrinting.map(({id, name, slug, url, image, imageSize}) => {
-    const {
-      price,
-      metadata: {print_paper: paper, print_size: size}
-    } = products.find(product => product.id === id)
+  return products.map(({id, pictureId, size, isBorderless, paper, price}) => {
+    const {name, slug, url, image, imageSize} = mappedPictures.find(
+      ({id}) => id === pictureId
+    )
 
     return {
       id,
@@ -25,7 +21,8 @@ export async function getPrints({locale}: {locale: string}): Promise<Print[]> {
       slug,
       paper,
       size,
-      price: price / 100,
+      isBorderless,
+      price,
       image,
       aspectRatio: getAspectRatio(imageSize),
       imageSize,

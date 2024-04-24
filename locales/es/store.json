@@ -8,5 +8,9 @@
   "back-to-store": "Volver a la tienda",
   "add-to-cart": "Añadir al carrito",
   "size": "Tamaño",
-  "paper": "Papel"
+  "paper": "Papel",
+  "filters": {
+    "with-border": "Con borde",
+    "borderless": "Sin borde"
+  }
 }

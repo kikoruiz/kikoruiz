@@ -105,6 +105,7 @@ export default function GalleryList({
           })}
         </div>
       )}
+
       {!isAlbum && (
         <div className="flex justify-center gap-2 pt-3 sm:justify-end">
           <div className="flex items-center text-xs">

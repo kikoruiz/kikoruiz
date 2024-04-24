@@ -1,21 +1,19 @@
 import {useState} from 'react'
+import Link from 'next/link'
+import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
+import {cva} from 'class-variance-authority'
 import {useShoppingCart} from 'use-shopping-cart'
+import useLayoutContext from 'contexts/Layout'
 import Image from 'components/image'
 import Button from 'components/button'
 import Logo from 'assets/brand/photo-logo.svg'
 import IconArrowTopRightOnSquare from 'assets/icons/arrow-top-right-on-square.svg'
+import {DEFAULT_UNIT_OF_MEASUREMENT, PRINT_SIZES} from 'config/store'
+import products from 'data/store/products.json'
+import papers from 'data/store/papers.json'
 import {getSlug, themeScreens} from 'lib/utils'
-import {
-  DEFAULT_UNIT_OF_MEASUREMENT,
-  PRINT_PAPERS,
-  PRINT_SIZES
-} from 'config/store'
 import {Print} from 'types/store'
-import Link from 'next/link'
-import {useRouter} from 'next/router'
-import useLayoutContext from 'contexts/Layout'
-import inventory from 'data/store/products.json'
 
 export default function PrintCard({
   id,
@@ -25,7 +23,8 @@ export default function PrintCard({
   image,
   aspectRatio,
   paper,
-  size
+  size,
+  isBorderless
 }: Print) {
   const {locale, asPath} = useRouter()
   const [, hash] = asPath.split('#')
@@ -33,9 +32,7 @@ export default function PrintCard({
   const {t} = useTranslation('store')
   const {sm, lg} = themeScreens
   const {css, src, orientation} = image
-  const paperData = PRINT_PAPERS.find(
-    ({brand, type}) => paper === `${getSlug(brand)}-${getSlug(type)}`
-  )
+  const paperData = papers[paper]
   const paperName = `${paperData.brand} ${paperData.type}`
   const isVertical = orientation === 'vertical'
   const {layout} = useLayoutContext()
@@ -43,7 +40,9 @@ export default function PrintCard({
   const slug = getSlug(name)
   const isActive = slug === hash
   const {addItem, handleCartHover} = useShoppingCart()
-  const {price_id: priceId} = inventory.find(product => product.id === id)
+  const {pictureId, priceId, currency} = products.find(
+    product => product.id === id
+  )
 
   return (
     <div
@@ -56,7 +55,9 @@ export default function PrintCard({
         className="absolute"
         style={{top: `calc(-${headerHeight}px - 1.5em)`}}
       />
-      <div className="relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 p-[10%] drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em]">
+      <div
+        className={`relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em]${isBorderless ? '' : ' p-[10%]'}`}
+      >
         <Image
           src={src}
           alt={name}
@@ -70,7 +71,30 @@ export default function PrintCard({
 
         {isImageLoaded && (
           <Logo
-            className={`absolute left-[calc(10%+1em)] fill-white/80 ${isVertical ? 'w-9 bottom-[calc(10%)]' : 'w-6 bottom-[calc(20%)]'}`}
+            className={cva('absolute fill-white/80', {
+              variants: {
+                isVertical: {
+                  true: 'w-9',
+                  false: 'w-6'
+                },
+                isBorderless: {
+                  true: 'left-3 bottom-3',
+                  false: 'left-[calc(10%+1em)]'
+                }
+              },
+              compoundVariants: [
+                {
+                  isVertical: true,
+                  isBorderless: false,
+                  class: 'bottom-[calc(10%)]'
+                },
+                {
+                  isVertical: false,
+                  isBorderless: false,
+                  class: 'bottom-[calc(20%)]'
+                }
+              ]
+            })({isVertical, isBorderless})}
           />
         )}
       </div>
@@ -86,7 +110,9 @@ export default function PrintCard({
           <dl className="text-sm my-3">
             <dt className="font-light text-neutral-300/30">{t('size')}</dt>
             <dd className="font-medium text-neutral-300/60">
-              {size}{' '}
+              {size}
+              {isBorderless &&
+                ` ${t('store:filters.borderless').toLowerCase()}`}{' '}
               <span className="font-thin">
                 ({PRINT_SIZES[size][DEFAULT_UNIT_OF_MEASUREMENT]}{' '}
                 {DEFAULT_UNIT_OF_MEASUREMENT})
@@ -121,9 +147,9 @@ export default function PrintCard({
                 name,
                 price,
                 image: src,
-                currency: 'EUR',
+                currency: currency.toUpperCase(),
                 product_data: {
-                  metadata: {pictureId: id, paper, size}
+                  metadata: {pictureId, paper, size, isBorderless}
                 }
               },
               {
