@@ -40,7 +40,7 @@ Si rebeu impressions de fotografies danyades o defectuoses, si us plau, poseu-vo
 
 ## Privadesa i protecció de dades
 
-Recopilem i processem informació personal d'acord amb la nostra [Política de privadesa](/politica-de-privacidad).
+Recopilem i processem informació personal d'acord amb la nostra [Política de privadesa](/politica-de-privacitat).
 
 ## Modificació de termes i condicions
 
@@ -48,4 +48,4 @@ Ens reservem el dret d'actualitzar o modificar aquests termes i condicions en qu
 
 ## Contacte
 
-Si teniu alguna pregunta o comentari sobre aquests termes i condicions, si us plau, [contacteu-me](/#contacto).
+Si teniu alguna pregunta o comentari sobre aquests termes i condicions, si us plau, [contacteu-me](/#contacte).
