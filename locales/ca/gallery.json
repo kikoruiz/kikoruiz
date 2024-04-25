@@ -31,7 +31,7 @@
     "back-to-tags": "Veure tots els tags"
   },
   "sorting": {
-    "label": "Ordenar per",
+    "label": "Ordenar per:",
     "options": {
       "info-group": "Informació general",
       "date": "Data de creació",
