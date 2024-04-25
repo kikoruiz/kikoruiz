@@ -22,4 +22,4 @@ Algunes imatges poden estar disponibles sota una llicència Creative Commons o a
 
 ## Contacte
 
-Si tens alguna pregunta o sol·licitud relacionada amb els drets d'autor o l'ús de les imatges, si us plau, [posa't en contacte amb mi](/#contacto).
+Si tens alguna pregunta o sol·licitud relacionada amb els drets d'autor o l'ús de les imatges, si us plau, [posa't en contacte amb mi](/#contacte).

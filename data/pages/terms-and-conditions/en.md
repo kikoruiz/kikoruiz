@@ -40,7 +40,7 @@ If you receive damaged or defective photograph prints, please contact us within 
 
 ## Privacy and data protection
 
-We collect and process personal information in accordance with our [Privacy Policy](/politica-de-privacidad).
+We collect and process personal information in accordance with our [Privacy Policy](/privacy-policy).
 
 ## Modification of terms and conditions
 
@@ -48,4 +48,4 @@ We reserve the right to update or modify these terms and conditions at any time.
 
 ## Contact
 
-If you have any questions or comments regarding these terms and conditions, please [contact me](/#contacto).
+If you have any questions or comments regarding these terms and conditions, please [contact me](/#contact).

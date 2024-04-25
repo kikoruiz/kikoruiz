@@ -22,4 +22,4 @@ Some images may be available under a Creative Commons license or with other spec
 
 ## Contact
 
-If you have any questions or requests related to copyright or the use of images, please [contact me](/#contacto).
+If you have any questions or requests related to copyright or the use of images, please [contact me](/#contact).
