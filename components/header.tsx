@@ -11,6 +11,7 @@ export default function Header({...sectionData}: SectionData) {
   const {setLayout} = useLayoutContext()
   const {hasHero, section, subSection} = sectionData
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const isHome = section === 'home'
   const logo = (
     <Logo
@@ -27,7 +28,7 @@ export default function Header({...sectionData}: SectionData) {
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-20 w-full${isMenuOpen ? '' : ' backdrop-blur'}`}
+      className={`sticky top-0 z-20 w-full${isMenuOpen || isSearchBarOpen ? '' : ' backdrop-blur'}`}
     >
       <div className={`${hasHero ? 'bg-transparent' : 'bg-neutral-900/90'}`}>
         <div className="container mx-auto flex justify-between pl-5 pr-3">
@@ -47,6 +48,8 @@ export default function Header({...sectionData}: SectionData) {
             hasHero={hasHero}
             isMenuOpen={isMenuOpen}
             setIsMenuOpen={setIsMenuOpen}
+            isSearchBarOpen={isSearchBarOpen}
+            setIsSearchBarOpen={setIsSearchBarOpen}
           />
         </div>
       </div>
