@@ -72,7 +72,7 @@ export default function PrintsPage({alternates, prints}: PrintsPageProps) {
       alternates={alternates}
     >
       <section className="px-6">
-        <div className="flex justify-center gap-2 pt-3 sm:justify-end mb-6">
+        <div className="flex flex-wrap justify-center gap-2 pt-3 sm:justify-end mb-6">
           {filterOptions.map(filter => {
             const slug = getSlug(filter)
             const id = `filter-${slug}`
@@ -82,7 +82,7 @@ export default function PrintsPage({alternates, prints}: PrintsPageProps) {
               <div key={id} className="flex items-center text-xs">
                 {!isSimple && (
                   <label htmlFor={id} className="mx-2 text-neutral-500">
-                    {t(`store:${slug}`)}
+                    {t(`store:${slug}`)}:
                   </label>
                 )}
 
