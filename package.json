@@ -5,6 +5,7 @@
   "sideEffects": false,
   "scripts": {
     "analyze": "ANALYZE=true npm run build",
+    "save:inventory": "make save_inventory",
     "build:data": "make save_placeholders && make save_metadata && make save_content",
     "build": "next build",
     "dev": "next dev",
