@@ -3,14 +3,36 @@
   "shopping-cart": {
     "0": "Ver carrito de la compra",
     "1": "Ver carrito de la compra (un artículo)",
-    "other": "Ver carrito de la compra ({{count}} artículos)"
+    "other": "Ver carrito de la compra ({{count}} artículos)",
+    "title": "Carrito de la compra",
+    "empty": "El carrito está vacío 🙁",
+    "remove-item": "Eliminar artículo",
+    "decrement-item": "Quitar",
+    "increment-item": "Añadir",
+    "notice-before-checkout": "Los gastos de envío y los impuestos se calcularán al finalizar la compra.",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout"
   },
   "back-to-store": "Volver a la tienda",
   "add-to-cart": "Añadir al carrito",
   "size": "Tamaño",
   "paper": "Papel",
+  "card": {
+    "go-to-picture": "Ir a la foto \"{{name}}\"",
+    "paper-website": "Ir a la web del fabricante"
+  },
   "filters": {
     "with-border": "Con borde",
     "borderless": "Sin borde"
+  },
+  "checkout": {
+    "success": {
+      "title": "¡La compra se ha realizado con éxito!",
+      "message": "Revisa la bandeja de tu correo electrónico para conocer el estado de tu pedido."
+    },
+    "cancel": {
+      "title": "¡La compra se ha cancelado!",
+      "message": "Inténtalo de nuevo accediendo al carrito de la compra."
+    }
   }
 }

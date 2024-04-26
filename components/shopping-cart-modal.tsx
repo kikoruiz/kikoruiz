@@ -63,14 +63,14 @@ function ShoppingCartModal() {
         <div className="flex flex-col items-center justify-between gap-9 h-full overflow-y-auto p-6 bg-gradient-to-t from-neutral-900 to-neutral-800">
           <header className="relative py-3 px-11 flex items-center justify-center gap-3 w-full">
             <button
-              aria-label="Back to store"
-              title="Back to store"
+              aria-label={t('back-to-store')}
+              title={t('back-to-store')}
               className="absolute left-0 flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-600/30 text-neutral-400 hover:text-orange-200 focus:outline-none"
               onClick={() => {
                 handleCloseCart()
               }}
             >
-              <span className="sr-only">Back to store</span>
+              <span className="sr-only">{t('back-to-store')}</span>
               <div className="w-5">
                 <IconArrowLeft />
               </div>
@@ -78,7 +78,7 @@ function ShoppingCartModal() {
 
             <span className="flex items-center gap-3 bg-gradient-to-t from-orange-400/90 to-orange-200 bg-clip-text text-3xl font-black leading-tight text-transparent drop-shadow">
               <IconShoppingCart className="size-7 text-neutral-300/30" />
-              Shopping cart
+              {t('shopping-cart.title')}
             </span>
           </header>
 
@@ -86,7 +86,9 @@ function ShoppingCartModal() {
             className={`flex flex-col justify-center items-center w-full ${isCartEmpty ? '' : 'relative after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:top-[-1px] after:via-neutral-300/30'}`}
           >
             {isCartEmpty ? (
-              <span className="text-xl font-thin">Your cart is empty 😧</span>
+              <span className="text-xl font-thin">
+                {t('shopping-cart.empty')}
+              </span>
             ) : (
               <>
                 {cartItems.map(cartItem => (
@@ -104,24 +106,24 @@ function ShoppingCartModal() {
             {isCartEmpty ? (
               <Button
                 isRounded
-                title="Back to store"
+                title={t('back-to-store')}
                 className="inline-flex items-center w-fit"
                 onClick={() => {
                   handleCloseCart()
                 }}
               >
                 <IconArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
-                Back to store
+                {t('back-to-store')}
               </Button>
             ) : (
               <>
                 <div className="font-light text-neutral-300/30">
-                  Shipping and taxes will be calculated at checkout.
+                  {t('shopping-cart.notice-before-checkout')}
                 </div>
 
                 <div className="flex w-full justify-between items-center gap-3">
                   <div className="text-3xl font-thin text-orange-300">
-                    Subtotal:{' '}
+                    {t('shopping-cart.subtotal')}:{' '}
                     <span className="font-black">
                       {t('price', {count: totalPrice})}
                     </span>
