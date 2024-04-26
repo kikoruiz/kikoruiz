@@ -7,7 +7,7 @@ SHELL := /bin/bash
 export NODE_ENV ?= development
 
 save:
-	NODE_ENV --import 'data:text/javascript,import{register}from"node:module";import{pathToFileURL}from"node:url";register("ts-node/esm", pathToFileURL("./"));'$(shell [ "$(NODE_ENV)" = "development" ] && echo " --env-file '.env.local'") ./bin/$(FILE).mts
+	node --import 'data:text/javascript,import{register}from"node:module";import{pathToFileURL}from"node:url";register("ts-node/esm", pathToFileURL("./"));'$(shell [ "$(NODE_ENV)" = "development" ] && echo " --env-file '.env.local'") ./bin/$(FILE).mts
 
 save_placeholders:
 	FILE=image/placeholders make save
