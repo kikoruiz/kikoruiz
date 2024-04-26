@@ -1,7 +1,7 @@
 import {kebabCase} from 'change-case'
-import {remove} from 'remove-accents'
+import {remove as removeAccents} from 'remove-accents'
 import getT from 'next-translate/getT'
-import {SECTIONS, DEFAULT_ORIGIN} from 'config'
+import {SECTIONS, DEFAULT_ORIGIN, SPECIAL_SUBSECTIONS} from 'config'
 import {getSlug} from './utils'
 import {Translate} from 'next-translate'
 import {BlogPost} from 'types/blog'
@@ -65,9 +65,15 @@ export function fromSectionToBreadcrumbItems({
           : t(`blog.tags.${tag}`)
       })
     } else if (subSection) {
+      const localePrefix = sectionItem?.localePrefix
+      const isSpecialSubsection = SPECIAL_SUBSECTIONS.includes(subSection)
+
       items.push({
         id: subSection,
-        name: t(subSection)
+        name:
+          localePrefix && !isSpecialSubsection
+            ? t(`${localePrefix}${subSection}.name`)
+            : t(subSection)
       })
     } else {
       items.push({
@@ -110,8 +116,15 @@ export async function fromLocalesToAlternates({
     const localePath = locale === defaultLocale ? '' : `/${locale}`
     const sectionSlug = getSlug(t(`sections.${section}.name`))
     const sectionPath = section ? `/${sectionSlug}` : ''
-    const subSectionPath = subSection ? `/${getSlug(t(subSection))}` : ''
     const sectionData = SECTIONS.find(({id}) => section === id)
+    const localePrefix = sectionData?.localePrefix
+    const isSpecialSubsection = SPECIAL_SUBSECTIONS.includes(subSection)
+    const subSectionSlug =
+      subSection &&
+      (localePrefix && !isSpecialSubsection
+        ? getSlug(t(`${localePrefix}${subSection}.name`))
+        : getSlug(t(subSection)))
+    const subSectionPath = subSectionSlug ? `/${subSectionSlug}` : ''
     const categoryData =
       category &&
       sectionData?.categories?.find(({id}) => {
@@ -124,9 +137,11 @@ export async function fromLocalesToAlternates({
     const pageSlug =
       page && category ? `/${getSlug(t(`${category}.pages.${page}`))}` : ''
     const postSlug = post
-      ? `/${searchContent[locale]?.find(
-          ({createdAt}) => post.createdAt === createdAt
-        ).slug}`
+      ? `/${
+          searchContent[locale]?.find(
+            ({createdAt}) => post.createdAt === createdAt
+          ).slug
+        }`
       : ''
     const justSlug =
       !sectionData?.localePrefix && category ? `/${category}` : ''
@@ -139,7 +154,7 @@ export async function fromLocalesToAlternates({
     if (tag) {
       actualTag = isGallerySection
         ? getSlug(galleryT(`tags.${getSlug(tag)}`))
-        : remove(t(`blog.tags.${tag}`))
+        : removeAccents(t(`blog.tags.${tag}`))
     }
     const tagPath = tag ? `/tags/${actualTag}` : ''
     const endingPath =

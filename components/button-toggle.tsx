@@ -1,5 +1,12 @@
 import {PropsWithChildren} from 'react'
 
+interface ButtonToggleProps extends PropsWithChildren {
+  onClick: () => void
+  label: string
+  isToggled: boolean
+  isDisabled?: boolean
+}
+
 export default function ButtonToggle({
   children,
   onClick,
@@ -21,11 +28,4 @@ export default function ButtonToggle({
       {children}
     </button>
   )
-}
-
-interface ButtonToggleProps extends PropsWithChildren {
-  onClick: () => void
-  label: string
-  isToggled: boolean
-  isDisabled?: boolean
 }

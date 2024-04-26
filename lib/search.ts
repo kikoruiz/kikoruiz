@@ -1,8 +1,8 @@
-import searchContent from 'data/search/content.json'
-import picturesMetadata from 'data/pictures/metadata.json'
 import {kebabCase} from 'change-case'
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {taggedPictures} from 'lib/utils/pictures'
+import searchContent from 'data/search/content.json'
+import picturesMetadata from 'data/pictures/metadata.json'
 import {SearchItem} from 'types'
 
 function matchSearchKey(key: string) {

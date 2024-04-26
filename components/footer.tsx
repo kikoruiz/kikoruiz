@@ -5,17 +5,22 @@ import IconLanguage from 'assets/icons/language.svg'
 import {Alternate} from 'types'
 import FooterLinks from './footer-links'
 
+interface FooterProps {
+  alternates: Alternate[]
+}
+
 export default function Footer({alternates}: FooterProps) {
-  const {locales, locale: currentLocale, push} = useRouter()
+  const {locales, locale: currentLocale, push, asPath} = useRouter()
   const {t} = useTranslation()
   const year = new Date().getFullYear()
 
   function handleLanguageChange(event) {
-    const origin = window.location.origin
     const locale = event.target.value as string
-    const destination = alternates
-      .find(alternate => alternate.locale === locale)
-      .href.split(origin)[1]
+    const {href} = alternates.find(alternate => alternate.locale === locale)
+    const [origin] = href.match(/http(s)?:\/\/([a-z]+(-?)([.]?))+(:[0-9]+)?/)
+    let destination = href.split(origin)[1]
+    const queryString = asPath.split('?')[1]
+    if (queryString) destination = `${destination}?${queryString}`
 
     if (locale !== currentLocale) {
       push(destination, destination, {locale})
@@ -61,8 +66,4 @@ export default function Footer({alternates}: FooterProps) {
       </div>
     </footer>
   )
-}
-
-interface FooterProps {
-  alternates: Alternate[]
 }

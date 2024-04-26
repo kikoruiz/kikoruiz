@@ -28,6 +28,7 @@ export default function BlogHeader({
     ? `/${sectionSlug}/${getSlug(t('common:tags'))}`
     : `/${sectionSlug}`
   const backButtonTitle = tag ? t('list.back-to-tags') : t('list.back-to-all')
+  const isBlogIndex = Boolean(tags) && !isTagsIndex
 
   return (
     <header
@@ -56,7 +57,11 @@ export default function BlogHeader({
         )}
       </div>
       {(currentTag || isTagsIndex) && (
-        <div className="relative mt-9 pt-6 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/60">
+        <div
+          className={`relative mt-6 pt-3 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent ${
+            isBlogIndex ? 'after:via-orange-300/60' : 'after:via-neutral-600'
+          }`}
+        >
           <Link
             href={backButtonHref}
             title={backButtonTitle}
