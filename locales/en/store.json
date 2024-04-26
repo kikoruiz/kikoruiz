@@ -1,0 +1,38 @@
+{
+  "price": "{{count, price}}",
+  "shopping-cart": {
+    "0": "See shopping cart",
+    "1": "See shopping cart ({{count}} article)",
+    "other": "See shopping cart ({{count}} articles)",
+    "title": "Shopping cart",
+    "empty": "Your cart is empty 🙁",
+    "remove-item": "Remove item",
+    "decrement-item": "Less",
+    "increment-item": "More",
+    "notice-before-checkout": "Shipping and taxes will be calculated at checkout.",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout"
+  },
+  "back-to-store": "Back to store",
+  "add-to-cart": "Add to cart",
+  "size": "Size",
+  "paper": "Paper",
+  "card": {
+    "go-to-picture": "Go to picture \"{{name}}\"",
+    "paper-website": "Visit the manufacturer website"
+  },
+  "filters": {
+    "with-border": "With border",
+    "borderless": "Borderless"
+  },
+  "checkout": {
+    "success": {
+      "title": "The purchase has been made successfully!",
+      "message": "Check your email inbox to find out the status of your order."
+    },
+    "cancel": {
+      "title": "The purchase has been cancelled!",
+      "message": "Please try again by accessing the shopping cart."
+    }
+  }
+}

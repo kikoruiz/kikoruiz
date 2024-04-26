@@ -10,6 +10,7 @@ import {getGalleryTags} from './tags'
 import {getPostSlugByPictureSlug} from 'lib/blog/posts'
 import {taggedPictures} from 'lib/utils/pictures'
 import {getImagePlaceholder} from 'lib/utils/image'
+import products from 'data/store/products.json'
 
 const DEFAULT_CANON_EF_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
 const DEFAULT_CANON_RF_LENS = 'Canon RF 15-35mm F2.8L IS USM'
@@ -102,6 +103,7 @@ export function fromExifToGallery({
     coordinates,
     location
   }: ExifData): Promise<Picture> {
+    const id = fileName.split('.')[0]
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
     let image: Image
@@ -131,6 +133,9 @@ export function fromExifToGallery({
       tags: keywords.filter(keyword => GALLERY_TAGS.includes(keyword))
     })
     const tutorialSlug = getPostSlugByPictureSlug(`tutorial-${slug}`, {locale})
+    const isPrintable = Boolean(
+      products.find(({pictureId}) => pictureId === id)
+    )
 
     // Replace incorrect models.
     model = model.replace(/(\[)(Canon EOS R)(\])/, '$2')
@@ -154,7 +159,7 @@ export function fromExifToGallery({
     }
 
     return {
-      id: fileName.split('.')[0],
+      id,
       slug,
       name: title,
       ...(description && {description}),
@@ -192,6 +197,9 @@ export function fromExifToGallery({
       ...(location && {location}),
       ...(tutorialSlug && {
         tutorial: {href: `/${getSlug(t('sections.blog.name'))}/${tutorialSlug}`}
+      }),
+      ...(isPrintable && {
+        print: `/${getSlug(t('sections.store.name'))}/${getSlug(t('store.categories.prints.name'))}#${slug}`
       })
     }
   }

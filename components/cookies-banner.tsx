@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import {useCookieConsentContext} from '@use-cookie-consent/react'
 import CookiesModal from './cookies-modal'
-import CookiesButton from './cookies-button'
+import Button from './button'
 import Article from './article'
 import {COOKIES_BY_TYPE} from 'config'
 import {camelCase} from 'change-case'
@@ -63,21 +63,21 @@ export default function CookiesBanner() {
           />
 
           <div className="flex flex-col-reverse lg:flex-row-reverse gap-3 mt-6">
-            <CookiesButton
+            <Button
               onClick={acceptAllCookies}
               title={t('legal.cookies.modal.actions.accept-all.description')}
             >
               {t('legal.cookies.modal.actions.accept-all.name')}
-            </CookiesButton>
+            </Button>
 
-            <CookiesButton
+            <Button
               onClick={declineAllCookies}
               title={t('legal.cookies.modal.actions.reject-all.description')}
             >
               {t('legal.cookies.modal.actions.reject-all.name')}
-            </CookiesButton>
+            </Button>
 
-            <CookiesButton
+            <Button
               intent="light"
               onClick={openModal}
               title={t('legal.cookies.modal.actions.open-modal.description')}
@@ -85,7 +85,7 @@ export default function CookiesBanner() {
               <span className="font-medium">
                 {t('legal.cookies.modal.actions.open-modal.name')}
               </span>
-            </CookiesButton>
+            </Button>
           </div>
         </div>
       )}

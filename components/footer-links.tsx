@@ -1,9 +1,11 @@
-import {LEGAL_PAGES} from 'config'
-import {getSlug} from 'lib/utils'
-import useTranslation from 'next-translate/useTranslation'
+import {useRouter} from 'next/router'
 import Link from 'next/link'
+import useTranslation from 'next-translate/useTranslation'
+import {getSlug} from 'lib/utils'
+import {LEGAL_PAGES} from 'config'
 
 export default function FooterLinks() {
+  const {pathname} = useRouter()
   const {t} = useTranslation()
 
   return (
@@ -15,10 +17,22 @@ export default function FooterLinks() {
           {LEGAL_PAGES.map(slug => {
             const pageName = t(`legal.pages.${slug}`)
             const href = `/${getSlug(pageName)}`
+            const defaultPathname = `/${getSlug(t(`commonES:legal.pages.${slug}`))}`
+            const isCurrentPage = pathname === defaultPathname
 
             return (
-              <li key={slug} className='font-light text-neutral-300/60 hover:text-neutral-300 transition-colors'>
-                <Link href={href}>{pageName}</Link>
+              <li key={slug} className="font-light">
+                {isCurrentPage ? (
+                  <span className="text-neutral-300">{pageName}</span>
+                ) : (
+                  <Link
+                    href={href}
+                    title={pageName}
+                    className="text-neutral-300/60 hover:text-neutral-300 transition-colors"
+                  >
+                    {pageName}
+                  </Link>
+                )}
               </li>
             )
           })}

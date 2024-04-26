@@ -20,6 +20,10 @@
     "blog": {
       "name": "Blog",
       "description": "Articles about photography, web development and some experiencies of my own."
+    },
+    "store": {
+      "name": "Store",
+      "description": "Order prints of my photos."
     }
   },
   "gallery": {
@@ -65,6 +69,13 @@
     },
     "carousel": {"query-key": "picture"}
   },
+  "store": {
+    "categories": {
+      "prints": {
+        "name": "Prints"
+      }
+    }
+  },
   "languages": {
     "selector": {
       "label": "Language"
@@ -105,7 +116,9 @@
     "name": "Legal",
     "pages": {
       "privacy-policy": "Privacy Policy",
-      "cookies-policy": "Cookies Policy"
+      "cookies-policy": "Cookies Policy",
+      "terms-and-conditions": "Terms and conditions",
+      "copyright": "Copyright"
     },
     "cookies": {
       "banner": {
@@ -145,7 +158,6 @@
       }
     }
   },
-
   "error": {
     "404": "Page not found 🙃",
     "500": "Server-side error occurred 😱"

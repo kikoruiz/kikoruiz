@@ -9,11 +9,25 @@ export const SECTIONS = [
     localePrefix: 'gallery.albums.',
     highlightedPicture: '/pictures/2022-01-04_0125.jpg'
   },
+  {
+    id: 'store',
+    categories: [{id: 'prints'}],
+    localePrefix: 'store.categories.',
+    highlightedPicture: '/store/prints.jpg'
+  },
   {id: 'blog', highlightedPicture: '/blog/_default.jpg'},
   {id: 'about-me', highlightedPicture: '/pictures/2022-08-27_0108.jpg'}
 ]
 
-export const LEGAL_PAGES = ['privacy-policy', 'cookies-policy']
+export const SPECIAL_SUBSECTIONS = ['tags']
+
+export const LEGAL_PAGES = [
+  'privacy-policy',
+  'cookies-policy',
+  'terms-and-conditions',
+  'copyright'
+]
+export const SIMPLE_PAGES = ['error']
 
 export const COOKIES_BY_TYPE = {
   NECESSARY: true,

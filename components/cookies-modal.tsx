@@ -2,7 +2,7 @@ import {useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import {useCookieConsentContext} from '@use-cookie-consent/react'
 import {camelCase} from 'change-case'
-import CookiesButton from './cookies-button'
+import Button from './button'
 import CookiesCollapsible from './cookies-collapsible'
 import {COOKIES_BY_TYPE} from 'config'
 
@@ -79,7 +79,7 @@ export default function CookiesModal({
           </div>
 
           <div className="flex flex-col-reverse lg:flex-row-reverse gap-3">
-            <CookiesButton
+            <Button
               size="large"
               onClick={() => {
                 acceptAllCookies()
@@ -89,9 +89,9 @@ export default function CookiesModal({
               className="lg:flex-grow"
             >
               {t('legal.cookies.modal.actions.accept-all.name')}
-            </CookiesButton>
+            </Button>
 
-            <CookiesButton
+            <Button
               size="large"
               onClick={() => {
                 declineAllCookies()
@@ -101,9 +101,9 @@ export default function CookiesModal({
               className="lg:flex-grow"
             >
               {t('legal.cookies.modal.actions.reject-all.name')}
-            </CookiesButton>
+            </Button>
 
-            <CookiesButton
+            <Button
               size="large"
               intent="light"
               onClick={() => {
@@ -116,7 +116,7 @@ export default function CookiesModal({
               <span className="font-medium">
                 {t('legal.cookies.modal.actions.save.name')}
               </span>
-            </CookiesButton>
+            </Button>
           </div>
         </div>
       </div>

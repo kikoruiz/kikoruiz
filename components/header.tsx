@@ -1,4 +1,4 @@
-import {useEffect, useRef} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import Breadcrumb from './breadcrumb'
 import Navigation from './navigation'
@@ -9,7 +9,9 @@ import useLayoutContext from 'contexts/Layout'
 export default function Header({...sectionData}: SectionData) {
   const headerRef = useRef(null)
   const {setLayout} = useLayoutContext()
-  const {hasHero, section} = sectionData
+  const {hasHero, section, subSection} = sectionData
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const isHome = section === 'home'
   const logo = (
     <Logo
@@ -24,7 +26,10 @@ export default function Header({...sectionData}: SectionData) {
   }, [setLayout])
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-20 w-full backdrop-blur">
+    <header
+      ref={headerRef}
+      className={`sticky top-0 z-20 w-full${isMenuOpen || isSearchBarOpen ? '' : ' backdrop-blur'}`}
+    >
       <div className={`${hasHero ? 'bg-transparent' : 'bg-neutral-900/90'}`}>
         <div className="container mx-auto flex justify-between pl-5 pr-3">
           <div className="flex justify-center py-8">
@@ -37,7 +42,15 @@ export default function Header({...sectionData}: SectionData) {
             )}
           </div>
 
-          <Navigation section={section} hasHero={hasHero} />
+          <Navigation
+            section={section}
+            subSection={subSection}
+            hasHero={hasHero}
+            isMenuOpen={isMenuOpen}
+            setIsMenuOpen={setIsMenuOpen}
+            isSearchBarOpen={isSearchBarOpen}
+            setIsSearchBarOpen={setIsSearchBarOpen}
+          />
         </div>
       </div>
 

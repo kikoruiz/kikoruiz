@@ -20,6 +20,10 @@
     "blog": {
       "name": "Blog",
       "description": "Articles sobre fotografia, desenvolupament web i algunes experiències propies."
+    },
+    "store": {
+      "name": "Tenda",
+      "description": "Demana impressions de les meues fotos."
     }
   },
   "gallery": {
@@ -65,6 +69,13 @@
     },
     "carousel": {"query-key": "foto"}
   },
+  "store": {
+    "categories": {
+      "prints": {
+        "name": "Impressions"
+      }
+    }
+  },
   "languages": {
     "selector": {
       "label": "Llengua"
@@ -105,7 +116,9 @@
     "name": "Legal",
     "pages": {
       "privacy-policy": "Política de privacitat",
-      "cookies-policy": "Política de galetes"
+      "cookies-policy": "Política de galetes",
+      "terms-and-conditions": "Termes i condicions",
+      "copyright": "Drets d'autor"
     },
     "cookies": {
       "banner": {

@@ -61,6 +61,7 @@ export default function GalleryHeader({
           )}
         </h1>
       </div>
+
       <div
         className={`relative after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent ${
           isAlbum
@@ -70,7 +71,7 @@ export default function GalleryHeader({
       >
         {isAlbum ? (
           <p className="mt-3 font-light text-neutral-300/60">
-            {t('sections.gallery.description')}{' '}
+            {t('sections.gallery.description')}
           </p>
         ) : (
           <Link
@@ -83,6 +84,7 @@ export default function GalleryHeader({
           </Link>
         )}
       </div>
+
       {isAlbum && (
         <Link
           href={`/${sectionSlug}/${getSlug(t('tags'))}`}

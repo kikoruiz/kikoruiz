@@ -2,7 +2,7 @@ import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 import {Alternate} from 'types'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import ErrorPage from 'components/error-page'
+import SimplePage from 'components/simple-page'
 
 export default function Custom404() {
   const {t} = useTranslation()
@@ -14,7 +14,7 @@ export default function Custom404() {
         <meta name="robots" content="noindex,nofollow" />
       </Head>
 
-      <ErrorPage title={t('error.404')} />
+      <SimplePage title={t('error.404')} />
     </>
   )
 }

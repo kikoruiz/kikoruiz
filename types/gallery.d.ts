@@ -1,6 +1,7 @@
 import {orientation, Tag} from 'types'
 import {Tutorial} from './blog'
 import {GetPlaiceholderReturn} from 'plaiceholder'
+import {Print} from './store'
 
 export interface Subcategory {
   id: string
@@ -112,6 +113,7 @@ export interface Picture {
   coordinates?: Coordinates
   location?: Location
   tutorial?: Tutorial
+  print?: Print['url']
 }
 
 export interface LatestPictures {

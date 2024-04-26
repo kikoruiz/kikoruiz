@@ -3,7 +3,7 @@ import {ReactNode} from 'react'
 import Header from './header'
 import Footer from './footer'
 import {Alternate, SectionData} from 'types'
-import {LEGAL_PAGES} from 'config'
+import {LEGAL_PAGES, SIMPLE_PAGES} from 'config'
 import CookiesBanner from './cookies-banner'
 import ThirdPartyScripts from './third-party-scripts'
 
@@ -19,8 +19,8 @@ export default function Layout({
 }: LayoutProps) {
   const {hasHero, section} = sectionData
   const isLegalPage = LEGAL_PAGES.includes(section)
-  const isErrorPage = section === 'error'
-  const needsBorder = hasHero || isLegalPage || isErrorPage
+  const isSimplePage = SIMPLE_PAGES.includes(section)
+  const needsBorder = hasHero || isLegalPage || isSimplePage
 
   return (
     <div className={`${inter.variable} font-sans flex min-h-screen flex-col`}>

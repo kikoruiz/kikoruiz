@@ -23,10 +23,11 @@
     },
     "show-picture-map": "Show on map",
     "hide-picture-map": "Hide map",
-    "share": "Share"
+    "share": "Share",
+    "order-print": "Order print"
   },
   "album": {
-    "back-to-gallery": "Back to Gallery",
+    "back-to-gallery": "Back to gallery",
     "back-to-tags": "See all tags"
   },
   "sorting": {

@@ -3,33 +3,54 @@ import Link from 'next/link'
 import {useRouter} from 'next/router'
 import {useMediaQuery} from 'react-responsive'
 import useTranslation from 'next-translate/useTranslation'
-import {LEGAL_PAGES, SECTIONS} from 'config'
-import {getSlug, screens} from 'lib/utils'
+import {LEGAL_PAGES, SECTIONS, SIMPLE_PAGES, SPECIAL_SUBSECTIONS} from 'config'
+import {getCapitalizedName, getSlug, screens} from 'lib/utils'
 import SearchBar from './search-bar'
+import sectionIcons from './section-icons'
 import IconChevronDown from 'assets/icons/chevron-down.svg'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
-import IconFingerPrint from 'assets/icons/finger-print.svg'
-import IconPhoto from 'assets/icons/photo.svg'
-import IconDocumentText from 'assets/icons/document-text.svg'
 
-const {sm} = screens
-const sectionIcons = {
-  'about-me': IconFingerPrint,
-  gallery: IconPhoto,
-  blog: IconDocumentText
+interface NavigationProps {
+  section: string
+  subSection?: string
+  hasHero?: boolean
+  isMenuOpen: boolean
+  setIsMenuOpen: (isMenuOpen: boolean) => void
+  isSearchBarOpen: boolean
+  setIsSearchBarOpen: (isSearchBarOpen: boolean) => void
 }
 
-export default function Navigation({section, hasHero}: NavigationProps) {
+const {sm} = screens
+
+export default function Navigation({
+  section,
+  subSection,
+  hasHero,
+  isMenuOpen,
+  setIsMenuOpen,
+  isSearchBarOpen,
+  setIsSearchBarOpen
+}: NavigationProps) {
   const {t} = useTranslation()
   const router = useRouter()
   const {asPath} = router
   const isNotSectionPage =
-    LEGAL_PAGES.includes(section) || section === 'error' || section === 'home'
+    LEGAL_PAGES.includes(section) ||
+    SIMPLE_PAGES.includes(section) ||
+    section === 'home'
+  const sectionData = SECTIONS.find(({id}) => id === section)
+  const isSpecialSubsection = SPECIAL_SUBSECTIONS.includes(subSection)
   let path =
     section && !isNotSectionPage
       ? asPath.replace(
-          /(\/[a-z,-]+)/,
-          `/${getSlug(t(`sections.${section}.name`))}`
+          /(\/[a-z,-]+)(\/[a-z,-]+)?/,
+          `/${getSlug(t(`sections.${section}.name`))}${
+            subSection && sectionData?.localePrefix && !isSpecialSubsection
+              ? `/${getSlug(
+                  t(`${sectionData?.localePrefix}${subSection}.name`)
+                )}`
+              : '$2'
+          }`
         )
       : asPath
   if (path.includes('#')) path = path.split('#')[0]
@@ -38,8 +59,6 @@ export default function Navigation({section, hasHero}: NavigationProps) {
 
     return sectionSlug && path.includes(sectionSlug) && categories
   })
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const [expandedSections, setExpandedSections] = useState(
     activeSection ? [activeSection.id] : []
   )
@@ -127,7 +146,8 @@ export default function Navigation({section, hasHero}: NavigationProps) {
           const isActualSection = path === href
           const hasCategories = Boolean(section.categories)
           const isSectionExpanded = expandedSections.includes(section.id)
-          const SectionIcon = sectionIcons[section.id]
+          const SectionIcon =
+            sectionIcons[`Icon${getCapitalizedName(section.id)}`]
           const sectionName = t(`sections.${section.id}.name`)
           const sectionClassName = `relative px-6 font-bold after:absolute after:left-0 after:block after:from-transparent ${
             isMenuOpen
@@ -270,7 +290,7 @@ export default function Navigation({section, hasHero}: NavigationProps) {
         }
         className={`relative flex h-11 w-11 rounded-full bg-gradient-to-t text-neutral-400 hover:text-neutral-300 focus:outline-none sm:hidden ${
           hasHero ? 'from-neutral-300/10' : 'from-neutral-800'
-        }${isMenuOpen ? ' z-10' : ''}`}
+        }${isMenuOpen ? ' z-20' : ''}`}
         onClick={toggleMenu}
       >
         <span className="sr-only">
@@ -301,7 +321,7 @@ export default function Navigation({section, hasHero}: NavigationProps) {
       <button
         aria-hidden="true"
         tabIndex={-1}
-        className={`fixed inset-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity ${
+        className={`fixed z-10 inset-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity ${
           isMenuOpen || isSearchBarOpen
             ? 'opacity-1 touch-none'
             : 'pointer-events-none touch-auto opacity-0 sm:hidden'
@@ -312,9 +332,4 @@ export default function Navigation({section, hasHero}: NavigationProps) {
       <SearchBar isOpen={isSearchBarOpen} setIsOpen={setIsSearchBarOpen} />
     </nav>
   )
-}
-
-interface NavigationProps {
-  section: string
-  hasHero?: boolean
 }

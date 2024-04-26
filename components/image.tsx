@@ -3,37 +3,23 @@ import Link from 'next/link'
 import NextImage from 'next/image'
 import {ImageFallbackStyle} from 'types/gallery'
 
-function getAspectRatioClassName(aspectRatio: string): string {
-  switch (aspectRatio) {
-    case '1:1':
-      return 'aspect-square'
-    case '2:1':
-      return 'aspect-2/1'
-    case '3:2':
-      return 'aspect-3/2'
-    case '2:3':
-      return 'aspect-2/3'
-    case '4:3':
-      return 'aspect-4/3'
-    case '3:4':
-      return 'aspect-3/4'
-    case '5:4':
-      return 'aspect-5/4'
-    case '4:5':
-      return 'aspect-4/5'
-    case '5:3':
-      return 'aspect-5/3'
-    case '3:5':
-      return 'aspect-3/5'
-    case '16:9':
-      return 'aspect-16/9'
-    case '9:16':
-      return 'aspect-9/16'
-    case '16:10':
-      return 'aspect-16/10'
-    default:
-      return ''
-  }
+interface ImageProps {
+  src: string
+  url?: string
+  alt: string
+  className?: string
+  style?: CSSProperties
+  aspectRatio?: string
+  sizes: string
+  needsPreload?: boolean
+  isLazy?: boolean
+  fallbackStyle: ImageFallbackStyle | object
+  isRounded?: boolean
+  isFullRounded?: boolean
+  isShallowLink?: boolean
+  scrollToTop?: boolean
+  onLoad?: () => void
+  children?: JSX.Element
 }
 
 export default function Image({
@@ -51,6 +37,7 @@ export default function Image({
   isFullRounded,
   isShallowLink,
   scrollToTop = false,
+  onLoad = () => {},
   children
 }: ImageProps) {
   const isLink = Boolean(url)
@@ -68,6 +55,7 @@ export default function Image({
 
   function handleImageLoad() {
     setIsLoaded(true)
+    onLoad()
   }
 
   const content = (
@@ -82,6 +70,7 @@ export default function Image({
           transform: 'translate3d(0, 0, 0)'
         }}
       />
+
       <NextImage
         src={src}
         alt={alt}
@@ -92,6 +81,7 @@ export default function Image({
         sizes={sizes}
         fill
       />
+
       {children}
     </>
   )
@@ -125,20 +115,35 @@ export default function Image({
   )
 }
 
-interface ImageProps {
-  src: string
-  url?: string
-  alt: string
-  className: string
-  style?: CSSProperties
-  aspectRatio?: string
-  sizes: string
-  needsPreload?: boolean
-  isLazy?: boolean
-  fallbackStyle: ImageFallbackStyle | object
-  isRounded?: boolean
-  isFullRounded?: boolean
-  isShallowLink?: boolean
-  scrollToTop?: boolean
-  children?: JSX.Element
+function getAspectRatioClassName(aspectRatio: string): string {
+  switch (aspectRatio) {
+    case '1:1':
+      return 'aspect-square'
+    case '2:1':
+      return 'aspect-2/1'
+    case '3:2':
+      return 'aspect-3/2'
+    case '2:3':
+      return 'aspect-2/3'
+    case '4:3':
+      return 'aspect-4/3'
+    case '3:4':
+      return 'aspect-3/4'
+    case '5:4':
+      return 'aspect-5/4'
+    case '4:5':
+      return 'aspect-4/5'
+    case '5:3':
+      return 'aspect-5/3'
+    case '3:5':
+      return 'aspect-3/5'
+    case '16:9':
+      return 'aspect-16/9'
+    case '9:16':
+      return 'aspect-9/16'
+    case '16:10':
+      return 'aspect-16/10'
+    default:
+      return ''
+  }
 }

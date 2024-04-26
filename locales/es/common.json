@@ -20,6 +20,10 @@
     "blog": {
       "name": "Blog",
       "description": "Artículos sobre fotografía, desarrollo web y algunas experiencias propias."
+    },
+    "store": {
+      "name": "Tienda",
+      "description": "Pide impresiones de mis fotos."
     }
   },
   "gallery": {
@@ -65,6 +69,13 @@
     },
     "carousel": {"query-key": "foto"}
   },
+  "store": {
+    "categories": {
+      "prints": {
+        "name": "Impresiones"
+      }
+    }
+  },
   "languages": {
     "selector": {
       "label": "Idioma"
@@ -105,7 +116,9 @@
     "name": "Legal",
     "pages": {
       "privacy-policy": "Política de privacidad",
-      "cookies-policy": "Política de cookies"
+      "cookies-policy": "Política de cookies",
+      "terms-and-conditions": "Términos y condiciones",
+      "copyright": "Derechos de autor"
     },
     "cookies": {
       "banner": {

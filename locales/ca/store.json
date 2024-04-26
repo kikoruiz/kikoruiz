@@ -1,0 +1,38 @@
+{
+  "price": "{{count, price}}",
+  "shopping-cart": {
+    "0": "Veure carret de la compra",
+    "1": "Veure carret de la compra ({{count}} article)",
+    "other": "Veure carret de la compra ({{count}} articles)",
+    "title": "Carret de la compra",
+    "empty": "El carret està buit 🙁",
+    "remove-item": "Eliminar article",
+    "decrement-item": "Traure",
+    "increment-item": "Afegir",
+    "notice-before-checkout": "Els costos d'enviament i els impostos es calcularan al final de la compra.",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout"
+  },
+  "back-to-store": "Tornar a la tenda",
+  "add-to-cart": "Afegir al carret",
+  "size": "Tamany",
+  "paper": "Paper",
+  "card": {
+    "go-to-picture": "Anar a la foto \"{{name}}\"",
+    "paper-website": "Anar a la web del fabricant"
+  },
+  "filters": {
+    "with-border": "Amb marge",
+    "borderless": "Sense marge"
+  },
+  "checkout": {
+    "success": {
+      "title": "La compra s'ha fet amb èxit!",
+      "message": "Revisa la safata de correu electrònic per conèixer l'estat de la teua comanda."
+    },
+    "cancel": {
+      "title": "La compra s'ha cancel·lat!",
+      "message": "Intenta-ho de nou accedint al carret de la compra."
+    }
+  }
+}

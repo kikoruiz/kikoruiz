@@ -20,6 +20,14 @@ export const fetcher = {
     const response = await fetch(url, options)
 
     return response.json()
+  },
+  post: async (url: RequestInfo, options?: RequestInit) => {
+    const response = await fetch(url, {
+      method: 'post',
+      ...options
+    })
+
+    return response.json()
   }
 }
 
@@ -41,6 +49,12 @@ export function getCapitalizedName(slug: string) {
 
 export function getSlug(name: string) {
   return kebabCase(removeAccents(name))
+}
+
+export function getOffset(element: Element, side: 'top' | 'bottom' = 'top') {
+  const elementRect = element?.getBoundingClientRect()
+
+  return Math.ceil(elementRect?.[side])
 }
 
 export function isNew(date: string, currentDate?: string) {

@@ -106,7 +106,7 @@ async function saveAllPicturesMetadata() {
 
 saveAllPicturesMetadata()
   .then(() => {
-    console.log('Pictures metadata has been saved.')
+    console.log('\n✅ Pictures metadata has been saved.\n')
     process.exit(0)
   })
   .catch(error => {
