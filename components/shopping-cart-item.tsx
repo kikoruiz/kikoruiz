@@ -82,7 +82,7 @@ export default function ShoppingCartItem({
           </div>
 
           <button
-            title="Remove item"
+            title={t('shopping-cart.remove-item')}
             className={`p-1.5 border border-red-600/30 rounded-full scale-90 ${isCheckoutLoading ? 'opacity-60 cursor-not-allowed' : 'group hover:border-red-600/60'}`}
             onClick={() => {
               if (!isCheckoutLoading) removeItem(id)
@@ -102,7 +102,7 @@ export default function ShoppingCartItem({
             className={`flex items-center gap-1.5 rounded-full border border-neutral-600 p-1${isCheckoutLoading ? ' opacity-60' : ''}`}
           >
             <ButtonSymbol
-              title="Decrease quantity"
+              title={t('shopping-cart.decrement-item')}
               onClick={() => {
                 decrementItem(id)
               }}
@@ -114,7 +114,7 @@ export default function ShoppingCartItem({
             <span className="text-xs">{quantity}</span>
 
             <ButtonSymbol
-              title="Increase quantity"
+              title={t('shopping-cart.increment-item')}
               onClick={() => {
                 incrementItem(id)
               }}
