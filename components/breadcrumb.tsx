@@ -4,6 +4,7 @@ import useTranslation from 'next-translate/useTranslation'
 import {useShoppingCart} from 'use-shopping-cart'
 import {fromSectionToBreadcrumbItems} from 'lib/mappers'
 import {getCapitalizedName, getSlug} from 'lib/utils'
+import {trackEvent} from 'lib/tracking'
 import useSubcategoryContext from 'contexts/Subcategory'
 import {SectionData} from 'types'
 import sectionIcons from './section-icons'
@@ -133,6 +134,10 @@ export default function Breadcrumb({
             title={t('store:shopping-cart', {count: cartCount})}
             onClick={() => {
               handleCartHover()
+              trackEvent({
+                action: 'open',
+                category: 'shopping_cart'
+              })
             }}
           >
             <div className="relative">

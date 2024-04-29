@@ -8,6 +8,7 @@ import IconTrash from 'assets/icons/trash.svg'
 import {DEFAULT_UNIT_OF_MEASUREMENT, PRINT_SIZES} from 'config/store'
 import papers from 'data/store/papers.json'
 import {themeScreens} from 'lib/utils'
+import {trackEvent} from 'lib/tracking'
 
 interface ShoppingCartItemProps extends CartEntry {
   isCheckoutLoading?: boolean
@@ -85,7 +86,13 @@ export default function ShoppingCartItem({
             title={t('shopping-cart.remove-item')}
             className={`p-1.5 border border-red-600/30 rounded-full scale-90 ${isCheckoutLoading ? 'opacity-60 cursor-not-allowed' : 'group hover:border-red-600/60'}`}
             onClick={() => {
-              if (!isCheckoutLoading) removeItem(id)
+              if (!isCheckoutLoading) {
+                removeItem(id)
+                trackEvent({
+                  action: 'remove_item',
+                  category: 'shopping_cart'
+                })
+              }
             }}
             disabled={isCheckoutLoading}
           >
@@ -105,6 +112,10 @@ export default function ShoppingCartItem({
               title={t('shopping-cart.decrement-item')}
               onClick={() => {
                 decrementItem(id)
+                trackEvent({
+                  action: 'decrement_item',
+                  category: 'shopping_cart'
+                })
               }}
               disabled={isCheckoutLoading}
             >
@@ -117,6 +128,10 @@ export default function ShoppingCartItem({
               title={t('shopping-cart.increment-item')}
               onClick={() => {
                 incrementItem(id)
+                trackEvent({
+                  action: 'increment_item',
+                  category: 'shopping_cart'
+                })
               }}
               disabled={isCheckoutLoading}
             >

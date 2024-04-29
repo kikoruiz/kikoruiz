@@ -37,7 +37,13 @@ function ShoppingCartModal() {
         }
       )
 
-      if (session?.url) window.location.replace(session.url)
+      if (session?.url) {
+        trackEvent({
+          action: 'checkout',
+          category: 'shopping_cart'
+        })
+        window.location.replace(session.url)
+      }
     } catch (error) {
       setStatus(REQUEST_STATUS_OPTIONS.REJECTED)
       console.error(error)
@@ -54,6 +60,10 @@ function ShoppingCartModal() {
         className={`absolute inset-0 z-0 h-full w-full bg-neutral-900/60 backdrop-blur transition-opacity ${shouldDisplayCart ? 'opacity-100' : 'opacity-0'}`}
         onClick={() => {
           handleCloseCart()
+          trackEvent({
+            action: 'close',
+            category: 'shopping_cart'
+          })
         }}
       ></button>
 
@@ -68,6 +78,10 @@ function ShoppingCartModal() {
               className="absolute left-0 flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-600/30 text-neutral-400 hover:text-orange-200 focus:outline-none"
               onClick={() => {
                 handleCloseCart()
+                trackEvent({
+                  action: 'close',
+                  category: 'shopping_cart'
+                })
               }}
             >
               <span className="sr-only">{t('back-to-store')}</span>
@@ -112,6 +126,10 @@ function ShoppingCartModal() {
                 className="inline-flex items-center w-fit"
                 onClick={() => {
                   handleCloseCart()
+                  trackEvent({
+                    action: 'close',
+                    category: 'shopping_cart'
+                  })
                 }}
               >
                 <IconArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />
