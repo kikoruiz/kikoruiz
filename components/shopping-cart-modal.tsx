@@ -10,6 +10,7 @@ import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconArrowRight from 'assets/icons/arrow-right.svg'
 import IconArrowPath from 'assets/icons/arrow-path.svg'
 import {fetcher} from 'lib/utils'
+import {trackEvent} from 'lib/tracking'
 
 function ShoppingCartModal() {
   const {t} = useTranslation('store')
@@ -19,7 +20,8 @@ function ShoppingCartModal() {
     cartCount,
     cartDetails,
     handleCloseCart,
-    totalPrice
+    totalPrice,
+    currency
   } = useShoppingCart()
   const [status, setStatus] = useState(REQUEST_STATUS_OPTIONS.IDLE)
   const cartItems = Object.values(cartDetails ?? {})
@@ -39,8 +41,20 @@ function ShoppingCartModal() {
 
       if (session?.url) {
         trackEvent({
-          action: 'checkout',
-          category: 'shopping_cart'
+          action: 'begin_checkout',
+          value: totalPrice,
+          currency: currency.toUpperCase(),
+          items: Object.keys(cartDetails).map(id => {
+            const item = cartDetails[id]
+            const {id: productId} = item.product_data as {id: string}
+
+            return {
+              id: productId,
+              name: item.name,
+              price: item.price,
+              quantity: item.quantity
+            }
+          })
         })
         window.location.replace(session.url)
       }
@@ -60,10 +74,6 @@ function ShoppingCartModal() {
         className={`absolute inset-0 z-0 h-full w-full bg-neutral-900/60 backdrop-blur transition-opacity ${shouldDisplayCart ? 'opacity-100' : 'opacity-0'}`}
         onClick={() => {
           handleCloseCart()
-          trackEvent({
-            action: 'close',
-            category: 'shopping_cart'
-          })
         }}
       ></button>
 
@@ -78,10 +88,6 @@ function ShoppingCartModal() {
               className="absolute left-0 flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-600/30 text-neutral-400 hover:text-orange-200 focus:outline-none"
               onClick={() => {
                 handleCloseCart()
-                trackEvent({
-                  action: 'close',
-                  category: 'shopping_cart'
-                })
               }}
             >
               <span className="sr-only">{t('back-to-store')}</span>
@@ -126,10 +132,6 @@ function ShoppingCartModal() {
                 className="inline-flex items-center w-fit"
                 onClick={() => {
                   handleCloseCart()
-                  trackEvent({
-                    action: 'close',
-                    category: 'shopping_cart'
-                  })
                 }}
               >
                 <IconArrowLeft className="mr-1 h-3 w-3 sm:h-4 sm:w-4" />

@@ -41,9 +41,13 @@ export default function PrintCard({
   const slug = getSlug(name)
   const isActive = slug === hash
   const {addItem, handleCartHover} = useShoppingCart()
-  const {pictureId, priceId, currency} = products.find(
-    product => product.id === id
-  )
+  const {
+    id: productId,
+    name: productName,
+    pictureId,
+    priceId,
+    currency
+  } = products.find(product => product.id === id)
 
   return (
     <div
@@ -150,7 +154,7 @@ export default function PrintCard({
             addItem(
               {
                 id: priceId,
-                name,
+                name: productName,
                 price,
                 image: src,
                 currency: currency.toUpperCase(),
@@ -161,14 +165,24 @@ export default function PrintCard({
               {
                 count: 1,
                 product_metadata: {
+                  id: productId,
                   image: {aspectRatio, css}
                 }
               }
             )
             handleCartHover()
             trackEvent({
-              action: 'add_item',
-              category: 'shopping_cart'
+              action: 'add_to_cart',
+              value: price,
+              currency: currency.toUpperCase(),
+              items: [
+                {
+                  id,
+                  name: productName,
+                  price,
+                  quantity: 1
+                }
+              ]
             })
           }}
         >
