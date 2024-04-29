@@ -122,6 +122,8 @@ async function saveInventory() {
         if (needsToBeUpdated(stripeProduct, product)) {
           console.log(`🛠️ Updating the product "${id}".`)
           newStripeProduct = await stripe.products.update(id, product)
+        } else {
+          newStripeProduct = stripeProduct
         }
       } else {
         console.log(`✨ Creating a new product: "${id}".`)
@@ -132,7 +134,7 @@ async function saveInventory() {
         })
       }
 
-      if (newStripeProduct) {
+      if (newStripeProduct && process.env.NODE_ENV === 'production') {
         products.push({
           id,
           name,
