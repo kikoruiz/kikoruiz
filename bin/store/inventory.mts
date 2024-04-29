@@ -40,6 +40,28 @@ const PRINT_PAPERS = {
   }
 }
 
+function sortObject(data) {
+  const sortedKeys = Object.keys(data).sort()
+  const sortedObject = {}
+  sortedKeys.forEach(key => {
+    sortedObject[key] = data[key]
+  })
+
+  return sortedObject
+}
+
+function needsToBeUpdated(currentProduct, newProduct) {
+  return (
+    currentProduct.name !== newProduct.name ||
+    currentProduct.active !== newProduct.active ||
+    JSON.stringify(currentProduct.images) !==
+      JSON.stringify(newProduct.images) ||
+    currentProduct.shippable !== newProduct.shippable ||
+    JSON.stringify(sortObject(currentProduct.metadata)) !==
+      JSON.stringify(sortObject(newProduct.metadata))
+  )
+}
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 const dataDirectory = path.join(process.cwd(), 'data')
 const picturesFile = `${dataDirectory}/pictures/metadata.json`
@@ -75,7 +97,7 @@ async function saveInventory() {
         type,
         picture_id: pictureId,
         size: size,
-        borderless: isBorderless,
+        borderless: `${isBorderless}`,
         paper: paper
       }
       const product = {
@@ -89,49 +111,57 @@ async function saveInventory() {
         currency,
         unit_amount: price * 100
       }
-      let isAlreadyCreated
-      try {
-        isAlreadyCreated = Boolean(await stripe.products.retrieve(id))
-      } catch (error) {
-        isAlreadyCreated = false
-      }
       let stripeProduct
+      try {
+        stripeProduct = await stripe.products.retrieve(id)
+      } catch (error) {}
+      const isAlreadyCreated = Boolean(stripeProduct)
+      let newStripeProduct
 
       if (isAlreadyCreated) {
-        console.log(`📡 Updating the product "${id}".`)
-        stripeProduct = await stripe.products.update(id, product)
+        if (needsToBeUpdated(stripeProduct, product)) {
+          console.log(`🛠️ Updating the product "${id}".`)
+          newStripeProduct = await stripe.products.update(id, product)
+        }
       } else {
         console.log(`✨ Creating a new product: "${id}".`)
-        stripeProduct = await stripe.products.create({
+        newStripeProduct = await stripe.products.create({
           id,
           ...product,
           default_price_data: priceData
         })
       }
 
-      products.push({
-        id,
-        name,
-        type,
-        currency,
-        images,
-        pictureId,
-        size,
-        isBorderless,
-        paper,
-        price,
-        priceId: stripeProduct.default_price
-      })
+      if (newStripeProduct) {
+        products.push({
+          id,
+          name,
+          type,
+          currency,
+          images,
+          pictureId,
+          size,
+          isBorderless,
+          paper,
+          price,
+          priceId: newStripeProduct.default_price
+        })
+      }
     }
   }
 
-  fs.writeFileSync(productsFile, JSON.stringify(products))
-  fs.writeFileSync(papersFile, JSON.stringify(PRINT_PAPERS))
+  return products
 }
 
 saveInventory()
-  .then(() => {
-    console.log('\n✅ Inventory has been saved properly.\n')
+  .then(products => {
+    if (products.length > 0) {
+      fs.writeFileSync(productsFile, JSON.stringify(products))
+      fs.writeFileSync(papersFile, JSON.stringify(PRINT_PAPERS))
+      console.log('\n✅ Inventory has been saved properly.\n')
+    }
+
+    console.log('\n😶 There is nothing to save.\n')
     process.exit(0)
   })
   .catch(error => {
