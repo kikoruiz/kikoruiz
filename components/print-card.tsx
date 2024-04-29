@@ -13,6 +13,7 @@ import {DEFAULT_UNIT_OF_MEASUREMENT, PRINT_SIZES} from 'config/store'
 import products from 'data/store/products.json'
 import papers from 'data/store/papers.json'
 import {getSlug, themeScreens} from 'lib/utils'
+import {trackEvent} from 'lib/tracking'
 import {Print} from 'types/store'
 
 export default function PrintCard({
@@ -165,6 +166,10 @@ export default function PrintCard({
               }
             )
             handleCartHover()
+            trackEvent({
+              action: 'add_item',
+              category: 'shopping_cart'
+            })
           }}
         >
           {t('add-to-cart')}
