@@ -51,7 +51,8 @@ export default function Breadcrumb({
     SubcategoryIcon = subcategoryIcons[`Icon${getCapitalizedName(subcategory)}`]
   }
   const needsShoppingCart = section === 'store'
-  const {handleCartHover, cartCount, totalPrice} = useShoppingCart()
+  const {handleCartHover, cartCount, cartDetails, totalPrice, currency} =
+    useShoppingCart()
 
   return items.length > 0 ? (
     <div id="breadcrumb" className="bg-neutral-800/75">
@@ -135,8 +136,20 @@ export default function Breadcrumb({
             onClick={() => {
               handleCartHover()
               trackEvent({
-                action: 'open',
-                category: 'shopping_cart'
+                action: 'view_cart',
+                value: totalPrice,
+                currency: currency.toUpperCase(),
+                items: Object.keys(cartDetails).map(id => {
+                  const item = cartDetails[id]
+                  const {id: productId} = item.product_data as {id: string}
+
+                  return {
+                    id: productId,
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity
+                  }
+                })
               })
             }}
           >

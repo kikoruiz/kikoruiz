@@ -14,6 +14,7 @@ interface ShoppingCartItemProps extends CartEntry {
   isCheckoutLoading?: boolean
 }
 interface ProductDataInterface {
+  id: string
   image: {
     aspectRatio: string
     css: GetPlaiceholderReturn['css']
@@ -31,14 +32,17 @@ export default function ShoppingCartItem({
   name,
   image: src,
   quantity,
+  price,
   value,
   product_data: productData,
-  isCheckoutLoading = false
+  isCheckoutLoading = false,
+  currency
 }: ShoppingCartItemProps) {
   const {t} = useTranslation('store')
   const {sm} = themeScreens
   const {decrementItem, incrementItem, removeItem} = useShoppingCart()
   const {
+    id: productId,
     image,
     metadata: {size, paper, isBorderless}
   } = productData as ProductDataInterface
@@ -89,8 +93,17 @@ export default function ShoppingCartItem({
               if (!isCheckoutLoading) {
                 removeItem(id)
                 trackEvent({
-                  action: 'remove_item',
-                  category: 'shopping_cart'
+                  action: 'remove_from_cart',
+                  value,
+                  currency: currency.toUpperCase(),
+                  items: [
+                    {
+                      id: productId,
+                      name,
+                      price,
+                      quantity
+                    }
+                  ]
                 })
               }
             }}
@@ -113,8 +126,17 @@ export default function ShoppingCartItem({
               onClick={() => {
                 decrementItem(id)
                 trackEvent({
-                  action: 'decrement_item',
-                  category: 'shopping_cart'
+                  action: 'remove_from_cart',
+                  value: price,
+                  currency: currency.toUpperCase(),
+                  items: [
+                    {
+                      id: productId,
+                      name,
+                      price,
+                      quantity: 1
+                    }
+                  ]
                 })
               }}
               disabled={isCheckoutLoading}
@@ -129,8 +151,17 @@ export default function ShoppingCartItem({
               onClick={() => {
                 incrementItem(id)
                 trackEvent({
-                  action: 'increment_item',
-                  category: 'shopping_cart'
+                  action: 'add_to_cart',
+                  value: price,
+                  currency: currency.toUpperCase(),
+                  items: [
+                    {
+                      id: productId,
+                      name,
+                      price,
+                      quantity: 1
+                    }
+                  ]
                 })
               }}
               disabled={isCheckoutLoading}
