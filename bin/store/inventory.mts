@@ -134,7 +134,7 @@ async function saveInventory() {
         })
       }
 
-      if (newStripeProduct && process.env.NODE_ENV === 'production') {
+      if (process.env.NODE_ENV === 'production') {
         products.push({
           id,
           name,
@@ -161,9 +161,9 @@ saveInventory()
       fs.writeFileSync(productsFile, JSON.stringify(products))
       fs.writeFileSync(papersFile, JSON.stringify(PRINT_PAPERS))
       console.log('\n✅ Inventory has been saved properly.\n')
+    } else {
+      console.log('\n😶 There is nothing to save.\n')
     }
-
-    console.log('\n😶 There is nothing to save.\n')
     process.exit(0)
   })
   .catch(error => {
