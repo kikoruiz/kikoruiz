@@ -54,7 +54,7 @@
     "@typescript-eslint/eslint-plugin": "7",
     "@vitejs/plugin-react": "4",
     "autoprefixer": "10",
-    "eslint": "8.57.0",
+    "eslint": "9.3.0",
     "eslint-config-next": "14",
     "eslint-config-prettier": "9",
     "exiftool-vendored": "26",
