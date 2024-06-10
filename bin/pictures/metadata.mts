@@ -71,11 +71,11 @@ async function saveAllPicturesMetadata() {
       keywords: tags.Keywords as string[],
       lens: tags.LensID,
       ...(tags.City &&
-        tags.Country &&
-        tags.State && {
+        tags['Province-State'] &&
+        tags.Country && {
           location: {
             city: tags.City,
-            state: tags.State,
+            state: tags['Province-State'],
             country: tags.Country
           }
         }),
