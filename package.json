@@ -46,7 +46,7 @@
     "@plaiceholder/next": "3",
     "@svgr/webpack": "8",
     "@tailwindcss/typography": "0",
-    "@testing-library/react": "15",
+    "@testing-library/react": "16",
     "@types/gtag.js": "0",
     "@types/leaflet": "1",
     "@types/node": "20",
