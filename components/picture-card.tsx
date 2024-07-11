@@ -11,12 +11,13 @@ export default function PictureCard({
   needsPreload = false,
   isAlbum = false,
   className = '',
+  needsFullSize = true,
   children
 }: PictureCardProps) {
   const {src, css} = image
-  const imageClassName = `group inline-flex flex-col-reverse w-full h-full after:absolute after:transition-colors after:inset-0 after:h-full after:w-full after:border after:border-transparent hover:after:border-orange-300${
-    className ? ` ${className}` : ''
-  }`
+  const imageClassName = `group inline-flex flex-col-reverse after:absolute after:transition-colors after:inset-0 after:h-full after:w-full after:border after:border-transparent hover:after:border-orange-300${
+    needsFullSize ? ' w-full h-full' : ''
+  }${className ? ` ${className}` : ''}`
   const captionBaseClassName =
     'relative bg-gradient-to-r from-neutral-900 text-xs lg:text-sm'
   const captionClassName = isAlbum
@@ -63,4 +64,5 @@ interface PictureCardProps extends PropsWithChildren {
   needsPreload?: boolean
   isAlbum?: boolean
   className?: string
+  needsFullSize?: boolean
 }
