@@ -67,7 +67,7 @@
     "tailwindcss": "3",
     "ts-node": "10",
     "vite-tsconfig-paths": "4",
-    "vitest": "1"
+    "vitest": "2"
   },
   "overrides": {
     "json5": "2.2.2",
