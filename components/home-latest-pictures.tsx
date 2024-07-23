@@ -124,7 +124,6 @@ export default function HomeLatestPictures({
                 image={image}
                 sizes={sizes}
                 needsPreload={index === 0 || index === 1}
-                needsFullSize={false}
               >
                 <div className="flex flex-col text-xs font-light text-neutral-600 drop-shadow">
                   {isSortedByProcessingDate && processingDate ? (
