@@ -12,7 +12,7 @@
     "lint": "next lint",
     "phoenix": "rm -rf node_modules && rm -rf package-lock.json && rm -rf tsconfig.tsbuildinfo && npm i",
     "start": "next start",
-    "test": "ORIGIN=\"http://test\" vitest",
+    "test": "ORIGIN=\"http://test\" vitest --exclude \"__checks__\"",
     "typecheck": "tsc"
   },
   "dependencies": {
