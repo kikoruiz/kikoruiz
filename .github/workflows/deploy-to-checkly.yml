@@ -1,0 +1,27 @@
+name: Deploy to Checkly
+
+on:
+  push:
+    branches: main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install Checkly CLI
+        run: npm install -g @checkly/cli
+
+      - name: Deploy to Checkly
+        env:
+          CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
+        run: checkly deploy --token $CHECKLY_API_KEY
