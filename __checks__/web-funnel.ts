@@ -6,8 +6,16 @@ new CheckGroup('web-funnel', {
   muted: false,
   runParallel: false,
   runtimeId: '2024.02',
-  locations: ['eu-south-1', 'eu-west-3'],
+  locations: ['eu-west-3', 'eu-south-1'],
+  tags: [],
   concurrency: 1,
+  environmentVariables: [],
+  apiCheckDefaults: {
+    url: '',
+    headers: [],
+    queryParameters: [],
+    assertions: []
+  },
   retryStrategy: RetryStrategyBuilder.linearStrategy({
     baseBackoffSeconds: 60,
     maxRetries: 2,
