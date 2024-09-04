@@ -19,9 +19,10 @@ jobs:
           cache: npm
 
       - name: Install Checkly CLI
-        run: npm install -g @checkly/cli
+        run: npm install -g checkly
 
       - name: Deploy to Checkly
+        run: checkly deploy
         env:
           CHECKLY_API_KEY: ${{ secrets.CHECKLY_API_KEY }}
-        run: checkly deploy --token $CHECKLY_API_KEY
+          CHECKLY_ACCOUNT_ID: ${{ secrets.CHECKLY_ACCOUNT_ID }}
