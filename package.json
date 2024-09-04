@@ -43,6 +43,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "14",
     "@plaiceholder/next": "3",
+    "@playwright/test": "1",
     "@svgr/webpack": "8",
     "@tailwindcss/typography": "0",
     "@testing-library/react": "16",
@@ -53,6 +54,7 @@
     "@typescript-eslint/eslint-plugin": "7",
     "@vitejs/plugin-react": "4",
     "autoprefixer": "10",
+    "checkly": "4",
     "eslint": "8.57.0",
     "eslint-config-next": "14",
     "eslint-config-prettier": "9",
@@ -64,11 +66,10 @@
     "prettier": "3",
     "prettier-plugin-tailwindcss": "0",
     "tailwindcss": "3",
-    "typescript": "5",
     "ts-node": "10",
+    "typescript": "5",
     "vite-tsconfig-paths": "5",
-    "vitest": "2",
-    "checkly": "4"
+    "vitest": "2"
   },
   "overrides": {
     "json5": "2.2.2",

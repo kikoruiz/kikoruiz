@@ -13,8 +13,7 @@ new CheckGroup('web-funnel', {
   apiCheckDefaults: {
     url: '',
     headers: [],
-    queryParameters: [],
-    assertions: []
+    queryParameters: []
   },
   retryStrategy: RetryStrategyBuilder.linearStrategy({
     baseBackoffSeconds: 60,
