@@ -18,8 +18,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
-      - name: Install Checkly CLI
-        run: npm install -g checkly
+      - name: Install
+        run: npm ci
 
       - name: Deploy to Checkly
         run: checkly deploy
