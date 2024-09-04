@@ -58,7 +58,7 @@
     "eslint": "8.57.0",
     "eslint-config-next": "14",
     "eslint-config-prettier": "9",
-    "exiftool-vendored": "27",
+    "exiftool-vendored": "28",
     "glob": "11",
     "jsdom": "24",
     "next-translate-plugin": "2",
