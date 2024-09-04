@@ -6,6 +6,12 @@ SHELL := /bin/bash
 
 export NODE_ENV ?= development
 
+build:
+	npm run lint
+	npm test
+	npm run save:inventory
+	npm run build
+
 save:
 	node --import 'data:text/javascript,import{register}from"node:module";import{pathToFileURL}from"node:url";register("ts-node/esm", pathToFileURL("./"));'$(shell [ "$(NODE_ENV)" = "development" ] && echo " --env-file '.env.local'") ./bin/$(FILE).mts
 
