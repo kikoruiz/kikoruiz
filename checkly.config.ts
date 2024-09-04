@@ -5,7 +5,7 @@ const config = defineConfig({
   logicalId: 'kikoruiz',
   repoUrl: 'https://github.com/kikoruiz/kikoruiz',
   checks: {
-    frequency: 720,
+    frequency: 1440,
     locations: ['eu-west-1'],
     checkMatch: '**/__checks__/**/*.check.ts',
     playwrightConfig: {},
