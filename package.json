@@ -55,7 +55,7 @@
     "@vitejs/plugin-react": "4",
     "autoprefixer": "10",
     "checkly": "4",
-    "eslint": "8.57.0",
+    "eslint": "8",
     "eslint-config-next": "14",
     "eslint-config-prettier": "9",
     "exiftool-vendored": "28",
