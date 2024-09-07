@@ -51,7 +51,7 @@
     "@types/leaflet": "1",
     "@types/node": "22",
     "@types/react": "18",
-    "@typescript-eslint/eslint-plugin": "7",
+    "@typescript-eslint/eslint-plugin": "8",
     "@vitejs/plugin-react": "4",
     "autoprefixer": "10",
     "checkly": "4",
@@ -72,6 +72,8 @@
     "vitest": "2"
   },
   "overrides": {
+    "@typescript-eslint/parser": "8.0.0",
+    "@typescript-eslint/typescript-estree": "8.4.0",
     "json5": "2.2.2",
     "semver": "7.5.2",
     "sharp": "0.32.6"
