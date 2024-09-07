@@ -72,6 +72,8 @@
     "vitest": "2"
   },
   "overrides": {
+    "@typescript-eslint/parser": "8.0.0",
+    "@typescript-eslint/typescript-estree": "8.4.0",
     "json5": "2.2.2",
     "semver": "7.5.2",
     "sharp": "0.32.6"

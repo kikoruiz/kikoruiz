@@ -17,10 +17,11 @@ interface GTagEvent {
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID
 
 export function trackPage(url: string) {
-  window.gtag &&
+  if (window.gtag) {
     window.gtag('config', GA_TRACKING_ID, {
       page_path: url
     })
+  }
 }
 
 export function trackEvent({
@@ -31,7 +32,7 @@ export function trackEvent({
   currency,
   items
 }: GTagEvent) {
-  window.gtag &&
+  if (window.gtag) {
     window.gtag('event', action, {
       event_category: category,
       event_label: label,
@@ -39,4 +40,5 @@ export function trackEvent({
       currency,
       items
     })
+  }
 }
