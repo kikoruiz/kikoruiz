@@ -84,11 +84,11 @@ export default function Home({
           <HomeSections images={sectionImages} averageColor={averageColor} />
         </header>
 
+        <HomeLatestPictures latestPictures={latestPictures} />
+
         {latestContent.length > 0 && (
           <HomeLatestContent posts={latestContent} />
         )}
-
-        <HomeLatestPictures latestPictures={latestPictures} />
 
         <HomeModule title={t('home:map.title')}>
           <div className="p-3">
