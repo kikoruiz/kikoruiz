@@ -23,7 +23,7 @@ function Map({pictures, zoom = 5, isInteractive}: MapProps) {
   return (
     <MapContainer
       key={new Date().getTime()}
-      className="h-full w-full"
+      className="h-full w-full [&>div:last-child>div:first-child>div]:rounded-xl [&>div:last-child>div:first-child>div]:border-2 [&>div:last-child>div:first-child>div>a]:font-sans [&>div:last-child>div:first-child>div>a]:font-normal [&>div:last-child>div:first-child>div>a]:text-neutral-600 [&>div:last-child>div:first-child>div>a:first-child]:rounded-t-xl [&>div:last-child>div:first-child>div>a:last-child]:rounded-b-xl"
       center={center}
       zoom={zoom}
       zoomControl={isDesktopOrLaptop}
