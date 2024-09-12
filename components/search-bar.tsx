@@ -92,7 +92,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   }, [isOpen])
 
   useEffect(() => {
-    function handleKeyDown(event) {
+    function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         event.preventDefault()
         reset()
