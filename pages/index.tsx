@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {
-  getHeroImage,
+  getHeroImages,
   getSectionImages,
   getLatestPictures,
   getLatestContent
@@ -25,15 +25,16 @@ import {BlogPost} from 'types/blog'
 import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
-import {GALLERY_ALBUMS} from 'config/gallery'
+import useHeroImageContext from 'contexts/HeroImage'
 import {getAbsoluteUrl} from 'lib/utils'
+import {GALLERY_ALBUMS} from 'config/gallery'
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
 })
 
 export default function Home({
-  heroImage,
+  heroImages,
   latestContent,
   latestPictures,
   sectionImages,
@@ -42,7 +43,10 @@ export default function Home({
   alternates
 }: HomeProps) {
   const [showMap, setShowMap] = useState(false)
-  const {averageColor} = heroImage
+  const {heroImage: heroImageId} = useHeroImageContext()
+  const heroImage =
+    heroImageId && heroImages.find(({src}) => src.includes(heroImageId))
+  const {averageColor} = heroImage ?? {}
   const {t} = useTranslation()
   const galleryCategories = GALLERY_ALBUMS.map(({id}) =>
     t(`gallery.albums.${id}.name`).toLowerCase()
@@ -68,7 +72,7 @@ export default function Home({
         <meta property="og:description" content={description} />
       </Head>
 
-      <Hero image={heroImage} />
+      {heroImage && <Hero image={heroImage} />}
 
       <div className="p-3">
         <header className="rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pb-6 pt-12 text-white/90 md:px-6">
@@ -141,7 +145,7 @@ export async function getStaticProps({
   locales: string[]
   defaultLocale: string
 }) {
-  const heroImage = await getHeroImage()
+  const heroImages = await getHeroImages()
   const latestPictures = await getLatestPictures({locale})
   const sectionImages = await getSectionImages()
   const latestContent = await getLatestContent({locale})
@@ -154,7 +158,7 @@ export async function getStaticProps({
   return {
     props: {
       section: 'home',
-      heroImage,
+      heroImages,
       latestContent,
       latestPictures,
       sectionImages,
@@ -166,7 +170,7 @@ export async function getStaticProps({
 }
 
 interface HomeProps {
-  heroImage: HighlightedImage
+  heroImages: HighlightedImage[]
   latestContent: BlogPost[]
   latestPictures: LatestPictures
   sectionImages: SectionImage[]

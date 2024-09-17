@@ -12,6 +12,7 @@ const buttonStyles = cva('', {
         'from-orange-200 to-orange-400 text-orange-800 hover:ring-2 hover:ring-orange-200 hover:text-orange-900 hover:from-orange-300 hover:to-orange-500'
     },
     size: {
+      small: 'py-1.5 px-3 text-xs',
       medium: 'py-1.5 px-3 text-sm',
       large: 'py-3 px-6 text-base leading-snug'
     },
@@ -23,6 +24,11 @@ const buttonStyles = cva('', {
     }
   },
   compoundVariants: [
+    {
+      size: 'small',
+      isRounded: false,
+      class: 'rounded-sm'
+    },
     {
       size: 'medium',
       isRounded: false,

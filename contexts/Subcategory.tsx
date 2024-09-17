@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   useMemo,
   useContext,
@@ -8,15 +8,14 @@ import React, {
 
 const useValue = () => {
   const [subcategory, setSubcategory] = useState<string | null>(null)
-  const value = useMemo(
+
+  return useMemo(
     () => ({
       subcategory,
       setSubcategory
     }),
     [subcategory]
   )
-
-  return value
 }
 
 export const SubcategoryContext = createContext(
@@ -32,9 +31,7 @@ export const SubcategoryProvider = ({children}: PropsWithChildren) => {
 }
 
 export function useSubcategoryContext() {
-  const context = useContext(SubcategoryContext)
-
-  return context
+  return useContext(SubcategoryContext)
 }
 
 export default useSubcategoryContext

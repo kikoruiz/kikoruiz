@@ -4,6 +4,7 @@ import {getImagePlaceholder} from './utils/image'
 import {getAllPictures} from './gallery/pictures'
 import {fromExifToGallery} from './gallery/mappers'
 import {getAllPosts} from './blog/posts'
+import {HERO_DEFAULT_DATA, HERO_IMAGES, LATEST_PICTURES_LENGTH} from 'config'
 import {SectionImage} from 'types'
 import {
   HighlightedImage,
@@ -13,24 +14,22 @@ import {
 } from 'types/gallery'
 import {BlogPost} from 'types/blog'
 
-const HERO_DEFAULT_DATA = {
-  alt: 'Kiko Ruiz Photography'
-}
-const HERO_IMAGE = '/pictures/2021-12-10_0008.jpg'
-const LATEST_PICTURES_LENGTH = 6
+export async function getHeroImages(): Promise<HighlightedImage[]> {
+  return Promise.all(
+    HERO_IMAGES.map(async id => {
+      const src = `/pictures/${id}.jpg`
+      const {css} = await getImagePlaceholder(src)
+      const averageColor = await getAverageColor(src)
 
-export async function getHeroImage(): Promise<HighlightedImage> {
-  const src = HERO_IMAGE
-  const {css} = await getImagePlaceholder(src)
-  const averageColor = await getAverageColor(src)
-
-  return {
-    ...HERO_DEFAULT_DATA,
-    src,
-    css,
-    averageColor,
-    sizes: '100vw'
-  }
+      return {
+        ...HERO_DEFAULT_DATA,
+        src,
+        css,
+        averageColor,
+        sizes: '100vw'
+      }
+    })
+  )
 }
 
 export async function getLatestContent({

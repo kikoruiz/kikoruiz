@@ -195,3 +195,23 @@ export function getAbsoluteUrl(path: string) {
     path.startsWith('/') ? '' : '/'
   }${path}`
 }
+
+export function getRandomElement(
+  list: string[],
+  excludedElement?: string | null
+) {
+  const actualList = excludedElement ? [...list] : list
+  const excludedIndex = actualList.indexOf(excludedElement)
+
+  if (excludedIndex !== -1) {
+    actualList.splice(excludedIndex, 1)
+  }
+
+  if (actualList.length === 0) {
+    return null
+  }
+
+  const randomIndex = Math.floor(Math.random() * actualList.length)
+
+  return actualList[randomIndex]
+}

@@ -6,6 +6,12 @@
     "search": "Cercar",
     "album": {
       "scroll-to-top": "Anar al començament de l'àlbum"
+    },
+    "switch-hero-image": {
+      "title": "Canviar imatge de fons",
+      "randomize": "Imatge aleatoria",
+      "hide": "Amagar imatge",
+      "show": "Mostrar imatge"
     }
   },
   "sections": {

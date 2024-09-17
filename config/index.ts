@@ -125,3 +125,19 @@ export const REQUEST_STATUS_OPTIONS = {
   RESOLVED: 'resolved',
   REJECTED: 'rejected'
 }
+
+export const HERO_DEFAULT_DATA = {
+  alt: 'Kiko Ruiz Photography'
+}
+export const HERO_IMAGES = [
+  '2019-03-04_0001',
+  '2019-03-07_0175',
+  '2020-01-25_0040',
+  '2020-09-27_0057',
+  '2021-10-24_0031',
+  '2021-12-04_0153',
+  '2021-12-10_0008',
+  '2022-06-25_0028',
+  '2023-04-02_0102'
+]
+export const LATEST_PICTURES_LENGTH = 6
