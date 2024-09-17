@@ -1,11 +1,25 @@
 import {MouseEvent, useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import {LEGAL_PAGES, SECTIONS, SIMPLE_PAGES, SPECIAL_SUBSECTIONS} from 'config'
-import {getSlug} from 'lib/utils'
+import {
+  HERO_IMAGES,
+  LEGAL_PAGES,
+  SECTIONS,
+  SIMPLE_PAGES,
+  SPECIAL_SUBSECTIONS
+} from 'config'
+import {getRandomElement, getSlug} from 'lib/utils'
 import NavigationSection from './navigation-section'
+import NavigationButton from './navigation-button'
 import SearchBar from './search-bar'
+import useHeroImageContext from 'contexts/HeroImage'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
+import IconSwatch from 'assets/icons/swatch.svg'
+import IconArrowPath from 'assets/icons/arrow-path.svg'
+import IconEye from 'assets/icons/eye.svg'
+import IconEyeSlash from 'assets/icons/eye-slash.svg'
+import Popover from './popover'
+import Button from './button'
 
 interface NavigationProps {
   section: string
@@ -17,6 +31,8 @@ interface NavigationProps {
   setIsSearchBarOpen: (isSearchBarOpen: boolean) => void
 }
 
+let lastHeroImageId: string
+
 export default function Navigation({
   section,
   subSection,
@@ -27,6 +43,10 @@ export default function Navigation({
   setIsSearchBarOpen
 }: NavigationProps) {
   const {t} = useTranslation()
+  const {heroImage: heroImageId, setHeroImage: setHeroImageId} =
+    useHeroImageContext()
+  if (heroImageId) lastHeroImageId = heroImageId
+  const isHeroHidden = !Boolean(heroImageId)
   const router = useRouter()
   const {asPath} = router
   const isNotSectionPage =
@@ -118,35 +138,77 @@ export default function Navigation({
         ))}
       </ul>
 
-      {/* SearchButton */}
-      <button
-        aria-label={t('navigation.search')}
+      <NavigationButton
         title={t('navigation.search')}
-        className={`flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t text-neutral-400 hover:text-orange-200 focus:outline-none ${
-          hasHero ? 'from-neutral-300/10' : 'from-neutral-800'
-        }`}
+        className={`items-center justify-center hover:text-orange-200 ${hasHero ? 'from-neutral-300/10' : 'from-neutral-800'}`}
         onClick={toggleSearch}
         onBlur={event => event.preventDefault()}
       >
-        <span className="sr-only">{t('navigation.search')}</span>
-        <div className="w-5">
-          <IconMagnifyingGlass />
-        </div>
-      </button>
+        <IconMagnifyingGlass />
+      </NavigationButton>
 
-      {/* NavigationMenuButton */}
-      <button
-        aria-label={
+      {hasHero && (
+        <Popover
+          trigger={
+            <NavigationButton
+              title={t('navigation.switch-hero-image.title')}
+              className={`items-center justify-center ${hasHero ? 'from-neutral-300/10' : 'from-neutral-800'}`}
+            >
+              <IconSwatch />
+            </NavigationButton>
+          }
+          className="flex flex-col gap-1.5"
+        >
+          <Button
+            title={t('navigation.switch-hero-image.randomize')}
+            onClick={() => {
+              setHeroImageId(getRandomElement(HERO_IMAGES, heroImageId))
+            }}
+            className="flex gap-1.5 w-full items-center justify-center"
+            size="small"
+            intent="light"
+            disabled={isHeroHidden}
+          >
+            <IconArrowPath className="size-4" />
+
+            {t('navigation.switch-hero-image.randomize')}
+          </Button>
+
+          <Button
+            title={t(
+              `navigation.switch-hero-image.${isHeroHidden ? 'show' : 'hide'}`
+            )}
+            onClick={() => {
+              setHeroImageId(
+                isHeroHidden && lastHeroImageId ? lastHeroImageId : null
+              )
+            }}
+            className="flex gap-1.5 w-full items-center justify-center"
+            size="small"
+            intent={isHeroHidden ? 'light' : 'dark'}
+          >
+            {isHeroHidden ? (
+              <IconEye className="size-4" />
+            ) : (
+              <IconEyeSlash className="size-4" />
+            )}
+
+            {t(
+              `navigation.switch-hero-image.${isHeroHidden ? 'show' : 'hide'}`
+            )}
+          </Button>
+        </Popover>
+      )}
+
+      <NavigationButton
+        title={
           isMenuOpen ? t('navigation.close-menu') : t('navigation.open-menu')
         }
-        className={`relative flex h-11 w-11 rounded-full bg-gradient-to-t text-neutral-400 hover:text-neutral-300 focus:outline-none sm:hidden ${
+        className={`relative hover:text-neutral-300 sm:hidden ${
           hasHero ? 'from-neutral-300/10' : 'from-neutral-800'
         }${isMenuOpen ? ' z-20' : ''}`}
         onClick={toggleMenu}
       >
-        <span className="sr-only">
-          {isMenuOpen ? t('navigation.close-menu') : t('navigation.open-menu')}
-        </span>
         <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
           <span
             aria-hidden="true"
@@ -167,7 +229,7 @@ export default function Navigation({
             }`}
           />
         </div>
-      </button>
+      </NavigationButton>
 
       {/* NavigationModalBackdrop */}
       <button
@@ -180,7 +242,6 @@ export default function Navigation({
         }`}
         onClick={handleElementClick}
       />
-
       <SearchBar isOpen={isSearchBarOpen} setIsOpen={setIsSearchBarOpen} />
     </nav>
   )

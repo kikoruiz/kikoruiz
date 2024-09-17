@@ -8,7 +8,7 @@ export default function Hero({image}: HeroProps) {
         src={image.src}
         alt={image.alt}
         fallbackStyle={image.css}
-        className="aspect-2/3 overflow-hidden sm:aspect-square"
+        className="overflow-hidden aspect-2/3"
         style={{
           WebkitMaskImage:
             'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, transparent 100%)'

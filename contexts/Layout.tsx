@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   useMemo,
   useContext,
@@ -6,21 +6,20 @@ import React, {
   PropsWithChildren
 } from 'react'
 
-type layout = {
+type Layout = {
   headerHeight?: number
 }
 
 const useValue = () => {
-  const [layout, setLayout] = useState<layout | null>(null)
-  const value = useMemo(
+  const [layout, setLayout] = useState<Layout | null>(null)
+
+  return useMemo(
     () => ({
       layout,
       setLayout
     }),
     [layout]
   )
-
-  return value
 }
 
 export const LayoutContext = createContext(null as ReturnType<typeof useValue>)
@@ -34,9 +33,7 @@ export const LayoutProvider = ({children}: PropsWithChildren) => {
 }
 
 export function useLayoutContext() {
-  const context = useContext(LayoutContext)
-
-  return context
+  return useContext(LayoutContext)
 }
 
 export default useLayoutContext

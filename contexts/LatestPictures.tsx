@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   useMemo,
   useContext,
@@ -15,15 +15,14 @@ const useValue = () => {
   const [latestPictures, setLatestPictures] = useState<latestPicturesType>(
     DEFAULT_SORTING_ORDER
   )
-  const value = useMemo(
+
+  return useMemo(
     () => ({
       latestPictures,
       setLatestPictures
     }),
     [latestPictures]
   )
-
-  return value
 }
 
 export const LatestPicturesContext = createContext(
@@ -39,9 +38,7 @@ export const LatestPicturesProvider = ({children}: PropsWithChildren) => {
 }
 
 export function useLatestPicturesContext() {
-  const context = useContext(LatestPicturesContext)
-
-  return context
+  return useContext(LatestPicturesContext)
 }
 
 export default useLatestPicturesContext

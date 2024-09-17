@@ -1,5 +1,32 @@
-import {FunctionComponent, useState} from 'react'
+import {FC, useState} from 'react'
 import {UAParser} from 'ua-parser-js'
+
+type IconProps = {
+  className: string
+}
+
+interface TooltipProps {
+  message: string
+  icon: FC<IconProps>
+  className?: string
+  direction?: 'left' | 'bottom'
+  type?: 'info' | 'warning'
+}
+
+function typeClassName({
+  type,
+  isOpen
+}: {
+  type: string
+  isOpen: boolean
+}): string {
+  switch (type) {
+    case 'warning':
+      return isOpen ? 'text-orange-500' : 'text-orange-500/60'
+    case 'info':
+      return isOpen ? 'text-neutral-300' : 'text-neutral-300/60'
+  }
+}
 
 export default function Tooltip({
   message,
@@ -9,7 +36,7 @@ export default function Tooltip({
   type = 'info'
 }: TooltipProps) {
   const [isOpen, setIsOpen] = useState(false)
-  let directionClassName
+  let directionClassName: string
 
   switch (direction) {
     case 'left':
@@ -54,31 +81,4 @@ export default function Tooltip({
       )}
     </div>
   )
-}
-
-type IconProps = {
-  className: string
-}
-
-interface TooltipProps {
-  message: string
-  icon: FunctionComponent<IconProps>
-  className?: string
-  direction?: 'left' | 'bottom'
-  type?: 'info' | 'warning'
-}
-
-function typeClassName({
-  type,
-  isOpen
-}: {
-  type: string
-  isOpen: boolean
-}): string {
-  switch (type) {
-    case 'warning':
-      return isOpen ? 'text-orange-500' : 'text-orange-500/60'
-    case 'info':
-      return isOpen ? 'text-neutral-300' : 'text-neutral-300/60'
-  }
 }

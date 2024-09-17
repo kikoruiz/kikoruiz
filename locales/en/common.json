@@ -6,6 +6,12 @@
     "search": "Search",
     "album": {
       "scroll-to-top": "Scroll to top"
+    },
+    "switch-hero-image": {
+      "title": "Switch hero image",
+      "randomize": "Randomize image",
+      "hide": "Hide image",
+      "show": "Show image"
     }
   },
   "sections": {

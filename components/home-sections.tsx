@@ -8,12 +8,16 @@ import sectionIcons from './section-icons'
 
 interface HomeSectionsProps {
   images: SectionImage[]
-  averageColor: ImageAverageColor
+  averageColor?: ImageAverageColor
 }
 
 export default function HomeSections({
   images,
-  averageColor
+  averageColor = {
+    hex: '#262626',
+    isDark: true,
+    isLight: false
+  }
 }: HomeSectionsProps) {
   const {t} = useTranslation()
 

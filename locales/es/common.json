@@ -6,6 +6,12 @@
     "search": "Buscar",
     "album": {
       "scroll-to-top": "Ir al inicio del álbum"
+    },
+    "switch-hero-image": {
+      "title": "Cambiar imagen de fondo",
+      "randomize": "Imagen aleatoria",
+      "hide": "Ocultar imagen",
+      "show": "Mostrar imagen"
     }
   },
   "sections": {

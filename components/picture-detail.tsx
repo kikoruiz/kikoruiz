@@ -123,7 +123,7 @@ export default function PictureDetail({
             <div className="bg-gradient-to-r from-neutral-900 via-neutral-900">
               <section className="mx-auto p-6 text-neutral-400 xl:max-w-5xl">
                 <header className="mb-1 text-3xl font-black drop-shadow group-hover:text-orange-300">
-                  {name}
+                  {id}
                 </header>
 
                 <div className="mb-2 flex flex-col gap-1.5">
