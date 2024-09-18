@@ -31,8 +31,6 @@ interface NavigationProps {
   setIsSearchBarOpen: (isSearchBarOpen: boolean) => void
 }
 
-let lastHeroImageId: string
-
 export default function Navigation({
   section,
   subSection,
@@ -43,10 +41,8 @@ export default function Navigation({
   setIsSearchBarOpen
 }: NavigationProps) {
   const {t} = useTranslation()
-  const {heroImage: heroImageId, setHeroImage: setHeroImageId} =
+  const {heroImage, setHeroImage, showImage, setShowImage} =
     useHeroImageContext()
-  if (heroImageId) lastHeroImageId = heroImageId
-  const isHeroHidden = !Boolean(heroImageId)
   const router = useRouter()
   const {asPath} = router
   const isNotSectionPage =
@@ -115,7 +111,9 @@ export default function Navigation({
   })
 
   return (
-    <nav className={`my-auto flex gap-3${isMenuOpen ? ' relative' : ''}`}>
+    <nav
+      className={`my-auto flex gap-3${hasHero && !isMenuOpen ? ' text-neutral-100' : ''}${isMenuOpen ? ' relative' : ''}`}
+    >
       <ul
         className={`${
           isMenuOpen
@@ -162,12 +160,11 @@ export default function Navigation({
           <Button
             title={t('navigation.switch-hero-image.randomize')}
             onClick={() => {
-              setHeroImageId(getRandomElement(HERO_IMAGES, heroImageId))
+              setHeroImage(getRandomElement(HERO_IMAGES, heroImage))
             }}
             className="flex gap-1.5 w-full items-center justify-center"
             size="small"
             intent="light"
-            disabled={isHeroHidden}
           >
             <IconArrowPath className="size-4" />
 
@@ -176,26 +173,22 @@ export default function Navigation({
 
           <Button
             title={t(
-              `navigation.switch-hero-image.${isHeroHidden ? 'show' : 'hide'}`
+              `navigation.switch-hero-image.${showImage ? 'hide' : 'show'}`
             )}
             onClick={() => {
-              setHeroImageId(
-                isHeroHidden && lastHeroImageId ? lastHeroImageId : null
-              )
+              setShowImage(!showImage)
             }}
             className="flex gap-1.5 w-full items-center justify-center"
             size="small"
-            intent={isHeroHidden ? 'light' : 'dark'}
+            intent="dark"
           >
-            {isHeroHidden ? (
-              <IconEye className="size-4" />
-            ) : (
+            {showImage ? (
               <IconEyeSlash className="size-4" />
+            ) : (
+              <IconEye className="size-4" />
             )}
 
-            {t(
-              `navigation.switch-hero-image.${isHeroHidden ? 'show' : 'hide'}`
-            )}
+            {t(`navigation.switch-hero-image.${showImage ? 'hide' : 'show'}`)}
           </Button>
         </Popover>
       )}

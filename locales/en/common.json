@@ -8,8 +8,8 @@
       "scroll-to-top": "Scroll to top"
     },
     "switch-hero-image": {
-      "title": "Switch hero image",
-      "randomize": "Randomize image",
+      "title": "Switch background",
+      "randomize": "Randomize background",
       "hide": "Hide image",
       "show": "Show image"
     }

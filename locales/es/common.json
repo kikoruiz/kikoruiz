@@ -8,8 +8,8 @@
       "scroll-to-top": "Ir al inicio del álbum"
     },
     "switch-hero-image": {
-      "title": "Cambiar imagen de fondo",
-      "randomize": "Imagen aleatoria",
+      "title": "Cambiar fondo",
+      "randomize": "Fondo aleatorio",
       "hide": "Ocultar imagen",
       "show": "Mostrar imagen"
     }
