@@ -43,7 +43,7 @@ export default function Home({
   alternates
 }: HomeProps) {
   const [showMap, setShowMap] = useState(false)
-  const {heroImage: heroImageId} = useHeroImageContext()
+  const {heroImage: heroImageId, showImage} = useHeroImageContext()
   const heroImage =
     heroImageId && heroImages.find(({src}) => src.includes(heroImageId))
   const {averageColor} = heroImage ?? {}
@@ -72,7 +72,7 @@ export default function Home({
         <meta property="og:description" content={description} />
       </Head>
 
-      {heroImage && <Hero image={heroImage} />}
+      {heroImage && <Hero image={heroImage} isImageHidden={!showImage} />}
 
       <div className="p-3">
         <header className="rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pb-6 pt-12 text-white/90 md:px-6">

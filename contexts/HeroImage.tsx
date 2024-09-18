@@ -9,14 +9,17 @@ import {HERO_IMAGES} from 'config'
 
 const useValue = () => {
   const defaultImage = HERO_IMAGES[0]
-  const [heroImage, setHeroImage] = useState<string | null>(defaultImage)
+  const [heroImage, setHeroImage] = useState<string>(defaultImage)
+  const [showImage, setShowImage] = useState<boolean>(false)
 
   return useMemo(
     () => ({
       heroImage,
-      setHeroImage
+      setHeroImage,
+      showImage,
+      setShowImage
     }),
-    [heroImage]
+    [heroImage, showImage]
   )
 }
 

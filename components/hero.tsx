@@ -1,7 +1,12 @@
 import Image from './image'
 import {HighlightedImage} from 'types/gallery'
 
-export default function Hero({image}: HeroProps) {
+interface HeroProps {
+  image: HighlightedImage
+  isImageHidden?: boolean
+}
+
+export default function Hero({image, isImageHidden = false}: HeroProps) {
   return (
     <div className="absolute inset-0 -z-10 w-screen">
       <Image
@@ -15,11 +20,8 @@ export default function Hero({image}: HeroProps) {
         }}
         sizes={image.sizes}
         needsPreload
+        isHidden={isImageHidden}
       />
     </div>
   )
-}
-
-interface HeroProps {
-  image: HighlightedImage
 }

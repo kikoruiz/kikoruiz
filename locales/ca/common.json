@@ -8,8 +8,8 @@
       "scroll-to-top": "Anar al començament de l'àlbum"
     },
     "switch-hero-image": {
-      "title": "Canviar imatge de fons",
-      "randomize": "Imatge aleatoria",
+      "title": "Canviar fons",
+      "randomize": "Fons aleatori",
       "hide": "Amagar imatge",
       "show": "Mostrar imatge"
     }

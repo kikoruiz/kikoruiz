@@ -15,7 +15,7 @@ export default function NavigationButton({
     <button
       aria-label={title}
       title={title}
-      className={`flex h-11 w-11 rounded-full bg-gradient-to-t text-neutral-400 focus:outline-none${className ? ` ${className}` : ''}`}
+      className={`flex h-11 w-11 rounded-full bg-gradient-to-t focus:outline-none${className ? ` ${className}` : ''}`}
       onClick={onClick}
       onBlur={onBlur}
     >
