@@ -164,7 +164,7 @@ export default function Navigation({
             }}
             className="flex gap-1.5 w-full items-center justify-center"
             size="small"
-            intent="light"
+            intent="accent"
           >
             <IconArrowPath className="size-4" />
 
@@ -180,7 +180,7 @@ export default function Navigation({
             }}
             className="flex gap-1.5 w-full items-center justify-center"
             size="small"
-            intent="dark"
+            intent="light"
           >
             {showImage ? (
               <IconEyeSlash className="size-4" />
