@@ -157,6 +157,7 @@ export default function Navigation({
             </NavigationButton>
           }
           className="flex flex-col gap-1.5"
+          forceClose={isSearchBarOpen}
         >
           <Button
             title={t('navigation.switch-hero-image.randomize')}

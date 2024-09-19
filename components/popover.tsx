@@ -36,6 +36,7 @@ interface PopoverProps
       Omit<VariantProps<typeof popoverStyles>, 'isOpen'>
   > {
   trigger: ReactNode
+  forceClose?: boolean
 }
 
 function PopoverTrigger({
@@ -63,7 +64,8 @@ export default function Popover({
   trigger,
   children,
   className,
-  direction = 'bottom'
+  direction = 'bottom',
+  forceClose = true
 }: PopoverProps) {
   const [isOpen, setIsOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -73,9 +75,15 @@ export default function Popover({
   })
 
   useEffect(() => {
+    if (forceClose) {
+      setIsOpen(false)
+    }
+  }, [forceClose])
+
+  useEffect(() => {
     // Set "⌘B" keyboard shortcut.
     function handleKeyDown({code, metaKey}: KeyboardEvent) {
-      if (code === 'KeyB' && metaKey && !isOpen) {
+      if (code === 'KeyB' && metaKey && !isOpen && !forceClose) {
         setIsOpen(true)
       }
       if (code === 'Escape' && isOpen) {
@@ -88,7 +96,7 @@ export default function Popover({
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  })
+  }, [isOpen, forceClose])
 
   return (
     <div ref={ref} className="relative">
