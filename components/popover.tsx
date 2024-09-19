@@ -6,20 +6,25 @@ import {
   cloneElement,
   useState,
   ReactNode,
-  useRef
+  useRef,
+  useEffect
 } from 'react'
 import useOutsideClick from 'hooks/use-outside-click'
 import {cva, cx} from 'class-variance-authority'
 import type {VariantProps} from 'class-variance-authority'
 
-const popoverContentStyles = cva(
-  'absolute z-30 flex w-52 bg-gradient-to-b from-neutral-300/10 to-neutral-300/30 rounded-xl p-3 items-center text-xs font-extralight leading-normal drop-shadow-lg after:absolute after:inline-block after:h-0 after:w-0 after:align-middle sm:w-max',
+const popoverStyles = cva(
+  'absolute z-30 flex items-center w-52 p-3 bg-gradient-to-b from-neutral-300/10 to-neutral-300/30 rounded-xl transition-all origin-top text-xs font-extralight leading-normal drop-shadow-lg after:absolute after:inline-block after:h-0 after:w-0 after:align-middle sm:w-max',
   {
     variants: {
       direction: {
         left: 'right-0 top-0 h-full mr-11 after:left-full after:border-y-4 after:border-l-4 after:border-y-transparent after:border-l-neutral-300/10',
         bottom:
           'top-full 2xl:left-1/2 -translate-x-1/2 mt-2 after:-top-1 after:left-[calc(50%+1.75em)] 2xl:after:left-1/2 after:-translate-x-1/2 after:border-x-4 after:border-b-4 after:border-x-transparent after:border-b-neutral-300/10'
+      },
+      isOpen: {
+        true: 'opacity-100 scale-100',
+        false: 'opacity-0 scale-75 pointer-events-none'
       }
     }
   }
@@ -27,7 +32,8 @@ const popoverContentStyles = cva(
 
 interface PopoverProps
   extends PropsWithChildren<
-    HTMLAttributes<HTMLDivElement> & VariantProps<typeof popoverContentStyles>
+    HTMLAttributes<HTMLDivElement> &
+      Omit<VariantProps<typeof popoverStyles>, 'isOpen'>
   > {
   trigger: ReactNode
 }
@@ -66,6 +72,24 @@ export default function Popover({
     setIsOpen(false)
   })
 
+  useEffect(() => {
+    // Set "⌘B" keyboard shortcut.
+    function handleKeyDown({code, metaKey}: KeyboardEvent) {
+      if (code === 'KeyB' && metaKey && !isOpen) {
+        setIsOpen(true)
+      }
+      if (code === 'Escape' && isOpen) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  })
+
   return (
     <div ref={ref} className="relative">
       <PopoverTrigger
@@ -77,16 +101,15 @@ export default function Popover({
         {trigger}
       </PopoverTrigger>
 
-      {isOpen && (
-        <div
-          className={popoverContentStyles({
-            direction,
-            class: cx(className)
-          })}
-        >
-          {children}
-        </div>
-      )}
+      <div
+        className={popoverStyles({
+          direction,
+          isOpen,
+          class: cx(className)
+        })}
+      >
+        {children}
+      </div>
     </div>
   )
 }
