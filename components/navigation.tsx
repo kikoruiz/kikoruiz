@@ -1,4 +1,4 @@
-import {MouseEvent, useEffect, useState} from 'react'
+import {MouseEvent, useEffect, useRef, useState} from 'react'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {
@@ -43,6 +43,7 @@ export default function Navigation({
   const {t} = useTranslation()
   const {heroImage, setHeroImage, showImage, setShowImage} =
     useHeroImageContext()
+  const switchHeroIconRef = useRef(null)
   const router = useRouter()
   const {asPath} = router
   const isNotSectionPage =
@@ -161,12 +162,26 @@ export default function Navigation({
             title={t('navigation.switch-hero-image.randomize')}
             onClick={() => {
               setHeroImage(getRandomElement(HERO_IMAGES, heroImage))
+
+              switchHeroIconRef.current.classList.add(
+                'transition-transform',
+                'rotate-180'
+              )
+
+              setTimeout(() => {
+                switchHeroIconRef.current.classList.remove(
+                  'transition-transform',
+                  'rotate-180'
+                )
+              }, 300)
             }}
             className="flex gap-1.5 w-full items-center justify-center"
             size="small"
             intent="accent"
           >
-            <IconArrowPath className="size-4" />
+            <span ref={switchHeroIconRef}>
+              <IconArrowPath className="size-4" />
+            </span>
 
             {t('navigation.switch-hero-image.randomize')}
           </Button>
