@@ -18,6 +18,7 @@ import IconSwatch from 'assets/icons/swatch.svg'
 import IconArrowPath from 'assets/icons/arrow-path.svg'
 import IconEye from 'assets/icons/eye.svg'
 import IconEyeSlash from 'assets/icons/eye-slash.svg'
+import {trackEvent} from 'lib/tracking'
 import Popover from './popover'
 import Button from './button'
 
@@ -163,18 +164,19 @@ export default function Navigation({
             title={t('navigation.switch-hero-image.randomize')}
             onClick={() => {
               setHeroImage(getRandomElement(HERO_IMAGES, heroImage))
-
               switchHeroIconRef.current.classList.add(
                 'transition-transform',
                 'rotate-180'
               )
-
               setTimeout(() => {
                 switchHeroIconRef.current.classList.remove(
                   'transition-transform',
                   'rotate-180'
                 )
               }, 300)
+              trackEvent(
+                `switch_hero_image_${showImage ? 'with_image' : 'without_image'}`
+              )
             }}
             className="flex gap-1.5 w-full items-center justify-center"
             size="small"
