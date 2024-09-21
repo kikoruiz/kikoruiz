@@ -1,4 +1,4 @@
-import {useState, CSSProperties} from 'react'
+import {useState, CSSProperties, forwardRef} from 'react'
 import Link from 'next/link'
 import NextImage from 'next/image'
 import {ImageFallbackStyle} from 'types/gallery'
@@ -56,25 +56,28 @@ function getAspectRatioClassName(aspectRatio: string): string {
   }
 }
 
-export default function Image({
-  src,
-  url,
-  alt,
-  className = '',
-  style = {},
-  aspectRatio,
-  sizes,
-  needsPreload,
-  isLazy = true,
-  fallbackStyle,
-  isRounded,
-  isFullRounded,
-  isShallowLink,
-  isHidden = false,
-  scrollToTop = false,
-  onLoad = () => {},
-  children
-}: ImageProps) {
+export default forwardRef<HTMLImageElement, ImageProps>(function Image(
+  {
+    src,
+    url,
+    alt,
+    className = '',
+    style = {},
+    aspectRatio,
+    sizes,
+    needsPreload,
+    isLazy = true,
+    fallbackStyle,
+    isRounded,
+    isFullRounded,
+    isShallowLink,
+    isHidden = false,
+    scrollToTop = false,
+    onLoad = () => {},
+    children
+  },
+  ref
+) {
   const isLink = Boolean(url)
   const [isLoaded, setIsLoaded] = useState(false)
   const wrapperClassName = `relative${isRounded ? ' rounded-sm' : ''}`
@@ -107,6 +110,7 @@ export default function Image({
       />
 
       <NextImage
+        ref={ref}
         src={src}
         alt={alt}
         className={`object-cover ${isLoaded && !isHidden ? 'visible' : 'invisible'}`}
@@ -148,4 +152,4 @@ export default function Image({
       {content}
     </figure>
   )
-}
+})

@@ -174,9 +174,9 @@ export default function Navigation({
                   'rotate-180'
                 )
               }, 300)
-              trackEvent(
-                `switch_hero_image_${showImage ? 'with_image' : 'without_image'}`
-              )
+              trackEvent({
+                action: `switch_hero_image_${showImage ? 'with_image' : 'without_image'}`
+              })
             }}
             className="flex gap-1.5 w-full items-center justify-center"
             size="small"
@@ -227,12 +227,14 @@ export default function Navigation({
               isMenuOpen ? 'rotate-45' : '-translate-y-1.5'
             }`}
           />
+
           <span
             aria-hidden="true"
             className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out${
               isMenuOpen ? ' opacity-0' : ''
             }`}
           />
+
           <span
             aria-hidden="true"
             className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out ${
