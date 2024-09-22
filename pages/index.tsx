@@ -12,7 +12,7 @@ import {
 import {getAllPicturesOnMap} from 'lib/gallery/pictures'
 import {getGalleryTags} from 'lib/gallery/tags'
 import Hero from 'components/hero'
-import HomeSections from 'components/home-sections'
+import HomeHeader from 'components/home-header'
 import HomeLatestPictures from 'components/home-latest-pictures'
 import HomeLatestContent from 'components/home-latest-content'
 import HomeBlock from 'components/home-block'
@@ -28,6 +28,16 @@ import IconMapPin from 'assets/icons/map-pin.svg'
 import useHeroImageContext from 'contexts/HeroImage'
 import {getAbsoluteUrl} from 'lib/utils'
 import {GALLERY_ALBUMS} from 'config/gallery'
+
+interface HomeProps {
+  heroImages: HighlightedImage[]
+  latestContent: BlogPost[]
+  latestPictures: LatestPictures
+  sectionImages: SectionImage[]
+  picturesOnMap: PictureOnMap[]
+  galleryTags: Tag[]
+  alternates: Alternate[]
+}
 
 const DynamicHomeMap = dynamic(() => import('components/home-map'), {
   ssr: false
@@ -75,18 +85,7 @@ export default function Home({
       {heroImage && <Hero image={heroImage} isImageHidden={!showImage} />}
 
       <div className="p-3">
-        <header className="rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pb-6 pt-12 text-white/90 md:px-6">
-          <div className="mb-6 flex flex-col items-center break-words xl:mb-9 xl:flex-row xl:justify-center">
-            <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
-
-            <h1 className="break-words text-center text-4xl font-black leading-tight drop-shadow sm:text-5xl sm:leading-normal xl:text-6xl">
-              Kiko Ruiz{' '}
-              <span className="font-thin">{t('home:title-addon')}</span>
-            </h1>
-          </div>
-
-          <HomeSections images={sectionImages} averageColor={averageColor} />
-        </header>
+        <HomeHeader sectionImages={sectionImages} averageColor={averageColor} />
 
         <HomeLatestPictures latestPictures={latestPictures} />
 
@@ -167,14 +166,4 @@ export async function getStaticProps({
       alternates
     }
   }
-}
-
-interface HomeProps {
-  heroImages: HighlightedImage[]
-  latestContent: BlogPost[]
-  latestPictures: LatestPictures
-  sectionImages: SectionImage[]
-  picturesOnMap: PictureOnMap[]
-  galleryTags: Tag[]
-  alternates: Alternate[]
 }
