@@ -15,7 +15,7 @@ export default function HomeSections({
 }: HomeSectionsProps) {
   return (
     <section className="w-full rounded-2xl bg-neutral-900/60 p-1">
-      <div className="columns-2 md:flex space-y-1 md:space-y-0 gap-1">
+      <div className="columns-2 md:flex gap-1">
         {images.map(image => (
           <HomeSectionsItem
             key={image.id}

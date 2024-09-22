@@ -14,7 +14,7 @@ export default function HomeHeader({
   sectionImages,
   averageColor
 }: HomeHeaderProps) {
-  const {t} = useTranslation()
+  const {t} = useTranslation('home')
   const [collapseSections, setCollapseSections] = useState(false)
 
   return (
@@ -23,7 +23,7 @@ export default function HomeHeader({
         <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
 
         <h1 className="break-words text-center text-4xl font-black leading-tight drop-shadow sm:text-5xl sm:leading-normal xl:text-6xl">
-          Kiko Ruiz <span className="font-thin">{t('home:title-addon')}</span>
+          Kiko Ruiz <span className="font-thin">{t('title-addon')}</span>
         </h1>
       </div>
 
@@ -34,23 +34,30 @@ export default function HomeHeader({
       />
 
       <button
-        aria-label={t('home-sections.close')}
-        title={t('home-sections.close')}
+        aria-label={t(
+          collapseSections ? 'sections.uncollapse' : 'sections.collapse'
+        )}
+        title={t(
+          collapseSections ? 'sections.uncollapse' : 'sections.collapse'
+        )}
         className="group absolute top-3 right-3 scale-75 opacity-75 flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
         onClick={() => {
           setCollapseSections(!collapseSections)
         }}
       >
-        <span className="sr-only">{t('home-sections.close')}</span>
+        <span className="sr-only">
+          {t(collapseSections ? 'sections.uncollapse' : 'sections.collapse')}
+        </span>
+
         <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
           <span
             aria-hidden="true"
-            className="absolute flex h-0.5 w-5 rotate-60 transform bg-current group-hover:bg-current"
+            className={`absolute flex h-0.5 w-5 transform bg-current group-hover:bg-current transition-all duration-300 ${collapseSections ? '-translate-y-1/2' : '-translate-y-1/2 -rotate-90 opacity-0'}`}
           ></span>
 
           <span
             aria-hidden="true"
-            className="absolute flex h-0.5 w-5 -rotate-90 transform bg-current group-hover:bg-current"
+            className={`absolute flex h-0.5 w-5 transform bg-current group-hover:bg-current transition-all duration-300 ${collapseSections ? '-translate-y-1/2 rotate-90' : '-translate-y-1/2 rotate-0'}`}
           ></span>
         </div>
       </button>

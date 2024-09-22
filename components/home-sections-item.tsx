@@ -56,7 +56,7 @@ export default function HomeSectionsItem({
       href={href}
       title={sectionName}
       aria-label={sectionName}
-      className="group flex flex-1 overflow-hidden drop-shadow-sm first:rounded-tl-xl [&:nth-child(2)]:rounded-bl-xl [&:nth-child(3)]:rounded-tr-xl last:rounded-br-xl md:first:rounded-l-xl md:[&:nth-child(2)]:rounded-none md:[&:nth-child(3)]:rounded-none md:last:rounded-r-xl"
+      className="group flex flex-1 even:mt-1 md:even:mt-0 overflow-hidden drop-shadow-sm first:rounded-tl-xl [&:nth-child(2)]:rounded-bl-xl [&:nth-child(3)]:rounded-tr-xl last:rounded-br-xl md:first:rounded-l-xl md:[&:nth-child(2)]:rounded-none md:[&:nth-child(3)]:rounded-none md:last:rounded-r-xl"
     >
       <article
         className={`flex w-full flex-col justify-between bg-white/30 p-[1px] font-extralight transition-colors ${
@@ -70,12 +70,13 @@ export default function HomeSectionsItem({
         }}
       >
         <header
-          className={`flex flex-col items-center px-0 pt-4 group-hover:text-current md:p-6 lg:items-start xl:p-5 ${
+          className={`flex flex-col items-center px-0 py-3 group-hover:text-current md:p-6 lg:items-start xl:p-5 ${
             averageColor.isDark ? 'text-orange-300' : 'text-neutral-300'
           }`}
         >
           <div className="-ml-1.5 flex font-semibold sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
             <Icon className="mr-1 w-5 md:mr-1.5 md:w-7 xl:mr-2 xl:w-8" />
+
             {sectionName}
           </div>
 
@@ -88,7 +89,7 @@ export default function HomeSectionsItem({
           ref={imageRef}
           src={src}
           alt={sectionName}
-          className="transition-all h-auto aspect-square w-full overflow-hidden group-first:rounded-tl-xl group-[&:nth-child(2)]:rounded-bl-xl group-[&:nth-child(3)]:rounded-tr-xl group-last:rounded-br-xl md:group-first:rounded-l-xl md:group-[&:nth-child(2)]:rounded-none md:group-[&:nth-child(3)]:rounded-none md:group-last:rounded-r-xl"
+          className="transition-all duration-300 h-auto aspect-square w-full overflow-hidden group-first:rounded-tl-xl group-[&:nth-child(2)]:rounded-bl-xl group-[&:nth-child(3)]:rounded-tr-xl group-last:rounded-br-xl md:group-first:rounded-l-xl md:group-[&:nth-child(2)]:rounded-none md:group-[&:nth-child(3)]:rounded-none md:group-last:rounded-r-xl"
           style={{
             WebkitMaskImage:
               'linear-gradient(to top, rgba(0, 0, 0, 1) 75%, transparent 100%)',

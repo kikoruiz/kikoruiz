@@ -1,4 +1,8 @@
 {
+  "sections": {
+    "collapse": "Collapse",
+    "uncollapse": "Uncollapse"
+  },
   "latest-content": "The latest",
   "latest-pictures": {
     "title": "Latest pictures",
