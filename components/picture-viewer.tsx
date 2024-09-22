@@ -87,11 +87,13 @@ export default forwardRef(function PictureViewer(
           onClick={onClose}
         >
           <span className="sr-only">{t(`${translationsPrefix}.close`)}</span>
+
           <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
             <span
               aria-hidden="true"
               className="absolute flex h-0.5 w-5 rotate-45 transform bg-current group-hover:bg-current"
             ></span>
+
             <span
               aria-hidden="true"
               className="absolute flex h-0.5 w-5 -rotate-45 transform bg-current group-hover:bg-current"

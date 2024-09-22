@@ -14,7 +14,7 @@ import {cva, cx} from 'class-variance-authority'
 import type {VariantProps} from 'class-variance-authority'
 
 const popoverStyles = cva(
-  'absolute z-30 flex items-center w-52 p-3 bg-gradient-to-b from-neutral-300/10 to-neutral-300/30 rounded-xl transition-all origin-top text-xs font-extralight leading-normal drop-shadow-lg after:absolute after:inline-block after:h-0 after:w-0 after:align-middle sm:w-max',
+  'absolute z-30 flex items-center w-52 p-3 bg-gradient-to-b from-neutral-300/10 to-neutral-300/30 rounded-xl transition-all duration-200 origin-top text-xs font-extralight leading-normal drop-shadow-lg after:absolute after:inline-block after:h-0 after:w-0 after:align-middle sm:w-max',
   {
     variants: {
       direction: {
