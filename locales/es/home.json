@@ -1,4 +1,8 @@
 {
+  "sections": {
+    "collapse": "Plegar",
+    "uncollapse": "Desplegar"
+  },
   "latest-content": "Lo más reciente",
   "latest-pictures": {
     "title": "Últimas fotos",
