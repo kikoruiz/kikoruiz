@@ -60,7 +60,7 @@ October 2009 - July 2012
 
 - Designing, developing and testing software solutions including proposals of the functionality architecture, and modifications to existing functionality.
 - Analyzing and resolving moderately complex technical and business problems.
-- Working with the customer to clarify details of the User Stories such as the User Acceptance Criteria.
+- Working with the customer to clarify details of the _User Stories_ such as the _User Acceptance Criteria_.
 - Identifying and escalating risks and issues to the appropriate person.
 - Actively looking for Scrum process improvements within the team.
 - Providing estimates for tasks.
