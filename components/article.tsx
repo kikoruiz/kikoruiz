@@ -142,6 +142,40 @@ export default function Article({
             : children}
         </p>
       )
+    },
+    // TO-DO: Unify and refactor this function.
+    li({children, node}) {
+      const nextChildren = {}
+
+      node.children.forEach((attrs, index) => {
+        const {type, tagName, properties} = attrs
+
+        if (type === 'element' && tagName === 'a') {
+          const {props} = children[index]
+
+          nextChildren[index] = (
+            <NextLink
+              href={props.href}
+              target={properties.href.includes('https') ? '_blank' : '_self'}
+              key={index}
+            >
+              {props.children}
+            </NextLink>
+          )
+        }
+      })
+
+      return (
+        <li>
+          {Array.isArray(children)
+            ? children.map((element, index) => {
+                if (nextChildren[index]) return nextChildren[index]
+
+                return element
+              })
+            : children}
+        </li>
+      )
     }
   }
 
