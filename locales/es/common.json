@@ -118,6 +118,11 @@
       "warning": "El contenido de los artículos sólo está disponible en castellano"
     }
   },
+  "about-me": {
+    "pages": {
+      "resume": "Currículum"
+    }
+  },
   "legal": {
     "name": "Legal",
     "pages": {

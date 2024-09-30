@@ -55,6 +55,12 @@ const nextConfig = withBundleAnalyzer({
             permanent: true
           },
           {
+            source: '/en/sobre-mi/curriculum',
+            destination: '/en/about-me/resume',
+            locale: false,
+            permanent: true
+          },
+          {
             source: '/ca/politica-de-privacidad',
             destination: '/ca/politica-de-privacitat',
             locale: false,
@@ -144,6 +150,11 @@ const nextConfig = withBundleAnalyzer({
           {
             source: '/en/about-me',
             destination: '/en/sobre-mi',
+            locale: false
+          },
+          {
+            source: '/en/about-me/resume',
+            destination: '/en/sobre-mi/curriculum',
             locale: false
           },
           {

@@ -1,17 +1,41 @@
-import {themeScreens} from 'lib/utils'
-import Image from './image'
+import {HTMLAttributes, PropsWithChildren} from 'react'
 import NextLink from 'next/link'
 import ReactMarkdown from 'react-markdown'
+import {cva} from 'class-variance-authority'
+import Image from './image'
+import {themeScreens} from 'lib/utils'
 import {Image as ImageInterface} from 'types/gallery'
+import type {VariantProps} from 'class-variance-authority'
+
+const DEFAULT_INTENT = 'dark'
+
+const articleStyles = cva(
+  'max-w-full overflow-hidden prose prose-neutral prose-a:font-bold prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-code:before:content-[""] prose-code:after:content-[""] hover:prose-a:no-underline prose-p:font-light prose-ul:font-light',
+  {
+    variants: {
+      intent: {
+        light:
+          'prose-headings:text-neutral-800/80 prose-code:text-neutral-900/60 prose-p:text-neutral-900/60 prose-strong:text-neutral-800/80 prose-ul:text-neutral-900/60 prose-ol:text-neutral-900/60 prose-a:text-orange-600 hover:prose-a:text-orange-700',
+        dark: 'prose-headings:text-neutral-300 prose-code:text-neutral-300 prose-p:text-neutral-400 prose-strong:text-neutral-300 prose-ul:text-neutral-400 prose-ol:text-neutral-400 prose-a:text-orange-200 hover:prose-a:text-orange-300'
+      }
+    }
+  }
+)
+
+type ArticleProps = PropsWithChildren<
+  Pick<HTMLAttributes<HTMLElement>, 'className'> &
+    VariantProps<typeof articleStyles> & {
+      content: string
+      contentImages?: ImageInterface[]
+    }
+>
 
 export default function Article({
   content,
   contentImages,
-  className
+  className,
+  intent = DEFAULT_INTENT
 }: ArticleProps) {
-  const articleClassName = `max-w-full overflow-hidden prose prose-neutral prose-code:text-neutral-300 prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-headings:text-neutral-300 prose-p:text-neutral-400 prose-code:before:content-[''] prose-code:after:content-[''] prose-a:text-orange-200 hover:prose-a:text-orange-300 hover:prose-a:no-underline prose-p:font-light prose-strong:text-neutral-300${
-    className ? ` ${className}` : ''
-  }`
   const components = {
     p({children, node}) {
       const nextChildren = {}
@@ -122,14 +146,8 @@ export default function Article({
   }
 
   return (
-    <article className={articleClassName}>
+    <article className={articleStyles({intent, className})}>
       <ReactMarkdown components={components}>{content}</ReactMarkdown>
     </article>
   )
-}
-
-interface ArticleProps {
-  content: string
-  contentImages?: ImageInterface[]
-  className: string
 }
