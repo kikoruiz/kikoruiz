@@ -66,5 +66,6 @@ export interface Screens {
 export interface StaticContent {
   slug?: string
   title?: string
+  jobTitle?: string
   body: string
 }
