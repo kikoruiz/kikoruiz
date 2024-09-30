@@ -43,6 +43,8 @@ function hoverClassName(slug: string) {
       return 'group-hover:fill-[#0082be]'
     case 'nextjs':
       return 'group-hover:fill-[#ffffff]'
+    case 'strava':
+      return 'group-hover:fill-[#fc5200]'
     case 'tailwindcss':
       return 'group-hover:fill-[#38bdf8]'
     case 'twitter':

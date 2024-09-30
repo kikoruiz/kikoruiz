@@ -7,6 +7,7 @@ import LogoTwitter from 'assets/logos/social/twitter.svg'
 import LogoVero from 'assets/logos/social/vero.svg'
 import LogoWhatsApp from 'assets/logos/social/whatsapp.svg'
 import LogoYouTube from 'assets/logos/social/youtube.svg'
+import LogoStrava from 'assets/logos/social/strava.svg'
 
 const logos = {
   Logo500px,
@@ -17,7 +18,8 @@ const logos = {
   LogoTwitter,
   LogoVero,
   LogoWhatsApp,
-  LogoYouTube
+  LogoYouTube,
+  LogoStrava
 }
 
 export default logos

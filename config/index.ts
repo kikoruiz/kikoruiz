@@ -102,7 +102,12 @@ export const BRANDS = {
     {
       name: 'Linkedin',
       slug: 'linkedin',
-      url: 'https://www.linkedin.com/in/kikoruiz/'
+      url: 'https://www.linkedin.com/in/kikoruiz'
+    },
+    {
+      name: 'Strava',
+      slug: 'strava',
+      url: 'https://www.strava.com/athletes/2109273'
     }
   ],
   TOOLS: [
