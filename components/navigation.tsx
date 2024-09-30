@@ -72,7 +72,7 @@ export default function Navigation({
   const activeSection = SECTIONS.find(({id, categories}) => {
     const sectionSlug = getSlug(t(`sections.${id}.name`))
 
-    return sectionSlug && path.includes(sectionSlug) && categories
+    return sectionSlug && path.includes(sectionSlug) && Boolean(categories)
   })
   const [expandedSections, setExpandedSections] = useState(
     activeSection ? [activeSection.id] : []

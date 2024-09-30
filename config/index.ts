@@ -16,7 +16,12 @@ export const SECTIONS = [
     highlightedPicture: '/store/prints.jpg'
   },
   {id: 'blog', highlightedPicture: '/blog/_default.jpg'},
-  {id: 'about-me', highlightedPicture: '/pictures/2022-08-27_0108.jpg'}
+  {
+    id: 'about-me',
+    categories: [{id: 'resume'}],
+    localePrefix: 'about-me.pages.',
+    highlightedPicture: '/pictures/2022-08-27_0108.jpg'
+  }
 ]
 
 export const SPECIAL_SUBSECTIONS = ['tags']

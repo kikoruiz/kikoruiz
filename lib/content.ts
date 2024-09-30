@@ -38,6 +38,6 @@ export async function getContent({
 
   return {
     ...content,
-    ...(needsTitle && {title: t(`${category}.pages.${page}`)})
+    ...(needsTitle && {title: t(`${category}.pages.${page}.name`)})
   } as StaticContent
 }

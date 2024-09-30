@@ -120,16 +120,16 @@
   },
   "about-me": {
     "pages": {
-      "resume": "Currículum"
+      "resume": {"name": "Currículum"}
     }
   },
   "legal": {
     "name": "Legal",
     "pages": {
-      "privacy-policy": "Política de privacidad",
-      "cookies-policy": "Política de cookies",
-      "terms-and-conditions": "Términos y condiciones",
-      "copyright": "Derechos de autor"
+      "privacy-policy": {"name": "Política de privacidad"},
+      "cookies-policy": {"name": "Política de cookies"},
+      "terms-and-conditions": {"name": "Términos y condiciones"},
+      "copyright": {"name": "Derechos de autor"}
     },
     "cookies": {
       "banner": {

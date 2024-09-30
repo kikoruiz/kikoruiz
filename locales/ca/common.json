@@ -120,16 +120,22 @@
   },
   "about-me": {
     "pages": {
-      "resume": "Currículum"
+      "resume": {"name": "Currículum"}
     }
   },
   "legal": {
     "name": "Legal",
     "pages": {
-      "privacy-policy": "Política de privacitat",
-      "cookies-policy": "Política de galetes",
-      "terms-and-conditions": "Termes i condicions",
-      "copyright": "Drets d'autor"
+      "privacy-policy": {
+        "name": "Política de privacitat"
+      },
+      "cookies-policy": {
+        "name": "Política de galetes"
+      },
+      "terms-and-conditions": {"name": "Termes i condicions"},
+      "copyright": {
+        "name": "Drets d'autor"
+      }
     },
     "cookies": {
       "banner": {

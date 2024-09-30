@@ -130,7 +130,7 @@ export default function AboutMe({
           </dl>
 
           <Link
-            href={`/${getSlug(t('sections.about-me.name'))}/${getSlug(t('about-me.pages.resume'))}`}
+            href={`/${getSlug(t('sections.about-me.name'))}/${getSlug(t('about-me.pages.resume.name'))}`}
             className="flex items-center justify-center drop-shadow-md gap-1.5 mt-16 sm:mt-12 p-6 rounded-lg bg-gradient-to-br from-orange-700 to-orange-500 transition-all hover:bg-gradient-to-tl hover:ring-2 hover:ring-orange-50 duration-300 text-orange-200 hover:text-orange-50 font-extralight text-4xl"
             title={t('about-me:go-to-resume')}
           >
