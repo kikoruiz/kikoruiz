@@ -118,6 +118,11 @@
       "warning": "Blog contents are only available in spanish language"
     }
   },
+  "about-me": {
+    "pages": {
+      "resume": "Resume"
+    }
+  },
   "legal": {
     "name": "Legal",
     "pages": {

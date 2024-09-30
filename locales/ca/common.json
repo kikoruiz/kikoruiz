@@ -118,6 +118,11 @@
       "warning": "El contingut dels artícles nomès està disponible en llengua castellana"
     }
   },
+  "about-me": {
+    "pages": {
+      "resume": "Currículum"
+    }
+  },
   "legal": {
     "name": "Legal",
     "pages": {

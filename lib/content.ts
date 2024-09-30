@@ -18,14 +18,21 @@ export function getMarkdownContent(filename: string) {
 export async function getContent({
   locale,
   page,
-  category
+  category,
+  isSubSection = false
 }: {
   locale: string
   page: string
   category?: string
+  isSubSection?: boolean
 }) {
   const t = await getT(locale, 'common')
-  const directory = path.join(process.cwd(), 'data', 'pages', page)
+  const directory = path.join(
+    process.cwd(),
+    'data',
+    'pages',
+    isSubSection ? `${category}/${page}` : page
+  )
   const content = getMarkdownContent(`${directory}/${locale}.md`)
   const needsTitle = Boolean(category)
 

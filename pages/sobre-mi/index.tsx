@@ -1,14 +1,16 @@
 import {ReactNode} from 'react'
+import Link from 'next/link'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {getAbsoluteUrl, themeScreens} from 'lib/utils'
+import {getAbsoluteUrl, getSlug, themeScreens} from 'lib/utils'
 import {getImagePlaceholder} from 'lib/utils/image'
 import {getContent} from 'lib/content'
 import {PERSONAL_INFO, SECTIONS} from 'config'
 import Article from 'components/article'
 import Image from 'components/image'
+import IconDocumentText from 'assets/icons/document-text.svg'
 import {Alternate, StaticContent} from 'types'
 import {Image as ImageInterface, ImageFallbackStyle} from 'types/gallery'
 
@@ -29,7 +31,6 @@ export default function AboutMe({
       <Head>
         <title>{title}</title>
         <meta name="description" content={metaDescription} />
-
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={metaDescription} />
@@ -127,6 +128,16 @@ export default function AboutMe({
               )
             })}
           </dl>
+
+          <Link
+            href={`/${getSlug(t('sections.about-me.name'))}/${getSlug(t('about-me.pages.resume'))}`}
+            className="flex items-center justify-center opacity-90 drop-shadow-md gap-1.5 mt-16 sm:mt-12 p-6 rounded-lg bg-gradient-to-br from-orange-700 to-orange-500 transition-all hover:bg-gradient-to-tl hover:ring-2 hover:ring-orange-50 duration-300 text-orange-200 hover:text-orange-100 font-extralight text-4xl"
+            title={t('about-me:go-to-resume')}
+          >
+            <IconDocumentText className="size-9 sm:hidden lg:block" />
+
+            {t('about-me:go-to-resume')}
+          </Link>
         </div>
 
         <Article
