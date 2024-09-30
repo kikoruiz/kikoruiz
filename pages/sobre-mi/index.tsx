@@ -131,12 +131,12 @@ export default function AboutMe({
 
           <Link
             href={`/${getSlug(t('sections.about-me.name'))}/${getSlug(t('about-me.pages.resume'))}`}
-            className="flex items-center justify-center opacity-90 drop-shadow-md gap-1.5 mt-16 sm:mt-12 p-6 rounded-lg bg-gradient-to-br from-orange-700 to-orange-500 transition-all hover:bg-gradient-to-tl hover:ring-2 hover:ring-orange-50 duration-300 text-orange-200 hover:text-orange-100 font-extralight text-4xl"
+            className="flex items-center justify-center drop-shadow-md gap-1.5 mt-16 sm:mt-12 p-6 rounded-lg bg-gradient-to-br from-orange-700 to-orange-500 transition-all hover:bg-gradient-to-tl hover:ring-2 hover:ring-orange-50 duration-300 text-orange-200 hover:text-orange-50 font-extralight text-4xl"
             title={t('about-me:go-to-resume')}
           >
             <IconDocumentText className="size-9 sm:hidden lg:block" />
 
-            {t('about-me:go-to-resume')}
+            <span className="drop-shadow">{t('about-me:go-to-resume')}</span>
           </Link>
         </div>
 
