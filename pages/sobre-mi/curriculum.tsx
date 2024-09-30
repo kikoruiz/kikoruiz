@@ -40,13 +40,12 @@ export interface ResumePageProps {
 }
 
 const resumeHeadingStyles = cva(
-  'flex gap-3 text-neutral-900/60 font-light text-sm',
+  'hidden sm:flex gap-3 text-neutral-900/60 font-light text-sm',
   {
     variants: {
       position: {
         center: 'items-center flex-wrap flex-row justify-center lg:gap-9',
-        right:
-          'absolute flex-col right-6 sm:right-12 top-28 lg:top-24 lg:right-24'
+        right: 'absolute flex-col top-28 lg:top-24 right-12 lg:right-24'
       }
     }
   }
