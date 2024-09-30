@@ -120,16 +120,16 @@
   },
   "about-me": {
     "pages": {
-      "resume": "Resume"
+      "resume": {"name": "Resume"}
     }
   },
   "legal": {
     "name": "Legal",
     "pages": {
-      "privacy-policy": "Privacy Policy",
-      "cookies-policy": "Cookies Policy",
-      "terms-and-conditions": "Terms and conditions",
-      "copyright": "Copyright"
+      "privacy-policy": {"name": "Privacy Policy"},
+      "cookies-policy": {"name": "Cookies Policy"},
+      "terms-and-conditions": {"name": "Terms and conditions"},
+      "copyright": {"name": "Copyright"}
     },
     "cookies": {
       "banner": {

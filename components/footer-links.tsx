@@ -15,9 +15,9 @@ export default function FooterLinks() {
 
         <ul>
           {LEGAL_PAGES.map(slug => {
-            const pageName = t(`legal.pages.${slug}`)
+            const pageName = t(`legal.pages.${slug}.name`)
             const href = `/${getSlug(pageName)}`
-            const defaultPathname = `/${getSlug(t(`commonES:legal.pages.${slug}`))}`
+            const defaultPathname = `/${getSlug(t(`commonES:legal.pages.${slug}.name`))}`
             const isCurrentPage = pathname === defaultPathname
 
             return (

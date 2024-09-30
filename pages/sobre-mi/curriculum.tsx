@@ -45,7 +45,8 @@ const resumeHeadingStyles = cva(
     variants: {
       position: {
         center: 'items-center flex-wrap flex-row justify-center lg:gap-9',
-        right: 'absolute flex-col right-12 top-28 lg:top-24 lg:right-24'
+        right:
+          'absolute flex-col right-6 sm:right-12 top-28 lg:top-24 lg:right-24'
       }
     }
   }
@@ -264,6 +265,7 @@ export async function getStaticProps({locales, locale, defaultLocale}) {
     locales.map(
       await fromLocalesToAlternates({
         defaultLocale,
+        locale,
         page,
         section: category,
         category
@@ -272,6 +274,6 @@ export async function getStaticProps({locales, locale, defaultLocale}) {
   )
 
   return {
-    props: {content, section: page, alternates}
+    props: {content, section: category, subSection: page, alternates}
   }
 }
