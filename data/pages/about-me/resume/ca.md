@@ -59,7 +59,7 @@ Octubre 2009 - Juliol 2012
 
 - Vaig dissenyar, desenvolupar i provar solucions de programari, incloent-hi propostes d'arquitectura funcional i modificacions de funcionalitats existents.
 - Vaig analitzar i resoldre problemes tècnics i de negoci moderadament complexos.
-- Vaig treballar amb els clients per aclarir detalls de les User Stories i els criteris d'acceptació.
+- Vaig treballar amb els clients per aclarir detalls de les _User Stories_ i els criteris d'acceptació.
 - Vaig buscar millores en el procés _Scrum_ de l'equip.
 - Vaig proporcionar estimacions per a les tasques.
 
