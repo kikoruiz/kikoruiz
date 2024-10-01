@@ -89,7 +89,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
         ))}
       </Head>
 
-      <section className="relative sm:mx-6 lg:mx-0 mb-3 sm:mb-0 pt-12 px-6 sm:px-9 pb-6 lg:px-24 lg:pt-24 lg:pb-12 bg-gradient-to-bl from-neutral-300 to-white drop-shadow-md hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[3em] before:border-r-[3em] before:border-y-neutral-100/90 before:border-x-neutral-900 before:transition-[border-width] before:duration-300 hover:before:border-y-neutral-50/90 hover:before:border-x-neutral-900 hover:before:border-b-[4.5em] hover:before:border-r-[4.5em]">
+      <section className="relative sm:mx-6 lg:mx-0 mb-3 sm:mb-0 pt-12 px-6 sm:px-9 pb-6 lg:px-24 lg:pt-24 lg:pb-12">
         <ResumeHeading position="right" />
 
         <header className="flex flex-col lg:flex-row lg:items-end mb-12 lg:mb-32">
@@ -100,7 +100,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
               {content.title}
             </span>{' '}
             Kiko Ruiz Lloret
-            <span className="block mt-3 font-bold text-transparent text-3xl bg-gradient-to-tl from-orange-400 to-orange-700 bg-clip-text opacity-75">
+            <span className="block mt-3 font-bold text-orange-500/75 text-3xl">
               {content.jobTitle}
             </span>
           </h1>
