@@ -168,7 +168,7 @@ export default function Breadcrumb({
             title={t('about-me:download-resume')}
             className="gap-1.5 px-3"
             onClick={() => {
-              window.location = `/documents/kikoruiz-${locale}-${getSlug(t('about-me.pages.resume.name'))}.pdf`
+              window.location.href = `/documents/kikoruiz-${locale}-${getSlug(t('about-me.pages.resume.name'))}.pdf`
             }}
           >
             {t('about-me:download-resume').split(' ')[0]}
