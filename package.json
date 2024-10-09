@@ -5,12 +5,13 @@
   "sideEffects": false,
   "scripts": {
     "analyze": "ANALYZE=true npm run build",
-    "save:inventory": "make save_inventory",
     "build:data": "make save_placeholders && make save_metadata && make save_content",
     "build": "next build",
+    "debug": "NODE_OPTIONS='--inspect' next dev",
     "dev": "next dev",
     "lint": "next lint",
     "phoenix": "rm -rf node_modules && rm -rf package-lock.json && rm -rf tsconfig.tsbuildinfo && npm i",
+    "save:inventory": "make save_inventory",
     "start": "next start",
     "test": "ORIGIN=\"http://test\" vitest --exclude \"__checks__\"",
     "typecheck": "tsc"
