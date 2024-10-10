@@ -47,3 +47,5 @@ interface LayoutProps extends SectionData {
   children: ReactNode
   alternates: Alternate[]
 }
+
+Layout.displayName = 'Layout'

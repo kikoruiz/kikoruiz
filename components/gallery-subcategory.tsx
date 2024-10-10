@@ -127,3 +127,5 @@ interface GallerySubcategoryProps {
     overlapped?: string
   }) => void
 }
+
+GallerySubcategory.displayName = 'GallerySubcategory'

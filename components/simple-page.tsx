@@ -12,3 +12,5 @@ export default function SimplePage({title}: {title: string}) {
     </HomeBlock>
   )
 }
+
+SimplePage.displayName = 'SimplePage'

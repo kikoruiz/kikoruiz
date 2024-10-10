@@ -164,3 +164,5 @@ export default function HomeLatestPictures({
 interface HomeLatestPicturesProps {
   latestPictures: LatestPictures
 }
+
+HomeLatestPictures.displayName = 'HomeLatestPictures'

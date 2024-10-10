@@ -258,3 +258,5 @@ export default function PictureDetail({
     </div>
   )
 }
+
+PictureDetail.displayName = 'PictureDetail'

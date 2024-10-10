@@ -25,3 +25,5 @@ interface BlogTagsProps {
   tags: Tag[]
   isPost?: boolean
 }
+
+BlogTags.displayName = 'BlogTags'

@@ -61,3 +61,5 @@ function hoverClassName(slug: string) {
       return 'group-hover:fill-[#ffffff]'
   }
 }
+
+SocialLinks.displayName = 'SocialLinks'

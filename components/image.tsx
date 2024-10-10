@@ -56,7 +56,7 @@ function getAspectRatioClassName(aspectRatio: string): string {
   }
 }
 
-export default forwardRef<HTMLImageElement, ImageProps>(function Image(
+function Image(
   {
     src,
     url,
@@ -152,4 +152,8 @@ export default forwardRef<HTMLImageElement, ImageProps>(function Image(
       {content}
     </figure>
   )
-})
+}
+
+export default forwardRef<HTMLImageElement, ImageProps>(Image)
+
+Image.displayName = 'Image'

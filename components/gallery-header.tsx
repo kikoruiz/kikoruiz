@@ -7,7 +7,12 @@ import {getSlug, getTitle} from 'lib/utils'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconArrowRight from 'assets/icons/arrow-right.svg'
 
-export default memo(function GalleryHeader({
+interface GalleryHeaderProps {
+  isAlbum?: boolean
+  isTagsIndex?: boolean
+}
+
+function GalleryHeader({
   isAlbum = false,
   isTagsIndex = false
 }: GalleryHeaderProps) {
@@ -98,9 +103,7 @@ export default memo(function GalleryHeader({
       )}
     </header>
   )
-})
-
-interface GalleryHeaderProps {
-  isAlbum?: boolean
-  isTagsIndex?: boolean
 }
+export default memo(GalleryHeader)
+
+GalleryHeader.displayName = 'GalleryHeader'

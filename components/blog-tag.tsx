@@ -38,3 +38,5 @@ function tagClassName(tag) {
 interface BlogTagProps extends Tag {
   size?: 'small' | 'large'
 }
+
+BlogTag.displayName = 'BlogTag'

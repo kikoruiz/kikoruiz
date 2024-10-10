@@ -106,3 +106,5 @@ interface PictureInfoProps {
   processingDate: string
   prettyProcessingDate: string
 }
+
+PictureInfo.displayName = 'PictureInfo'

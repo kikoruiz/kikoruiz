@@ -45,3 +45,5 @@ export default function ButtonLink({
     </Link>
   )
 }
+
+ButtonLink.displayName = 'ButtonLink'

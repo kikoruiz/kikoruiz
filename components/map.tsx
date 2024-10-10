@@ -53,3 +53,5 @@ interface MapProps {
 }
 
 export default memo(Map, arePropsEqual)
+
+Map.displayName = 'Map'

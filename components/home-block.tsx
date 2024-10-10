@@ -12,3 +12,5 @@ interface HomeBlockProps {
   children: ReactNode
   className?: string
 }
+
+HomeBlock.displayName = 'HomeBlock'

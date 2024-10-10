@@ -10,7 +10,7 @@ interface FooterProps {
   alternates: Alternate[]
 }
 
-export default memo(function Footer({alternates}: FooterProps) {
+function Footer({alternates}: FooterProps) {
   const {locales, locale: currentLocale, push, asPath} = useRouter()
   const {t} = useTranslation()
   const year = new Date().getFullYear()
@@ -69,4 +69,8 @@ export default memo(function Footer({alternates}: FooterProps) {
       </div>
     </footer>
   )
-})
+}
+
+export default memo(Footer)
+
+Footer.displayName = 'Footer'

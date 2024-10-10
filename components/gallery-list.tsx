@@ -191,3 +191,5 @@ interface GalleryListProps {
   toggleSortingDirection?: (event: MouseEvent) => void
   isAscendingOrder?: boolean
 }
+
+GalleryList.displayName = 'GalleryList'

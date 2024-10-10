@@ -64,3 +64,5 @@ interface CookiesCollapsibleProps {
   consents: object
   setConsents: (consents: object) => void
 }
+
+CookiesCollapsible.displayName = 'CookiesCollapsible'

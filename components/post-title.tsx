@@ -17,3 +17,5 @@ export default function PostTitle({title}: PostTitleProps) {
 interface PostTitleProps {
   title: string
 }
+
+PostTitle.displayName = 'PostTitle'

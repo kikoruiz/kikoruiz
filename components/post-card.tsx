@@ -155,3 +155,5 @@ interface PostCardProps {
   orientation?: orientation
   isDraft: boolean
 }
+
+PostCard.displayName = 'PostCard'

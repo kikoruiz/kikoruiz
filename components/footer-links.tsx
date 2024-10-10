@@ -41,3 +41,5 @@ export default function FooterLinks() {
     </div>
   )
 }
+
+FooterLinks.displayName = 'FooterLinks'
