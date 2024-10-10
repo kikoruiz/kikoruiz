@@ -66,3 +66,5 @@ export default function Alert({
     </div>
   ) : null
 }
+
+Alert.displayName = 'Alert'

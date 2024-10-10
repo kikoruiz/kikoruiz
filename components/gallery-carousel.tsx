@@ -9,6 +9,13 @@ import subcategoryIcons from './gallery-subcategory-icons'
 import {Picture, Subcategory} from 'types/gallery'
 import {GALLERY_ALBUMS} from 'config/gallery'
 
+interface GalleryCarouselProps {
+  pictures: Picture[]
+  category?: string
+  subcategories?: Subcategory[]
+  setIsCarouselOpen: (isCarouselOpen: boolean) => void
+}
+
 let startIndex: number | undefined
 
 function GalleryCarousel({
@@ -145,9 +152,4 @@ function GalleryCarousel({
 
 export default memo(GalleryCarousel)
 
-interface GalleryCarouselProps {
-  pictures: Picture[]
-  category?: string
-  subcategories?: Subcategory[]
-  setIsCarouselOpen: (isCarouselOpen: boolean) => void
-}
+GalleryCarousel.displayName = 'GalleryCarousel'

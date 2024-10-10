@@ -192,3 +192,5 @@ export default function PrintCard({
     </div>
   )
 }
+
+PrintCard.displayName = 'PrintCard'

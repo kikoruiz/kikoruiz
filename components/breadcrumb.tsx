@@ -9,7 +9,7 @@ import useSubcategoryContext from 'contexts/Subcategory'
 import {SectionData} from 'types'
 import sectionIcons from './section-icons'
 import subcategoryIcons from './gallery-subcategory-icons'
-import BreadcrumbActionButton from './breadcumb-action-button'
+import BreadcrumbActionButton from './breadcrumb-action-button'
 import IconShoppingCart from 'assets/icons/shopping-cart.svg'
 import IconDocumentArrowDown from 'assets/icons/document-arrow-down.svg'
 import {GALLERY_ALBUMS} from 'config/gallery'
@@ -178,3 +178,5 @@ export default function Breadcrumb({
     </div>
   ) : null
 }
+
+Breadcrumb.displayName = 'Breadcrumb'

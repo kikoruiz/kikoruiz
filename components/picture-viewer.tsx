@@ -7,7 +7,24 @@ import IconArrowRight from 'assets/icons/arrow-right.svg'
 import IconArrowsPointingIn from 'assets/icons/arrows-pointing-in.svg'
 import IconArrowsPointingOut from 'assets/icons/arrows-pointing-out.svg'
 
-export default forwardRef(function PictureViewer(
+interface PictureViewerProps {
+  pictures: Picture[]
+  index?: number
+  rootClassName?: string
+  containerClassName?: string
+  detailClassName?: string
+  translationsPrefix?: string
+  onExit?: () => void
+  onClose: () => void
+  needsPrevious?: boolean
+  onPrevious?: () => void
+  needsNext?: boolean
+  onNext?: () => void
+  paginationInfo?: ReactNode
+  trackEvent: (action: string, name?: string) => void
+}
+
+function PictureViewer(
   {
     pictures = [],
     index = 0,
@@ -177,21 +194,7 @@ export default forwardRef(function PictureViewer(
       </div>
     </div>
   )
-})
-
-interface PictureViewerProps {
-  pictures: Picture[]
-  index?: number
-  rootClassName?: string
-  containerClassName?: string
-  detailClassName?: string
-  translationsPrefix?: string
-  onExit?: () => void
-  onClose: () => void
-  needsPrevious?: boolean
-  onPrevious?: () => void
-  needsNext?: boolean
-  onNext?: () => void
-  paginationInfo?: ReactNode
-  trackEvent: (action: string, name?: string) => void
 }
+export default forwardRef(PictureViewer)
+
+PictureViewer.displayName = 'PictureViewer'

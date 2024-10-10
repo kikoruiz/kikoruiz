@@ -104,3 +104,5 @@ export default function HomeSectionsItem({
     </Link>
   )
 }
+
+HomeSectionsItem.displayName = 'HomeSectionsItem'

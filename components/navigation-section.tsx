@@ -140,3 +140,5 @@ export default function NavigationSection({
     </li>
   )
 }
+
+NavigationSection.displayName = 'NavigationSection'

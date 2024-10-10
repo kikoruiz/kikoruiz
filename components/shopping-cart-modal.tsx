@@ -12,7 +12,7 @@ import IconArrowPath from 'assets/icons/arrow-path.svg'
 import {fetcher} from 'lib/utils'
 import {trackEvent} from 'lib/tracking'
 
-function ShoppingCartModal() {
+export default function ShoppingCartModal() {
   const {t} = useTranslation('store')
   const {locale} = useRouter()
   const {
@@ -176,4 +176,4 @@ function ShoppingCartModal() {
   )
 }
 
-export default ShoppingCartModal
+ShoppingCartModal.displayName = 'ShoppingCartModal'

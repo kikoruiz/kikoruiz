@@ -259,3 +259,5 @@ export default function Navigation({
     </nav>
   )
 }
+
+Navigation.displayName = 'Navigation'

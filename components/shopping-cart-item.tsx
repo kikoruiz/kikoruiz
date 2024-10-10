@@ -174,3 +174,5 @@ export default function ShoppingCartItem({
     </div>
   )
 }
+
+ShoppingCartItem.displayName = 'ShoppingCartItem'

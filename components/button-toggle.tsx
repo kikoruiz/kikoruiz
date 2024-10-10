@@ -29,3 +29,5 @@ export default function ButtonToggle({
     </button>
   )
 }
+
+ButtonToggle.displayName = 'ButtonToggle'

@@ -40,3 +40,5 @@ export default function HomeLatestContent({posts}: HomeLatestContentProps) {
 interface HomeLatestContentProps {
   posts: BlogPost[]
 }
+
+HomeLatestContent.displayName = 'HomeLatestContent'

@@ -64,3 +64,5 @@ export default function HomeHeader({
     </header>
   )
 }
+
+HomeHeader.displayName = 'HomeHeader'

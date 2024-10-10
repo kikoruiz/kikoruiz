@@ -7,7 +7,7 @@ import Article from './article'
 import {COOKIES_BY_TYPE} from 'config'
 import {camelCase} from 'change-case'
 
-export default memo(function CookiesBanner() {
+function CookiesBanner() {
   const {t} = useTranslation()
   const {consent, acceptAllCookies, declineAllCookies, cookies} =
     useCookieConsentContext()
@@ -98,4 +98,7 @@ export default memo(function CookiesBanner() {
       )}
     </>
   )
-})
+}
+export default memo(CookiesBanner)
+
+CookiesBanner.displayName = 'CookiesBanner'

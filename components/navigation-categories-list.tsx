@@ -70,3 +70,5 @@ export default function NavigationCategoriesList({
     </ul>
   )
 }
+
+NavigationCategoriesList.displayName = 'NavigationCategoriesList'

@@ -145,3 +145,5 @@ interface GalleryPageProps {
   category?: string
   subcategories?: Subcategory[]
 }
+
+GalleryPage.displayName = 'GalleryPage'

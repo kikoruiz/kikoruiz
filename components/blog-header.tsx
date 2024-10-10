@@ -98,3 +98,5 @@ interface BlogHeaderProps {
   isTagsIndex?: boolean
   hasNoContent?: boolean
 }
+
+BlogHeader.displayName = 'BlogHeader'

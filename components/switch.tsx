@@ -62,3 +62,5 @@ interface SwitchProps {
   isLocked?: boolean
   onSwitch: (nextIsChecked: boolean) => void
 }
+
+Switch.displayName = 'Switch'

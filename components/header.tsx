@@ -6,7 +6,7 @@ import Logo from 'assets/brand/photo-logo.svg'
 import {SectionData} from 'types'
 import useLayoutContext from 'contexts/Layout'
 
-export default memo(function Header({...sectionData}: SectionData) {
+function Header({...sectionData}: SectionData) {
   const headerRef = useRef(null)
   const {setLayout} = useLayoutContext()
   const {hasHero, section, subSection} = sectionData
@@ -57,4 +57,8 @@ export default memo(function Header({...sectionData}: SectionData) {
       <Breadcrumb {...sectionData} />
     </header>
   )
-})
+}
+
+export default memo(Header)
+
+Header.displayName = 'Header'
