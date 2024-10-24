@@ -28,11 +28,11 @@
     "gray-matter": "4",
     "leaflet": "1",
     "lodash": "4",
-    "next": "14",
+    "next": "15.0.1",
     "next-translate": "2",
     "plaiceholder": "3",
-    "react": "18",
-    "react-dom": "18",
+    "react": "19.0.0-rc-69d4b800-20241021",
+    "react-dom": "19.0.0-rc-69d4b800-20241021",
     "react-leaflet": "4",
     "react-markdown": "9",
     "react-responsive": "10",
@@ -42,7 +42,7 @@
     "use-shopping-cart": "3"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "14",
+    "@next/bundle-analyzer": "15.0.1",
     "@plaiceholder/next": "3",
     "@playwright/test": "1",
     "@svgr/webpack": "8",
@@ -51,14 +51,14 @@
     "@types/gtag.js": "0",
     "@types/leaflet": "1",
     "@types/node": "22",
-    "@types/react": "18",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/ua-parser-js": "0",
     "@typescript-eslint/eslint-plugin": "8",
     "@vitejs/plugin-react": "4",
     "autoprefixer": "10",
     "checkly": "4",
     "eslint": "8",
-    "eslint-config-next": "14",
+    "eslint-config-next": "15.0.1",
     "eslint-config-prettier": "9",
     "exiftool-vendored": "28",
     "glob": "11",
@@ -79,6 +79,7 @@
     "@typescript-eslint/typescript-estree": "8.4.0",
     "json5": "2.2.2",
     "semver": "7.5.2",
-    "sharp": "0.32.6"
+    "sharp": "0.32.6",
+    "@types/react": "npm:types-react@19.0.0-rc.1"
   }
 }
