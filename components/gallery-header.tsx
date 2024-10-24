@@ -104,6 +104,7 @@ function GalleryHeader({
     </header>
   )
 }
+
 export default memo(GalleryHeader)
 
 GalleryHeader.displayName = 'GalleryHeader'
