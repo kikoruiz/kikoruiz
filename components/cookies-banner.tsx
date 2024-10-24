@@ -99,6 +99,7 @@ function CookiesBanner() {
     </>
   )
 }
+
 export default memo(CookiesBanner)
 
 CookiesBanner.displayName = 'CookiesBanner'
