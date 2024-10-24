@@ -1,4 +1,4 @@
-import {useEffect, useState, ReactNode, LegacyRef, forwardRef} from 'react'
+import {useEffect, useState, ReactNode, Ref, forwardRef} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import {Picture} from 'types/gallery'
 import PictureDetail from './picture-detail'
@@ -41,7 +41,7 @@ function PictureViewer(
     paginationInfo,
     trackEvent
   }: PictureViewerProps,
-  ref?: LegacyRef<HTMLDivElement>
+  ref?: Ref<HTMLDivElement>
 ) {
   const [isFullScreen, setIsFullScreen] = useState(false)
   const needsPagination = Boolean(pictures.length > 1)

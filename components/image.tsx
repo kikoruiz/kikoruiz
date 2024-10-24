@@ -1,4 +1,4 @@
-import {useState, CSSProperties, forwardRef} from 'react'
+import {useState, CSSProperties, forwardRef, type JSX} from 'react'
 import Link from 'next/link'
 import NextImage from 'next/image'
 import {ImageFallbackStyle} from 'types/gallery'
