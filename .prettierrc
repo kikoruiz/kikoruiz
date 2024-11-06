@@ -1,4 +1,4 @@
-module.exports = {
+{
   arrowParens: 'avoid',
   bracketSpacing: false,
   bracketSameLine: false,
@@ -10,3 +10,5 @@ module.exports = {
   trailingComma: 'none',
   useTabs: false
 }
+
+
