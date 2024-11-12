@@ -42,7 +42,7 @@
     "use-shopping-cart": "3"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.0.1",
+    "@next/bundle-analyzer": "15.0.3",
     "@plaiceholder/next": "3",
     "@playwright/test": "1",
     "@svgr/webpack": "8",
