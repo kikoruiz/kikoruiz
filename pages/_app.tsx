@@ -1,4 +1,5 @@
 import {AppProps} from 'next/app'
+import {useRouter} from 'next/router'
 import {Analytics} from '@vercel/analytics/react'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {CookieConsentProvider} from '@use-cookie-consent/react'
@@ -16,6 +17,7 @@ import '../styles/globals.css'
 const ONE_YEAR = 365
 
 export default function App({Component, pageProps}: AppProps) {
+  const {query: {print} = {}} = useRouter()
   const {section, subSection, post, tag, alternates, heroImages} = pageProps
   const sectionData = {
     section,
@@ -45,7 +47,11 @@ export default function App({Component, pageProps}: AppProps) {
               <SubcategoryProvider>
                 <LatestPicturesProvider>
                   <HeroImageProvider>
-                    <Layout {...sectionData} {...languageData}>
+                    <Layout
+                      isPrintable={Boolean(print)}
+                      {...sectionData}
+                      {...languageData}
+                    >
                       <Component {...pageProps} />
 
                       <Analytics />
