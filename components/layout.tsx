@@ -28,12 +28,19 @@ export default function Layout({
   const isLegalPage = LEGAL_PAGES.includes(section)
   const isSimplePage = SIMPLE_PAGES.includes(section)
   const needsBorder = hasHero || isLegalPage || isSimplePage
+  const mainProps = {
+    ...(!isPrintable && {
+      className: `container mx-auto mb-auto overflow-hidden sm:pt-12${
+        needsBorder ? ' border-t border-neutral-300/10' : ''
+      }`
+    })
+  }
 
   return (
     <div className={`${inter.variable} font-sans flex min-h-screen flex-col`}>
       {!isPrintable && <Header {...sectionData} />}
 
-      <main>{children}</main>
+      <main {...mainProps}>{children}</main>
 
       {!isPrintable && (
         <>
