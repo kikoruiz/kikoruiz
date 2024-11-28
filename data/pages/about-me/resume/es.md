@@ -1,6 +1,6 @@
 ---
 name: Kiko Ruiz Lloret
-jobTitle: Staff Front-End Engineer
+jobTitle: Front-End Engineer / Tech Lead
 ---
 
 Soy un **ingeniero front-end** con amplia experiencia en la creación de aplicaciones web escalables y mantenibles, así como en el diseño de interfaces _user centric_. A lo largo de los años, he asumido roles con mayor responsabilidad y actualmente soy **Staff Front-End Engineer** en **Adevinta Spain**, donde lidero la convergencia entre varios equipos y garantizo la alineación en decisiones técnicas clave para el desarrollo de la plataforma front-end. Mi principal enfoque está en optimizar los flujos de trabajo y asegurar prácticas consistentes en toda la organización.
