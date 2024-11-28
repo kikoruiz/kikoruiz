@@ -12,7 +12,7 @@ const i18 = {
   pages: {
     '*': ['common'],
     '/': ['home', 'gallery'],
-    '/sobre-mi': ['about-me'],
+    'rgx:/sobre-mi*': ['about-me'],
     'rgx:/galeria*': ['gallery'],
     'rgx:/blog*': ['blog'],
     'rgx:/tienda*': ['store']

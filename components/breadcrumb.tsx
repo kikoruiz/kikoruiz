@@ -9,7 +9,9 @@ import useSubcategoryContext from 'contexts/Subcategory'
 import {SectionData} from 'types'
 import sectionIcons from './section-icons'
 import subcategoryIcons from './gallery-subcategory-icons'
+import BreadcrumbActionButton from './breadcrumb-action-button'
 import IconShoppingCart from 'assets/icons/shopping-cart.svg'
+import IconDocumentArrowDown from 'assets/icons/document-arrow-down.svg'
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {BLOG} from 'config'
 
@@ -25,7 +27,7 @@ export default function Breadcrumb({
 }: SectionData) {
   const {t} = useTranslation()
   const router = useRouter()
-  const {query} = router
+  const {query, locale} = router
   const {subcategory} = useSubcategoryContext()
   const category = query.slug as string
   const items = fromSectionToBreadcrumbItems({
@@ -53,6 +55,7 @@ export default function Breadcrumb({
   const needsShoppingCart = section === 'store'
   const {handleCartHover, cartCount, cartDetails, totalPrice, currency} =
     useShoppingCart()
+  const isResumePage = subSection === 'resume'
 
   return items.length > 0 ? (
     <div id="breadcrumb" className="bg-neutral-800/75">
@@ -130,9 +133,11 @@ export default function Breadcrumb({
         </div>
 
         {needsShoppingCart && (
-          <button
-            className="group flex items-center p-2 rounded-full bg-neutral-900/60 leading-none drop-shadow ring-1 ring-neutral-700/90 hover:ring-orange-300 transition-shadow"
+          <BreadcrumbActionButton
+            icon={IconShoppingCart}
             title={t('store:shopping-cart', {count: cartCount})}
+            bagdeContent={cartCount}
+            className="gap-3"
             onClick={() => {
               handleCartHover()
               trackEvent({
@@ -153,22 +158,25 @@ export default function Breadcrumb({
               })
             }}
           >
-            <div className="relative">
-              <IconShoppingCart className="w-4 fill-orange-300" />
+            {Boolean(totalPrice) && t('store:price', {count: totalPrice})}
+          </BreadcrumbActionButton>
+        )}
 
-              <span className="empty:hidden absolute -top-[75%] -right-[75%] rounded-full drop-shadow-lg bg-gradient-to-tl from-neutral-600 to-neutral-800 px-1.5 py-1 leading-none font-light text-[.5em] text-neutral-300/60 group-hover:text-orange-300">
-                {cartCount}
-              </span>
-            </div>
-
-            {Boolean(totalPrice) && (
-              <span className="text-[.75em] font-light text-neutral-300/60 pl-3">
-                {t('store:price', {count: totalPrice})}
-              </span>
-            )}
-          </button>
+        {isResumePage && (
+          <BreadcrumbActionButton
+            icon={IconDocumentArrowDown}
+            title={t('about-me:download-resume')}
+            className="gap-1.5 px-3"
+            onClick={() => {
+              window.location.href = `/documents/kikoruiz-${locale}-${getSlug(t('about-me.pages.resume.name'))}.pdf`
+            }}
+          >
+            {t('about-me:download-resume').split(' ')[0]}
+          </BreadcrumbActionButton>
         )}
       </div>
     </div>
   ) : null
 }
+
+Breadcrumb.displayName = 'Breadcrumb'

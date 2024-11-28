@@ -66,3 +66,5 @@ interface PictureCardProps extends PropsWithChildren {
   className?: string
   needsFullWidth?: boolean
 }
+
+PictureCard.displayName = 'PictureCard'

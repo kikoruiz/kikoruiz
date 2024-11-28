@@ -166,12 +166,14 @@ export default function Navigation({
               setHeroImage(getRandomElement(HERO_IMAGES, heroImage))
               switchHeroIconRef.current.classList.add(
                 'transition-transform',
-                'rotate-180'
+                'rotate-180',
+                'duration-300'
               )
               setTimeout(() => {
                 switchHeroIconRef.current.classList.remove(
                   'transition-transform',
-                  'rotate-180'
+                  'rotate-180',
+                  'duration-300'
                 )
               }, 300)
               trackEvent({
@@ -259,3 +261,5 @@ export default function Navigation({
     </nav>
   )
 }
+
+Navigation.displayName = 'Navigation'

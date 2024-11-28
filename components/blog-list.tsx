@@ -24,3 +24,5 @@ interface BlogListProps {
   tags?: Tag[]
   posts: BlogPost[]
 }
+
+BlogList.displayName = 'BlogList'

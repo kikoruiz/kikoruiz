@@ -1,3 +1,4 @@
+import {ChangeEvent, memo} from 'react'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import SocialLinks from './social-links'
@@ -9,13 +10,13 @@ interface FooterProps {
   alternates: Alternate[]
 }
 
-export default function Footer({alternates}: FooterProps) {
+function Footer({alternates}: FooterProps) {
   const {locales, locale: currentLocale, push, asPath} = useRouter()
   const {t} = useTranslation()
   const year = new Date().getFullYear()
 
-  function handleLanguageChange(event) {
-    const locale = event.target.value as string
+  function handleLanguageChange(event: ChangeEvent<HTMLSelectElement>) {
+    const locale = event.target.value
     const {href} = alternates.find(alternate => alternate.locale === locale)
     const [origin] = href.match(/http(s)?:\/\/([a-z]+(-?)([.]?))+(:[0-9]+)?/)
     let destination = href.split(origin)[1]
@@ -38,10 +39,12 @@ export default function Footer({alternates}: FooterProps) {
             className="mr-2 inline-flex items-center text-neutral-500"
           >
             <IconLanguage className="w-6" />
+
             <span aria-hidden className="hidden">
               {t('languages.selector.label')}
             </span>
           </label>
+
           <select
             id="languages"
             className="block appearance-none rounded-md border border-neutral-700 bg-neutral-800 bg-select bg-[length:0.75rem] bg-[right_0.5rem_center] bg-no-repeat py-1.5 pl-3 pr-7 shadow-sm focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
@@ -67,3 +70,7 @@ export default function Footer({alternates}: FooterProps) {
     </footer>
   )
 }
+
+export default memo(Footer)
+
+Footer.displayName = 'Footer'

@@ -1,12 +1,12 @@
-import {useEffect, useRef, useState} from 'react'
+import {useLayoutEffect, useRef, useState, memo} from 'react'
 import Link from 'next/link'
+import useLayoutContext from 'contexts/Layout'
 import Breadcrumb from './breadcrumb'
 import Navigation from './navigation'
 import Logo from 'assets/brand/photo-logo.svg'
 import {SectionData} from 'types'
-import useLayoutContext from 'contexts/Layout'
 
-export default function Header({...sectionData}: SectionData) {
+function Header({...sectionData}: SectionData) {
   const headerRef = useRef(null)
   const {setLayout} = useLayoutContext()
   const {hasHero, section, subSection} = sectionData
@@ -21,7 +21,7 @@ export default function Header({...sectionData}: SectionData) {
     />
   )
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setLayout({headerHeight: headerRef.current.offsetHeight})
   }, [setLayout])
 
@@ -58,3 +58,7 @@ export default function Header({...sectionData}: SectionData) {
     </header>
   )
 }
+
+export default memo(Header)
+
+Header.displayName = 'Header'

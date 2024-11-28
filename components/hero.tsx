@@ -25,3 +25,5 @@ export default function Hero({image, isImageHidden = false}: HeroProps) {
     </div>
   )
 }
+
+Hero.displayName = 'Hero'

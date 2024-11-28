@@ -77,3 +77,5 @@ export default function Button({
     </button>
   )
 }
+
+Button.displayName = 'Button'

@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react'
+import {useLayoutEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {useMediaQuery} from 'react-responsive'
@@ -47,7 +47,7 @@ export default function HomeSectionsItem({
   useMediaQuery({minWidth: lg}, undefined, handleMediaChange)
   useMediaQuery({minWidth: xl}, undefined, handleMediaChange)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setImageHeight(imageRef.current?.offsetHeight)
   }, [imageRef])
 
@@ -93,7 +93,9 @@ export default function HomeSectionsItem({
           style={{
             WebkitMaskImage:
               'linear-gradient(to top, rgba(0, 0, 0, 1) 75%, transparent 100%)',
-            height: isCollapsed ? 0 : imageHeight,
+            ...((isCollapsed || imageHeight) && {
+              height: isCollapsed ? 0 : imageHeight
+            }),
             opacity: isCollapsed ? 0 : 100
           }}
           fallbackStyle={css}
@@ -104,3 +106,5 @@ export default function HomeSectionsItem({
     </Link>
   )
 }
+
+HomeSectionsItem.displayName = 'HomeSectionsItem'

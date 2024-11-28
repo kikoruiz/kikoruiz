@@ -24,3 +24,5 @@ export default function ButtonSymbol({
     </button>
   )
 }
+
+ButtonSymbol.displayName = 'ButtonSymbol'
