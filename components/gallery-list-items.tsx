@@ -139,3 +139,5 @@ interface GalleryListItemsProps {
   isAlbum?: boolean
   sortingOption?: string
 }
+
+GalleryListItems.displayName = 'GalleryListItems'

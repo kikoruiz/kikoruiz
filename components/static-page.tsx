@@ -31,3 +31,5 @@ export default function StaticPage({content, alternates}: StaticPageProps) {
     </>
   )
 }
+
+StaticPage.displayName = 'StaticPage'

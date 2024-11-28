@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, memo} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import {useCookieConsentContext} from '@use-cookie-consent/react'
 import CookiesModal from './cookies-modal'
@@ -7,7 +7,7 @@ import Article from './article'
 import {COOKIES_BY_TYPE} from 'config'
 import {camelCase} from 'change-case'
 
-export default function CookiesBanner() {
+function CookiesBanner() {
   const {t} = useTranslation()
   const {consent, acceptAllCookies, declineAllCookies, cookies} =
     useCookieConsentContext()
@@ -99,3 +99,7 @@ export default function CookiesBanner() {
     </>
   )
 }
+
+export default memo(CookiesBanner)
+
+CookiesBanner.displayName = 'CookiesBanner'

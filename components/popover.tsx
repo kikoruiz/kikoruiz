@@ -121,3 +121,5 @@ export default function Popover({
     </div>
   )
 }
+
+Popover.displayName = 'Popover'

@@ -45,7 +45,6 @@ async function saveAllPicturesMetadata() {
       aperture: tags.Aperture,
       artist: tags.Artist,
       colorSpace: tags.ColorSpace,
-      compression: tags.Compression,
       ...(tags.GPSLatitude &&
         tags.GPSLongitude && {
           coordinates: {

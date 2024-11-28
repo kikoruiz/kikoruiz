@@ -40,3 +40,5 @@ export default function NavigationSectionItem({
     </div>
   )
 }
+
+NavigationSectionItem.displayName = 'NavigationSectionItem'

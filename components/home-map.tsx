@@ -50,3 +50,5 @@ interface HomeMapProps {
   pictures: PictureOnMap[]
   setShowMap: (showMap: boolean) => void
 }
+
+HomeMap.displayName = 'HomeMap'

@@ -69,3 +69,5 @@ export default function HomeContact() {
     </HomeBlock>
   )
 }
+
+HomeContact.displayName = 'HomeContact'

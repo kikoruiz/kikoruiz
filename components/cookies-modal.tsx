@@ -128,3 +128,5 @@ interface CookiesModalProps {
   isModalOpen: boolean
   setIsModalOpen: (isModalOpen: boolean) => void
 }
+
+CookiesModal.displayName = 'CookiesModal'

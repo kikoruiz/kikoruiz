@@ -28,3 +28,5 @@ export default function GalleryTags({tags}: GalleryTagsProps) {
 interface GalleryTagsProps {
   tags: Tag[]
 }
+
+GalleryTags.displayName = 'GalleryTags'

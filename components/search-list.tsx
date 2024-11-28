@@ -49,3 +49,5 @@ interface SearchListProps {
   getItemProps: UseComboboxPropGetters<SearchItem>['getItemProps']
   highlightedIndex: number
 }
+
+SearchList.displayName = 'SearchList'

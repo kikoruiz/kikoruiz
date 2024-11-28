@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, ChangeEvent} from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
@@ -41,7 +41,7 @@ export default function GalleryPage({
     ' '
   )
 
-  function handleSortingChange(event) {
+  function handleSortingChange(event: ChangeEvent<HTMLInputElement>) {
     const option = event.target.value
 
     setSortingOption(option)
@@ -145,3 +145,5 @@ interface GalleryPageProps {
   category?: string
   subcategories?: Subcategory[]
 }
+
+GalleryPage.displayName = 'GalleryPage'

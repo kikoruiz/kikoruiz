@@ -24,3 +24,5 @@ export default function NavigationButton({
     </button>
   )
 }
+
+NavigationButton.displayName = 'NavigationButton'

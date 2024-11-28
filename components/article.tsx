@@ -185,3 +185,5 @@ export default function Article({
     </article>
   )
 }
+
+Article.displayName = 'Article'

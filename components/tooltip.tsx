@@ -1,13 +1,9 @@
-import {FC, useState} from 'react'
+import {FC, useState, type SVGProps} from 'react'
 import {UAParser} from 'ua-parser-js'
-
-type IconProps = {
-  className: string
-}
 
 interface TooltipProps {
   message: string
-  icon: FC<IconProps>
+  icon: FC<SVGProps<SVGSVGElement>>
   className?: string
   direction?: 'left' | 'bottom'
   type?: 'info' | 'warning'
@@ -82,3 +78,5 @@ export default function Tooltip({
     </div>
   )
 }
+
+Tooltip.displayName = 'Tooltip'

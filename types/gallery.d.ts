@@ -48,7 +48,6 @@ export interface RawPicture {
   aperture: number
   artist: string
   colorSpace: string
-  compression: string
   coordinates?: Coordinates
   copyright: string
   createDate: string

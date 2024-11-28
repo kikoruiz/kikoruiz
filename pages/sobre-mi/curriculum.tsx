@@ -1,4 +1,4 @@
-import {useEffect, type FunctionComponent, type SVGProps} from 'react'
+import {useEffect, type FC, type SVGProps} from 'react'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import {cx, cva, type VariantProps} from 'class-variance-authority'
@@ -13,7 +13,7 @@ import IconCursorArrowRays from 'assets/icons/cursor-arrow-rays.svg'
 import LogoGithub from 'assets/logos/social/github.svg'
 import {Alternate, StaticContent} from 'types'
 
-type SVGIcon = FunctionComponent<SVGProps<SVGSVGElement>>
+type SVGIcon = FC<SVGProps<SVGSVGElement>>
 
 const RESUME_HEADING = {
   mailto: {

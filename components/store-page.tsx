@@ -115,3 +115,5 @@ export default function StorePage({
     </>
   )
 }
+
+StorePage.displayName = 'StorePage'

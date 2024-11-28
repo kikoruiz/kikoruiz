@@ -1,4 +1,4 @@
-import {useState, CSSProperties, forwardRef} from 'react'
+import {useState, CSSProperties, forwardRef, type JSX} from 'react'
 import Link from 'next/link'
 import NextImage from 'next/image'
 import {ImageFallbackStyle} from 'types/gallery'
@@ -56,7 +56,7 @@ function getAspectRatioClassName(aspectRatio: string): string {
   }
 }
 
-export default forwardRef<HTMLImageElement, ImageProps>(function Image(
+function Image(
   {
     src,
     url,
@@ -152,4 +152,8 @@ export default forwardRef<HTMLImageElement, ImageProps>(function Image(
       {content}
     </figure>
   )
-})
+}
+
+export default forwardRef<HTMLImageElement, ImageProps>(Image)
+
+Image.displayName = 'Image'

@@ -32,3 +32,5 @@ interface HomeModuleProps {
   className?: string
   additionalInfo?: ReactNode
 }
+
+HomeModule.displayName = 'HomeModule'

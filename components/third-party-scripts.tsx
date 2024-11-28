@@ -56,3 +56,5 @@ export default function ThirdPartyScripts() {
     </>
   ) : null
 }
+
+ThirdPartyScripts.displayName = 'ThirdPartyScripts'

@@ -111,3 +111,5 @@ interface MapPictureProps {
   image: ImageInterface
   isInteractive: boolean
 }
+
+MapPicture.displayName = 'MapPicture'

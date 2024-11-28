@@ -182,3 +182,5 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
     </div>
   )
 }
+
+SearchBar.displayName = 'SearchBar'

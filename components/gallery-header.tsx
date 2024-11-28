@@ -1,3 +1,4 @@
+import {memo} from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
@@ -6,7 +7,12 @@ import {getSlug, getTitle} from 'lib/utils'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconArrowRight from 'assets/icons/arrow-right.svg'
 
-export default function GalleryHeader({
+interface GalleryHeaderProps {
+  isAlbum?: boolean
+  isTagsIndex?: boolean
+}
+
+function GalleryHeader({
   isAlbum = false,
   isTagsIndex = false
 }: GalleryHeaderProps) {
@@ -14,7 +20,7 @@ export default function GalleryHeader({
     query: {slug, tag}
   } = useRouter()
   const {t} = useTranslation()
-  let originalTag
+  let originalTag: string
   if (tag) {
     originalTag = GALLERY_TAGS.find(
       galleryTag => getSlug(t(`gallery:tags.${getSlug(galleryTag)}`)) === tag
@@ -23,7 +29,7 @@ export default function GalleryHeader({
   const galleryListTitle = originalTag
     ? t(`gallery:tags.${getSlug(originalTag)}`).toLowerCase()
     : slug && getTitle(slug as string)
-  let title
+  let title: string
   if (isAlbum) {
     title = t('sections.gallery.name')
   } else if (isTagsIndex) {
@@ -99,7 +105,6 @@ export default function GalleryHeader({
   )
 }
 
-interface GalleryHeaderProps {
-  isAlbum?: boolean
-  isTagsIndex?: boolean
-}
+export default memo(GalleryHeader)
+
+GalleryHeader.displayName = 'GalleryHeader'
