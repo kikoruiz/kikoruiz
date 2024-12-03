@@ -32,7 +32,7 @@
     "next-translate": "2",
     "plaiceholder": "3",
     "react": "19.0.0-rc-69d4b800-20241021",
-    "react-dom": "19.0.0-rc-69d4b800-20241021",
+    "react-dom": "19.0.0-rc.1",
     "react-leaflet": "4",
     "react-markdown": "9",
     "react-responsive": "10",
