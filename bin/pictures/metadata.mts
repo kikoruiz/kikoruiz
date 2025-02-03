@@ -48,8 +48,8 @@ async function saveAllPicturesMetadata() {
       ...(tags.GPSLatitude &&
         tags.GPSLongitude && {
           coordinates: {
-            latitude: tags.GPSLatitude,
-            longitude: tags.GPSLongitude
+            latitude: Number(tags.GPSLatitude),
+            longitude: Number(tags.GPSLongitude)
           }
         }),
       copyright: tags.CopyrightNotice,
