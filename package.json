@@ -60,7 +60,7 @@
     "checkly": "4",
     "eslint": "8",
     "eslint-config-next": "15",
-    "eslint-config-prettier": "9",
+    "eslint-config-prettier": "10",
     "exiftool-vendored": "29",
     "glob": "11",
     "jsdom": "25",
