@@ -73,7 +73,7 @@
     "tsx": "4",
     "typescript": "5",
     "vite-tsconfig-paths": "5",
-    "vitest": "2"
+    "vitest": "3"
   },
   "overrides": {
     "@typescript-eslint/parser": "8.0.0",
