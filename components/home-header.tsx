@@ -4,6 +4,7 @@ import Logo from 'assets/brand/logo.svg'
 import HomeSections from 'components/home-sections'
 import {SectionImage} from 'types'
 import {HighlightedImage} from 'types/gallery'
+import {ReactTyped} from 'react-typed'
 
 interface HomeHeaderProps {
   sectionImages: SectionImage[]
@@ -16,14 +17,35 @@ export default function HomeHeader({
 }: HomeHeaderProps) {
   const {t} = useTranslation('home')
   const [collapseSections, setCollapseSections] = useState(false)
+  const [typingEnabled] = useState(true)
+  const typedStrings = ['Photography', 'Design', 'Development']
+  const maxTypedWidth = typedStrings.reduce(
+    (maxLength, value) => Math.max(maxLength, value.length),
+    0
+  )
 
   return (
     <header className="relative rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pb-6 pt-12 text-white/90 md:px-6">
-      <div className="flex flex-col xl:flex-row xl:justify-center items-center mb-6 xl:mb-9 break-words">
+      <div className="flex flex-col xl:flex-row xl:justify-center items-center mb-6 xl:mb-9 break-words transition-opacity">
         <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
 
         <h1 className="break-words text-center text-4xl font-black leading-tight drop-shadow sm:text-5xl sm:leading-normal xl:text-6xl">
-          Kiko Ruiz <span className="font-thin">{t('title-addon')}</span>
+          Kiko Ruiz{' '}
+          {typingEnabled ? (
+            <ReactTyped
+              className="font-thin text-center sm:text-left block sm:inline-block"
+              style={{width: `${maxTypedWidth}ch`}}
+              strings={typedStrings}
+              typeSpeed={120}
+              backSpeed={30}
+              loop
+              contentType="text"
+            />
+          ) : (
+            <span className="font-thin text-center block sm:inline-block">
+              {typedStrings[0]}
+            </span>
+          )}
         </h1>
       </div>
 
