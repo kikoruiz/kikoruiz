@@ -1,4 +1,10 @@
 {
+  "header": {
+    "photography": "Photography",
+    "design": "Design",
+    "moments": "Moments",
+    "development": "Development"
+  },
   "sections": {
     "collapse": "Collapse",
     "uncollapse": "Uncollapse"

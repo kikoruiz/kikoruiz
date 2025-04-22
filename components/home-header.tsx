@@ -18,7 +18,13 @@ export default function HomeHeader({
   const {t} = useTranslation('home')
   const [collapseSections, setCollapseSections] = useState(false)
   const [typingEnabled] = useState(true)
-  const typedStrings = ['Photography', 'Design', 'Development']
+  const typedStringsKeys = [
+    'header.photography',
+    'header.design',
+    'header.moments',
+    'header.development'
+  ]
+  const typedStrings = typedStringsKeys.map(key => t(key))
   const maxTypedWidth = typedStrings.reduce(
     (maxLength, value) => Math.max(maxLength, value.length),
     0
