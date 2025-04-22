@@ -44,7 +44,6 @@ export default function Navigation({
   const {t} = useTranslation()
   const {heroImage, setHeroImage, showImage, setShowImage} =
     useHeroImageContext()
-  const switchHeroIconRef = useRef(null)
   const router = useRouter()
   const {asPath} = router
   const isNotSectionPage =
@@ -164,29 +163,15 @@ export default function Navigation({
             title={t('navigation.switch-hero-image.randomize')}
             onClick={() => {
               setHeroImage(getRandomElement(HERO_IMAGES, heroImage))
-              switchHeroIconRef.current.classList.add(
-                'transition-transform',
-                'rotate-180',
-                'duration-300'
-              )
-              setTimeout(() => {
-                switchHeroIconRef.current.classList.remove(
-                  'transition-transform',
-                  'rotate-180',
-                  'duration-300'
-                )
-              }, 300)
               trackEvent({
-                action: `switch_hero_image_${showImage ? 'with_image' : 'without_image'}`
+                action: `switch_hero_${showImage ? 'with_image' : 'without_image'}`
               })
             }}
             className="flex gap-1.5 w-full items-center justify-center"
             size="small"
             intent="accent"
           >
-            <span ref={switchHeroIconRef}>
-              <IconArrowPath className="size-4" />
-            </span>
+            <IconArrowPath className="size-4" />
 
             {t('navigation.switch-hero-image.randomize')}
           </Button>
@@ -198,14 +183,14 @@ export default function Navigation({
             onClick={() => {
               setShowImage(!showImage)
             }}
-            className="flex gap-1.5 w-full items-center justify-center"
+            className="flex gap-1.5 w-full items-center justify-center pointer-events-auto"
             size="small"
             intent="light"
           >
             {showImage ? (
-              <IconEyeSlash className="size-4" />
+              <IconEyeSlash className="size-4 pointer-events-none" />
             ) : (
-              <IconEye className="size-4" />
+              <IconEye className="size-4 pointer-events-none" />
             )}
 
             {t(`navigation.switch-hero-image.${showImage ? 'hide' : 'show'}`)}
