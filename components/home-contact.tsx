@@ -15,7 +15,7 @@ export default function HomeContact() {
   const {t} = useTranslation('home')
   const links = [
     {
-      label: PERSONAL_INFO.email,
+      label: t('contact.email'),
       href: `mailto:${PERSONAL_INFO.email}`,
       class:
         'group hover:scale-105 hover:border-orange-300 hover:text-orange-300',

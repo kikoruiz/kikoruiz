@@ -20,7 +20,8 @@
   "gallery-tags": "Tags de la galeria",
   "contact": {
     "title": "En parlem? 👋",
-    "name": "Contacte"
+    "name": "Contacte",
+    "email": "Email"
   },
   "map": {
     "title": "Mapa",
