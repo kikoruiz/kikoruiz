@@ -33,13 +33,6 @@
 - [SUI-Components/sui](https://github.com/SUI-Components/sui) — Monorepo for modular UI libraries
 - [spread-the-song](https://github.com/kikoruiz/spread-the-song) — Instantly share any music link, anywhere
 
-## 🏆 Highlights
-
-- Staff Engineer at Adevinta 🚀
-- Open Source contributor 🌍
-- Passionate landscape and timelapse photographer 📷
-- Living in Sant Cugat del Vallès, Barcelona 🏞️
-
 ## ✨ Fun Facts
 
 - 📷 Always chasing the perfect light
