@@ -19,26 +19,25 @@
 ## 🧰 Favorite Technologies & Apps
 
 | Technology/App  | Main Use          | Skill Level |
-| :-------------: | :---------------- | :---------: |
-|      React      | Web Apps          | ⭐⭐⭐⭐⭐  |
-|   TypeScript    | Safe Typing       | ⭐⭐⭐⭐⭐  |
-|     Node.js     | Back-end          |  ⭐⭐⭐⭐   |
-| GitHub Actions  | DevOps/CI         |  ⭐⭐⭐⭐   |
-| Adobe Lightroom | Photo Editing     |  ⭐⭐⭐⭐   |
-| Adobe Photoshop | Photo & Timelapse |  ⭐⭐⭐⭐   |
+| :-------------- | :---------------- | :---------- |
+| React           | Web Apps          | ⭐⭐⭐⭐⭐  |
+| TypeScript      | Safe Typing       | ⭐⭐⭐⭐⭐  |
+| Node.js         | Back-end          | ⭐⭐⭐⭐    |
+| GitHub Actions  | DevOps/CI         | ⭐⭐⭐⭐    |
+| Adobe Lightroom | Photo Editing     | ⭐⭐⭐⭐    |
+| Adobe Photoshop | Photo & Timelapse | ⭐⭐⭐⭐    |
 
 ## 🌟 Featured Projects
 
 - [leboncoin/spark-web](https://github.com/leboncoin/spark-web) — Simple, accessible UI components
 - [SUI-Components/sui](https://github.com/SUI-Components/sui) — Monorepo for modular UI libraries
 - [spread-the-song](https://github.com/kikoruiz/spread-the-song) — Instantly share any music link, anywhere
-- [refuel](https://github.com/kikoruiz/refuel) — Find the best gas station prices nearby
 
 ## 🏆 Highlights
 
 - Staff Engineer at Adevinta 🚀
 - Open Source contributor 🌍
-- Passionate landscape and timelapse photographer 📷⏱️
+- Passionate landscape and timelapse photographer 📷
 - Living in Sant Cugat del Vallès, Barcelona 🏞️
 
 ## ✨ Fun Facts
