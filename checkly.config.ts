@@ -6,7 +6,7 @@ const config = defineConfig({
   repoUrl: 'https://github.com/kikoruiz/kikoruiz',
   checks: {
     frequency: 1440,
-    locations: ['eu-west-1'],
+    locations: ['eu-central-1'],
     checkMatch: '**/__checks__/**/*.check.ts',
     playwrightConfig: {},
     browserChecks: {
@@ -14,7 +14,7 @@ const config = defineConfig({
     }
   },
   cli: {
-    runLocation: 'eu-west-1',
+    runLocation: 'eu-central-1',
     reporters: ['list']
   }
 })
