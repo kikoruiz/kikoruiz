@@ -33,11 +33,11 @@ describe('utils lib', () => {
   // Tests for `isNew`.
 
   it('says an item from 2023-04-23 is new if today was 2023-10-22', () => {
-    expect(isNew('2023-04-23', '2023-10-22')).to.be.true
+    expect(isNew('2023-04-23', '2023-10-22')).toBe(true)
   })
 
   it('says an item from 2023-04-23 is not new if today was 2023-10-24', () => {
-    expect(isNew('2023-04-23', '2023-10-24')).to.be.false
+    expect(isNew('2023-04-23', '2023-10-24')).toBe(false)
   })
 
   // Tests for `getSeason`.
