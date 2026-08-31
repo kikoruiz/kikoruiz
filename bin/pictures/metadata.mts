@@ -44,7 +44,7 @@ async function saveAllPicturesMetadata() {
     pictures.push({
       aperture: tags.Aperture,
       artist: tags.Artist,
-      colorSpace: tags.ColorSpace,
+      colorSpace: String(tags.ColorSpace),
       ...(tags.GPSLatitude &&
         tags.GPSLongitude && {
           coordinates: {
@@ -65,7 +65,7 @@ async function saveAllPicturesMetadata() {
       firmware: tags.Firmware,
       focalLength: tags.FocalLength,
       hyperfocalDistance: tags.HyperfocalDistance,
-      imageSize: tags.ImageSize,
+      imageSize: String(tags.ImageSize),
       iso: tags.ISO,
       keywords: tags.Keywords as string[],
       lens: tags.LensID,
@@ -81,7 +81,7 @@ async function saveAllPicturesMetadata() {
       make: tags.Make,
       maxApertureValue: tags.MaxApertureValue,
       megapixels: tags.Megapixels,
-      meteringMode: tags.MeteringMode,
+      meteringMode: String(tags.MeteringMode),
       mimeType: tags.MIMEType,
       model: tags.Model,
       offsetTime: tags.OffsetTime,
@@ -96,7 +96,7 @@ async function saveAllPicturesMetadata() {
       shutterSpeed: tags.ShutterSpeed,
       software: tags.Software,
       title: tags.Title,
-      whiteBalance: tags.WhiteBalance
+      whiteBalance: String(tags.WhiteBalance)
     })
   }
 
