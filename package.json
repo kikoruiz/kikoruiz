@@ -6,7 +6,7 @@
   "scripts": {
     "analyze": "ANALYZE=true npm run build",
     "build:data": "make save_placeholders && make save_metadata && make save_content",
-    "build": "next build",
+    "build": "next build --webpack",
     "debug": "NODE_OPTIONS='--inspect' next dev --webpack",
     "dev": "next dev --webpack",
     "lint": "eslint .",
