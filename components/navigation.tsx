@@ -1,4 +1,4 @@
-import {MouseEvent, useEffect, useRef, useState} from 'react'
+import {MouseEvent, useEffect, useState} from 'react'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {

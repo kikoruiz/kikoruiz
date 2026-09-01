@@ -114,7 +114,9 @@ async function saveInventory() {
       let stripeProduct
       try {
         stripeProduct = await stripe.products.retrieve(id)
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
       const isAlreadyCreated = Boolean(stripeProduct)
       let newStripeProduct
 
