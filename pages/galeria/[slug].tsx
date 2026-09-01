@@ -8,6 +8,7 @@ import {fromExifToGallery} from 'lib/gallery/mappers'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {autoSortSeasons, getSlug} from 'lib/utils'
 import {GALLERY_ALBUMS} from 'config/gallery'
+import {SITE_NAME} from 'config'
 import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
 
@@ -27,7 +28,7 @@ export default function GallerySlug({
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t(
+        <title>{`${SITE_NAME} / ${t(
           `gallery.albums.${pageProps.category}.name`
         )}`}</title>
         <meta name="description" content={t('sections.gallery.description')} />

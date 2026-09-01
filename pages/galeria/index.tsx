@@ -5,7 +5,7 @@ import GalleryHeader from 'components/gallery-header'
 import {getGalleryAlbums} from 'lib/gallery/albums'
 import {fromAlbumToGallery} from 'lib/gallery/mappers'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {SECTIONS} from 'config'
+import {SECTIONS, SITE_NAME} from 'config'
 import {Picture} from 'types/gallery'
 import {Alternate} from 'types'
 import {getAbsoluteUrl} from 'lib/utils'
@@ -16,7 +16,7 @@ export default function Gallery({albums, alternates, section}: GalleryProps) {
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t('sections.gallery.name')}`}</title>
+        <title>{`${SITE_NAME} / ${t('sections.gallery.name')}`}</title>
         <meta name="description" content={t('sections.gallery.description')} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
@@ -25,7 +25,7 @@ export default function Gallery({albums, alternates, section}: GalleryProps) {
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content={`Kiko Ruiz / ${t('sections.gallery.name')}`}
+          content={`${SITE_NAME} / ${t('sections.gallery.name')}`}
         />
         <meta
           property="og:url"

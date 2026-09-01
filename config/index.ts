@@ -1,5 +1,6 @@
 import {GALLERY_ALBUMS} from './gallery'
 
+export const SITE_NAME = 'Kiko Ruiz'
 export const DEFAULT_ORIGIN = 'https://www.kikoruiz.es'
 
 export const SECTIONS = [
@@ -47,7 +48,7 @@ export const PERSONAL_INFO = {
 }
 
 export const BLOG = {
-  AUTHORS: [{slug: 'kiko-ruiz', name: 'Kiko Ruiz'}],
+  AUTHORS: [{slug: 'kiko-ruiz', name: SITE_NAME}],
   TAGS: [
     'photography',
     'personal'
@@ -137,7 +138,7 @@ export const REQUEST_STATUS_OPTIONS = {
 }
 
 export const HERO_DEFAULT_DATA = {
-  alt: 'Kiko Ruiz Photography'
+  alt: `${SITE_NAME} Photography`
 }
 export const HERO_IMAGES = [
   '2021-12-04_0153',

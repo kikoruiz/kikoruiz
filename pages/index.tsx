@@ -28,7 +28,7 @@ import IconMapPin from 'assets/icons/map-pin.svg'
 import useHeroImageContext from 'contexts/HeroImage'
 import {getAbsoluteUrl} from 'lib/utils'
 import {GALLERY_ALBUMS} from 'config/gallery'
-import {BRANDS} from 'config'
+import {BRANDS, SITE_NAME} from 'config'
 
 interface HomeProps {
   heroImages: HighlightedImage[]
@@ -70,14 +70,14 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Kiko Ruiz</title>
+        <title>{SITE_NAME}</title>
         <meta name="description" content={description} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Kiko Ruiz" />
+        <meta property="og:title" content={SITE_NAME} />
         <meta property="og:url" content={getAbsoluteUrl('/')} />
         <meta property="og:image" content={getAbsoluteUrl('/logo.png')} />
         <meta property="og:image:type" content="image/png" />
@@ -89,12 +89,12 @@ export default function Home({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              name: 'Kiko Ruiz',
+              name: SITE_NAME,
               url: getAbsoluteUrl('/'),
               description,
               author: {
                 '@type': 'Person',
-                name: 'Kiko Ruiz',
+                name: SITE_NAME,
                 url: getAbsoluteUrl('/'),
                 sameAs: BRANDS.SOCIAL.map(({url}) => url)
               }

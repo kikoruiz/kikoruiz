@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
+import {SITE_NAME} from 'config'
 import {Alternate, Tag} from 'types'
 import {getTagsData} from 'lib/blog/tags'
 import BlogHeader from 'components/blog-header'
@@ -12,7 +13,7 @@ export default function BlogTags({tags, alternates}: BlogTagsProps) {
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t('tags')}`}</title>
+        <title>{`${SITE_NAME} / ${t('tags')}`}</title>
         <meta name="description" content={t('sections.blog.description')} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />

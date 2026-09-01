@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Article from 'components/article'
+import {SITE_NAME} from 'config'
 import {Alternate, StaticContent} from 'types'
 
 export interface StaticPageProps {
@@ -11,7 +12,7 @@ export default function StaticPage({content, alternates}: StaticPageProps) {
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${content.title}`}</title>
+        <title>{`${SITE_NAME} / ${content.title}`}</title>
         <meta name="description" content={content.title} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
