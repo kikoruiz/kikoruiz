@@ -11,7 +11,7 @@ import {Alternate} from 'types'
 import {getAbsoluteUrl} from 'lib/utils'
 
 export default function Gallery({albums, alternates, section}: GalleryProps) {
-  const {t} = useTranslation()
+  const {t, lang: locale} = useTranslation()
 
   return (
     <>
@@ -26,6 +26,10 @@ export default function Gallery({albums, alternates, section}: GalleryProps) {
         <meta
           property="og:title"
           content={`Kiko Ruiz / ${t('sections.gallery.name')}`}
+        />
+        <meta
+          property="og:url"
+          content={alternates.find(a => a.locale === locale)?.href}
         />
         <meta
           property="og:description"

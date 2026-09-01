@@ -33,6 +33,10 @@ export default function AboutMe({
         <meta name="description" content={metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
+        <meta
+          property="og:url"
+          content={alternates.find(a => a.locale === locale)?.href}
+        />
         <meta property="og:description" content={metaDescription} />
         <meta
           property="og:image"
