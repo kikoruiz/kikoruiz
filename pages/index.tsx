@@ -28,6 +28,7 @@ import IconMapPin from 'assets/icons/map-pin.svg'
 import useHeroImageContext from 'contexts/HeroImage'
 import {getAbsoluteUrl} from 'lib/utils'
 import {GALLERY_ALBUMS} from 'config/gallery'
+import {BRANDS} from 'config'
 
 interface HomeProps {
   heroImages: HighlightedImage[]
@@ -77,9 +78,29 @@ export default function Home({
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Kiko Ruiz" />
+        <meta property="og:url" content={getAbsoluteUrl('/')} />
         <meta property="og:image" content={getAbsoluteUrl('/logo.png')} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:description" content={description} />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Kiko Ruiz',
+              url: getAbsoluteUrl('/'),
+              description,
+              author: {
+                '@type': 'Person',
+                name: 'Kiko Ruiz',
+                url: getAbsoluteUrl('/'),
+                sameAs: BRANDS.SOCIAL.map(({url}) => url)
+              }
+            })
+          }}
+        />
       </Head>
 
       {heroImage && <Hero image={heroImage} isImageHidden={!showImage} />}

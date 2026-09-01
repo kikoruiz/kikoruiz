@@ -1,4 +1,6 @@
 import {ReactNode} from 'react'
+import {useRouter} from 'next/router'
+import Head from 'next/head'
 import {Inter} from 'next/font/google'
 import Header from './header'
 import Footer from './footer'
@@ -24,9 +26,12 @@ export default function Layout({
   isPrintable = false,
   ...sectionData
 }: LayoutProps) {
+  const {locale, defaultLocale} = useRouter()
   const {hasHero, section} = sectionData
   const isLegalPage = LEGAL_PAGES.includes(section)
   const isSimplePage = SIMPLE_PAGES.includes(section)
+  const canonical = alternates?.find(a => a.locale === locale)?.href
+  const defaultHref = alternates?.find(a => a.locale === defaultLocale)?.href
   const needsBorder = hasHero || isLegalPage || isSimplePage
   const mainProps = {
     ...(!isPrintable && {
@@ -38,6 +43,13 @@ export default function Layout({
 
   return (
     <div className={`${inter.variable} font-sans flex min-h-screen flex-col`}>
+      {canonical && (
+        <Head>
+          <link rel="canonical" href={canonical} />
+          <link rel="alternate" hrefLang="x-default" href={defaultHref} />
+        </Head>
+      )}
+
       {!isPrintable && <Header {...sectionData} />}
 
       <main {...mainProps}>{children}</main>

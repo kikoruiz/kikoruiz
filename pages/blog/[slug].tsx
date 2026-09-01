@@ -39,6 +39,10 @@ export default function Post({post, alternates}: PostProps) {
 
         <meta property="og:type" content="article" />
         <meta property="og:title" content={title} />
+        <meta
+          property="og:url"
+          content={alternates.find(a => a.locale === locale)?.href}
+        />
         <meta property="og:article:published_time" content={post.createdAt} />
         <meta property="og:article:author" content={post.author} />
         {post.blogTags.map(({id, slug}) => (
@@ -52,6 +56,25 @@ export default function Post({post, alternates}: PostProps) {
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BlogPosting',
+              headline: post.title,
+              description: post.excerpt,
+              datePublished: post.createdAt,
+              image: getAbsoluteUrl(post.bodyImages[0].src),
+              author: {
+                '@type': 'Person',
+                name: author,
+                url: getAbsoluteUrl('/')
+              }
+            })
+          }}
+        />
       </Head>
 
       <article className="mx-auto p-6 xl:max-w-5xl">
