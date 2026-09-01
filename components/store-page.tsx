@@ -10,6 +10,7 @@ import {getSlug} from 'lib/utils'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconCheckCircle from 'assets/icons/check-circle.svg'
 import IconXCircle from 'assets/icons/x-circle.svg'
+import {SITE_NAME} from 'config'
 import {Alternate} from 'types'
 
 interface StorePageProps extends PropsWithChildren {
@@ -51,7 +52,7 @@ export default function StorePage({
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${title}`}</title>
+        <title>{`${SITE_NAME} / ${title}`}</title>
         <meta name="description" content={description} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />

@@ -7,11 +7,11 @@ import {getAbsoluteUrl} from 'lib/utils'
 import BlogList from 'components/blog-list'
 import {BlogPost} from 'types/blog'
 import {Alternate, Tag} from 'types'
-import {SECTIONS} from 'config'
+import {SECTIONS, SITE_NAME} from 'config'
 
 export default function Blog({posts, tags, alternates, section}: BlogProps) {
   const {t} = useTranslation()
-  const title = `Kiko Ruiz / ${t('sections.blog.name')}`
+  const title = `${SITE_NAME} / ${t('sections.blog.name')}`
   const description = t('sections.blog.description')
 
   return (

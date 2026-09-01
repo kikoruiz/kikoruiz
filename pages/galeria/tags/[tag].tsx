@@ -7,6 +7,7 @@ import {fromExifToGallery} from 'lib/gallery/mappers'
 import {getGalleryPicturesByTag} from 'lib/gallery/pictures'
 import {getAbsoluteUrl, getSlug} from 'lib/utils'
 import {fromLocalesToAlternates} from 'lib/mappers'
+import {SITE_NAME} from 'config'
 import {Alternate} from 'types'
 import {Picture} from 'types/gallery'
 
@@ -15,7 +16,7 @@ export default function GalleryTag({
   ...pageProps
 }: GalleryTagProps) {
   const {t} = useTranslation('gallery')
-  const title = `Kiko Ruiz / ${t('common:tags')} / # ${t(
+  const title = `${SITE_NAME} / ${t('common:tags')} / # ${t(
     `tags.${getSlug(pageProps.tag)}`
   ).toLowerCase()}`
   const description = t('common:sections.gallery.description')

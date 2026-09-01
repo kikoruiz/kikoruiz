@@ -7,7 +7,7 @@ import {fromLocalesToAlternates} from 'lib/mappers'
 import {getAbsoluteUrl, getSlug, themeScreens} from 'lib/utils'
 import {getImagePlaceholder} from 'lib/utils/image'
 import {getContent} from 'lib/content'
-import {PERSONAL_INFO, SECTIONS} from 'config'
+import {PERSONAL_INFO, SECTIONS, SITE_NAME} from 'config'
 import Article from 'components/article'
 import Image from 'components/image'
 import IconDocumentText from 'assets/icons/document-text.svg'
@@ -23,7 +23,7 @@ export default function AboutMe({
   const {locale} = useRouter()
   const {t} = useTranslation()
   const bodyImage = avatar as ImageInterface
-  const title = `Kiko Ruiz / ${t('sections.about-me.name')}`
+  const title = `${SITE_NAME} / ${t('sections.about-me.name')}`
   const metaDescription = t('sections.about-me.description')
 
   return (

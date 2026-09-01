@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
+import {SITE_NAME} from 'config'
 import {Alternate, Tag} from 'types'
 import GalleryHeader from 'components/gallery-header'
 import GalleryTags from 'components/gallery-tags'
@@ -15,7 +16,7 @@ export default function GalleryTagsIndex({
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t('tags')}`}</title>
+        <title>{`${SITE_NAME} / ${t('tags')}`}</title>
         <meta name="description" content={t('sections.gallery.description')} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />

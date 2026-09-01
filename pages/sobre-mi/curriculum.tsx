@@ -11,6 +11,7 @@ import IconAtSymbol from 'assets/icons/at-symbol.svg'
 import IconPhone from 'assets/icons/phone.svg'
 import IconCursorArrowRays from 'assets/icons/cursor-arrow-rays.svg'
 import LogoGithub from 'assets/logos/social/github.svg'
+import {SITE_NAME} from 'config'
 import {Alternate, StaticContent} from 'types'
 
 type SVGIcon = FC<SVGProps<SVGSVGElement>>
@@ -92,7 +93,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${content.title}`}</title>
+        <title>{`${SITE_NAME} / ${content.title}`}</title>
         <meta name="description" content={content.title} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />

@@ -5,6 +5,8 @@ export default function Document({locale}: DocumentProps) {
     <Html lang={locale} className="scroll-smooth">
       <Head>
         <meta name="theme-color" content="#171717" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@kikoruizlloret" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

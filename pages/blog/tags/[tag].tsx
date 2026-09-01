@@ -2,7 +2,7 @@ import Head from 'next/head'
 import getT from 'next-translate/getT'
 import useTranslation from 'next-translate/useTranslation'
 import {remove} from 'remove-accents'
-import {BLOG} from 'config'
+import {BLOG, SITE_NAME} from 'config'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getAllPosts} from 'lib/blog/posts'
 import BlogList from 'components/blog-list'
@@ -15,7 +15,7 @@ export default function Tag({tag, posts, alternates}: TagProps) {
   return (
     <>
       <Head>
-        <title>{`Kiko Ruiz / ${t('tags')} / ${t(`blog.tags.${tag}`)}`}</title>
+        <title>{`${SITE_NAME} / ${t('tags')} / ${t(`blog.tags.${tag}`)}`}</title>
         <meta name="description" content={t('sections.blog.description')} />
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />

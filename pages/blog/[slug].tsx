@@ -6,7 +6,7 @@ import {getPrettyDate} from 'lib/blog/date'
 import {getTagsData} from 'lib/blog/tags'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getAbsoluteUrl, getSlug} from 'lib/utils'
-import {BLOG} from 'config'
+import {BLOG, SITE_NAME} from 'config'
 import Article from 'components/article'
 import BlogTags from 'components/blog-tags'
 import {BlogPost} from 'types/blog'
@@ -19,7 +19,7 @@ export default function Post({post, alternates}: PostProps) {
   const {t} = useTranslation('blog')
   const author = BLOG.AUTHORS.find(({slug}) => post.author === slug).name
   const localePath = defaultLocale === locale ? '' : `/${locale}`
-  const title = `Kiko Ruiz / ${post.title}`
+  const title = `${SITE_NAME} / ${post.title}`
 
   function createAuthorMarkup() {
     return {
