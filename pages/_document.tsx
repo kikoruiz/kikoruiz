@@ -8,6 +8,14 @@ export default function Document({locale}: DocumentProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@kikoruizlloret" />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Kiko Ruiz / Blog"
+          href="/api/rss"
+        />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
       <body className="bg-gradient-to-bl from-neutral-900 via-neutral-900 to-black text-neutral-300 subpixel-antialiased">
