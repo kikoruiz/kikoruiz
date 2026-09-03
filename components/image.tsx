@@ -80,7 +80,7 @@ function Image(
 ) {
   const isLink = Boolean(url)
   const [isLoaded, setIsLoaded] = useState(false)
-  const wrapperClassName = `relative${isRounded ? ' rounded-xs' : ''}`
+  const wrapperClassName = `relative${isRounded ? ' rounded-sm' : ''}`
   const isFullSize = sizes === '100vw'
   const imageStyle = {
     ...style,

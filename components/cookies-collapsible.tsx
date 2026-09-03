@@ -27,7 +27,7 @@ export default function CookiesCollapsible({
           {t(`legal.cookies.types.${slug}.description`)}
         </span>
 
-        <button className="flex p-3 rounded-full bg-linear-to-t from-neutral-600/30 group-hover:text-neutral-300 focus:outline-hidden">
+        <button className="flex p-3 rounded-full bg-gradient-to-t from-neutral-600/30 group-hover:text-neutral-300 focus:outline-none">
           <IconChevronDown
             className={`h-4 w-4 transition-transform ease-in-out${
               isOpen ? ' -rotate-180' : ''

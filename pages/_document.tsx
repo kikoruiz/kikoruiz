@@ -18,7 +18,7 @@ export default function Document({locale}: DocumentProps) {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <body className="bg-linear-to-bl from-neutral-900 via-neutral-900 to-black text-neutral-300 subpixel-antialiased">
+      <body className="bg-gradient-to-bl from-neutral-900 via-neutral-900 to-black text-neutral-300 subpixel-antialiased">
         <Main />
         <NextScript />
       </body>

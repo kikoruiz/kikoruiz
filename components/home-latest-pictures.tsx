@@ -126,7 +126,7 @@ export default function HomeLatestPictures({
                 needsPreload={index === 0 || index === 1}
                 needsFullWidth={false}
               >
-                <div className="flex flex-col text-xs font-light text-neutral-600 drop-shadow-sm">
+                <div className="flex flex-col text-xs font-light text-neutral-600 drop-shadow">
                   {isSortedByProcessingDate && processingDate ? (
                     <time
                       className="leading-normal text-neutral-300/40"

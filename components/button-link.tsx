@@ -35,7 +35,7 @@ export default function ButtonLink({
         intent,
         class: cx(
           className,
-          'group inline-flex w-max items-center rounded-full border bg-linear-to-tr px-3 py-1.5 text-xs font-light shadow-xs transition-colors'
+          'group inline-flex w-max items-center rounded-full border bg-gradient-to-tr px-3 py-1.5 text-xs font-light shadow-sm transition-colors'
         )
       })}
     >

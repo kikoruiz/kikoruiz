@@ -42,15 +42,15 @@ export default function NavigationSection({
   const sectionName = t(`sections.${section.id}.name`)
   const sectionClassName = `relative px-6 font-bold after:absolute after:left-0 after:block after:from-transparent ${
     isMenuOpen
-      ? 'mx-3 py-3 after:top-0 after:h-full after:w-px after:bg-linear-to-b cursor-pointer'
-      : 'py-2 after:bottom-0 after:h-px after:w-full after:bg-linear-to-r'
+      ? 'mx-3 py-3 after:top-0 after:h-full after:w-[1px] after:bg-gradient-to-b cursor-pointer'
+      : 'py-2 after:bottom-0 after:h-[1px] after:w-full after:bg-gradient-to-r'
   } ${isActualSection ? 'sm:hover:cursor-default' : 'block'} ${
     isActiveSection
       ? 'text-orange-300 after:via-orange-300'
       : 'after:via-transparent group-hover:text-orange-200 group-hover:after:via-orange-200'
   }${
     hasCategories && !isMenuOpen
-      ? ' group-hover:before:absolute group-hover:before:bottom-0 group-hover:before:-left-2 group-hover:before:block group-hover:before:h-full group-hover:before:w-[calc(100%+1rem)] group-hover:before:rounded-t group-hover:before:bg-neutral-800 group-hover:before:drop-shadow-md'
+      ? ' group-hover:before:absolute group-hover:before:bottom-0 group-hover:before:left-[-0.5rem] group-hover:before:block group-hover:before:h-full group-hover:before:w-[calc(100%+1rem)] group-hover:before:rounded-t group-hover:before:bg-neutral-800 group-hover:before:drop-shadow-md'
       : ''
   }`
   const content = (

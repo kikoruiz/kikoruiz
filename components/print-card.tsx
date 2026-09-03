@@ -52,7 +52,7 @@ export default function PrintCard({
   return (
     <div
       key={id}
-      className={`relative group h-fit p-3 bg-linear-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md${isActive ? ' ring-1 ring-inset ring-orange-300/60' : ''}`}
+      className={`relative group h-fit p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md${isActive ? ' ring-1 ring-inset ring-orange-300/60' : ''}`}
     >
       <span
         id={slug}
@@ -61,7 +61,7 @@ export default function PrintCard({
         style={{top: `calc(-${headerHeight}px - 1em)`}}
       />
       <div
-        className={`relative bg-linear-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em]${isBorderless ? '' : ' p-[10%]'}`}
+        className={`relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em]${isBorderless ? '' : ' p-[10%]'}`}
       >
         <Image
           src={src}
@@ -141,7 +141,7 @@ export default function PrintCard({
             </dd>
           </dl>
 
-          <span className="rounded-full font-black text-3xl text-orange-300 drop-shadow-sm">
+          <span className="rounded-full font-black text-3xl text-orange-300 drop-shadow">
             {t('price', {count: price})}
           </span>
         </div>

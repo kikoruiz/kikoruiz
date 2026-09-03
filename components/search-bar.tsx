@@ -148,7 +148,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
             })}
             type="text"
             id="search"
-            className="block w-full appearance-none rounded-md border border-transparent bg-transparent p-4 pl-12 text-neutral-300 placeholder-neutral-600 focus:border-orange-300/60 focus:outline-hidden focus:ring-orange-300/60"
+            className="block w-full appearance-none rounded-md border border-transparent bg-transparent p-4 pl-12 text-neutral-300 placeholder-neutral-600 focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
             placeholder={t('navigation.search')}
             required
           />
@@ -159,7 +159,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
               role="status"
               className="absolute inset-0 flex h-full w-full items-center justify-end pr-4"
             >
-              <div className="relative h-7 w-7 animate-spin rounded-full bg-linear-to-r from-orange-300 via-neutral-800 to-orange-400">
+              <div className="relative h-7 w-7 animate-spin rounded-full bg-gradient-to-r from-orange-300 via-neutral-800 to-orange-400">
                 <div className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-neutral-800" />
               </div>
             </div>

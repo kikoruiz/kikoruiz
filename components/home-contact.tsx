@@ -36,7 +36,7 @@ export default function HomeContact() {
   ]
 
   return (
-    <HomeBlock className="relative px-3 py-12 text-center before:absolute before:bottom-0 before:left-0 before:block before:h-px before:w-full before:bg-linear-to-r before:from-transparent before:via-orange-300/30 after:absolute after:left-0 after:top-0 after:block after:h-px after:w-full after:bg-linear-to-r after:from-transparent after:via-orange-300/30 md:p-16">
+    <HomeBlock className="relative px-3 py-12 text-center before:absolute before:bottom-0 before:left-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-orange-300/30 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30 md:p-16">
       <span
         id={getSlug(t('contact.name'))}
         aria-hidden="true"
@@ -45,7 +45,7 @@ export default function HomeContact() {
       />
 
       <header className="mb-9 md:mb-12">
-        <h2 className="bg-linear-to-t from-orange-300 via-orange-300/80 to-orange-300/40 bg-clip-text text-3xl font-extralight leading-tight text-transparent drop-shadow-sm md:text-5xl md:leading-snug">
+        <h2 className="bg-gradient-to-t from-orange-300 via-orange-300/80 to-orange-300/40 bg-clip-text text-3xl font-extralight leading-tight text-transparent drop-shadow md:text-5xl md:leading-snug">
           {t('contact.title')}
         </h2>
       </header>
@@ -56,7 +56,7 @@ export default function HomeContact() {
             key={getSlug(label)}
             href={href}
             target={target}
-            className={`flex justify-center rounded-full border border-neutral-600 bg-linear-to-b from-neutral-800/60 px-8 py-5 drop-shadow-lg transition-transform md:p-9 lg:p-12 ${className}`}
+            className={`flex justify-center rounded-full border border-neutral-600 bg-gradient-to-b from-neutral-800/60 px-8 py-5 drop-shadow-lg transition-transform md:p-9 lg:p-12 ${className}`}
             title={label}
           >
             <span className="flex items-center gap-2 lg:gap-4">

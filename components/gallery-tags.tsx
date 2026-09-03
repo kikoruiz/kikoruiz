@@ -12,7 +12,7 @@ export default function GalleryTags({tags}: GalleryTagsProps) {
             key={id}
             href={href}
             title={name}
-            className={`inline-flex w-full break-inside-avoid-column wrap-break-word rounded border border-neutral-800 bg-linear-to-b from-neutral-800/60 to-neutral-800/30 p-3 font-extrabold text-neutral-300/60 hover:border-orange-300/60 hover:to-transparent hover:text-orange-300/90${
+            className={`inline-flex w-full break-inside-avoid-column break-words rounded border border-neutral-800 bg-gradient-to-b from-neutral-800/60 to-neutral-800/30 p-3 font-extrabold text-neutral-300/60 hover:border-orange-300/60 hover:to-transparent hover:text-orange-300/90${
               isFirstTag ? ' mt-3' : ''
             }`}
           >

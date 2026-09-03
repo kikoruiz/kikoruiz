@@ -19,14 +19,14 @@ export default function BreadcrumbActionButton({
 }: BreadcrumbActionButtonProps) {
   return (
     <button
-      className={`group flex items-center p-2 rounded-full bg-neutral-900/60 leading-none drop-shadow-sm ring-1 ring-neutral-700/90 hover:ring-orange-300 transition-shadow${className ? ` ${className}` : ''}`}
+      className={`group flex items-center p-2 rounded-full bg-neutral-900/60 leading-none drop-shadow ring-1 ring-neutral-700/90 hover:ring-orange-300 transition-shadow${className ? ` ${className}` : ''}`}
       title={title}
       onClick={onClick}
     >
       <div className="relative">
         <Icon className="w-4 fill-orange-300" />
 
-        <span className="empty:hidden absolute top-[-75%] right-[-75%] rounded-full drop-shadow-lg bg-linear-to-tl from-neutral-600 to-neutral-800 px-1.5 py-1 leading-none font-light text-[.5em] text-neutral-300/60 group-hover:text-orange-300">
+        <span className="empty:hidden absolute -top-[75%] -right-[75%] rounded-full drop-shadow-lg bg-gradient-to-tl from-neutral-600 to-neutral-800 px-1.5 py-1 leading-none font-light text-[.5em] text-neutral-300/60 group-hover:text-orange-300">
           {bagdeContent}
         </span>
       </div>

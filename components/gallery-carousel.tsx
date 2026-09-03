@@ -100,8 +100,8 @@ function GalleryCarousel({
   }
 
   const paginationInfo = subcategoryName && (
-    <span className="relative flex pl-3 after:absolute after:left-0 after:top-0 after:block after:h-full after:w-px after:bg-linear-to-b after:from-transparent after:via-neutral-600/60">
-      <span className="inline-flex items-center pl-px">
+    <span className="relative flex pl-3 after:absolute after:left-0 after:top-0 after:block after:h-full after:w-[1px] after:bg-gradient-to-b after:from-transparent after:via-neutral-600/60">
+      <span className="inline-flex items-center pl-[1px]">
         {SubcategoryIcon && (
           <SubcategoryIcon className="mr-1.5 w-3 rounded-full opacity-90" />
         )}
