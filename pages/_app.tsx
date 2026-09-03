@@ -3,7 +3,6 @@ import {useRouter} from 'next/router'
 import {Analytics} from '@vercel/analytics/react'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {CookieConsentProvider} from '@use-cookie-consent/react'
-import {CartProvider} from 'use-shopping-cart'
 import I18nProvider from 'next-translate/I18nProvider'
 import useTranslation from 'next-translate/useTranslation'
 import {SubcategoryProvider} from 'contexts/Subcategory'
@@ -11,13 +10,15 @@ import {LatestPicturesProvider} from 'contexts/LatestPictures'
 import {HeroImageProvider} from 'contexts/HeroImage'
 import {LayoutProvider} from 'contexts/Layout'
 import Layout from 'components/layout'
+import StoreCartProvider from 'components/store-cart-provider'
 import commonES from '../locales/es/common.json'
 import '../styles/globals.css'
 
 const ONE_YEAR = 365
 
 export default function App({Component, pageProps}: AppProps) {
-  const {query: {print} = {}} = useRouter()
+  const router = useRouter()
+  const {query: {print} = {}} = router
   const {section, subSection, post, tag, alternates, heroImages} = pageProps
   const sectionData = {
     section,
@@ -28,6 +29,7 @@ export default function App({Component, pageProps}: AppProps) {
   }
   const languageData = {alternates}
   const {lang} = useTranslation()
+  const isStorePage = router.pathname.startsWith('/tienda')
 
   return (
     <>
@@ -36,12 +38,7 @@ export default function App({Component, pageProps}: AppProps) {
           consentCookieAttributes: {expires: ONE_YEAR}
         }}
       >
-        <CartProvider
-          cartMode="checkout-session"
-          stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string}
-          currency="EUR"
-          shouldPersist
-        >
+        <StoreCartProvider isActive={isStorePage}>
           <I18nProvider lang={lang} namespaces={{commonES}}>
             <LayoutProvider>
               <SubcategoryProvider>
@@ -62,7 +59,7 @@ export default function App({Component, pageProps}: AppProps) {
               </SubcategoryProvider>
             </LayoutProvider>
           </I18nProvider>
-        </CartProvider>
+        </StoreCartProvider>
       </CookieConsentProvider>
     </>
   )

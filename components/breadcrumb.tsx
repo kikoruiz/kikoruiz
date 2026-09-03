@@ -1,17 +1,17 @@
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import {useShoppingCart} from 'use-shopping-cart'
 import {fromSectionToBreadcrumbItems} from 'lib/mappers'
 import {getCapitalizedName, getSlug} from 'lib/utils'
-import {trackEvent} from 'lib/tracking'
 import useSubcategoryContext from 'contexts/Subcategory'
 import {SectionData} from 'types'
 import sectionIcons from './section-icons'
 import subcategoryIcons from './gallery-subcategory-icons'
 import BreadcrumbActionButton from './breadcrumb-action-button'
-import IconShoppingCart from 'assets/icons/shopping-cart.svg'
 import IconDocumentArrowDown from 'assets/icons/document-arrow-down.svg'
+
+const BreadcrumbCart = dynamic(() => import('./breadcrumb-cart'), {ssr: false})
 import {GALLERY_ALBUMS} from 'config/gallery'
 import {BLOG} from 'config'
 
@@ -53,8 +53,6 @@ export default function Breadcrumb({
     SubcategoryIcon = subcategoryIcons[`Icon${getCapitalizedName(subcategory)}`]
   }
   const needsShoppingCart = section === 'store'
-  const {handleCartHover, cartCount, cartDetails, totalPrice, currency} =
-    useShoppingCart()
   const isResumePage = subSection === 'resume'
 
   return items.length > 0 ? (
@@ -132,35 +130,7 @@ export default function Breadcrumb({
           )}
         </div>
 
-        {needsShoppingCart && (
-          <BreadcrumbActionButton
-            icon={IconShoppingCart}
-            title={t('store:shopping-cart', {count: cartCount})}
-            bagdeContent={cartCount}
-            className="gap-3"
-            onClick={() => {
-              handleCartHover()
-              trackEvent({
-                action: 'view_cart',
-                value: totalPrice,
-                currency: currency.toUpperCase(),
-                items: Object.keys(cartDetails).map(id => {
-                  const item = cartDetails[id]
-                  const {id: productId} = item.product_data as {id: string}
-
-                  return {
-                    id: productId,
-                    name: item.name,
-                    price: item.price,
-                    quantity: item.quantity
-                  }
-                })
-              })
-            }}
-          >
-            {Boolean(totalPrice) && t('store:price', {count: totalPrice})}
-          </BreadcrumbActionButton>
-        )}
+        {needsShoppingCart && <BreadcrumbCart />}
 
         {isResumePage && (
           <BreadcrumbActionButton

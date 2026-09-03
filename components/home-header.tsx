@@ -1,10 +1,15 @@
 import {useState} from 'react'
+import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import Logo from 'assets/brand/logo.svg'
 import HomeSections from 'components/home-sections'
 import {SectionImage} from 'types'
 import {HighlightedImage} from 'types/gallery'
-import {ReactTyped} from 'react-typed'
+
+const ReactTyped = dynamic(
+  () => import('react-typed').then(m => m.ReactTyped),
+  {ssr: false}
+)
 
 interface HomeHeaderProps {
   sectionImages: SectionImage[]

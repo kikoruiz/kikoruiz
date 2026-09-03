@@ -2,7 +2,9 @@ import {useEffect, type FC, type SVGProps} from 'react'
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import {cx, cva, type VariantProps} from 'class-variance-authority'
-import Article from 'components/article'
+import dynamic from 'next/dynamic'
+
+const Article = dynamic(() => import('components/article'))
 import Logo from 'assets/brand/logo.svg'
 import Signature from 'assets/brand/signature.svg'
 import {getContent} from 'lib/content'

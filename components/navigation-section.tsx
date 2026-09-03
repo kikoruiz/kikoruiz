@@ -1,6 +1,6 @@
 import {MouseEvent, useEffect} from 'react'
 import Link, {LinkProps} from 'next/link'
-import {useMediaQuery} from 'react-responsive'
+import {useMediaQuery} from 'hooks/use-media-query'
 import useTranslation from 'next-translate/useTranslation'
 import NavigationCategoriesList from './navigation-categories-list'
 import NavigationSectionItem from './navigation-section-item'
