@@ -11,6 +11,7 @@ const nextConfig = withBundleAnalyzer({
     nextTranslate({
       reactStrictMode: true,
       reactProductionProfiling: true,
+      serverExternalPackages: ['sharp', 'fast-average-color-node'],
       images: {
         deviceSizes: [640, 1080, 1920],
         imageSizes: [],
