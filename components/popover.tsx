@@ -46,7 +46,6 @@ function PopoverTrigger({
 }: PropsWithChildren<
   Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick' | 'className'>
 >) {
-  // eslint-disable-next-line
   const child: any = Children.only(children)
 
   return (
