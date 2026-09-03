@@ -2,7 +2,7 @@ import {Html, Head, Main, NextScript, DocumentProps} from 'next/document'
 
 export default function Document({locale}: DocumentProps) {
   return (
-    <Html lang={locale} className="scroll-smooth">
+    <Html lang={locale} className="scroll-smooth" data-scroll-behavior="smooth">
       <Head>
         <meta name="theme-color" content="#171717" />
         <meta name="twitter:card" content="summary_large_image" />
