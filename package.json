@@ -5,7 +5,7 @@
   "sideEffects": false,
   "scripts": {
     "analyze": "ANALYZE=true npm run build",
-    "build:data": "make save_placeholders && make save_metadata && make save_content",
+    "build:data": "make save_optimized && make save_placeholders && make save_metadata && make save_content",
     "build": "next build --webpack",
     "postbuild": "next-sitemap",
     "debug": "NODE_OPTIONS='--inspect' next dev --webpack",
