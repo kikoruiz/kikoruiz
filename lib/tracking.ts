@@ -1,3 +1,5 @@
+/// <reference types="@types/gtag.js" />
+
 interface PurchaseItem {
   id: string
   name: string
