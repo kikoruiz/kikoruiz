@@ -3,6 +3,7 @@ import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {getSlug} from 'lib/utils'
 import {LEGAL_PAGES} from 'config'
+import commonES from '../locales/es/common.json'
 
 export default function FooterLinks() {
   const {pathname} = useRouter()
@@ -17,7 +18,7 @@ export default function FooterLinks() {
           {LEGAL_PAGES.map(slug => {
             const pageName = t(`legal.pages.${slug}.name`)
             const href = `/${getSlug(pageName)}`
-            const defaultPathname = `/${getSlug(t(`commonES:legal.pages.${slug}.name`))}`
+            const defaultPathname = `/${getSlug(commonES.legal.pages[slug].name)}`
             const isCurrentPage = pathname === defaultPathname
 
             return (
