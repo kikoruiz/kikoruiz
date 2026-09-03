@@ -42,21 +42,23 @@ export default function HomeHeader({
 
         <h1 className="break-words text-center text-4xl font-black leading-tight drop-shadow sm:text-5xl sm:leading-normal xl:text-6xl">
           Kiko Ruiz{' '}
-          {typingEnabled ? (
-            <ReactTyped
-              className="font-thin text-center sm:text-left block sm:inline-block"
-              style={{width: `${maxTypedWidth}ch`}}
-              strings={typedStrings}
-              typeSpeed={120}
-              backSpeed={30}
-              loop
-              contentType="text"
-            />
-          ) : (
-            <span className="font-thin text-center block sm:inline-block">
-              {typedStrings[0]}
-            </span>
-          )}
+          <span
+            className="font-thin text-center sm:text-left block sm:inline-block"
+            style={{width: `${maxTypedWidth}ch`}}
+          >
+            {typingEnabled ? (
+              <ReactTyped
+                strings={typedStrings}
+                typeSpeed={120}
+                backSpeed={30}
+                loop
+                contentType="text"
+              />
+            ) : (
+              typedStrings[0]
+            )}
+            {' '}
+          </span>
         </h1>
       </div>
 
