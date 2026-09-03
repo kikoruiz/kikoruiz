@@ -14,15 +14,15 @@ export default function HomeMap({pictures, setShowMap}: HomeMapProps) {
       <button
         aria-hidden="true"
         tabIndex={-1}
-        className="absolute inset-0 z-0 h-full w-full touch-auto bg-neutral-900/60 backdrop-blur transition-opacity"
+        className="absolute inset-0 z-0 h-full w-full touch-auto bg-neutral-900/60 backdrop-blur-sm transition-opacity"
         onClick={handleMapClose}
       ></button>
 
-      <div className="container absolute inset-0 mx-auto overflow-hidden drop-shadow-xl sm:top-[6rem] sm:max-h-[calc(100%-12rem)] sm:rounded">
+      <div className="container absolute inset-0 mx-auto overflow-hidden drop-shadow-xl sm:top-24 sm:max-h-[calc(100%-12rem)] sm:rounded-sm">
         <button
           aria-label={t('map.close')}
           title={t('map.close')}
-          className="group absolute right-3 top-3 z-[500] flex h-11 w-11 rounded-full border-2 border-neutral-900/40 bg-gradient-to-t from-neutral-100 to-neutral-200 text-neutral-900/80 hover:to-neutral-300 hover:text-neutral-900 focus:outline-none sm:right-4 sm:top-4"
+          className="group absolute right-3 top-3 z-500 flex h-11 w-11 rounded-full border-2 border-neutral-900/40 bg-linear-to-t from-neutral-100 to-neutral-200 text-neutral-900/80 hover:to-neutral-300 hover:text-neutral-900 focus:outline-hidden sm:right-4 sm:top-4"
           onClick={handleMapClose}
         >
           <span className="sr-only">{t('map.close')}</span>

@@ -72,7 +72,7 @@ export default function Tooltip({
         <div
           className={`absolute z-10 flex w-52 select-none items-center text-xs font-extralight leading-normal drop-shadow-lg after:absolute after:inline-block after:h-0 after:w-0 after:align-middle sm:w-max ${directionClassName}`}
         >
-          <p className="rounded bg-neutral-800 px-3 py-1.5">{message}</p>
+          <p className="rounded-sm bg-neutral-800 px-3 py-1.5">{message}</p>
         </div>
       )}
     </div>

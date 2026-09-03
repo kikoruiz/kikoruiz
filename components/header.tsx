@@ -28,7 +28,7 @@ function Header({...sectionData}: SectionData) {
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-20 w-full${isMenuOpen || isSearchBarOpen ? '' : ' backdrop-blur'}`}
+      className={`sticky top-0 z-20 w-full${isMenuOpen || isSearchBarOpen ? '' : ' backdrop-blur-sm'}`}
     >
       <div className={`${hasHero ? 'bg-transparent' : 'bg-neutral-900/90'}`}>
         <div className="container mx-auto flex justify-between pl-5 pr-3">

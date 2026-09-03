@@ -41,7 +41,7 @@ export default function Alert({
         status,
         class: cx(
           className,
-          'relative flex items-center gap-3 rounded py-6 pl-5 pr-9 bg-gradient-to-bl'
+          'relative flex items-center gap-3 rounded-sm py-6 pl-5 pr-9 bg-linear-to-bl'
         )
       })}
     >

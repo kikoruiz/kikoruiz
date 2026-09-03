@@ -101,20 +101,20 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
       </Head>
 
       <section
-        className={`relative sm:mx-6 lg:mx-0 mb-3 sm:mb-0 pt-12 px-6 sm:px-9 pb-6 lg:px-24 lg:pt-24 lg:pb-12${isPrintable ? '' : ' bg-gradient-to-bl from-neutral-300 to-white drop-shadow-md hover:drop-shadow-xl before:absolute before:z-10 before:content-[""] before:top-0 before:right-0 before:border-solid before:border-b-[3em] before:border-r-[3em] before:border-y-neutral-100/90 before:border-x-neutral-900 before:transition-[border-width] before:duration-300 hover:before:border-y-neutral-50/90 hover:before:border-x-neutral-900 hover:before:border-b-[4.5em] hover:before:border-r-[4.5em]'}`}
+        className={`relative sm:mx-6 lg:mx-0 mb-3 sm:mb-0 pt-12 px-6 sm:px-9 pb-6 lg:px-24 lg:pt-24 lg:pb-12${isPrintable ? '' : ' bg-linear-to-bl from-neutral-300 to-white drop-shadow-md hover:drop-shadow-xl before:absolute before:z-10 before:content-[""] before:top-0 before:right-0 before:border-solid before:border-b-[3em] before:border-r-[3em] before:border-y-neutral-100/90 before:border-x-neutral-900 before:transition-[border-width] before:duration-300 hover:before:border-y-neutral-50/90 hover:before:border-x-neutral-900 hover:before:border-b-[4.5em] hover:before:border-r-[4.5em]'}`}
       >
         <ResumeHeading position="right" />
 
         <header className="flex flex-col lg:flex-row lg:items-end mb-12 lg:mb-32">
           <Logo className="w-60 md:w-72 xl:w-90 fill-orange-300/30" />
 
-          <h1 className="text-neutral-900/75 font-black text-6xl mt-9 lg:mt-0 lg:-mb-20 lg:-ml-36 drop-shadow-sm">
+          <h1 className="text-neutral-900/75 font-black text-6xl mt-9 lg:mt-0 lg:-mb-20 lg:-ml-36 drop-shadow-xs">
             <span className="block font-thin uppercase text-3xl">
               {content.title}
             </span>{' '}
             Kiko Ruiz Lloret
             <span
-              className={`block mt-3 font-bold text-3xl ${isPrintable ? 'text-orange-500/75' : 'text-transparent bg-gradient-to-tl from-orange-400 to-orange-700 bg-clip-text opacity-75'}`}
+              className={`block mt-3 font-bold text-3xl ${isPrintable ? 'text-orange-500/75' : 'text-transparent bg-linear-to-tl from-orange-400 to-orange-700 bg-clip-text opacity-75'}`}
             >
               {content.jobTitle}
             </span>
@@ -128,14 +128,14 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
             'relative',
             'mx-auto',
             // Paragraphs
-            '[&>p]:lg:ml-36',
+            'lg:[&>p]:ml-36',
             // Section header
-            '[&>h2]:lg:ml-24',
+            'lg:[&>h2]:ml-24',
             '[&>h2]:mt-12',
-            '[&>h2]:lg:mt-32',
+            'lg:[&>h2]:mt-32',
             '[&>h2:has(+h3)]:mb-0',
             '[&>h2]:pt-12',
-            '[&>h2]:lg:pt-28',
+            'lg:[&>h2]:pt-28',
             '[&>h2]:font-thin',
             '[&>h2]:text-neutral-600/60',
             '[&>h2]:text-5xl',
@@ -145,7 +145,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
             // Company header
             '[&>h3]:relative',
             '[&>h3]:ml-12',
-            '[&>h3]:lg:ml-36',
+            'lg:[&>h3]:ml-36',
             '[&>h3]:-mt-2',
             '[&>h3]:mb-0',
             '[&>h3]:pt-20',
@@ -166,7 +166,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
             // Job title
             '[&>h4]:relative',
             '[&>h4]:ml-12',
-            '[&>h4]:lg:ml-36',
+            'lg:[&>h4]:ml-36',
             '[&>h4]:my-0',
             '[&>h4]:text-xl',
             '[&>h4]:font-medium',
@@ -184,7 +184,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
             '[&>p:has(+h4)]:relative',
             '[&>p:has(+h4)]:my-0',
             '[&>p:has(+h4)]:ml-12',
-            '[&>p:has(+h4)]:lg:ml-36',
+            'lg:[&>p:has(+h4)]:ml-36',
             '[&>p:has(+h4)]:font-extralight',
             '[&>p:has(+h4)]:text-orange-600/60',
             '[&>p:has(+h4:first-of-type)]:text-orange-500',
@@ -202,7 +202,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
             // Lists
             '[&>ul]:relative',
             '[&>ul]:ml-12',
-            '[&>ul]:lg:ml-36',
+            'lg:[&>ul]:ml-36',
             '[&>ul]:my-0',
             '[&>ul]:pt-6',
             '[&>ul:has(+p)]:pb-9',
@@ -215,7 +215,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
             '[&>ul]:before:h-full',
             '[&>ul]:before:w-0.5',
             '[&>ul]:before:bg-orange-200',
-            '[&>ul:first-of-type]:before:bg-gradient-to-b',
+            '[&>ul:first-of-type]:before:bg-linear-to-b',
             '[&>ul:first-of-type]:before:from-orange-500',
             '[&>ul:first-of-type]:before:to-orange-200',
             '[&>ul>li]:leading-relaxed',
@@ -223,7 +223,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
             '[&>ul:has(+h2:last-of-type)]:list-none',
             '[&>ul:has(+h2:last-of-type)]:m-0',
             '[&>ul:has(+h2:last-of-type)]:p-0',
-            '[&>ul:has(+h2:last-of-type)]:lg:pl-24',
+            'lg:[&>ul:has(+h2:last-of-type)]:pl-24',
             '[&>ul:has(+h2:last-of-type)]:overflow-hidden',
             '[&>ul:has(+h2:last-of-type)]:flex',
             '[&>ul:has(+h2:last-of-type)]:flex-wrap',
@@ -233,7 +233,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
             '[&>ul:has(+h2:last-of-type)>li]:px-3',
             '[&>ul:has(+h2:last-of-type)>li]:py-1.5',
             '[&>ul:has(+h2:last-of-type)>li]:rounded-xl',
-            '[&>ul:has(+h2:last-of-type)>li]:bg-gradient-to-br',
+            '[&>ul:has(+h2:last-of-type)>li]:bg-linear-to-br',
             '[&>ul:has(+h2:last-of-type)>li]:from-orange-300/60',
             '[&>ul:has(+h2:last-of-type)>li]:to-orange-200/30',
             '[&>ul:has(+h2:last-of-type)>li]:font-medium',
@@ -241,7 +241,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
             '[&>ul:last-of-type]:list-none',
             '[&>ul:last-of-type]:m-0',
             '[&>ul:last-of-type]:p-0',
-            '[&>ul:last-of-type]:lg:pl-24',
+            'lg:[&>ul:last-of-type]:pl-24',
             '[&>ul:last-of-type]:overflow-hidden',
             '[&>ul:last-of-type]:flex',
             '[&>ul:last-of-type]:flex-wrap',
@@ -251,7 +251,7 @@ export default function ResumePage({content, alternates}: ResumePageProps) {
             '[&>ul:last-of-type>li]:px-3',
             '[&>ul:last-of-type>li]:py-1.5',
             '[&>ul:last-of-type>li]:rounded-xl',
-            '[&>ul:last-of-type>li]:bg-gradient-to-br',
+            '[&>ul:last-of-type>li]:bg-linear-to-br',
             '[&>ul:last-of-type>li]:from-neutral-300/60',
             '[&>ul:last-of-type>li]:to-neutral-200/30',
             '[&>ul:last-of-type>li]:font-medium'
