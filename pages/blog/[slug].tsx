@@ -7,9 +7,7 @@ import {getTagsData} from 'lib/blog/tags'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getAbsoluteUrl, getSlug} from 'lib/utils'
 import {BLOG, SITE_NAME} from 'config'
-import dynamic from 'next/dynamic'
-
-const Article = dynamic(() => import('components/article'))
+import Article from 'components/article'
 import BlogTags from 'components/blog-tags'
 import {BlogPost} from 'types/blog'
 import {Alternate} from 'types'
