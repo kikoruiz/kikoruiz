@@ -30,16 +30,16 @@ export default function CookiesModal({
       <button
         aria-hidden="true"
         tabIndex={-1}
-        className="fixed z-20 inset-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity opacity-1 touch-none cursor-pointer"
+        className="fixed z-20 inset-0 h-screen w-screen bg-neutral-900/60 backdrop-blur-sm transition-opacity opacity-1 touch-none cursor-pointer"
         onClick={closeModal}
       />
 
-      <div className="fixed flex flex-col w-screen h-screen sm:h-auto sm:max-h-[calc(100vh-3rem)] overflow-y-auto text-sm top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 max-w-xl bg-neutral-900 sm:rounded sm:border sm:border-neutral-800 p-6 sm:p-12">
+      <div className="fixed flex flex-col w-screen h-screen sm:h-auto sm:max-h-[calc(100vh-3rem)] overflow-y-auto text-sm top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 max-w-xl bg-neutral-900 sm:rounded-sm sm:border sm:border-neutral-800 p-6 sm:p-12">
         <div className="absolute right-3 top-3 z-20 flex flex-row-reverse gap-3 sm:right-6 sm:top-6">
           <button
             aria-label={t('legal.cookies.modal.close')}
             title={t('legal.cookies.modal.close')}
-            className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none"
+            className="group relative flex h-11 w-11 rounded-full bg-linear-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-hidden"
             onClick={closeModal}
           >
             <span className="sr-only">{t('legal.cookies.modal.close')}</span>
@@ -62,7 +62,7 @@ export default function CookiesModal({
           {t('legal.cookies.modal.title')}
         </header>
 
-        <div className="flex flex-col justify-between flex-grow">
+        <div className="flex flex-col justify-between grow">
           <div className="flex flex-col gap-3 my-9">
             {cookiesByType.map(consent => {
               const id = camelCase(consent)
@@ -86,7 +86,7 @@ export default function CookiesModal({
                 closeModal()
               }}
               title={t('legal.cookies.modal.actions.accept-all.description')}
-              className="lg:flex-grow"
+              className="lg:grow"
             >
               {t('legal.cookies.modal.actions.accept-all.name')}
             </Button>
@@ -98,7 +98,7 @@ export default function CookiesModal({
                 closeModal()
               }}
               title={t('legal.cookies.modal.actions.reject-all.description')}
-              className="lg:flex-grow"
+              className="lg:grow"
             >
               {t('legal.cookies.modal.actions.reject-all.name')}
             </Button>
@@ -111,7 +111,7 @@ export default function CookiesModal({
                 closeModal()
               }}
               title={t('legal.cookies.modal.actions.save.description')}
-              className="lg:flex-grow"
+              className="lg:grow"
             >
               <span className="font-medium">
                 {t('legal.cookies.modal.actions.save.name')}

@@ -55,7 +55,7 @@ export default function GalleryListItems({
               className={className}
             >
               {!isAlbum && !sortingOption?.includes('name') && (
-                <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow">
+                <div className="space-x-1 text-xs font-light text-neutral-600 drop-shadow-sm">
                   {sortingOption === 'date' && (
                     <time className="text-neutral-300/40" dateTime={date}>
                       {prettyDate}

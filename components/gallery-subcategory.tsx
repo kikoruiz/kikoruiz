@@ -86,7 +86,7 @@ export default function GallerySubcategory({
       />
       <header
         ref={elementRef}
-        className={`rounded bg-gradient-to-r from-neutral-800/30 p-3 text-3xl font-extrabold text-orange-300/60 drop-shadow-sm ${
+        className={`rounded bg-linear-to-r from-neutral-800/30 p-3 text-3xl font-extrabold text-orange-300/60 drop-shadow-xs ${
           emoji ? 'inline-block' : 'flex items-center'
         }`}
       >

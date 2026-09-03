@@ -88,7 +88,7 @@ export default function PrintsPage({alternates, prints}: PrintsPageProps) {
 
                 <select
                   id={id}
-                  className="block appearance-none rounded-md border border-neutral-700 bg-neutral-800 bg-select bg-[length:0.75rem] bg-[right_0.5rem_center] bg-no-repeat py-1.5 pl-3 pr-7 shadow-sm focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
+                  className="block appearance-none rounded-md border border-neutral-700 bg-neutral-800 bg-select bg-size-[0.75rem] bg-position-[right_0.5rem_center] bg-no-repeat py-1.5 pl-3 pr-7 shadow-xs focus:border-orange-300/60 focus:outline-hidden focus:ring-orange-300/60"
                   onChange={handleFilterChange}
                   defaultValue={initialState[filter]}
                 >

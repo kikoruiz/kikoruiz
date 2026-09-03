@@ -1,5 +1,3 @@
-import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from 'tailwind.config.mjs'
 import {kebabCase, capitalCase, camelCase, pascalCase} from 'change-case'
 import removeAccents from 'remove-accents'
 import {
@@ -10,10 +8,13 @@ import {
 import {DEFAULT_ORIGIN} from 'config'
 import {Screens, ThemeScreens} from 'types'
 
-const config = resolveConfig(tailwindConfig)
-
-export const {screens: themeScreens}: {screens?: ThemeScreens} =
-  config.theme as object
+export const themeScreens: ThemeScreens = {
+  sm: '640px',
+  md: '768px',
+  lg: '1024px',
+  xl: '1280px',
+  '2xl': '1280px'
+}
 
 export const fetcher = {
   get: async (url: RequestInfo, options?: RequestInit) => {

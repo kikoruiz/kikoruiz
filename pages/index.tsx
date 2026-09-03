@@ -120,13 +120,13 @@ export default function Home({
               onClick={() => {
                 setShowMap(true)
               }}
-              className="group relative flex w-full cursor-pointer justify-center overflow-hidden rounded border border-neutral-700/60 bg-gradient-to-t from-neutral-900 to-neutral-900/80 p-6 hover:border-orange-300/60 sm:justify-end lg:p-12"
+              className="group relative flex w-full cursor-pointer justify-center overflow-hidden rounded-sm border border-neutral-700/60 bg-linear-to-t from-neutral-900 to-neutral-900/80 p-6 hover:border-orange-300/60 sm:justify-end lg:p-12"
             >
               <IconGlobe className="absolute -left-8 -top-14 w-64 fill-neutral-600/90 transition-transform group-hover:scale-125 group-hover:fill-orange-300 lg:-top-24 lg:left-0 lg:w-[45%] lg:group-hover:scale-110 xl:-left-12 xl:-top-48 xl:w-[60%]" />
               <button
                 aria-label={t('home:map.button')}
                 title={t('home:map.button')}
-                className="z-0 flex appearance-none items-center rounded-full border border-neutral-600/30 bg-neutral-800/90 p-6 py-3 font-semibold text-neutral-300/60 drop-shadow transition-all hover:drop-shadow-lg group-hover:text-orange-300/90"
+                className="z-0 flex appearance-none items-center rounded-full border border-neutral-600/30 bg-neutral-800/90 p-6 py-3 font-semibold text-neutral-300/60 drop-shadow-sm transition-all hover:drop-shadow-lg group-hover:text-orange-300/90"
               >
                 <IconMapPin className="-ml-1 mr-1.5 w-6" />
                 {t('home:map.button')}

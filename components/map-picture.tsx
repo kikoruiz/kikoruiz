@@ -54,7 +54,7 @@ export default function MapPicture({
         iconUrl:
           'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzUyNTI1MiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMTEuNTQgMjIuMzUxbC4wNy4wNC4wMjguMDE2YS43Ni43NiAwIDAwLjcyMyAwbC4wMjgtLjAxNS4wNzEtLjA0MWExNi45NzUgMTYuOTc1IDAgMDAxLjE0NC0uNzQyIDE5LjU4IDE5LjU4IDAgMDAyLjY4My0yLjI4MmMxLjk0NC0xLjk5IDMuOTYzLTQuOTggMy45NjMtOC44MjdhOC4yNSA4LjI1IDAgMDAtMTYuNSAwYzAgMy44NDYgMi4wMiA2LjgzNyAzLjk2MyA4LjgyN2ExOS41OCAxOS41OCAwIDAwMi42ODIgMi4yODIgMTYuOTc1IDE2Ljk3NSAwIDAwMS4xNDUuNzQyek0xMiAxMy41YTMgMyAwIDEwMC02IDMgMyAwIDAwMCA2eiIgY2xpcC1ydWxlPSJldmVub2RkIiAvPjwvc3ZnPg==',
         iconSize: [30, 30],
-        className: 'drop-shadow-sm'
+        className: 'drop-shadow-xs'
       })}
       position={[coordinates.latitude, coordinates.longitude]}
       interactive={isInteractive}
@@ -66,7 +66,7 @@ export default function MapPicture({
       {isInteractive && (
         <Popup
           closeButton={false}
-          className="ml-[.5px] [&>div:first-child>div]:!m-0 [&>div:first-child>div]:!p-2 [&>div:first-child]:!rounded-lg [&>div:first-child]:!min-h-[165px] [&>div:first-child]:bg-gradient-to-b [&>div:first-child]:!from-neutral-300 [&>div:first-child]:!via-transparent [&>div:first-child]:!text-neutral-600 [&>div>div>a]:!text-neutral-600"
+          className="ml-[.5px] [&>div:first-child>div]:m-0! [&>div:first-child>div]:p-2! [&>div:first-child]:rounded-lg! [&>div:first-child]:min-h-[165px]! [&>div:first-child]:bg-linear-to-b [&>div:first-child]:from-neutral-300! [&>div:first-child]:via-transparent! [&>div:first-child]:text-neutral-600! [&>div>div>a]:text-neutral-600!"
           minWidth={120}
         >
           {picture && (
@@ -76,7 +76,7 @@ export default function MapPicture({
               className="group block max-w-[120px] hover:opacity-90"
               shallow
             >
-              <div className="overflow-hidden rounded">
+              <div className="overflow-hidden rounded-sm">
                 <Image
                   src={picture.image.src}
                   alt={picture.name}

@@ -3,7 +3,7 @@ import {cva} from 'class-variance-authority'
 import type {VariantProps} from 'class-variance-authority'
 
 const buttonStyles = cva(
-  'font-light bg-gradient-to-b transition-shadow drop-shadow-md',
+  'font-light bg-linear-to-b transition-shadow drop-shadow-md',
   {
     variants: {
       intent: {
@@ -29,7 +29,7 @@ const buttonStyles = cva(
       {
         size: 'small',
         isRounded: false,
-        class: 'rounded-sm'
+        class: 'rounded-xs'
       },
       {
         size: 'medium',

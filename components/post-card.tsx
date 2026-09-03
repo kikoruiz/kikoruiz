@@ -46,7 +46,7 @@ export default function PostCard({
       }`}
     >
       <article
-        className={`group flex flex-col overflow-hidden rounded border bg-gradient-to-t from-neutral-900/90 to-neutral-900/30 shadow-md hover:shadow-black/20${
+        className={`group flex flex-col overflow-hidden rounded border bg-linear-to-t from-neutral-900/90 to-neutral-900/30 shadow-md hover:shadow-black/20${
           isHorizontal ? ' md:flex-row' : ''
         } ${
           isLatest
@@ -56,12 +56,12 @@ export default function PostCard({
       >
         {isLatest && isNew(createdAt) && (
           <div
-            className={`pointer-events-none absolute left-3 top-3 z-[1] flex items-center justify-center rounded-xl border bg-gradient-to-t px-2 py-1 text-center drop-shadow${
+            className={`pointer-events-none absolute left-3 top-3 z-1 flex items-center justify-center rounded-xl border bg-linear-to-t px-2 py-1 text-center drop-shadow${
               isLatest ? ` ${latestTagClassName}` : ''
             }`}
           >
             <span
-              className={`bg-gradient-to-tl bg-clip-text text-xs font-medium lowercase leading-snug text-transparent drop-shadow-sm${
+              className={`bg-linear-to-tl bg-clip-text text-xs font-medium lowercase leading-snug text-transparent drop-shadow-sm${
                 isLatest ? ` ${latestTagTextClassName}` : ''
               }`}
             >
@@ -123,7 +123,7 @@ export default function PostCard({
                     ? t('blog.post.read-tutorial')
                     : t('blog.post.read-post')
                 }
-                className={`pointer-events-none flex appearance-none items-center self-end rounded-full border border-neutral-600/30 bg-neutral-800 px-4 py-2 text-sm font-light shadow-sm ${
+                className={`pointer-events-none flex appearance-none items-center self-end rounded-full border border-neutral-600/30 bg-neutral-800 px-4 py-2 text-sm font-light shadow-xs ${
                   isLatestTutorial
                     ? 'text-orange-300/60 group-hover:text-orange-300'
                     : 'text-neutral-300/60 group-hover:text-neutral-300'

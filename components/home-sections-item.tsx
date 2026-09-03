@@ -56,11 +56,11 @@ export default function HomeSectionsItem({
       href={href}
       title={sectionName}
       aria-label={sectionName}
-      className="group flex flex-1 even:mt-1 md:even:mt-0 overflow-hidden drop-shadow-sm first:rounded-tl-xl [&:nth-child(2)]:rounded-bl-xl [&:nth-child(3)]:rounded-tr-xl last:rounded-br-xl md:first:rounded-l-xl md:[&:nth-child(2)]:rounded-none md:[&:nth-child(3)]:rounded-none md:last:rounded-r-xl"
+      className="group flex flex-1 even:mt-1 md:even:mt-0 overflow-hidden drop-shadow-xs first:rounded-tl-xl nth-2:rounded-bl-xl nth-3:rounded-tr-xl last:rounded-br-xl md:first:rounded-l-xl md:nth-2:rounded-none md:nth-3:rounded-none md:last:rounded-r-xl"
     >
       <article
-        className={`flex w-full flex-col justify-between bg-white/30 p-[1px] font-extralight transition-colors ${
-          averageColor.isDark ? 'hover:!bg-orange-300' : 'hover:!bg-neutral-300'
+        className={`flex w-full flex-col justify-between bg-white/30 p-px font-extralight transition-colors ${
+          averageColor.isDark ? 'hover:bg-orange-300!' : 'hover:bg-neutral-300!'
         }`}
         style={{
           backgroundColor: averageColor.hex,
@@ -89,7 +89,7 @@ export default function HomeSectionsItem({
           ref={imageRef}
           src={src}
           alt={sectionName}
-          className="transition-all duration-300 h-auto aspect-square w-full overflow-hidden group-first:rounded-tl-xl group-[&:nth-child(2)]:rounded-bl-xl group-[&:nth-child(3)]:rounded-tr-xl group-last:rounded-br-xl md:group-first:rounded-l-xl md:group-[&:nth-child(2)]:rounded-none md:group-[&:nth-child(3)]:rounded-none md:group-last:rounded-r-xl"
+          className="transition-all duration-300 h-auto aspect-square w-full overflow-hidden group-first:rounded-tl-xl group-nth-2:rounded-bl-xl group-nth-3:rounded-tr-xl group-last:rounded-br-xl md:group-first:rounded-l-xl md:group-nth-2:rounded-none md:group-nth-3:rounded-none md:group-last:rounded-r-xl"
           style={{
             WebkitMaskImage:
               'linear-gradient(to top, rgba(0, 0, 0, 1) 75%, transparent 100%)',

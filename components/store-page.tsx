@@ -77,7 +77,7 @@ export default function StorePage({
       <header className="mt-9 px-6 text-center sm:-mt-3 mb-12 sm:mb-16">
         <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
           <h1
-            className={`bg-gradient-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:text-8xl sm:leading-tight ${
+            className={`bg-linear-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow-sm sm:text-8xl sm:leading-tight ${
               isIndex ? 'from-orange-300' : 'from-neutral-300/60'
             }`}
             title={title}
@@ -87,9 +87,9 @@ export default function StorePage({
         </div>
 
         <div
-          className={`relative after:absolute after:left-0 after:block after:w-full after:h-[1px] after:bg-gradient-to-r after:from-transparent ${
+          className={`relative after:absolute after:left-0 after:block after:w-full after:h-px after:bg-linear-to-r after:from-transparent ${
             isIndex
-              ? 'pb-6 after:bottom-[-1px] after:via-orange-300/60'
+              ? 'pb-6 after:-bottom-px after:via-orange-300/60'
               : 'pt-3 mt-6 after:top-0 after:via-neutral-600'
           }`}
         >
