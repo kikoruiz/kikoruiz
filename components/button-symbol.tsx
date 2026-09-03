@@ -13,7 +13,7 @@ export default function ButtonSymbol({
   return (
     <button
       title={title}
-      className={`text-sm size-6 rounded-full bg-linear-to-b from-neutral-600 text-neutral-300/60 transition-colors ${isDisabled ? 'cursor-not-allowed' : 'hover:text-neutral-100 hover:from-neutral-600/80'}`}
+      className={`text-sm size-6 rounded-full bg-gradient-to-b from-neutral-600 text-neutral-300/60 transition-colors ${isDisabled ? 'cursor-not-allowed' : 'hover:text-neutral-100 hover:from-neutral-600/80'}`}
       onClick={!isDisabled ? onClick : () => {}}
     >
       <span aria-hidden className="sr-only">

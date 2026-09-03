@@ -31,11 +31,11 @@ export default function HomeHeader({
   )
 
   return (
-    <header className="relative rounded-sm bg-linear-to-br from-neutral-900/60 to-neutral-900/30 px-3 pb-6 pt-12 text-white/90 md:px-6">
-      <div className="flex flex-col xl:flex-row xl:justify-center items-center mb-6 xl:mb-9 wrap-break-word transition-opacity">
+    <header className="relative rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pb-6 pt-12 text-white/90 md:px-6">
+      <div className="flex flex-col xl:flex-row xl:justify-center items-center mb-6 xl:mb-9 break-words transition-opacity">
         <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
 
-        <h1 className="wrap-break-word text-center text-4xl font-black leading-tight drop-shadow-sm sm:text-5xl sm:leading-normal xl:text-6xl">
+        <h1 className="break-words text-center text-4xl font-black leading-tight drop-shadow sm:text-5xl sm:leading-normal xl:text-6xl">
           Kiko Ruiz{' '}
           {typingEnabled ? (
             <ReactTyped
@@ -68,7 +68,7 @@ export default function HomeHeader({
         title={t(
           collapseSections ? 'sections.uncollapse' : 'sections.collapse'
         )}
-        className="group absolute top-3 right-3 scale-75 opacity-75 flex h-11 w-11 rounded-full bg-linear-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-hidden"
+        className="group absolute top-3 right-3 scale-75 opacity-75 flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
         onClick={() => {
           setCollapseSections(!collapseSections)
         }}

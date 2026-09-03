@@ -121,7 +121,7 @@ export default function Article({
 
             {caption && !isSquare && (
               <span
-                className="absolute left-0 top-full z-20 m-0 py-1 text-xs font-extralight italic text-neutral-300/50 drop-shadow-xs"
+                className="absolute left-0 top-full z-20 m-0 py-1 text-xs font-extralight italic text-neutral-300/50 drop-shadow-sm"
                 aria-label={caption}
               >
                 {caption}

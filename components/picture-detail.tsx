@@ -120,9 +120,9 @@ export default function PictureDetail({
 
         {!isFullScreen && (
           <div className="fixed top-0 flex h-full w-full flex-col-reverse">
-            <div className="bg-linear-to-r from-neutral-900 via-neutral-900">
+            <div className="bg-gradient-to-r from-neutral-900 via-neutral-900">
               <section className="mx-auto p-6 text-neutral-400 xl:max-w-5xl">
-                <header className="mb-1 text-3xl font-black drop-shadow-sm group-hover:text-orange-300">
+                <header className="mb-1 text-3xl font-black drop-shadow group-hover:text-orange-300">
                   {name}
                 </header>
 
@@ -151,7 +151,7 @@ export default function PictureDetail({
                     {tags.map(({id, name, href}) => {
                       const currentTag = getSlug(t(`tags.${id}`))
                       const baseClassName =
-                        'inline-block px-1.5 py-1.5 text-xs font-extrabold leading-[0.5] text-neutral-600/60 drop-shadow-xs'
+                        'inline-block px-1.5 py-1.5 text-xs font-extrabold leading-[0.5] text-neutral-600/60 drop-shadow-sm'
                       const content = (
                         <>
                           <span className="font-extralight">#</span> {name}
@@ -183,7 +183,7 @@ export default function PictureDetail({
                 <PictureInfo {...pictureInfoProps} isOpen={showInfo} />
 
                 {showMap && coordinates && (
-                  <div className="mb-5 h-60 w-full overflow-hidden rounded-sm drop-shadow-sm">
+                  <div className="mb-5 h-60 w-full overflow-hidden rounded drop-shadow">
                     <DynamicMap pictures={[{slug, coordinates}]} zoom={10} />
                   </div>
                 )}

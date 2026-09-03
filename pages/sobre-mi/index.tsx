@@ -61,7 +61,7 @@ export default function AboutMe({
             isFullRounded
           />
 
-          <dl className="rounded-lg bg-linear-to-tl from-neutral-800/60 px-6 sm:px-3">
+          <dl className="rounded-lg bg-gradient-to-tl from-neutral-800/60 px-6 sm:px-3">
             {Object.keys(PERSONAL_INFO).map(key => {
               const value = PERSONAL_INFO[key]
 
@@ -119,7 +119,7 @@ export default function AboutMe({
                 <div
                   className={`${personalInfoBackground(
                     key
-                  )} relative border-b border-neutral-800 bg-size-[1.2rem] bg-position-[left_0.65rem_center] bg-no-repeat py-6 pl-14 before:absolute before:left-0 before:top-1/2 before:-z-10 before:-mt-5 before:h-10 before:w-10 before:rounded-xl before:bg-linear-to-bl before:from-neutral-700 last:border-0`}
+                  )} relative border-b border-neutral-800 bg-[length:1.2rem] bg-[left_0.65rem_center] bg-no-repeat py-6 pl-14 before:absolute before:left-0 before:top-1/2 before:-z-10 before:-mt-5 before:h-10 before:w-10 before:rounded-xl before:bg-gradient-to-bl before:from-neutral-700 last:border-0`}
                   key={key}
                 >
                   <dt className="text-xs opacity-30">
@@ -135,12 +135,12 @@ export default function AboutMe({
 
           <Link
             href={`/${getSlug(t('sections.about-me.name'))}/${getSlug(t('about-me.pages.resume.name'))}`}
-            className="flex items-center justify-center drop-shadow-md gap-1.5 mt-16 sm:mt-12 p-6 rounded-lg bg-linear-to-br from-orange-700 to-orange-500 transition-all hover:bg-linear-to-tl hover:ring-2 hover:ring-orange-50 duration-300 text-orange-200 hover:text-orange-50 font-extralight text-4xl"
+            className="flex items-center justify-center drop-shadow-md gap-1.5 mt-16 sm:mt-12 p-6 rounded-lg bg-gradient-to-br from-orange-700 to-orange-500 transition-all hover:bg-gradient-to-tl hover:ring-2 hover:ring-orange-50 duration-300 text-orange-200 hover:text-orange-50 font-extralight text-4xl"
             title={t('about-me:go-to-resume')}
           >
             <IconDocumentText className="size-9 sm:hidden lg:block" />
 
-            <span className="drop-shadow-sm">{t('about-me:go-to-resume')}</span>
+            <span className="drop-shadow">{t('about-me:go-to-resume')}</span>
           </Link>
         </div>
 

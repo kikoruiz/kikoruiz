@@ -29,7 +29,7 @@ function Footer({alternates}: FooterProps) {
   }
 
   return (
-    <footer className="container relative mx-auto mt-12 px-6 pb-12 pt-16 after:absolute after:left-0 after:top-0 after:block after:h-px after:w-full after:bg-linear-to-r after:from-transparent after:via-neutral-600 sm:mt-0 sm:pb-16 sm:pt-32 sm:after:top-16">
+    <footer className="container relative mx-auto mt-12 px-6 pb-12 pt-16 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-neutral-600 sm:mt-0 sm:pb-16 sm:pt-32 sm:after:top-16">
       <div className="flex gap-12 flex-col lg:flex-row items-start justify-between">
         <div className="flex items-center text-sm md:mb-0">
           <label
@@ -47,7 +47,7 @@ function Footer({alternates}: FooterProps) {
 
           <select
             id="languages"
-            className="block appearance-none rounded-md border border-neutral-700 bg-neutral-800 bg-select bg-size-[0.75rem] bg-position-[right_0.5rem_center] bg-no-repeat py-1.5 pl-3 pr-7 shadow-xs focus:border-orange-300/60 focus:outline-hidden focus:ring-orange-300/60"
+            className="block appearance-none rounded-md border border-neutral-700 bg-neutral-800 bg-select bg-[length:0.75rem] bg-[right_0.5rem_center] bg-no-repeat py-1.5 pl-3 pr-7 shadow-sm focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
             onChange={handleLanguageChange}
             defaultValue={currentLocale}
           >

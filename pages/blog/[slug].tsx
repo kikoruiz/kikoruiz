@@ -81,7 +81,7 @@ export default function Post({post, alternates}: PostProps) {
         <header className="pt-9 text-center sm:pt-0">
           {!BLOG.AVAILABLE_LOCALES.includes(locale) && (
             <div className="mb-12 w-full text-left text-sm font-extralight leading-normal drop-shadow-lg sm:text-center">
-              <p className="flex items-start justify-center gap-1.5 rounded-sm bg-neutral-600/90 px-6 py-3 drop-shadow-sm sm:items-center">
+              <p className="flex items-start justify-center gap-1.5 rounded bg-neutral-600/90 px-6 py-3 drop-shadow sm:items-center">
                 <IconInformationCircle className="w-6" />
                 {t('common:blog.post.available-locales.warning')}
               </p>
@@ -90,7 +90,7 @@ export default function Post({post, alternates}: PostProps) {
 
           <div>
             <time
-              className="rounded-sm bg-linear-to-br from-neutral-800/60 p-2 font-light text-orange-300/60"
+              className="rounded bg-gradient-to-br from-neutral-800/60 p-2 font-light text-orange-300/60"
               dateTime={post.createdAt}
             >
               {getPrettyDate(post.createdAt, locale)}
@@ -116,7 +116,7 @@ export default function Post({post, alternates}: PostProps) {
         <Article
           content={post.body}
           contentImages={post.bodyImages}
-          className="relative mx-auto mt-12 pt-12 before:absolute before:left-0 before:top-0 before:block before:h-px before:w-full before:bg-linear-to-r before:from-transparent before:via-neutral-600"
+          className="relative mx-auto mt-12 pt-12 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"
         />
 
         {post.tags && <BlogTags tags={post.blogTags} isPost />}

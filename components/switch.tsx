@@ -35,9 +35,9 @@ export default function Switch({
             setIsChecked(nextIsChecked)
           }
         }}
-        className={`w-[42px] h-[25px] rounded-full transition-all relative outline-hidden ${
+        className={`w-[42px] h-[25px] rounded-full transition-all relative outline-none ${
           isChecked
-            ? 'bg-linear-to-b from-orange-300 to-orange-400'
+            ? 'bg-gradient-to-b from-orange-300 to-orange-400'
             : 'bg-neutral-900/60'
         } ${
           isLocked

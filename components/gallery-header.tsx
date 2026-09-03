@@ -53,7 +53,7 @@ function GalleryHeader({
     >
       <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
         <h1
-          className={`bg-linear-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow-sm sm:text-8xl sm:leading-tight ${
+          className={`bg-gradient-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:text-8xl sm:leading-tight ${
             tag ? 'from-neutral-300/60' : 'from-orange-300'
           }`}
           title={title}
@@ -69,9 +69,9 @@ function GalleryHeader({
       </div>
 
       <div
-        className={`relative after:absolute after:left-0 after:block after:h-px after:w-full after:bg-linear-to-r after:from-transparent ${
+        className={`relative after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent ${
           isAlbum
-            ? 'pb-6 after:-bottom-px after:via-orange-300/60'
+            ? 'pb-6 after:bottom-[-1px] after:via-orange-300/60'
             : 'mt-6 pt-3 after:top-0 after:via-neutral-600'
         }`}
       >
