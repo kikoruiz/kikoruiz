@@ -11,7 +11,7 @@ import {HeroImageProvider} from 'contexts/HeroImage'
 import {LayoutProvider} from 'contexts/Layout'
 import Layout from 'components/layout'
 import StoreCartProvider from 'components/store-cart-provider'
-import commonES from '../locales/es/common.json'
+import common from '../locales/es/common.json'
 import '../styles/globals.css'
 
 const ONE_YEAR = 365
@@ -39,7 +39,7 @@ export default function App({Component, pageProps}: AppProps) {
         }}
       >
         <StoreCartProvider isActive={isStorePage}>
-          <I18nProvider lang={lang} namespaces={{commonES}}>
+          <I18nProvider lang={lang} namespaces={{common}}>
             <LayoutProvider>
               <SubcategoryProvider>
                 <LatestPicturesProvider>
