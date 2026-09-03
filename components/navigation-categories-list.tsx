@@ -50,20 +50,15 @@ export default function NavigationCategoriesList({
 
         return (
           <li key={category.id} className="group">
-            {isActualCategory ? (
-              <span title={categoryName} className={categoryClassName}>
-                {categoryName}
-              </span>
-            ) : (
-              <Link
-                href={categoryHref}
-                title={categoryName}
-                className={categoryClassName}
-                onClick={onCategoryClick}
-              >
-                {categoryName}
-              </Link>
-            )}
+            <Link
+              href={categoryHref}
+              title={categoryName}
+              className={categoryClassName}
+              onClick={isActualCategory ? e => e.preventDefault() : onCategoryClick}
+              aria-current={isActualCategory ? 'page' : undefined}
+            >
+              {categoryName}
+            </Link>
           </li>
         )
       })}
