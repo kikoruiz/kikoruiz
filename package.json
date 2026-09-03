@@ -60,7 +60,7 @@
     "autoprefixer": "10",
     "checkly": "9",
     "eslint": "8",
-    "eslint-config-next": "15",
+    "eslint-config-next": "16",
     "eslint-config-prettier": "10",
     "exiftool-vendored": "37",
     "glob": "13",
