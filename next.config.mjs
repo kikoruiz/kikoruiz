@@ -12,7 +12,10 @@ const nextConfig = withBundleAnalyzer({
       reactStrictMode: true,
       reactProductionProfiling: true,
       images: {
-        formats: ['image/avif', 'image/webp']
+        deviceSizes: [640, 1080, 1920],
+        imageSizes: [],
+        loader: 'custom',
+        loaderFile: './lib/image-loader.js'
       },
       i18n: {
         locales: ['es', 'ca', 'en'],

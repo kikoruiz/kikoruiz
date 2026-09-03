@@ -15,6 +15,9 @@ build:
 save:
 	node --import tsx$(shell [ "$(NODE_ENV)" = "development" ] && echo " --env-file .env.local") ./bin/$(FILE).mts
 
+save_optimized:
+	FILE=pictures/optimize make save
+
 save_placeholders:
 	FILE=image/placeholders make save
 
