@@ -8,7 +8,9 @@ import {getAbsoluteUrl, getSlug, themeScreens} from 'lib/utils'
 import {getImagePlaceholder} from 'lib/utils/image'
 import {getContent} from 'lib/content'
 import {PERSONAL_INFO, SECTIONS, SITE_NAME} from 'config'
-import Article from 'components/article'
+import dynamic from 'next/dynamic'
+
+const Article = dynamic(() => import('components/article'))
 import Image from 'components/image'
 import IconDocumentText from 'assets/icons/document-text.svg'
 import {Alternate, StaticContent} from 'types'

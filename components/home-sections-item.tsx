@@ -1,7 +1,7 @@
 import {useLayoutEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
-import {useMediaQuery} from 'react-responsive'
+import {useMediaQuery} from 'hooks/use-media-query'
 import {getCapitalizedName, getSlug, screens} from 'lib/utils'
 import Image from './image'
 import sectionIcons from './section-icons'

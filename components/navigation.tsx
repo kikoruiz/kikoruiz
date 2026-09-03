@@ -11,7 +11,9 @@ import {
 import {getRandomElement, getSlug} from 'lib/utils'
 import NavigationSection from './navigation-section'
 import NavigationButton from './navigation-button'
-import SearchBar from './search-bar'
+import dynamic from 'next/dynamic'
+
+const SearchBar = dynamic(() => import('./search-bar'), {ssr: false})
 import useHeroImageContext from 'contexts/HeroImage'
 import IconMagnifyingGlass from 'assets/icons/magnifying-glass.svg'
 import IconSwatch from 'assets/icons/swatch.svg'
