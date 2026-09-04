@@ -25,7 +25,7 @@ const http = {
     },
     {
       source: '/ca/tienda',
-      destination: '/ca/tenda',
+      destination: '/ca/botiga',
       locale: false,
       permanent: true
     },
@@ -37,7 +37,7 @@ const http = {
     },
     {
       source: '/ca/tienda/impresiones',
-      destination: '/ca/tenda/impressions',
+      destination: '/ca/botiga/impressions',
       locale: false,
       permanent: true
     },
@@ -125,7 +125,7 @@ const http = {
       locale: false
     },
     {
-      source: '/ca/tenda',
+      source: '/ca/botiga',
       destination: '/ca/tienda',
       locale: false
     },
@@ -135,7 +135,7 @@ const http = {
       locale: false
     },
     {
-      source: '/ca/tenda/impressions',
+      source: '/ca/botiga/impressions',
       destination: '/ca/tienda/impresiones',
       locale: false
     },
