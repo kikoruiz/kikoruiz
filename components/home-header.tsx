@@ -30,10 +30,11 @@ export default function HomeHeader({
     'header.development'
   ]
   const typedStrings = typedStringsKeys.map(key => t(key))
-  const maxTypedWidth = typedStrings.reduce(
+  const maxTypedLength = typedStrings.reduce(
     (maxLength, value) => Math.max(maxLength, value.length),
     0
   )
+  const maxTypedWidth = maxTypedLength * 0.6
 
   return (
     <header className="relative rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pb-6 pt-12 text-white/90 md:px-6">
@@ -43,8 +44,8 @@ export default function HomeHeader({
         <h1 className="break-words text-center text-4xl font-black leading-tight drop-shadow sm:text-5xl sm:leading-normal xl:text-6xl">
           Kiko Ruiz{' '}
           <span
-            className="font-thin text-center sm:text-left block sm:inline-block"
-            style={{width: `${maxTypedWidth}ch`}}
+            className="font-thin block text-center mx-auto sm:inline-block sm:text-left sm:mx-0"
+            style={{width: `${maxTypedWidth}em`}}
           >
             {typingEnabled ? (
               <ReactTyped

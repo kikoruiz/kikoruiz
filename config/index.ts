@@ -51,7 +51,8 @@ export const BLOG = {
   AUTHORS: [{slug: 'kiko-ruiz', name: SITE_NAME}],
   TAGS: [
     'photography',
-    'personal'
+    'personal',
+    'development'
     // 'tutorial'
   ],
   TITLE_SEPARATOR: ':',

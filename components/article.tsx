@@ -1,8 +1,9 @@
-import {HTMLAttributes, PropsWithChildren} from 'react'
+import {HTMLAttributes, PropsWithChildren, useState} from 'react'
 import NextLink from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import {cva} from 'class-variance-authority'
 import Image from './image'
+import ArticleLightbox from './article-lightbox'
 import {themeScreens} from 'lib/utils'
 import {Image as ImageInterface} from 'types/gallery'
 import type {VariantProps} from 'class-variance-authority'
@@ -36,6 +37,9 @@ export default function Article({
   className,
   intent = DEFAULT_INTENT
 }: ArticleProps) {
+  const [lightbox, setLightbox] = useState<{src: string; alt: string} | null>(
+    null
+  )
   const components = {
     p({children, node}) {
       const nextChildren = {}
@@ -99,25 +103,33 @@ export default function Article({
               alignToRight ? ' lg:float-right lg:ml-6' : ''
             }`}
           >
-            <Image
-              src={image.properties.src}
-              alt={alt}
-              needsPreload={hasPriority}
-              className={`shadow-lg ${
-                isRounded
-                  ? 'm-0 w-2/3 overflow-hidden rounded-full border-8 border-neutral-600/30'
-                  : 'lg:m-0'
-              }`}
-              isRounded={!isRounded}
-              isFullRounded={isRounded}
-              aspectRatio={isSquare ? '1:1' : isVertical ? '2:3' : '3:2'}
-              sizes={
-                alignToLeft || alignToRight
-                  ? `(min-width: ${md}) 50vw, 100vw`
-                  : '100%'
+            <button
+              type="button"
+              className="block w-full cursor-zoom-in"
+              onClick={() =>
+                setLightbox({src: image.properties.src, alt})
               }
-              fallbackStyle={fallbackImage ? fallbackImage.css : {}}
-            />
+            >
+              <Image
+                src={image.properties.src}
+                alt={alt}
+                needsPreload={hasPriority}
+                className={`shadow-lg ${
+                  isRounded
+                    ? 'm-0 w-2/3 overflow-hidden rounded-full border-8 border-neutral-600/30'
+                    : 'lg:m-0'
+                }`}
+                isRounded={!isRounded}
+                isFullRounded={isRounded}
+                aspectRatio={isSquare ? '1:1' : isVertical ? '2:3' : '3:2'}
+                sizes={
+                  alignToLeft || alignToRight
+                    ? `(min-width: ${md}) 50vw, 100vw`
+                    : '100%'
+                }
+                fallbackStyle={fallbackImage ? fallbackImage.css : {}}
+              />
+            </button>
 
             {caption && !isSquare && (
               <span
@@ -180,9 +192,19 @@ export default function Article({
   }
 
   return (
-    <article className={articleStyles({intent, className})}>
-      <ReactMarkdown components={components}>{content}</ReactMarkdown>
-    </article>
+    <>
+      <article className={articleStyles({intent, className})}>
+        <ReactMarkdown components={components}>{content}</ReactMarkdown>
+      </article>
+
+      {lightbox && (
+        <ArticleLightbox
+          src={lightbox.src}
+          alt={lightbox.alt}
+          onClose={() => setLightbox(null)}
+        />
+      )}
+    </>
   )
 }
 

@@ -1,5 +1,4 @@
 import {kebabCase} from 'change-case'
-import {remove as removeAccents} from 'remove-accents'
 import getT from 'next-translate/getT'
 import {SECTIONS, DEFAULT_ORIGIN, SPECIAL_SUBSECTIONS} from 'config'
 import {getSlug} from './utils'
@@ -154,7 +153,7 @@ export async function fromLocalesToAlternates({
     if (tag) {
       actualTag = isGallerySection
         ? getSlug(galleryT(`tags.${getSlug(tag)}`))
-        : removeAccents(t(`blog.tags.${tag}`))
+        : getSlug(t(`blog.tags.${tag}`))
     }
     const tagPath = tag ? `/tags/${actualTag}` : ''
     const endingPath =

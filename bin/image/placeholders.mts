@@ -12,7 +12,7 @@ const imagePlaceholdersFile = path.join(
   'image',
   'placeholders.json'
 )
-const images = globSync('public/**/*.jpg')
+const images = globSync('public/**/*.{jpg,png}')
 const imagePlaceholders: RawImagePlaceholder[] = []
 
 async function saveAllImagePlaceholders() {
