@@ -113,7 +113,7 @@ function Image(
         ref={ref}
         src={src}
         alt={alt}
-        className={`object-cover ${isLoaded && !isHidden ? 'visible' : 'invisible'}`}
+        className={`object-cover transition-opacity duration-300 ${isLoaded && !isHidden ? 'opacity-100' : 'opacity-0'}`}
         priority={needsPreload}
         loading={isLazy && !needsPreload ? 'lazy' : 'eager'}
         onLoad={handleImageLoad}

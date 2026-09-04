@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import getT from 'next-translate/getT'
 import useTranslation from 'next-translate/useTranslation'
-import {remove} from 'remove-accents'
 import {BLOG, SITE_NAME} from 'config'
+import {getSlug} from 'lib/utils'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getAllPosts} from 'lib/blog/posts'
 import BlogList from 'components/blog-list'
@@ -36,7 +36,7 @@ export async function getStaticPaths({locales}) {
     paths = paths.concat(
       BLOG.TAGS.map(tag => ({
         params: {
-          tag: remove(t(`blog.tags.${tag}`))
+          tag: getSlug(t(`blog.tags.${tag}`))
         },
         locale
       }))
@@ -59,7 +59,7 @@ export async function getStaticProps({
   const posts = await getAllPosts(locale)
   const t = await getT(locale, 'common')
   const actualTag = BLOG.TAGS.find(
-    currentTag => tag === remove(t(`blog.tags.${currentTag}`))
+    currentTag => tag === getSlug(t(`blog.tags.${currentTag}`))
   )
   const alternates = await Promise.all(
     locales.map(

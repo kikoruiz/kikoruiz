@@ -35,12 +35,12 @@ export async function getAllPosts(locale: string): Promise<BlogPost[]> {
       const post = getPostBySlug(rawSlug, {locale})
       const [createdAt, slug] = rawSlug.split(POST_FILE_SEPARATOR)
       const readingTime = getReadingTime(post.body)
-      const matchedImages = post.body.match(/!\[(.*)\]\((.*.jpg)\)/g)
+      const matchedImages = post.body.match(/!\[(.*)\]\((.*\.(?:jpg|png))\)/g)
       let bodyImages = []
       if (matchedImages) {
         bodyImages = await Promise.all(
           matchedImages.map(async matchedImage => {
-            const [, alt, src] = matchedImage.match(/!\[(.*)\]\((.*.jpg)\)/)
+            const [, alt, src] = matchedImage.match(/!\[(.*)\]\((.*\.(?:jpg|png))\)/)
             const {css} = await getImagePlaceholder(src)
 
             return {src, alt: alt.replace(/ *\{[^)]*\} */g, ''), css}
