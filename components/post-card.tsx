@@ -109,7 +109,7 @@ export default function PostCard({
             )}
           </header>
 
-          <time className="text-orange-300/60" dateTime={createdAt}>
+          <time className="mt-1 text-orange-300/60" dateTime={createdAt}>
             {isDraft ? t('blog.post.draft') : getPrettyDate(createdAt, locale)}
           </time>
 

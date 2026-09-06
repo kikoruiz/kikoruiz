@@ -58,7 +58,7 @@ export default function Breadcrumb({
   return items.length > 0 ? (
     <div id="breadcrumb" className="bg-neutral-800/75">
       <div className="container mx-auto flex justify-between items-center px-6 py-2">
-        <div className="flex">
+        <div className="flex items-center">
           {items.map(({href, id, name}, index) => {
             const isFirstItem = index === 0
 

@@ -106,9 +106,7 @@ export default function Article({
             <button
               type="button"
               className="block w-full cursor-zoom-in"
-              onClick={() =>
-                setLightbox({src: image.properties.src, alt})
-              }
+              onClick={() => setLightbox({src: image.properties.src, alt})}
             >
               <Image
                 src={image.properties.src}
@@ -117,7 +115,7 @@ export default function Article({
                 className={`shadow-lg ${
                   isRounded
                     ? 'm-0 w-2/3 overflow-hidden rounded-full border-8 border-neutral-600/30'
-                    : 'lg:m-0'
+                    : 'm-0'
                 }`}
                 isRounded={!isRounded}
                 isFullRounded={isRounded}
