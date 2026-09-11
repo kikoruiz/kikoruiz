@@ -1,4 +1,4 @@
-import {useState, useRef, useEffect, useCallback} from 'react'
+import {useState, useRef, useEffect, useMemo} from 'react'
 import {useRouter} from 'next/router'
 import {useCombobox} from 'downshift'
 import useTranslation from 'next-translate/useTranslation'
@@ -21,30 +21,30 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const inputRef = useRef(null)
   const [items, setItems] = useState([])
   const [status, setStatus] = useState(REQUEST_STATUS_OPTIONS.IDLE)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedChangeHandler = useCallback(
-    debounce(async ({inputValue}: {inputValue: string}) => {
-      setStatus(REQUEST_STATUS_OPTIONS.PENDING)
+  const debouncedChangeHandler = useMemo(
+    () =>
+      debounce(async ({inputValue}: {inputValue: string}) => {
+        setStatus(REQUEST_STATUS_OPTIONS.PENDING)
 
-      let items: SearchItem[] | [] = []
+        let items: SearchItem[] | [] = []
 
-      if (inputValue) {
-        try {
-          const search = (await import('lib/search')).default
-          items = search({key: inputValue, locale})
+        if (inputValue) {
+          try {
+            const search = (await import('lib/search')).default
+            items = search({key: inputValue, locale})
 
-          setStatus(REQUEST_STATUS_OPTIONS.RESOLVED)
-        } catch (error) {
-          console.error(error)
-          setStatus(REQUEST_STATUS_OPTIONS.REJECTED)
+            setStatus(REQUEST_STATUS_OPTIONS.RESOLVED)
+          } catch (error) {
+            console.error(error)
+            setStatus(REQUEST_STATUS_OPTIONS.REJECTED)
+          }
+        } else {
+          setStatus(REQUEST_STATUS_OPTIONS.IDLE)
         }
-      } else {
-        setStatus(REQUEST_STATUS_OPTIONS.IDLE)
-      }
 
-      setItems(items)
-    }, 300),
-    []
+        setItems(items)
+      }, 300),
+    [locale]
   )
   const {
     isOpen: isMenuOpen,
@@ -53,18 +53,19 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
     getInputProps,
     highlightedIndex,
     getItemProps,
-    reset
+    reset,
+    inputValue
   } = useCombobox({
     items,
     labelId: 'search-label',
     menuId: 'search-menu',
     onSelectedItemChange: ({selectedItem}) => {
       let destination
-      if (selectedItem?.excerpt) {
+      if (selectedItem?.type === 'post') {
         destination = `/${getSlug(t('sections.blog.name'))}/${
           selectedItem.slug
         }`
-      } else if (selectedItem?.album) {
+      } else if (selectedItem?.type === 'picture' && selectedItem.album) {
         destination = `/${getSlug(t('sections.gallery.name'))}/${getSlug(
           t(`gallery.albums.${selectedItem.album}.name`)
         )}?${queryKey}=${selectedItem.slug}`
@@ -112,15 +113,31 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
     }
   }, [isOpen, setIsOpen, reset])
 
+  const isResolved = status === REQUEST_STATUS_OPTIONS.RESOLVED
+  const showNoResults =
+    isMenuOpen && isResolved && Boolean(inputValue) && items.length === 0
+
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (highlightedIndex < 0 || !menuRef.current) return
+
+    const options = menuRef.current.querySelectorAll('[role="option"]')
+    const item = options[highlightedIndex] as HTMLElement | undefined
+
+    if (item) item.scrollIntoView({block: 'nearest'})
+  }, [highlightedIndex])
+
   return (
     <div
-      className={`absolute left-0 top-full z-20 cursor-pointer px-4 sm:px-0 w-full${
-        isOpen ? '' : ' hidden'
+      aria-hidden={!isOpen}
+      className={`absolute left-0 top-full z-20 w-full px-4 transition-all duration-300 ease-out sm:px-0 ${
+        isOpen
+          ? 'translate-y-0 opacity-100'
+          : 'pointer-events-none -translate-y-3 opacity-0'
       }`}
       onClick={event => {
-        const {localName} = event.target as HTMLDivElement
-
-        if (localName !== 'input') {
+        if (event.target === event.currentTarget) {
           setIsOpen(false)
           setStatus(REQUEST_STATUS_OPTIONS.IDLE)
         }
@@ -167,15 +184,21 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
         </div>
 
         <div
-          {...getMenuProps()}
+          {...getMenuProps({ref: menuRef})}
           className="max-h-[calc(100vh-20rem)] overflow-y-auto"
         >
-          {isMenuOpen && (
+          {isMenuOpen && items.length > 0 && (
             <SearchList
               items={items}
               getItemProps={getItemProps}
               highlightedIndex={highlightedIndex}
             />
+          )}
+
+          {showNoResults && (
+            <div className="px-6 py-6 text-center text-sm font-light text-neutral-500">
+              {t('navigation.search-no-results')}
+            </div>
           )}
         </div>
       </form>
