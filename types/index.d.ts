@@ -35,16 +35,22 @@ export interface Tag {
   slug: string
 }
 
+export type SearchItemType = 'post' | 'picture'
+
 export interface SearchItem {
+  type: SearchItemType
   title: string
   slug: string
   // Blog
   excerpt?: string
   tags?: string
+  createdAt?: string
   // Gallery
   keywords?: string[]
   fileName?: string
   album?: string
+  location?: string
+  createDate?: string
 }
 
 export interface ThemeScreens {

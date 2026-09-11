@@ -4,6 +4,7 @@
     "close-menu": "Tancar menú",
     "open-menu": "Obrir menú",
     "search": "Cercar",
+    "search-no-results": "Sense resultats",
     "album": {
       "scroll-to-top": "Anar al començament de l'àlbum"
     },

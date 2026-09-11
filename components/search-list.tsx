@@ -1,6 +1,12 @@
+import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {UseComboboxPropGetters} from 'downshift'
+import {getPrettyDate} from 'lib/blog/date'
+import SearchResultCategory from './search-result-category'
+import SearchResultItem from './search-result-item'
 import {SearchItem} from 'types'
+import IconPhoto from 'assets/icons/photo.svg'
+import IconDocumentText from 'assets/icons/document-text.svg'
 
 export default function SearchList({
   items,
@@ -8,39 +14,74 @@ export default function SearchList({
   highlightedIndex
 }: SearchListProps) {
   const {t} = useTranslation()
+  const {locale} = useRouter()
+  const posts = items.filter(item => item.type === 'post')
+  const pictures = items.filter(item => item.type === 'picture')
 
   return (
-    <ul>
-      {items.map((item, index) => {
-        return (
-          <li
-            {...getItemProps({item, index})}
-            key={item.slug}
-            className={`p-4 cursor-pointer${
-              highlightedIndex === index ? ' bg-neutral-900/30' : ''
-            }`}
-          >
-            {item.excerpt ? (
-              <div className="font-bold text-neutral-300/90">{item.title}</div>
-            ) : (
-              <>
-                <header className="font-bold text-neutral-300/90">
-                  {item.title}
-                </header>
-                <dl className="flex text-xs">
-                  <dt className="text-neutral-300/30 after:content-[':\00a0']">
-                    {t('gallery.album')}
-                  </dt>
-                  <dd className="text-orange-300/60">
-                    {t(`gallery.albums.${item.album}.name`)}
-                  </dd>
-                </dl>
-              </>
-            )}
-          </li>
-        )
-      })}
-    </ul>
+    <div>
+      {posts.length > 0 && (
+        <SearchResultCategory
+          icon={IconDocumentText}
+          title={t('sections.blog.name')}
+        >
+          {posts.map((item, positionInGroup) => {
+            const index = positionInGroup
+
+            return (
+              <SearchResultItem
+                key={`post-${item.slug}`}
+                item={item}
+                index={index}
+                isHighlighted={highlightedIndex === index}
+                fallbackKey={`post-${item.slug}`}
+                title={item.title}
+                primary={
+                  item.createdAt
+                    ? getPrettyDate(item.createdAt, locale)
+                    : undefined
+                }
+                excerpt={item.excerpt}
+                getItemProps={getItemProps}
+              />
+            )
+          })}
+        </SearchResultCategory>
+      )}
+
+      {pictures.length > 0 && (
+        <SearchResultCategory
+          icon={IconPhoto}
+          title={t('sections.gallery.name')}
+        >
+          {pictures.map((item, positionInGroup) => {
+            const index = posts.length + positionInGroup
+            const year = item.createDate
+              ? new Date(item.createDate).getFullYear().toString()
+              : undefined
+            const meta = [item.location, year].filter(Boolean) as string[]
+
+            return (
+              <SearchResultItem
+                key={`picture-${item.slug}`}
+                item={item}
+                index={index}
+                isHighlighted={highlightedIndex === index}
+                fallbackKey={`picture-${item.slug}`}
+                title={item.title}
+                primary={
+                  item.album
+                    ? t(`gallery.albums.${item.album}.name`)
+                    : undefined
+                }
+                meta={meta}
+                getItemProps={getItemProps}
+              />
+            )
+          })}
+        </SearchResultCategory>
+      )}
+    </div>
   )
 }
 
