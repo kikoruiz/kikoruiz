@@ -1,4 +1,4 @@
-import {HTMLAttributes, PropsWithChildren, useState} from 'react'
+import {HTMLAttributes, PropsWithChildren, useMemo, useState} from 'react'
 import NextLink from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import {cva} from 'class-variance-authority'
@@ -40,7 +40,7 @@ export default function Article({
   const [lightbox, setLightbox] = useState<{src: string; alt: string} | null>(
     null
   )
-  const components = {
+  const components = useMemo(() => ({
     p({children, node}) {
       const nextChildren = {}
 
@@ -131,7 +131,7 @@ export default function Article({
 
             {caption && !isSquare && (
               <span
-                className="absolute left-0 top-full z-20 m-0 py-1 text-xs font-extralight italic text-neutral-300/50 drop-shadow-sm"
+                className="absolute left-0 top-full m-0 py-1 text-xs font-extralight italic text-neutral-300/50 drop-shadow-sm"
                 aria-label={caption}
               >
                 {caption}
@@ -187,7 +187,7 @@ export default function Article({
         </li>
       )
     }
-  }
+  }), [contentImages])
 
   return (
     <>
