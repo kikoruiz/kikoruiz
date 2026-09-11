@@ -57,8 +57,8 @@ export default function Breadcrumb({
 
   return items.length > 0 ? (
     <div id="breadcrumb" className="bg-neutral-800/75">
-      <div className="container mx-auto flex justify-between items-center px-6 py-2">
-        <div className="flex items-center">
+      <div className="container mx-auto flex justify-between items-center px-6 py-2 gap-3">
+        <div className="flex min-w-0 flex-1 items-center">
           {items.map(({href, id, name}, index) => {
             const isFirstItem = index === 0
 
@@ -87,8 +87,13 @@ export default function Breadcrumb({
                 {name}
               </span>
             ) : (
-              <span key={id} className="flex font-bold text-orange-300/60">
-                {needsSectionIcon && <SectionIcon className="mr-1 w-5" />}
+              <span
+                key={id}
+                className="flex min-w-0 items-baseline font-bold text-orange-300/60"
+              >
+                {needsSectionIcon && (
+                  <SectionIcon className="mr-1 w-5 shrink-0" />
+                )}
                 {post && name.includes(BLOG.TITLE_SEPARATOR) ? (
                   <>
                     <span className="mr-1 font-light">
@@ -96,10 +101,14 @@ export default function Breadcrumb({
                       {BLOG.TITLE_SEPARATOR}
                     </span>
 
-                    {name.split(BLOG.TITLE_SEPARATOR)[1]}
+                    <span className="truncate">
+                      {name.split(BLOG.TITLE_SEPARATOR)[1]}
+                    </span>
                   </>
                 ) : (
-                  <>{name}</>
+                  <span className="truncate" title={name}>
+                    {name}
+                  </span>
                 )}
               </span>
             )
