@@ -58,7 +58,7 @@ export default function Breadcrumb({
   return items.length > 0 ? (
     <div id="breadcrumb" className="bg-neutral-800/75">
       <div className="container mx-auto flex justify-between items-center px-6 py-2 gap-3">
-        <div className="flex min-w-0 flex-1 items-center">
+        <div className="flex min-w-0 flex-1 items-center font-light">
           {items.map(({href, id, name}, index) => {
             const isFirstItem = index === 0
 
@@ -68,7 +68,7 @@ export default function Breadcrumb({
                   key={id}
                   href={href}
                   title={t('navigation.back-to', {section: name})}
-                  className="inline-flex font-light text-neutral-300/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
+                  className="inline-flex text-neutral-300/30 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
                 >
                   {isFirstItem && <SectionIcon className="mr-1 w-5" />}
                   {name}
@@ -89,14 +89,14 @@ export default function Breadcrumb({
             ) : (
               <span
                 key={id}
-                className="flex min-w-0 items-baseline font-bold text-orange-300/60"
+                className="flex min-w-0 items-center font-bold text-orange-300/60"
               >
                 {needsSectionIcon && (
                   <SectionIcon className="mr-1 w-5 shrink-0" />
                 )}
                 {post && name.includes(BLOG.TITLE_SEPARATOR) ? (
                   <>
-                    <span className="mr-1 font-light">
+                    <span className="mr-1">
                       {name.split(BLOG.TITLE_SEPARATOR)[0]}
                       {BLOG.TITLE_SEPARATOR}
                     </span>
