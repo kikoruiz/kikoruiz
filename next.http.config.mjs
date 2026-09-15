@@ -14,6 +14,16 @@ const http = {
           value: 'noindex'
         }
       ]
+    },
+    {
+      source: '/:path*',
+      has: [{type: 'query', key: 'foto'}],
+      headers: [{key: 'X-Robots-Tag', value: 'noindex, follow'}]
+    },
+    {
+      source: '/:path*',
+      has: [{type: 'query', key: 'picture'}],
+      headers: [{key: 'X-Robots-Tag', value: 'noindex, follow'}]
     }
   ],
   redirects: [
@@ -26,6 +36,18 @@ const http = {
     {
       source: '/ca/tienda',
       destination: '/ca/botiga',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/ca/tenda',
+      destination: '/ca/botiga',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/ca/tenda/impressions',
+      destination: '/ca/botiga/impressions',
       locale: false,
       permanent: true
     },
