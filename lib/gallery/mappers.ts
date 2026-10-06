@@ -1,12 +1,8 @@
 import getT from 'next-translate/getT'
+import {Translate} from 'next-translate'
 import {getSlug} from '../utils'
 import {Coordinates, Image, Location, Picture, ShotInfo} from 'types/gallery'
-import {
-  ALLOWED_PICTURE_TAGS,
-  GALLERY_ALBUMS,
-  GALLERY_TAGS
-} from 'config/gallery'
-import {getGalleryTags} from './tags'
+import {ALLOWED_PICTURE_TAGS, GALLERY_ALBUMS} from 'config/gallery'
 import {getPostSlugByPictureSlug} from 'lib/blog/posts'
 import {taggedPictures} from 'lib/utils/pictures'
 import {getImagePlaceholder} from 'lib/utils/image'
@@ -51,6 +47,10 @@ function getPrettyDate(date: string, locale: string) {
   })
 }
 
+export function getPicturePermalink({slug, t}: {slug: string; t: Translate}) {
+  return `/${getSlug(t('sections.photo.name'))}/${slug}`
+}
+
 async function getAlbumSlug({
   slug,
   keywords,
@@ -74,14 +74,12 @@ export function fromExifToGallery({
   slug: albumSlug,
   tag,
   locale,
-  skipGalleryPath = false,
-  needsImage = true
+  skipGalleryPath = false
 }: {
   slug?: string
   tag?: string
   locale: string
   skipGalleryPath?: boolean
-  needsImage?: boolean
 }) {
   return async function ({
     fileName,
@@ -106,11 +104,8 @@ export function fromExifToGallery({
     const id = fileName.split('.')[0]
     const orientation = getOrientation(imageSize)
     const src = `/pictures/${fileName}`
-    let image: Image
-    if (needsImage) {
-      const {css} = await getImagePlaceholder(src)
-      image = {src, orientation, css}
-    }
+    const {css} = await getImagePlaceholder(src)
+    const image: Image = {src, orientation, css}
     const t = await getT(locale, 'common')
     const slug = getSlug(title)
     const path = skipGalleryPath
@@ -125,13 +120,10 @@ export function fromExifToGallery({
               })
         }`
     const queryKey = t('gallery.carousel.query-key')
-    const url = `${path}/?${queryKey}=${slug}`
+    const url = `${path || '/'}?${queryKey}=${slug}`
+    const permalink = getPicturePermalink({slug, t})
     const isPano = keywords.includes('panorama')
     const isStarTracked = keywords.includes('star tracker')
-    const tags = await getGalleryTags({
-      locale,
-      tags: keywords.filter(keyword => GALLERY_TAGS.includes(keyword))
-    })
     const tutorialSlug = getPostSlugByPictureSlug(`tutorial-${slug}`, {locale})
     const isPrintable = Boolean(
       products.find(({pictureId}) => pictureId === id)
@@ -192,12 +184,12 @@ export function fromExifToGallery({
       rawTags: keywords.filter(keywords =>
         ALLOWED_PICTURE_TAGS.includes(keywords)
       ),
-      tags,
       ...(coordinates && {coordinates}),
       ...(location && {location}),
       ...(tutorialSlug && {
         tutorial: {href: `/${getSlug(t('sections.blog.name'))}/${tutorialSlug}`}
       }),
+      permalink,
       ...(isPrintable && {
         print: `/${getSlug(t('sections.store.name'))}/${getSlug(t('store.categories.prints.name'))}#${slug}`
       })

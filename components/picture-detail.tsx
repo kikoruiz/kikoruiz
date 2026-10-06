@@ -4,6 +4,7 @@ import {useRouter} from 'next/router'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import {getAspectRatio, getSlug, themeScreens} from 'lib/utils'
+import {fromRawTagsToTags} from 'lib/gallery/tags'
 import {Picture} from 'types/gallery'
 import Image from './image'
 import PictureInfo from './picture-info'
@@ -13,7 +14,11 @@ import IconMap from 'assets/icons/map.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
 import IconShoppingBag from 'assets/icons/shopping-bag.svg'
+import IconArrowTopRightOnSquare from 'assets/icons/arrow-top-right-on-square.svg'
+import IconShare from 'assets/icons/share.svg'
+import IconCheckCircle from 'assets/icons/check-circle.svg'
 import ButtonLink from './button-link'
+import Button from './button'
 
 interface PictureDetailProps {
   picture: Picture
@@ -50,18 +55,21 @@ export default function PictureDetail({
     model,
     lens,
     editingSoftware,
-    tags,
+    rawTags,
     coordinates,
     location,
     tutorial,
-    print
+    print,
+    permalink
   } = picture
   const {t} = useTranslation('gallery')
   const {query} = useRouter()
   const {tag} = query
   const [showInfo, setShowPictureInfo] = useState(false)
   const [showMap, setShowPictureMap] = useState(false)
+  const [isLinkCopied, setIsLinkCopied] = useState(false)
   const aspectRatio = getAspectRatio(imageSize)
+  const tags = fromRawTagsToTags({rawTags, t})
   const pictureInfoProps = {
     shotInfo,
     isPano,
@@ -225,7 +233,43 @@ export default function PictureDetail({
                     )}
                   </div>
 
-                  <div className="flex gap-1.5 empty:hidden">
+                  <div className="flex flex-wrap gap-1.5 empty:hidden">
+                    <ButtonLink
+                      href={permalink}
+                      onClick={() => {
+                        trackEvent('go_to_picture_page', name)
+                      }}
+                      title={t('common:gallery.picture.permalink')}
+                      intent="accent"
+                    >
+                      <IconArrowTopRightOnSquare className="mr-1.5 w-3" />
+                      {t('common:gallery.picture.permalink')}
+                    </ButtonLink>
+
+                    <Button
+                      size="small"
+                      isRounded
+                      title={t('common:gallery.picture.copy-link')}
+                      onClick={async () => {
+                        await navigator.clipboard.writeText(
+                          `${window.location.origin}${permalink}`
+                        )
+                        setIsLinkCopied(true)
+                        trackEvent('copy_picture_link', name)
+                      }}
+                    >
+                      <span className="inline-flex items-center">
+                        {isLinkCopied ? (
+                          <IconCheckCircle className="mr-1.5 w-3" />
+                        ) : (
+                          <IconShare className="mr-1.5 w-3" />
+                        )}
+                        {isLinkCopied
+                          ? t('common:gallery.picture.link-copied')
+                          : t('common:gallery.picture.copy-link')}
+                      </span>
+                    </Button>
+
                     {print && (
                       <ButtonLink
                         href={print}

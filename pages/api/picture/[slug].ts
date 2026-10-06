@@ -14,9 +14,7 @@ export default async function handler(
   const {slug, locale} = req.query as {slug: string; locale: string}
   const allPictures = await getAllPictures()
   const rawPicture = allPictures.find(({title}) => getSlug(title) === slug)
-  const picture: Picture = await fromExifToGallery({locale, needsImage: false})(
-    rawPicture
-  )
+  const picture: Picture = await fromExifToGallery({locale})(rawPicture)
 
   if (picture) {
     res.status(200).json(picture)

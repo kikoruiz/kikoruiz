@@ -11,6 +11,10 @@ const nextConfig = withBundleAnalyzer({
     nextTranslate({
       reactStrictMode: true,
       serverExternalPackages: ['sharp', 'fast-average-color-node'],
+      // Without this the client bundle has no `ORIGIN`, so anything built with
+      // `getAbsoluteUrl` resolves to a different host than the server did and
+      // React reports a hydration mismatch.
+      env: {ORIGIN: process.env.ORIGIN ?? ''},
       images: {
         deviceSizes: [640, 1080, 1920],
         imageSizes: [],

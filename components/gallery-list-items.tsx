@@ -24,6 +24,7 @@ export default function GalleryListItems({
             prettyDate,
             prettyProcessingDate,
             url,
+            permalink,
             image,
             imageSize,
             shotInfo,
@@ -47,7 +48,8 @@ export default function GalleryListItems({
               key={id}
               aspectRatio={aspectRatio}
               title={name ?? t(`gallery.albums.${id}.name`)}
-              url={url}
+              url={isAlbum ? url : permalink}
+              shallowUrl={isAlbum ? undefined : url}
               image={image}
               sizes={sizes}
               needsPreload={needsPreload}

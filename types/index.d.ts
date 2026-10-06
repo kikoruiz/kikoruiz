@@ -1,5 +1,5 @@
 import {BlogPost} from './blog'
-import {HighlightedImage} from './gallery'
+import {HighlightedImage, Picture} from './gallery'
 
 export type orientation = 'horizontal' | 'vertical'
 
@@ -18,6 +18,8 @@ export interface Alternate {
 
 export interface SectionData {
   post?: BlogPost
+  picture?: Picture
+  albumId?: string
   section?: string
   subSection?: string
   tag?: string

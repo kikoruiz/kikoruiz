@@ -18,11 +18,20 @@ const picturesMetadataFile = path.join(
   'metadata.json'
 )
 
-export async function getAllPictures(): Promise<RawPicture[]> {
-  const metadata = fs.readFileSync(picturesMetadataFile, 'utf8')
-  const allPictures = JSON.parse(metadata) as RawPicture[]
+let cachedPictures: RawPicture[]
 
-  return DEFAULT_IS_ASCENDING_ORDER ? allPictures : allPictures.reverse()
+export async function getAllPictures(): Promise<RawPicture[]> {
+  if (!cachedPictures) {
+    const metadata = fs.readFileSync(picturesMetadataFile, 'utf8')
+    const allPictures = JSON.parse(metadata) as RawPicture[]
+
+    cachedPictures = DEFAULT_IS_ASCENDING_ORDER
+      ? allPictures
+      : allPictures.reverse()
+  }
+
+  // A copy, so in-place sorting by any consumer cannot corrupt the cache.
+  return [...cachedPictures]
 }
 
 export async function getHighlightedPicture(highlightedPicture) {
@@ -85,9 +94,11 @@ export async function getAllPicturesOnMap({
     ({coordinates}) => coordinates
   )
 
-  return picturesWithCoordinates.map(({slug, coordinates, image}) => ({
+  // Only what a marker needs: the popup asks `/api/picture/[slug]` for the rest
+  // when it opens, and carrying the placeholders here was most of the home page
+  // payload.
+  return picturesWithCoordinates.map(({slug, coordinates}) => ({
     slug,
-    coordinates,
-    image
+    coordinates
   }))
 }

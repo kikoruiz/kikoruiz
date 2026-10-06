@@ -1,5 +1,22 @@
 import {describe, it, expect} from 'vitest'
-import {getAbsoluteUrl, getSeason, getSlug, getTitle, isNew} from 'lib/utils'
+import {
+  getAbsoluteUrl,
+  getAspectRatio,
+  getAspectRatioClassName,
+  getSeason,
+  getSlug,
+  getTitle,
+  isNew
+} from 'lib/utils'
+import pictures from 'data/pictures/metadata.json'
+import tailwindConfig from '../../../tailwind.config.mjs'
+
+// `aspect-square` is the only one Tailwind ships, the rest come from the config.
+const BUILT_IN_ASPECT_RATIO_CLASS_NAMES = ['aspect-square']
+
+const galleryAspectRatios = [
+  ...new Set(pictures.map(({imageSize}) => getAspectRatio(imageSize)))
+]
 
 describe('utils lib', () => {
   // Tests for `getSlug`.
@@ -70,5 +87,62 @@ describe('utils lib', () => {
 
   it('gets the absolute url for a path starting with a trailing slash', () => {
     expect(getAbsoluteUrl('/foo.bar')).toBe('http://test/foo.bar')
+  })
+
+  // Tests for `getAspectRatio`.
+
+  it('gets the aspect ratio of a square picture', () => {
+    expect(getAspectRatio('5000x5000')).toBe('1:1')
+  })
+
+  it('gets the aspect ratio of a vertical picture', () => {
+    expect(getAspectRatio('4000x6000')).toBe('2:3')
+  })
+
+  it('gets the aspect ratio of an ultrawide panorama', () => {
+    expect(getAspectRatio('17005x7288')).toBe('21:9')
+  })
+
+  it('gets no aspect ratio from an uncovered one', () => {
+    expect(getAspectRatio('1000x700')).toBe('')
+  })
+
+  // Tests for `getAspectRatioClassName`. An image is rendered with `fill`, so it
+  // takes its height from the aspect ratio class of its parent. A picture whose
+  // ratio falls through any of the three steps below gets no height at all.
+
+  it('gets the class name of an aspect ratio', () => {
+    expect(getAspectRatioClassName('21:9')).toBe('aspect-21/9')
+  })
+
+  it('gets an aspect ratio for every picture of the gallery', () => {
+    const uncovered = pictures
+      .filter(({imageSize}) => !getAspectRatio(imageSize))
+      .map(({fileName, imageSize}) => `${fileName} (${imageSize})`)
+
+    expect(uncovered).toEqual([])
+  })
+
+  it('gets a class name for every aspect ratio of the gallery', () => {
+    const uncovered = galleryAspectRatios.filter(
+      aspectRatio => !getAspectRatioClassName(aspectRatio)
+    )
+
+    expect(uncovered).toEqual([])
+  })
+
+  it('gets a configured Tailwind utility for every class name of the gallery', () => {
+    const utilities = Object.keys(tailwindConfig.theme.extend.aspectRatio).map(
+      ratio => `aspect-${ratio}`
+    )
+    const missing = galleryAspectRatios
+      .map(getAspectRatioClassName)
+      .filter(
+        className =>
+          !BUILT_IN_ASPECT_RATIO_CLASS_NAMES.includes(className) &&
+          !utilities.includes(className)
+      )
+
+    expect(missing).toEqual([])
   })
 })

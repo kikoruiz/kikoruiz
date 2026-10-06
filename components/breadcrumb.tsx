@@ -23,6 +23,8 @@ export default function Breadcrumb({
   section,
   subSection,
   post,
+  picture,
+  albumId,
   tag
 }: SectionData) {
   const {t} = useTranslation()
@@ -35,10 +37,13 @@ export default function Breadcrumb({
     subSection,
     category,
     post,
+    picture,
+    albumId,
     tag,
     t
   })
   const categoryItem =
+    !picture &&
     section === 'gallery' &&
     GALLERY_ALBUMS.find(
       ({id}) => getSlug(t(`gallery.albums.${id}.name`)) === category

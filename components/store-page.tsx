@@ -17,6 +17,7 @@ interface StorePageProps extends PropsWithChildren {
   title: string
   description: string
   alternates: Alternate[]
+  image?: string
   isIndex?: boolean
 }
 
@@ -24,6 +25,7 @@ export default function StorePage({
   title,
   description,
   alternates,
+  image,
   isIndex = false,
   children
 }: StorePageProps) {
@@ -54,6 +56,10 @@ export default function StorePage({
       <Head>
         <title>{`${SITE_NAME} / ${title}`}</title>
         <meta name="description" content={description} />
+        <meta property="og:title" content={`${SITE_NAME} / ${title}`} />
+        <meta property="og:description" content={description} />
+        {image && <meta property="og:image" content={image} />}
+        {image && <meta name="twitter:image" content={image} />}
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}

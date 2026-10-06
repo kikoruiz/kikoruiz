@@ -6,6 +6,7 @@ export default function PictureCard({
   aspectRatio = '1:1',
   title,
   url,
+  shallowUrl,
   image,
   sizes,
   needsPreload = false,
@@ -28,6 +29,7 @@ export default function PictureCard({
     <Image
       src={src}
       url={url}
+      shallowUrl={shallowUrl}
       alt={title}
       className={imageClassName}
       aspectRatio={aspectRatio}
@@ -35,7 +37,6 @@ export default function PictureCard({
       needsPreload={needsPreload}
       fallbackStyle={css}
       isRounded
-      isShallowLink={!isAlbum}
       scrollToTop={isAlbum}
     >
       <figcaption className={captionClassName}>
@@ -59,6 +60,7 @@ interface PictureCardProps extends PropsWithChildren {
   aspectRatio?: string
   title: string
   url: string
+  shallowUrl?: string
   image: ImageType
   sizes: string
   needsPreload?: boolean

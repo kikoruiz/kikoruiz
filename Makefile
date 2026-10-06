@@ -13,7 +13,7 @@ build:
 	npm run build
 
 save:
-	node --import tsx$(shell [ "$(NODE_ENV)" = "development" ] && echo " --env-file .env.local") ./bin/$(FILE).mts
+	node --import tsx$(shell [ "$(NODE_ENV)" = "development" ] && echo " --env-file .env.local") ./bin/$(FILE).mts $(ARGS)
 
 save_optimized:
 	FILE=pictures/optimize make save
@@ -27,8 +27,11 @@ save_metadata:
 save_content:
 	FILE=search/content make save
 
-save_inventory:
+save_inventory: ## sync Stripe prints · ARGS="--dry-run --min-rating=N --limit=N --only=<pictureId> --prune"
 	FILE=store/inventory make save
+
+audit_content:
+	FILE=gallery/audit-content make save
 
 add_display_names:
 	FILE=components/display-names make save

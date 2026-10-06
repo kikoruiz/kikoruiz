@@ -12,7 +12,30 @@ export interface Print {
   price: number
   image?: Image
   aspectRatio?: string
-  picture: Picture['url']
+  picture: Picture['permalink']
+}
+
+export interface RawPrint {
+  id: string
+  name: string
+  type: string
+  currency: string
+  images: string[]
+  pictureId: string
+  size: string
+  isBorderless: boolean
+  paper: Paper['id']
+  price: number
+  priceId: string
+}
+
+export interface PicturePrint {
+  id: string
+  name: string
+  size: string
+  isBorderless: boolean
+  paper: Paper['id']
+  price: number
 }
 
 export interface Paper {

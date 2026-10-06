@@ -3,7 +3,13 @@ import typography from '@tailwindcss/typography'
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-  content: ['./pages/**/*.{js,tsx}', './components/**/*.{js,tsx}'],
+  content: [
+    './pages/**/*.{js,tsx}',
+    './components/**/*.{js,tsx}',
+    // `getAspectRatioClassName` builds class names here, and anything Tailwind
+    // does not scan is simply never generated.
+    './lib/**/*.ts'
+  ],
   theme: {
     screens: {
       ...defaultTheme.screens,
@@ -41,7 +47,8 @@ const config = {
         '16/9': '16 / 9',
         '9/16': '9 / 16',
         '16/10': '16 / 10',
-        '2/1': '2 / 1'
+        '2/1': '2 / 1',
+        '21/9': '21 / 9'
       }
     }
   },
