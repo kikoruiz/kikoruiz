@@ -12,6 +12,19 @@ export const PRINT_SIZES = {
 }
 export const UNITS_OF_MEASUREMENT = ['mm', 'cm', 'in']
 
+// Every picture in the gallery is rated 3 at least, so this is the only
+// threshold that actually selects: 4 and above is the printable catalogue.
+export const PRINT_MIN_RATING = 4
+
+export const PRINT_VARIANTS = [
+  {size: 'A4', isBorderless: false, price: 30},
+  {size: 'A4', isBorderless: true, price: 35},
+  {size: 'A3', isBorderless: false, price: 37.5},
+  {size: 'A3', isBorderless: true, price: 42.5},
+  {size: 'A2', isBorderless: false, price: 45},
+  {size: 'A2', isBorderless: true, price: 50}
+]
+
 export const FILTER_OPTIONS = {
   size: Object.keys(PRINT_SIZES).map(key => ({
     value: key.toLowerCase(),

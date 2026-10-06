@@ -31,6 +31,9 @@
     "store": {
       "name": "Botiga",
       "description": "Demana impressions de les meues fotos."
+    },
+    "photo": {
+      "name": "Foto"
     }
   },
   "gallery": {
@@ -72,7 +75,16 @@
     },
     "picture": {
       "creation-date": "{{date}} (creació)",
-      "processing-date": "{{date}} (edició)"
+      "processing-date": "{{date}} (edició)",
+      "description": "Fotografia de {{name}}, presa per Kiko Ruiz.",
+      "location": "Localització",
+      "technical-info": "Informació tècnica",
+      "order-print": "Comprar impressió",
+      "prints-from": "Impressions des de {{price, price}}",
+      "permalink": "Veure la fitxa de la foto",
+      "copy-link": "Copiar l'enllaç",
+      "link-copied": "Enllaç copiat",
+      "more-from-album": "Més fotos de {{album}}"
     },
     "carousel": {"query-key": "foto"}
   },

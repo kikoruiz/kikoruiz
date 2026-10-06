@@ -1,4 +1,5 @@
 import getT from 'next-translate/getT'
+import type {Translate} from 'next-translate'
 import {GALLERY_TAGS} from 'config/gallery'
 import {getSlug} from 'lib/utils'
 import {Tag} from 'types'
@@ -30,4 +31,34 @@ export async function getGalleryTags({
       name: name.toLowerCase()
     }
   })
+}
+
+// Every gallery tag is also an allowed picture tag, so `rawTags` already holds
+// all of them and the rest is translation the browser has anyway. Building the
+// list here instead of in the props keeps it out of the page data, where it was
+// repeated for each one of the pictures of an album.
+export function fromRawTagsToTags({
+  rawTags,
+  t
+}: {
+  rawTags: string[]
+  t: Translate
+}): Tag[] {
+  const gallerySlug = getSlug(t('common:sections.gallery.name'))
+  const subSectionSlug = getSlug(t('common:tags'))
+
+  return rawTags
+    .filter(rawTag => GALLERY_TAGS.includes(rawTag))
+    .map(rawTag => {
+      const id = getSlug(rawTag)
+      const name = t(`gallery:tags.${id}`)
+      const slug = getSlug(name)
+
+      return {
+        id,
+        slug,
+        href: `/${gallerySlug}/${subSectionSlug}/${slug}`,
+        name: name.toLowerCase()
+      }
+    })
 }

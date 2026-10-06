@@ -109,6 +109,7 @@ export default function HomeLatestPictures({
                 id,
                 name,
                 url,
+                permalink,
                 image,
                 date,
                 prettyDate,
@@ -120,7 +121,8 @@ export default function HomeLatestPictures({
               <PictureCard
                 key={id}
                 title={name}
-                url={url}
+                url={permalink}
+                shallowUrl={url}
                 image={image}
                 sizes={sizes}
                 needsPreload={index === 0 || index === 1}

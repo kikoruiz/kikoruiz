@@ -7,12 +7,13 @@ import {getPrints} from 'lib/store/prints'
 import {Print} from 'types/store'
 import StorePage from 'components/store-page'
 import PrintCard from 'components/print-card'
-import {getSlug} from 'lib/utils'
+import {getAbsoluteUrl, getSlug} from 'lib/utils'
 import {FILTER_OPTIONS, SIMPLE_FILTERS} from 'config/store'
 
 interface PrintsPageProps {
   alternates: Alternate[]
   prints: Print[]
+  image: string
 }
 
 function reducer(state, action) {
@@ -47,7 +48,11 @@ const initialState = {
   paper: FILTER_OPTIONS.paper[0].value
 }
 
-export default function PrintsPage({alternates, prints}: PrintsPageProps) {
+export default function PrintsPage({
+  alternates,
+  prints,
+  image
+}: PrintsPageProps) {
   const {t} = useTranslation()
   const [state, dispatch] = useReducer(reducer, initialState)
   const items = prints.filter(({size, isBorderless, paper}) => {
@@ -70,6 +75,7 @@ export default function PrintsPage({alternates, prints}: PrintsPageProps) {
       title={t('store.categories.prints.name')}
       description={t('sections.store.description')}
       alternates={alternates}
+      image={image}
     >
       <section className="px-6">
         <div className="flex flex-wrap justify-center gap-2 pt-3 sm:justify-end mb-6">
@@ -134,8 +140,9 @@ export async function getStaticProps({locale, locales, defaultLocale}) {
     )
   )
   const prints = await getPrints({locale})
+  const image = getAbsoluteUrl(prints[0].image.src)
 
   return {
-    props: {section, subSection, alternates, prints}
+    props: {section, subSection, alternates, prints, image}
   }
 }

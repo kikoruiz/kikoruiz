@@ -31,6 +31,9 @@
     "store": {
       "name": "Store",
       "description": "Order prints of my photos."
+    },
+    "photo": {
+      "name": "Photo"
     }
   },
   "gallery": {
@@ -72,7 +75,16 @@
     },
     "picture": {
       "creation-date": "{{date}} (creation date)",
-      "processing-date": "{{date}} (processing date)"
+      "processing-date": "{{date}} (processing date)",
+      "description": "Photograph of {{name}}, taken by Kiko Ruiz.",
+      "location": "Location",
+      "technical-info": "Technical info",
+      "order-print": "Buy a print",
+      "prints-from": "Prints from {{price, price}}",
+      "permalink": "See the photo page",
+      "copy-link": "Copy link",
+      "link-copied": "Link copied",
+      "more-from-album": "More photos from {{album}}"
     },
     "carousel": {"query-key": "picture"}
   },

@@ -34,6 +34,12 @@ const http = {
       permanent: true
     },
     {
+      source: '/en/foto/:slug',
+      destination: '/en/photo/:slug',
+      locale: false,
+      permanent: true
+    },
+    {
       source: '/ca/tienda',
       destination: '/ca/botiga',
       locale: false,
@@ -144,6 +150,11 @@ const http = {
     {
       source: '/en/gallery/tags/:tag',
       destination: '/en/galeria/tags/:tag',
+      locale: false
+    },
+    {
+      source: '/en/photo/:slug',
+      destination: '/en/foto/:slug',
       locale: false
     },
     {

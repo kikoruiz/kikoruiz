@@ -6,14 +6,19 @@ import {Print} from 'types/store'
 
 export async function getPrints({locale}: {locale: string}): Promise<Print[]> {
   const rawPictures = await getAllPictures()
+  const pictureIds = new Set(products.map(({pictureId}) => pictureId))
   const mappedPictures = await Promise.all(
-    rawPictures.map(fromExifToGallery({locale}))
+    rawPictures
+      .filter(({fileName}) => pictureIds.has(fileName.split('.')[0]))
+      .map(fromExifToGallery({locale}))
+  )
+  const picturesById = new Map(
+    mappedPictures.map(picture => [picture.id, picture])
   )
 
   return products.map(({id, pictureId, size, isBorderless, paper, price}) => {
-    const {name, slug, url, image, imageSize} = mappedPictures.find(
-      ({id}) => id === pictureId
-    )
+    const {name, slug, permalink, image, imageSize} =
+      picturesById.get(pictureId)
 
     return {
       id,
@@ -26,7 +31,7 @@ export async function getPrints({locale}: {locale: string}): Promise<Print[]> {
       image,
       aspectRatio: getAspectRatio(imageSize),
       imageSize,
-      picture: url
+      picture: permalink
     }
   })
 }

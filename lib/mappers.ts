@@ -4,6 +4,7 @@ import {SECTIONS, DEFAULT_ORIGIN, SPECIAL_SUBSECTIONS} from 'config'
 import {getSlug} from './utils'
 import {Translate} from 'next-translate'
 import {BlogPost} from 'types/blog'
+import {Picture} from 'types/gallery'
 import {Alternate, BreadcrumbItem} from 'types'
 import searchContent from 'data/search/content.json'
 
@@ -12,14 +13,18 @@ export function fromSectionToBreadcrumbItems({
   subSection,
   category,
   post,
+  picture,
+  albumId,
   tag,
   t
 }: {
   section: string
-  subSection: string
-  category: string
-  post: BlogPost
-  tag: string
+  subSection?: string
+  category?: string
+  post?: BlogPost
+  picture?: Picture
+  albumId?: string
+  tag?: string
   t: Translate
 }) {
   const sectionItem = SECTIONS.find(({id}) => id === section)
@@ -32,6 +37,26 @@ export function fromSectionToBreadcrumbItems({
 
   // When there are no levels.
   if (!sectionItem) return items
+
+  // A single picture always hangs from its album: Gallery / Album / Picture.
+  if (picture) {
+    const gallerySlug = getSlug(t(`sections.${sectionItem.id}.name`))
+    const albumName = t(`gallery.albums.${albumId}.name`)
+
+    items.push({
+      ...sectionItem,
+      href: `/${gallerySlug}`,
+      name: t(`sections.${sectionItem.id}.name`)
+    })
+    items.push({
+      id: albumId,
+      href: `/${gallerySlug}/${getSlug(albumName)}`,
+      name: albumName
+    })
+    items.push({id: picture.slug, name: picture.name})
+
+    return items
+  }
 
   // When there is more than one level.
   if (subSection || categoryItem || post || tag) {

@@ -19,11 +19,22 @@ const ONE_YEAR = 365
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter()
   const {query: {print} = {}} = router
-  const {section, subSection, post, tag, alternates, heroImages} = pageProps
+  const {
+    section,
+    subSection,
+    post,
+    picture,
+    albumId,
+    tag,
+    alternates,
+    heroImages
+  } = pageProps
   const sectionData = {
     section,
     subSection,
     post,
+    picture,
+    albumId,
     tag,
     hasHero: Boolean(heroImages)
   }

@@ -128,15 +128,53 @@ export function getAspectRatio(size: string): string {
       return '9:16'
     case 1.6:
       return '16:10'
+    case 2.33:
+      return '21:9'
+    default:
+      return ''
+  }
+}
+
+// This has to stay in step with `getAspectRatio`: a label with no class here
+// leaves a `fill` image inside a parent with no height, so it renders collapsed.
+export function getAspectRatioClassName(aspectRatio: string): string {
+  switch (aspectRatio) {
+    case '1:1':
+      return 'aspect-square'
+    case '2:1':
+      return 'aspect-2/1'
+    case '3:2':
+      return 'aspect-3/2'
+    case '2:3':
+      return 'aspect-2/3'
+    case '4:3':
+      return 'aspect-4/3'
+    case '3:4':
+      return 'aspect-3/4'
+    case '5:4':
+      return 'aspect-5/4'
+    case '4:5':
+      return 'aspect-4/5'
+    case '5:3':
+      return 'aspect-5/3'
+    case '3:5':
+      return 'aspect-3/5'
+    case '16:9':
+      return 'aspect-16/9'
+    case '9:16':
+      return 'aspect-9/16'
+    case '16:10':
+      return 'aspect-16/10'
+    case '21:9':
+      return 'aspect-21/9'
     default:
       return ''
   }
 }
 
 export async function getAverageColor(src: string) {
-  const {getAverageColor: fastAverageColor} = await import(
-    'fast-average-color-node'
-  )
+  const {getAverageColor: fastAverageColor} =
+    await import('fast-average-color-node')
   const resourceFile = `public${src}`
   const color = await fastAverageColor(resourceFile)
   const {hex, isDark, isLight} = color
