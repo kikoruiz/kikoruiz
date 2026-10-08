@@ -12,7 +12,7 @@ export const SECTIONS = [
   },
   {
     id: 'store',
-    categories: [{id: 'prints'}],
+    categories: [{id: 'prints'}, {id: 'downloads'}],
     localePrefix: 'store.categories.',
     highlightedPicture: '/store/prints.jpg'
   },

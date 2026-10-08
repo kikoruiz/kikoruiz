@@ -9,7 +9,8 @@
     "remove-item": "Eliminar article",
     "decrement-item": "Traure",
     "increment-item": "Afegir",
-    "notice-before-checkout": "Els costos d'enviament i els impostos es calcularan al final de la compra.",
+    "notice-before-checkout": "Els costos d'enviament es calcularan al final de la compra. Els preus ja inclouen impostos.",
+    "notice-before-download-checkout": "Els arxius estaran disponibles just després del pagament. Els preus ja inclouen impostos.",
     "subtotal": "Subtotal",
     "checkout": "Checkout"
   },
@@ -25,10 +26,34 @@
     "with-border": "Amb marge",
     "borderless": "Sense marge"
   },
+  "downloads": {
+    "description": "Descarrega les meues fotos a l'instant, llestes per a la teua pantalla o per imprimir-les tu mateix.",
+    "tier": "Format",
+    "resolution": "Resolució",
+    "licence": "Llicència",
+    "coming-soon": "Molt prompte",
+    "notice": "La descàrrega arriba just després del pagament, amb un enllaç privat que caduca. En comprar acceptes la llicència i renuncies al dret de desistiment, ja que el fitxer s'entrega al moment.",
+    "waiver": "La teva comanda inclou fitxers digitals. En pagar els reps a l'instant i acceptes que, en tractar-se de contingut digital entregat immediatament, renuncies al dret de desistiment.",
+    "delivery": {
+      "title": "Els teus fitxers",
+      "download": "Descarregar",
+      "notice": "Els enllaços caduquen en una hora. Si els necessites més tard, torna a obrir aquesta pàgina i es generen de nou.",
+      "error": "No he pogut preparar els teus fitxers. Escriu-me i te'ls envio jo mateix."
+    },
+    "tiers": {
+      "web": "Pantalla i web (1920 px)",
+      "full-resolution": "Resolució completa",
+      "commercial": "Llicència comercial"
+    },
+    "licences": {
+      "personal": "Ús personal",
+      "commercial": "Ús comercial"
+    }
+  },
   "checkout": {
     "success": {
       "title": "La compra s'ha fet amb èxit!",
-      "message": "Revisa la safata de correu electrònic per conèixer l'estat de la teua comanda."
+      "message": "Si la teua comanda inclou arxius, els tens aquí mateix. Per a les làmines t'escriuré per correu electrònic."
     },
     "cancel": {
       "title": "La compra s'ha cancel·lat!",
