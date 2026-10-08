@@ -1,5 +1,11 @@
 import papers from 'data/store/papers.json'
 
+export const DEFAULT_CURRENCY = 'eur'
+
+// Prices shown to a consumer in the EU already contain the tax, so the amount
+// on the card is the amount on the site. Stripe accepts this once per price and
+// refuses to change it afterwards, so a different answer means new prices.
+export const TAX_BEHAVIOR = 'inclusive'
 export const DEFAULT_PRINT_PRICE = 45
 export const DEFAULT_PRINT_SIZE = 'A2'
 export const DEFAULT_UNIT_OF_MEASUREMENT = 'mm'
@@ -24,6 +30,23 @@ export const PRINT_VARIANTS = [
   {size: 'A2', isBorderless: false, price: 45},
   {size: 'A2', isBorderless: true, price: 50}
 ]
+
+// It prefixes every download id, so it is also how the checkout tells a file
+// apart from something that has to be put in an envelope.
+export const DOWNLOAD_TYPE = 'download'
+
+// Same threshold as the prints, so a picture good enough to hang on a wall is
+// the one good enough to sell as a file.
+export const DOWNLOAD_MIN_RATING = PRINT_MIN_RATING
+
+// `longestSide` is the pixel size the file is resized to, and `null` means the
+// original one straight out of the raw development.
+export const DOWNLOAD_VARIANTS = [
+  {tier: 'web', longestSide: 1920, licence: 'personal', price: 3},
+  {tier: 'full-resolution', longestSide: null, licence: 'personal', price: 9},
+  {tier: 'commercial', longestSide: null, licence: 'commercial', price: 59}
+]
+export const DEFAULT_DOWNLOAD_TIER = DOWNLOAD_VARIANTS[0].tier
 
 export const FILTER_OPTIONS = {
   size: Object.keys(PRINT_SIZES).map(key => ({
