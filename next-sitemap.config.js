@@ -11,22 +11,27 @@ const prerenderManifestFile = path.join(
   __dirname,
   '.next/prerender-manifest.json'
 )
-const PHOTO_PATHS = ['/foto', '/ca/foto', '/en/photo']
+const PICTURE_ROUTE = /^(?:\/(?:ca|en))?\/galeria\/(?!tags\/)[^/]+\/([^/]+)$/
 
-function getPhotoFields(config) {
-  const pictures = JSON.parse(fs.readFileSync(picturesFile, 'utf8'))
+let pictureDates
 
-  return pictures.flatMap(({title, createDate, processingDate}) => {
-    const slug = getSlug(title)
-    const lastmod = new Date(processingDate ?? createDate).toISOString()
+// Every picture page can tell when its picture was last worked on, which is a
+// far better `lastmod` than the moment the sitemap happened to be built.
+function getLastmod(route) {
+  if (!pictureDates) {
+    pictureDates = new Map(
+      JSON.parse(fs.readFileSync(picturesFile, 'utf8')).map(
+        ({title, createDate, processingDate}) => [
+          getSlug(title),
+          new Date(processingDate ?? createDate).toISOString()
+        ]
+      )
+    )
+  }
 
-    return PHOTO_PATHS.map(photoPath => ({
-      loc: `${config.siteUrl}${photoPath}/${slug}`,
-      changefreq: config.changefreq,
-      priority: config.priority,
-      lastmod
-    }))
-  })
+  const [, slug] = route.match(PICTURE_ROUTE) ?? []
+
+  return pictureDates.get(slug) ?? new Date().toISOString()
 }
 
 // `/en/galeria/*` are only the physical routes the English gallery is
@@ -43,7 +48,7 @@ function getEnglishGalleryFields(config) {
       loc: `${config.siteUrl}${route.replace('/en/galeria', '/en/gallery')}`,
       changefreq: config.changefreq,
       priority: config.priority,
-      lastmod: new Date().toISOString()
+      lastmod: getLastmod(route)
     }))
 }
 
@@ -58,8 +63,10 @@ module.exports = {
     '/*/500',
     '/ca/tienda',
     '/ca/tienda/impresiones',
+    '/ca/tienda/descargas',
     '/en/tienda',
     '/en/tienda/impresiones',
+    '/en/tienda/descargas',
     '/en/galeria',
     '/en/galeria/*',
     '/en/sobre-mi',
@@ -71,12 +78,7 @@ module.exports = {
     '/ca/derechos-de-autor',
     '/en/derechos-de-autor',
     '/ca/terminos-y-condiciones',
-    '/en/terminos-y-condiciones',
-    // Photo pages come back through `additionalPaths`, which is where the
-    // English ones get their translated path and each one its own `lastmod`.
-    '/foto/*',
-    '/ca/foto/*',
-    '/en/foto/*'
+    '/en/terminos-y-condiciones'
   ],
   robotsTxtOptions: {
     policies: [{userAgent: '*', allow: '/', disallow: ['/api/']}]
@@ -85,10 +87,7 @@ module.exports = {
     loc: `${config.siteUrl}${path}`,
     changefreq: config.changefreq,
     priority: config.priority,
-    lastmod: new Date().toISOString()
+    lastmod: getLastmod(path)
   }),
-  additionalPaths: async config => [
-    ...getEnglishGalleryFields(config),
-    ...getPhotoFields(config)
-  ]
+  additionalPaths: async config => getEnglishGalleryFields(config)
 }
