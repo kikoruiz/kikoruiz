@@ -73,13 +73,14 @@ function Image(
   }
 
   // The link points at the picture's own page so crawlers get a real URL, while
-  // a plain click still opens the viewer over the current one. Modified clicks
-  // are left alone, so opening in a new tab lands on the page itself.
+  // a plain click opens the viewer over the current one and masks the address
+  // bar with that same URL. Modified clicks are left alone, so opening in a new
+  // tab lands on the page itself.
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
 
     event.preventDefault()
-    push(shallowUrl, shallowUrl, {shallow: true, scroll: false})
+    push(shallowUrl, url, {shallow: true, scroll: false})
   }
 
   const content = (
@@ -100,7 +101,7 @@ function Image(
         src={src}
         alt={alt}
         className={`object-cover transition-opacity duration-300 ${isLoaded && !isHidden ? 'opacity-100' : 'opacity-0'}`}
-        priority={needsPreload}
+        preload={needsPreload}
         loading={isLazy && !needsPreload ? 'lazy' : 'eager'}
         onLoad={handleImageLoad}
         sizes={sizes}
