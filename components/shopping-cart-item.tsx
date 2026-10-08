@@ -11,7 +11,7 @@ import {
   PRINT_SIZES
 } from 'config/store'
 import papers from 'data/store/papers.json'
-import {themeScreens} from 'lib/utils'
+import {getPrintSheetAspectClassName, themeScreens} from 'lib/utils'
 import {trackEvent} from 'lib/tracking'
 
 interface ShoppingCartItemProps extends CartEntry {
@@ -57,16 +57,22 @@ export default function ShoppingCartItem({
   const isDownload = productId.startsWith(`${DOWNLOAD_TYPE}_`)
   const paperData = papers[paper]
   const paperName = paperData && `${paperData.brand} ${paperData.type}`
+  // The ratio string is "width:height", so the picture is vertical whenever
+  // its first number is the smaller one.
+  const [width, height] = image.aspectRatio.split(':').map(Number)
+  const isVertical = width < height
 
   return (
     <div className="relative flex flex-row items-start gap-3 md:gap-6 w-full py-6 sm:p-6 after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:bottom-[-1px] after:via-neutral-300/30 hover:bg-neutral-600/10 hover:rounded transition-colors">
       <div
-        className={`relative w-1/3 bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md${isDownload || isBorderless ? '' : ' p-5'}`}
+        className={`relative w-1/3 bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md${isDownload ? '' : ` ${getPrintSheetAspectClassName(isVertical)}${isBorderless ? '' : ' p-5'}`}`}
       >
         <Image
           src={src}
           alt={name}
-          aspectRatio={image.aspectRatio}
+          aspectRatio={isDownload ? image.aspectRatio : undefined}
+          objectFit={isDownload ? 'cover' : 'contain'}
+          className={isDownload ? '' : 'h-full w-full'}
           sizes={`(min-width: ${sm}) 50vw, 100vw`}
           fallbackStyle={image.css}
         />

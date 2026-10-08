@@ -12,7 +12,7 @@ import IconArrowTopRightOnSquare from 'assets/icons/arrow-top-right-on-square.sv
 import {DEFAULT_UNIT_OF_MEASUREMENT, PRINT_SIZES} from 'config/store'
 import products from 'data/store/products.json'
 import papers from 'data/store/papers.json'
-import {getSlug, themeScreens} from 'lib/utils'
+import {getPrintSheetAspectClassName, getSlug, themeScreens} from 'lib/utils'
 import {trackEvent} from 'lib/tracking'
 import {Print} from 'types/store'
 
@@ -61,12 +61,13 @@ export default function PrintCard({
         style={{top: `calc(-${headerHeight}px - 1em)`}}
       />
       <div
-        className={`relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em]${isBorderless ? '' : ' p-[10%]'}`}
+        className={`relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em] ${getPrintSheetAspectClassName(isVertical)}${isBorderless ? '' : ' p-[10%]'}`}
       >
         <Image
           src={src}
           alt={name}
-          aspectRatio={aspectRatio}
+          objectFit="contain"
+          className="h-full w-full"
           sizes={`(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`}
           fallbackStyle={css}
           onLoad={() => {

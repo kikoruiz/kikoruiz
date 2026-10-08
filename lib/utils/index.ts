@@ -172,6 +172,15 @@ export function getAspectRatioClassName(aspectRatio: string): string {
   }
 }
 
+// A4, A3 and A2 share this exact long:short ratio by design, so A4's own
+// millimetres already give the sheet's shape no matter which size gets
+// printed. The card has to be sized like the paper, not like the picture, or a
+// panorama or a square would stretch its margins into something no printer
+// could reproduce.
+export function getPrintSheetAspectClassName(isVertical: boolean): string {
+  return isVertical ? 'aspect-210/297' : 'aspect-297/210'
+}
+
 // The master is never on disk at build time, only its optimized derivatives
 // are, and the smallest one is already more than enough pixel data for an
 // average color.
