@@ -19,6 +19,7 @@ interface ImageProps {
   className?: string
   style?: CSSProperties
   aspectRatio?: string
+  objectFit?: 'cover' | 'contain'
   sizes: string
   needsPreload?: boolean
   isLazy?: boolean
@@ -40,6 +41,7 @@ function Image(
     className = '',
     style = {},
     aspectRatio,
+    objectFit = 'cover',
     sizes,
     needsPreload,
     isLazy = true,
@@ -50,7 +52,7 @@ function Image(
     scrollToTop = false,
     onLoad = () => {},
     children
-  },
+  }: ImageProps,
   ref
 ) {
   const isLink = Boolean(url)
@@ -111,7 +113,7 @@ function Image(
         ref={ref}
         src={src}
         alt={alt}
-        className={`object-cover transition-opacity duration-300 ${isLoaded && !isHidden ? 'opacity-100' : 'opacity-0'}`}
+        className={`${objectFit === 'contain' ? 'object-contain' : 'object-cover'} transition-opacity duration-300 ${isLoaded && !isHidden ? 'opacity-100' : 'opacity-0'}`}
         preload={needsPreload}
         loading={isLazy && !needsPreload ? 'lazy' : 'eager'}
         onLoad={handleImageLoad}
