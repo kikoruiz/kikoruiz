@@ -7,7 +7,7 @@ import {getPrints} from 'lib/store/prints'
 import {Print} from 'types/store'
 import StorePage from 'components/store-page'
 import PrintCard from 'components/print-card'
-import {getAbsoluteUrl, getSlug} from 'lib/utils'
+import {getAbsoluteUrl, getSlug, getSocialImageUrl} from 'lib/utils'
 import {FILTER_OPTIONS, SIMPLE_FILTERS} from 'config/store'
 
 interface PrintsPageProps {
@@ -140,7 +140,7 @@ export async function getStaticProps({locale, locales, defaultLocale}) {
     )
   )
   const prints = await getPrints({locale})
-  const image = getAbsoluteUrl(prints[0].image.src)
+  const image = getAbsoluteUrl(getSocialImageUrl(prints[0].image.src))
 
   return {
     props: {section, subSection, alternates, prints, image}
