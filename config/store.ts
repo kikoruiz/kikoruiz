@@ -18,6 +18,16 @@ export const PRINT_SIZES = {
 }
 export const UNITS_OF_MEASUREMENT = ['mm', 'cm', 'in']
 
+// A4, A3 and A2 share this exact long:short ratio by design.
+export const PRINT_SHEET_RATIO = 297 / 210
+
+// Measured against the actual printable catalogue: the ratios cluster at 6.1%
+// off this one (the classic 3:2 of a camera sensor) with nothing between 7.3%
+// and 13.1%, so 10% sits right in that gap. Below it, a borderless print would
+// have to crop away more of the picture than a print sold on the composition
+// alone should.
+export const PRINT_BORDERLESS_MAX_RATIO_DEVIATION = 0.1
+
 // Every picture in the gallery is rated 3 at least, so this is the only
 // threshold that actually selects: 4 and above is the printable catalogue.
 export const PRINT_MIN_RATING = 4

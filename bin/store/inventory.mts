@@ -8,6 +8,7 @@ import {
   PRINT_VARIANTS,
   TAX_BEHAVIOR
 } from 'config/store'
+import {fitsBorderless} from 'lib/utils/pictures'
 import {RawPicture} from 'types/gallery'
 import {RawPrint} from 'types/store'
 
@@ -261,7 +262,7 @@ async function getInventoryPlan({
   const plan: PicturePlan[] = []
 
   for (const picture of pictures) {
-    const {title, fileName} = picture
+    const {title, fileName, imageSize} = picture
     const pictureId = getPictureId(picture)
     const productId = `${PRINT_TYPE}_${pictureId}`
     // The site uses a custom image loader, so `/_next/image` answers 400 and the
@@ -277,7 +278,13 @@ async function getInventoryPlan({
       metadata: {type: PRINT_TYPE, picture_id: pictureId}
     }
     const paper = DEFAULT_PRINT_PAPER
-    const variantIds = PRINT_VARIANTS.map(({size, isBorderless}) =>
+    // A picture too far from the sheet's own ratio only gets the bordered
+    // sizes: going edge to edge would mean cropping it or cutting the paper to
+    // a size that isn't actually A4, A3 or A2 any more.
+    const printVariants = PRINT_VARIANTS.filter(
+      ({isBorderless}) => !isBorderless || fitsBorderless(imageSize)
+    )
+    const variantIds = printVariants.map(({size, isBorderless}) =>
       getVariantId({pictureId, size, isBorderless, paper})
     )
     const existingPrices = await getExistingPrices(variantIds)
@@ -286,7 +293,7 @@ async function getInventoryPlan({
     for (const [
       index,
       {size, isBorderless, price}
-    ] of PRINT_VARIANTS.entries()) {
+    ] of printVariants.entries()) {
       const variantId = variantIds[index]
       const name = getVariantName({title, size, isBorderless, paper})
       const existingPrice = existingPrices.get(variantId)
