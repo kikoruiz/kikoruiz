@@ -54,7 +54,8 @@ function Image(
   ref
 ) {
   const isLink = Boolean(url)
-  const {push} = useRouter()
+  const router = useRouter()
+  const {push, pathname, query} = router
   const [isLoaded, setIsLoaded] = useState(false)
   const wrapperClassName = `relative${isRounded ? ' rounded-sm' : ''}`
   const isFullSize = sizes === '100vw'
@@ -80,7 +81,17 @@ function Image(
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
 
     event.preventDefault()
-    push(shallowUrl, url, {shallow: true, scroll: false})
+    // Pushing the literal pathname made the dev server request a page chunk
+    // named after it (e.g. "nocturnas.js" instead of the already loaded
+    // "[slug].js"), 404 on that, and fall back to a full navigation. Pushing
+    // the route object instead targets the mounted page directly, so there is
+    // nothing to resolve and nothing to fall back from.
+    const [, search] = shallowUrl.split('?')
+    push(
+      {pathname, query: {...query, ...Object.fromEntries(new URLSearchParams(search))}},
+      url,
+      {shallow: true, scroll: false}
+    )
   }
 
   const content = (
