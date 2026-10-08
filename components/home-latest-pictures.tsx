@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react'
+import {useMemo, useRef, useState} from 'react'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
@@ -37,21 +37,31 @@ export default function HomeLatestPictures({
   const elementRef = useRef(null)
   const [scrollPosition, setScrollPosition] = useState(SCROLL_POSITIONS.LEFT)
 
-  function handleScroll() {
-    const isOnLeft = elementRef.current?.scrollLeft <= 0
-    const isOnRight =
-      elementRef.current?.scrollLeft >=
-      elementRef.current?.scrollWidth -
-        elementRef.current?.getBoundingClientRect().width
+  // Memoized so the throttle wrapper, and the ref read inside it, is created
+  // once instead of on every render, which both the lint rule and throttling
+  // itself care about: a new wrapper each render has no memory of the last
+  // call it throttled. lodash defers the actual call to the scroll event, so
+  // the ref is never read during this render despite what the rule assumes.
+  const handleScroll = useMemo(
+    () =>
+      // eslint-disable-next-line react-hooks/refs
+      throttle(() => {
+        const isOnLeft = elementRef.current?.scrollLeft <= 0
+        const isOnRight =
+          elementRef.current?.scrollLeft >=
+          elementRef.current?.scrollWidth -
+            elementRef.current?.getBoundingClientRect().width
 
-    if (isOnLeft) {
-      setScrollPosition(SCROLL_POSITIONS.LEFT)
-    } else if (isOnRight) {
-      setScrollPosition(SCROLL_POSITIONS.RIGHT)
-    } else {
-      setScrollPosition(SCROLL_POSITIONS.CENTER)
-    }
-  }
+        if (isOnLeft) {
+          setScrollPosition(SCROLL_POSITIONS.LEFT)
+        } else if (isOnRight) {
+          setScrollPosition(SCROLL_POSITIONS.RIGHT)
+        } else {
+          setScrollPosition(SCROLL_POSITIONS.CENTER)
+        }
+      }),
+    []
+  )
 
   const sortingButtons = () => (
     <nav className="flex items-center">
@@ -96,7 +106,7 @@ export default function HomeLatestPictures({
               scrollPosition !== SCROLL_POSITIONS.RIGHT ? '90%' : '100%'
             }, transparent 100%)`
           }}
-          onScroll={throttle(handleScroll)}
+          onScroll={handleScroll}
         >
           {pictures.map(
             (
