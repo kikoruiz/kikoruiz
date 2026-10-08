@@ -8,7 +8,7 @@ import {fromLocalesToAlternates} from 'lib/mappers'
 import {SECTIONS, SITE_NAME} from 'config'
 import {Picture} from 'types/gallery'
 import {Alternate} from 'types'
-import {getAbsoluteUrl} from 'lib/utils'
+import {getAbsoluteUrl, getSocialImageUrl} from 'lib/utils'
 
 export default function Gallery({albums, alternates, section}: GalleryProps) {
   const {t, lang: locale} = useTranslation()
@@ -38,7 +38,9 @@ export default function Gallery({albums, alternates, section}: GalleryProps) {
         <meta
           property="og:image"
           content={getAbsoluteUrl(
-            SECTIONS.find(({id}) => id === section).highlightedPicture
+            getSocialImageUrl(
+              SECTIONS.find(({id}) => id === section).highlightedPicture
+            )
           )}
         />
       </Head>

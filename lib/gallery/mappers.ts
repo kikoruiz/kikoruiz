@@ -2,9 +2,9 @@ import getT from 'next-translate/getT'
 import {Translate} from 'next-translate'
 import {getSlug} from '../utils'
 import {Coordinates, Image, Location, Picture, ShotInfo} from 'types/gallery'
-import {ALLOWED_PICTURE_TAGS, GALLERY_ALBUMS} from 'config/gallery'
+import {ALLOWED_PICTURE_TAGS} from 'config/gallery'
 import {getPostSlugByPictureSlug} from 'lib/blog/posts'
-import {taggedPictures} from 'lib/utils/pictures'
+import {getPictureAlbum} from 'lib/utils/pictures'
 import {getImagePlaceholder} from 'lib/utils/image'
 import products from 'data/store/products.json'
 
@@ -47,8 +47,21 @@ function getPrettyDate(date: string, locale: string) {
   })
 }
 
-export function getPicturePermalink({slug, t}: {slug: string; t: Translate}) {
-  return `/${getSlug(t('sections.photo.name'))}/${slug}`
+// Always built from the album owning the picture, never from the album or the
+// tag the visitor came through, so it has one URL wherever it was opened from.
+function getPicturePermalink({
+  slug,
+  keywords,
+  t
+}: {
+  slug: string
+  keywords: string[]
+  t: Translate
+}) {
+  const album = getPictureAlbum(keywords)
+  const albumSlug = getSlug(t(`gallery.albums.${album.id}.name`))
+
+  return `/${getSlug(t('sections.gallery.name'))}/${albumSlug}/${slug}`
 }
 
 async function getAlbumSlug({
@@ -63,11 +76,8 @@ async function getAlbumSlug({
   if (slug) return slug
 
   const t = await getT(locale, 'common')
-  const album = GALLERY_ALBUMS.find(({tags, excludeTags}) =>
-    taggedPictures({tags, excludeTags})({keywords})
-  )
 
-  return getSlug(t(`gallery.albums.${album.id}.name`))
+  return getSlug(t(`gallery.albums.${getPictureAlbum(keywords).id}.name`))
 }
 
 export function fromExifToGallery({
@@ -108,20 +118,19 @@ export function fromExifToGallery({
     const image: Image = {src, orientation, css}
     const t = await getT(locale, 'common')
     const slug = getSlug(title)
+    const pictureAlbumSlug = await getAlbumSlug({
+      slug: albumSlug,
+      keywords,
+      locale
+    })
     const path = skipGalleryPath
       ? ''
       : `/${getSlug(t('sections.gallery.name'))}/${
-          tag
-            ? `tags/${tag}`
-            : await getAlbumSlug({
-                slug: albumSlug,
-                keywords,
-                locale
-              })
+          tag ? `tags/${tag}` : pictureAlbumSlug
         }`
     const queryKey = t('gallery.carousel.query-key')
     const url = `${path || '/'}?${queryKey}=${slug}`
-    const permalink = getPicturePermalink({slug, t})
+    const permalink = getPicturePermalink({slug, keywords, t})
     const isPano = keywords.includes('panorama')
     const isStarTracked = keywords.includes('star tracker')
     const tutorialSlug = getPostSlugByPictureSlug(`tutorial-${slug}`, {locale})

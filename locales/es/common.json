@@ -30,10 +30,7 @@
     },
     "store": {
       "name": "Tienda",
-      "description": "Pide impresiones de mis fotos."
-    },
-    "photo": {
-      "name": "Foto"
+      "description": "Pide impresiones de mis fotos o descárgalas al instante."
     }
   },
   "gallery": {
@@ -81,10 +78,8 @@
       "technical-info": "Información técnica",
       "order-print": "Comprar impresión",
       "prints-from": "Impresiones desde {{price, price}}",
-      "permalink": "Ver la ficha de la foto",
       "copy-link": "Copiar enlace",
-      "link-copied": "Enlace copiado",
-      "more-from-album": "Más fotos de {{album}}"
+      "link-copied": "Enlace copiado"
     },
     "carousel": {"query-key": "foto"}
   },
@@ -92,6 +87,9 @@
     "categories": {
       "prints": {
         "name": "Impresiones"
+      },
+      "downloads": {
+        "name": "Descargas"
       }
     }
   },
