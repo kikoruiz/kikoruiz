@@ -158,6 +158,9 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
           </div>
 
           <input
+            // downshift merges this ref with its own internally; the rule
+            // cannot see into that and assumes the worst.
+            // eslint-disable-next-line react-hooks/refs
             {...getInputProps({
               ref: inputRef,
               onClick: event => {
@@ -185,6 +188,8 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
         </div>
 
         <div
+          // Same as the input: downshift's own ref merging, not a real risk.
+          // eslint-disable-next-line react-hooks/refs
           {...getMenuProps({ref: menuRef})}
           className="max-h-[calc(100vh-20rem)] overflow-y-auto"
         >
