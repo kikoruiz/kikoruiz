@@ -10,11 +10,12 @@ import IconArrowsPointingOut from 'assets/icons/arrows-pointing-out.svg'
 interface PictureViewerProps {
   pictures: Picture[]
   index?: number
+  total?: number
+  openSlug?: string
   rootClassName?: string
   containerClassName?: string
   detailClassName?: string
   translationsPrefix?: string
-  onExit?: () => void
   onClose: () => void
   needsPrevious?: boolean
   onPrevious?: () => void
@@ -28,11 +29,12 @@ function PictureViewer(
   {
     pictures = [],
     index = 0,
+    total,
+    openSlug,
     rootClassName,
     containerClassName,
     detailClassName,
     translationsPrefix = 'carousel',
-    onExit,
     onClose,
     needsPrevious = false,
     onPrevious,
@@ -44,7 +46,14 @@ function PictureViewer(
   ref?: Ref<HTMLDivElement>
 ) {
   const [isFullScreen, setIsFullScreen] = useState(false)
-  const needsPagination = Boolean(pictures.length > 1)
+  // The carousel renders a single slide until it is mounted, so the count comes
+  // from the whole album instead of from what is currently on screen.
+  const picturesCount = total ?? pictures.length
+  // Every slide of the album lives in the carousel, so loading them all at once
+  // would starve the one on screen. Only the open picture and the two it can be
+  // swiped to are worth the bandwidth, and swiping brings the next ones in.
+  const openPosition = pictures.findIndex(({slug}) => slug === openSlug)
+  const needsPagination = Boolean(picturesCount > 1)
   const {t} = useTranslation('gallery')
   const fullScreenButtonText = isFullScreen
     ? t(`${translationsPrefix}.exit-full-screen`)
@@ -136,7 +145,7 @@ function PictureViewer(
       {needsPagination && (
         <div className="pointer-events-none absolute left-6 top-6 z-10 flex gap-3 rounded-full bg-gradient-to-t from-neutral-800 px-3 text-xs font-extralight text-neutral-400 drop-shadow-xl">
           <span className="py-1.5">
-            {index + 1} <span className="opacity-60">/ {pictures.length}</span>
+            {index + 1} <span className="opacity-60">/ {picturesCount}</span>
           </span>
 
           {paginationInfo}
@@ -180,12 +189,13 @@ function PictureViewer(
             containerClassName ? `${containerClassName} ` : ''
           }flex h-full w-full items-center`}
         >
-          {pictures.map(item => (
+          {pictures.map((item, position) => (
             <PictureDetail
               key={item.slug}
               picture={item}
               isFullScreen={isFullScreen}
-              onExit={onExit}
+              needsPreload={item.slug === openSlug}
+              isLazy={Math.abs(position - openPosition) > 1}
               trackEvent={trackEvent}
               wrapperClassName={detailClassName}
             />

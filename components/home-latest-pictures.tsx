@@ -1,4 +1,4 @@
-import {useRef, useState, useEffect} from 'react'
+import {useRef, useState} from 'react'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
@@ -24,15 +24,14 @@ const DynamicGalleryCarousel = dynamic(
 export default function HomeLatestPictures({
   latestPictures
 }: HomeLatestPicturesProps) {
-  const {query} = useRouter()
   const {t} = useTranslation('home')
+  const {query} = useRouter()
   const queryKey = t('common:gallery.carousel.query-key')
-  const {[queryKey]: querySlug} = query
-  const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const {latestPictures: sortingOrder, setLatestPictures: setSortingOrder} =
     useLatestPicturesContext()
   const isSortedByProcessingDate = sortingOrder === 'byProcessingDate'
   const pictures = latestPictures[sortingOrder]
+  const openPicture = pictures.find(({slug}) => slug === query[queryKey])
   const {sm, xl} = themeScreens
   const sizes = `(min-width: ${xl}) 25vw, (min-width: ${sm}) 33vw, 50vw`
   const elementRef = useRef(null)
@@ -53,10 +52,6 @@ export default function HomeLatestPictures({
       setScrollPosition(SCROLL_POSITIONS.CENTER)
     }
   }
-
-  useEffect(() => {
-    setIsCarouselOpen(Boolean(querySlug))
-  }, [setIsCarouselOpen, querySlug])
 
   const sortingButtons = () => (
     <nav className="flex items-center">
@@ -109,7 +104,6 @@ export default function HomeLatestPictures({
                 id,
                 name,
                 url,
-                permalink,
                 image,
                 date,
                 prettyDate,
@@ -121,7 +115,7 @@ export default function HomeLatestPictures({
               <PictureCard
                 key={id}
                 title={name}
-                url={permalink}
+                url={url}
                 shallowUrl={url}
                 image={image}
                 sizes={sizes}
@@ -153,10 +147,11 @@ export default function HomeLatestPictures({
         </div>
       </div>
 
-      {isCarouselOpen && (
+      {openPicture && (
         <DynamicGalleryCarousel
           pictures={pictures}
-          setIsCarouselOpen={setIsCarouselOpen}
+          openPicture={openPicture}
+          basePath="/"
         />
       )}
     </HomeModule>

@@ -20,6 +20,7 @@ export default function GalleryList({
   category,
   subcategories,
   isAlbum = false,
+  isHidden = false,
   onSort,
   sortingOption,
   toggleSortingDirection,
@@ -71,7 +72,7 @@ export default function GalleryList({
   }, [router.events, setSubcategory])
 
   return (
-    <section className="px-3">
+    <section className={`px-3${isHidden ? ' hidden' : ''}`}>
       {category && subcategories && (
         <div className="mx-auto mb-12 flex max-w-xs flex-wrap justify-center gap-3 font-extralight sm:max-w-none">
           {subcategories.map(({id, emoji}) => {
@@ -186,6 +187,7 @@ interface GalleryListProps {
   category?: string
   subcategories?: Subcategory[]
   isAlbum?: boolean
+  isHidden?: boolean
   onSort?: (event: ChangeEvent) => void
   sortingOption?: string
   toggleSortingDirection?: (event: MouseEvent) => void
