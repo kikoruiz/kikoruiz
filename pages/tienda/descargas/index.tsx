@@ -59,7 +59,7 @@ export default function DownloadsPage({
           {t('store:downloads.notice')}
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-9">
+        <div className="columns-1 gap-6 space-y-6 md:columns-2 lg:columns-3 xl:gap-9 xl:space-y-9">
           {downloads.map(download => (
             <DownloadCard
               key={`${download.id}-${tier}`}
