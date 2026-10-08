@@ -5,6 +5,7 @@ import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {useShoppingCart} from 'use-shopping-cart'
 import Alert from './alert'
+import DownloadLinks from './download-links'
 import ShoppingCartModal from './shopping-cart-modal'
 import {getSlug} from 'lib/utils'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
@@ -32,7 +33,7 @@ export default function StorePage({
   const {t} = useTranslation()
   const {clearCart} = useShoppingCart()
   const {
-    query: {checkout},
+    query: {checkout, session_id: sessionId},
     push,
     asPath
   } = useRouter()
@@ -73,12 +74,19 @@ export default function StorePage({
           status={checkoutAlert.status}
           className="mx-6 mt-6 sm:mt-0 mb-9"
           onClose={() => {
-            const [destination] = asPath.split('?')
+            const [path] = asPath.split('?')
+            // Dismissing the alert must not take the order away with it, since
+            // the session id is what keeps the download links alive.
+            const destination = sessionId
+              ? `${path}?session_id=${sessionId}`
+              : path
 
             push(destination, destination, {shallow: true})
           }}
         />
       )}
+
+      {sessionId && <DownloadLinks sessionId={sessionId as string} />}
 
       <header className="mt-9 px-6 text-center sm:-mt-3 mb-12 sm:mb-16">
         <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
