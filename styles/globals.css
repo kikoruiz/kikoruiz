@@ -16,3 +16,14 @@ body {
     display: none;
   }
 }
+
+/* The edge fades already tell you there's more to scroll, so the native bar
+   underneath would only repeat that, and some platforms draw it as a thick,
+   always-visible strip instead of overlaying the content. */
+.scrollbar-hide {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

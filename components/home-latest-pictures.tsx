@@ -90,7 +90,7 @@ export default function HomeLatestPictures({
       >
         <div
           ref={elementRef}
-          className="flex h-60 gap-3 overflow-x-scroll p-3 lg:h-80"
+          className="flex h-60 gap-3 overflow-x-scroll scrollbar-hide p-3 lg:h-80"
           style={{
             WebkitMaskImage: `linear-gradient(to right, rgba(0, 0, 0, 1) ${
               scrollPosition !== SCROLL_POSITIONS.RIGHT ? '90%' : '100%'
