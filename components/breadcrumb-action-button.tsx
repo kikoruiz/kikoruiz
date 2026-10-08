@@ -1,8 +1,15 @@
-import type {ButtonHTMLAttributes, FC, PropsWithChildren, SVGProps} from 'react'
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  FC,
+  PropsWithChildren,
+  SVGProps
+} from 'react'
 
 interface BreadcrumbActionButtonProps
   extends PropsWithChildren<
-    Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick' | 'className'>
+    Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick' | 'className'> &
+      Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>
   > {
   icon: FC<SVGProps<SVGSVGElement>>
   title: string
@@ -15,14 +22,12 @@ export default function BreadcrumbActionButton({
   bagdeContent,
   children,
   onClick,
+  href,
   className
 }: BreadcrumbActionButtonProps) {
-  return (
-    <button
-      className={`group flex items-center p-2 rounded-full bg-neutral-900/60 leading-none drop-shadow ring-1 ring-neutral-700/90 hover:ring-orange-300 transition-shadow${className ? ` ${className}` : ''}`}
-      title={title}
-      onClick={onClick}
-    >
+  const sharedClassName = `group flex items-center p-2 rounded-full bg-neutral-900/60 leading-none drop-shadow ring-1 ring-neutral-700/90 hover:ring-orange-300 transition-shadow${className ? ` ${className}` : ''}`
+  const content = (
+    <>
       <div className="relative">
         <Icon className="w-4 fill-orange-300" />
 
@@ -34,6 +39,19 @@ export default function BreadcrumbActionButton({
       <span className="empty:hidden text-[.75em] font-light text-neutral-300/60">
         {children ?? title}
       </span>
+    </>
+  )
+
+  // A real `<a>` lets the browser handle this on its own, right click, cmd
+  // click and all, instead of a click handler faking navigation with
+  // `window.location.href`.
+  return href ? (
+    <a className={sharedClassName} title={title} href={href}>
+      {content}
+    </a>
+  ) : (
+    <button className={sharedClassName} title={title} onClick={onClick}>
+      {content}
     </button>
   )
 }

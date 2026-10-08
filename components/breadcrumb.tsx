@@ -151,9 +151,7 @@ export default function Breadcrumb({
             icon={IconDocumentArrowDown}
             title={t('about-me:download-resume')}
             className="gap-1.5 px-3"
-            onClick={() => {
-              window.location.href = `/documents/kikoruiz-${locale}-${getSlug(t('about-me.pages.resume.name'))}.pdf`
-            }}
+            href={`/documents/kikoruiz-${locale}-${getSlug(t('about-me.pages.resume.name'))}.pdf`}
           >
             {t('about-me:download-resume').split(' ')[0]}
           </BreadcrumbActionButton>
