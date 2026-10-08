@@ -52,7 +52,7 @@ export default function PrintCard({
   return (
     <div
       key={id}
-      className={`relative group h-fit p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md${isActive ? ' ring-1 ring-inset ring-orange-300/60' : ''}`}
+      className={`relative group h-fit break-inside-avoid-column p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md${isActive ? ' ring-1 ring-inset ring-orange-300/60' : ''}`}
     >
       <span
         id={slug}
