@@ -234,6 +234,23 @@ export function getAbsoluteUrl(path: string) {
   }${path}`
 }
 
+export const SOCIAL_IMAGE_WIDTH = 1200
+
+// The full resolution pictures are not published any more, so whatever is
+// handed to a crawler has to be the social derivative instead of the original.
+export function getSocialImageUrl(src: string) {
+  return src.replace(/^\/pictures\/([^/]+)\.[^.]+$/, '/pictures/optimized/$1-og.jpg')
+}
+
+export function getSocialImageSize(imageSize: string) {
+  const [width, height] = imageSize.split('x').map(Number)
+
+  return {
+    width: SOCIAL_IMAGE_WIDTH,
+    height: Math.round((SOCIAL_IMAGE_WIDTH * height) / width)
+  }
+}
+
 export function getRandomElement(
   list: string[],
   excludedElement?: string | null
