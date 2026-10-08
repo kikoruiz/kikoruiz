@@ -67,9 +67,10 @@ export default function Navigation({
           }`
         )
       : asPath
-  if (path.includes('#')) {
-    path = path.split('#')[0]
-  }
+  // Neither a hash nor a query is part of what counts as the current page, and
+  // keeping them makes a statically rendered route hydrate into a different
+  // tree than the one the server sent.
+  path = path.split(/[?#]/)[0]
   const activeSection = SECTIONS.find(({id, categories}) => {
     const sectionSlug = getSlug(t(`sections.${id}.name`))
 
