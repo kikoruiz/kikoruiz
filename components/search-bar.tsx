@@ -16,7 +16,6 @@ interface SearchBarProps {
 
 export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const {t} = useTranslation()
-  const queryKey = t('gallery.carousel.query-key')
   const {locale, push} = useRouter()
   const inputRef = useRef(null)
   const [items, setItems] = useState([])
@@ -66,9 +65,11 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
           selectedItem.slug
         }`
       } else if (selectedItem?.type === 'picture' && selectedItem.album) {
+        // Straight to the page of the picture, which hangs from the album
+        // owning it, so a search result lands on its indexable URL.
         destination = `/${getSlug(t('sections.gallery.name'))}/${getSlug(
           t(`gallery.albums.${selectedItem.album}.name`)
-        )}?${queryKey}=${selectedItem.slug}`
+        )}/${selectedItem.slug}`
       }
 
       if (!destination) return
