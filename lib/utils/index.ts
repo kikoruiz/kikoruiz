@@ -172,10 +172,20 @@ export function getAspectRatioClassName(aspectRatio: string): string {
   }
 }
 
+// The master is never on disk at build time, only its optimized derivatives
+// are, and the smallest one is already more than enough pixel data for an
+// average color.
+function getSmallestOptimizedUrl(src: string) {
+  return src.replace(
+    /^\/pictures\/([^/]+)\.[^.]+$/,
+    '/pictures/optimized/$1-640w.webp'
+  )
+}
+
 export async function getAverageColor(src: string) {
   const {getAverageColor: fastAverageColor} =
     await import('fast-average-color-node')
-  const resourceFile = `public${src}`
+  const resourceFile = `public${getSmallestOptimizedUrl(src)}`
   const color = await fastAverageColor(resourceFile)
   const {hex, isDark, isLight} = color
 
