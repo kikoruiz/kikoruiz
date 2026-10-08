@@ -5,7 +5,8 @@ import Stripe from 'stripe'
 import {
   DEFAULT_PRINT_PAPER,
   PRINT_MIN_RATING,
-  PRINT_VARIANTS
+  PRINT_VARIANTS,
+  TAX_BEHAVIOR
 } from 'config/store'
 import {RawPicture} from 'types/gallery'
 import {RawPrint} from 'types/store'
@@ -49,8 +50,9 @@ interface VariantPlan {
   isBorderless: boolean
   paper: string
   price: number
-  action: 'reuse' | 'adopt' | 'reprice' | 'create'
+  action: 'reuse' | 'adopt' | 'reprice' | 'retax' | 'create'
   priceId?: string
+  taxBehavior?: Stripe.Price.TaxBehavior
 }
 
 interface PictureProduct {
@@ -236,12 +238,14 @@ async function getExistingPrices(variantIds: string[]) {
 // Stripe will not let a price change its product, so the prices created by the
 // old script stay where they are forever. What can be migrated is their lookup
 // key, which is what makes both shapes resolvable the same way.
-async function getLegacyPriceId(variantId: string) {
+async function getLegacyPrice(variantId: string) {
   try {
-    const {default_price: defaultPrice} =
-      await stripe.products.retrieve(variantId)
+    const {default_price: defaultPrice} = await stripe.products.retrieve(
+      variantId,
+      {expand: ['default_price']}
+    )
 
-    return typeof defaultPrice === 'string' ? defaultPrice : defaultPrice?.id
+    return defaultPrice as Stripe.Price
   } catch {
     return undefined
   }
@@ -260,8 +264,10 @@ async function getInventoryPlan({
     const {title, fileName} = picture
     const pictureId = getPictureId(picture)
     const productId = `${PRINT_TYPE}_${pictureId}`
+    // The site uses a custom image loader, so `/_next/image` answers 400 and the
+    // only public derivative is the one the optimize script writes.
     const images = [
-      `https://www.kikoruiz.es/_next/image?url=%2Fpictures%2F${fileName}&w=1200&q=75`
+      `https://www.kikoruiz.es/pictures/optimized/${fileName.replace(/\.[^.]+$/, '')}-1920w.webp`
     ]
     const product = {
       name: title,
@@ -287,26 +293,38 @@ async function getInventoryPlan({
       const variant = {variantId, name, size, isBorderless, paper, price}
 
       if (existingPrice) {
-        const hasSamePrice = existingPrice.unit_amount === price * 100
+        const {tax_behavior: taxBehavior} = existingPrice
+        // A price that never got a tax behaviour can still be told once, which
+        // saves recreating it. One that already carries the wrong answer is
+        // stuck with it, so that one needs a replacement.
+        const action =
+          existingPrice.unit_amount !== price * 100 ||
+          (taxBehavior !== TAX_BEHAVIOR && taxBehavior !== 'unspecified')
+            ? 'reprice'
+            : taxBehavior === 'unspecified'
+              ? 'retax'
+              : 'reuse'
 
         variants.push({
           ...variant,
-          action: hasSamePrice ? 'reuse' : 'reprice',
-          priceId: existingPrice.id
+          action,
+          priceId: existingPrice.id,
+          taxBehavior
         })
         continue
       }
 
       // Only the pictures that were already on sale can have a legacy product
       // to adopt, so the rest skip the lookup entirely.
-      const legacyPriceId = legacyIds.has(pictureId)
-        ? await getLegacyPriceId(variantId)
+      const legacyPrice = legacyIds.has(pictureId)
+        ? await getLegacyPrice(variantId)
         : undefined
 
       variants.push({
         ...variant,
-        action: legacyPriceId ? 'adopt' : 'create',
-        priceId: legacyPriceId
+        action: legacyPrice ? 'adopt' : 'create',
+        priceId: legacyPrice?.id,
+        taxBehavior: legacyPrice?.tax_behavior
       })
     }
 
@@ -374,6 +392,7 @@ function printInventoryPlan({
     create: variants.filter(({action}) => action === 'create').length,
     adopt: variants.filter(({action}) => action === 'adopt').length,
     reprice: variants.filter(({action}) => action === 'reprice').length,
+    retax: variants.filter(({action}) => action === 'retax').length,
     reuse: variants.filter(({action}) => action === 'reuse').length
   }
   const products = {
@@ -391,7 +410,7 @@ function printInventoryPlan({
     .filter(({variants}) => variants.some(({action}) => action !== 'reuse'))
     .forEach(({pictureId, title, productAction, variants}) => {
       const pending = variants.filter(({action}) => action !== 'reuse')
-      const counts = ['create', 'adopt', 'reprice']
+      const counts = ['create', 'adopt', 'reprice', 'retax']
         .map(action => ({
           action,
           count: pending.filter(variant => variant.action === action).length
@@ -408,7 +427,8 @@ function printInventoryPlan({
   console.log(
     `\n   products · ✨ ${products.create} to create · 🛠️ ${products.update} to update` +
       `\n   prices · ✨ ${counters.create} to create · 🔗 ${counters.adopt} to adopt` +
-      ` · 💸 ${counters.reprice} to reprice · ♻️ ${counters.reuse} untouched`
+      ` · 💸 ${counters.reprice} to reprice · 🧾 ${counters.retax} to mark ${TAX_BEHAVIOR} of tax` +
+      ` · ♻️ ${counters.reuse} untouched`
   )
 
   if (orphans.length > 0) {
@@ -461,7 +481,12 @@ async function applyInventoryPlan(plan: PicturePlan[]) {
           lookup_key: variantId,
           transfer_lookup_key: true,
           nickname: name,
-          metadata
+          metadata,
+          // Stripe rejects the field once it carries an answer, and a legacy
+          // price that already has one keeps it.
+          ...(variant.taxBehavior === 'unspecified' && {
+            tax_behavior: TAX_BEHAVIOR
+          })
         })
         await sleep(WRITE_INTERVAL)
       }
@@ -481,6 +506,7 @@ async function applyInventoryPlan(plan: PicturePlan[]) {
           product: productId,
           currency: DEFAULT_CURRENCY,
           unit_amount: price * 100,
+          tax_behavior: TAX_BEHAVIOR,
           lookup_key: variantId,
           transfer_lookup_key: true,
           nickname: name,
@@ -493,6 +519,11 @@ async function applyInventoryPlan(plan: PicturePlan[]) {
           await stripe.prices.update(previousPriceId, {active: false})
           await sleep(WRITE_INTERVAL)
         }
+      } else if (action === 'retax') {
+        console.log(`🧾 Marking "${variantId}" as ${TAX_BEHAVIOR} of tax.`)
+
+        await stripe.prices.update(priceId, {tax_behavior: TAX_BEHAVIOR})
+        await sleep(WRITE_INTERVAL)
       }
 
       products.push({
