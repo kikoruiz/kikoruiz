@@ -9,7 +9,8 @@
     "remove-item": "Remove item",
     "decrement-item": "Less",
     "increment-item": "More",
-    "notice-before-checkout": "Shipping and taxes will be calculated at checkout.",
+    "notice-before-checkout": "Shipping will be calculated at checkout. Prices already include taxes.",
+    "notice-before-download-checkout": "Files will be available right after the payment. Prices already include taxes.",
     "subtotal": "Subtotal",
     "checkout": "Checkout"
   },
@@ -25,10 +26,34 @@
     "with-border": "With border",
     "borderless": "Borderless"
   },
+  "downloads": {
+    "description": "Download my photos instantly, ready for your screen or to print them yourself.",
+    "tier": "Format",
+    "resolution": "Resolution",
+    "licence": "Licence",
+    "coming-soon": "Coming soon",
+    "notice": "The download arrives right after the payment, through a private link that expires. By buying you accept the licence and waive the right of withdrawal, since the file is delivered straight away.",
+    "waiver": "Your order includes digital files. By paying you get them straight away and accept that, as digital content delivered immediately, the right of withdrawal no longer applies.",
+    "delivery": {
+      "title": "Your files",
+      "download": "Download",
+      "notice": "The links expire in an hour. If you need them later, open this page again and they are generated anew.",
+      "error": "I could not get your files ready. Write to me and I will send them over myself."
+    },
+    "tiers": {
+      "web": "Screen and web (1920 px)",
+      "full-resolution": "Full resolution",
+      "commercial": "Commercial licence"
+    },
+    "licences": {
+      "personal": "Personal use",
+      "commercial": "Commercial use"
+    }
+  },
   "checkout": {
     "success": {
       "title": "The purchase has been made successfully!",
-      "message": "Check your email inbox to find out the status of your order."
+      "message": "If your order includes files, you have them right here. I will email you about the prints."
     },
     "cancel": {
       "title": "The purchase has been cancelled!",

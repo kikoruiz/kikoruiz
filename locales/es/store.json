@@ -9,7 +9,8 @@
     "remove-item": "Eliminar artículo",
     "decrement-item": "Quitar",
     "increment-item": "Añadir",
-    "notice-before-checkout": "Los gastos de envío y los impuestos se calcularán al finalizar la compra.",
+    "notice-before-checkout": "Los gastos de envío se calcularán al finalizar la compra. Los precios ya incluyen impuestos.",
+    "notice-before-download-checkout": "Los archivos estarán disponibles justo después del pago. Los precios ya incluyen impuestos.",
     "subtotal": "Subtotal",
     "checkout": "Checkout"
   },
@@ -25,10 +26,34 @@
     "with-border": "Con borde",
     "borderless": "Sin borde"
   },
+  "downloads": {
+    "description": "Descarga mis fotos al instante, listas para tu pantalla o para imprimirlas tú mismo.",
+    "tier": "Formato",
+    "resolution": "Resolución",
+    "licence": "Licencia",
+    "coming-soon": "Muy pronto",
+    "notice": "La descarga llega justo después del pago, con un enlace privado que caduca. Al comprar aceptas la licencia y renuncias al derecho de desistimiento, ya que el archivo se entrega al momento.",
+    "waiver": "Tu pedido incluye archivos digitales. Al pagar los recibes al instante y aceptas que, por tratarse de contenido digital entregado de inmediato, renuncias al derecho de desistimiento.",
+    "delivery": {
+      "title": "Tus archivos",
+      "download": "Descargar",
+      "notice": "Los enlaces caducan en una hora. Si los necesitas más tarde, vuelve a abrir esta página y se generan de nuevo.",
+      "error": "No he podido preparar tus archivos. Escríbeme y te los envío yo mismo."
+    },
+    "tiers": {
+      "web": "Pantalla y web (1920 px)",
+      "full-resolution": "Resolución completa",
+      "commercial": "Licencia comercial"
+    },
+    "licences": {
+      "personal": "Uso personal",
+      "commercial": "Uso comercial"
+    }
+  },
   "checkout": {
     "success": {
       "title": "¡La compra se ha realizado con éxito!",
-      "message": "Revisa la bandeja de tu correo electrónico para conocer el estado de tu pedido."
+      "message": "Si tu pedido incluye archivos, los tienes aquí mismo. Para las láminas te escribiré por correo electrónico."
     },
     "cancel": {
       "title": "¡La compra se ha cancelado!",

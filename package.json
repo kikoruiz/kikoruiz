@@ -12,12 +12,16 @@
     "dev": "next dev --webpack",
     "lint": "eslint .",
     "phoenix": "rm -rf node_modules && rm -rf package-lock.json && rm -rf tsconfig.tsbuildinfo && npm i",
+    "save:digital": "make save_digital",
     "save:inventory": "make save_inventory",
     "start": "next start",
     "test": "ORIGIN=\"http://test\" vitest --exclude \"__checks__\"",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "upload:downloads": "make upload_downloads"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3",
+    "@aws-sdk/s3-request-presigner": "3",
     "@use-cookie-consent/react": "0",
     "@vercel/analytics": "2",
     "@vercel/speed-insights": "2",
