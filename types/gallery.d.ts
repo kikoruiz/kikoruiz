@@ -116,13 +116,6 @@ export interface Picture {
   permalink: string
 }
 
-export interface PictureSibling {
-  slug: string
-  name: string
-  permalink: string
-  image: Image
-}
-
 export interface LatestPictures {
   byCreationDate: Picture[]
   byProcessingDate: Picture[]

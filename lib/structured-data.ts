@@ -1,5 +1,5 @@
 import {SITE_NAME} from 'config'
-import {getAbsoluteUrl} from './utils'
+import {getAbsoluteUrl, getSocialImageSize, getSocialImageUrl} from './utils'
 import {BreadcrumbItem} from 'types'
 import {Picture} from 'types/gallery'
 import {PicturePrint} from 'types/store'
@@ -51,12 +51,12 @@ function getImageObject({
   licenseUrl: string
 }) {
   const {name, description, image, imageSize, processingDate, date} = picture
-  const [width, height] = imageSize.split('x').map(Number)
+  const {width, height} = getSocialImageSize(imageSize)
   const contentLocation = getContentLocation(picture)
 
   return {
     '@type': 'ImageObject',
-    contentUrl: getAbsoluteUrl(image.src),
+    contentUrl: getAbsoluteUrl(getSocialImageUrl(image.src)),
     width,
     height,
     name,
@@ -95,7 +95,7 @@ function getProduct({
     '@type': 'Product',
     name: picture.name,
     ...(picture.description && {description: picture.description}),
-    image: getAbsoluteUrl(picture.image.src),
+    image: getAbsoluteUrl(getSocialImageUrl(picture.image.src)),
     brand: {'@type': 'Brand', name: SITE_NAME},
     offers: {
       '@type': 'AggregateOffer',

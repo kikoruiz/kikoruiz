@@ -30,10 +30,7 @@
     },
     "store": {
       "name": "Botiga",
-      "description": "Demana impressions de les meues fotos."
-    },
-    "photo": {
-      "name": "Foto"
+      "description": "Demana impressions de les meues fotos o descarrega-les a l'instant."
     }
   },
   "gallery": {
@@ -81,10 +78,8 @@
       "technical-info": "Informació tècnica",
       "order-print": "Comprar impressió",
       "prints-from": "Impressions des de {{price, price}}",
-      "permalink": "Veure la fitxa de la foto",
       "copy-link": "Copiar l'enllaç",
-      "link-copied": "Enllaç copiat",
-      "more-from-album": "Més fotos de {{album}}"
+      "link-copied": "Enllaç copiat"
     },
     "carousel": {"query-key": "foto"}
   },
@@ -92,6 +87,9 @@
     "categories": {
       "prints": {
         "name": "Impressions"
+      },
+      "downloads": {
+        "name": "Descàrregues"
       }
     }
   },

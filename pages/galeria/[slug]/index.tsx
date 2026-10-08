@@ -3,11 +3,8 @@ import getT from 'next-translate/getT'
 import useTranslation from 'next-translate/useTranslation'
 import GalleryPage from 'components/gallery-page'
 import {getGalleryAlbums} from 'lib/gallery/albums'
-import {getGalleryPictures} from 'lib/gallery/pictures'
-import {fromExifToGallery} from 'lib/gallery/mappers'
-import {fromLocalesToAlternates} from 'lib/mappers'
-import {autoSortSeasons, getSlug} from 'lib/utils'
-import {GALLERY_ALBUMS} from 'config/gallery'
+import {getAlbumPageProps} from 'lib/gallery/album-page'
+import {getSlug} from 'lib/utils'
 import {SITE_NAME} from 'config'
 import {Picture, Subcategory} from 'types/gallery'
 import {Alternate} from 'types'
@@ -16,6 +13,7 @@ interface GallerySlugProps {
   pictures: Picture[]
   category?: string
   subcategories?: Subcategory[]
+  basePath: string
   alternates: Alternate[]
 }
 
@@ -73,37 +71,7 @@ export async function getStaticProps({
   locales,
   defaultLocale
 }) {
-  const section = 'gallery'
-  const galleryPictures = await getGalleryPictures({locale, slug})
-  const pictures: Picture[] = await Promise.all(
-    galleryPictures.map(fromExifToGallery({locale, slug}))
-  )
-  const t = await getT(locale, 'common')
-  const category = GALLERY_ALBUMS.find(({id}) => {
-    const albumSlug = getSlug(t(`gallery.albums.${id}.name`))
-
-    return albumSlug === slug
-  })
-  const subcategories =
-    category.id === 'seasonal' ? autoSortSeasons() : category?.subcategories
-  const alternates: Alternate[] = await Promise.all(
-    locales.map(
-      await fromLocalesToAlternates({
-        defaultLocale,
-        locale,
-        section,
-        category: slug
-      })
-    )
-  )
-
   return {
-    props: {
-      pictures,
-      ...(category && {category: category.id}),
-      ...(subcategories && {subcategories}),
-      alternates,
-      section
-    }
+    props: await getAlbumPageProps({slug, locale, locales, defaultLocale})
   }
 }

@@ -122,7 +122,8 @@ export async function fromLocalesToAlternates({
   category,
   page,
   tag,
-  post
+  post,
+  picture
 }: {
   defaultLocale: string
   locale?: string
@@ -132,6 +133,7 @@ export async function fromLocalesToAlternates({
   page?: string
   tag?: string
   post?: BlogPost
+  picture?: string
 }) {
   const currentT = currentLocale && (await getT(currentLocale, 'common'))
 
@@ -183,12 +185,15 @@ export async function fromLocalesToAlternates({
     const tagPath = tag ? `/tags/${actualTag}` : ''
     const endingPath =
       pageSlug || postSlug || justSlug || categoryPath || tagPath
+    // A picture slug comes from its EXIF title, so it is the same in every
+    // locale and just hangs from the album path.
+    const picturePath = picture ? `/${picture}` : ''
 
     return {
       locale,
       href: `${
         process.env.ORIGIN || DEFAULT_ORIGIN
-      }${localePath}${sectionPath}${subSectionPath}${endingPath}`
+      }${localePath}${sectionPath}${subSectionPath}${endingPath}${picturePath}`
     } as Alternate
   }
 }
