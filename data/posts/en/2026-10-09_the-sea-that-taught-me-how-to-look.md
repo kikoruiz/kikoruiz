@@ -1,6 +1,6 @@
 ---
 title: 'The sea that taught me how to look'
-excerpt: "A 9th of October looking back at the coast where I learned that good light has to be gotten up for."
+excerpt: 'A 9th of October looking back at the coast where I learned that good light has to be gotten up for.'
 author: 'kiko-ruiz'
 tags: 'photography, personal'
 ---
@@ -25,7 +25,7 @@ There are two photographs I cannot look at without remembering that strange spri
 
 For those months the world shrank to the size of the neighbourhood, and that was exactly when it dawned on me how much I had within walking distance and had never photographed, because I had been busy thinking about going somewhere else. The usual story: we want the far-off mountain while our own sits right behind us.
 
-![El Puig Campana seen from Serra Cortina {"align": "right"}](/pictures/2020-05-16_0117.jpg)
+![El Puig Campana seen from Serra Cortina {"align": "right"}](/pictures/2026-06-25_0431.jpg)
 
 And ours is **el Puig Campana**. If you grew up in the Marina Baixa nobody needs to point it out to you: it is the mountain that stands on its own, with no range around it to soften the shape, and an enormous notch cut out of its west ridge. El Portell de Roldà, we call it. The story goes that Roland opened it with one swing of his sword, and that the missing piece flew all the way out to sea and stayed there, as the island of Benidorm. It is not true, of course, but it is the kind of untruth you are told as a child, and it leaves you looking at that mountain differently for the rest of your life. There is no other like it, and I had it fifteen minutes from home.
 

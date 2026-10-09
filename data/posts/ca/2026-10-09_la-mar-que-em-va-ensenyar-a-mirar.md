@@ -25,7 +25,7 @@ Hi ha dos fotos que no puc mirar sense recordar aquella primavera estranya: [Con
 
 Durant aquells mesos el món se'ns va quedar de la mida del barri, i va ser justament aleshores quan em vaig adonar de la quantitat de coses que tenia a tir de pedra i que no havia fotografiat mai perquè estava pensant a anar-me'n a una altra banda. El de sempre: volem la muntanya de lluny tenint la nostra ahí darrere.
 
-![El Puig Campana des de Serra Cortina {"align": "right", "orientation": "vertical"}](/pictures/2020-05-16_0117.jpg)
+![El Puig Campana des de Serra Cortina {"align": "right"}](/pictures/2026-06-25_0431.jpg)
 
 I la nostra és el **Puig Campana**. Si t'has criat a la Marina Baixa no necessites que ningú te l'assenyale: és eixa muntanya que s'alça sola, sense serralada que la dissimule, amb un badall enorme retallat a la cresta oest. El Portell de Roldà, li diuen. Conten que Roldà el va obrir d'un colp d'espasa, i que el tros que falta va eixir volant fins a la mar i ahí es va quedar, convertit en l'illa de Benidorm. És mentida, és clar, però és una mentida que t'expliquen de xiquet i que et deixa mirant la muntanya d'una altra manera per sempre. No n'hi ha cap igual, i la tenia a quinze minuts de casa.
 
