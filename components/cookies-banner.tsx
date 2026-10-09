@@ -12,6 +12,13 @@ function CookiesBanner() {
   const {consent, acceptAllCookies, declineAllCookies, cookies} =
     useCookieConsentContext()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  // Deliberately starts false and is only ever set from the effect below.
+  // `consent` comes from a cookie, so the server, which has none, always falls
+  // back to the library's `{necessary: true}` default and would render the
+  // banner, while a returning visitor's browser reads their real choice and
+  // would not. Deriving this during render therefore breaks hydration for
+  // everyone who has already answered. Waiting for the effect means both sides
+  // render nothing on the first pass and only the client fills it in.
   const [needsBanner, setNeedsBanner] = useState(false)
 
   function openModal() {
@@ -50,6 +57,9 @@ function CookiesBanner() {
     }
 
     cleanCookies()
+    // Intentional: see the note on the state declaration. Deriving this during
+    // render instead is what caused a hydration mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setNeedsBanner(consents.length === 1 && consents.includes('necessary'))
   }, [consent, cookies, setNeedsBanner])
 
