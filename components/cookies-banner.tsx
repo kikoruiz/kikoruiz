@@ -12,17 +12,15 @@ function CookiesBanner() {
   const {consent, acceptAllCookies, declineAllCookies, cookies} =
     useCookieConsentContext()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  // Whether the user has made any choice beyond the necessary default is a
-  // plain function of `consent`, so it needs neither a state of its own nor
-  // an effect to keep it in sync.
-  const consents = Object.keys(consent)
-  const needsBanner = consents.length === 1 && consents.includes('necessary')
+  const [needsBanner, setNeedsBanner] = useState(false)
 
   function openModal() {
     setIsModalOpen(true)
   }
 
   useEffect(() => {
+    const consents = Object.keys(consent)
+
     function cleanCookies() {
       const cookiesByType = Object.keys(COOKIES_BY_TYPE)
       const cookieTypes = cookiesByType.filter(type => type !== 'NECESSARY')
@@ -52,7 +50,8 @@ function CookiesBanner() {
     }
 
     cleanCookies()
-  }, [consent, cookies])
+    setNeedsBanner(consents.length === 1 && consents.includes('necessary'))
+  }, [consent, cookies, setNeedsBanner])
 
   return (
     <>
