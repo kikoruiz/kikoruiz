@@ -40,21 +40,14 @@ export default function DownloadLinks({sessionId}: {sessionId: string}) {
   if (links.length === 0) return null
 
   return (
-    <section className="mx-6 mb-12 rounded-md bg-neutral-800 p-6">
-      <header className="mb-3 text-2xl font-thin">
+    <section className="mx-6 mb-12 rounded-md bg-neutral-800/60 p-6">
+      <header className="mb-6 text-3xl font-thin">
         {t('downloads.delivery.title')}
       </header>
 
-      <ul className="divide-y divide-neutral-700">
+      <ul className="divide-y divide-neutral-700/60">
         {links.map(({id, name, tier, url}) => (
-          <li key={id} className="flex items-center justify-between gap-6 py-3">
-            <span className="text-sm font-light text-neutral-300/90">
-              {name}
-              <span className="block text-xs text-neutral-300/30">
-                {t(`downloads.tiers.${tier}`)}
-              </span>
-            </span>
-
+          <li key={id} className="flex items-center gap-3 py-3">
             <a
               href={url}
               title={t('downloads.delivery.download')}
@@ -63,6 +56,13 @@ export default function DownloadLinks({sessionId}: {sessionId: string}) {
               <IconDocumentArrowDown className="h-4 w-4" />
               {t('downloads.delivery.download')}
             </a>
+
+            <span className="text-sm font-light text-neutral-300/90">
+              {name}
+              <span className="block text-xs text-neutral-300/30">
+                {t(`downloads.tiers.${tier}`)}
+              </span>
+            </span>
           </li>
         ))}
       </ul>
