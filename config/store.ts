@@ -21,16 +21,26 @@ export const UNITS_OF_MEASUREMENT = ['mm', 'cm', 'in']
 // A4, A3 and A2 share this exact long:short ratio by design.
 export const PRINT_SHEET_RATIO = 297 / 210
 
-// Measured against the actual printable catalogue: the ratios cluster at 6.1%
-// off this one (the classic 3:2 of a camera sensor) with nothing between 7.3%
-// and 13.1%, so 10% sits right in that gap. Below it, a borderless print would
-// have to crop away more of the picture than a print sold on the composition
-// alone should.
-export const PRINT_BORDERLESS_MAX_RATIO_DEVIATION = 0.1
+// How far from the sheet's own shape a picture can be and still be worth
+// selling as a DIN print at all. Measured against the real catalogue, the
+// ratios cluster at 6.1% off (the classic 3:2 of a camera sensor) with nothing
+// between 7.3% and 13.1%, so 10% sits right in that gap: it keeps every
+// ordinary frame and drops the squares and the panoramas, which no A4, A3 or
+// A2 can hold without either cropping the composition or leaving a mat so
+// uneven it stops looking deliberate.
+export const PRINT_MAX_RATIO_DEVIATION = 0.1
 
 // Every picture in the gallery is rated 3 at least, so this is the only
 // threshold that actually selects: 4 and above is the printable catalogue.
 export const PRINT_MIN_RATING = 4
+
+// Rating and ratio decide the catalogue on their own, so this is purely for
+// the cases neither can express: a picture that qualifies on both counts but
+// is not mine to sell, or that I simply would rather not.
+export const PICTURES_NOT_FOR_SALE = [
+  // Temps de Collita
+  '2017-06-11_0014'
+]
 
 export const PRINT_VARIANTS = [
   {size: 'A4', isBorderless: false, price: 30},
