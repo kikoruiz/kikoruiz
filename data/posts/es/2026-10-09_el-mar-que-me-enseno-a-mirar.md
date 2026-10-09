@@ -25,6 +25,10 @@ Hay dos fotos que no puedo mirar sin acordarme de aquella primavera rara: [Confi
 
 Durante aquellos meses el mundo se nos quedó del tamaño del barrio, y fue justo entonces cuando me di cuenta de la cantidad de cosas que tenía a tiro de piedra y que nunca había fotografiado porque estaba pensando en irme a otra parte. Lo de siempre: queremos la montaña de lejos teniendo la nuestra ahí detrás.
 
+![El Puig Campana desde Serra Cortina {"align": "right"}](/pictures/2020-05-16_0117.jpg)
+
+Y la nuestra es el **Puig Campana**. Si te has criado en la Marina Baixa no necesitas que nadie te la señale: es esa montaña que se levanta sola, sin cordillera que la disimule, con un boquete enorme recortado en la cresta. El Portell de Roldán, le llaman. Cuentan que Roldán lo abrió de un mandoble, y que el trozo que falta salió volando hasta el mar y ahí se quedó, convertido en la isla de Benidorm. Es mentira, claro, pero es una mentira que te explican de crío y que te deja mirando la montaña de otra manera para siempre. No hay otra igual, y la tenía a media hora de casa.
+
 ## De noche también es nuestra
 
 Luego vino la obsesión de las noches. [Shining in the Shortest Night](/galeria/nocturnas/shining-in-the-shortest-night), en la Vila, la noche más corta del año. [Our Galaxy from the Old Castle](/galeria/nocturnas/our-galaxy-from-the-old-castle-i), con la Vía Láctea por encima de un castillo en plena vall de Guadalest, al pie de la Serra d'Aitana, que lleva siglos viendo pasar cosas. [Window to the Sea](/galeria/nocturnas/window-to-the-sea), desde dentro de una cueva, con las estrellas colándose por el agujero.
