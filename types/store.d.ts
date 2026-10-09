@@ -12,6 +12,7 @@ export interface Print {
   price: number
   image?: Image
   aspectRatio?: string
+  imageSize: string
   picture: Picture['permalink']
 }
 

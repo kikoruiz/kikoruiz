@@ -181,6 +181,36 @@ export function getPrintSheetAspectClassName(isVertical: boolean): string {
   return isVertical ? 'aspect-210/297' : 'aspect-297/210'
 }
 
+const PRINT_MAT_FRACTION = 0.1
+
+// Where `object-contain` leaves the picture inside the sheet is invisible to
+// CSS, so the watermark could only be placed against the paper and ended up
+// off the photo entirely on any ratio far from the sheet's. Sizing the
+// picture's own box by hand instead gives the watermark something to sit on.
+// It also makes the mat the same width all the way round, which a percentage
+// padding never was, since percentages resolve against the width on every side.
+export function getPrintPictureSize({
+  imageSize,
+  isVertical,
+  isBorderless
+}: {
+  imageSize: string
+  isVertical: boolean
+  isBorderless: boolean
+}) {
+  const [width, height] = imageSize.split('x').map(Number)
+  const pictureRatio = width / height
+  const sheetRatio = isVertical ? 210 / 297 : 297 / 210
+  const available = isBorderless ? 1 : 1 - PRINT_MAT_FRACTION * 2
+  const fitsByWidth = pictureRatio > sheetRatio
+  const scale = fitsByWidth ? sheetRatio / pictureRatio : pictureRatio / sheetRatio
+
+  return {
+    width: `${(fitsByWidth ? available : available * scale) * 100}%`,
+    height: `${(fitsByWidth ? available * scale : available) * 100}%`
+  }
+}
+
 // The master is never on disk at build time, only its optimized derivatives
 // are, and the smallest one is already more than enough pixel data for an
 // average color.
