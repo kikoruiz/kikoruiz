@@ -198,10 +198,17 @@ export function getPrintPictureSize({
   isVertical: boolean
   isBorderless: boolean
 }) {
+  // Borderless means ink to the very edge, so the picture covers the whole
+  // sheet and whatever does not fit gets cropped, which is the same thing the
+  // printer does: fit the side that matters and cut the rest. Leaving it
+  // contained would show exactly the sliver of white the buyer is paying not
+  // to have.
+  if (isBorderless) return {width: '100%', height: '100%'}
+
   const [width, height] = imageSize.split('x').map(Number)
   const pictureRatio = width / height
   const sheetRatio = isVertical ? 210 / 297 : 297 / 210
-  const available = isBorderless ? 1 : 1 - PRINT_MAT_FRACTION * 2
+  const available = 1 - PRINT_MAT_FRACTION * 2
   const fitsByWidth = pictureRatio > sheetRatio
   const scale = fitsByWidth ? sheetRatio / pictureRatio : pictureRatio / sheetRatio
 
