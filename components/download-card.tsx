@@ -90,7 +90,7 @@ export default function DownloadCard({
         )}
       </div>
 
-      <div className="flex items-start justify-between mt-3 py-1.5 pl-1.5">
+      <div className="flex items-start justify-between gap-6 mt-3 py-1.5 pl-1.5">
         <div className="flex flex-col gap-1.5">
           <header className="font-thin text-2xl">
             <Link
