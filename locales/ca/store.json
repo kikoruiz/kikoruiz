@@ -37,7 +37,7 @@
     "delivery": {
       "title": "Els teus fitxers",
       "download": "Descarregar",
-      "notice": "Els enllaços caduquen en una hora. Si els necessites més tard, torna a obrir aquesta pàgina i es generen de nou.",
+      "notice": "Els enllaços caduquen en una hora. T'he enviat aquest mateix enllaç per correu, així que pots tornar quan vulgues i es generen de nou.",
       "error": "No he pogut preparar els teus fitxers. Escriu-me i te'ls envio jo mateix."
     },
     "tiers": {
@@ -48,6 +48,11 @@
     "licences": {
       "personal": "Ús personal",
       "commercial": "Ús comercial"
+    },
+    "email": {
+      "subject": "Els teus arxius ja estan llestos",
+      "body": "Gràcies per la teua compra. Pots descarregar els teus arxius des d'aquí:",
+      "notice": "Guarda aquest correu: l'enllaç continua funcionant sempre que el necessites, encara que cada descàrrega es genere de nou cada vegada. Si alguna cosa no va, respon-me i te'ls envio jo mateix."
     }
   },
   "checkout": {

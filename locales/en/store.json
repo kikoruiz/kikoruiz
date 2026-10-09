@@ -37,7 +37,7 @@
     "delivery": {
       "title": "Your files",
       "download": "Download",
-      "notice": "The links expire in an hour. If you need them later, open this page again and they are generated anew.",
+      "notice": "The links expire in an hour. I have emailed you this same link, so you can come back whenever you like and they are generated anew.",
       "error": "I could not get your files ready. Write to me and I will send them over myself."
     },
     "tiers": {
@@ -48,6 +48,11 @@
     "licences": {
       "personal": "Personal use",
       "commercial": "Commercial use"
+    },
+    "email": {
+      "subject": "Your files are ready",
+      "body": "Thanks for your purchase. You can download your files here:",
+      "notice": "Keep this email: the link keeps working whenever you need it, even though each download is generated anew every time. If anything goes wrong, reply to me and I will send them over myself."
     }
   },
   "checkout": {
