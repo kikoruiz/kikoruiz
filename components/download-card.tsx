@@ -73,7 +73,7 @@ export default function DownloadCard({
         style={{top: `calc(-${headerHeight}px - 1em)`}}
       />
 
-      <div className="relative drop-shadow-md group-hover:drop-shadow-xl">
+      <div className="relative shadow-md group-hover:shadow-xl">
         <Image
           src={src}
           alt={name}

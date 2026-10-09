@@ -65,7 +65,7 @@ export default function PrintCard({
         style={{top: `calc(-${headerHeight}px - 1em)`}}
       />
       <div
-        className={`relative flex items-center justify-center bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em] ${getPrintSheetAspectClassName(isVertical)}`}
+        className={`relative flex items-center justify-center bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em] ${getPrintSheetAspectClassName(isVertical)}`}
       >
         <div
           className="relative"
@@ -88,7 +88,7 @@ export default function PrintCard({
           )}
         </div>
       </div>
-      <div className="flex items-start justify-between gap-6 mt-3 py-1.5 pl-1.5">
+      <div className="flex items-start justify-between gap-1.5 mt-3 py-1.5 pl-1.5">
         <div className="flex flex-col gap-1.5">
           <header className="font-thin text-2xl">
             <Link
