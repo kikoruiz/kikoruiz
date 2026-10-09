@@ -1,4 +1,4 @@
-import {useRef, useState, useEffect} from 'react'
+import {useMemo, useRef, useState} from 'react'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
@@ -24,39 +24,44 @@ const DynamicGalleryCarousel = dynamic(
 export default function HomeLatestPictures({
   latestPictures
 }: HomeLatestPicturesProps) {
-  const {query} = useRouter()
   const {t} = useTranslation('home')
+  const {query} = useRouter()
   const queryKey = t('common:gallery.carousel.query-key')
-  const {[queryKey]: querySlug} = query
-  const [isCarouselOpen, setIsCarouselOpen] = useState(false)
   const {latestPictures: sortingOrder, setLatestPictures: setSortingOrder} =
     useLatestPicturesContext()
   const isSortedByProcessingDate = sortingOrder === 'byProcessingDate'
   const pictures = latestPictures[sortingOrder]
+  const openPicture = pictures.find(({slug}) => slug === query[queryKey])
   const {sm, xl} = themeScreens
   const sizes = `(min-width: ${xl}) 25vw, (min-width: ${sm}) 33vw, 50vw`
   const elementRef = useRef(null)
   const [scrollPosition, setScrollPosition] = useState(SCROLL_POSITIONS.LEFT)
 
-  function handleScroll() {
-    const isOnLeft = elementRef.current?.scrollLeft <= 0
-    const isOnRight =
-      elementRef.current?.scrollLeft >=
-      elementRef.current?.scrollWidth -
-        elementRef.current?.getBoundingClientRect().width
+  // Memoized so the throttle wrapper, and the ref read inside it, is created
+  // once instead of on every render, which both the lint rule and throttling
+  // itself care about: a new wrapper each render has no memory of the last
+  // call it throttled. lodash defers the actual call to the scroll event, so
+  // the ref is never read during this render despite what the rule assumes.
+  const handleScroll = useMemo(
+    () =>
+      // eslint-disable-next-line react-hooks/refs
+      throttle(() => {
+        const isOnLeft = elementRef.current?.scrollLeft <= 0
+        const isOnRight =
+          elementRef.current?.scrollLeft >=
+          elementRef.current?.scrollWidth -
+            elementRef.current?.getBoundingClientRect().width
 
-    if (isOnLeft) {
-      setScrollPosition(SCROLL_POSITIONS.LEFT)
-    } else if (isOnRight) {
-      setScrollPosition(SCROLL_POSITIONS.RIGHT)
-    } else {
-      setScrollPosition(SCROLL_POSITIONS.CENTER)
-    }
-  }
-
-  useEffect(() => {
-    setIsCarouselOpen(Boolean(querySlug))
-  }, [setIsCarouselOpen, querySlug])
+        if (isOnLeft) {
+          setScrollPosition(SCROLL_POSITIONS.LEFT)
+        } else if (isOnRight) {
+          setScrollPosition(SCROLL_POSITIONS.RIGHT)
+        } else {
+          setScrollPosition(SCROLL_POSITIONS.CENTER)
+        }
+      }),
+    []
+  )
 
   const sortingButtons = () => (
     <nav className="flex items-center">
@@ -95,13 +100,13 @@ export default function HomeLatestPictures({
       >
         <div
           ref={elementRef}
-          className="flex h-60 gap-3 overflow-x-scroll p-3 lg:h-80"
+          className="flex h-60 gap-3 overflow-x-scroll scrollbar-hide p-3 lg:h-80"
           style={{
             WebkitMaskImage: `linear-gradient(to right, rgba(0, 0, 0, 1) ${
               scrollPosition !== SCROLL_POSITIONS.RIGHT ? '90%' : '100%'
             }, transparent 100%)`
           }}
-          onScroll={throttle(handleScroll)}
+          onScroll={handleScroll}
         >
           {pictures.map(
             (
@@ -121,6 +126,7 @@ export default function HomeLatestPictures({
                 key={id}
                 title={name}
                 url={url}
+                shallowUrl={url}
                 image={image}
                 sizes={sizes}
                 needsPreload={index === 0 || index === 1}
@@ -151,10 +157,11 @@ export default function HomeLatestPictures({
         </div>
       </div>
 
-      {isCarouselOpen && (
+      {openPicture && (
         <DynamicGalleryCarousel
           pictures={pictures}
-          setIsCarouselOpen={setIsCarouselOpen}
+          openPicture={openPicture}
+          basePath="/"
         />
       )}
     </HomeModule>

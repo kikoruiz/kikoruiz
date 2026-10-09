@@ -37,6 +37,11 @@ yarn-error.log*
 #typescript
 *.tsbuildinfo
 
+# picture masters: the only source of truth, derived into
+# /public/pictures/optimized for the web and uploaded to R2 for the store, so
+# they are never published nor carried around by the repository
+/public/pictures/*.jpg
+
 # generated at build time
 /public/sitemap*.xml
 /public/robots.txt

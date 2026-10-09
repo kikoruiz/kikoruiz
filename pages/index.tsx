@@ -3,6 +3,7 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
+import {getWebSiteStructuredData} from 'lib/structured-data'
 import {
   getHeroImages,
   getSectionImages,
@@ -12,6 +13,7 @@ import {
 import {getAllPicturesOnMap} from 'lib/gallery/pictures'
 import {getGalleryTags} from 'lib/gallery/tags'
 import Hero from 'components/hero'
+import JsonLd from 'components/json-ld'
 import HomeHeader from 'components/home-header'
 import HomeLatestPictures from 'components/home-latest-pictures'
 import HomeLatestContent from 'components/home-latest-content'
@@ -82,26 +84,14 @@ export default function Home({
         <meta property="og:image" content={getAbsoluteUrl('/logo.png')} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:description" content={description} />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebSite',
-              name: SITE_NAME,
-              url: getAbsoluteUrl('/'),
-              description,
-              author: {
-                '@type': 'Person',
-                name: SITE_NAME,
-                url: getAbsoluteUrl('/'),
-                sameAs: BRANDS.SOCIAL.map(({url}) => url)
-              }
-            })
-          }}
-        />
       </Head>
+
+      <JsonLd
+        data={getWebSiteStructuredData({
+          description,
+          sameAs: BRANDS.SOCIAL.map(({url}) => url)
+        })}
+      />
 
       {heroImage && <Hero image={heroImage} isImageHidden={!showImage} />}
 

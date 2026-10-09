@@ -5,9 +5,11 @@ import {getAllPosts} from 'lib/blog/posts'
 import {getPrettyDate} from 'lib/blog/date'
 import {getTagsData} from 'lib/blog/tags'
 import {fromLocalesToAlternates} from 'lib/mappers'
+import {getBlogPostingStructuredData} from 'lib/structured-data'
 import {getAbsoluteUrl, getSlug} from 'lib/utils'
 import {BLOG, SITE_NAME} from 'config'
 import Article from 'components/article'
+import JsonLd from 'components/json-ld'
 import BlogTags from 'components/blog-tags'
 import {BlogPost} from 'types/blog'
 import {Alternate} from 'types'
@@ -56,26 +58,17 @@ export default function Post({post, alternates}: PostProps) {
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'BlogPosting',
-              headline: post.title,
-              description: post.excerpt,
-              datePublished: post.createdAt,
-              image: getAbsoluteUrl(post.bodyImages[0].src),
-              author: {
-                '@type': 'Person',
-                name: author,
-                url: getAbsoluteUrl('/')
-              }
-            })
-          }}
-        />
       </Head>
+
+      <JsonLd
+        data={getBlogPostingStructuredData({
+          headline: post.title,
+          description: post.excerpt,
+          datePublished: post.createdAt,
+          image: getAbsoluteUrl(post.bodyImages[0].src),
+          author
+        })}
+      />
 
       <article className="mx-auto p-6 xl:max-w-5xl">
         <header className="pt-9 text-center sm:pt-0">

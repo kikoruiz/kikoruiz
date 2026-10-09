@@ -128,16 +128,110 @@ export function getAspectRatio(size: string): string {
       return '9:16'
     case 1.6:
       return '16:10'
+    case 2.33:
+      return '21:9'
     default:
       return ''
   }
 }
 
-export async function getAverageColor(src: string) {
-  const {getAverageColor: fastAverageColor} = await import(
-    'fast-average-color-node'
+// This has to stay in step with `getAspectRatio`: a label with no class here
+// leaves a `fill` image inside a parent with no height, so it renders collapsed.
+export function getAspectRatioClassName(aspectRatio: string): string {
+  switch (aspectRatio) {
+    case '1:1':
+      return 'aspect-square'
+    case '2:1':
+      return 'aspect-2/1'
+    case '3:2':
+      return 'aspect-3/2'
+    case '2:3':
+      return 'aspect-2/3'
+    case '4:3':
+      return 'aspect-4/3'
+    case '3:4':
+      return 'aspect-3/4'
+    case '5:4':
+      return 'aspect-5/4'
+    case '4:5':
+      return 'aspect-4/5'
+    case '5:3':
+      return 'aspect-5/3'
+    case '3:5':
+      return 'aspect-3/5'
+    case '16:9':
+      return 'aspect-16/9'
+    case '9:16':
+      return 'aspect-9/16'
+    case '16:10':
+      return 'aspect-16/10'
+    case '21:9':
+      return 'aspect-21/9'
+    default:
+      return ''
+  }
+}
+
+// A4, A3 and A2 share this exact long:short ratio by design, so A4's own
+// millimetres already give the sheet's shape no matter which size gets
+// printed. The card has to be sized like the paper, not like the picture, or a
+// panorama or a square would stretch its margins into something no printer
+// could reproduce.
+export function getPrintSheetAspectClassName(isVertical: boolean): string {
+  return isVertical ? 'aspect-210/297' : 'aspect-297/210'
+}
+
+const PRINT_MAT_FRACTION = 0.1
+
+// Where `object-contain` leaves the picture inside the sheet is invisible to
+// CSS, so the watermark could only be placed against the paper and ended up
+// off the photo entirely on any ratio far from the sheet's. Sizing the
+// picture's own box by hand instead gives the watermark something to sit on.
+// It also makes the mat the same width all the way round, which a percentage
+// padding never was, since percentages resolve against the width on every side.
+export function getPrintPictureSize({
+  imageSize,
+  isVertical,
+  isBorderless
+}: {
+  imageSize: string
+  isVertical: boolean
+  isBorderless: boolean
+}) {
+  // Borderless means ink to the very edge, so the picture covers the whole
+  // sheet and whatever does not fit gets cropped, which is the same thing the
+  // printer does: fit the side that matters and cut the rest. Leaving it
+  // contained would show exactly the sliver of white the buyer is paying not
+  // to have.
+  if (isBorderless) return {width: '100%', height: '100%'}
+
+  const [width, height] = imageSize.split('x').map(Number)
+  const pictureRatio = width / height
+  const sheetRatio = isVertical ? 210 / 297 : 297 / 210
+  const available = 1 - PRINT_MAT_FRACTION * 2
+  const fitsByWidth = pictureRatio > sheetRatio
+  const scale = fitsByWidth ? sheetRatio / pictureRatio : pictureRatio / sheetRatio
+
+  return {
+    width: `${(fitsByWidth ? available : available * scale) * 100}%`,
+    height: `${(fitsByWidth ? available * scale : available) * 100}%`
+  }
+}
+
+// The master is never on disk at build time, only its optimized derivatives
+// are, and the smallest one is already more than enough pixel data for an
+// average color.
+function getSmallestOptimizedUrl(src: string) {
+  return src.replace(
+    /^\/pictures\/([^/]+)\.[^.]+$/,
+    '/pictures/optimized/$1-640w.webp'
   )
-  const resourceFile = `public${src}`
+}
+
+export async function getAverageColor(src: string) {
+  const {getAverageColor: fastAverageColor} =
+    await import('fast-average-color-node')
+  const resourceFile = `public${getSmallestOptimizedUrl(src)}`
   const color = await fastAverageColor(resourceFile)
   const {hex, isDark, isLight} = color
 
@@ -194,6 +288,23 @@ export function getAbsoluteUrl(path: string) {
   return `${process.env.ORIGIN || DEFAULT_ORIGIN}${
     path.startsWith('/') ? '' : '/'
   }${path}`
+}
+
+export const SOCIAL_IMAGE_WIDTH = 1200
+
+// The full resolution pictures are not published any more, so whatever is
+// handed to a crawler has to be the social derivative instead of the original.
+export function getSocialImageUrl(src: string) {
+  return src.replace(/^\/pictures\/([^/]+)\.[^.]+$/, '/pictures/optimized/$1-og.jpg')
+}
+
+export function getSocialImageSize(imageSize: string) {
+  const [width, height] = imageSize.split('x').map(Number)
+
+  return {
+    width: SOCIAL_IMAGE_WIDTH,
+    height: Math.round((SOCIAL_IMAGE_WIDTH * height) / width)
+  }
 }
 
 export function getRandomElement(

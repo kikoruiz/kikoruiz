@@ -4,6 +4,7 @@ import {useRouter} from 'next/router'
 import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import {getAspectRatio, getSlug, themeScreens} from 'lib/utils'
+import {fromRawTagsToTags} from 'lib/gallery/tags'
 import {Picture} from 'types/gallery'
 import Image from './image'
 import PictureInfo from './picture-info'
@@ -13,12 +14,16 @@ import IconMap from 'assets/icons/map.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
 import IconShoppingBag from 'assets/icons/shopping-bag.svg'
+import IconShare from 'assets/icons/share.svg'
+import IconCheckCircle from 'assets/icons/check-circle.svg'
 import ButtonLink from './button-link'
+import Button from './button'
 
 interface PictureDetailProps {
   picture: Picture
   isFullScreen: boolean
-  onExit?: () => void
+  needsPreload?: boolean
+  isLazy?: boolean
   trackEvent: (action: string, name?: string) => void
   wrapperClassName?: string
 }
@@ -30,7 +35,8 @@ const DynamicMap = dynamic(() => import('./map'), {
 export default function PictureDetail({
   picture,
   isFullScreen,
-  onExit,
+  needsPreload,
+  isLazy = false,
   trackEvent,
   wrapperClassName
 }: PictureDetailProps) {
@@ -50,18 +56,24 @@ export default function PictureDetail({
     model,
     lens,
     editingSoftware,
-    tags,
+    rawTags,
     coordinates,
     location,
     tutorial,
-    print
+    print,
+    permalink
   } = picture
   const {t} = useTranslation('gallery')
-  const {query} = useRouter()
+  const {query, locale, defaultLocale} = useRouter()
   const {tag} = query
+  // The permalink already carries the translated slugs, but not the locale
+  // prefix the routes hang from, so without it the copied link is a 404.
+  const localePath = locale === defaultLocale ? '' : `/${locale}`
   const [showInfo, setShowPictureInfo] = useState(false)
   const [showMap, setShowPictureMap] = useState(false)
+  const [isLinkCopied, setIsLinkCopied] = useState(false)
   const aspectRatio = getAspectRatio(imageSize)
+  const tags = fromRawTagsToTags({rawTags, t})
   const pictureInfoProps = {
     shotInfo,
     isPano,
@@ -115,7 +127,8 @@ export default function PictureDetail({
           aspectRatio={aspectRatio}
           sizes={sizes}
           fallbackStyle={image.css}
-          isLazy={false}
+          needsPreload={needsPreload}
+          isLazy={isLazy}
         />
 
         {!isFullScreen && (
@@ -169,7 +182,6 @@ export default function PictureDetail({
                         <Link
                           key={id}
                           href={href}
-                          onClick={onExit}
                           title={name}
                           className={`${baseClassName} hover:text-neutral-300/60`}
                         >
@@ -225,11 +237,35 @@ export default function PictureDetail({
                     )}
                   </div>
 
-                  <div className="flex gap-1.5 empty:hidden">
+                  <div className="flex flex-wrap gap-1.5 empty:hidden">
+                    <Button
+                      size="small"
+                      isRounded
+                      intent="accent"
+                      title={t('common:gallery.picture.copy-link')}
+                      onClick={async () => {
+                        await navigator.clipboard.writeText(
+                          `${window.location.origin}${localePath}${permalink}`
+                        )
+                        setIsLinkCopied(true)
+                        trackEvent('copy_picture_link', name)
+                      }}
+                    >
+                      <span className="inline-flex items-center">
+                        {isLinkCopied ? (
+                          <IconCheckCircle className="mr-1.5 w-3" />
+                        ) : (
+                          <IconShare className="mr-1.5 w-3" />
+                        )}
+                        {isLinkCopied
+                          ? t('common:gallery.picture.link-copied')
+                          : t('common:gallery.picture.copy-link')}
+                      </span>
+                    </Button>
+
                     {print && (
                       <ButtonLink
                         href={print}
-                        onClick={onExit}
                         title={t('carousel.order-print')}
                         intent="primary"
                       >
@@ -241,7 +277,6 @@ export default function PictureDetail({
                     {tutorial?.href && (
                       <ButtonLink
                         href={tutorial.href}
-                        onClick={onExit}
                         title={t('common:blog.post.read-tutorial')}
                       >
                         <IconDocumentText className="mr-1.5 w-3" />

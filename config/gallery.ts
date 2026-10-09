@@ -53,6 +53,15 @@ export const GALLERY_ALBUMS = [
   }
 ]
 
+// These two cut across the rest, since every picture has a season and many are
+// taken at night, so they only own a picture when no other album does. Without
+// this the owner would depend on the order of the array above, and moving an
+// album would silently move the page, and the canonical URL, of every picture
+// shared with it.
+export const TRANSVERSAL_ALBUMS = ['seasonal', 'night']
+
+export const PICTURE_ROUTE = '/galeria/[slug]/[picture]'
+
 export const SORTING_OPTIONS = [
   'info-group',
   'date',

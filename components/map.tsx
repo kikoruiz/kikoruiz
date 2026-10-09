@@ -33,12 +33,11 @@ function Map({pictures, zoom = 5, isInteractive}: MapProps) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {pictures.map(({slug, coordinates, image}) => (
+      {pictures.map(({slug, coordinates}) => (
         <MapPicture
           key={slug}
           slug={slug}
           coordinates={coordinates}
-          image={image}
           isInteractive={isInteractive}
         />
       ))}

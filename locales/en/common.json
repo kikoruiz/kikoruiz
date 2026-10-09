@@ -30,7 +30,7 @@
     },
     "store": {
       "name": "Store",
-      "description": "Order prints of my photos."
+      "description": "Order prints of my photos or download them instantly."
     }
   },
   "gallery": {
@@ -72,7 +72,14 @@
     },
     "picture": {
       "creation-date": "{{date}} (creation date)",
-      "processing-date": "{{date}} (processing date)"
+      "processing-date": "{{date}} (processing date)",
+      "description": "Photograph of {{name}}, taken by Kiko Ruiz.",
+      "location": "Location",
+      "technical-info": "Technical info",
+      "order-print": "Buy a print",
+      "prints-from": "Prints from {{price, price}}",
+      "copy-link": "Copy link",
+      "link-copied": "Link copied"
     },
     "carousel": {"query-key": "picture"}
   },
@@ -80,6 +87,9 @@
     "categories": {
       "prints": {
         "name": "Prints"
+      },
+      "downloads": {
+        "name": "Downloads"
       }
     }
   },

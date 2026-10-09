@@ -5,6 +5,7 @@ import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {useShoppingCart} from 'use-shopping-cart'
 import Alert from './alert'
+import DownloadLinks from './download-links'
 import ShoppingCartModal from './shopping-cart-modal'
 import {getSlug} from 'lib/utils'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
@@ -17,6 +18,7 @@ interface StorePageProps extends PropsWithChildren {
   title: string
   description: string
   alternates: Alternate[]
+  image?: string
   isIndex?: boolean
 }
 
@@ -24,13 +26,14 @@ export default function StorePage({
   title,
   description,
   alternates,
+  image,
   isIndex = false,
   children
 }: StorePageProps) {
   const {t} = useTranslation()
   const {clearCart} = useShoppingCart()
   const {
-    query: {checkout},
+    query: {checkout, session_id: sessionId},
     push,
     asPath
   } = useRouter()
@@ -54,6 +57,10 @@ export default function StorePage({
       <Head>
         <title>{`${SITE_NAME} / ${title}`}</title>
         <meta name="description" content={description} />
+        <meta property="og:title" content={`${SITE_NAME} / ${title}`} />
+        <meta property="og:description" content={description} />
+        {image && <meta property="og:image" content={image} />}
+        {image && <meta name="twitter:image" content={image} />}
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
@@ -67,12 +74,19 @@ export default function StorePage({
           status={checkoutAlert.status}
           className="mx-6 mt-6 sm:mt-0 mb-9"
           onClose={() => {
-            const [destination] = asPath.split('?')
+            const [path] = asPath.split('?')
+            // Dismissing the alert must not take the order away with it, since
+            // the session id is what keeps the download links alive.
+            const destination = sessionId
+              ? `${path}?session_id=${sessionId}`
+              : path
 
             push(destination, destination, {shallow: true})
           }}
         />
       )}
+
+      {sessionId && <DownloadLinks sessionId={sessionId as string} />}
 
       <header className="mt-9 px-6 text-center sm:-mt-3 mb-12 sm:mb-16">
         <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">

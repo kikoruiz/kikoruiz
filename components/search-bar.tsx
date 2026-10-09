@@ -16,7 +16,6 @@ interface SearchBarProps {
 
 export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   const {t} = useTranslation()
-  const queryKey = t('gallery.carousel.query-key')
   const {locale, push} = useRouter()
   const inputRef = useRef(null)
   const [items, setItems] = useState([])
@@ -66,9 +65,11 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
           selectedItem.slug
         }`
       } else if (selectedItem?.type === 'picture' && selectedItem.album) {
+        // Straight to the page of the picture, which hangs from the album
+        // owning it, so a search result lands on its indexable URL.
         destination = `/${getSlug(t('sections.gallery.name'))}/${getSlug(
           t(`gallery.albums.${selectedItem.album}.name`)
-        )}?${queryKey}=${selectedItem.slug}`
+        )}/${selectedItem.slug}`
       }
 
       if (!destination) return
@@ -157,6 +158,9 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
           </div>
 
           <input
+            // downshift merges this ref with its own internally; the rule
+            // cannot see into that and assumes the worst.
+            // eslint-disable-next-line react-hooks/refs
             {...getInputProps({
               ref: inputRef,
               onClick: event => {
@@ -184,6 +188,8 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
         </div>
 
         <div
+          // Same as the input: downshift's own ref merging, not a real risk.
+          // eslint-disable-next-line react-hooks/refs
           {...getMenuProps({ref: menuRef})}
           className="max-h-[calc(100vh-20rem)] overflow-y-auto"
         >

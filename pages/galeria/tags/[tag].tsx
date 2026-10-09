@@ -5,7 +5,7 @@ import GalleryPage from 'components/gallery-page'
 import {GALLERY_TAGS} from 'config/gallery'
 import {fromExifToGallery} from 'lib/gallery/mappers'
 import {getGalleryPicturesByTag} from 'lib/gallery/pictures'
-import {getAbsoluteUrl, getSlug} from 'lib/utils'
+import {getAbsoluteUrl, getSlug, getSocialImageUrl} from 'lib/utils'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {SITE_NAME} from 'config'
 import {Alternate} from 'types'
@@ -32,7 +32,7 @@ export default function GalleryTag({
         <meta property="og:description" content={description} />
         <meta
           property="og:image"
-          content={getAbsoluteUrl(pageProps.pictures[0].image.src)}
+          content={getAbsoluteUrl(getSocialImageUrl(pageProps.pictures[0].image.src))}
         />
 
         {alternates.map(({locale, href}) => (
@@ -93,11 +93,16 @@ export async function getStaticProps({
     )
   )
 
+  const commonT = await getT(locale, 'common')
+
   return {
     props: {
       pictures,
       alternates,
       tag: actualTag,
+      basePath: `/${getSlug(commonT(`sections.${section}.name`))}/${getSlug(
+        commonT('tags')
+      )}/${tag}`,
       section
     }
   }
@@ -106,5 +111,6 @@ export async function getStaticProps({
 interface GalleryTagProps {
   pictures: Picture[]
   tag: string
+  basePath: string
   alternates: Alternate[]
 }

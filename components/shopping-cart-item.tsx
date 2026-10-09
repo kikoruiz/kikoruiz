@@ -5,9 +5,17 @@ import {GetPlaiceholderReturn} from 'plaiceholder'
 import Image from './image'
 import ButtonSymbol from './button-symbol'
 import IconTrash from 'assets/icons/trash.svg'
-import {DEFAULT_UNIT_OF_MEASUREMENT, PRINT_SIZES} from 'config/store'
+import {
+  DEFAULT_UNIT_OF_MEASUREMENT,
+  DOWNLOAD_TYPE,
+  PRINT_SIZES
+} from 'config/store'
 import papers from 'data/store/papers.json'
-import {themeScreens} from 'lib/utils'
+import {
+  getPrintPictureSize,
+  getPrintSheetAspectClassName,
+  themeScreens
+} from 'lib/utils'
 import {trackEvent} from 'lib/tracking'
 
 interface ShoppingCartItemProps extends CartEntry {
@@ -17,13 +25,18 @@ interface ProductDataInterface {
   id: string
   image: {
     aspectRatio: string
+    // Absent on anything added to the cart before it started being stored, and
+    // the cart is persisted, so an old one can still arrive without it.
+    imageSize?: string
     css: GetPlaiceholderReturn['css']
   }
   metadata: {
     type: string
-    paper: string
-    size: string
-    isBorderless: boolean
+    paper?: string
+    size?: string
+    isBorderless?: boolean
+    tier?: string
+    licence?: string
   }
 }
 
@@ -44,23 +57,53 @@ export default function ShoppingCartItem({
   const {
     id: productId,
     image,
-    metadata: {size, paper, isBorderless}
+    metadata: {size, paper, isBorderless, tier, licence}
   } = productData as ProductDataInterface
+  // A file has no paper to look up and no mat to leave around it, and the
+  // variant id is what tells the two apart everywhere else in the checkout.
+  const isDownload = productId.startsWith(`${DOWNLOAD_TYPE}_`)
   const paperData = papers[paper]
-  const paperName = `${paperData.brand} ${paperData.type}`
+  const paperName = paperData && `${paperData.brand} ${paperData.type}`
+  // The ratio string is "width:height", so the picture is vertical whenever
+  // its first number is the smaller one.
+  const [width, height] = image.aspectRatio.split(':').map(Number)
+  const isVertical = width < height
+  // The same geometry the listing card uses, so this reads as a scaled-down
+  // version of the sheet the buyer picked rather than a differently cropped
+  // picture. The bucketed ratio stands in for the exact size on cart entries
+  // saved before it was stored.
+  const pictureSize =
+    !isDownload &&
+    getPrintPictureSize({
+      imageSize: image.imageSize ?? image.aspectRatio.replace(':', 'x'),
+      isVertical,
+      isBorderless
+    })
 
   return (
     <div className="relative flex flex-row items-start gap-3 md:gap-6 w-full py-6 sm:p-6 after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:bottom-[-1px] after:via-neutral-300/30 hover:bg-neutral-600/10 hover:rounded transition-colors">
       <div
-        className={`relative w-1/3 bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md${isBorderless ? '' : ' p-5'}`}
+        className={`relative w-1/3 bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md${isDownload ? '' : ` flex items-center justify-center ${getPrintSheetAspectClassName(isVertical)}`}`}
       >
-        <Image
-          src={src}
-          alt={name}
-          aspectRatio={image.aspectRatio}
-          sizes={`(min-width: ${sm}) 50vw, 100vw`}
-          fallbackStyle={image.css}
-        />
+        {isDownload ? (
+          <Image
+            src={src}
+            alt={name}
+            aspectRatio={image.aspectRatio}
+            sizes={`(min-width: ${sm}) 50vw, 100vw`}
+            fallbackStyle={image.css}
+          />
+        ) : (
+          <div className="relative" style={pictureSize}>
+            <Image
+              src={src}
+              alt={name}
+              className="h-full w-full"
+              sizes={`(min-width: ${sm}) 50vw, 100vw`}
+              fallbackStyle={image.css}
+            />
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col justify-between grow text-lg h-full">
@@ -69,20 +112,43 @@ export default function ShoppingCartItem({
             <header className="font-extralight -translate-y-0.5">{name}</header>
 
             <dl className="text-xs my-3 opacity-90">
-              <dt className="font-light text-neutral-300/30">{t('size')}</dt>
-              <dd className="font-medium text-neutral-300/60">
-                {size}
-                {isBorderless &&
-                  ` ${t('store:filters.borderless').toLowerCase()}`}{' '}
-                <span className="font-thin">
-                  ({PRINT_SIZES[size][DEFAULT_UNIT_OF_MEASUREMENT]}{' '}
-                  {DEFAULT_UNIT_OF_MEASUREMENT})
-                </span>
-              </dd>
-              <dt className="mt-1.5 font-light text-neutral-300/30">
-                {t('paper')}
-              </dt>
-              <dd className="font-medium text-neutral-300/60">{paperName}</dd>
+              {isDownload ? (
+                <>
+                  <dt className="font-light text-neutral-300/30">
+                    {t('downloads.tier')}
+                  </dt>
+                  <dd className="font-medium text-neutral-300/60">
+                    {t(`downloads.tiers.${tier}`)}
+                  </dd>
+                  <dt className="mt-1.5 font-light text-neutral-300/30">
+                    {t('downloads.licence')}
+                  </dt>
+                  <dd className="font-medium text-neutral-300/60">
+                    {t(`downloads.licences.${licence}`)}
+                  </dd>
+                </>
+              ) : (
+                <>
+                  <dt className="font-light text-neutral-300/30">
+                    {t('size')}
+                  </dt>
+                  <dd className="font-medium text-neutral-300/60">
+                    {size}
+                    {isBorderless &&
+                      ` ${t('store:filters.borderless').toLowerCase()}`}{' '}
+                    <span className="font-thin">
+                      ({PRINT_SIZES[size][DEFAULT_UNIT_OF_MEASUREMENT]}{' '}
+                      {DEFAULT_UNIT_OF_MEASUREMENT})
+                    </span>
+                  </dd>
+                  <dt className="mt-1.5 font-light text-neutral-300/30">
+                    {t('paper')}
+                  </dt>
+                  <dd className="font-medium text-neutral-300/60">
+                    {paperName}
+                  </dd>
+                </>
+              )}
             </dl>
           </div>
 

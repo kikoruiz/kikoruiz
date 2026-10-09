@@ -20,6 +20,15 @@ const config = [
       'no-undef': 'off',
       '@typescript-eslint/no-unused-vars': 'warn'
     }
+  },
+  {
+    // The `bin` scripts are TypeScript too, and `no-undef` cannot see type-only
+    // identifiers. The `@typescript-eslint` plugin is not registered for this
+    // extension, so only the core rule can be turned off here.
+    files: ['**/*.mts'],
+    rules: {
+      'no-undef': 'off'
+    }
   }
 ]
 

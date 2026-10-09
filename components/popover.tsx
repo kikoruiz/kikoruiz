@@ -67,17 +67,19 @@ export default function Popover({
   forceClose = true
 }: PopoverProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [previousForceClose, setPreviousForceClose] = useState(forceClose)
   const ref = useRef<HTMLDivElement>(null)
 
   useOutsideClick(ref, () => {
     setIsOpen(false)
   })
 
-  useEffect(() => {
-    if (forceClose) {
-      setIsOpen(false)
-    }
-  }, [forceClose])
+  // Adjusted here instead of in an effect, so the close lands in the same
+  // render `forceClose` turns true in, not one render late.
+  if (forceClose !== previousForceClose) {
+    setPreviousForceClose(forceClose)
+    if (forceClose) setIsOpen(false)
+  }
 
   useEffect(() => {
     // Set "⌘B" keyboard shortcut.

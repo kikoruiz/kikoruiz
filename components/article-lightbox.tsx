@@ -1,4 +1,5 @@
 import {useEffect} from 'react'
+import Image from './image'
 
 interface ArticleLightboxProps {
   src: string
@@ -53,10 +54,13 @@ export default function ArticleLightbox({
       </div>
 
       <div className="flex h-full w-full items-center justify-center p-6 pt-24 sm:p-12 sm:pt-24">
-        <img
+        <Image
           src={src}
           alt={alt}
-          className="relative z-10 max-h-full max-w-full rounded-sm object-contain drop-shadow-xl"
+          sizes="100vw"
+          objectFit="contain"
+          className="z-10 h-full w-full"
+          fallbackStyle={{}}
         />
       </div>
     </div>

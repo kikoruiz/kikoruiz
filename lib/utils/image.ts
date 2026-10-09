@@ -9,14 +9,21 @@ const imagePlaceholdersFile = path.join(
   'placeholders.json'
 )
 
+let cachedPlaceholders: Map<string, RawImagePlaceholder>
+
 export async function getImagePlaceholder(
   src: string
 ): Promise<ImagePlaceholder> {
-  const data = fs.readFileSync(imagePlaceholdersFile, 'utf8')
-  const imagePlaceholders = JSON.parse(data) as RawImagePlaceholder[]
-  const imagePlaceholder = imagePlaceholders.find(
-    ({image}) => image === `public${src}`
-  )
+  if (!cachedPlaceholders) {
+    const data = fs.readFileSync(imagePlaceholdersFile, 'utf8')
+    const imagePlaceholders = JSON.parse(data) as RawImagePlaceholder[]
+
+    cachedPlaceholders = new Map(
+      imagePlaceholders.map(placeholder => [placeholder.image, placeholder])
+    )
+  }
+
+  const imagePlaceholder = cachedPlaceholders.get(`public${src}`)
 
   return {css: imagePlaceholder.css}
 }
