@@ -56,7 +56,7 @@ export default function HomeSectionsItem({
       href={href}
       title={sectionName}
       aria-label={sectionName}
-      className="group flex flex-1 even:mt-1 md:even:mt-0 overflow-hidden drop-shadow-sm first:rounded-tl-xl [&:nth-child(2)]:rounded-bl-xl [&:nth-child(3)]:rounded-tr-xl last:rounded-br-xl md:first:rounded-l-xl md:[&:nth-child(2)]:rounded-none md:[&:nth-child(3)]:rounded-none md:last:rounded-r-xl"
+      className="group flex flex-1 even:mt-1 md:even:mt-0 overflow-hidden shadow-sm first:rounded-tl-xl [&:nth-child(2)]:rounded-bl-xl [&:nth-child(3)]:rounded-tr-xl last:rounded-br-xl md:first:rounded-l-xl md:[&:nth-child(2)]:rounded-none md:[&:nth-child(3)]:rounded-none md:last:rounded-r-xl"
     >
       <article
         className={`flex w-full flex-col justify-between bg-white/30 p-[1px] font-extralight transition-colors ${

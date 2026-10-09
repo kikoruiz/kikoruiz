@@ -1,4 +1,4 @@
-import {orientation, Tag} from 'types'
+import {orientation} from 'types'
 import {Tutorial} from './blog'
 import {GetPlaiceholderReturn} from 'plaiceholder'
 import {Print} from './store'
@@ -64,6 +64,7 @@ export interface RawPicture {
   iso: number
   keywords: string[]
   lens: string
+  location?: Location
   make: string
   maxApertureValue: number
   megapixels: number
@@ -107,12 +108,12 @@ export interface Picture {
   editingSoftware: string
   megapixels: number
   rawTags: string[]
-  tags: Tag[]
   subcategory?: string
   coordinates?: Coordinates
   location?: Location
   tutorial?: Tutorial
   print?: Print['url']
+  permalink: string
 }
 
 export interface LatestPictures {
@@ -123,7 +124,6 @@ export interface LatestPictures {
 export interface PictureOnMap {
   slug: string
   coordinates?: Coordinates
-  image?: Image
 }
 
 export type ImageFallbackStyle = ImagePlaceholder

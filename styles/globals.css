@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Nothing on the site needs the page itself to scroll sideways, only a few
+   components do, with their own `overflow-x` creating their own scroll
+   container; this is the backstop for whatever still manages to widen the
+   document regardless, Safari's -webkit-mask-image included. Setting it on
+   `body` too, not just `html`, pairs it with an implicit `overflow-y: auto`
+   on both per spec, turning them into two separate scroll containers and
+   breaking the header's `position: sticky`, so this stays on `html` alone. */
+html {
+  overflow-x: hidden;
+}
+
 body {
   background-color: rgba(0, 0, 0, 0.9);
 
@@ -13,6 +24,17 @@ body {
 
 @media (hover: none) and (orientation: landscape) {
   .navigation-section-icon {
+    display: none;
+  }
+}
+
+/* The edge fades already tell you there's more to scroll, so the native bar
+   underneath would only repeat that, and some platforms draw it as a thick,
+   always-visible strip instead of overlaying the content. */
+.scrollbar-hide {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
     display: none;
   }
 }

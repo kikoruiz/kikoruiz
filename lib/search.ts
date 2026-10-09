@@ -1,6 +1,5 @@
 import {kebabCase} from 'change-case'
-import {GALLERY_ALBUMS} from 'config/gallery'
-import {taggedPictures} from 'lib/utils/pictures'
+import {getPictureAlbum} from 'lib/utils/pictures'
 import searchContent from 'data/search/content.json'
 import picturesMetadata from 'data/pictures/metadata.json'
 import {SearchItem} from 'types'
@@ -9,9 +8,7 @@ const MAX_RESULTS_PER_TYPE = 21
 
 const picturesIndex: Omit<SearchItem, 'type'>[] = picturesMetadata.map(
   ({description, keywords, title, fileName, location, createDate}) => {
-    const album = GALLERY_ALBUMS.find(({tags, excludeTags}) =>
-      taggedPictures({tags, excludeTags})({keywords})
-    )
+    const album = getPictureAlbum(keywords)
     const locationString = location
       ? [location.city, location.country].filter(Boolean).join(', ')
       : undefined

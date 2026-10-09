@@ -1,4 +1,4 @@
-import {ReactNode, useRef} from 'react'
+import {ReactNode, useState} from 'react'
 import {CartProvider} from 'use-shopping-cart'
 
 interface StoreCartProviderProps {
@@ -10,10 +10,13 @@ export default function StoreCartProvider({
   isActive,
   children
 }: StoreCartProviderProps) {
-  const everActive = useRef(isActive)
-  if (isActive) everActive.current = true
+  // A ref mutated in the render body leaks a stray write whenever React
+  // discards a render without committing it, which state does not: it only
+  // ever flips once, true to begin with or set here, and stays that way.
+  const [everActive, setEverActive] = useState(isActive)
+  if (isActive && !everActive) setEverActive(true)
 
-  if (!everActive.current) return <>{children}</>
+  if (!everActive) return <>{children}</>
 
   return (
     <CartProvider

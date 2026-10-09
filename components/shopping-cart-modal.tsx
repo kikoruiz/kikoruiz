@@ -5,6 +5,7 @@ import {useShoppingCart} from 'use-shopping-cart'
 import ShoppingCartItem from './shopping-cart-item'
 import Button from './button'
 import {REQUEST_STATUS_OPTIONS} from 'config'
+import {DOWNLOAD_TYPE} from 'config/store'
 import IconShoppingCart from 'assets/icons/shopping-cart.svg'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconArrowRight from 'assets/icons/arrow-right.svg'
@@ -26,6 +27,12 @@ export default function ShoppingCartModal() {
   const [status, setStatus] = useState(REQUEST_STATUS_OPTIONS.IDLE)
   const cartItems = Object.values(cartDetails ?? {})
   const isCartEmpty = cartCount === 0 && !cartItems.length
+  // Shipping is only ever added to something that has to be put in an envelope,
+  // so a cart of files must not announce a cost that will never show up.
+  const hasPrints = cartItems.some(
+    ({product_data: productData}) =>
+      !(productData as {id: string}).id.startsWith(`${DOWNLOAD_TYPE}_`)
+  )
   const isCheckoutLoading = status === REQUEST_STATUS_OPTIONS.PENDING
 
   async function handleCheckoutClick() {
@@ -140,7 +147,11 @@ export default function ShoppingCartModal() {
             ) : (
               <>
                 <div className="font-light text-neutral-300/30">
-                  {t('shopping-cart.notice-before-checkout')}
+                  {t(
+                    hasPrints
+                      ? 'shopping-cart.notice-before-checkout'
+                      : 'shopping-cart.notice-before-download-checkout'
+                  )}
                 </div>
 
                 <div className="flex w-full justify-between items-center gap-3">

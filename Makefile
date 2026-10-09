@@ -10,10 +10,11 @@ build:
 	npm run lint
 	npm test
 	npm run save:inventory
+	npm run save:digital
 	npm run build
 
 save:
-	node --import tsx$(shell [ "$(NODE_ENV)" = "development" ] && echo " --env-file .env.local") ./bin/$(FILE).mts
+	node --import tsx --env-file-if-exists=.env.local ./bin/$(FILE).mts $(ARGS)
 
 save_optimized:
 	FILE=pictures/optimize make save
@@ -27,8 +28,17 @@ save_metadata:
 save_content:
 	FILE=search/content make save
 
-save_inventory:
+save_inventory: ## sync Stripe prints · ARGS="--dry-run --min-rating=N --limit=N --only=<pictureId> --prune"
 	FILE=store/inventory make save
+
+save_digital: ## sync Stripe downloads · ARGS="--dry-run --min-rating=N --limit=N --only=<pictureId> --prune"
+	FILE=store/digital make save
+
+upload_downloads: ## upload the files on sale to R2 · ARGS="--dry-run --force --min-rating=N --limit=N --only=<pictureId>"
+	FILE=store/upload-downloads make save
+
+audit_content:
+	FILE=gallery/audit-content make save
 
 add_display_names:
 	FILE=components/display-names make save

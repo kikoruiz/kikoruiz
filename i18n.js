@@ -14,6 +14,7 @@ const i18 = {
     '/': ['home', 'gallery'],
     'rgx:/sobre-mi*': ['about-me'],
     'rgx:/galeria*': ['gallery'],
+    'rgx:/foto*': ['gallery', 'store'],
     'rgx:/blog*': ['blog'],
     'rgx:/tienda*': ['store']
   },

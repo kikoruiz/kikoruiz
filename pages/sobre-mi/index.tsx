@@ -4,7 +4,12 @@ import Head from 'next/head'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {fromLocalesToAlternates} from 'lib/mappers'
-import {getAbsoluteUrl, getSlug, themeScreens} from 'lib/utils'
+import {
+  getAbsoluteUrl,
+  getSlug,
+  getSocialImageUrl,
+  themeScreens
+} from 'lib/utils'
 import {getImagePlaceholder} from 'lib/utils/image'
 import {getContent} from 'lib/content'
 import {PERSONAL_INFO, SECTIONS, SITE_NAME} from 'config'
@@ -43,7 +48,9 @@ export default function AboutMe({
         <meta
           property="og:image"
           content={getAbsoluteUrl(
-            SECTIONS.find(({id}) => id === section).highlightedPicture
+            getSocialImageUrl(
+              SECTIONS.find(({id}) => id === section).highlightedPicture
+            )
           )}
         />
 

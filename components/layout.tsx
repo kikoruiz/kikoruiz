@@ -45,7 +45,7 @@ export default function Layout({
     <div className={`${inter.variable} font-sans flex min-h-screen flex-col`}>
       {canonical && (
         <Head>
-          <link rel="canonical" href={canonical} />
+          <link rel="canonical" href={canonical} key="canonical" />
           <link rel="alternate" hrefLang="x-default" href={defaultHref} />
         </Head>
       )}

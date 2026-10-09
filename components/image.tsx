@@ -1,84 +1,63 @@
-import {useState, CSSProperties, forwardRef, type JSX} from 'react'
+import {
+  useState,
+  CSSProperties,
+  forwardRef,
+  type JSX,
+  type MouseEvent
+} from 'react'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 import NextImage from 'next/image'
+import {getAspectRatioClassName} from 'lib/utils'
 import {ImageFallbackStyle} from 'types/gallery'
 
 interface ImageProps {
   src: string
   url?: string
+  shallowUrl?: string
   alt: string
   className?: string
   style?: CSSProperties
   aspectRatio?: string
+  objectFit?: 'cover' | 'contain'
   sizes: string
   needsPreload?: boolean
   isLazy?: boolean
   fallbackStyle: ImageFallbackStyle | object
   isRounded?: boolean
   isFullRounded?: boolean
-  isShallowLink?: boolean
   isHidden?: boolean
   scrollToTop?: boolean
   onLoad?: () => void
   children?: JSX.Element
 }
 
-function getAspectRatioClassName(aspectRatio: string): string {
-  switch (aspectRatio) {
-    case '1:1':
-      return 'aspect-square'
-    case '2:1':
-      return 'aspect-2/1'
-    case '3:2':
-      return 'aspect-3/2'
-    case '2:3':
-      return 'aspect-2/3'
-    case '4:3':
-      return 'aspect-4/3'
-    case '3:4':
-      return 'aspect-3/4'
-    case '5:4':
-      return 'aspect-5/4'
-    case '4:5':
-      return 'aspect-4/5'
-    case '5:3':
-      return 'aspect-5/3'
-    case '3:5':
-      return 'aspect-3/5'
-    case '16:9':
-      return 'aspect-16/9'
-    case '9:16':
-      return 'aspect-9/16'
-    case '16:10':
-      return 'aspect-16/10'
-    default:
-      return ''
-  }
-}
-
 function Image(
   {
     src,
     url,
+    shallowUrl,
     alt,
     className = '',
     style = {},
     aspectRatio,
+    objectFit = 'cover',
     sizes,
     needsPreload,
     isLazy = true,
     fallbackStyle,
     isRounded,
     isFullRounded,
-    isShallowLink,
     isHidden = false,
     scrollToTop = false,
     onLoad = () => {},
     children
-  },
+  }: ImageProps,
   ref
 ) {
   const isLink = Boolean(url)
+  const router = useRouter()
+  const {push, pathname, query} = router
   const [isLoaded, setIsLoaded] = useState(false)
   const wrapperClassName = `relative${isRounded ? ' rounded-sm' : ''}`
   const isFullSize = sizes === '100vw'
@@ -94,6 +73,27 @@ function Image(
   function handleImageLoad() {
     setIsLoaded(true)
     onLoad()
+  }
+
+  // The link points at the picture's own page so crawlers get a real URL, while
+  // a plain click opens the viewer over the current one and masks the address
+  // bar with that same URL. Modified clicks are left alone, so opening in a new
+  // tab lands on the page itself.
+  function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+
+    event.preventDefault()
+    // Pushing the literal pathname made the dev server request a page chunk
+    // named after it (e.g. "nocturnas.js" instead of the already loaded
+    // "[slug].js"), 404 on that, and fall back to a full navigation. Pushing
+    // the route object instead targets the mounted page directly, so there is
+    // nothing to resolve and nothing to fall back from.
+    const [, search] = shallowUrl.split('?')
+    push(
+      {pathname, query: {...query, ...Object.fromEntries(new URLSearchParams(search))}},
+      url,
+      {shallow: true, scroll: false}
+    )
   }
 
   const content = (
@@ -113,8 +113,8 @@ function Image(
         ref={ref}
         src={src}
         alt={alt}
-        className={`object-cover transition-opacity duration-300 ${isLoaded && !isHidden ? 'opacity-100' : 'opacity-0'}`}
-        priority={needsPreload}
+        className={`${objectFit === 'contain' ? 'object-contain' : 'object-cover'} transition-opacity duration-300 ${isLoaded && !isHidden ? 'opacity-100' : 'opacity-0'}`}
+        preload={needsPreload}
         loading={isLazy && !needsPreload ? 'lazy' : 'eager'}
         onLoad={handleImageLoad}
         sizes={sizes}
@@ -125,9 +125,7 @@ function Image(
     </>
   )
   const aspectRatioClassName = getAspectRatioClassName(aspectRatio)
-  const aspectClassName = aspectRatioClassName
-    ? ` ${getAspectRatioClassName(aspectRatio)}`
-    : ''
+  const aspectClassName = aspectRatioClassName ? ` ${aspectRatioClassName}` : ''
 
   return isLink ? (
     <Link
@@ -137,8 +135,8 @@ function Image(
         className ? `${className} ` : ''
       }${wrapperClassName}${aspectClassName}`}
       style={imageStyle}
-      shallow={isShallowLink}
       scroll={scrollToTop}
+      {...(shallowUrl && {onClick: handleClick, prefetch: false})}
     >
       {content}
     </Link>

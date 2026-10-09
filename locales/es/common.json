@@ -30,7 +30,7 @@
     },
     "store": {
       "name": "Tienda",
-      "description": "Pide impresiones de mis fotos."
+      "description": "Pide impresiones de mis fotos o descárgalas al instante."
     }
   },
   "gallery": {
@@ -72,7 +72,14 @@
     },
     "picture": {
       "creation-date": "{{date}} (creación)",
-      "processing-date": "{{date}} (edición)"
+      "processing-date": "{{date}} (edición)",
+      "description": "Fotografía de {{name}}, tomada por Kiko Ruiz.",
+      "location": "Localización",
+      "technical-info": "Información técnica",
+      "order-print": "Comprar impresión",
+      "prints-from": "Impresiones desde {{price, price}}",
+      "copy-link": "Copiar enlace",
+      "link-copied": "Enlace copiado"
     },
     "carousel": {"query-key": "foto"}
   },
@@ -80,6 +87,9 @@
     "categories": {
       "prints": {
         "name": "Impresiones"
+      },
+      "downloads": {
+        "name": "Descargas"
       }
     }
   },

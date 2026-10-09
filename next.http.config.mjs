@@ -15,6 +15,9 @@ const http = {
         }
       ]
     },
+    // Opening a picture through a query param still works, for the links that
+    // were shared before every picture had a URL of its own, but only that URL
+    // belongs in the index.
     {
       source: '/:path*',
       has: [{type: 'query', key: 'foto'}],
@@ -66,6 +69,24 @@ const http = {
     {
       source: '/en/tienda/impresiones',
       destination: '/en/store/prints',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/ca/tienda/descargas',
+      destination: '/ca/botiga/descarregues',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/ca/tenda/descarregues',
+      destination: '/ca/botiga/descarregues',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/en/tienda/descargas',
+      destination: '/en/store/downloads',
       locale: false,
       permanent: true
     },
@@ -147,6 +168,11 @@ const http = {
       locale: false
     },
     {
+      source: '/en/gallery/:slug/:picture',
+      destination: '/en/galeria/:slug/:picture',
+      locale: false
+    },
+    {
       source: '/ca/botiga',
       destination: '/ca/tienda',
       locale: false
@@ -164,6 +190,16 @@ const http = {
     {
       source: '/en/store/prints',
       destination: '/en/tienda/impresiones',
+      locale: false
+    },
+    {
+      source: '/ca/botiga/descarregues',
+      destination: '/ca/tienda/descargas',
+      locale: false
+    },
+    {
+      source: '/en/store/downloads',
+      destination: '/en/tienda/descargas',
       locale: false
     },
     {
