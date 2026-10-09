@@ -5,6 +5,7 @@ import useTranslation from 'next-translate/useTranslation'
 import throttle from 'lodash/throttle'
 import {kebabCase} from 'change-case'
 import {themeScreens} from 'lib/utils'
+import {useAnimatedValue} from 'hooks/use-animated-value'
 import HomeModule from './home-module'
 import PictureCard from './picture-card'
 import {LatestPictures} from 'types/gallery'
@@ -36,6 +37,12 @@ export default function HomeLatestPictures({
   const sizes = `(min-width: ${xl}) 25vw, (min-width: ${sm}) 33vw, 50vw`
   const elementRef = useRef(null)
   const [scrollPosition, setScrollPosition] = useState(SCROLL_POSITIONS.LEFT)
+  const leftFadeStop = useAnimatedValue(
+    scrollPosition === SCROLL_POSITIONS.LEFT ? 100 : 90
+  )
+  const rightFadeStop = useAnimatedValue(
+    scrollPosition === SCROLL_POSITIONS.RIGHT ? 100 : 90
+  )
 
   // Memoized so the throttle wrapper, and the ref read inside it, is created
   // once instead of on every render, which both the lint rule and throttling
@@ -93,18 +100,14 @@ export default function HomeLatestPictures({
     >
       <div
         style={{
-          WebkitMaskImage: `linear-gradient(to left, rgba(0, 0, 0, 1) ${
-            scrollPosition !== SCROLL_POSITIONS.LEFT ? '90%' : '100%'
-          }, transparent 100%)`
+          WebkitMaskImage: `linear-gradient(to left, rgba(0, 0, 0, 1) ${leftFadeStop}%, transparent 100%)`
         }}
       >
         <div
           ref={elementRef}
           className="flex h-60 gap-3 overflow-x-scroll scrollbar-hide p-3 lg:h-80"
           style={{
-            WebkitMaskImage: `linear-gradient(to right, rgba(0, 0, 0, 1) ${
-              scrollPosition !== SCROLL_POSITIONS.RIGHT ? '90%' : '100%'
-            }, transparent 100%)`
+            WebkitMaskImage: `linear-gradient(to right, rgba(0, 0, 0, 1) ${rightFadeStop}%, transparent 100%)`
           }}
           onScroll={handleScroll}
         >
