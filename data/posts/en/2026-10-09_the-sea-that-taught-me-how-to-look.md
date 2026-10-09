@@ -1,6 +1,6 @@
 ---
 title: 'The sea that taught me how to look'
-excerpt: 'A 9th of October looking back at the coast where I learned that good light has to be gotten up for.'
+excerpt: "A 9th of October looking back at the coast where I learned that good light has to be gotten up for."
 author: 'kiko-ruiz'
 tags: 'photography, personal'
 ---
@@ -13,11 +13,11 @@ I grew up in a fishing village in the **Marina Baixa**, with family from **la Vi
 
 When I started taking photographs I did not go far. There was no need. I went down to the same rocks where I had spent whole childhood summers, the ones you know by heart because you have skinned your knees on every single one, and it turned out there was something there I had never seen. Or had seen a thousand times without ever looking at it.
 
-What changes is not the place. What changes is the hour. The first time I got up in the dark to be at the shore before the sun, I understood all at once why the fishermen in my family got up at that hour without complaining. At that hour the sea is not a landscape, it is something that is happening.
+What changes is not the place. What changes is the hour. The first time I got up in the dark to be at the shore before the sun, I understood all at once why the fishermen of my village got up at that hour without complaining. At that hour the sea is not a landscape, it is something that is happening.
 
-![The gap in the rock at la Vila Joiosa {"priority": true, "align": "left"}](/pictures/2022-12-28_0413.jpg)
+![A panorama from a not-quite-cave at cala del Xarco {"priority": true, "align": "left"}](/pictures/2022-12-28_0413.jpg)
 
-Of every photograph I have taken, the one I love most is still from here: [The Rocky Window](/en/gallery/seascapes/the-rocky-window), in la Vila. A hole in the rock that was there long before me and will be there long after, and which for a few specific minutes on a few specific days of the year does what it does. You have to go, wait, and sometimes come home with nothing. I learned that here too.
+Of every photograph I have taken, the one I love most is still from here: [The Rocky Window](/en/gallery/seascapes/the-rocky-window), in la Vila. A hole in the rock that was there long before me and will be there long after, and which for a few specific minutes on a few specific days of the year lets you watch the magic happen. You have to go, wait, and sometimes come home with nothing. I learned that here too.
 
 ## Lockdown, and how close everything was
 
@@ -27,7 +27,7 @@ For those months the world shrank to the size of the neighbourhood, and that was
 
 ## It is ours at night as well
 
-Then came the obsession with nights. [Shining in the Shortest Night](/en/gallery/night/shining-in-the-shortest-night), in la Vila, on the shortest night of the year. [Our Galaxy from the Old Castle](/en/gallery/night/our-galaxy-from-the-old-castle-i), with the Milky Way above a castle in the Marina that has spent centuries watching things go by. [Window to the Sea](/en/gallery/night/window-to-the-sea), from inside a cave, with the stars slipping in through the opening.
+Then came the obsession with nights. [Shining in the Shortest Night](/en/gallery/night/shining-in-the-shortest-night), in la Vila, on the shortest night of the year. [Our Galaxy from the Old Castle](/en/gallery/night/our-galaxy-from-the-old-castle-i), with the Milky Way above a castle deep in the vall de Guadalest, at the foot of the Serra d'Aitana, which has spent centuries watching things go by. [Window to the Sea](/en/gallery/night/window-to-the-sea), from inside a cave, with the stars slipping in through the opening.
 
 And the ones that are pure textbook Mediterranean, making no apology for it: [Drive Me to the Warm Sea](/en/gallery/seascapes/drive-me-to-the-warm-sea), [Some Warm Light in the Blue Morning](/en/gallery/seascapes/some-warm-light-in-the-blue-morning) with the Penyal d'Ifac at Calp behind it, or [the lighthouse under the strawberry moon](/en/gallery/landscapes/the-lighthouse-and-the-strawberry-moon-i).
 
