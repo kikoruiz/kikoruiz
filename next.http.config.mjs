@@ -30,6 +30,31 @@ const http = {
     }
   ],
   redirects: [
+    // A gallery tag's URL comes from its translated name, so renaming the one
+    // for this land to what it is actually called moved its three pages. They
+    // were indexed under the old names, and a tag page is the kind of URL
+    // people link to, so the old ones keep pointing at the new.
+    {
+      // `es` is the default locale, so it carries no prefix in the URL, but a
+      // `locale: false` rule still has to name it to match, per this version's
+      // redirects guide.
+      source: '/es/galeria/tags/comunidad-valenciana',
+      destination: '/galeria/tags/pais-valencia',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/ca/galeria/tags/comunitat-valenciana',
+      destination: '/ca/galeria/tags/pais-valencia',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/en/gallery/tags/comunitat-valenciana',
+      destination: '/en/gallery/tags/pais-valencia',
+      locale: false,
+      permanent: true
+    },
     {
       source: '/en/galeria',
       destination: '/en/gallery',
