@@ -1,6 +1,7 @@
 import {fromExifToGallery} from 'lib/gallery/mappers'
 import {getAllPictures} from 'lib/gallery/pictures'
 import {getAspectRatio} from 'lib/utils'
+import {isForSale} from 'lib/utils/pictures'
 import rawDownloads from 'data/store/downloads.json'
 import {
   DOWNLOAD_MIN_RATING,
@@ -29,7 +30,10 @@ export async function getDownloads({
   // sale, and Stripe only adds the price it was given here.
   const pictures = await Promise.all(
     rawPictures
-      .filter(({rating}) => rating >= DOWNLOAD_MIN_RATING)
+      .filter(
+        ({rating, fileName}) =>
+          rating >= DOWNLOAD_MIN_RATING && isForSale(fileName.split('.')[0])
+      )
       .map(fromExifToGallery({locale}))
   )
   const priceIds = new Map(

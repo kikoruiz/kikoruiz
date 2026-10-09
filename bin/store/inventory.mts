@@ -8,7 +8,7 @@ import {
   PRINT_VARIANTS,
   TAX_BEHAVIOR
 } from 'config/store'
-import {fitsBorderless} from 'lib/utils/pictures'
+import {fitsPrintSheet, isForSale} from 'lib/utils/pictures'
 import {RawPicture} from 'types/gallery'
 import {RawPrint} from 'types/store'
 
@@ -189,6 +189,9 @@ function needsToBeUpdated(
 // so a single picture can be put on sale without touching the threshold.
 // Pictures already on sale always stay in, since dropping them would archive
 // live prices that customers may have in a cart or in a past Checkout session.
+// The opt-out list and the sheet's shape both override all of that: neither is
+// a judgement about how good the picture is, so neither can be rescued by
+// already being on sale.
 function getPicturesForPrinting({
   allPictures,
   legacyIds,
@@ -199,17 +202,26 @@ function getPicturesForPrinting({
   allPictures: RawPicture[]
   legacyIds: Set<string>
 }) {
+  const sellable = allPictures.filter(
+    picture =>
+      isForSale(getPictureId(picture)) && fitsPrintSheet(picture.imageSize)
+  )
+
   if (only) {
-    const picture = allPictures.find(
+    const picture = sellable.find(
       picture => getPictureId(picture) === only || picture.fileName === only
     )
 
-    if (!picture) throw new Error(`There is no picture with the id "${only}".`)
+    if (!picture) {
+      throw new Error(
+        `There is no picture for sale with the id "${only}", so it is either unknown, opted out or too far from a DIN sheet's ratio.`
+      )
+    }
 
     return [picture]
   }
 
-  const pictures = allPictures.filter(
+  const pictures = sellable.filter(
     picture =>
       picture.rating >= minRating || legacyIds.has(getPictureId(picture))
   )
@@ -278,13 +290,7 @@ async function getInventoryPlan({
       metadata: {type: PRINT_TYPE, picture_id: pictureId}
     }
     const paper = DEFAULT_PRINT_PAPER
-    // A picture too far from the sheet's own ratio only gets the bordered
-    // sizes: going edge to edge would mean cropping it or cutting the paper to
-    // a size that isn't actually A4, A3 or A2 any more.
-    const printVariants = PRINT_VARIANTS.filter(
-      ({isBorderless}) => !isBorderless || fitsBorderless(imageSize)
-    )
-    const variantIds = printVariants.map(({size, isBorderless}) =>
+    const variantIds = PRINT_VARIANTS.map(({size, isBorderless}) =>
       getVariantId({pictureId, size, isBorderless, paper})
     )
     const existingPrices = await getExistingPrices(variantIds)
@@ -293,7 +299,7 @@ async function getInventoryPlan({
     for (const [
       index,
       {size, isBorderless, price}
-    ] of printVariants.entries()) {
+    ] of PRINT_VARIANTS.entries()) {
       const variantId = variantIds[index]
       const name = getVariantName({title, size, isBorderless, paper})
       const existingPrice = existingPrices.get(variantId)

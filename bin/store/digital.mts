@@ -9,6 +9,7 @@ import {
   DOWNLOAD_VARIANTS,
   TAX_BEHAVIOR
 } from 'config/store'
+import {isForSale} from 'lib/utils/pictures'
 import {RawPicture} from 'types/gallery'
 import {RawDownload} from 'types/store'
 
@@ -162,17 +163,27 @@ function getPicturesForDownloading({
   allPictures: RawPicture[]
   currentIds: Set<string>
 }) {
+  // A file has no sheet to fit, so only the opt-out list applies here, and it
+  // overrides being on sale already: it is not a judgement about the picture.
+  const sellable = allPictures.filter(picture =>
+    isForSale(getPictureId(picture))
+  )
+
   if (only) {
-    const picture = allPictures.find(
+    const picture = sellable.find(
       picture => getPictureId(picture) === only || picture.fileName === only
     )
 
-    if (!picture) throw new Error(`There is no picture with the id "${only}".`)
+    if (!picture) {
+      throw new Error(
+        `There is no picture for sale with the id "${only}", so it is either unknown or opted out.`
+      )
+    }
 
     return [picture]
   }
 
-  const pictures = allPictures.filter(
+  const pictures = sellable.filter(
     picture =>
       picture.rating >= minRating || currentIds.has(getPictureId(picture))
   )
