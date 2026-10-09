@@ -2,7 +2,6 @@ import {useState} from 'react'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import {cva} from 'class-variance-authority'
 import {useShoppingCart} from 'use-shopping-cart'
 import useLayoutContext from 'contexts/Layout'
 import Image from 'components/image'
@@ -12,7 +11,12 @@ import IconArrowTopRightOnSquare from 'assets/icons/arrow-top-right-on-square.sv
 import {DEFAULT_UNIT_OF_MEASUREMENT, PRINT_SIZES} from 'config/store'
 import products from 'data/store/products.json'
 import papers from 'data/store/papers.json'
-import {getPrintSheetAspectClassName, getSlug, themeScreens} from 'lib/utils'
+import {
+  getPrintPictureSize,
+  getPrintSheetAspectClassName,
+  getSlug,
+  themeScreens
+} from 'lib/utils'
 import {trackEvent} from 'lib/tracking'
 import {Print} from 'types/store'
 
@@ -23,6 +27,7 @@ export default function PrintCard({
   price,
   image,
   aspectRatio,
+  imageSize,
   paper,
   size,
   isBorderless
@@ -48,7 +53,6 @@ export default function PrintCard({
     priceId,
     currency
   } = products.find(product => product.id === id)
-
   return (
     <div
       key={id}
@@ -61,51 +65,30 @@ export default function PrintCard({
         style={{top: `calc(-${headerHeight}px - 1em)`}}
       />
       <div
-        className={`relative bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em] ${getPrintSheetAspectClassName(isVertical)}${isBorderless ? '' : ' p-[10%]'}`}
+        className={`relative flex items-center justify-center bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md group-hover:from-neutral-100 group-hover:to-neutral-100 group-hover:drop-shadow-xl before:absolute before:z-10 before:content-[''] before:top-0 before:right-0 before:border-solid before:border-b-[.75em] before:border-r-[.75em] before:border-y-neutral-300/60 before:border-x-neutral-800 before:transition-[border-width] before:duration-300 group-hover:before:border-y-neutral-300/90 group-hover:before:border-x-neutral-800 group-hover:before:border-b-[1.5em] group-hover:before:border-r-[1.5em] ${getPrintSheetAspectClassName(isVertical)}`}
       >
-        <Image
-          src={src}
-          alt={name}
-          objectFit="contain"
-          className="h-full w-full"
-          sizes={`(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`}
-          fallbackStyle={css}
-          onLoad={() => {
-            setIsImageLoaded(true)
-          }}
-        />
-
-        {isImageLoaded && (
-          <Logo
-            className={cva('absolute fill-white/80', {
-              variants: {
-                isVertical: {
-                  true: 'w-9',
-                  false: 'w-6'
-                },
-                isBorderless: {
-                  true: 'left-3 bottom-3',
-                  false: 'left-[calc(10%+1em)]'
-                }
-              },
-              compoundVariants: [
-                {
-                  isVertical: true,
-                  isBorderless: false,
-                  class: 'bottom-[calc(10%)]'
-                },
-                {
-                  isVertical: false,
-                  isBorderless: false,
-                  class: 'bottom-[calc(20%)]'
-                }
-              ]
-            })({isVertical, isBorderless})}
+        <div
+          className="relative"
+          style={getPrintPictureSize({imageSize, isVertical, isBorderless})}
+        >
+          <Image
+            src={src}
+            alt={name}
+            className="h-full w-full"
+            sizes={`(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`}
+            fallbackStyle={css}
+            onLoad={() => {
+              setIsImageLoaded(true)
+            }}
           />
-        )}
+          {isImageLoaded && (
+            <Logo
+              className={`absolute bottom-3 left-3 fill-white/80 ${isVertical ? 'w-9' : 'w-6'}`}
+            />
+          )}
+        </div>
       </div>
-
-      <div className="flex items-start justify-between mt-3 py-1.5 pl-1.5">
+      <div className="flex items-start justify-between gap-6 mt-3 py-1.5 pl-1.5">
         <div className="flex flex-col gap-1.5">
           <header className="font-thin text-2xl">
             <Link
@@ -116,7 +99,6 @@ export default function PrintCard({
               {name}
             </Link>
           </header>
-
           <dl className="text-sm my-3">
             <dt className="font-light text-neutral-300/30">{t('size')}</dt>
             <dd className="font-medium text-neutral-300/60">
@@ -141,12 +123,10 @@ export default function PrintCard({
               </Link>
             </dd>
           </dl>
-
           <span className="rounded-full font-black text-3xl text-orange-300 drop-shadow">
             {t('price', {count: price})}
           </span>
         </div>
-
         <Button
           intent="accent"
           isRounded
@@ -167,7 +147,7 @@ export default function PrintCard({
                 count: 1,
                 product_metadata: {
                   id: productId,
-                  image: {aspectRatio, css}
+                  image: {aspectRatio, imageSize, css}
                 }
               }
             )
@@ -193,5 +173,4 @@ export default function PrintCard({
     </div>
   )
 }
-
 PrintCard.displayName = 'PrintCard'
