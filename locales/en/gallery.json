@@ -24,7 +24,8 @@
     "show-picture-map": "Show on map",
     "hide-picture-map": "Hide map",
     "share": "Share",
-    "order-print": "Order print"
+    "order-print": "Order print",
+    "download-picture": "Download photo"
   },
   "album": {
     "back-to-gallery": "Back to gallery",
