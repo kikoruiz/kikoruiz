@@ -27,7 +27,7 @@ Durante aquellos meses el mundo se nos quedó del tamaño del barrio, y fue just
 
 ![El Puig Campana desde Serra Cortina {"align": "right"}](/pictures/2026-06-25_0431.jpg)
 
-Y la nuestra es el **Puig Campana**. Si te has criado en la Marina Baixa no necesitas que nadie te la señale: es esa montaña que se levanta sola, sin cordillera que la disimule, con un boquete enorme recortado en la cresta oeste. El Portell de Roldán, le llaman. Cuentan que el gigante Roldán lo abrió de un mandoble, y que el trozo que falta salió volando hasta el mar y ahí se quedó, convertido en la isla de Benidorm. Es mentira, claro, pero es una mentira que te explican de crío y que te deja mirando la montaña de otra manera para siempre. No hay otra igual, y la tenía a quince minutos de casa.
+Y la nuestra es el **Puig Campana**. Si te has criado en la Marina Baixa no necesitas que nadie te la señale: es esa montaña que se levanta sola, sin cordillera que la disimule, con un boquete enorme recortado en la cresta oeste. El Portell de Roldà, le llaman. Cuentan que el gigante Roldà lo abrió de un mandoble, y que el trozo que falta salió volando hasta el mar y ahí se quedó, convertido en la isla de Benidorm. Es mentira, claro, pero es una mentira que te explican de crío y que te deja mirando la montaña de otra manera para siempre. No hay otra igual, y la tenía a quince minutos de casa.
 
 ## De noche también es nuestra
 
