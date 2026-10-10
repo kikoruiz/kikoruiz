@@ -27,7 +27,7 @@ For those months the world shrank to the size of the neighbourhood, and that was
 
 ![El Puig Campana seen from Serra Cortina {"align": "right"}](/pictures/2026-06-25_0431.jpg)
 
-And ours is **el Puig Campana**. If you grew up in the Marina Baixa nobody needs to point it out to you: it is the mountain that stands on its own, with no range around it to soften the shape, and an enormous notch cut out of its west ridge. El Portell de Roldà, we call it. The story goes that the giant Roland opened it with one swing of his sword, and that the missing piece flew all the way out to sea and stayed there, as the island of Benidorm. It is not true, of course, but it is the kind of untruth you are told as a child, and it leaves you looking at that mountain differently for the rest of your life. There is no other like it, and I had it fifteen minutes from home.
+And ours is **el Puig Campana**. If you grew up in the Marina Baixa nobody needs to point it out to you: it is the mountain that stands on its own, with no range around it to soften the shape, and an enormous notch cut out of its west ridge. El Portell de Roldà, we call it. The story goes that the giant Roldà opened it with one swing of his sword, and that the missing piece flew all the way out to sea and stayed there, as the island of Benidorm. It is not true, of course, but it is the kind of untruth you are told as a child, and it leaves you looking at that mountain differently for the rest of your life. There is no other like it, and I had it fifteen minutes from home.
 
 ## It is ours at night as well
 
