@@ -2,29 +2,30 @@ import {kebabCase} from 'change-case'
 import {getPictureAlbum} from 'lib/utils/pictures'
 import searchContent from 'data/search/content.json'
 import picturesMetadata from 'data/pictures/metadata.json'
+import {RawPicture} from 'types/gallery'
 import {SearchItem} from 'types'
 
 const MAX_RESULTS_PER_TYPE = 21
 
-const picturesIndex: Omit<SearchItem, 'type'>[] = picturesMetadata.map(
-  ({description, keywords, title, fileName, location, createDate}) => {
-    const album = getPictureAlbum(keywords)
-    const locationString = location
-      ? [location.city, location.country].filter(Boolean).join(', ')
-      : undefined
+const picturesIndex: Omit<SearchItem, 'type'>[] = (
+  picturesMetadata as RawPicture[]
+).map(({description, keywords, title, fileName, location, createDate}) => {
+  const album = getPictureAlbum(keywords)
+  const locationString = location
+    ? [location.city, location.country].filter(Boolean).join(', ')
+    : undefined
 
-    return {
-      slug: kebabCase(title),
-      description,
-      keywords,
-      title,
-      fileName,
-      ...(album && {album: album.id}),
-      ...(locationString && {location: locationString}),
-      ...(createDate && {createDate})
-    }
+  return {
+    slug: kebabCase(title),
+    description,
+    keywords,
+    title,
+    fileName,
+    ...(album && {album: album.id}),
+    ...(locationString && {location: locationString}),
+    ...(createDate && {createDate})
   }
-)
+})
 
 function matchSearchKey(key: string) {
   const lowerKey = key.toLowerCase()
