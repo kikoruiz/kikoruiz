@@ -53,13 +53,16 @@ export default function DownloadCard({
   const {layout} = useLayoutContext()
   const headerHeight = layout?.headerHeight || 0
   const isActive = slug === hash
-  const {addItem, handleCartHover} = useShoppingCart()
+  const {addItem, cartDetails, handleCartHover} = useShoppingCart()
   const {id: variantId, tier, licence, longestSide, price, priceId} = variant
   const currency = DEFAULT_CURRENCY.toUpperCase()
   const resolution = getResolution({imageSize, longestSide})
   const productName = `${name} · ${t(`downloads.tiers.${tier}`)}`
   const addToCartText = t('add-to-cart')
   const isSoldOut = !priceId
+  // A second licence of the same file would just double-charge for nothing
+  // new to deliver, so once it is in the cart the button stops offering it.
+  const isInCart = Boolean(priceId && cartDetails?.[priceId])
 
   return (
     <div
@@ -125,9 +128,15 @@ export default function DownloadCard({
         <Button
           intent="accent"
           isRounded
-          disabled={isSoldOut}
+          disabled={isSoldOut || isInCart}
           className="shrink-0 whitespace-nowrap"
-          title={isSoldOut ? t('downloads.coming-soon') : addToCartText}
+          title={
+            isSoldOut
+              ? t('downloads.coming-soon')
+              : isInCart
+                ? t('downloads.in-cart')
+                : addToCartText
+          }
           onClick={() => {
             addItem(
               {
@@ -157,7 +166,11 @@ export default function DownloadCard({
             })
           }}
         >
-          {isSoldOut ? t('downloads.coming-soon') : addToCartText}
+          {isSoldOut
+            ? t('downloads.coming-soon')
+            : isInCart
+              ? t('downloads.in-cart')
+              : addToCartText}
         </Button>
       </div>
     </div>
