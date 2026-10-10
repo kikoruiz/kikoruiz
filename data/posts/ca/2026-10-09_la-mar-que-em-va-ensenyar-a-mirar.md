@@ -7,7 +7,7 @@ tags: 'photography, personal'
 
 Hui és el **9 d'octubre** i toca mirar una estona cap a casa.
 
-Jo em vaig criar en un poble mariner de la **Marina Baixa**, de família de **la Vila Joiosa**, eixe poble de cases de colors que, segons conten, es van pintar així per a que els pescadors reconegueren la seua des de mar endins. No sé si és veritat o si és una d'eixes coses que es repetixen perquè són boniques, però m'agrada pensar que la primera cosa que vaig aprendre de la imatge la vaig aprendre d'ací: que el color servix per a trobar el camí de tornada.
+Jo em vaig criar en un poble mariner de la **Marina Baixa**, de família de **la Vila Joiosa**, eixe poble de cases de colors que, segons conten, es van pintar així per a que els pescadors reconegueren la seua des de mar endins. M'agrada pensar que la primera cosa que vaig aprendre sobre la imatge la vaig aprendre d'ací: que el color servix per a trobar el camí de tornada.
 
 ## Aprendre a mirar el que ja tenies davant
 
@@ -27,7 +27,7 @@ Durant aquells mesos el món se'ns va quedar de la mida del barri, i va ser just
 
 ![El Puig Campana des de Serra Cortina {"align": "right"}](/pictures/2026-06-25_0431.jpg)
 
-I la nostra és el **Puig Campana**. Si t'has criat a la Marina Baixa no necessites que ningú te l'assenyale: és eixa muntanya que s'alça sola, sense serralada que la dissimule, amb un badall enorme retallat a la cresta oest. El Portell de Roldà, li diuen. Conten que Roldà el va obrir d'un colp d'espasa, i que el tros que falta va eixir volant fins a la mar i ahí es va quedar, convertit en l'illa de Benidorm. És mentida, és clar, però és una mentida que t'expliquen de xiquet i que et deixa mirant la muntanya d'una altra manera per sempre. No n'hi ha cap igual, i la tenia a quinze minuts de casa.
+I la nostra és el **Puig Campana**. Si t'has criat a la Marina Baixa no necessites que ningú te l'assenyale: és eixa muntanya que s'alça sola, sense serralada que la dissimule, amb un badall enorme retallat a la cresta oest. El Portell de Roldà, li diuen. Conten que el gegant Roldà el va obrir d'un colp d'espasa, i que el tros que falta va eixir volant fins a la mar i ahí es va quedar, convertit en l'illa de Benidorm. És mentida, és clar, però és una mentida que t'expliquen de xiquet i que et deixa mirant la muntanya d'una altra manera per sempre. No n'hi ha cap igual, i la tenia a quinze minuts de casa.
 
 ## De nit també és nostra
 

@@ -7,7 +7,7 @@ tags: 'photography, personal'
 
 Hoy es el **9 d'octubre** y toca mirar un rato hacia casa.
 
-Yo me crié en un pueblo marinero de la **Marina Baixa**, de familia de **la Vila Joiosa**, ese pueblo de casas de colores que, según cuentan, se pintaron así para que los pescadores reconocieran la suya desde mar adentro. No sé si es verdad o si es una de esas cosas que se repiten porque son bonitas, pero me gusta pensar que lo primero que aprendí de la imagen lo aprendí de ahí: que el color sirve para encontrar el camino de vuelta.
+Yo me crié en un pueblo marinero de la **Marina Baixa**, de familia de **la Vila Joiosa**, ese pueblo de casas de colores que, según cuentan, se pintaron así para que los pescadores reconocieran la suya desde mar adentro. Me gusta pensar que lo primero que aprendí sobre la imagen lo aprendí de ahí: que el color sirve para encontrar el camino de vuelta.
 
 ## Aprender a mirar lo que ya tenías delante
 
@@ -27,7 +27,7 @@ Durante aquellos meses el mundo se nos quedó del tamaño del barrio, y fue just
 
 ![El Puig Campana desde Serra Cortina {"align": "right"}](/pictures/2026-06-25_0431.jpg)
 
-Y la nuestra es el **Puig Campana**. Si te has criado en la Marina Baixa no necesitas que nadie te la señale: es esa montaña que se levanta sola, sin cordillera que la disimule, con un boquete enorme recortado en la cresta oeste. El Portell de Roldán, le llaman. Cuentan que Roldán lo abrió de un mandoble, y que el trozo que falta salió volando hasta el mar y ahí se quedó, convertido en la isla de Benidorm. Es mentira, claro, pero es una mentira que te explican de crío y que te deja mirando la montaña de otra manera para siempre. No hay otra igual, y la tenía a quince minutos de casa.
+Y la nuestra es el **Puig Campana**. Si te has criado en la Marina Baixa no necesitas que nadie te la señale: es esa montaña que se levanta sola, sin cordillera que la disimule, con un boquete enorme recortado en la cresta oeste. El Portell de Roldán, le llaman. Cuentan que el gigante Roldán lo abrió de un mandoble, y que el trozo que falta salió volando hasta el mar y ahí se quedó, convertido en la isla de Benidorm. Es mentira, claro, pero es una mentira que te explican de crío y que te deja mirando la montaña de otra manera para siempre. No hay otra igual, y la tenía a quince minutos de casa.
 
 ## De noche también es nuestra
 
