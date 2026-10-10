@@ -40,7 +40,7 @@ export default function DownloadLinks({sessionId}: {sessionId: string}) {
   if (links.length === 0) return null
 
   return (
-    <section className="mx-6 mb-12 rounded-md bg-neutral-800/60 p-6">
+    <section className="mx-6 mb-12 animate-fade-in rounded-md bg-neutral-800/60 p-6">
       <header className="mb-6 text-3xl font-thin">
         {t('downloads.delivery.title')}
       </header>
