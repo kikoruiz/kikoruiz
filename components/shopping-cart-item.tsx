@@ -83,13 +83,13 @@ export default function ShoppingCartItem({
   return (
     <div className="relative flex flex-row items-start gap-3 md:gap-6 w-full py-6 sm:p-6 after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:bottom-[-1px] after:via-neutral-300/30 hover:bg-neutral-600/10 hover:rounded transition-colors">
       <div
-        className={`relative w-1/3 shrink-0 bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md${isDownload ? ' aspect-square' : ` flex items-center justify-center ${getPrintSheetAspectClassName(isVertical)}`}`}
+        className={`relative w-1/3 shrink-0 bg-gradient-to-bl from-neutral-600 via-neutral-200 to-neutral-400 drop-shadow-md${isDownload ? '' : ` flex items-center justify-center ${getPrintSheetAspectClassName(isVertical)}`}`}
       >
         {isDownload ? (
           <Image
             src={src}
             alt={name}
-            className="h-full w-full"
+            aspectRatio={image.aspectRatio}
             sizes={`(min-width: ${sm}) 50vw, 100vw`}
             fallbackStyle={image.css}
           />
