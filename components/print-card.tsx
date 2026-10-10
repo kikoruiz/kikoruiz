@@ -130,6 +130,7 @@ export default function PrintCard({
         <Button
           intent="accent"
           isRounded
+          className="shrink-0 whitespace-nowrap"
           title={t('add-to-cart')}
           onClick={() => {
             addItem(

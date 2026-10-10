@@ -126,6 +126,7 @@ export default function DownloadCard({
           intent="accent"
           isRounded
           disabled={isSoldOut}
+          className="shrink-0 whitespace-nowrap"
           title={isSoldOut ? t('downloads.coming-soon') : addToCartText}
           onClick={() => {
             addItem(
