@@ -113,6 +113,7 @@ export interface Picture {
   location?: Location
   tutorial?: Tutorial
   print?: Print['url']
+  download?: string
   permalink: string
 }
 

@@ -7,6 +7,7 @@ import {getPostSlugByPictureSlug} from 'lib/blog/posts'
 import {getPictureAlbum} from 'lib/utils/pictures'
 import {getImagePlaceholder} from 'lib/utils/image'
 import products from 'data/store/products.json'
+import downloads from 'data/store/downloads.json'
 
 const DEFAULT_CANON_EF_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
 const DEFAULT_CANON_RF_LENS = 'Canon RF 15-35mm F2.8L IS USM'
@@ -137,6 +138,9 @@ export function fromExifToGallery({
     const isPrintable = Boolean(
       products.find(({pictureId}) => pictureId === id)
     )
+    const isDownloadable = Boolean(
+      downloads.find(({pictureId}) => pictureId === id)
+    )
 
     // Replace incorrect models.
     model = model.replace(/(\[)(Canon EOS R)(\])/, '$2')
@@ -201,6 +205,9 @@ export function fromExifToGallery({
       permalink,
       ...(isPrintable && {
         print: `/${getSlug(t('sections.store.name'))}/${getSlug(t('store.categories.prints.name'))}#${slug}`
+      }),
+      ...(isDownloadable && {
+        download: `/${getSlug(t('sections.store.name'))}/${getSlug(t('store.categories.downloads.name'))}#${slug}`
       })
     }
   }
