@@ -24,7 +24,8 @@
     "show-picture-map": "Ver en el mapa",
     "hide-picture-map": "Ocultar mapa",
     "share": "Compartir",
-    "order-print": "Pedir impresión"
+    "order-print": "Pedir impresión",
+    "download-picture": "Descargar foto"
   },
   "album": {
     "back-to-gallery": "Volver a la galería",

@@ -14,6 +14,7 @@ import IconMap from 'assets/icons/map.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import IconDocumentText from 'assets/icons/document-text.svg'
 import IconShoppingBag from 'assets/icons/shopping-bag.svg'
+import IconDocumentArrowDown from 'assets/icons/document-arrow-down.svg'
 import IconShare from 'assets/icons/share.svg'
 import IconCheckCircle from 'assets/icons/check-circle.svg'
 import ButtonLink from './button-link'
@@ -61,6 +62,7 @@ export default function PictureDetail({
     location,
     tutorial,
     print,
+    download,
     permalink
   } = picture
   const {t} = useTranslation('gallery')
@@ -241,7 +243,7 @@ export default function PictureDetail({
                     <Button
                       size="small"
                       isRounded
-                      intent="accent"
+                      intent="primary"
                       title={t('common:gallery.picture.copy-link')}
                       onClick={async () => {
                         await navigator.clipboard.writeText(
@@ -267,10 +269,21 @@ export default function PictureDetail({
                       <ButtonLink
                         href={print}
                         title={t('carousel.order-print')}
-                        intent="primary"
+                        intent="accent"
                       >
                         <IconShoppingBag className="mr-1.5 w-3" />
                         {t('carousel.order-print')}
+                      </ButtonLink>
+                    )}
+
+                    {download && (
+                      <ButtonLink
+                        href={download}
+                        title={t('carousel.download-picture')}
+                        intent="accent"
+                      >
+                        <IconDocumentArrowDown className="mr-1.5 w-3" />
+                        {t('carousel.download-picture')}
                       </ButtonLink>
                     )}
 

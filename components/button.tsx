@@ -10,6 +10,11 @@ const buttonStyles = cva(
         light:
           'from-neutral-100 to-neutral-300 text-neutral-900 hover:ring-2 hover:ring-orange-300 hover:text-black hover:from-white hover:to-neutral-200',
         dark: 'from-neutral-800 to-neutral-900 text-neutral-300 hover:ring-1 hover:ring-orange-300/90 hover:text-white hover:to-black/30',
+        // Mirrors ButtonLink's own "primary", so a Button and a ButtonLink
+        // can read as the same secondary action regardless of which one a
+        // given interaction (click vs navigate) actually needs.
+        primary:
+          'border border-neutral-600/60 from-neutral-300 to-neutral-200 text-neutral-700/90 hover:ring-2 hover:ring-neutral-400 hover:text-neutral-900/90 hover:from-neutral-400 hover:to-neutral-300',
         accent:
           'from-orange-200 to-orange-400 text-orange-800 hover:ring-2 hover:ring-orange-200 hover:text-orange-900 hover:from-orange-300 hover:to-orange-500'
       },
