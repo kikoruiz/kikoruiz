@@ -28,17 +28,19 @@ export async function sendDownloadsEmail({
   // The same URL the buyer was already sent to, which re-signs its links on
   // every visit, so this one keeps working long after the first hour.
   const url = `${origin}${localePath}/${storeSlug}?checkout=success&session_id=${sessionId}`
+  const body = tStore('downloads.email.body')
+  const notice = tStore('downloads.email.notice')
 
   return new Resend(apiKey).emails.send({
     from: FROM,
     to,
-    subject: tStore('downloads.email.subject'),
-    text: [
-      tStore('downloads.email.body'),
-      '',
-      url,
-      '',
-      tStore('downloads.email.notice')
-    ].join('\n')
+    subject: `kikoruiz.es · ${tStore('downloads.email.subject')}`,
+    text: [body, '', url, '', notice].join('\n'),
+    html: `
+      <p>${body}</p>
+      <p><a href="${url}">${url}</a></p>
+      <p>${notice}</p>
+      <p><img src="${origin}/logo.png" alt="kikoruiz.es" width="40" height="40" /></p>
+    `
   })
 }
