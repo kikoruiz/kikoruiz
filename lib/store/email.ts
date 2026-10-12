@@ -27,9 +27,25 @@ export async function sendDownloadsEmail({
   const storeSlug = getSlug(t('sections.store.name'))
   // The same URL the buyer was already sent to, which re-signs its links on
   // every visit, so this one keeps working long after the first hour.
-  const url = `${origin}${localePath}/${storeSlug}?checkout=success&session_id=${sessionId}`
+  const url = withPreviewBypass(
+    `${origin}${localePath}/${storeSlug}?checkout=success&session_id=${sessionId}`
+  )
   const body = tStore('downloads.email.body')
   const notice = tStore('downloads.email.notice')
+
+  // Preview deployments sit behind Vercel's SSO wall, which would otherwise
+  // block the buyer's own link and the mail client's logo fetch. The bypass
+  // secret only exists as an env var on Preview, so production links never
+  // carry it.
+  function withPreviewBypass(href: string) {
+    const bypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET
+
+    if (process.env.VERCEL_ENV !== 'preview' || !bypassSecret) return href
+
+    const separator = href.includes('?') ? '&' : '?'
+
+    return `${href}${separator}x-vercel-protection-bypass=${bypassSecret}&x-vercel-set-bypass-cookie=true`
+  }
 
   return new Resend(apiKey).emails.send({
     from: FROM,
@@ -40,7 +56,7 @@ export async function sendDownloadsEmail({
       <p>${body}</p>
       <p><a href="${url}">${url}</a></p>
       <p>${notice}</p>
-      <p><img src="${origin}/logo.png" alt="kikoruiz.es" width="40" height="40" /></p>
+      <p><img src="${withPreviewBypass(`${origin}/logo.png`)}" alt="kikoruiz.es" width="40" height="40" /></p>
     `
   })
 }
