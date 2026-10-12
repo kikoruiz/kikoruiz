@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
+import ButtonLink from 'components/button-link'
 import IconDocumentArrowDown from 'assets/icons/document-arrow-down.svg'
 
 interface DownloadLink {
@@ -48,14 +49,15 @@ export default function DownloadLinks({sessionId}: {sessionId: string}) {
       <ul className="divide-y divide-neutral-700/60">
         {links.map(({id, name, tier, url}) => (
           <li key={id} className="flex items-center gap-3 py-3">
-            <a
+            <ButtonLink
               href={url}
+              intent="accent"
               title={t('downloads.delivery.download')}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-b from-orange-200 to-orange-400 px-3 py-1.5 text-xs font-light text-orange-800 drop-shadow-md transition-shadow hover:ring-2 hover:ring-orange-200"
+              className="shrink-0"
             >
-              <IconDocumentArrowDown className="h-4 w-4" />
+              <IconDocumentArrowDown className="mr-1.5 w-3" />
               {t('downloads.delivery.download')}
-            </a>
+            </ButtonLink>
 
             <span className="text-sm font-light text-neutral-300/90">
               {name}
