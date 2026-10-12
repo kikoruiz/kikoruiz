@@ -184,57 +184,63 @@ export default function ShoppingCartItem({
             {t('price', {count: value})}
           </span>
 
-          <div
-            className={`flex items-center gap-1.5 rounded-full border border-neutral-600 p-1${isCheckoutLoading ? ' opacity-60' : ''}`}
-          >
-            <ButtonSymbol
-              title={t('shopping-cart.decrement-item')}
-              onClick={() => {
-                decrementItem(id)
-                trackEvent({
-                  action: 'remove_from_cart',
-                  value: price,
-                  currency: currency.toUpperCase(),
-                  items: [
-                    {
-                      id: productId,
-                      name,
-                      price,
-                      quantity: 1
-                    }
-                  ]
-                })
-              }}
-              disabled={isCheckoutLoading}
+          {isDownload ? (
+            <span className="px-2 text-xs text-neutral-300/60">
+              {quantity}
+            </span>
+          ) : (
+            <div
+              className={`flex items-center gap-1.5 rounded-full border border-neutral-600 p-1${isCheckoutLoading ? ' opacity-60' : ''}`}
             >
-              -
-            </ButtonSymbol>
+              <ButtonSymbol
+                title={t('shopping-cart.decrement-item')}
+                onClick={() => {
+                  decrementItem(id)
+                  trackEvent({
+                    action: 'remove_from_cart',
+                    value: price,
+                    currency: currency.toUpperCase(),
+                    items: [
+                      {
+                        id: productId,
+                        name,
+                        price,
+                        quantity: 1
+                      }
+                    ]
+                  })
+                }}
+                disabled={isCheckoutLoading}
+              >
+                -
+              </ButtonSymbol>
 
-            <span className="text-xs">{quantity}</span>
+              <span className="text-xs">{quantity}</span>
 
-            <ButtonSymbol
-              title={t('shopping-cart.increment-item')}
-              onClick={() => {
-                incrementItem(id)
-                trackEvent({
-                  action: 'add_to_cart',
-                  value: price,
-                  currency: currency.toUpperCase(),
-                  items: [
-                    {
-                      id: productId,
-                      name,
-                      price,
-                      quantity: 1
-                    }
-                  ]
-                })
-              }}
-              disabled={isCheckoutLoading}
-            >
-              +
-            </ButtonSymbol>
-          </div>
+              <ButtonSymbol
+                title={t('shopping-cart.increment-item')}
+                onClick={() => {
+                  incrementItem(id)
+                  trackEvent({
+                    action: 'add_to_cart',
+                    value: price,
+                    currency: currency.toUpperCase(),
+                    items: [
+                      {
+                        id: productId,
+                        name,
+                        price,
+                        quantity: 1
+                      }
+                    ]
+                  })
+                }}
+                disabled={isCheckoutLoading}
+              >
+                +
+              </ButtonSymbol>
+            </div>
+          )}
         </div>
       </div>
     </div>
