@@ -39,9 +39,13 @@ export async function getLatestContent({
 }): Promise<BlogPost[]> {
   const TAG_TUTORIAL = 'tutorial'
   const allPosts = await getAllPosts(locale)
-  const latestContent = []
   const latestTutorial = allPosts.find(({tags}) => tags.includes(TAG_TUTORIAL))
-  if (latestTutorial) latestContent.push(latestTutorial)
+
+  // Without a tutorial to pair with the latest post, the second slot would
+  // otherwise sit empty, when the second most recent post is right there.
+  if (!latestTutorial) return allPosts.slice(0, 2)
+
+  const latestContent = [latestTutorial]
   const latestPost = allPosts.find(({tags}) => !tags.includes(TAG_TUTORIAL))
   if (latestPost) latestContent.push(latestPost)
 
