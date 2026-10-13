@@ -66,7 +66,7 @@ export const DOWNLOAD_VARIANTS = [
   {tier: 'full-resolution', longestSide: null, licence: 'personal', price: 9},
   {tier: 'commercial', longestSide: null, licence: 'commercial', price: 59}
 ]
-export const DEFAULT_DOWNLOAD_TIER = DOWNLOAD_VARIANTS[0].tier
+export const DEFAULT_DOWNLOAD_TIER = 'full-resolution'
 
 export const FILTER_OPTIONS = {
   size: Object.keys(PRINT_SIZES).map(key => ({
