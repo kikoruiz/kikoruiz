@@ -1,4 +1,4 @@
-import {MouseEvent, useEffect} from 'react'
+import {MouseEvent, useEffect, useState} from 'react'
 import Link, {LinkProps} from 'next/link'
 import {useMediaQuery} from 'hooks/use-media-query'
 import useTranslation from 'next-translate/useTranslation'
@@ -34,6 +34,11 @@ export default function NavigationSection({
   onClick
 }: NavigationSectionProps) {
   const {t} = useTranslation()
+  // A hovered dropdown has no reason to close once a link inside it is
+  // followed, since the pointer is left exactly where it was and the page
+  // underneath changes without it. Dismissing it by hand is the only way out,
+  // and leaving the section is what arms the hover again.
+  const [isDismissed, setIsDismissed] = useState(false)
   const href = `/${getSlug(t(`sections.${section.id}.name`))}`
   const isActiveSection = path.includes(href)
   const isActualSection = path === href
@@ -46,7 +51,11 @@ export default function NavigationSection({
   // on hover has no colour to travel from.
   const tabClassName =
     hasCategories && !isMenuOpen
-      ? ' before:absolute before:bottom-0 before:left-[-0.5rem] before:block before:h-full before:w-[calc(100%+1rem)] before:rounded-t before:bg-transparent before:transition-[background-color,filter] before:duration-300 group-hover:before:bg-neutral-800 group-hover:before:drop-shadow-md'
+      ? ` before:absolute before:bottom-0 before:left-[-0.5rem] before:block before:h-full before:w-[calc(100%+1rem)] before:rounded-t before:bg-transparent before:transition-[background-color,filter] before:duration-300${
+          isDismissed
+            ? ''
+            : ' group-hover:before:bg-neutral-800 group-hover:before:drop-shadow-md'
+        }`
       : ''
   // The underline fades on its own opacity because a gradient is not something
   // CSS can travel between, so its colour stays put and only its presence moves.
@@ -57,7 +66,11 @@ export default function NavigationSection({
   } ${isActualSection ? 'sm:hover:cursor-default' : 'block'} ${
     isActiveSection
       ? 'text-orange-300 after:via-orange-300'
-      : 'after:via-orange-200 after:opacity-0 group-hover:text-orange-200 group-hover:after:opacity-100'
+      : `after:via-orange-200 after:opacity-0${
+          isDismissed
+            ? ''
+            : ' group-hover:text-orange-200 group-hover:after:opacity-100'
+        }`
   }${tabClassName}`
   const content = (
     <NavigationSectionItem
@@ -82,6 +95,11 @@ export default function NavigationSection({
       setIsMenuOpen(false)
       setExpandedSections([])
     }
+  }
+
+  function handleNavigation(event: MouseEvent<HTMLAnchorElement>) {
+    setIsDismissed(true)
+    onClick?.(event)
   }
 
   function handleSectionClick(event: MouseEvent) {
@@ -114,6 +132,9 @@ export default function NavigationSection({
               isSectionExpanded && isMenuOpen ? 'z-10' : 'hover:z-10'
             }`
       }`}
+      onMouseLeave={() => {
+        setIsDismissed(false)
+      }}
     >
       {isActualSection || (isMenuOpen && hasCategories) ? (
         <div
@@ -128,7 +149,7 @@ export default function NavigationSection({
           href={href}
           title={sectionName}
           className={sectionClassName}
-          onClick={onClick}
+          onClick={handleNavigation}
         >
           {content}
         </Link>
@@ -140,7 +161,8 @@ export default function NavigationSection({
           section={section}
           isMenuOpen={isMenuOpen}
           isSectionExpanded={isSectionExpanded}
-          onCategoryClick={onClick}
+          isDismissed={isDismissed}
+          onCategoryClick={handleNavigation}
         />
       )}
     </li>

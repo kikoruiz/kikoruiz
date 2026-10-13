@@ -8,6 +8,7 @@ interface NavigationCategoriesListProps {
   section: (typeof SECTIONS)[number]
   isMenuOpen: boolean
   isSectionExpanded: boolean
+  isDismissed: boolean
   onCategoryClick: LinkProps['onClick']
 }
 
@@ -19,6 +20,7 @@ export default function NavigationCategoriesList({
   section,
   isMenuOpen,
   isSectionExpanded,
+  isDismissed,
   onCategoryClick
 }: NavigationCategoriesListProps) {
   const {t} = useTranslation()
@@ -29,7 +31,11 @@ export default function NavigationCategoriesList({
   // the way `hidden` did.
   return (
     <ul
-      className={`sm:invisible sm:block sm:-translate-y-1.5 sm:opacity-0 sm:transition-[opacity,transform,visibility] sm:duration-300 sm:group-hover:visible sm:group-hover:translate-y-0 sm:group-hover:opacity-100${
+      className={`sm:invisible sm:block sm:-translate-y-1.5 sm:opacity-0 sm:transition-[opacity,transform,visibility] sm:duration-300${
+        isDismissed
+          ? ''
+          : ' sm:group-hover:visible sm:group-hover:translate-y-0 sm:group-hover:opacity-100'
+      }${
         isMenuOpen
           ? ''
           : ' absolute left-2/4 w-[calc(100%+1rem)] -translate-x-1/2 rounded-b bg-neutral-800 pt-3 drop-shadow-md'
