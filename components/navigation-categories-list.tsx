@@ -23,9 +23,13 @@ export default function NavigationCategoriesList({
 }: NavigationCategoriesListProps) {
   const {t} = useTranslation()
 
+  // From `sm` up the list stays laid out and is merely kept out of sight,
+  // which is what gives the fade something to run on: `display` cannot be
+  // animated, while `visibility` still keeps the links out of the tab order
+  // the way `hidden` did.
   return (
     <ul
-      className={`sm:hidden sm:group-hover:block${
+      className={`sm:invisible sm:block sm:-translate-y-1.5 sm:opacity-0 sm:transition-[opacity,transform,visibility] sm:duration-300 sm:group-hover:visible sm:group-hover:translate-y-0 sm:group-hover:opacity-100${
         isMenuOpen
           ? ''
           : ' absolute left-2/4 w-[calc(100%+1rem)] -translate-x-1/2 rounded-b bg-neutral-800 pt-3 drop-shadow-md'
