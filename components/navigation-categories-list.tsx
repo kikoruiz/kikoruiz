@@ -39,7 +39,7 @@ export default function NavigationCategoriesList({
       }${
         isMenuOpen
           ? ''
-          : ' absolute left-2/4 w-[calc(100%+1rem)] -translate-x-1/2 rounded-b bg-neutral-800 pt-3 drop-shadow-md'
+          : ' absolute left-2/4 w-[calc(100%+1rem)] -translate-x-1/2 rounded-b bg-neutral-800 pt-3 shadow-md'
       } ${isSectionExpanded ? 'block' : 'hidden'}`}
     >
       {section.categories.map((category: NavigationCategory) => {

@@ -1,4 +1,5 @@
 import {MouseEvent, useEffect, useState} from 'react'
+import {flushSync} from 'react-dom'
 import Link, {LinkProps} from 'next/link'
 import {useMediaQuery} from 'hooks/use-media-query'
 import useTranslation from 'next-translate/useTranslation'
@@ -51,10 +52,10 @@ export default function NavigationSection({
   // on hover has no colour to travel from.
   const tabClassName =
     hasCategories && !isMenuOpen
-      ? ` before:absolute before:bottom-0 before:left-[-0.5rem] before:block before:h-full before:w-[calc(100%+1rem)] before:rounded-t before:bg-transparent before:transition-[background-color,filter] before:duration-300${
+      ? ` before:absolute before:bottom-0 before:left-[-0.5rem] before:block before:h-full before:w-[calc(100%+1rem)] before:rounded-t before:bg-transparent before:transition-[background-color,box-shadow] before:duration-300${
           isDismissed
             ? ''
-            : ' group-hover:before:bg-neutral-800 group-hover:before:drop-shadow-md'
+            : ' group-hover:before:bg-neutral-800 group-hover:before:shadow-md'
         }`
       : ''
   // The underline fades on its own opacity because a gradient is not something
@@ -99,7 +100,13 @@ export default function NavigationSection({
   }
 
   function handleNavigation(event: MouseEvent<HTMLAnchorElement>) {
-    setIsDismissed(true)
+    // Next batches this together with the route change that follows in the
+    // same click, so on a slow enough machine the old hover only lets go once
+    // the new page is ready, a beat later than the click itself. Flushing it
+    // first is what keeps the two from being tied together.
+    flushSync(() => {
+      setIsDismissed(true)
+    })
     onClick?.(event)
   }
 
