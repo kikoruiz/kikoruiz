@@ -59,13 +59,23 @@ export default function DownloadsPage({
           {t('store:downloads.notice')}
         </p>
 
-        <div className="columns-1 gap-6 space-y-6 md:columns-2 lg:columns-3 xl:gap-9 xl:space-y-9">
+        {/* The gap between cards is padding on a wrapper rather than a margin
+            on the card, since a margin at the top of a column is truncated by
+            some browsers and kept by others, which left each column starting
+            at a different height. */}
+        <div className="columns-1 gap-6 md:columns-2 lg:columns-3 xl:gap-9">
           {downloads.map(download => (
-            <DownloadCard
+            <div
               key={`${download.id}-${tier}`}
-              {...download}
-              variant={download.variants.find(variant => variant.tier === tier)}
-            />
+              className="break-inside-avoid-column pb-6 xl:pb-9"
+            >
+              <DownloadCard
+                {...download}
+                variant={download.variants.find(
+                  variant => variant.tier === tier
+                )}
+              />
+            </div>
           ))}
         </div>
       </section>

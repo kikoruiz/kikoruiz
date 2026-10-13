@@ -117,9 +117,18 @@ export default function PrintsPage({
           })}
         </div>
 
-        <div className="columns-1 gap-6 space-y-6 md:columns-2 lg:columns-3 xl:gap-9 xl:space-y-9">
+        {/* The gap between cards is padding on a wrapper rather than a margin
+            on the card, since a margin at the top of a column is truncated by
+            some browsers and kept by others, which left each column starting
+            at a different height. */}
+        <div className="columns-1 gap-6 md:columns-2 lg:columns-3 xl:gap-9">
           {items.map(print => (
-            <PrintCard key={print.id} {...print} />
+            <div
+              key={print.id}
+              className="break-inside-avoid-column pb-6 xl:pb-9"
+            >
+              <PrintCard {...print} />
+            </div>
           ))}
         </div>
       </section>
