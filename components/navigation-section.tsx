@@ -78,6 +78,7 @@ export default function NavigationSection({
       section={section}
       hasCategories={hasCategories}
       isExpanded={!isMenuOpen || isSectionExpanded}
+      isDismissed={isDismissed}
     />
   )
 

@@ -8,13 +8,15 @@ interface NavigationSectionItemProps {
   section: (typeof SECTIONS)[number]
   hasCategories: boolean
   isExpanded: boolean
+  isDismissed?: boolean
 }
 
 export default function NavigationSectionItem({
   name,
   section,
   hasCategories,
-  isExpanded
+  isExpanded,
+  isDismissed = false
 }: NavigationSectionItemProps) {
   const SectionIcon = sectionIcons[`Icon${getCapitalizedName(section.id)}`]
 
@@ -28,10 +30,15 @@ export default function NavigationSectionItem({
 
       {hasCategories && (
         <>
+          {/* The caret turns on the same 300ms as the tab and the list it
+              belongs to, and gives up its turn along with them, or it would sit
+              pointing at a dropdown that is no longer there. */}
           <IconChevronDown
-            className={`navigation-section-icon ml-2 h-[12px] w-[12px] transition-transform ease-in-out${
+            className={`navigation-section-icon ml-2 h-[12px] w-[12px] transition-transform duration-300 ease-in-out${
               isExpanded
-                ? ' -rotate-180 sm:rotate-0 sm:group-hover:-rotate-180'
+                ? ` -rotate-180 sm:rotate-0${
+                    isDismissed ? '' : ' sm:group-hover:-rotate-180'
+                  }`
                 : ''
             }`}
           />
