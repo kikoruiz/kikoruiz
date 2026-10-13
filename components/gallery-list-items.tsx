@@ -19,8 +19,17 @@ export default function GalleryListItems({
     query.picture ?? query[t('gallery.carousel.query-key')]
   )
 
+  // Albums are the one listing where every tile is the same square shape, so
+  // a real grid can lay them out instead of the masonry columns everything
+  // else needs for its mixed heights. CSS columns fill top to bottom within
+  // each column before moving to the next, which reads down then across; a
+  // grid's default row flow is what reads left to right, top to bottom.
+  const containerClassName = isAlbum
+    ? 'grid grid-cols-1 gap-3 pb-3 sm:grid-cols-2 lg:grid-cols-3 xl:gap-4 xl:pb-4'
+    : 'columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3 xl:gap-4 xl:space-y-4 xl:pb-4'
+
   return (
-    <div className="columns-1 gap-3 space-y-3 pb-3 sm:columns-2 lg:columns-3 xl:gap-4 xl:space-y-4 xl:pb-4">
+    <div className={containerClassName}>
       {items.map(
         (
           {
@@ -45,9 +54,15 @@ export default function GalleryListItems({
             !hasOpenPicture &&
             (isFirstImage ||
               (isSecondImage && items[0].image.orientation === 'horizontal'))
-          const className = `break-inside-avoid-column${
-            isFirstImage ? ' mt-3 xl:mt-4' : ''
-          }`
+          // The grid's own gap covers spacing for albums, so neither the
+          // column-break guard nor the first-tile margin that compensates for
+          // it (needed only because `space-y` skips whichever tile lands
+          // first in a later column) applies here.
+          const className = isAlbum
+            ? ''
+            : `break-inside-avoid-column${
+                isFirstImage ? ' mt-3 xl:mt-4' : ''
+              }`
           const sortedPropertyClassName = 'font-bold text-neutral-300/40'
           const aspectRatio = isAlbum ? '1:1' : getAspectRatio(imageSize)
 
