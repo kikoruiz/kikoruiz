@@ -7,11 +7,12 @@ export default function Document({locale}: DocumentProps) {
         <meta name="theme-color" content="#171717" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@kikoruizlloret" />
-        {/* These are PNGs because favicon.ico never was one: it holds PNG
-            bytes under an .ico name, which is served as image/vnd.microsoft.icon
-            and leaves Safari with an icon it cannot decode. */}
-        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+        {/* PNG rather than ICO because the old favicon.ico never held ICO data,
+            and an .ico name has it served as image/vnd.microsoft.icon, which
+            leaves Safari with an icon it cannot decode. The small one spares
+            browsers a 512 to 16 downscale for the tab. */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
         <link
           rel="alternate"
           type="application/rss+xml"
