@@ -27,6 +27,7 @@ export default function App({Component, pageProps}: AppProps) {
     albumId,
     tag,
     alternates,
+    heroImage,
     heroImages
   } = pageProps
   const sectionData = {
@@ -54,7 +55,7 @@ export default function App({Component, pageProps}: AppProps) {
             <LayoutProvider>
               <SubcategoryProvider>
                 <LatestPicturesProvider>
-                  <HeroImageProvider>
+                  <HeroImageProvider defaultImage={heroImage}>
                     <Layout
                       isPrintable={Boolean(print)}
                       {...sectionData}

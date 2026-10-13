@@ -1,27 +1,19 @@
 import {
   useState,
-  useEffect,
   useMemo,
   useContext,
   createContext,
   PropsWithChildren
 } from 'react'
-import {getRandomElement} from 'lib/utils'
 import {HERO_IMAGES} from 'config'
 
-const useValue = () => {
-  const defaultImage = HERO_IMAGES[0]
-  const [heroImage, setHeroImage] = useState<string>(defaultImage)
+const useValue = (defaultImage: string) => {
+  const [chosenImage, setHeroImage] = useState<string | null>(null)
   const [showImage, setShowImage] = useState<boolean>(false)
-
-  // The home page is statically generated, so its markup can only ever carry
-  // one hero. Drawing another one after mount is what keeps that markup
-  // hydratable while still varying the picture from visit to visit, and a
-  // random value is precisely what cannot be computed while rendering.
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setHeroImage(getRandomElement(HERO_IMAGES))
-  }, [])
+  // The page picks the hero while it renders, so leaving the state empty until
+  // someone switches it by hand is what lets the server's choice through, and
+  // what keeps a hand-picked one across navigations.
+  const heroImage = chosenImage ?? defaultImage
 
   return useMemo(
     () => ({
@@ -38,9 +30,12 @@ export const HeroImageContext = createContext(
   null as ReturnType<typeof useValue>
 )
 
-export const HeroImageProvider = ({children}: PropsWithChildren) => {
+export const HeroImageProvider = ({
+  defaultImage = HERO_IMAGES[0],
+  children
+}: PropsWithChildren<{defaultImage?: string}>) => {
   return (
-    <HeroImageContext.Provider value={useValue()}>
+    <HeroImageContext.Provider value={useValue(defaultImage)}>
       {children}
     </HeroImageContext.Provider>
   )

@@ -28,9 +28,13 @@ import Logo from 'assets/brand/logo.svg'
 import IconGlobe from 'assets/icons/globe-europe-africa.svg'
 import IconMapPin from 'assets/icons/map-pin.svg'
 import useHeroImageContext from 'contexts/HeroImage'
-import {getAbsoluteUrl} from 'lib/utils'
+import {getAbsoluteUrl, getRandomElement} from 'lib/utils'
 import {GALLERY_ALBUMS} from 'config/gallery'
-import {BRANDS, SITE_NAME} from 'config'
+import {BRANDS, HERO_IMAGES, SITE_NAME} from 'config'
+
+// The hero is drawn while this page renders, so without a window to rebuild it
+// in, the same picture would greet everyone until the next deploy.
+const HERO_MAX_AGE = 60
 
 interface HomeProps {
   heroImages: HighlightedImage[]
@@ -168,6 +172,7 @@ export async function getStaticProps({
   return {
     props: {
       section: 'home',
+      heroImage: getRandomElement(HERO_IMAGES),
       heroImages,
       latestContent,
       latestPictures,
@@ -175,6 +180,7 @@ export async function getStaticProps({
       picturesOnMap,
       galleryTags,
       alternates
-    }
+    },
+    revalidate: HERO_MAX_AGE
   }
 }
