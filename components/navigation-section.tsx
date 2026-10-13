@@ -40,19 +40,27 @@ export default function NavigationSection({
   const hasCategories = Boolean(section.categories)
   const isSectionExpanded = expandedSections.includes(section.id)
   const sectionName = t(`sections.${section.id}.name`)
-  const sectionClassName = `relative px-6 font-bold after:absolute after:left-0 after:block after:from-transparent ${
+  // The tab behind the label is laid out from the start and merely left
+  // transparent, since a pseudo-element that only comes into being on hover has
+  // no colour to travel from. A section carrying a list rounds its top alone, so
+  // tab and list read as one piece; the rest round the whole of it, as nothing
+  // hangs below them.
+  const tabClassName = isMenuOpen
+    ? ''
+    : ` before:absolute before:bottom-0 before:left-[-0.5rem] before:block before:h-full before:w-[calc(100%+1rem)] before:bg-transparent before:transition-[background-color,filter] before:duration-300 group-hover:before:bg-neutral-800 group-hover:before:drop-shadow-md ${
+        hasCategories ? 'before:rounded-t' : 'before:rounded'
+      }`
+  // The underline fades on its own opacity because a gradient is not something
+  // CSS can travel between, so its colour stays put and only its presence moves.
+  const sectionClassName = `relative px-6 font-bold transition-colors duration-300 after:absolute after:left-0 after:block after:from-transparent after:transition-opacity after:duration-300 ${
     isMenuOpen
       ? 'mx-3 py-3 after:top-0 after:h-full after:w-[1px] after:bg-gradient-to-b cursor-pointer'
       : 'py-2 after:bottom-0 after:h-[1px] after:w-full after:bg-gradient-to-r'
   } ${isActualSection ? 'sm:hover:cursor-default' : 'block'} ${
     isActiveSection
       ? 'text-orange-300 after:via-orange-300'
-      : 'after:via-transparent group-hover:text-orange-200 group-hover:after:via-orange-200'
-  }${
-    hasCategories && !isMenuOpen
-      ? ' group-hover:before:absolute group-hover:before:bottom-0 group-hover:before:left-[-0.5rem] group-hover:before:block group-hover:before:h-full group-hover:before:w-[calc(100%+1rem)] group-hover:before:rounded-t group-hover:before:bg-neutral-800 group-hover:before:drop-shadow-md'
-      : ''
-  }`
+      : 'after:via-orange-200 after:opacity-0 group-hover:text-orange-200 group-hover:after:opacity-100'
+  }${tabClassName}`
   const content = (
     <NavigationSectionItem
       name={sectionName}
