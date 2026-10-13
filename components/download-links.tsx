@@ -46,9 +46,12 @@ export default function DownloadLinks({sessionId}: {sessionId: string}) {
         {t('downloads.delivery.title')}
       </header>
 
-      <ul className="divide-y divide-neutral-700/60">
+      <ul className="relative after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:top-[-1px] after:via-neutral-300/30">
         {links.map(({id, name, tier, url}) => (
-          <li key={id} className="flex items-center gap-3 py-3">
+          <li
+            key={id}
+            className="relative flex items-center gap-3 p-6 after:absolute after:left-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:bottom-[-1px] after:via-neutral-300/30 hover:bg-neutral-600/10 hover:rounded transition-colors"
+          >
             <ButtonLink
               href={url}
               intent="accent"

@@ -184,11 +184,7 @@ export default function ShoppingCartItem({
             {t('price', {count: value})}
           </span>
 
-          {isDownload ? (
-            <span className="px-2 text-xs text-neutral-300/60">
-              {quantity}
-            </span>
-          ) : (
+          {!isDownload ? (
             <div
               className={`flex items-center gap-1.5 rounded-full border border-neutral-600 p-1${isCheckoutLoading ? ' opacity-60' : ''}`}
             >
@@ -240,7 +236,7 @@ export default function ShoppingCartItem({
                 +
               </ButtonSymbol>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </div>
