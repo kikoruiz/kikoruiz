@@ -67,51 +67,74 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
     })
   }
 
-  // Below `lg` the groups flow into balanced columns, two on a phone and three
-  // on a tablet, so a short one shares a column instead of leaving the others
-  // long. Each gap is padding on the group because a margin at the top of a
-  // column is kept by some browsers and dropped by others, and the negative
-  // margin takes back the padding the last group of each column leaves at the
-  // bottom.
-  return (
-    <div className="-mb-9 w-full columns-2 gap-6 md:columns-3 lg:mb-0 lg:flex lg:w-auto lg:columns-auto lg:gap-12">
-      {[...sectionGroups, legalGroup].map(({id, name, href, links}) => (
-        <div key={id} className="break-inside-avoid-column pb-9 lg:pb-0">
-          <header className="mb-1.5 font-bold text-neutral-100">
-            {href ? (
-              <Link
-                href={href}
-                title={name}
-                className="transition-colors hover:text-neutral-300"
-              >
-                {name}
-              </Link>
-            ) : (
-              name
-            )}
-          </header>
+  // From a tablet up the groups sit in three columns that are laid out by hand
+  // rather than left to the browser's height balancing, which moved a whole
+  // group to another column whenever a link changed size: the gallery on its
+  // own, the shop with the blog, and about me with the legal pages. A group
+  // that is in none of them still shows, in a column of its own. Below `md`
+  // the columns dissolve and the groups flow into two balanced ones, so a
+  // short group shares a column instead of leaving the others long. From `lg`
+  // the footer is a single row again, where each column is only as wide as its
+  // longest link and the rest goes to the social icons. Only at `xl` is there
+  // room for every group in a row of its own. The block must not shrink in a
+  // row or the longest legal titles wrap. Each gap is padding on the group
+  // because a margin at the top of a column is kept by some browsers and
+  // dropped by others, and the negative margin takes back the padding the last
+  // group of each column leaves at the bottom.
+  const groups = [...sectionGroups, legalGroup]
+  const tabletColumns = [['gallery'], ['store', 'blog'], ['about-me', 'legal']]
+  const placed = tabletColumns.flat()
+  const columns = [
+    ...tabletColumns.map(ids => groups.filter(({id}) => ids.includes(id))),
+    groups.filter(({id}) => !placed.includes(id))
+  ].filter(column => column.length > 0)
 
-          {links.length > 0 && (
-            <ul className="space-y-3 text-sm">
-              {links.map(link => (
-                <li key={link.id} className="font-light">
-                  {link.isCurrent ? (
-                    <span aria-current="page" className="text-neutral-300">
-                      {link.name}
-                    </span>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      title={link.name}
-                      className="text-neutral-300/60 transition-colors hover:text-neutral-300"
-                    >
-                      {link.name}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
+  return (
+    <div className="-mb-9 w-full columns-2 gap-6 md:grid md:columns-auto md:grid-cols-3 lg:flex lg:w-auto lg:shrink-0 lg:gap-x-9 xl:mb-0 xl:gap-x-12">
+      {columns.map(column => (
+        <div
+          key={column.map(({id}) => id).join()}
+          className="contents md:flex md:flex-col xl:contents"
+        >
+          {column.map(({id, name, href, links}) => (
+            <div key={id} className="break-inside-avoid-column pb-9 xl:pb-0">
+              <header className="mb-1.5 font-bold text-neutral-100">
+                {href ? (
+                  <Link
+                    href={href}
+                    title={name}
+                    className="transition-colors hover:text-neutral-300"
+                  >
+                    {name}
+                  </Link>
+                ) : (
+                  name
+                )}
+              </header>
+
+              {links.length > 0 && (
+                <ul className="space-y-3 text-sm">
+                  {links.map(link => (
+                    <li key={link.id} className="font-light">
+                      {link.isCurrent ? (
+                        <span aria-current="page" className="text-neutral-300">
+                          {link.name}
+                        </span>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          title={link.name}
+                          className="text-neutral-300/60 transition-colors hover:text-neutral-300"
+                        >
+                          {link.name}
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
         </div>
       ))}
     </div>
