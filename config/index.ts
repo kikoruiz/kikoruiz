@@ -46,7 +46,7 @@ export const COOKIES_BY_TYPE = {
 export const PERSONAL_INFO = {
   phone: '+34619602535',
   email: 'hola@kikoruiz.es',
-  location: 'Sant Cugat del Vallès (Barcelona)',
+  location: 'Sabadell (Barcelona)',
   birthday: '1983-08-27'
 }
 
