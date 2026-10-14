@@ -153,10 +153,12 @@ export default function AboutMe({
           </Link>
         </div>
 
+        {/* Centred below `md` only, and from here rather than inside Article,
+            which every post and static page shares. */}
         <Article
           content={description.body}
           contentImages={[bodyImage]}
-          className="mt-9 flex-1 sm:mt-0"
+          className="mt-9 flex-1 sm:mt-0 max-md:prose-h1:text-center max-md:[&_figure]:mx-auto"
         />
       </section>
     </>
