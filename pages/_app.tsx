@@ -50,12 +50,15 @@ export default function App({Component, pageProps}: AppProps) {
           consentCookieAttributes: {expires: ONE_YEAR}
         }}
       >
-        <StoreCartProvider isActive={isStorePage}>
-          <I18nProvider lang={lang} namespaces={{common}}>
-            <LayoutProvider>
-              <SubcategoryProvider>
-                <LatestPicturesProvider>
-                  <HeroImageProvider defaultImage={heroImage}>
+        <I18nProvider lang={lang} namespaces={{common}}>
+          <LayoutProvider>
+            <SubcategoryProvider>
+              <LatestPicturesProvider>
+                <HeroImageProvider defaultImage={heroImage}>
+                  {/* The cart wraps the page for the first time when the shop
+                      is visited, which remounts everything below it, so it
+                      goes under the providers that hold state to keep. */}
+                  <StoreCartProvider isActive={isStorePage}>
                     <Layout
                       isPrintable={Boolean(print)}
                       {...sectionData}
@@ -66,12 +69,12 @@ export default function App({Component, pageProps}: AppProps) {
                       <Analytics />
                       <SpeedInsights />
                     </Layout>
-                  </HeroImageProvider>
-                </LatestPicturesProvider>
-              </SubcategoryProvider>
-            </LayoutProvider>
-          </I18nProvider>
-        </StoreCartProvider>
+                  </StoreCartProvider>
+                </HeroImageProvider>
+              </LatestPicturesProvider>
+            </SubcategoryProvider>
+          </LayoutProvider>
+        </I18nProvider>
       </CookieConsentProvider>
     </>
   )
