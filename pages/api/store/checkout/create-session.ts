@@ -44,8 +44,16 @@ export default async function handler(
         // depends on where the buyer is, so the billing address stops being
         // optional.
         billing_address_collection: needsShipping ? 'auto' : 'required',
+        // The fee is a Stripe shipping rate made once in the dashboard, since
+        // an amount written here would have to be deployed to be changed. Until
+        // its id is set, the order carries no shipping charge.
         ...(needsShipping && {
-          shipping_address_collection: {allowed_countries: ['ES']}
+          shipping_address_collection: {allowed_countries: ['ES']},
+          ...(process.env.STRIPE_SHIPPING_RATE_ID && {
+            shipping_options: [
+              {shipping_rate: process.env.STRIPE_SHIPPING_RATE_ID}
+            ]
+          })
         }),
         // Instant delivery kills the right of withdrawal, and that has to be
         // said before paying, not in the receipt.
