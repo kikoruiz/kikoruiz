@@ -19,6 +19,9 @@ save:
 save_optimized:
 	FILE=pictures/optimize make save
 
+save_site_images:
+	FILE=image/site make save
+
 save_placeholders:
 	FILE=image/placeholders make save
 
