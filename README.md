@@ -47,4 +47,12 @@
 - [Instagram](https://www.instagram.com/kikoruiz)
 - [Personal Website](https://www.kikoruiz.es)
 
+## 📄 License
+
+The **source code** is released under the [MIT license](LICENSE).
+
+Everything else is **© Kiko Ruiz, all rights reserved** and is not covered by that license: photographs and timelapses (including the optimized copies in `public/pictures`), their metadata and descriptions, blog posts, the pages in `data/`, the résumé and the downloadable documents, the logo and the signature.
+
+The rights to use a photograph are granted only through the purchase of a digital download, under the [downloads licence](https://www.kikoruiz.es/en/downloads-licence). Seeing an image here, in the website or in the repository history gives no right to copy, publish or reuse it.
+
 > “Always learning, always experimenting. Let's build something great!” 🚀

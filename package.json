@@ -2,6 +2,7 @@
   "name": "kikoruiz",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "sideEffects": false,
   "scripts": {
     "analyze": "ANALYZE=true npm run build",
