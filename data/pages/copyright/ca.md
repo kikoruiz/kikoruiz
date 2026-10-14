@@ -12,7 +12,7 @@ Totes les fotografies, imatges i continguts visuals de [kikoruiz.es](/) són obr
 
 ## Què no pots fer sense el meu permís
 
-No està permés copiar, descarregar, capturar, reproduir, distribuir, transformar, comunicar públicament ni usar de cap altra manera les imatges d'aquest lloc sense la meua autorització prèvia i per escrit, llevat del que permeta una llicència comprada a la botiga.
+No està permés copiar, descarregar, capturar, reproduir, distribuir, transformar, comunicar públicament ni usar de cap altra manera les imatges d'este lloc sense la meua autorització prèvia i per escrit, llevat del que permeta una llicència comprada a la botiga.
 
 ## Intel·ligència artificial i mineria de dades
 
@@ -20,7 +20,7 @@ Em reserve expressament els drets sobre les meues imatges i els meus textos dava
 
 ## Llicències a mida
 
-Si vols usar una imatge d'una manera que no cobreix la llicència de descàrregues, [escriu-me](/#contacte) i mirem una llicència a mida teua.
+Si vols usar una imatge d'una manera que no cobrix la llicència de descàrregues, [escriu-me](/#contacte) i mirem una llicència a mida teua.
 
 ## Excepcions
 

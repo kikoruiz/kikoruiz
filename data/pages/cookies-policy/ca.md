@@ -2,17 +2,17 @@
 
 ## Introducció
 
-Aquesta política explica quines galetes i tecnologies similars usa [kikoruiz.es](/), per a què serveixen i com pots gestionar-les. Forma part de la [política de privacitat](/politica-de-privacitat).
+Esta política explica quines galetes i tecnologies similars usa [kikoruiz.es](/), per a què servixen i com pots gestionar-les. Forma part de la [política de privacitat](/politica-de-privacitat).
 
 ## Què són les galetes?
 
-Les galetes són petits fitxers de text que un lloc web guarda al teu dispositiu per recordar informació sobre la teua visita. Poden ser de sessió, si desapareixen en tancar el navegador, o persistents, si romanen un temps. El lloc també usa l'emmagatzematge local del navegador, que compleix una funció semblant.
+Les galetes són petits arxius de text que un lloc web guarda al teu dispositiu per recordar informació sobre la teua visita. Poden ser de sessió, si desapareixen en tancar el navegador, o persistents, si romanen un temps. El lloc també usa l'emmagatzematge local del navegador, que complix una funció semblant.
 
 ## Què use i per a què
 
 ### Galetes i emmagatzematge necessaris
 
-No requereixen el teu consentiment perquè són imprescindibles per al funcionament del lloc o per al pagament:
+No requerixen el teu consentiment perquè són imprescindibles per al funcionament del lloc o per al pagament:
 
 - **Les teues preferències de galetes** (`USE_COOKIE_CONSENT_STATE`): recorda què has acceptat o rebutjat. Dura un any.
 - **El teu carret de la compra** (emmagatzematge local del navegador): guarda els productes que has afegit perquè no els perdes en recarregar la pàgina. No s'envia a cap servidor fins que pagues.
@@ -30,12 +30,12 @@ Vercel Web Analytics i Vercel Speed Insights mesuren les visites i el rendiment 
 
 ## Com gestionar les galetes
 
-En entrar per primera vegada, l'avís de galetes et deixa acceptar o rebutjar les d'anàlisi. Per canviar la teua elecció, esborra les galetes d'aquest lloc a la configuració del teu navegador i l'avís tornarà a aparéixer. També pots bloquejar les galetes des del navegador, encara que si bloqueges les necessàries, és possible que la botiga no funcione bé.
+En entrar per primera vegada, l'avís de galetes et deixa acceptar o rebutjar les d'anàlisi. Per canviar la teua elecció, esborra les galetes d'este lloc a la configuració del teu navegador i l'avís tornarà a aparéixer. També pots bloquejar les galetes des del navegador, encara que si bloqueges les necessàries, és possible que la botiga no funcione bé.
 
-## Canvis en aquesta política de galetes
+## Canvis en esta política de galetes
 
-Puc modificar aquesta política en qualsevol moment. La data de l'última actualització apareix a l'inici de la pàgina, i et recomane revisar-la de tant en tant.
+Puc modificar esta política en qualsevol moment. La data de l'última actualització apareix a l'inici de la pàgina, i et recomane revisar-la de tant en tant.
 
 ## Contacte
 
-Si tens alguna pregunta sobre aquesta política de galetes, [escriu-me](/#contacte).
+Si tens alguna pregunta sobre esta política de galetes, [escriu-me](/#contacte).

@@ -25,21 +25,21 @@ No venc les teues dades. Per prestar-te el servei les comparteisc amb proveïdor
 - **Vercel:** allotja el Lloc i mesura les seues visites i el seu rendiment sense usar galetes.
 - **Google:** presta el servei d'analítica Google Analytics 4, només si acceptes les galetes d'anàlisi.
 - **Servei de missatgeria:** rep el teu nom i la teua adreça quan compres impressions, per lliurar-te-les.
-- **Assessoria fiscal:** accedeix a les dades necessàries per complir les meues obligacions tributàries.
+- **Assessoria fiscal:** accedix a les dades necessàries per complir les meues obligacions tributàries.
 
 També puc comunicar dades a les autoritats quan la llei m'ho exigisca.
 
 ## Transferències internacionals
 
-Alguns d'aquests proveïdors, com Stripe, Vercel, Google, Resend o Cloudflare, poden tractar dades fora de l'Espai Econòmic Europeu, en particular als Estats Units. Ho fan amb les garanties que preveu la normativa, com les clàusules contractuals tipus de la Comissió Europea o el Marc de Privacitat de Dades UE-EUA.
+Alguns d'estos proveïdors, com Stripe, Vercel, Google, Resend o Cloudflare, poden tractar dades fora de l'Espai Econòmic Europeu, en particular als Estats Units. Ho fan amb les garanties que preveu la normativa, com les clàusules contractuals tipus de la Comissió Europea o el Marc de Privacitat de Dades UE-EUA.
 
 ## Quant de temps conserve les teues dades
 
-- Dades de les compres: durant els terminis que exigeixen les normes fiscals i mercantils.
+- Dades de les compres: durant els terminis que exigixen les normes fiscals i mercantils.
 - Missatges de contacte: el temps necessari per atendre la teua consulta i, després, durant els terminis de prescripció de possibles responsabilitats.
 - Dades d'analítica: segons els terminis de retenció configurats a Google Analytics.
 
-Passat aquest temps, les elimine o les anonimitze.
+Passat este temps, les elimine o les anonimitze.
 
 ## Els teus drets
 
@@ -57,10 +57,10 @@ Aplique mesures de seguretat raonables per protegir les teues dades, encara que 
 
 El Lloc pot enllaçar a pàgines de tercers que no controle. No sóc responsable de les seues pràctiques de privacitat ni del seu contingut; et recomane revisar-ne les polítiques.
 
-## Canvis en aquesta política de privacitat
+## Canvis en esta política de privacitat
 
-Puc actualitzar aquesta política en qualsevol moment. La data de l'última actualització apareix a l'inici de la pàgina.
+Puc actualitzar esta política en qualsevol moment. La data de l'última actualització apareix a l'inici de la pàgina.
 
 ## Contacte
 
-Si tens alguna pregunta sobre aquesta política o sobre com tracte les teues dades, [escriu-me](/#contacte).
+Si tens alguna pregunta sobre esta política o sobre com tracte les teues dades, [escriu-me](/#contacte).

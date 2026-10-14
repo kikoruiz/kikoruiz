@@ -33,13 +33,13 @@
     "licence": "Llicència",
     "coming-soon": "Molt prompte",
     "in-cart": "Ja és al carret",
-    "notice": "La descàrrega arriba just després del pagament, amb un enllaç privat que caduca. En comprar acceptes la llicència i renuncies al dret de desistiment, ja que el fitxer s'entrega al moment.",
-    "waiver": "La teva comanda inclou fitxers digitals. En pagar els reps a l'instant i acceptes que, en tractar-se de contingut digital entregat immediatament, renuncies al dret de desistiment.",
+    "notice": "La descàrrega arriba just després del pagament, amb un enllaç privat que caduca. En comprar acceptes la llicència i renuncies al dret de desistiment, ja que l'arxiu es lliura al moment.",
+    "waiver": "La teua comanda inclou arxius digitals. En pagar els reps a l'instant i acceptes que, en tractar-se de contingut digital lliurat immediatament, renuncies al dret de desistiment.",
     "delivery": {
-      "title": "Els teus fitxers",
+      "title": "Els teus arxius",
       "download": "Descarregar",
-      "notice": "Els enllaços caduquen en una hora. T'he enviat aquest mateix enllaç per correu, així que pots tornar quan vulgues i es generen de nou.",
-      "error": "No he pogut preparar els teus fitxers. Escriu-me i te'ls envio jo mateix."
+      "notice": "Els enllaços caduquen en una hora. T'he enviat este mateix enllaç per correu, així que pots tornar quan vulgues i es generen de nou.",
+      "error": "No he pogut preparar els teus arxius. Escriu-me i te'ls envie jo mateix."
     },
     "tiers": {
       "web": "Pantalla (1920 px)",
@@ -52,14 +52,14 @@
     },
     "email": {
       "subject": "Els teus arxius ja estan llestos",
-      "body": "Gràcies per la teua compra. Pots descarregar els teus arxius des d'aquí:",
-      "notice": "Guarda aquest correu: l'enllaç continua funcionant sempre que el necessites, encara que cada descàrrega es genere de nou cada vegada. Si alguna cosa no va, respon-me i te'ls envio jo mateix. En comprar vas acceptar la llicència de descàrregues i que, en tractar-se de contingut digital lliurat a l'instant, perds el dret de desistiment."
+      "body": "Gràcies per la teua compra. Pots descarregar els teus arxius des d'ací:",
+      "notice": "Guarda este correu: l'enllaç continua funcionant sempre que el necessites, encara que cada descàrrega es genere de nou cada vegada. Si alguna cosa no va, respon-me i te'ls envie jo mateix. En comprar vas acceptar la llicència de descàrregues i que, en tractar-se de contingut digital lliurat a l'instant, perds el dret de desistiment."
     }
   },
   "checkout": {
     "success": {
       "title": "La compra s'ha fet amb èxit!",
-      "message": "Si la teua comanda inclou arxius, els tens aquí mateix. Per a les làmines t'escriuré per correu electrònic."
+      "message": "Si la teua comanda inclou arxius, els tens ací mateix. Per a les làmines t'escriuré per correu electrònic."
     },
     "cancel": {
       "title": "La compra s'ha cancel·lat!",

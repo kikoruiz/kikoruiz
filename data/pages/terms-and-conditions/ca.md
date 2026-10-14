@@ -2,7 +2,7 @@
 
 ## Acceptació dels termes i condicions
 
-En navegar per aquest lloc web i comprar a la seua botiga acceptes aquests termes i condicions. Si no estàs d'acord amb ells, et demane que no faces compres. Qui sóc i com contactar amb mi ho explique a l'[avís legal](/avis-legal).
+En navegar per este lloc web i comprar a la seua botiga acceptes estos termes i condicions. Si no estàs d'acord amb ells, et demane que no faces compres. Qui sóc i com contactar amb mi ho explique a l'[avís legal](/avis-legal).
 
 ## Productes i preus
 
@@ -10,13 +10,13 @@ A la botiga venc impressions i descàrregues digitals de les meues fotografies. 
 
 ## Com es compra i es paga
 
-Afegeixes els productes al carret i pagues en una pantalla de Stripe, que processa els pagaments amb targeta i amb Link. Jo no tinc accés a les dades de la teua targeta. Una vegada confirmat el pagament, el contracte queda formalitzat i reps la confirmació de la compra.
+Afegixes els productes al carret i pagues en una pantalla de Stripe, que processa els pagaments amb targeta i amb Link. Jo no tinc accés a les dades de la teua targeta. Una vegada confirmat el pagament, el contracte queda formalitzat i reps la confirmació de la compra.
 
 ## Descàrregues digitals
 
 Les descàrregues estan disponibles de manera immediata després de confirmar-se el pagament, a la mateixa pàgina de confirmació i mitjançant un enllaç que t'envie per correu. Els enllaços de descàrrega caduquen en una hora, però l'enllaç del correu continua funcionant i genera enllaços nous cada vegada que l'obris.
 
-L'ús de cada arxiu es regeix per la [llicència de descàrregues](/llicencia-de-descarregues), que acceptes en comprar.
+L'ús de cada arxiu es regix per la [llicència de descàrregues](/llicencia-de-descarregues), que acceptes en comprar.
 
 ### Renúncia al desistiment
 
@@ -30,7 +30,7 @@ Les impressions es fan sota comanda i només les envie a adreces d'Espanya. El c
 
 ## Desistiment en les impressions
 
-Tens dret a desistir de la compra d'impressions, sense haver de justificar-ho, en un termini de 14 dies naturals des que les reps. Per exercir-lo, comunica-m'ho per correu a hola@kikoruiz.es indicant la teua comanda, o fes servir el model de formulari que apareix al final d'aquesta pàgina.
+Tens dret a desistir de la compra d'impressions, sense haver de justificar-ho, en un termini de 14 dies naturals des que les reps. Per exercir-lo, comunica-m'ho per correu a hola@kikoruiz.es indicant la teua comanda, o fes servir el model de formulari que apareix al final d'esta pàgina.
 
 Has de tornar-me les impressions sense demora i, com a màxim, en 14 dies des que em comuniques la teua decisió; t'indicaré per correu on enviar-les, i les despeses directes de la devolució van a compte teu. Et reemborsaré l'import, incloses les despeses d'enviament del lliurament inicial, en un màxim de 14 dies des que reba les impressions o em demostres que les has enviat. Les impressions han d'arribar en bon estat; si s'han danyat per un mal maneig, puc descomptar la disminució del seu valor.
 
@@ -52,19 +52,19 @@ Tracte les teues dades personals segons la [política de privacitat](/politica-d
 
 ## Modificació dels termes i condicions
 
-Puc actualitzar aquests termes en qualsevol moment. Els canvis s'apliquen des que es publiquen al lloc, però no a les compres que ja hages fet, que es regeixen pels termes vigents quan vas comprar.
+Puc actualitzar estos termes en qualsevol moment. Els canvis s'apliquen des que es publiquen al lloc, però no a les compres que ja hages fet, que es regixen pels termes vigents quan vas comprar.
 
 ## Legislació aplicable i reclamacions
 
-Aquests termes es regeixen per la legislació espanyola. Si ets consumidor, conserves els drets que et reconega la normativa del teu lloc de residència. Si tens una reclamació, escriu-me i faré el possible per resoldre-la; també pots acudir als organismes de consum que et corresponguen.
+Estos termes es regixen per la legislació espanyola. Si ets consumidor, conserves els drets que et reconega la normativa del teu lloc de residència. Si tens una reclamació, escriu-me i faré el possible per resoldre-la; també pots acudir als organismes de consum que et corresponguen.
 
 ## Contacte
 
-Si tens alguna pregunta sobre aquests termes, [escriu-me](/#contacte).
+Si tens alguna pregunta sobre estos termes, [escriu-me](/#contacte).
 
 ## Model de formulari de desistiment
 
-Omple i envia aquest formulari per correu a hola@kikoruiz.es només si vols desistir de la compra d'impressions:
+Omple i envia este formulari per correu a hola@kikoruiz.es només si vols desistir de la compra d'impressions:
 
 - A l'atenció de Kiko Ruiz (hola@kikoruiz.es; les meues dades completes estan a l'avís legal): per la present et comunique que desistisc del meu contracte de compra de les impressions següents: [producte i número de comanda].
 - Comanda feta el [data] i rebuda el [data].

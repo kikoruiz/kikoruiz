@@ -1,8 +1,8 @@
 Última actualització: **14 d'octubre de 2026**
 
-## Què cobreix aquesta llicència
+## Què cobrix esta llicència
 
-Aquesta llicència regula l'ús dels arxius que compres a la [botiga de descàrregues](/botiga/descarregues). En comprar-los no adquireixes les fotografies ni els seus drets d'autor, que continuen sent meus, sinó una llicència per usar-les en les condicions que es descriuen ací. Acceptes aquesta llicència en fer la compra.
+Esta llicència regula l'ús dels arxius que compres a la [botiga de descàrregues](/botiga/descarregues). En comprar-los no adquirixes les fotografies ni els seus drets d'autor, que continuen sent meus, sinó una llicència per usar-les en les condicions que es descriuen ací. Acceptes esta llicència en fer la compra.
 
 ## Nivells de llicència
 
@@ -19,7 +19,7 @@ Amb una llicència d'ús personal pots:
 - Imprimir-la per a tu, per decorar casa teua o per regalar-la, sempre sense ànim de venda.
 - Guardar-la al teu arxiu i usar-la en projectes propis que no publiques ni monetitzes.
 
-Amb una llicència d'ús personal **no** pots publicar la imatge en cap mitjà, com ara una pàgina web, un blog o les xarxes socials, ni usar-la en una activitat professional, empresarial o d'una organització. Per a aquests usos necessites la llicència comercial.
+Amb una llicència d'ús personal **no** pots publicar la imatge en cap mitjà, com ara una pàgina web, un blog o les xarxes socials, ni usar-la en una activitat professional, empresarial o d'una organització. Per a estos usos necessites la llicència comercial.
 
 ## Ús comercial
 
@@ -37,7 +37,7 @@ Si ets dissenyador o agència, pots usar la imatge en el treball que lliures al 
 
 Totes les llicències són:
 
-- **Perpètues:** no caduquen, llevat que incomplisques aquestes condicions.
+- **Perpètues:** no caduquen, llevat que incomplisques estes condicions.
 - **Mundials:** valen a qualsevol país.
 - **No exclusives:** jo puc continuar usant i llicenciant la imatge a altres persones.
 - **Intransferibles:** la llicència és teua o de la teua empresa i no pots cedir-la ni vendre-la.
@@ -54,15 +54,15 @@ En cap nivell de llicència pots:
 
 ## Persones, marques i propietats
 
-La llicència només cobreix els meus drets d'autor sobre la fotografia. No inclou l'autorització de les persones, marques, obres o propietats que hi puguen aparéixer. Comprovar si necessites aquesta autorització per a l'ús que li vas a donar és responsabilitat teua, sobretot en l'ús comercial.
+La llicència només cobrix els meus drets d'autor sobre la fotografia. No inclou l'autorització de les persones, marques, obres o propietats que hi puguen aparéixer. Comprovar si necessites esta autorització per a l'ús que li vas a donar és responsabilitat teua, sobretot en l'ús comercial.
 
 ## Incompliment
 
-Si incompleixes aquestes condicions, la teua llicència queda sense efecte i has de deixar d'usar la imatge, sense perjudici de les accions legals que em corresponguen.
+Si incomplixes estes condicions, la teua llicència queda sense efecte i has de deixar d'usar la imatge, sense perjudici de les accions legals que em corresponguen.
 
 ## Garantia i canvis
 
-Lliure l'arxiu tal qual. Si no pots descarregar-lo o arriba danyat, escriu-me i te'l reposaré o et tornaré l'import. Si canvie aquestes condicions, els canvis no afecten les llicències que ja hages comprat.
+Lliure l'arxiu tal qual. Si no pots descarregar-lo o arriba danyat, escriu-me i te'l reposaré o et tornaré l'import. Si canvie estes condicions, els canvis no afecten les llicències que ja hages comprat.
 
 ## Altres usos
 

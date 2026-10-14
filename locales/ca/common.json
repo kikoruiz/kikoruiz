@@ -22,11 +22,11 @@
     },
     "gallery": {
       "name": "Galeria",
-      "description": "Descobreix la meua forma de veure el món mitjançant diverses àrees fotogràfiques."
+      "description": "Descobrix la meua forma de veure el món mitjançant diverses àrees fotogràfiques."
     },
     "blog": {
       "name": "Blog",
-      "description": "Articles sobre fotografia, desenvolupament web i algunes experiències propies."
+      "description": "Articles sobre fotografia, desenvolupament web i algunes experiències pròpies."
     },
     "store": {
       "name": "Botiga",
@@ -123,11 +123,11 @@
       },
       "draft": "Pròximament...",
       "available-locales": {
-        "warning": "El contingut d'aquest artícle nomès està disponible en llengua castellana"
+        "warning": "El contingut d'este article només està disponible en llengua castellana"
       }
     },
     "available-locales": {
-      "warning": "El contingut dels artícles nomès està disponible en llengua castellana"
+      "warning": "El contingut dels articles només està disponible en llengua castellana"
     }
   },
   "about-me": {
@@ -160,11 +160,11 @@
       "nif": "NIF",
       "address": "Domicili",
       "email": "Correu electrònic",
-      "unavailable": "Escriu-me a hola@kikoruiz.es i te facilite aquestes dades."
+      "unavailable": "Escriu-me a hola@kikoruiz.es i te facilite estes dades."
     },
     "cookies": {
       "banner": {
-        "description": "Hola! 🍪 Utilitzem **galetes** pròpies i de tercers per millorar la teva experiència al nostre lloc web i oferir-te contingut personalitzat. Pots acceptar totes les galetes o configurar-les segons les teves preferències. Per a més informació, consulta la nostra [política de galetes](/politica-de-galetes)."
+        "description": "Hola! 🍪 Utilitzem **galetes** pròpies i de tercers per millorar la teua experiència al nostre lloc web i oferir-te contingut personalitzat. Pots acceptar totes les galetes o configurar-les segons les teues preferències. Per a més informació, consulta la nostra [política de galetes](/politica-de-galetes)."
       },
       "modal": {
         "close": "Tancar",
@@ -180,22 +180,22 @@
           },
           "open-modal": {
             "name": "Configurar galetes",
-            "description": "Personalitza la teva configuració de galetes o obtén més informació sobre com les utilitzem."
+            "description": "Personalitza la teua configuració de galetes o obtín més informació sobre com les utilitzem."
           },
           "save": {
-            "name": "Desar configuració",
-            "description": "Desa la configuració de galetes seleccionada."
+            "name": "Guardar configuració",
+            "description": "Guarda la configuració de galetes seleccionada."
           }
         }
       },
       "types": {
         "necessary": {
           "description": "Galetes essencials",
-          "purpose": "Aquestes galetes són necessàries perquè el nostre lloc web funcioni correctament. No recopilen informació personal i no es poden desactivar."
+          "purpose": "Estes galetes són necessàries perquè el nostre lloc web funcione correctament. No recopilen informació personal i no es poden desactivar."
         },
         "third-party": {
           "description": "Galetes d'anàlisi o seguiment",
-          "purpose": "Les galetes d'anàlisi permeten al nostre lloc web i a tercers recopilar dades sobre com interactues. Aquesta informació pot incloure pàgines visitades, temps dedicat al lloc, clics realitzats, preferències de navegació i altres dades similars. Les dades recopilades a través d'aquestes galetes s'utilitzen per crear perfils d'usuari i comprendre millor les preferències i el comportament de l'usuari en línia."
+          "purpose": "Les galetes d'anàlisi permeten al nostre lloc web i a tercers recopilar dades sobre com interactues. Esta informació pot incloure pàgines visitades, temps dedicat al lloc, clics realitzats, preferències de navegació i altres dades similars. Les dades recopilades a través d'estes galetes s'utilitzen per crear perfils d'usuari i comprendre millor les preferències i el comportament de l'usuari en línia."
         }
       }
     }
