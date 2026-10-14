@@ -99,7 +99,7 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
           {column.map(({id, name, href, links}) => (
             <div key={id} className="break-inside-avoid-column pb-9 xl:pb-0">
               <header className="mb-1.5 font-bold text-neutral-100">
-                {href ? (
+                {href && currentPath !== href ? (
                   <Link
                     href={href}
                     title={name}
@@ -108,7 +108,12 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
                     {name}
                   </Link>
                 ) : (
-                  name
+                  // On its own page a heading is no longer a way to go
+                  // anywhere, and it keeps looking the same: only the child
+                  // links are marked.
+                  <span aria-current={currentPath === href ? 'page' : undefined}>
+                    {name}
+                  </span>
                 )}
               </header>
 
