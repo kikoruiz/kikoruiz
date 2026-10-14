@@ -87,7 +87,22 @@ module.exports = {
     '/en/aviso-legal'
   ],
   robotsTxtOptions: {
-    policies: [{userAgent: '*', allow: '/', disallow: ['/api/']}]
+    policies: [
+      {userAgent: '*', allow: '/', disallow: ['/api/']},
+      // The copyright page reserves the pictures against text and data mining,
+      // and this is the machine-readable form of that reservation. These are
+      // the crawlers that gather training data, not the ones behind search.
+      ...[
+        'GPTBot',
+        'Google-Extended',
+        'CCBot',
+        'ClaudeBot',
+        'anthropic-ai',
+        'Applebot-Extended',
+        'Bytespider',
+        'meta-externalagent'
+      ].map(userAgent => ({userAgent, disallow: '/'}))
+    ]
   },
   transform: async (config, path) => ({
     loc: `${config.siteUrl}${path}`,
