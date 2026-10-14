@@ -1,6 +1,6 @@
 # 👋 Hi, I'm Kiko Ruiz
 
-[![Kiko posing on a mountain summit with a stormy sunset, a rainbow, and dramatic clouds in the background](https://www.kikoruiz.es/pictures/2024-08-14_0070.jpg)](https://www.kikoruiz.es)
+[![Kiko posing on a mountain summit with a stormy sunset, a rainbow, and dramatic clouds in the background](https://www.kikoruiz.es/pictures/optimized/2024-08-14_0070-1080w.webp)](https://www.kikoruiz.es)
 
 ## 🚀 About Me
 
