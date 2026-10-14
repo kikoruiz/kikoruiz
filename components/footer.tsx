@@ -5,7 +5,6 @@ import SocialLinks from './social-links'
 import IconLanguage from 'assets/icons/language.svg'
 import {Alternate} from 'types'
 import FooterLinks from './footer-links'
-import FooterSections from './footer-sections'
 
 interface FooterProps {
   alternates: Alternate[]
@@ -59,8 +58,6 @@ function Footer({alternates}: FooterProps) {
             ))}
           </select>
         </div>
-
-        <FooterSections />
 
         <FooterLinks />
 
