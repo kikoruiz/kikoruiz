@@ -42,7 +42,7 @@
       "error": "I could not get your files ready. Write to me and I will send them over myself."
     },
     "tiers": {
-      "web": "Screen and web (1920 px)",
+      "web": "Screen (1920 px)",
       "full-resolution": "Full resolution",
       "commercial": "Commercial licence"
     },

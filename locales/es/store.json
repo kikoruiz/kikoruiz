@@ -42,7 +42,7 @@
       "error": "No he podido preparar tus archivos. Escríbeme y te los envío yo mismo."
     },
     "tiers": {
-      "web": "Pantalla y web (1920 px)",
+      "web": "Pantalla (1920 px)",
       "full-resolution": "Resolución completa",
       "commercial": "Licencia comercial"
     },
