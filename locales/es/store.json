@@ -53,7 +53,7 @@
     "email": {
       "subject": "Tus archivos ya están listos",
       "body": "Gracias por tu compra. Puedes descargar tus archivos desde aquí:",
-      "notice": "Guarda este correo: el enlace sigue funcionando siempre que lo necesites, aunque cada descarga se genere de nuevo cada vez. Si algo no va, respóndeme y te los envío yo mismo."
+      "notice": "Guarda este correo: el enlace sigue funcionando siempre que lo necesites, aunque cada descarga se genere de nuevo cada vez. Si algo no va, respóndeme y te los envío yo mismo. Al comprar aceptaste la licencia de descargas y que, al tratarse de contenido digital entregado al instante, pierdes el derecho de desistimiento."
     }
   },
   "checkout": {

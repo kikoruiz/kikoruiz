@@ -53,7 +53,7 @@
     "email": {
       "subject": "Your files are ready",
       "body": "Thanks for your purchase. You can download your files here:",
-      "notice": "Keep this email: the link keeps working whenever you need it, even though each download is generated anew every time. If anything goes wrong, reply to me and I will send them over myself."
+      "notice": "Keep this email: the link keeps working whenever you need it, even though each download is generated anew every time. If anything goes wrong, reply to me and I will send them over myself. By buying you accepted the downloads licence and that, as digital content delivered immediately, you lose the right of withdrawal."
     }
   },
   "checkout": {

@@ -53,7 +53,7 @@
     "email": {
       "subject": "Els teus arxius ja estan llestos",
       "body": "Gràcies per la teua compra. Pots descarregar els teus arxius des d'aquí:",
-      "notice": "Guarda aquest correu: l'enllaç continua funcionant sempre que el necessites, encara que cada descàrrega es genere de nou cada vegada. Si alguna cosa no va, respon-me i te'ls envio jo mateix."
+      "notice": "Guarda aquest correu: l'enllaç continua funcionant sempre que el necessites, encara que cada descàrrega es genere de nou cada vegada. Si alguna cosa no va, respon-me i te'ls envio jo mateix. En comprar vas acceptar la llicència de descàrregues i que, en tractar-se de contingut digital lliurat a l'instant, perds el dret de desistiment."
     }
   },
   "checkout": {
