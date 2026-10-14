@@ -59,7 +59,7 @@ function Footer({alternates}: FooterProps) {
           </select>
         </div>
 
-        <FooterLinks />
+        <FooterLinks alternates={alternates} />
 
         <SocialLinks />
       </div>

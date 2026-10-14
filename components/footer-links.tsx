@@ -3,6 +3,7 @@ import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {getSlug} from 'lib/utils'
 import {LEGAL_PAGES, SECTIONS} from 'config'
+import {Alternate} from 'types'
 import commonES from '../locales/es/common.json'
 
 interface FooterGroup {
@@ -12,9 +13,22 @@ interface FooterGroup {
   links: {id: string; name: string; href: string; isCurrent?: boolean}[]
 }
 
-export default function FooterLinks() {
-  const {pathname} = useRouter()
+export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
+  const {pathname, locale, defaultLocale} = useRouter()
   const {t} = useTranslation()
+  // The canonical address of the page is the one place that always says where
+  // we are in the language being read, even when the URL is a rewrite of a
+  // Spanish route, so the links are compared against it rather than against
+  // the router's own path.
+  const currentHref = alternates?.find(alternate => alternate.locale === locale)
+    ?.href
+  const localePrefix = locale === defaultLocale ? '' : `/${locale}`
+  const currentPath = currentHref
+    ? new URL(currentHref).pathname.replace(
+        new RegExp(`^${localePrefix}(?=/|$)`),
+        ''
+      ) || '/'
+    : null
   const sectionGroups: FooterGroup[] = SECTIONS.map(section => {
     const name = t(`sections.${section.id}.name`)
     const href = `/${getSlug(name)}`
@@ -25,11 +39,13 @@ export default function FooterLinks() {
       href,
       links: (section.categories ?? []).map(({id}) => {
         const categoryName = t(`${section.localePrefix}${id}.name`)
+        const categoryHref = `${href}/${getSlug(categoryName)}`
 
         return {
           id,
           name: categoryName,
-          href: `${href}/${getSlug(categoryName)}`
+          href: categoryHref,
+          isCurrent: currentPath === categoryHref
         }
       })
     }
@@ -76,11 +92,13 @@ export default function FooterLinks() {
           </header>
 
           {links.length > 0 && (
-            <ul>
+            <ul className="space-y-3 text-sm">
               {links.map(link => (
                 <li key={link.id} className="font-light">
                   {link.isCurrent ? (
-                    <span className="text-neutral-300">{link.name}</span>
+                    <span aria-current="page" className="text-neutral-300">
+                      {link.name}
+                    </span>
                   ) : (
                     <Link
                       href={link.href}
