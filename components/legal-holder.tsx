@@ -42,6 +42,13 @@ export default function LegalHolder() {
     {key: 'email', value: PERSONAL_INFO.email}
   ]
 
+  // The address is written over two lines, so its placeholder takes two as
+  // well, or the card would jump in height when the data arrives. Each bar sits
+  // in a line as tall as a line of text for the same reason.
+  const placeholderLines: Record<string, string[]> = {
+    address: ['w-44', 'w-32']
+  }
+
   return (
     <dl
       aria-busy={!holder && !hasFailed}
@@ -53,9 +60,19 @@ export default function LegalHolder() {
             {t(`legal.holder.${key}`)}
           </dt>
 
-          <dd className="font-medium text-neutral-300/90">
+          <dd
+            className={`font-medium text-neutral-300/90${
+              key === 'address' ? ' whitespace-pre-line' : ''
+            }`}
+          >
             {value === null ? (
-              <span className="inline-block h-3 w-36 animate-pulse rounded bg-neutral-700/40" />
+              (placeholderLines[key] ?? ['w-36']).map((width, line) => (
+                <span key={line} className="flex h-5 items-center">
+                  <span
+                    className={`h-3 ${width} animate-pulse rounded bg-neutral-700/40`}
+                  />
+                </span>
+              ))
             ) : key === 'email' ? (
               <a href={`mailto:${value}`} className="hover:text-orange-200">
                 {value}

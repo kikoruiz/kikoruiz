@@ -21,5 +21,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(404).json({message: 'The holder is not configured.'})
   }
 
-  res.status(200).json({name, nif, address})
+  // An env value is a single line wherever it is typed, so a line break in the
+  // address is written as a literal "\n", which is turned into a real one here.
+  // A value entered over several lines already carries real breaks and is kept.
+  res.status(200).json({name, nif, address: address.replace(/\\n/g, '\n')})
 }
