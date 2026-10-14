@@ -14,4 +14,4 @@ Valore tots i cadascun dels passos del **procés creatiu** pel qual em trasllada
 
 ## Actualment
 
-treballe com a **enginyer de software** 💻 a l'equip de _Plataforma Web_ d'Adevinta Spain, donant suport als desenvolupadors que hi ha als diferents marketplaces de la companyia (com [Coches.net](https://www.coches.net), [Fotocasa](https://www.fotocasa.es/es) o [InfoJobs](https://www.infojobs.net)), prioritzant la qualitat, estabilitat i optimització de les seues aplicacions web.
+treballe com a **Staff Front-End Engineer** 💻 en un equip transversal de Coches.net Group, unificant i actualitzant el stack de les aplicacions web de [Coches.net](https://www.coches.net) i [Motos.net](https://www.motos.net), estandarditzant l'ús de la IA i donant suport als equips de desenvolupament, prioritzant la qualitat, estabilitat i optimització de les seues aplicacions web.

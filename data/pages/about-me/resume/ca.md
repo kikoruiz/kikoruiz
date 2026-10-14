@@ -1,26 +1,40 @@
 ---
 name: Kiko Ruiz Lloret
-jobTitle: Front-End Engineer / Tech Lead
+jobTitle: Staff Front-End Engineer
 ---
 
-Sóc un **enginyer front-end** amb àmplia experiència en la creació d'aplicacions web escalables i mantenibles, així com en el disseny d'interfícies _user centric_. Al llarg dels anys, he assumit rols amb més responsabilitat, i actualment sóc **Staff Front-End Engineer** a **Adevinta Spain**, on lidere la convergència entre diferents equips i assegure l'alineació en decisions tècniques clau per al desenvolupament del front-end. Em centre en optimitzar els fluxos de treball de la plataforma front-end i en garantir pràctiques consistents en tota l'organització.
+Sóc un **enginyer front-end** amb àmplia experiència en la creació d'aplicacions web escalables i mantenibles, així com en el disseny d'interfícies _user centric_. Al llarg dels anys, he assumit rols amb més responsabilitat i actualment sóc **Staff Front-End Engineer** a **Coches.net Group**, on forme part d'un equip transversal que unifica i actualitza el stack tecnològic de la companyia i garanteix l'alineació en decisions tècniques clau. El meu principal enfocament està en optimitzar els fluxos de treball i assegurar pràctiques consistents en tota l'organització.
 
-En este paper, co-lidere la creació del **_golden path_** per al desenvolupament front-end, guiant els equips en l'adopció d'un stack unificat i de millors pràctiques que fomenten l'eficiència i escalabilitat. Facilite acords sobre eleccions tecnològiques, assegurant que els equips estiguen alineats i que les solucions tècniques siguen coherents en tots els verticals. A més, prioritze l'**observabilitat**, assegurant que els nostres sistemes oferisquen una visió clara del rendiment i la fiabilitat, donant suport al desenvolupament d'eines compartides com el [sistema de disseny SUI Components](https://github.com/SUI-Components/sui-components) i el [set d'eines SUI](https://github.com/SUI-Components/sui).
+En este paper, lidere la unificació del stack front-end, amb la migració del monorepo de Coches.net i Motos.net a **Vite** i **React Router 7** com a principal fita, i definisc com s'usa la **intel·ligència artificial** en el dia a dia del desenvolupament. Avalue la incorporació de nous llenguatges i tecnologies, dinamitze la comunitat tècnica, coordine grans projectes tecnològics juntament amb altres disciplines i participe en el procés de _hiring_. A més, prioritze l'**observabilitat**, assegurant que els nostres sistemes oferisquen una visió clara del rendiment i la fiabilitat, donant suport al mateix temps al desenvolupament d'eines compartides com el [sistema de disseny SUI Components](https://github.com/SUI-Components/sui-components) i el [set d'eines SUI](https://github.com/SUI-Components/sui).
 
 ## Experiència professional
 
-### Adevinta Spain
+### Coches.net Group
 
-Març 2019 - Actualitat
+Novembre 2024 - Actualitat
 
 #### Staff Front-End Engineer
 
-- Facilite acords entre els equips per assegurar que tots els verticals (_Motor_, _Real Estate_, _Jobs_, etc.) adopten i seguisquen el **_golden path_**.
-- Desenvolupe eines compartides per optimitzar els fluxos de treball del front-end.
-- Proporcione orientació sobre la implementació de CI/CD i millores en el temps de compilació i desplegament.
-- Participe activament en decisions tècniques clau, donant suport als equips en la definició de les seues fulles de ruta tecnològiques i en la resolució de problemes complexos.
-- Fomente la col·laboració i l'intercanvi de coneixements entre els diferents verticals de l'empresa.
-- Done suport a la modernització del stack tecnològic mitjançant la formació i assistència als equips de desenvolupament.
+- Lidere la unificació i actualització del stack front-end de Coches.net i Motos.net: migració del monorepo (més de 500 paquets de components) a **Vite** i **React Router 7** amb renderitzat en servidor, amb un panell de seguiment per a mesurar l'avanç.
+- Definisc i promocione l'ús estandarditzat de la **IA** en el desenvolupament, amb regles, _skills_ i bones pràctiques compartides per tots els equips.
+- Avalue l'adopció de nous llenguatges i tecnologies i acompanye els equips en la seua incorporació al stack.
+- Impulse els paquets compartits (eines d'empaquetat, _tracking_, consentiment i publicitat) i millore la integració i el desplegament continus (GitHub Actions, contenidors, Kubernetes) i l'observabilitat amb Datadog.
+- Lidere grans projectes tecnològics que impliquen altres disciplines, des de la planificació fins al lliurament.
+- Dinamitze la comunitat tècnica i fomente l'intercanvi de coneixements entre equips.
+- Participe en el procés de _hiring_, dissenyant les proves tècniques i els criteris d'avaluació de les entrevistes.
+
+### Adevinta Spain
+
+Març 2019 - Octubre 2024
+
+#### Staff Front-End Engineer
+
+- Vaig facilitar acords entre els equips per assegurar que tots els verticals (_Motor_, _Real Estate_, _Jobs_, etc.) adoptaren i seguiren el **_golden path_**.
+- Vaig desenvolupar eines compartides per optimitzar els fluxos de treball del front-end.
+- Vaig proporcionar orientació sobre la implementació de CI/CD i millores en el temps de compilació i desplegament.
+- Vaig participar activament en decisions tècniques clau, donant suport als equips en la definició de les seues fulles de ruta tecnològiques i en la resolució de problemes complexos.
+- Vaig fomentar la col·laboració i l'intercanvi de coneixements entre els diferents verticals de l'empresa.
+- Vaig donar suport a la modernització del stack tecnològic mitjançant la formació i assistència als equips de desenvolupament.
 
 Febrer 2016 - Febrer 2019
 
@@ -100,12 +114,16 @@ Abril 2008 - Abril 2009
 - Sass
 - Node.js
 - React
+- React Router
+- Vite
 - Webpack
 - SWC
 - Next.js
+- Storybook
 - Cypress
 - Jest
 - Vitest
+- MSW
 - Pact (tests de contracte)
 - TDD
 - Git
@@ -113,10 +131,12 @@ Abril 2008 - Abril 2009
 - Travis
 - Docker
 - Kubernetes
+- AWS
 - DDD
 - Arquitectura hexagonal
 - Scrum
 - Datadog
+- IA aplicada al desenvolupament
 
 ## Idiomes
 

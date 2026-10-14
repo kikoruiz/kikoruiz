@@ -1,26 +1,40 @@
 ---
 name: Kiko Ruiz Lloret
-jobTitle: Front-End Engineer / Tech Lead
+jobTitle: Staff Front-End Engineer
 ---
 
-I'm a **Front-End Engineer** with extensive experience in building scalable, maintainable web applications and designing user-centric interfaces. Over the years, I've taken on roles with increasing responsibility, currently serving as a **Staff Front-End Engineer** at **Adevinta Spain**, where I drive convergence across multiple teams and ensure alignment on key technical decisions for front-end development. My focus is on optimizing front-end workflows and ensuring consistent practices across the organization.
+I'm a **Front-End Engineer** with extensive experience in building scalable, maintainable web applications and designing user-centric interfaces. Over the years, I've taken on roles with increasing responsibility, currently serving as a **Staff Front-End Engineer** at **Coches.net Group**, where I'm part of a cross-functional team that unifies and updates the company's tech stack and ensures alignment on key technical decisions. My focus is on optimizing workflows and ensuring consistent practices across the organization.
 
-In this role, I colead the creation of the **_golden path_** for front-end development, guiding teams in adopting a unified stack and best practices that foster efficiency and scalability. I facilitate agreements on technology choices, ensuring that teams remain aligned and that technical solutions are cohesive across verticals. Additionally, I prioritize **observability**, ensuring our systems provide clear insights into performance and reliability, while supporting the development of shared tools like the [SUI Components design system](https://github.com/SUI-Components/sui-components) and the [SUI toolkit](https://github.com/SUI-Components/sui).
+In this role, I lead the unification of the front-end stack, with the migration of the Coches.net and Motos.net monorepo to **Vite** and **React Router 7** as the main milestone, and I define how **artificial intelligence** is used in everyday development. I assess new languages and technologies, foster the technical community, coordinate large tech projects alongside other disciplines and take part in the _hiring_ process. Additionally, I prioritize **observability**, ensuring our systems provide clear insights into performance and reliability, while supporting the development of shared tools like the [SUI Components design system](https://github.com/SUI-Components/sui-components) and the [SUI toolkit](https://github.com/SUI-Components/sui).
 
 ## Work experience
 
-### Adevinta Spain
+### Coches.net Group
 
-March 2019 - Present
+November 2024 - Present
 
 #### Staff Front-End Engineer
 
-- Facilitating agreements between teams to ensure that all verticals (_Motor_, _Real Estate_, _Jobs_, etc.) adopt and follow the **_golden path_**.
-- Developing shared tools to optimize front-end workflows.
-- Providing guidance on CI/CD implementation and build time and deployment improvements.
-- Actively involved in key technical decisions, supporting teams in defining their technology roadmaps and solving complex issues.
-- Fostering collaboration and knowledge sharing among different company verticals.
-- Supporting the modernization of the tech stack by providing training and assistance to development teams.
+- Leading the unification and modernization of the Coches.net and Motos.net front-end stack: migrating the monorepo (500+ component packages) to **Vite** and **React Router 7** with server-side rendering, with a tracking dashboard to measure progress.
+- Defining and promoting the standardized use of **AI** in development, with rules, skills and best practices shared by all teams.
+- Assessing the adoption of new languages and technologies and supporting teams as they bring them into the stack.
+- Driving the shared packages (bundling tools, tracking, consent and advertising) and improving continuous integration and deployment (GitHub Actions, containers, Kubernetes) and observability with Datadog.
+- Leading large tech projects that involve other disciplines, from planning through delivery.
+- Fostering the technical community and knowledge sharing across teams.
+- Taking part in the _hiring_ process, designing the technical exercises and the evaluation criteria for interviews.
+
+### Adevinta Spain
+
+March 2019 - October 2024
+
+#### Staff Front-End Engineer
+
+- Facilitated agreements between teams to ensure that all verticals (_Motor_, _Real Estate_, _Jobs_, etc.) adopted and followed the **_golden path_**.
+- Developed shared tools to optimize front-end workflows.
+- Provided guidance on CI/CD implementation and build time and deployment improvements.
+- Was actively involved in key technical decisions, supporting teams in defining their technology roadmaps and solving complex issues.
+- Fostered collaboration and knowledge sharing among different company verticals.
+- Supported the modernization of the tech stack by providing training and assistance to development teams.
 
 February 2016 - February 2019
 
@@ -103,23 +117,29 @@ April 2008 - April 2009
 - Sass
 - Node.js
 - React
+- React Router
+- Vite
 - Webpack
 - SWC
 - Next.js
+- Storybook
 - Cypress
 - Jest
 - Vitest
+- MSW
 - Pact (contract testing)
 - Git
 - GitHub Actions
 - Travis
 - Docker
 - Kubernetes
+- AWS
 - TDD
 - DDD
 - Hexagonal architecture
 - Scrum
 - Datadog
+- AI-assisted development
 
 ## Languages
 

@@ -14,4 +14,4 @@ es (desde hace muchos años también) el **diseño** 🎨. En realidad me inici�
 
 ## Actualmente
 
-trabajo como **ingeniero de software** 💻 en el equipo de _Plataforma Web_ de Adevinta Spain, dando soporte a los desarrolladores que hay en los diferentes marketplaces de la compañía (como [Coches.net](https://www.coches.net), [Fotocasa](https://www.fotocasa.es/es) o [InfoJobs](https://www.infojobs.net)), priorizando la calidad, estabilidad y optimización de sus aplicaciones web.
+trabajo como **Staff Front-End Engineer** 💻 en un equipo transversal de Coches.net Group, unificando y actualizando el stack de las aplicaciones web de [Coches.net](https://www.coches.net) y [Motos.net](https://www.motos.net), estandarizando el uso de la IA y dando soporte a los equipos de desarrollo, priorizando la calidad, estabilidad y optimización de sus aplicaciones web.

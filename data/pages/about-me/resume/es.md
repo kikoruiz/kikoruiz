@@ -1,26 +1,40 @@
 ---
 name: Kiko Ruiz Lloret
-jobTitle: Front-End Engineer / Tech Lead
+jobTitle: Staff Front-End Engineer
 ---
 
-Soy un **ingeniero front-end** con amplia experiencia en la creación de aplicaciones web escalables y mantenibles, así como en el diseño de interfaces _user centric_. A lo largo de los años, he asumido roles con mayor responsabilidad y actualmente soy **Staff Front-End Engineer** en **Adevinta Spain**, donde lidero la convergencia entre varios equipos y garantizo la alineación en decisiones técnicas clave para el desarrollo de la plataforma front-end. Mi principal enfoque está en optimizar los flujos de trabajo y asegurar prácticas consistentes en toda la organización.
+Soy un **ingeniero front-end** con amplia experiencia en la creación de aplicaciones web escalables y mantenibles, así como en el diseño de interfaces _user centric_. A lo largo de los años, he asumido roles con mayor responsabilidad y actualmente soy **Staff Front-End Engineer** en **Coches.net Group**, donde formo parte de un equipo transversal que unifica y actualiza el stack tecnológico de la compañía y garantiza la alineación en decisiones técnicas clave. Mi principal enfoque está en optimizar los flujos de trabajo y asegurar prácticas consistentes en toda la organización.
 
-En este rol, co-lidero la creación del **_golden path_** para el desarrollo front-end, guiando a los equipos en la adopción de un stack unificado y mejores prácticas que fomenten la eficiencia y escalabilidad. Facilito acuerdos sobre decisiones tecnológicas, asegurando que los equipos estén alineados y que las soluciones sean coherentes en todos los verticales. Además, priorizo la **observabilidad**, garantizando que nuestros sistemas ofrezcan una visión clara del rendimiento y la fiabilidad, apoyando al mismo tiempo el desarrollo de herramientas compartidas como el [sistema de diseño SUI Components](https://github.com/SUI-Components/sui-components) y el [set de herramientas SUI](https://github.com/SUI-Components/sui).
+En este rol, lidero la unificación del stack front-end, con la migración del monorepo de Coches.net y Motos.net a **Vite** y **React Router 7** como principal hito, y defino cómo se usa la **inteligencia artificial** en el día a día del desarrollo. Evalúo la incorporación de nuevos lenguajes y tecnologías, dinamizo la comunidad técnica, coordino grandes proyectos tecnológicos junto a otras disciplinas y participo en el proceso de _hiring_. Además, priorizo la **observabilidad**, garantizando que nuestros sistemas ofrezcan una visión clara del rendimiento y la fiabilidad, apoyando al mismo tiempo el desarrollo de herramientas compartidas como el [sistema de diseño SUI Components](https://github.com/SUI-Components/sui-components) y el [set de herramientas SUI](https://github.com/SUI-Components/sui).
 
 ## Experiencia profesional
 
-### Adevinta Spain
+### Coches.net Group
 
-Marzo 2019 - Actualidad
+Noviembre 2024 - Actualidad
 
 #### Staff Front-End Engineer
 
-- Facilito acuerdos entre los equipos para asegurar que todos los verticales (_Motor_, _Real Estate_, _Jobs_, etc.) adopten y sigan el **_golden path_**.
-- Desarrollo herramientas compartidas para optimizar los flujos de trabajo del front-end.
-- Proporciono orientación sobre la implementación de CI/CD y mejoras en el tiempo de compilación y despliegue.
-- Participo activamente en decisiones técnicas clave, apoyando a los equipos en la definición de sus hojas de ruta tecnológicas y en la resolución de problemas complejos.
-- Fomento la colaboración y el intercambio de conocimientos entre los diferentes verticales de la empresa.
-- Apoyo la modernización del stack tecnológico mediante la formación y asistencia a los equipos de desarrollo.
+- Lidero la unificación y actualización del stack front-end de Coches.net y Motos.net: migración del monorepo (más de 500 paquetes de componentes) a **Vite** y **React Router 7** con renderizado en servidor, con un panel de seguimiento para medir el avance.
+- Defino y promuevo el uso estandarizado de la **IA** en el desarrollo, con reglas, _skills_ y buenas prácticas compartidas por todos los equipos.
+- Evalúo la adopción de nuevos lenguajes y tecnologías y acompaño a los equipos en su incorporación al stack.
+- Impulso los paquetes compartidos (herramientas de empaquetado, _tracking_, consentimiento y publicidad) y mejoro la integración y el despliegue continuos (GitHub Actions, contenedores, Kubernetes) y la observabilidad con Datadog.
+- Lidero grandes proyectos tecnológicos que implican a otras disciplinas, desde la planificación hasta la entrega.
+- Dinamizo la comunidad técnica y fomento el intercambio de conocimientos entre equipos.
+- Participo en el proceso de _hiring_, diseñando las pruebas técnicas y los criterios de evaluación de las entrevistas.
+
+### Adevinta Spain
+
+Marzo 2019 - Octubre 2024
+
+#### Staff Front-End Engineer
+
+- Facilité acuerdos entre los equipos para asegurar que todos los verticales (_Motor_, _Real Estate_, _Jobs_, etc.) adoptaran y siguieran el **_golden path_**.
+- Desarrollé herramientas compartidas para optimizar los flujos de trabajo del front-end.
+- Proporcioné orientación sobre la implementación de CI/CD y mejoras en el tiempo de compilación y despliegue.
+- Participé activamente en decisiones técnicas clave, apoyando a los equipos en la definición de sus hojas de ruta tecnológicas y en la resolución de problemas complejos.
+- Fomenté la colaboración y el intercambio de conocimientos entre los diferentes verticales de la empresa.
+- Apoyé la modernización del stack tecnológico mediante la formación y asistencia a los equipos de desarrollo.
 
 Febrero 2016 - Febrero 2019
 
@@ -100,12 +114,16 @@ Abril 2008 - Abril 2009
 - Sass
 - Node.js
 - React
+- React Router
+- Vite
 - Webpack
 - SWC
 - Next.js
+- Storybook
 - Cypress
 - Jest
 - Vitest
+- MSW
 - Pact (tests de contrato)
 - TDD
 - Git
@@ -113,10 +131,12 @@ Abril 2008 - Abril 2009
 - Travis
 - Docker
 - Kubernetes
+- AWS
 - DDD
 - Arquitectura hexagonal
 - Scrum
 - Datadog
+- IA aplicada al desarrollo
 
 ## Idiomas
 

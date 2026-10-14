@@ -14,4 +14,4 @@ it's (for many years also) the **design** 🎨. Actually I started in it in 2003
 
 ## Currently
 
-I work as a **software engineer** 💻 in the _Web Platform_ team of Adevinta Spain, giving support to the developers working in the different marketplaces of the company (such as [Coches.net](https://www.coches.net), [Fotocasa](https://www.fotocasa.es/es) or [InfoJobs](https://www.infojobs.net)), prioritizing the quality, stability and optimization of their web applications.
+I work as a **Staff Front-End Engineer** 💻 in a cross-functional team at Coches.net Group, unifying and updating the stack of the web applications of [Coches.net](https://www.coches.net) and [Motos.net](https://www.motos.net), standardizing the use of AI and supporting the development teams, prioritizing the quality, stability and optimization of their web applications.

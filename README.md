@@ -4,7 +4,7 @@
 
 ## 🚀 About Me
 
-**_Web Platform Staff Engineer_** focused on scalable applications, modular design systems, and delightful user experiences. **Photography enthusiast** capturing landscapes, cityscapes, candid moments, and immersive timelapses.
+**_Staff Front-End Engineer_** focused on scalable applications, modular design systems, and delightful user experiences. **Photography enthusiast** capturing landscapes, cityscapes, candid moments, and immersive timelapses.
 
 ## 🎯 Core Skills
 
