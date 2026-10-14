@@ -174,6 +174,30 @@ const http = {
       destination: '/en/terms-and-conditions',
       locale: false,
       permanent: true
+    },
+    {
+      source: '/ca/aviso-legal',
+      destination: '/ca/avis-legal',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/en/aviso-legal',
+      destination: '/en/legal-notice',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/ca/licencia-de-descargas',
+      destination: '/ca/llicencia-de-descarregues',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/en/licencia-de-descargas',
+      destination: '/en/downloads-licence',
+      locale: false,
+      permanent: true
     }
   ],
   rewrites: [
@@ -275,6 +299,26 @@ const http = {
     {
       source: '/en/terms-and-conditions',
       destination: '/en/terminos-y-condiciones',
+      locale: false
+    },
+    {
+      source: '/ca/avis-legal',
+      destination: '/ca/aviso-legal',
+      locale: false
+    },
+    {
+      source: '/en/legal-notice',
+      destination: '/en/aviso-legal',
+      locale: false
+    },
+    {
+      source: '/ca/llicencia-de-descarregues',
+      destination: '/ca/licencia-de-descargas',
+      locale: false
+    },
+    {
+      source: '/en/downloads-licence',
+      destination: '/en/licencia-de-descargas',
       locale: false
     }
   ]

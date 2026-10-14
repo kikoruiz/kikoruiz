@@ -28,12 +28,15 @@ export const SECTIONS = [
 export const SPECIAL_SUBSECTIONS = ['tags']
 
 export const LEGAL_PAGES = [
+  'legal-notice',
+  'terms-and-conditions',
+  'downloads-licence',
   'privacy-policy',
   'cookies-policy',
-  'terms-and-conditions',
   'copyright'
 ]
-export const SIMPLE_PAGES = ['error']
+// The legal index hangs from no section, same as the error page does.
+export const SIMPLE_PAGES = ['error', 'legal']
 
 export const COOKIES_BY_TYPE = {
   NECESSARY: true,

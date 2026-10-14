@@ -1,3 +1,4 @@
+import {ReactNode} from 'react'
 import Head from 'next/head'
 import Article from 'components/article'
 import {SITE_NAME} from 'config'
@@ -8,12 +9,18 @@ export interface StaticPageProps {
   alternates: Alternate[]
 }
 
-export default function StaticPage({content, alternates}: StaticPageProps) {
+export default function StaticPage({
+  content,
+  alternates,
+  noindex = false,
+  children
+}: StaticPageProps & {noindex?: boolean; children?: ReactNode}) {
   return (
     <>
       <Head>
         <title>{`${SITE_NAME} / ${content.title}`}</title>
         <meta name="description" content={content.title} />
+        {noindex && <meta name="robots" content="noindex, follow" />}
         {alternates.map(({locale, href}) => (
           <link key={locale} rel="alternate" hrefLang={locale} href={href} />
         ))}
@@ -23,6 +30,8 @@ export default function StaticPage({content, alternates}: StaticPageProps) {
         <header className="pt-12 sm:pt-6 text-center">
           <h1 className="text-6xl font-black sm:text-8xl">{content.title}</h1>
         </header>
+
+        {children}
 
         <Article
           content={content.body}

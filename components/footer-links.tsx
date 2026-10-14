@@ -34,9 +34,11 @@ export default function FooterLinks() {
       })
     }
   })
+  const legalName = t('legal.name')
   const legalGroup: FooterGroup = {
     id: 'legal',
-    name: t('legal.name'),
+    name: legalName,
+    href: `/${getSlug(legalName)}`,
     links: LEGAL_PAGES.map(slug => {
       const name = t(`legal.pages.${slug}.name`)
 

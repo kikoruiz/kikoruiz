@@ -141,7 +141,16 @@
       "privacy-policy": {"name": "Política de privacidad"},
       "cookies-policy": {"name": "Política de cookies"},
       "terms-and-conditions": {"name": "Términos y condiciones"},
-      "copyright": {"name": "Derechos de autor"}
+      "copyright": {"name": "Derechos de autor"},
+      "legal-notice": {"name": "Aviso legal"},
+      "downloads-licence": {"name": "Licencia de descargas"}
+    },
+    "holder": {
+      "name": "Titular",
+      "nif": "NIF",
+      "address": "Domicilio",
+      "email": "Correo electrónico",
+      "unavailable": "Escríbeme a hola@kikoruiz.es y te facilito estos datos."
     },
     "cookies": {
       "banner": {

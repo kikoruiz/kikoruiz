@@ -78,7 +78,13 @@ module.exports = {
     '/ca/derechos-de-autor',
     '/en/derechos-de-autor',
     '/ca/terminos-y-condiciones',
-    '/en/terminos-y-condiciones'
+    '/en/terminos-y-condiciones',
+    '/ca/licencia-de-descargas',
+    '/en/licencia-de-descargas',
+    // Carries the holder's tax ID and address, so it stays out of search.
+    '/aviso-legal',
+    '/ca/aviso-legal',
+    '/en/aviso-legal'
   ],
   robotsTxtOptions: {
     policies: [{userAgent: '*', allow: '/', disallow: ['/api/']}]

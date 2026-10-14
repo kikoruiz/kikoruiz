@@ -141,7 +141,16 @@
       "privacy-policy": {"name": "Privacy Policy"},
       "cookies-policy": {"name": "Cookies Policy"},
       "terms-and-conditions": {"name": "Terms and conditions"},
-      "copyright": {"name": "Copyright"}
+      "copyright": {"name": "Copyright"},
+      "legal-notice": {"name": "Legal notice"},
+      "downloads-licence": {"name": "Downloads licence"}
+    },
+    "holder": {
+      "name": "Holder",
+      "nif": "Tax ID",
+      "address": "Address",
+      "email": "Email",
+      "unavailable": "Write to me at hola@kikoruiz.es and I will provide these details."
     },
     "cookies": {
       "banner": {

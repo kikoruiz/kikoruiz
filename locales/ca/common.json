@@ -147,7 +147,20 @@
       "terms-and-conditions": {"name": "Termes i condicions"},
       "copyright": {
         "name": "Drets d'autor"
+      },
+      "legal-notice": {
+        "name": "Avís legal"
+      },
+      "downloads-licence": {
+        "name": "Llicència de descàrregues"
       }
+    },
+    "holder": {
+      "name": "Titular",
+      "nif": "NIF",
+      "address": "Domicili",
+      "email": "Correu electrònic",
+      "unavailable": "Escriu-me a hola@kikoruiz.es i te facilite aquestes dades."
     },
     "cookies": {
       "banner": {
