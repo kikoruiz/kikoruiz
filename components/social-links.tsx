@@ -3,12 +3,12 @@ import logos from './social-logos'
 
 export default function SocialLinks() {
   return (
-    <ul className="flex flex-wrap">
+    <ul className="flex flex-wrap gap-3">
       {BRANDS.SOCIAL.map(({name, slug, url}) => {
         const Logo = logos[`Logo${name}`]
 
         return (
-          <li key={slug} className="mr-2 mb-2 flex last-of-type:mr-0 md:mb-0">
+          <li key={slug} className="flex">
             <a
               title={name}
               className="group flex h-fit rounded-full bg-gradient-to-t from-neutral-800 to-neutral-800 p-3 transition hover:from-neutral-800"
