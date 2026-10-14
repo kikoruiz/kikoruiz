@@ -28,6 +28,9 @@ save_metadata:
 save_content:
 	FILE=search/content make save
 
+save_resume_pdfs: ## uses the running site (ORIGIN=...) or starts a dev server
+	FILE=resume/pdf make save
+
 save_inventory: ## sync Stripe prints · ARGS="--dry-run --min-rating=N --limit=N --only=<pictureId> --prune"
 	FILE=store/inventory make save
 
