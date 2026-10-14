@@ -1,49 +1,66 @@
-Última actualització: **14 de setembre de 2023**
+Última actualització: **14 d'octubre de 2026**
 
-Agraïm la teua visita a [kikoruiz.es](/) (d'ara endavant, "el Lloc"). En aquesta pàgina, t'explicarem com recopilem, utilitzem i protegim la informació personal que obtenim dels visitants del Lloc, tenint en compte que fem servir Google Analytics 4 per fer seguiment de visites i esdeveniments.
+Gràcies per visitar [kikoruiz.es](/) (d'ara endavant, "el Lloc"). Ací t'explique quines dades personals tracte, per a què, amb qui les comparteisc i quins drets tens.
 
-## Recopilació d'informació personal
+## Responsable del tractament
 
-Quan visites el Lloc, és possible que recopilem certa informació personal identificable, com la teua adreça IP, ubicació geogràfica aproximada, tipus de navegador, sistema operatiu i dades d'interacció amb el Lloc. Aquesta informació es recopila de forma automàtica mitjançant cookies i altres tecnologies de seguiment. A més, si tries proporcionar-nos informació personal, com ara el teu nom o adreça de correu electrònic a través de formularis de contacte, també la recopil·larem.
+El responsable sóc jo, Kiko Ruiz. Les meues dades d'identificació estan a l'[avís legal](/avis-legal) i pots escriure'm en qualsevol moment a hola@kikoruiz.es.
 
-## Ús de Google Analytics 4
+## Quines dades tracte i per a què
 
-Fem servir Google Analytics 4, un servei d'anàlisi web proporcionat per Google, Inc. ("Google"), per recopilar informació sobre còm els visitants utilitzen el Lloc. Google Analytics utilitza cookies i altres tecnologies de seguiment per recopilar dades sobre el trànsit del Lloc i entendre com els usuaris hi interactuen. Aquesta informació ens ajuda a millorar el Lloc i proporcionar una experiència més personalitzada.
+- **Navegació:** en visitar el Lloc es tracten dades tècniques com la teua adreça IP, el tipus de navegador, el sistema operatiu i com interactues amb les pàgines. Les faig servir perquè el Lloc funcione, mesurar-ne el rendiment i l'ús, i millorar-lo. Base jurídica: el meu interès legítim a mantindre el Lloc i, per a les galetes d'anàlisi de Google, el teu consentiment.
+- **Contacte:** si m'escrius, tracte el teu nom, el teu correu i el contingut del missatge per respondre't. Base jurídica: el teu consentiment i l'aplicació de mesures precontractuals a petició teua.
+- **Compres:** si compres, tracte el teu nom, el teu correu electrònic, la teua adreça de facturació i, en el cas de les impressions, la teua adreça d'enviament, a més dels productes i l'import. Les faig servir per gestionar el pagament, lliurar-te les descàrregues o enviar-te les impressions, atendre possibles devolucions i complir les meues obligacions fiscals i mercantils. Base jurídica: l'execució del contracte de compra i el compliment d'obligacions legals.
+- **Correus de la compra:** t'envie per correu l'enllaç a les teues descàrregues i, si escau, els missatges sobre la teua comanda. Base jurídica: l'execució del contracte.
 
-Google Analytics recopila dades com l'adreça IP del visitant, la ubicació geogràfica, el tipus de navegador, el sistema operatiu i la font de referència. Els informes generats per Google Analytics ens ajuden a comprendre el comportament dels usuaris i a prendre decisions informades sobre el contingut i l'estructura del Lloc.
+No prenc decisions automatitzades sobre tu ni elabore perfils amb efectes jurídics.
 
-Per obtindre més informació sobre com Google recopila i processa dades mitjançant Google Analytics, et recomanem revisar la Política de Privacitat de Google: [https://policies.google.com/privacy](https://policies.google.com/privacy).
+## Amb qui comparteisc les teues dades
 
-Pots optar per no participar en la recopilació de dades de Google Analytics configurant les preferències de cookies al teu navegador o utilitzant el complement de sortida de Google Analytics disponible aquí: [https://tools.google.com/dlpage/gaoptout](https://tools.google.com/dlpage/gaoptout).
+No venc les teues dades. Per prestar-te el servei les comparteisc amb proveïdors que les tracten per compte meu o pel seu:
 
-## Ús de la informació
+- **Stripe:** processa els pagaments. Jo no veig ni guarde les dades de la teua targeta.
+- **Resend:** envia els correus de la compra.
+- **Cloudflare:** allotja els arxius de les descàrregues.
+- **Vercel:** allotja el Lloc i mesura les seues visites i el seu rendiment sense usar galetes.
+- **Google:** presta el servei d'analítica Google Analytics 4, només si acceptes les galetes d'anàlisi.
+- **Servei de missatgeria:** rep el teu nom i la teua adreça quan compres impressions, per lliurar-te-les.
+- **Assessoria fiscal:** accedeix a les dades necessàries per complir les meues obligacions tributàries.
 
-La informació personal que recopilem s'utilitza per als següents fins:
+També puc comunicar dades a les autoritats quan la llei m'ho exigisca.
 
-1. **Proporcionar i mantenir el Lloc:** fem servir la teua informació per garantir que el Lloc funcione correctament i per oferir-te una experiència òptima de navegació.
+## Transferències internacionals
 
-2. **Anàlisi i millora:** fem servir les dades recopilades a través de Google Analytics per analitzar el trànsit del Lloc, entendre el comportament dels usuaris i millorar la qualitat del contingut i l'experiència de l'usuari.
+Alguns d'aquests proveïdors, com Stripe, Vercel, Google, Resend o Cloudflare, poden tractar dades fora de l'Espai Econòmic Europeu, en particular als Estats Units. Ho fan amb les garanties que preveu la normativa, com les clàusules contractuals tipus de la Comissió Europea o el Marc de Privacitat de Dades UE-EUA.
 
-3. **Comunicació:** si ens proporciones la teua adreça de correu electrònic o una altra informació de contacte, podem utilitzar-la per respondre a les teues consultes, comentaris o sol·licituds.
+## Quant de temps conserve les teues dades
 
-## Divulgació de la informació a tercers
+- Dades de les compres: durant els terminis que exigeixen les normes fiscals i mercantils.
+- Missatges de contacte: el temps necessari per atendre la teua consulta i, després, durant els terminis de prescripció de possibles responsabilitats.
+- Dades d'analítica: segons els terminis de retenció configurats a Google Analytics.
 
-No venem, intercanviem ni transferim de cap manera la teua informació personal a tercers sense el teu consentiment exprés, llevat que siga necessari per llei o en compliment d'un procés legal.
+Passat aquest temps, les elimine o les anonimitze.
+
+## Els teus drets
+
+Pots exercir els teus drets d'accés, rectificació, supressió, oposició, limitació del tractament i portabilitat escrivint-me a hola@kikoruiz.es i indicant el dret que vols exercir. Si has donat el teu consentiment, pots retirar-lo quan vulgues, sense que afecte allò que ja s'haja tractat. Si creus que no he tractat correctament les teues dades, pots presentar una reclamació davant l'[Agència Espanyola de Protecció de Dades](https://www.aepd.es).
+
+## Galetes i emmagatzematge local
+
+Què guarda el Lloc al teu navegador i com gestionar-ho ho explique a la [política de galetes](/politica-de-galetes).
 
 ## Seguretat de la informació
 
-Ens comprometem a protegir la informació personal que recopilem. Implementem mesures de seguretat raonables per garantir la confidencialitat, integritat i disponibilitat de les teues dades. No obstant això, has de tenir en compte que cap mètode de transmissió per Internet o mètode d'emmagatzematge electrònic és completament segur. Per tant, no podem garantir una seguretat absoluta.
+Aplique mesures de seguretat raonables per protegir les teues dades, encara que cap sistema connectat a Internet és completament segur i no puc garantir una seguretat absoluta.
 
 ## Enllaços a llocs web de tercers
 
-El Lloc pot contenir enllaços a llocs web de tercers que no estan sota el nostre control. No ens fem responsables de les pràctiques de privacitat ni del contingut d'aquests llocs web. Et recomanem revisar les polítiques de privacitat d'aquests llocs abans de proporcionar-hi qualsevol informació personal.
+El Lloc pot enllaçar a pàgines de tercers que no controle. No sóc responsable de les seues pràctiques de privacitat ni del seu contingut; et recomane revisar-ne les polítiques.
 
 ## Canvis en aquesta política de privacitat
 
-Ens reservem el dret d'actualitzar aquesta política de privacitat en qualsevol moment. Et recomanem que revises periòdicament aquesta pàgina per estar al corrent de qualsevol canvi. La data de la última actualització s'indicarà a l'inici d'aquesta pàgina.
+Puc actualitzar aquesta política en qualsevol moment. La data de l'última actualització apareix a l'inici de la pàgina.
 
 ## Contacte
 
-Si tens alguna pregunta o inquietud sobre aquesta política de privacitat o sobre còm gestionem les teues dades personals, no dubtes a [contactar-nos](/#contacte) mitjançant la informació de contacte proporcionada al Lloc.
-
-Gràcies per confiar en nosaltres i per visitar [kikoruiz.es](/). Estem compromesos a protegir la teua privacitat i a mantindre la confiança que has dipositat en nosaltres.
+Si tens alguna pregunta sobre aquesta política o sobre com tracte les teues dades, [escriu-me](/#contacte).

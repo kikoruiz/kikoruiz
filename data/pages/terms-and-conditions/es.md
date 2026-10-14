@@ -1,51 +1,73 @@
-Última actualización: **20 de febrero de 2024**
+Última actualización: **14 de octubre de 2026**
 
 ## Aceptación de los términos y condiciones
 
-Al acceder y utilizar este sitio web y realizar compras en nuestra tienda en línea, aceptas y te comprometes a cumplir con los siguientes términos y condiciones. Si no estás de acuerdo con estos términos, te pedimos que no utilices este sitio.
+Al navegar por este sitio web y comprar en su tienda aceptas estos términos y condiciones. Si no estás de acuerdo con ellos, te pido que no hagas compras. Quién soy y cómo contactarme lo explico en el [aviso legal](/aviso-legal).
 
-## Compras y pagos
+## Productos y precios
 
-Los productos disponibles en nuestra tienda incluyen copias digitales y/o impresiones de fotografías de [kikoruiz.es](/).
+En la tienda vendo impresiones y descargas digitales de mis fotografías. Los precios están en euros, incluyen el IVA y son los vigentes en el momento de la compra. Puedo cambiarlos, pero el cambio no afecta a las compras ya realizadas.
 
-Los precios de los productos están indicados en la tienda y son los vigentes al momento de la compra.
+## Cómo se compra y se paga
 
-Aceptamos pagos a través de los métodos de pago especificados en el proceso de compra.
+Añades los productos al carrito y pagas en una pantalla de Stripe, que procesa los pagos con tarjeta y con Link. Yo no tengo acceso a los datos de tu tarjeta. Una vez confirmado el pago, el contrato queda formalizado y recibes la confirmación de la compra.
 
-## Descarga de copias digitales
+## Descargas digitales
 
-Las copias digitales estarán disponibles para su descarga inmediata después de la confirmación del pago.
+Las descargas están disponibles de inmediato tras confirmarse el pago, en la propia página de confirmación y mediante un enlace que te envío por correo. Los enlaces de descarga caducan en una hora, pero el enlace del correo sigue funcionando y genera enlaces nuevos cada vez que lo abres.
 
-Estas copias están destinadas únicamente para uso personal y no comercial. Cualquier uso comercial requerirá una licencia adicional.
+El uso de cada archivo se rige por la [licencia de descargas](/licencia-de-descargas), que aceptas al comprar.
 
-## Impresiones de fotografías
+### Renuncia al desistimiento
 
-Las impresiones de fotografías se realizan bajo pedido y se envían a la dirección proporcionada durante el proceso de compra.
+Como el archivo se entrega al instante, al pagar solicitas expresamente que la entrega comience de inmediato y aceptas que, una vez entregado, pierdes el derecho de desistimiento. Te lo recuerdo en la pantalla de pago y en el correo de entrega.
 
-El tiempo de procesamiento y envío variará según la ubicación y las especificaciones del pedido. Consulta la información de envío en la tienda.
+Si el archivo no se puede descargar o llega dañado, escríbeme y te lo repongo o te devuelvo el importe.
 
-## Derechos de autor y licencia
+## Impresiones
 
-Todas las imágenes y copias digitales están protegidas por derechos de autor y son propiedad de [kikoruiz.es](/).
+Las impresiones se hacen bajo pedido y solo las envío a direcciones de España. El coste de envío, si lo hay, se muestra antes de pagar. Tras la compra te escribo por correo para confirmar el pedido y concretar los plazos de entrega, que dependen del producto y de tu ubicación.
 
-Al comprar copias digitales, se concede una licencia de uso personal no exclusiva. Cualquier otro uso, incluido el uso comercial, requiere una licencia adicional.
+## Desistimiento en las impresiones
 
-Las impresiones de fotografías no otorgan ningún derecho de autor al comprador. La propiedad intelectual sigue siendo de [kikoruiz.es](/).
+Tienes derecho a desistir de la compra de impresiones, sin tener que justificarlo, en un plazo de 14 días naturales desde que las recibes. Para ejercerlo, comunícamelo por correo a hola@kikoruiz.es indicando tu pedido, o usa el modelo de formulario que aparece al final de esta página.
 
-## Devoluciones y reembolsos
+Debes devolverme las impresiones sin demora y, a más tardar, en 14 días desde que me comunicas tu decisión; te indicaré por correo adónde enviarlas, y los gastos directos de la devolución corren de tu cuenta. Te reembolsaré el importe, incluidos los gastos de envío de la entrega inicial, en un máximo de 14 días desde que reciba las impresiones o me demuestres que las has enviado. Las impresiones deben llegar en buen estado; si se han dañado por un mal manejo, puedo descontar la disminución de su valor.
 
-Las copias digitales no son reembolsables después de la descarga.
+## Impresiones dañadas o defectuosas
 
-Si recibes impresiones de fotografías dañadas o defectuosas, por favor, contáctanos dentro de los 14 días posteriores a la recepción para tramitar una devolución o reemplazo.
+Si una impresión llega dañada o con algún defecto, escríbeme lo antes posible y adjunta fotos. La sustituiré o te devolveré el dinero. Esto es independiente de los derechos que te da la garantía legal.
+
+## Derechos de autor y licencias
+
+Todas las fotografías son de mi titularidad. Las impresiones no te dan ningún derecho de autor ni de reproducción. Las descargas te dan únicamente la licencia que corresponda a su nivel, según la [licencia de descargas](/licencia-de-descargas).
+
+## Facturas
+
+Si necesitas factura, solicítala por correo con tus datos fiscales y el número de tu pedido.
 
 ## Privacidad y protección de datos
 
-Recopilamos y procesamos información personal de acuerdo con nuestra [Política de privacidad](/politica-de-privacidad).
+Trato tus datos personales según la [política de privacidad](/politica-de-privacidad).
 
-## Modificación de términos y condiciones
+## Modificación de los términos y condiciones
 
-Nos reservamos el derecho de actualizar o modificar estos términos y condiciones en cualquier momento. Los cambios se harán efectivos inmediatamente después de su publicación en el sitio web.
+Puedo actualizar estos términos en cualquier momento. Los cambios se aplican desde su publicación en el sitio, pero no a las compras que ya hayas hecho, que se rigen por los términos vigentes cuando compraste.
+
+## Legislación aplicable y reclamaciones
+
+Estos términos se rigen por la legislación española. Si eres consumidor, conservas los derechos que te reconozca la normativa de tu lugar de residencia. Si tienes una reclamación, escríbeme y haré lo posible por resolverla; también puedes acudir a los organismos de consumo que te correspondan.
 
 ## Contacto
 
-Si tienes alguna pregunta o comentario sobre estos términos y condiciones, por favor, [contáctame](/#contacto).
+Si tienes alguna pregunta sobre estos términos, [escríbeme](/#contacto).
+
+## Modelo de formulario de desistimiento
+
+Rellena y envía este formulario por correo a hola@kikoruiz.es solo si quieres desistir de la compra de impresiones:
+
+- A la atención de Kiko Ruiz (hola@kikoruiz.es; mis datos completos están en el aviso legal): por la presente te comunico que desisto de mi contrato de compra de las siguientes impresiones: [producto y número de pedido].
+- Pedido el [fecha] y recibido el [fecha].
+- Nombre y apellidos:
+- Dirección:
+- Fecha:

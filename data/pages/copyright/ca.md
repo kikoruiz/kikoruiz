@@ -1,25 +1,35 @@
-Última actualització: **20 de febrer de 2024**
+Última actualització: **14 d'octubre de 2026**
 
 ## Declaració de drets d'autor
 
-Totes les imatges, fotografies i contingut visual en aquest lloc web són propietat de [kikoruiz.es](/), llevat que s'indique el contrari. Estan protegits per les lleis de drets d'autor i no poden ser utilitzats sense el permís exprés de [kikoruiz.es](/).
+Totes les fotografies, imatges i continguts visuals de [kikoruiz.es](/) són obra de Kiko Ruiz, que n'és el titular. Estan protegits per la legislació de propietat intel·lectual i tots els drets estan reservats, llevat que s'indique el contrari.
 
-## Ús de les imatges
+## Què pots fer
 
-No està permès copiar, descarregar, reproduir, distribuir, transmetre o utilitzar de cap altra manera les imatges d'aquest lloc web sense el permís previ i per escrit de [kikoruiz.es](/). Si desitges utilitzar una de les imatges, posa't en contacte amb mi per obtenir l'autorització corresponent.
+- Veure les imatges i compartir l'enllaç a la pàgina on apareixen.
+- Comprar [impressions](/botiga/impressions) per tindre-les a casa; són per a ús personal i no et donen drets d'autor.
+- Comprar [descàrregues](/botiga/descarregues) i usar-les segons la [llicència de descàrregues](/llicencia-de-descarregues).
 
-## Llicència d'ús
+## Què no pots fer sense el meu permís
 
-Si desitges utilitzar una de les meues imatges, és possible que puga concedir-te una llicència d'ús. Si us plau, posa't en contacte amb mi per discutir els detalls i els termes de la llicència.
+No està permés copiar, descarregar, capturar, reproduir, distribuir, transformar, comunicar públicament ni usar de cap altra manera les imatges d'aquest lloc sense la meua autorització prèvia i per escrit, llevat del que permeta una llicència comprada a la botiga.
+
+## Intel·ligència artificial i mineria de dades
+
+Em reserve expressament els drets sobre les meues imatges i els meus textos davant l'extracció de text i dades, inclòs l'entrenament de sistemes d'intel·ligència artificial, d'acord amb l'article 4 de la Directiva (UE) 2019/790. Cap de les llicències que venc ho autoritza.
+
+## Llicències a mida
+
+Si vols usar una imatge d'una manera que no cobreix la llicència de descàrregues, [escriu-me](/#contacte) i mirem una llicència a mida teua.
 
 ## Excepcions
 
-Algunes imatges poden estar disponibles sota una llicència Creative Commons o amb altres termes específics. En aquest cas, s'indicarà clarament a la pàgina de la imatge corresponent.
+Si alguna imatge es publica amb altres termes, s'indicarà clarament a la pàgina de la mateixa imatge.
 
-## Responsabilitat
+## Usos no autoritzats
 
-[kikoruiz.es](/) no es fa responsable de cap ús no autoritzat de les imatges que es troben en aquest lloc web. Qualsevol ús no autoritzat estarà subjecte a accions legals.
+L'ús no autoritzat de les imatges pot donar lloc a les accions legals que em corresponguen. Si veus una imatge meua usada sense permís, t'agrairé que m'avises.
 
 ## Contacte
 
-Si tens alguna pregunta o sol·licitud relacionada amb els drets d'autor o l'ús de les imatges, si us plau, [posa't en contacte amb mi](/#contacte).
+Si tens alguna pregunta o sol·licitud sobre drets d'autor o l'ús de les imatges, [escriu-me](/#contacte).

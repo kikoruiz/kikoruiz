@@ -1,51 +1,73 @@
-Última actualització: **20 de febrer de 2024**
+Última actualització: **14 d'octubre de 2026**
 
 ## Acceptació dels termes i condicions
 
-En accedir i utilitzar aquest lloc web i fer compres a la nostra botiga en línia, accepteu i us comprometeu a complir amb els següents termes i condicions. Si no esteu d'acord amb aquests termes, us demanem que no utilitzeu aquest lloc.
+En navegar per aquest lloc web i comprar a la seua botiga acceptes aquests termes i condicions. Si no estàs d'acord amb ells, et demane que no faces compres. Qui sóc i com contactar amb mi ho explique a l'[avís legal](/avis-legal).
 
-## Compres i pagaments
+## Productes i preus
 
-Els productes disponibles a la nostra botiga inclouen còpies digitals i/o impressions de fotografies de [kikoruiz.es](/).
+A la botiga venc impressions i descàrregues digitals de les meues fotografies. Els preus estan en euros, inclouen l'IVA i són els vigents en el moment de la compra. Puc canviar-los, però el canvi no afecta les compres ja realitzades.
 
-Els preus dels productes estan indicats a la botiga i són els vigents en el moment de la compra.
+## Com es compra i es paga
 
-Acceptem pagaments a través dels mètodes de pagament especificats en el procés de compra.
+Afegeixes els productes al carret i pagues en una pantalla de Stripe, que processa els pagaments amb targeta i amb Link. Jo no tinc accés a les dades de la teua targeta. Una vegada confirmat el pagament, el contracte queda formalitzat i reps la confirmació de la compra.
 
-## Descàrrega de còpies digitals
+## Descàrregues digitals
 
-Les còpies digitals estaran disponibles per a la seva descàrrega immediata després de la confirmació del pagament.
+Les descàrregues estan disponibles de manera immediata després de confirmar-se el pagament, a la mateixa pàgina de confirmació i mitjançant un enllaç que t'envie per correu. Els enllaços de descàrrega caduquen en una hora, però l'enllaç del correu continua funcionant i genera enllaços nous cada vegada que l'obris.
 
-Aquestes còpies estan destinades únicament per a ús personal i no comercial. Qualsevol ús comercial requerirà una llicència addicional.
+L'ús de cada arxiu es regeix per la [llicència de descàrregues](/llicencia-de-descarregues), que acceptes en comprar.
 
-## Impressions de fotografies
+### Renúncia al desistiment
 
-Les impressions de fotografies es realitzen sota comanda i s'envien a l'adreça proporcionada durant el procés de compra.
+Com que l'arxiu es lliura a l'instant, en pagar sol·licites expressament que el lliurament comence immediatament i acceptes que, una vegada lliurat, perds el dret de desistiment. Te'l record a la pantalla de pagament i al correu de lliurament.
 
-El temps de processament i enviament variarà segons la ubicació i les especificacions de la comanda. Consulteu la informació d'enviament a la botiga.
+Si l'arxiu no es pot descarregar o arriba danyat, escriu-me i te'l reposaré o et tornaré l'import.
 
-## Drets d autor i llicència
+## Impressions
 
-Totes les imatges i còpies digitals estan protegides pels drets d'autor i són propietat de [kikoruiz.es](/).
+Les impressions es fan sota comanda i només les envie a adreces d'Espanya. El cost d'enviament, si n'hi ha, es mostra abans de pagar. Després de la compra t'escric per correu per confirmar la comanda i concretar els terminis de lliurament, que depenen del producte i de la teua ubicació.
 
-En comprar còpies digitals, s'atorga una llicència d'ús personal no exclusiva. Qualsevol altre ús, incloent l'ús comercial, requereix una llicència addicional.
+## Desistiment en les impressions
 
-Les impressions de fotografies no atorguen cap dret d'autor a l'achegador. La propietat intel·lectual roman de [kikoruiz.es](/).
+Tens dret a desistir de la compra d'impressions, sense haver de justificar-ho, en un termini de 14 dies naturals des que les reps. Per exercir-lo, comunica-m'ho per correu a hola@kikoruiz.es indicant la teua comanda, o fes servir el model de formulari que apareix al final d'aquesta pàgina.
 
-## Devolucions i reembossaments
+Has de tornar-me les impressions sense demora i, com a màxim, en 14 dies des que em comuniques la teua decisió; t'indicaré per correu on enviar-les, i les despeses directes de la devolució van a compte teu. Et reemborsaré l'import, incloses les despeses d'enviament del lliurament inicial, en un màxim de 14 dies des que reba les impressions o em demostres que les has enviat. Les impressions han d'arribar en bon estat; si s'han danyat per un mal maneig, puc descomptar la disminució del seu valor.
 
-Les còpies digitals no són reembossables després de la descàrrega.
+## Impressions danyades o defectuoses
 
-Si rebeu impressions de fotografies danyades o defectuoses, si us plau, poseu-vos en contacte amb nosaltres en un termini de 14 dies després de la recepció per tramitar una devolució o reemplaçament.
+Si una impressió arriba danyada o amb algun defecte, escriu-me com més aviat millor i adjunta fotos. La substituiré o et tornaré els diners. Això és independent dels drets que et dona la garantia legal.
 
-## Privadesa i protecció de dades
+## Drets d'autor i llicències
 
-Recopilem i processem informació personal d'acord amb la nostra [Política de privadesa](/politica-de-privacitat).
+Totes les fotografies són de la meua titularitat. Les impressions no et donen cap dret d'autor ni de reproducció. Les descàrregues et donen únicament la llicència que corresponga al seu nivell, segons la [llicència de descàrregues](/llicencia-de-descarregues).
 
-## Modificació de termes i condicions
+## Factures
 
-Ens reservem el dret d'actualitzar o modificar aquests termes i condicions en qualsevol moment. Els canvis seran efectius immediatament després de la seva publicació al lloc web.
+Si necessites factura, sol·licita-la per correu amb les teues dades fiscals i el número de la teua comanda.
+
+## Privacitat i protecció de dades
+
+Tracte les teues dades personals segons la [política de privacitat](/politica-de-privacitat).
+
+## Modificació dels termes i condicions
+
+Puc actualitzar aquests termes en qualsevol moment. Els canvis s'apliquen des que es publiquen al lloc, però no a les compres que ja hages fet, que es regeixen pels termes vigents quan vas comprar.
+
+## Legislació aplicable i reclamacions
+
+Aquests termes es regeixen per la legislació espanyola. Si ets consumidor, conserves els drets que et reconega la normativa del teu lloc de residència. Si tens una reclamació, escriu-me i faré el possible per resoldre-la; també pots acudir als organismes de consum que et corresponguen.
 
 ## Contacte
 
-Si teniu alguna pregunta o comentari sobre aquests termes i condicions, si us plau, [contacteu-me](/#contacte).
+Si tens alguna pregunta sobre aquests termes, [escriu-me](/#contacte).
+
+## Model de formulari de desistiment
+
+Omple i envia aquest formulari per correu a hola@kikoruiz.es només si vols desistir de la compra d'impressions:
+
+- A l'atenció de Kiko Ruiz (hola@kikoruiz.es; les meues dades completes estan a l'avís legal): per la present et comunique que desistisc del meu contracte de compra de les impressions següents: [producte i número de comanda].
+- Comanda feta el [data] i rebuda el [data].
+- Nom i cognoms:
+- Adreça:
+- Data:

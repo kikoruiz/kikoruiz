@@ -1,43 +1,41 @@
-Last updated: **September 20, 2023**
+Last updated: **October 14, 2026**
 
 ## Introduction
 
-This cookie policy explains how [kikoruiz.es](/) uses cookies and similar technologies to collect and store information when you visit our website. This policy is part of our privacy policy and is designed to help you better understand how we use these technologies and why we do so. By continuing to use our website, you agree to the use of cookies in accordance with this policy.
+This policy explains which cookies and similar technologies [kikoruiz.es](/) uses, what they are for and how you can manage them. It is part of the [privacy policy](/privacy-policy).
 
 ## What are cookies?
 
-Cookies are small text files that are stored on your device (computer, mobile phone, or tablet) when you visit a website. These text files are used to remember information about your visit, such as your preferences and the pages you have visited. They can be temporary (session cookies) or remain on your device for a longer period (persistent cookies).
+Cookies are small text files that a website stores on your device to remember information about your visit. They can be session cookies, if they disappear when you close the browser, or persistent, if they stay for a while. The site also uses the browser's local storage, which serves a similar purpose.
 
-## Why do we use cookies?
+## What I use and what for
 
-We use cookies for various reasons, including:
+### Necessary cookies and storage
 
-- **Improving the user experience:** Cookies help us personalize your experience on our website, such as remembering your preferences and showing you relevant content.
+They do not require your consent because they are essential for the site to work or for payment:
 
-- **Web analytics:** We use cookies to collect statistical data about the use of our website, which helps us understand how visitors interact with it and improve its functionality.
+- **Your cookie preferences** (`USE_COOKIE_CONSENT_STATE`): remembers what you have accepted or rejected. It lasts one year.
+- **Your shopping cart** (browser local storage): keeps the products you have added so you do not lose them when you reload the page. It is not sent to any server until you pay.
+- **Stripe** (`__stripe_mid`, `__stripe_sid` and `m`): they are activated on the shop pages. Stripe uses them to prevent fraud and protect the payment, and they last between half an hour and thirteen months. The data they collect is processed by Stripe according to its [privacy policy](https://stripe.com/privacy).
 
-- **Personalized advertising:** We may use third-party cookies to display personalized ads based on your interests and browsing behavior.
+### Analytics cookies
 
-## Types of cookies we use
+They are only activated if you accept them in the cookie notice:
 
-Below are the types of cookies we use on [kikoruiz.es](/):
+- **Google Analytics 4** (`_ga` and `_ga_*`): they show how the site is used, which pages are visited and for how long, so it can be improved. Google may receive your IP address and usage data.
 
-- **Essential cookies:** These cookies are necessary for our website to function correctly. They do not collect personal information and cannot be disabled.
+### Measurement without cookies
 
-- **Performance cookies:** These cookies collect anonymous information about how visitors use our website, such as the pages they visit most frequently. These cookies help us improve site functionality.
+Vercel Web Analytics and Vercel Speed Insights measure the site's visits and performance in aggregate and without using cookies.
 
-- **Functionality cookies:** These cookies allow our website to remember your preferences and choices, such as your preferred language, to provide you with a more personalized experience.
+## How to manage cookies
 
-- **Advertising and tracking cookies:** We may use third-party cookies to display personalized ads and track the effectiveness of our advertising campaigns.
+The first time you arrive, the cookie notice lets you accept or reject the analytics ones. To change your choice, delete this site's cookies in your browser settings and the notice will appear again. You can also block cookies from the browser, although if you block the necessary ones, the shop may not work properly.
 
-## Cookie management
+## Changes to this cookies policy
 
-You can manage your cookie preferences at any time through your browser settings. Most browsers allow you to reject or accept cookies, as well as delete cookies that have already been stored on your device. Please note that disabling essential cookies may affect the functionality of our website.
-
-## Changes to our cookie policy
-
-We reserve the right to modify this cookie policy at any time. Any significant changes will be communicated through our website. We recommend checking this policy regularly to stay informed about how we use cookies.
+I may modify this policy at any time. The date of the last update appears at the beginning of the page, and I recommend checking it from time to time.
 
 ## Contact
 
-If you have any questions or comments about our cookie policy, please do not hesitate to [contact us](/#contact).
+If you have any questions about this cookies policy, [write to me](/#contact).

@@ -1,43 +1,41 @@
-Última actualización: **20 de septiembre de 2023**
+Última actualización: **14 de octubre de 2026**
 
 ## Introducción
 
-Esta política de cookies explica cómo [kikoruiz.es](/) utiliza cookies y tecnologías similares para recopilar y almacenar información cuando visitas nuestro sitio web. Esta política es parte de nuestra política de privacidad y está diseñada para ayudarte a comprender mejor cómo utilizamos estas tecnologías y por qué lo hacemos. Al continuar utilizando nuestro sitio web, aceptas el uso de cookies de acuerdo con esta política.
+Esta política explica qué cookies y tecnologías similares usa [kikoruiz.es](/), para qué sirven y cómo puedes gestionarlas. Forma parte de la [política de privacidad](/politica-de-privacidad).
 
 ## ¿Qué son las cookies?
 
-Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (ordenador, teléfono móvil o tablet) cuando visitas un sitio web. Estos archivos de texto se utilizan para recordar información sobre tu visita, como tus preferencias y las páginas que has visitado. Pueden ser temporales (cookies de sesión) o permanecer en tu dispositivo durante un tiempo más prolongado (cookies persistentes).
+Las cookies son pequeños archivos de texto que un sitio web guarda en tu dispositivo para recordar información sobre tu visita. Pueden ser de sesión, si desaparecen al cerrar el navegador, o persistentes, si permanecen un tiempo. El sitio también usa el almacenamiento local del navegador, que cumple una función parecida.
 
-## ¿Por qué utilizamos cookies?
+## Qué uso y para qué
 
-Utilizamos cookies por varias razones, que incluyen:
+### Cookies y almacenamiento necesarios
 
-- **Mejorar la experiencia del usuario:** Las cookies nos ayudan a personalizar tu experiencia en nuestro sitio web, como recordar tus preferencias y mostrarte contenido relevante.
+No requieren tu consentimiento porque son imprescindibles para el funcionamiento del sitio o para el pago:
 
-- **Analítica web:** Utilizamos cookies para recopilar datos estadísticos sobre el uso de nuestro sitio web, lo que nos ayuda a entender cómo los visitantes interactúan con él y a mejorar su funcionamiento.
+- **Tus preferencias de cookies** (`USE_COOKIE_CONSENT_STATE`): recuerda qué has aceptado o rechazado. Dura un año.
+- **Tu carrito de la compra** (almacenamiento local del navegador): guarda los productos que has añadido para que no los pierdas al recargar la página. No se envía a ningún servidor hasta que pagas.
+- **Stripe** (`__stripe_mid`, `__stripe_sid` y `m`): se activan en las páginas de la tienda. Stripe las usa para prevenir el fraude y proteger el pago, y duran entre media hora y trece meses. Los datos que recogen los trata Stripe según su [política de privacidad](https://stripe.com/privacy).
 
-- **Publicidad personalizada:** Podemos utilizar cookies para mostrar anuncios personalizados en función de tus intereses y comportamiento de navegación.
+### Cookies de análisis
 
-## Tipos de cookies que utilizamos
+Solo se activan si las aceptas en el aviso de cookies:
 
-A continuación, se describen los tipos de cookies que utilizamos en [kikoruiz.es](/):
+- **Google Analytics 4** (`_ga` y `_ga_*`): permiten saber cómo se usa el sitio, qué páginas se visitan y cuánto tiempo, para poder mejorarlo. Google puede recibir tu dirección IP y datos de uso.
 
-- **Cookies esenciales:** Estas cookies son necesarias para que nuestro sitio web funcione correctamente. No recopilan información personal y no se pueden desactivar.
+### Medición sin cookies
 
-- **Cookies de rendimiento:** Estas cookies recopilan información anónima sobre cómo los visitantes utilizan nuestro sitio web, como las páginas que visitan con más frecuencia. Estas cookies nos ayudan a mejorar la funcionalidad del sitio.
+Vercel Web Analytics y Vercel Speed Insights miden las visitas y el rendimiento del sitio de forma agregada y sin usar cookies.
 
-- **Cookies de funcionalidad:** Estas cookies permiten que nuestro sitio web recuerde tus preferencias y elecciones, como tu idioma preferido, para proporcionarte una experiencia más personalizada.
+## Cómo gestionar las cookies
 
-- **Cookies de publicidad y seguimiento:** Podemos utilizar cookies de terceros para mostrar anuncios personalizados y realizar un seguimiento de la eficacia de nuestras campañas publicitarias.
+Al entrar por primera vez, el aviso de cookies te deja aceptar o rechazar las de análisis. Para cambiar tu elección, borra las cookies de este sitio en la configuración de tu navegador y el aviso volverá a aparecer. También puedes bloquear las cookies desde el navegador, aunque si bloqueas las necesarias, es posible que la tienda no funcione bien.
 
-## Gestión de cookies
+## Cambios en esta política de cookies
 
-Puedes gestionar tus preferencias de cookies en cualquier momento a través de la configuración de tu navegador. La mayoría de los navegadores te permiten rechazar o aceptar cookies, así como eliminar las cookies que ya se han almacenado en tu dispositivo. Ten en cuenta que la desactivación de cookies esenciales puede afectar la funcionalidad de nuestro sitio web.
-
-## Cambios en nuestra política de cookies
-
-Nos reservamos el derecho de modificar esta política de cookies en cualquier momento. Cualquier cambio significativo se comunicará a través de nuestro sitio web. Te recomendamos revisar esta política regularmente para mantenerte informado sobre cómo utilizamos las cookies.
+Puedo modificar esta política en cualquier momento. La fecha de la última actualización aparece al comienzo de la página, y te recomiendo revisarla de vez en cuando.
 
 ## Contacto
 
-Si tienes alguna pregunta o comentario sobre nuestra política de cookies, no dudes en [contactarnos](/#contacto).
+Si tienes alguna pregunta sobre esta política de cookies, [escríbeme](/#contacto).
