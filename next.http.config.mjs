@@ -15,6 +15,24 @@ const http = {
         }
       ]
     },
+    // The images are files in `public`, which Vercel serves telling the browser
+    // to check with the server every time. A day is plenty to keep them in the
+    // browser, and an old copy can still be shown for a month while the new
+    // one is fetched, so a re-edited picture does not stay stale for long.
+    ...[
+      '/pictures/optimized/:file*',
+      '/optimized/:file*',
+      '/avatar.jpg',
+      '/logo.png'
+    ].map(source => ({
+      source,
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=86400, stale-while-revalidate=2592000'
+        }
+      ]
+    })),
     // Opening a picture through a query param still works, for the links that
     // were shared before every picture had a URL of its own, but only that URL
     // belongs in the index.
