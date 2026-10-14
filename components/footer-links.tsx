@@ -20,8 +20,9 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
   // we are in the language being read, even when the URL is a rewrite of a
   // Spanish route, so the links are compared against it rather than against
   // the router's own path.
-  const currentHref = alternates?.find(alternate => alternate.locale === locale)
-    ?.href
+  const currentHref = alternates?.find(
+    alternate => alternate.locale === locale
+  )?.href
   const localePrefix = locale === defaultLocale ? '' : `/${locale}`
   const currentPath = currentHref
     ? new URL(currentHref).pathname.replace(
@@ -98,7 +99,7 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
         >
           {column.map(({id, name, href, links}) => (
             <div key={id} className="break-inside-avoid-column pb-9 xl:pb-0">
-              <header className="mb-1.5 font-bold text-neutral-100">
+              <header className="mb-3 font-bold text-neutral-100">
                 {href && currentPath !== href ? (
                   <Link
                     href={href}
@@ -111,7 +112,9 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
                   // On its own page a heading is no longer a way to go
                   // anywhere, and it keeps looking the same: only the child
                   // links are marked.
-                  <span aria-current={currentPath === href ? 'page' : undefined}>
+                  <span
+                    aria-current={currentPath === href ? 'page' : undefined}
+                  >
                     {name}
                   </span>
                 )}
