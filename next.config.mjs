@@ -43,6 +43,12 @@ const nextConfig = withBundleAnalyzer({
         }
       },
       webpack: config => {
+        // `use-shopping-cart` imports Stripe.js for its side effect, which
+        // injects the script and sets Stripe's cookies on every page that loads
+        // it. The checkout redirects to a Stripe-hosted URL, so the script is
+        // never needed here, and the pure build only loads it when asked to.
+        config.resolve.alias['@stripe/stripe-js$'] = '@stripe/stripe-js/pure'
+
         config.module.rules.push({
           test: /\.svg$/,
           use: ['@svgr/webpack']

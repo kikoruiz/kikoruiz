@@ -7,8 +7,13 @@ import CookiesCollapsible from './cookies-collapsible'
 import {COOKIES_BY_TYPE} from 'config'
 
 const cookiesByType = Object.keys(COOKIES_BY_TYPE)
+// Only what the site cannot work without starts on. Anything else has to be
+// switched on by the visitor, since a box that comes ticked is not consent.
 const defaultConsents = cookiesByType.reduce(
-  (consents, consent) => ({...consents, [camelCase(consent)]: true}),
+  (consents, consent) => ({
+    ...consents,
+    [camelCase(consent)]: consent === 'NECESSARY'
+  }),
   {}
 )
 
