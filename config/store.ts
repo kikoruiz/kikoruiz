@@ -83,4 +83,4 @@ export const FILTER_OPTIONS = {
 // It tells the cart line of a signed print apart from the unsigned one of the
 // same Stripe price, and the checkout strips it back off.
 export const SIGNED_SUFFIX = ':signed'
-export const SIMPLE_FILTERS = ['size-option', 'signature']
+export const SIMPLE_FILTERS = ['size-option']

@@ -7,6 +7,7 @@ import useLayoutContext from 'contexts/Layout'
 import Image from 'components/image'
 import Button from 'components/button'
 import Logo from 'assets/brand/photo-logo.svg'
+import Signature from 'assets/brand/signature.svg'
 import IconArrowTopRightOnSquare from 'assets/icons/arrow-top-right-on-square.svg'
 import {
   DEFAULT_UNIT_OF_MEASUREMENT,
@@ -91,7 +92,19 @@ export default function PrintCard({
               className={`absolute bottom-3 left-3 fill-white/80 ${isVertical ? 'w-9' : 'w-6'}`}
             />
           )}
+          {isSigned && isBorderless && (
+            <Signature
+              aria-hidden="true"
+              className="absolute bottom-3 right-3 w-[18%] fill-white/80"
+            />
+          )}
         </div>
+        {isSigned && !isBorderless && (
+          <Signature
+            aria-hidden="true"
+            className="absolute bottom-[2%] right-[10%] w-[14%] fill-neutral-800/80"
+          />
+        )}
       </div>
       <div className="flex items-start justify-between gap-1.5 mt-3 py-1.5 pl-1.5">
         <div className="flex flex-col gap-1.5">
