@@ -4,7 +4,7 @@ import {camelCase} from 'change-case'
 import {Alternate} from 'types'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getPrints} from 'lib/store/prints'
-import {Print} from 'types/store'
+import {PrintPicture} from 'types/store'
 import StorePage from 'components/store-page'
 import PrintCard from 'components/print-card'
 import {getAbsoluteUrl, getSlug, getSocialImageUrl} from 'lib/utils'
@@ -12,7 +12,7 @@ import {FILTER_OPTIONS, SIMPLE_FILTERS} from 'config/store'
 
 interface PrintsPageProps {
   alternates: Alternate[]
-  prints: Print[]
+  prints: PrintPicture[]
   image: string
 }
 
@@ -62,12 +62,15 @@ export default function PrintsPage({
 }: PrintsPageProps) {
   const {t} = useTranslation()
   const [state, dispatch] = useReducer(reducer, initialState)
-  const items = prints.filter(({size, isBorderless, paper}) => {
-    return (
-      size.toLowerCase() === state.size &&
-      isBorderless === (state.sizeOption === 'borderless') &&
-      paper === state.paper
+  const items = prints.flatMap(({variants, ...print}) => {
+    const variant = variants.find(
+      ({size, isBorderless, paper}) =>
+        size.toLowerCase() === state.size &&
+        isBorderless === (state.sizeOption === 'borderless') &&
+        paper === state.paper
     )
+
+    return variant ? [{...print, ...variant}] : []
   })
 
   function handleFilterChange(event) {

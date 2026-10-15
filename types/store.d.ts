@@ -1,20 +1,29 @@
 import {Image, Picture} from './gallery'
 
-export interface Print {
+export interface PrintVariant {
   id: string
-  name: string
-  slug: string
-  url?: string
-  description?: string
+  productName: string
   paper: Paper['id']
   size: string
   isBorderless: boolean
   price: number
+  priceId: string
+}
+
+// The picture travels once with its variants, since repeating it for every
+// size, border and paper is most of what the page sends.
+export interface PrintPicture {
+  pictureId: string
+  name: string
+  slug: string
   image?: Image
   aspectRatio?: string
   imageSize: string
   picture: Picture['permalink']
+  variants: PrintVariant[]
 }
+
+export type Print = Omit<PrintPicture, 'variants'> & PrintVariant
 
 export interface RawPrint {
   id: string

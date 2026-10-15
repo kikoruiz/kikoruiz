@@ -2,9 +2,13 @@ import {fromExifToGallery} from 'lib/gallery/mappers'
 import {getAllPictures} from 'lib/gallery/pictures'
 import {getAspectRatio} from 'lib/utils'
 import products from 'data/store/products.json'
-import {Print} from 'types/store'
+import {PrintPicture} from 'types/store'
 
-export async function getPrints({locale}: {locale: string}): Promise<Print[]> {
+export async function getPrints({
+  locale
+}: {
+  locale: string
+}): Promise<PrintPicture[]> {
   const rawPictures = await getAllPictures()
   const pictureIds = new Set(products.map(({pictureId}) => pictureId))
   const sellablePictures = rawPictures.filter(({fileName}) =>
@@ -27,25 +31,40 @@ export async function getPrints({locale}: {locale: string}): Promise<Print[]> {
   // `rawPictures` already comes newest first, so following its order here is
   // what keeps the sizes of a newer picture ahead of an older one's, same as
   // the downloads already do.
-  return sellablePictures.flatMap(({fileName}) => {
+  return sellablePictures.map(({fileName}) => {
     const pictureId = fileName.split('.')[0]
     const {name, slug, permalink, image, imageSize} =
       picturesById.get(pictureId)
 
-    return productsByPictureId.get(pictureId).map(
-      ({id, size, isBorderless, paper, price}) => ({
-        id,
-        name,
-        slug,
-        paper,
-        size,
-        isBorderless,
-        price,
-        image,
-        aspectRatio: getAspectRatio(imageSize),
-        imageSize,
-        picture: permalink
-      })
-    )
+    return {
+      pictureId,
+      name,
+      slug,
+      image,
+      aspectRatio: getAspectRatio(imageSize),
+      imageSize,
+      picture: permalink,
+      variants: productsByPictureId
+        .get(pictureId)
+        .map(
+          ({
+            id,
+            name: productName,
+            size,
+            isBorderless,
+            paper,
+            price,
+            priceId
+          }) => ({
+            id,
+            productName,
+            paper,
+            size,
+            isBorderless,
+            price,
+            priceId
+          })
+        )
+    }
   })
 }
