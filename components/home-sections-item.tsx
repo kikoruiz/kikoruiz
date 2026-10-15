@@ -1,9 +1,7 @@
 import {getReadableTextClassName} from 'lib/utils/color'
-import {useLayoutEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
-import {useMediaQuery} from 'hooks/use-media-query'
-import {getCapitalizedName, getSlug, screens} from 'lib/utils'
+import {getCapitalizedName, getSlug} from 'lib/utils'
 import Image from './image'
 import sectionIcons from './section-icons'
 import {SectionImage} from 'types'
@@ -13,8 +11,6 @@ interface HomeSectionsItemProps extends SectionImage {
   averageColor?: ImageAverageColor
   isCollapsed: boolean
 }
-
-const {sm, md, lg, xl} = screens
 
 export default function HomeSectionsItem({
   id,
@@ -32,25 +28,6 @@ export default function HomeSectionsItem({
   const href = `/${getSlug(t(`sections.${id}.name`))}`
   const sectionName = t(`sections.${id}.name`)
   const Icon = sectionIcons[`Icon${getCapitalizedName(id)}`]
-  const imageRef = useRef(null)
-  const [imageHeight, setImageHeight] = useState('')
-
-  function handleMediaChange() {
-    const imageHeight = imageRef.current?.offsetHeight
-
-    if (imageHeight > 0) {
-      setImageHeight(imageRef.current?.offsetHeight)
-    }
-  }
-
-  useMediaQuery({minWidth: sm}, undefined, handleMediaChange)
-  useMediaQuery({minWidth: md}, undefined, handleMediaChange)
-  useMediaQuery({minWidth: lg}, undefined, handleMediaChange)
-  useMediaQuery({minWidth: xl}, undefined, handleMediaChange)
-
-  useLayoutEffect(() => {
-    setImageHeight(imageRef.current?.offsetHeight)
-  }, [imageRef])
 
   return (
     <Link
@@ -85,23 +62,31 @@ export default function HomeSectionsItem({
           </p>
         </header>
 
-        <Image
-          ref={imageRef}
-          src={src}
-          alt=""
-          className="transition-all duration-300 h-auto aspect-square w-full overflow-hidden group-first:rounded-tl-xl group-[&:nth-child(2)]:rounded-bl-xl group-[&:nth-child(3)]:rounded-tr-xl group-last:rounded-br-xl md:group-first:rounded-l-xl md:group-[&:nth-child(2)]:rounded-none md:group-[&:nth-child(3)]:rounded-none md:group-last:rounded-r-xl"
-          style={{
-            WebkitMaskImage:
-              'linear-gradient(to top, rgba(0, 0, 0, 1) 75%, transparent 100%)',
-            ...((isCollapsed || imageHeight) && {
-              height: isCollapsed ? 0 : imageHeight
-            }),
-            opacity: isCollapsed ? 0 : 100
-          }}
-          fallbackStyle={css}
-          sizes={sizes}
-          needsPreload
-        />
+        {/* The image keeps its natural square and the collapse travels a grid
+            row, so there is no height to measure that could be taken at the
+            wrong moment and stay wrong. */}
+        <div
+          className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+            isCollapsed
+              ? 'grid-rows-[0fr] opacity-0'
+              : 'grid-rows-[1fr] opacity-100'
+          }`}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <Image
+              src={src}
+              alt=""
+              className="transition-all duration-300 h-auto aspect-square w-full overflow-hidden group-first:rounded-tl-xl group-[&:nth-child(2)]:rounded-bl-xl group-[&:nth-child(3)]:rounded-tr-xl group-last:rounded-br-xl md:group-first:rounded-l-xl md:group-[&:nth-child(2)]:rounded-none md:group-[&:nth-child(3)]:rounded-none md:group-last:rounded-r-xl"
+              style={{
+                WebkitMaskImage:
+                  'linear-gradient(to top, rgba(0, 0, 0, 1) 75%, transparent 100%)'
+              }}
+              fallbackStyle={css}
+              sizes={sizes}
+              needsPreload
+            />
+          </div>
+        </div>
       </article>
     </Link>
   )
