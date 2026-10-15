@@ -2,6 +2,7 @@ import Link, {LinkProps} from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import {SECTIONS} from 'config'
 import {getSlug} from 'lib/utils'
+import Collapsible from './collapsible'
 
 interface NavigationCategoriesListProps {
   path: string
@@ -30,7 +31,7 @@ export default function NavigationCategoriesList({
   // animated, while `visibility` still keeps the links out of the tab order
   // the way `hidden` did. It fades without travelling, since moving against a
   // tab that stays put read as the two coming apart.
-  return (
+  const list = (
     <ul
       className={`sm:invisible sm:block sm:opacity-0 sm:transition-[opacity,visibility] sm:duration-300${
         isDismissed
@@ -40,7 +41,7 @@ export default function NavigationCategoriesList({
         isMenuOpen
           ? ''
           : ' absolute left-2/4 w-[calc(100%+1rem)] -translate-x-1/2 rounded-b bg-neutral-800 pt-3 shadow-md'
-      } ${isSectionExpanded ? 'block' : 'hidden'}`}
+      } ${isMenuOpen || isSectionExpanded ? 'block' : 'hidden'}`}
     >
       {section.categories.map((category: NavigationCategory) => {
         const categorySlug = getSlug(
@@ -74,6 +75,12 @@ export default function NavigationCategoriesList({
         )
       })}
     </ul>
+  )
+
+  return isMenuOpen ? (
+    <Collapsible isOpen={isSectionExpanded}>{list}</Collapsible>
+  ) : (
+    list
   )
 }
 

@@ -19,6 +19,7 @@ import IconShare from 'assets/icons/share.svg'
 import IconCheckCircle from 'assets/icons/check-circle.svg'
 import ButtonLink from './button-link'
 import Button from './button'
+import Collapsible from './collapsible'
 
 interface PictureDetailProps {
   picture: Picture
@@ -196,10 +197,12 @@ export default function PictureDetail({
 
                 <PictureInfo {...pictureInfoProps} isOpen={showInfo} />
 
-                {showMap && coordinates && (
-                  <div className="mb-5 h-60 w-full overflow-hidden rounded drop-shadow">
-                    <DynamicMap pictures={[{slug, coordinates}]} zoom={10} />
-                  </div>
+                {coordinates && (
+                  <Collapsible isOpen={showMap}>
+                    <div className="mb-5 h-60 w-full overflow-hidden rounded drop-shadow">
+                      <DynamicMap pictures={[{slug, coordinates}]} zoom={10} />
+                    </div>
+                  </Collapsible>
                 )}
 
                 <div className="flex flex-col gap-3">

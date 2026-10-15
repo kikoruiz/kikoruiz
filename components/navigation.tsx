@@ -79,6 +79,31 @@ export default function Navigation({
   const [expandedSections, setExpandedSections] = useState(
     activeSection ? [activeSection.id] : []
   )
+  // The panel outlives `isMenuOpen` by the length of its closing transition,
+  // and only starts travelling a couple of frames after it is laid out, or
+  // there would be no starting point to move from.
+  const [isMenuRendered, setIsMenuRendered] = useState(isMenuOpen)
+  const [isMenuVisible, setIsMenuVisible] = useState(isMenuOpen)
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      setIsMenuRendered(true)
+      let innerFrame: number
+      const outerFrame = requestAnimationFrame(() => {
+        innerFrame = requestAnimationFrame(() => setIsMenuVisible(true))
+      })
+
+      return () => {
+        cancelAnimationFrame(outerFrame)
+        cancelAnimationFrame(innerFrame)
+      }
+    }
+
+    setIsMenuVisible(false)
+    const timeout = setTimeout(() => setIsMenuRendered(false), 300)
+
+    return () => clearTimeout(timeout)
+  }, [isMenuOpen])
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen)
@@ -116,12 +141,16 @@ export default function Navigation({
 
   return (
     <nav
-      className={`my-auto flex gap-3${hasHero && !isMenuOpen ? ' text-neutral-100' : ''}${isMenuOpen ? ' relative' : ''}`}
+      className={`my-auto flex gap-3${hasHero && !isMenuRendered ? ' text-neutral-100' : ''}${isMenuRendered ? ' relative' : ''}`}
     >
       <ul
         className={`${
-          isMenuOpen
-            ? 'absolute right-0 top-full z-20 mt-3 w-[calc(100vw-1.5rem)] rounded-md bg-neutral-800 py-4 drop-shadow-lg'
+          isMenuRendered
+            ? `absolute right-0 top-full z-20 mt-3 w-[calc(100vw-1.5rem)] rounded-md bg-neutral-800 py-4 drop-shadow-lg transition-[opacity,transform] duration-300 ease-out ${
+                isMenuVisible
+                  ? 'translate-y-0 opacity-100'
+                  : 'pointer-events-none -translate-y-3 opacity-0'
+              }`
             : 'hidden sm:mt-[3px] sm:flex'
         }`}
       >
@@ -133,7 +162,7 @@ export default function Navigation({
             activeSection={activeSection}
             expandedSections={expandedSections}
             setExpandedSections={setExpandedSections}
-            isMenuOpen={isMenuOpen}
+            isMenuOpen={isMenuRendered}
             setIsMenuOpen={setIsMenuOpen}
             onClick={handleElementClick}
           />

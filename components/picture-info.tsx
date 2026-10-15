@@ -1,6 +1,7 @@
 import {Fragment} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import {ShotInfo as ShotInfoInterface} from 'types/gallery'
+import Collapsible from './collapsible'
 
 export default function PictureInfo({
   shotInfo,
@@ -66,7 +67,7 @@ export default function PictureInfo({
   ]
 
   return (
-    isOpen && (
+    <Collapsible isOpen={isOpen}>
       <dl className="relative inline-grid auto-rows-max grid-cols-2 py-4 text-xs font-extralight text-neutral-300/60 after:absolute after:left-0 after:top-0 after:block after:h-[1px] after:w-full after:bg-gradient-to-r after:from-transparent after:via-orange-300/30 sm:grid-cols-4 sm:text-sm sm:font-thin">
         {shotInfoList.map(({id, content}) => {
           const baseClassName = 'py-0.5'
@@ -87,7 +88,7 @@ export default function PictureInfo({
           )
         })}
       </dl>
-    )
+    </Collapsible>
   )
 }
 
