@@ -18,6 +18,7 @@
   "add-to-cart": "Afegir al carret",
   "size": "Tamany",
   "signature": "Signatura",
+  "size-option": "Marge",
   "paper": "Paper",
   "card": {
     "go-to-picture": "Anar a la foto \"{{name}}\"",

@@ -109,7 +109,7 @@ function PictureViewer(
         <button
           aria-label={t(`${translationsPrefix}.close`)}
           title={t(`${translationsPrefix}.close`)}
-          className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
+          className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
           onClick={onClose}
         >
           <span className="sr-only">{t(`${translationsPrefix}.close`)}</span>
@@ -130,7 +130,7 @@ function PictureViewer(
         <button
           aria-label={fullScreenButtonText}
           title={fullScreenButtonText}
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
           onClick={toggleFullScreen}
         >
           <span className="sr-only">{fullScreenButtonText}</span>
@@ -158,7 +158,7 @@ function PictureViewer(
             <button
               aria-label={t('carousel.navigation.previous')}
               title={t('carousel.navigation.previous')}
-              className="absolute -left-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-end rounded-full bg-gradient-to-l from-neutral-800/60 pr-3.5 text-neutral-400 hover:from-neutral-800/30 hover:text-neutral-300 focus:outline-none"
+              className="absolute -left-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-end rounded-full bg-gradient-to-l from-neutral-800/60 pr-3.5 text-neutral-400 hover:from-neutral-800/30 hover:text-neutral-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
               onClick={onPrevious}
             >
               <IconArrowLeft className="w-9" />
@@ -169,7 +169,7 @@ function PictureViewer(
             <button
               aria-label={t('carousel.navigation.next')}
               title={t('carousel.navigation.next')}
-              className="absolute -right-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-start rounded-full bg-gradient-to-r from-neutral-800/60 pl-3.5 text-neutral-400 hover:from-neutral-800/30 hover:text-neutral-300 focus:outline-none"
+              className="absolute -right-14 top-2/4 z-20 -mt-14 flex h-28 w-28 items-center justify-start rounded-full bg-gradient-to-r from-neutral-800/60 pl-3.5 text-neutral-400 hover:from-neutral-800/30 hover:text-neutral-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
               onClick={onNext}
             >
               <IconArrowRight className="w-9" />

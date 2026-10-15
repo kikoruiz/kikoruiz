@@ -76,7 +76,7 @@ export default function HomeHeader({
         title={t(
           collapseSections ? 'sections.uncollapse' : 'sections.collapse'
         )}
-        className="group absolute top-3 right-3 scale-75 opacity-75 flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
+        className="group absolute top-3 right-3 scale-75 opacity-75 flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
         onClick={() => {
           setCollapseSections(!collapseSections)
         }}

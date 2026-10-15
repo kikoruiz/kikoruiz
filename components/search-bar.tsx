@@ -134,7 +134,7 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
 
   return (
     <div
-      aria-hidden={!isOpen}
+      inert={!isOpen}
       className={`absolute left-0 top-full z-20 w-full px-4 transition-all duration-300 ease-out sm:px-0 ${
         isOpen
           ? 'translate-y-0 opacity-100'

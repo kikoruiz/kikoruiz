@@ -120,6 +120,7 @@ export default function Navigation({
 
   return (
     <nav
+      aria-label={t('navigation.main')}
       className={`my-auto flex gap-3${hasHero && !isMenuRendered ? ' text-neutral-100' : ''}${isMenuRendered ? ' relative' : ''}`}
     >
       <ul

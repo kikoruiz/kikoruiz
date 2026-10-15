@@ -1,6 +1,7 @@
 import {ReactNode} from 'react'
 import {useRouter} from 'next/router'
 import Head from 'next/head'
+import useTranslation from 'next-translate/useTranslation'
 import {Inter} from 'next/font/google'
 import Header from './header'
 import Footer from './footer'
@@ -27,6 +28,7 @@ export default function Layout({
   ...sectionData
 }: LayoutProps) {
   const {locale, defaultLocale} = useRouter()
+  const {t} = useTranslation()
   const {hasHero, section} = sectionData
   const isLegalPage = LEGAL_PAGES.includes(section)
   const isSimplePage = SIMPLE_PAGES.includes(section)
@@ -50,9 +52,20 @@ export default function Layout({
         </Head>
       )}
 
+      {!isPrintable && (
+        <a
+          href="#main"
+          className="sr-only rounded-md bg-neutral-800 px-4 py-2 text-sm font-medium text-orange-300 ring-1 ring-orange-300 focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50"
+        >
+          {t('navigation.skip-to-content')}
+        </a>
+      )}
+
       {!isPrintable && <Header {...sectionData} />}
 
-      <main {...mainProps}>{children}</main>
+      <main id="main" tabIndex={-1} {...mainProps}>
+        {children}
+      </main>
 
       {!isPrintable && (
         <>

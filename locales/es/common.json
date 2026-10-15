@@ -3,6 +3,8 @@
     "back-to": "Volver a {{section}}",
     "close-menu": "Cerrar menú",
     "open-menu": "Abrir menú",
+    "main": "Navegación principal",
+    "skip-to-content": "Saltar al contenido",
     "search": "Buscar",
     "search-no-results": "Sin resultados",
     "album": {

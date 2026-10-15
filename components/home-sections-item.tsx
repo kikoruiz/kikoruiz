@@ -1,3 +1,4 @@
+import {getReadableTextClassName} from 'lib/utils/color'
 import {useLayoutEffect, useRef, useState} from 'react'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
@@ -55,7 +56,6 @@ export default function HomeSectionsItem({
     <Link
       href={href}
       title={sectionName}
-      aria-label={sectionName}
       className="group flex flex-1 even:mt-1 md:even:mt-0 overflow-hidden shadow-sm first:rounded-tl-xl [&:nth-child(2)]:rounded-bl-xl [&:nth-child(3)]:rounded-tr-xl last:rounded-br-xl md:first:rounded-l-xl md:[&:nth-child(2)]:rounded-none md:[&:nth-child(3)]:rounded-none md:last:rounded-r-xl"
     >
       <article
@@ -70,9 +70,9 @@ export default function HomeSectionsItem({
         }}
       >
         <header
-          className={`flex flex-col items-center px-0 py-3 group-hover:text-current md:p-6 lg:items-start xl:p-5 ${
-            averageColor.isDark ? 'text-orange-300' : 'text-neutral-300'
-          }`}
+          className={`flex flex-col items-center px-0 py-3 group-hover:text-current md:p-6 lg:items-start xl:p-5 ${getReadableTextClassName(
+            averageColor.hex
+          )}`}
         >
           <div className="-ml-1.5 flex font-semibold sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
             <Icon className="mr-1 w-5 md:mr-1.5 md:w-7 xl:mr-2 xl:w-8" />
@@ -80,7 +80,7 @@ export default function HomeSectionsItem({
             {sectionName}
           </div>
 
-          <p className="mt-3 hidden text-sm font-light opacity-75 lg:flex xl:text-base">
+          <p className="mt-3 hidden text-sm font-light lg:flex xl:text-base">
             {t(`sections.${id}.description`)}
           </p>
         </header>
@@ -88,7 +88,7 @@ export default function HomeSectionsItem({
         <Image
           ref={imageRef}
           src={src}
-          alt={sectionName}
+          alt=""
           className="transition-all duration-300 h-auto aspect-square w-full overflow-hidden group-first:rounded-tl-xl group-[&:nth-child(2)]:rounded-bl-xl group-[&:nth-child(3)]:rounded-tr-xl group-last:rounded-br-xl md:group-first:rounded-l-xl md:group-[&:nth-child(2)]:rounded-none md:group-[&:nth-child(3)]:rounded-none md:group-last:rounded-r-xl"
           style={{
             WebkitMaskImage:

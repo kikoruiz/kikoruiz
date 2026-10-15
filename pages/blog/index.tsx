@@ -17,7 +17,7 @@ export default function Blog({posts, tags, alternates, section}: BlogProps) {
   return (
     <>
       <Head>
-        <title>{}</title>
+        <title>{title}</title>
         <meta name="description" content={description} />
 
         <meta property="og:type" content="website" />

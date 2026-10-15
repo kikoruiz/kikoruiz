@@ -30,7 +30,7 @@ export default function PictureCard({
       src={src}
       url={url}
       shallowUrl={shallowUrl}
-      alt={title}
+      alt={isAlbum ? '' : title}
       className={imageClassName}
       aspectRatio={aspectRatio}
       sizes={sizes}

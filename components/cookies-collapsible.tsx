@@ -18,7 +18,7 @@ export default function CookiesCollapsible({
 
   return (
     <div key={id} className="rounded-lg bg-neutral-600/30">
-      <header
+      <div
         onClick={() => {
           setIsOpen(!isOpen)
         }}
@@ -28,14 +28,19 @@ export default function CookiesCollapsible({
           {t(`legal.cookies.types.${slug}.description`)}
         </span>
 
-        <button className="flex p-3 rounded-full bg-gradient-to-t from-neutral-600/30 group-hover:text-neutral-300 focus:outline-none">
+        <button
+          type="button"
+          aria-expanded={isOpen}
+          aria-label={t(`legal.cookies.types.${slug}.description`)}
+          className="flex p-3 rounded-full bg-gradient-to-t from-neutral-600/30 group-hover:text-neutral-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
+        >
           <IconChevronDown
             className={`h-4 w-4 transition-transform ease-in-out${
               isOpen ? ' -rotate-180' : ''
             }`}
           />
         </button>
-      </header>
+      </div>
 
       <Collapsible isOpen={isOpen}>
         <div className="p-6">

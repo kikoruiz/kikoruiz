@@ -18,6 +18,7 @@
   "add-to-cart": "Add to cart",
   "size": "Size",
   "signature": "Signature",
+  "size-option": "Border",
   "paper": "Paper",
   "card": {
     "go-to-picture": "Go to picture \"{{name}}\"",

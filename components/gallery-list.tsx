@@ -138,17 +138,17 @@ export default function GalleryList({
 
           <button
             onClick={toggleSortingDirection}
-            className="group flex items-center rounded-md border border-neutral-700 bg-neutral-800 p-1.5 text-xs font-light hover:border-orange-300/60 focus:border-orange-300/60 focus:outline-none focus:ring-orange-300/60"
+            className="group flex items-center rounded-md border border-neutral-700 bg-neutral-800 p-1.5 text-xs font-light hover:border-orange-300/60 focus:border-orange-300/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 focus:ring-orange-300/60"
             aria-label={t('gallery:sorting.direction')}
             title={t('gallery:sorting.direction')}
           >
-            <span className="text-neutral-300/60">
+            <span aria-hidden className="text-neutral-300/60">
               {isAscendingOrder ? 'A' : 'Z'}
             </span>
 
             <ArrowPathRoundedSquare className="w-6 px-1 group-hover:fill-orange-300" />
 
-            <span className="text-neutral-300/60">
+            <span aria-hidden className="text-neutral-300/60">
               {isAscendingOrder ? 'Z' : 'A'}
             </span>
           </button>

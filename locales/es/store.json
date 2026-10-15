@@ -18,6 +18,7 @@
   "add-to-cart": "Añadir al carrito",
   "size": "Tamaño",
   "signature": "Firma",
+  "size-option": "Borde",
   "paper": "Papel",
   "card": {
     "go-to-picture": "Ir a la foto \"{{name}}\"",

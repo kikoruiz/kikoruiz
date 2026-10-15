@@ -37,7 +37,7 @@ export default function ArticleLightbox({
         <button
           aria-label="Close"
           title="Close"
-          className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none"
+          className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 drop-shadow-xl hover:text-neutral-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
           onClick={onClose}
         >
           <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">

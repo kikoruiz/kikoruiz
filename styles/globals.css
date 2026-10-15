@@ -38,3 +38,19 @@ body {
     display: none;
   }
 }
+
+/* Whoever asked their system for less motion gets the end state straight away:
+   no smooth scrolling and no transitions or keyframes to wait for. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -92,7 +92,7 @@ export default function ShoppingCartModal() {
             <button
               aria-label={t('back-to-store')}
               title={t('back-to-store')}
-              className="absolute left-0 flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-600/30 text-neutral-400 hover:text-orange-200 focus:outline-none"
+              className="absolute left-0 flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-t from-neutral-600/30 text-neutral-400 hover:text-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
               onClick={() => {
                 handleCloseCart()
               }}

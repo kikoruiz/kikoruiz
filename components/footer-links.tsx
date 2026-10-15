@@ -102,7 +102,7 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
         >
           {column.map(({id, name, href, links}) => (
             <div key={id} className="break-inside-avoid-column pb-9 xl:pb-0">
-              <header className="mb-3 font-bold text-neutral-100">
+              <div className="mb-3 font-bold text-neutral-100">
                 {href && currentPath !== href ? (
                   <Link
                     href={href}
@@ -121,7 +121,7 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
                     {name}
                   </span>
                 )}
-              </header>
+              </div>
 
               {links.length > 0 && (
                 <ul className="space-y-1.5 text-sm">

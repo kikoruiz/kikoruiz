@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {KeyboardEvent, useEffect, useRef, useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import {useCookieConsentContext} from '@use-cookie-consent/react'
 import {camelCase} from 'change-case'
@@ -28,8 +28,46 @@ export default function CookiesModal({
   // defaults.
   const [consents, setConsents] = useState({...defaultConsents, ...consent})
 
+  const panelRef = useRef<HTMLDivElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
+
   function closeModal() {
     setIsModalOpen(false)
+    previousFocusRef.current?.focus()
+  }
+
+  // The dialog takes the focus when it opens and gives it back when it closes,
+  // and Tab goes round inside it, since everything behind is out of reach.
+  useEffect(() => {
+    previousFocusRef.current = document.activeElement as HTMLElement
+    panelRef.current?.focus()
+  }, [])
+
+  function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key === 'Escape') {
+      event.stopPropagation()
+      closeModal()
+
+      return
+    }
+
+    if (event.key !== 'Tab') return
+
+    const focusable = Array.from(
+      panelRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter(element => element.offsetParent !== null)
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault()
+      last.focus()
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault()
+      first.focus()
+    }
   }
 
   return (
@@ -42,13 +80,19 @@ export default function CookiesModal({
       />
 
       <div
-        className={`fixed flex flex-col w-screen h-screen sm:h-auto sm:max-h-[calc(100vh-3rem)] overflow-y-auto text-sm top-1/2 left-1/2 z-20 -translate-x-1/2 max-w-xl bg-neutral-900 sm:rounded sm:border sm:border-neutral-800 p-6 sm:p-12 transition-[opacity,transform] duration-300 ease-out ${isVisible ? '-translate-y-1/2 opacity-100' : 'translate-y-[calc(-50%-0.75rem)] pointer-events-none opacity-0'}`}
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookies-modal-title"
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
+        className={`fixed flex flex-col w-screen h-screen sm:h-auto sm:max-h-[calc(100vh-3rem)] overflow-y-auto text-sm top-1/2 left-1/2 z-20 -translate-x-1/2 max-w-xl bg-neutral-900 sm:rounded sm:border sm:border-neutral-800 p-6 sm:p-12 outline-none transition-[opacity,transform] duration-300 ease-out ${isVisible ? '-translate-y-1/2 opacity-100' : 'translate-y-[calc(-50%-0.75rem)] pointer-events-none opacity-0'}`}
       >
         <div className="absolute right-3 top-3 z-20 flex flex-row-reverse gap-3 sm:right-6 sm:top-6">
           <button
             aria-label={t('legal.cookies.modal.close')}
             title={t('legal.cookies.modal.close')}
-            className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none"
+            className="group relative flex h-11 w-11 rounded-full bg-gradient-to-t from-neutral-800 text-neutral-400 hover:text-neutral-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
             onClick={closeModal}
           >
             <span className="sr-only">{t('legal.cookies.modal.close')}</span>
@@ -67,9 +111,9 @@ export default function CookiesModal({
           </button>
         </div>
 
-        <header className="font-bold text-3xl mr-12 mt-6">
+        <h2 id="cookies-modal-title" className="font-bold text-3xl mr-12 mt-6">
           {t('legal.cookies.modal.title')}
-        </header>
+        </h2>
 
         <div className="flex flex-col justify-between flex-grow">
           <div className="flex flex-col gap-3 my-9">

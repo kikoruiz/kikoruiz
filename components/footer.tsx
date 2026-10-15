@@ -34,15 +34,12 @@ function Footer({alternates}: FooterProps) {
         <div className="flex items-center text-sm md:mb-0">
           <label
             htmlFor="languages"
-            aria-label={t('languages.selector.label')}
             title={t('languages.selector.label')}
             className="mr-2 inline-flex items-center text-neutral-500"
           >
             <IconLanguage className="w-6" />
 
-            <span aria-hidden className="hidden">
-              {t('languages.selector.label')}
-            </span>
+            <span className="sr-only">{t('languages.selector.label')}</span>
           </label>
 
           <select
