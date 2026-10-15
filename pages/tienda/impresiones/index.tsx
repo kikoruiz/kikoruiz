@@ -130,8 +130,11 @@ export default function PrintsPage({
             at a different height. */}
         <div className="columns-1 gap-6 md:columns-2 lg:columns-3 xl:gap-9">
           {items.map(print => (
+            // Keyed by picture, since the id of a variant changes with every
+            // size, border or paper, and a card that remounts for the same
+            // picture reloads and fades the image in again for nothing.
             <div
-              key={print.id}
+              key={print.slug}
               className="break-inside-avoid-column pb-6 xl:pb-9"
             >
               <PrintCard {...print} isSigned={state.signature === 'signed'} />

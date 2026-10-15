@@ -7,7 +7,6 @@ import useLayoutContext from 'contexts/Layout'
 import Image from 'components/image'
 import Button from 'components/button'
 import Logo from 'assets/brand/photo-logo.svg'
-import Signature from 'assets/brand/signature.svg'
 import IconArrowTopRightOnSquare from 'assets/icons/arrow-top-right-on-square.svg'
 import {
   DEFAULT_UNIT_OF_MEASUREMENT,
@@ -61,7 +60,6 @@ export default function PrintCard({
   } = products.find(product => product.id === id)
   return (
     <div
-      key={id}
       className={`relative group h-fit break-inside-avoid-column p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md${isActive ? ' ring-1 ring-inset ring-orange-300/60' : ''}`}
     >
       <span
@@ -87,24 +85,12 @@ export default function PrintCard({
               setIsImageLoaded(true)
             }}
           />
-          {isImageLoaded && (
+          {isImageLoaded && isSigned && (
             <Logo
               className={`absolute bottom-3 left-3 fill-white/80 ${isVertical ? 'w-9' : 'w-6'}`}
             />
           )}
-          {isSigned && isBorderless && (
-            <Signature
-              aria-hidden="true"
-              className="absolute bottom-3 right-3 w-[18%] fill-white/80"
-            />
-          )}
         </div>
-        {isSigned && !isBorderless && (
-          <Signature
-            aria-hidden="true"
-            className="absolute bottom-[2%] right-[10%] w-[14%] fill-neutral-800/80"
-          />
-        )}
       </div>
       <div className="flex items-start justify-between gap-1.5 mt-3 py-1.5 pl-1.5">
         <div className="flex flex-col gap-1.5">
