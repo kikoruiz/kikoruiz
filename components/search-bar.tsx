@@ -90,6 +90,9 @@ export default function SearchBar({isOpen, setIsOpen}: SearchBarProps) {
   useEffect(() => {
     if (isOpen) {
       inputRef.current.focus()
+      // The index is fetched while the person is still typing, instead of
+      // after the first key.
+      import('lib/search')
     }
   }, [isOpen])
 
