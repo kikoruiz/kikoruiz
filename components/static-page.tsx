@@ -28,7 +28,7 @@ export default function StaticPage({
 
       <section className="mx-auto px-6 xl:max-w-5xl">
         <header className="pt-12 sm:pt-6 text-center">
-          <h1 className="text-6xl font-black sm:text-8xl">{content.title}</h1>
+          <h1 className="-mx-3 text-6xl font-black tracking-tighter sm:mx-0 sm:text-8xl md:tracking-normal">{content.title}</h1>
         </header>
 
         {children}
