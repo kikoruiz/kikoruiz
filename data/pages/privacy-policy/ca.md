@@ -1,4 +1,4 @@
-Última actualització: **14 d'octubre de 2026**
+Última actualització: **15 d'octubre de 2026**
 
 Gràcies per visitar [kikoruiz.es](/) (d'ara endavant, "el Lloc"). Ací t'explique quines dades personals tracte, per a què, amb qui les comparteisc i quins drets tens.
 
@@ -23,6 +23,7 @@ No venc les teues dades. Per prestar-te el servei les comparteisc amb proveïdor
 - **Resend:** envia els correus de la compra.
 - **Cloudflare:** allotja els arxius de les descàrregues.
 - **Vercel:** allotja el Lloc i mesura les seues visites i el seu rendiment sense usar galetes.
+- **OpenStreetMap:** presta els mapes que es mostren al Lloc. Quan obris un mapa, el teu navegador els demana directament als seus servidors, que reben la teua adreça IP i les dades tècniques de la petició.
 - **Google:** presta el servei d'analítica Google Analytics 4, només si acceptes les galetes d'anàlisi.
 - **Servei de missatgeria:** rep el teu nom i la teua adreça quan compres impressions, per lliurar-te-les.
 - **Assessoria fiscal:** accedix a les dades necessàries per complir les meues obligacions tributàries.

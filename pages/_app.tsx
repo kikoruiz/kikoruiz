@@ -9,6 +9,7 @@ import {SubcategoryProvider} from 'contexts/Subcategory'
 import {LatestPicturesProvider} from 'contexts/LatestPictures'
 import {HeroImageProvider} from 'contexts/HeroImage'
 import {LayoutProvider} from 'contexts/Layout'
+import {CookiesSettingsProvider} from 'contexts/CookiesSettings'
 import Layout from 'components/layout'
 import StoreCartProvider from 'components/store-cart-provider'
 import common from '../locales/es/common.json'
@@ -51,29 +52,31 @@ export default function App({Component, pageProps}: AppProps) {
         }}
       >
         <I18nProvider lang={lang} namespaces={{common}}>
-          <LayoutProvider>
-            <SubcategoryProvider>
-              <LatestPicturesProvider>
-                <HeroImageProvider defaultImage={heroImage}>
-                  {/* The cart wraps the page for the first time when the shop
+          <CookiesSettingsProvider>
+            <LayoutProvider>
+              <SubcategoryProvider>
+                <LatestPicturesProvider>
+                  <HeroImageProvider defaultImage={heroImage}>
+                    {/* The cart wraps the page for the first time when the shop
                       is visited, which remounts everything below it, so it
                       goes under the providers that hold state to keep. */}
-                  <StoreCartProvider isActive={isStorePage}>
-                    <Layout
-                      isPrintable={Boolean(print)}
-                      {...sectionData}
-                      {...languageData}
-                    >
-                      <Component {...pageProps} />
+                    <StoreCartProvider isActive={isStorePage}>
+                      <Layout
+                        isPrintable={Boolean(print)}
+                        {...sectionData}
+                        {...languageData}
+                      >
+                        <Component {...pageProps} />
 
-                      <Analytics />
-                      <SpeedInsights />
-                    </Layout>
-                  </StoreCartProvider>
-                </HeroImageProvider>
-              </LatestPicturesProvider>
-            </SubcategoryProvider>
-          </LayoutProvider>
+                        <Analytics />
+                        <SpeedInsights />
+                      </Layout>
+                    </StoreCartProvider>
+                  </HeroImageProvider>
+                </LatestPicturesProvider>
+              </SubcategoryProvider>
+            </LayoutProvider>
+          </CookiesSettingsProvider>
         </I18nProvider>
       </CookieConsentProvider>
     </>

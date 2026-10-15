@@ -6,6 +6,7 @@ import CookiesModal from './cookies-modal'
 import Button from './button'
 import {COOKIES_BY_TYPE} from 'config'
 import {camelCase} from 'change-case'
+import useCookiesSettingsContext from 'contexts/CookiesSettings'
 
 // The banner only exists once the client has read the consent cookie, so its
 // text has nothing to be prerendered for, and a visitor who already answered
@@ -16,7 +17,8 @@ function CookiesBanner() {
   const {t} = useTranslation()
   const {consent, acceptAllCookies, declineAllCookies, cookies} =
     useCookieConsentContext()
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const {isOpen: isModalOpen, setIsOpen: setIsModalOpen} =
+    useCookiesSettingsContext()
   // Deliberately starts false and is only ever set from the effect below.
   // `consent` comes from a cookie, so the server, which has none, always falls
   // back to the library's `{necessary: true}` default and would render the

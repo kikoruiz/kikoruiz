@@ -154,7 +154,7 @@
     },
     "cookies": {
       "banner": {
-        "description": "Hello! 🍪 We use our own and third-party **cookies** to enhance your experience on our website and provide you with personalized content. You can accept all cookies or configure them according to your preferences. For more information, please see our [cookies policy](/cookies-policy)."
+        "description": "Hello! 🍪 We use our own **cookies** to make the site work and, if you accept, third-party analytics cookies (Google Analytics) to understand how it is used and improve it. You can accept them, reject them or configure them to your preferences. For more information, please see our [cookies policy](/cookies-policy)."
       },
       "modal": {
         "close": "Close",

@@ -1,4 +1,4 @@
-Last updated: **October 14, 2026**
+Last updated: **October 15, 2026**
 
 ## Introduction
 
@@ -16,7 +16,10 @@ They do not require your consent because they are essential for the site to work
 
 - **Your cookie preferences** (`USE_COOKIE_CONSENT_STATE`): remembers what you have accepted or rejected. It lasts one year.
 - **Your shopping cart** (browser local storage): keeps the products you have added so you do not lose them when you reload the page. It is not sent to any server until you pay.
-- **Stripe** (`__stripe_mid`, `__stripe_sid` and `m`): they are activated on the shop pages. Stripe uses them to prevent fraud and protect the payment, and they last between half an hour and thirteen months. The data they collect is processed by Stripe according to its [privacy policy](https://stripe.com/privacy).
+
+### On the payment page
+
+The payment is made on Stripe's secure page, where I take you when you press pay. That page uses its own cookies, on Stripe's domain and not on this site, to prevent fraud and protect the payment. The data they collect is processed by Stripe according to its [privacy policy](https://stripe.com/privacy).
 
 ### Analytics cookies
 
@@ -30,7 +33,7 @@ Vercel Web Analytics and Vercel Speed Insights measure the site's visits and per
 
 ## How to manage cookies
 
-The first time you arrive, the cookie notice lets you accept or reject the analytics ones. To change your choice, delete this site's cookies in your browser settings and the notice will appear again. You can also block cookies from the browser, although if you block the necessary ones, the shop may not work properly.
+The first time you arrive, the cookie notice lets you accept or reject the analytics ones. You can change your choice whenever you want from the **Cookie Settings** link in the page footer. You can also block cookies from the browser, although if you block the necessary ones, the shop may not work properly.
 
 ## Changes to this cookies policy
 

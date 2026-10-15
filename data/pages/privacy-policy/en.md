@@ -1,4 +1,4 @@
-Last updated: **October 14, 2026**
+Last updated: **October 15, 2026**
 
 Thank you for visiting [kikoruiz.es](/) (hereinafter, "the Site"). Here I explain what personal data I process, what for, who I share it with and what rights you have.
 
@@ -23,6 +23,7 @@ I do not sell your data. To provide the service I share it with providers that p
 - **Resend:** sends the purchase emails.
 - **Cloudflare:** hosts the download files.
 - **Vercel:** hosts the Site and measures its visits and performance without using cookies.
+- **OpenStreetMap:** provides the maps shown on the Site. When you open a map, your browser requests it directly from its servers, which receive your IP address and the technical data of the request.
 - **Google:** provides the Google Analytics 4 service, only if you accept analytics cookies.
 - **Courier service:** receives your name and address when you buy prints, to deliver them to you.
 - **Tax advisor:** has access to the data needed to meet my tax obligations.

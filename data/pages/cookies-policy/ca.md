@@ -1,4 +1,4 @@
-Última actualització: **14 d'octubre de 2026**
+Última actualització: **15 d'octubre de 2026**
 
 ## Introducció
 
@@ -16,7 +16,10 @@ No requerixen el teu consentiment perquè són imprescindibles per al funcioname
 
 - **Les teues preferències de galetes** (`USE_COOKIE_CONSENT_STATE`): recorda què has acceptat o rebutjat. Dura un any.
 - **El teu carret de la compra** (emmagatzematge local del navegador): guarda els productes que has afegit perquè no els perdes en recarregar la pàgina. No s'envia a cap servidor fins que pagues.
-- **Stripe** (`__stripe_mid`, `__stripe_sid` i `m`): s'activen a les pàgines de la botiga. Stripe les usa per prevenir el frau i protegir el pagament, i duren entre mitja hora i tretze mesos. Les dades que recullen les tracta Stripe segons la seua [política de privacitat](https://stripe.com/privacy).
+
+### A la pàgina de pagament
+
+El pagament es fa a la pàgina segura de Stripe, a la qual et porte en polsar pagar. Eixa pàgina usa les seues pròpies galetes, al domini de Stripe i no en este lloc, per prevenir el frau i protegir el pagament. Les dades que recullen les tracta Stripe segons la seua [política de privacitat](https://stripe.com/privacy).
 
 ### Galetes d'anàlisi
 
@@ -30,7 +33,7 @@ Vercel Web Analytics i Vercel Speed Insights mesuren les visites i el rendiment 
 
 ## Com gestionar les galetes
 
-En entrar per primera vegada, l'avís de galetes et deixa acceptar o rebutjar les d'anàlisi. Per canviar la teua elecció, esborra les galetes d'este lloc a la configuració del teu navegador i l'avís tornarà a aparéixer. També pots bloquejar les galetes des del navegador, encara que si bloqueges les necessàries, és possible que la botiga no funcione bé.
+En entrar per primera vegada, l'avís de galetes et deixa acceptar o rebutjar les d'anàlisi. Pots canviar la teua elecció quan vulgues des de l'enllaç **Configurar galetes** del peu de la pàgina. També pots bloquejar les galetes des del navegador, encara que si bloqueges les necessàries, és possible que la botiga no funcione bé.
 
 ## Canvis en esta política de galetes
 

@@ -22,9 +22,11 @@ export default function CookiesModal({
   setIsModalOpen
 }: CookiesModalProps) {
   const {t} = useTranslation()
-  const {acceptCookies, acceptAllCookies, declineAllCookies} =
+  const {consent, acceptCookies, acceptAllCookies, declineAllCookies} =
     useCookieConsentContext()
-  const [consents, setConsents] = useState(defaultConsents)
+  // Reopened later on, the switches show what was chosen and not the
+  // defaults.
+  const [consents, setConsents] = useState({...defaultConsents, ...consent})
 
   function closeModal() {
     setIsModalOpen(!isModalOpen)

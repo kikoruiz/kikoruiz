@@ -4,6 +4,7 @@ import useTranslation from 'next-translate/useTranslation'
 import {getSlug} from 'lib/utils'
 import {LEGAL_PAGES, SECTIONS} from 'config'
 import {Alternate} from 'types'
+import useCookiesSettingsContext from 'contexts/CookiesSettings'
 import commonES from '../locales/es/common.json'
 
 interface FooterGroup {
@@ -16,6 +17,7 @@ interface FooterGroup {
 export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
   const {pathname, locale, defaultLocale} = useRouter()
   const {t} = useTranslation()
+  const {setIsOpen: setIsCookiesSettingsOpen} = useCookiesSettingsContext()
   // The canonical address of the page is the one place that always says where
   // we are in the language being read, even when the URL is a rewrite of a
   // Spanish route, so the links are compared against it rather than against
@@ -139,6 +141,21 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
                       )}
                     </li>
                   ))}
+
+                  {id === 'legal' && (
+                    <li className="font-light">
+                      <button
+                        type="button"
+                        title={t('legal.cookies.modal.actions.open-modal.name')}
+                        className="text-left text-neutral-300/60 transition-colors hover:text-neutral-300"
+                        onClick={() => {
+                          setIsCookiesSettingsOpen(true)
+                        }}
+                      >
+                        {t('legal.cookies.modal.actions.open-modal.name')}
+                      </button>
+                    </li>
+                  )}
                 </ul>
               )}
             </div>

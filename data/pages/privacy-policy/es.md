@@ -1,4 +1,4 @@
-Última actualización: **14 de octubre de 2026**
+Última actualización: **15 de octubre de 2026**
 
 Gracias por visitar [kikoruiz.es](/) (en adelante, "el Sitio"). Aquí te explico qué datos personales trato, para qué, con quién los comparto y qué derechos tienes.
 
@@ -23,6 +23,7 @@ No vendo tus datos. Para prestarte el servicio los comparto con proveedores que 
 - **Resend:** envía los correos de la compra.
 - **Cloudflare:** aloja los archivos de las descargas.
 - **Vercel:** aloja el Sitio y mide sus visitas y su rendimiento sin usar cookies.
+- **OpenStreetMap:** presta los mapas que se muestran en el Sitio. Cuando abres un mapa, tu navegador los pide directamente a sus servidores, que reciben tu dirección IP y los datos técnicos de la petición.
 - **Google:** presta el servicio de analítica Google Analytics 4, solo si aceptas las cookies de análisis.
 - **Servicio de mensajería:** recibe tu nombre y tu dirección cuando compras impresiones, para entregártelas.
 - **Asesoría fiscal:** accede a los datos necesarios para cumplir mis obligaciones tributarias.

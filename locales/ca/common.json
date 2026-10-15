@@ -164,7 +164,7 @@
     },
     "cookies": {
       "banner": {
-        "description": "Hola! 🍪 Utilitzem **galetes** pròpies i de tercers per millorar la teua experiència al nostre lloc web i oferir-te contingut personalitzat. Pots acceptar totes les galetes o configurar-les segons les teues preferències. Per a més informació, consulta la nostra [política de galetes](/politica-de-galetes)."
+        "description": "Hola! 🍪 Utilitzem **galetes** pròpies perquè el lloc funcione i, si ho acceptes, galetes d'anàlisi de tercers (Google Analytics) per saber com s'usa i poder millorar-lo. Pots acceptar-les, rebutjar-les o configurar-les segons les teues preferències. Per a més informació, consulta la nostra [política de galetes](/politica-de-galetes)."
       },
       "modal": {
         "close": "Tancar",

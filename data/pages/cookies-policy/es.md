@@ -1,4 +1,4 @@
-Última actualización: **14 de octubre de 2026**
+Última actualización: **15 de octubre de 2026**
 
 ## Introducción
 
@@ -16,7 +16,10 @@ No requieren tu consentimiento porque son imprescindibles para el funcionamiento
 
 - **Tus preferencias de cookies** (`USE_COOKIE_CONSENT_STATE`): recuerda qué has aceptado o rechazado. Dura un año.
 - **Tu carrito de la compra** (almacenamiento local del navegador): guarda los productos que has añadido para que no los pierdas al recargar la página. No se envía a ningún servidor hasta que pagas.
-- **Stripe** (`__stripe_mid`, `__stripe_sid` y `m`): se activan en las páginas de la tienda. Stripe las usa para prevenir el fraude y proteger el pago, y duran entre media hora y trece meses. Los datos que recogen los trata Stripe según su [política de privacidad](https://stripe.com/privacy).
+
+### En la página de pago
+
+El pago se hace en la página segura de Stripe, a la que te llevo al pulsar pagar. Esa página usa sus propias cookies, en el dominio de Stripe y no en este sitio, para prevenir el fraude y proteger el pago. Los datos que recogen los trata Stripe según su [política de privacidad](https://stripe.com/privacy).
 
 ### Cookies de análisis
 
@@ -30,7 +33,7 @@ Vercel Web Analytics y Vercel Speed Insights miden las visitas y el rendimiento 
 
 ## Cómo gestionar las cookies
 
-Al entrar por primera vez, el aviso de cookies te deja aceptar o rechazar las de análisis. Para cambiar tu elección, borra las cookies de este sitio en la configuración de tu navegador y el aviso volverá a aparecer. También puedes bloquear las cookies desde el navegador, aunque si bloqueas las necesarias, es posible que la tienda no funcione bien.
+Al entrar por primera vez, el aviso de cookies te deja aceptar o rechazar las de análisis. Puedes cambiar tu elección cuando quieras desde el enlace **Configurar cookies** del pie de la página. También puedes bloquear las cookies desde el navegador, aunque si bloqueas las necesarias, es posible que la tienda no funcione bien.
 
 ## Cambios en esta política de cookies
 

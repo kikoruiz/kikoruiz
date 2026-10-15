@@ -154,7 +154,7 @@
     },
     "cookies": {
       "banner": {
-        "description": "¡Hola! 🍪 Utilizamos **cookies** propias y de terceros para mejorar tu experiencia en nuestro sitio web y ofrecerte contenido personalizado. Puedes aceptar todas las cookies o configurarlas según tus preferencias. Para más información, consulta nuestra [política de cookies](/politica-de-cookies)."
+        "description": "¡Hola! 🍪 Utilizamos **cookies** propias para que el sitio funcione y, si lo aceptas, cookies de análisis de terceros (Google Analytics) para saber cómo se usa y poder mejorarlo. Puedes aceptarlas, rechazarlas o configurarlas según tus preferencias. Para más información, consulta nuestra [política de cookies](/politica-de-cookies)."
       },
       "modal": {
         "close": "Cerrar",
