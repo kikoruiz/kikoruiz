@@ -61,6 +61,11 @@ function Image(
   const [isLoaded, setIsLoaded] = useState(false)
   const wrapperClassName = `relative${isRounded ? ' rounded-sm' : ''}`
   const isFullSize = sizes === '100vw'
+  // What is preloaded is what the page is about to paint first, so it is
+  // visible from the server's markup: waiting for the JavaScript to say it has
+  // loaded keeps it transparent, and that is not painted as far as the browser
+  // is concerned, which puts the largest paint after the hydration.
+  const isShown = (isLoaded || needsPreload) && !isHidden
   const imageStyle = {
     ...style,
     ...(isRounded || isFullRounded
@@ -90,7 +95,10 @@ function Image(
     // nothing to resolve and nothing to fall back from.
     const [, search] = shallowUrl.split('?')
     push(
-      {pathname, query: {...query, ...Object.fromEntries(new URLSearchParams(search))}},
+      {
+        pathname,
+        query: {...query, ...Object.fromEntries(new URLSearchParams(search))}
+      },
       url,
       {shallow: true, scroll: false}
     )
@@ -113,8 +121,9 @@ function Image(
         ref={ref}
         src={src}
         alt={alt}
-        className={`${objectFit === 'contain' ? 'object-contain' : 'object-cover'} transition-opacity duration-300 ${isLoaded && !isHidden ? 'opacity-100' : 'opacity-0'}`}
+        className={`${objectFit === 'contain' ? 'object-contain' : 'object-cover'} transition-opacity duration-300 ${isShown ? 'opacity-100' : 'opacity-0'}`}
         preload={needsPreload}
+        fetchPriority={needsPreload ? 'high' : undefined}
         loading={isLazy && !needsPreload ? 'lazy' : 'eager'}
         onLoad={handleImageLoad}
         sizes={sizes}
