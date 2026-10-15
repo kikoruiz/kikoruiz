@@ -9,11 +9,11 @@ import Button from 'components/button'
 import Logo from 'assets/brand/photo-logo.svg'
 import IconArrowTopRightOnSquare from 'assets/icons/arrow-top-right-on-square.svg'
 import {
+  DEFAULT_CURRENCY,
   DEFAULT_UNIT_OF_MEASUREMENT,
   PRINT_SIZES,
   SIGNED_SUFFIX
 } from 'config/store'
-import products from 'data/store/products.json'
 import papers from 'data/store/papers.json'
 import {
   getPrintPictureSize,
@@ -26,7 +26,10 @@ import {Print} from 'types/store'
 
 export default function PrintCard({
   id,
+  pictureId,
   name,
+  productName,
+  priceId,
   picture,
   price,
   image,
@@ -51,13 +54,6 @@ export default function PrintCard({
   const slug = getSlug(name)
   const isActive = slug === hash
   const {addItem, handleCartHover} = useShoppingCart()
-  const {
-    id: productId,
-    name: productName,
-    pictureId,
-    priceId,
-    currency
-  } = products.find(product => product.id === id)
   return (
     <div
       className={`relative group h-fit break-inside-avoid-column p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md transition-colors${isActive ? ' ring-1 ring-inset ring-orange-300/60' : ''}`}
@@ -152,7 +148,7 @@ export default function PrintCard({
                 name: productName,
                 price,
                 image: src,
-                currency: currency.toUpperCase(),
+                currency: DEFAULT_CURRENCY.toUpperCase(),
                 product_data: {
                   metadata: {pictureId, paper, size, isBorderless, isSigned}
                 }
@@ -160,7 +156,7 @@ export default function PrintCard({
               {
                 count: 1,
                 product_metadata: {
-                  id: productId,
+                  id,
                   image: {aspectRatio, imageSize, css}
                 }
               }
@@ -169,7 +165,7 @@ export default function PrintCard({
             trackEvent({
               action: 'add_to_cart',
               value: price,
-              currency: currency.toUpperCase(),
+              currency: DEFAULT_CURRENCY.toUpperCase(),
               items: [
                 {
                   id,
