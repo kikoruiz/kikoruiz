@@ -35,6 +35,7 @@ interface ProductDataInterface {
     paper?: string
     size?: string
     isBorderless?: boolean
+    isSigned?: boolean
     tier?: string
     licence?: string
   }
@@ -57,7 +58,7 @@ export default function ShoppingCartItem({
   const {
     id: productId,
     image,
-    metadata: {size, paper, isBorderless, tier, licence}
+    metadata: {size, paper, isBorderless, isSigned, tier, licence}
   } = productData as ProductDataInterface
   // A file has no paper to look up and no mat to leave around it, and the
   // variant id is what tells the two apart everywhere else in the checkout.
@@ -147,6 +148,16 @@ export default function ShoppingCartItem({
                   <dd className="font-medium text-neutral-300/60">
                     {paperName}
                   </dd>
+                  {typeof isSigned === 'boolean' && (
+                    <>
+                      <dt className="mt-1.5 font-light text-neutral-300/30">
+                        {t('signature')}
+                      </dt>
+                      <dd className="font-medium text-neutral-300/60">
+                        {t(`filters.${isSigned ? 'signed' : 'unsigned'}`)}
+                      </dd>
+                    </>
+                  )}
                 </>
               )}
             </dl>

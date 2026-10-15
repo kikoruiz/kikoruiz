@@ -6,6 +6,13 @@ import {RawPicture} from 'types/gallery'
 
 const PROCESSING_SOFTWATRE_REGEX = /Adobe Photoshop (\d+)\.(\d+) \(Macintosh\)/
 
+// These were raised to 4 stars in Lightroom, but the copies available here are
+// older ones still carrying 3. Drop each entry once its 4-star original is back.
+const RATING_OVERRIDES: Record<string, number> = {
+  '2019-03-05_0363.jpg': 4,
+  '2020-01-18_0131.jpg': 4
+}
+
 const picturesDir = path.join(process.cwd(), 'public', 'pictures')
 const picturesMetadataFile = path.join(
   process.cwd(),
@@ -86,7 +93,7 @@ async function saveAllPicturesMetadata() {
       model: tags.Model,
       offsetTime: tags.OffsetTime,
       profileDescription: tags.ProfileDescription,
-      rating: tags.Rating,
+      rating: RATING_OVERRIDES[fileName] ?? tags.Rating,
       rawFileName: tags.RawFileName,
       resolution: {
         x: tags.XResolution,

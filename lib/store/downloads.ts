@@ -1,24 +1,10 @@
 import {fromExifToGallery} from 'lib/gallery/mappers'
 import {getAllPictures} from 'lib/gallery/pictures'
 import {getAspectRatio} from 'lib/utils'
-import {isForSale} from 'lib/utils/pictures'
+import {getDownloadId, isForSale} from 'lib/utils/pictures'
 import rawDownloads from 'data/store/downloads.json'
-import {
-  DOWNLOAD_MIN_RATING,
-  DOWNLOAD_TYPE,
-  DOWNLOAD_VARIANTS
-} from 'config/store'
+import {DOWNLOAD_MIN_RATING, DOWNLOAD_VARIANTS} from 'config/store'
 import {Download, RawDownload} from 'types/store'
-
-export function getDownloadId({
-  pictureId,
-  tier
-}: {
-  pictureId: string
-  tier: string
-}) {
-  return `${DOWNLOAD_TYPE}_${pictureId}_${tier}`
-}
 
 export async function getDownloads({
   locale

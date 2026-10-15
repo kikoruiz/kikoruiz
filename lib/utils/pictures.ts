@@ -1,5 +1,6 @@
 import {GALLERY_ALBUMS, TRANSVERSAL_ALBUMS} from 'config/gallery'
 import {
+  DOWNLOAD_TYPE,
   PICTURES_NOT_FOR_SALE,
   PRINT_MAX_RATIO_DEVIATION,
   PRINT_SHEET_RATIO
@@ -44,4 +45,14 @@ export function taggedPictures({
       keywords.every(keyword => !excludeTags.includes(keyword))
     )
   }
+}
+
+export function getDownloadId({
+  pictureId,
+  tier
+}: {
+  pictureId: string
+  tier: string
+}) {
+  return `${DOWNLOAD_TYPE}_${pictureId}_${tier}`
 }

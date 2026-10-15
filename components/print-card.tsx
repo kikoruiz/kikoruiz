@@ -8,7 +8,11 @@ import Image from 'components/image'
 import Button from 'components/button'
 import Logo from 'assets/brand/photo-logo.svg'
 import IconArrowTopRightOnSquare from 'assets/icons/arrow-top-right-on-square.svg'
-import {DEFAULT_UNIT_OF_MEASUREMENT, PRINT_SIZES} from 'config/store'
+import {
+  DEFAULT_UNIT_OF_MEASUREMENT,
+  PRINT_SIZES,
+  SIGNED_SUFFIX
+} from 'config/store'
 import products from 'data/store/products.json'
 import papers from 'data/store/papers.json'
 import {
@@ -30,8 +34,9 @@ export default function PrintCard({
   imageSize,
   paper,
   size,
-  isBorderless
-}: Print) {
+  isBorderless,
+  isSigned = false
+}: Print & {isSigned?: boolean}) {
   const {locale, asPath} = useRouter()
   const [, hash] = asPath.split('#')
   const [isImageLoaded, setIsImageLoaded] = useState(false)
@@ -55,8 +60,7 @@ export default function PrintCard({
   } = products.find(product => product.id === id)
   return (
     <div
-      key={id}
-      className={`relative group h-fit break-inside-avoid-column p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md${isActive ? ' ring-1 ring-inset ring-orange-300/60' : ''}`}
+      className={`relative group h-fit break-inside-avoid-column p-3 bg-gradient-to-b from-neutral-800 via-neutral-800 to-bg-neutral-900 hover:bg-neutral-800 rounded-md transition-colors${isActive ? ' ring-1 ring-inset ring-orange-300/60' : ''}`}
     >
       <span
         id={slug}
@@ -81,7 +85,7 @@ export default function PrintCard({
               setIsImageLoaded(true)
             }}
           />
-          {isImageLoaded && (
+          {isImageLoaded && isSigned && (
             <Logo
               className={`absolute bottom-3 left-3 fill-white/80 ${isVertical ? 'w-9' : 'w-6'}`}
             />
@@ -122,6 +126,10 @@ export default function PrintCard({
                 <IconArrowTopRightOnSquare className="inline size-3 ml-1.5" />
               </Link>
             </dd>
+            <dt className="font-light text-neutral-300/30">{t('signature')}</dt>
+            <dd className="font-medium text-neutral-300/60">
+              {t(`filters.${isSigned ? 'signed' : 'unsigned'}`)}
+            </dd>
           </dl>
           <span className="rounded-full font-black text-3xl text-orange-300 drop-shadow">
             {t('price', {count: price})}
@@ -133,15 +141,20 @@ export default function PrintCard({
           className="shrink-0 whitespace-nowrap"
           title={t('add-to-cart')}
           onClick={() => {
+            // The cart keys a line by this id, so a signed print gets a line of
+            // its own beside the unsigned one. The checkout takes the price
+            // back out of it.
+            const cartId = isSigned ? `${priceId}${SIGNED_SUFFIX}` : priceId
+
             addItem(
               {
-                id: priceId,
+                id: cartId,
                 name: productName,
                 price,
                 image: src,
                 currency: currency.toUpperCase(),
                 product_data: {
-                  metadata: {pictureId, paper, size, isBorderless}
+                  metadata: {pictureId, paper, size, isBorderless, isSigned}
                 }
               },
               {

@@ -17,6 +17,7 @@
   "back-to-store": "Tornar a la botiga",
   "add-to-cart": "Afegir al carret",
   "size": "Tamany",
+  "signature": "Signatura",
   "paper": "Paper",
   "card": {
     "go-to-picture": "Anar a la foto \"{{name}}\"",
@@ -24,7 +25,9 @@
   },
   "filters": {
     "with-border": "Amb marge",
-    "borderless": "Sense marge"
+    "borderless": "Sense marge",
+    "signed": "Amb signatura",
+    "unsigned": "Sense signatura"
   },
   "downloads": {
     "description": "Descarrega les meues fotos a l'instant, llestes per a la teua pantalla o per imprimir-les tu mateix.",
