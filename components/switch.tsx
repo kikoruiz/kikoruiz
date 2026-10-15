@@ -15,8 +15,10 @@ export default function Switch({
     <div className={`flex items-center${className ? ` ${className}` : ''}`}>
       <label
         htmlFor={id}
-        className={`text-white text-[15px] leading-none pr-[15px] ${
-          isLocked ? 'cursor-not-allowed' : 'cursor-pointer'
+        className={`text-[15px] leading-none pr-[15px] ${
+          isLocked
+            ? 'cursor-not-allowed text-white/50'
+            : 'cursor-pointer text-white'
         }`}
       >
         {label}
@@ -27,6 +29,7 @@ export default function Switch({
         role="switch"
         id={id}
         aria-checked={isChecked}
+        aria-disabled={isLocked}
         onClick={() => {
           if (!isLocked) {
             const nextIsChecked = !isChecked
@@ -41,7 +44,7 @@ export default function Switch({
             : 'bg-neutral-900/60'
         } ${
           isLocked
-            ? 'cursor-not-allowed'
+            ? 'cursor-not-allowed opacity-50'
             : 'cursor-pointer hover:ring-1 hover:ring-orange-300'
         }`}
       >
