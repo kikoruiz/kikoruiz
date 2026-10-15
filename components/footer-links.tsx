@@ -121,7 +121,7 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
               </header>
 
               {links.length > 0 && (
-                <ul className="space-y-3 text-sm">
+                <ul className="space-y-1.5 text-sm">
                   {links.map(link => (
                     <li key={link.id} className="font-light">
                       {link.isCurrent ? (
