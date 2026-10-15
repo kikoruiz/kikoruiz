@@ -8,7 +8,11 @@ import Image from 'components/image'
 import Button from 'components/button'
 import Logo from 'assets/brand/photo-logo.svg'
 import IconArrowTopRightOnSquare from 'assets/icons/arrow-top-right-on-square.svg'
-import {DEFAULT_UNIT_OF_MEASUREMENT, PRINT_SIZES} from 'config/store'
+import {
+  DEFAULT_UNIT_OF_MEASUREMENT,
+  PRINT_SIZES,
+  SIGNED_SUFFIX
+} from 'config/store'
 import products from 'data/store/products.json'
 import papers from 'data/store/papers.json'
 import {
@@ -30,8 +34,9 @@ export default function PrintCard({
   imageSize,
   paper,
   size,
-  isBorderless
-}: Print) {
+  isBorderless,
+  isSigned = false
+}: Print & {isSigned?: boolean}) {
   const {locale, asPath} = useRouter()
   const [, hash] = asPath.split('#')
   const [isImageLoaded, setIsImageLoaded] = useState(false)
@@ -122,6 +127,10 @@ export default function PrintCard({
                 <IconArrowTopRightOnSquare className="inline size-3 ml-1.5" />
               </Link>
             </dd>
+            <dt className="font-light text-neutral-300/30">{t('signature')}</dt>
+            <dd className="font-medium text-neutral-300/60">
+              {t(`filters.${isSigned ? 'signed' : 'unsigned'}`)}
+            </dd>
           </dl>
           <span className="rounded-full font-black text-3xl text-orange-300 drop-shadow">
             {t('price', {count: price})}
@@ -133,15 +142,20 @@ export default function PrintCard({
           className="shrink-0 whitespace-nowrap"
           title={t('add-to-cart')}
           onClick={() => {
+            // The cart keys a line by this id, so a signed print gets a line of
+            // its own beside the unsigned one. The checkout takes the price
+            // back out of it.
+            const cartId = isSigned ? `${priceId}${SIGNED_SUFFIX}` : priceId
+
             addItem(
               {
-                id: priceId,
+                id: cartId,
                 name: productName,
                 price,
                 image: src,
                 currency: currency.toUpperCase(),
                 product_data: {
-                  metadata: {pictureId, paper, size, isBorderless}
+                  metadata: {pictureId, paper, size, isBorderless, isSigned}
                 }
               },
               {

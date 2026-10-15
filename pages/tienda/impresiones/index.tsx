@@ -36,6 +36,12 @@ function reducer(state, action) {
         paper: action.paper
       }
     }
+    case 'filter-signature': {
+      return {
+        ...state,
+        signature: action.signature
+      }
+    }
   }
 
   throw new Error(`Unknown action: ${action.type}`)
@@ -45,7 +51,8 @@ const filterOptions = Object.keys(FILTER_OPTIONS)
 const initialState = {
   size: FILTER_OPTIONS.size[0].value,
   sizeOption: FILTER_OPTIONS.sizeOption[0],
-  paper: FILTER_OPTIONS.paper[0].value
+  paper: FILTER_OPTIONS.paper[0].value,
+  signature: FILTER_OPTIONS.signature[0]
 }
 
 export default function PrintsPage({
@@ -127,7 +134,7 @@ export default function PrintsPage({
               key={print.id}
               className="break-inside-avoid-column pb-6 xl:pb-9"
             >
-              <PrintCard {...print} />
+              <PrintCard {...print} isSigned={state.signature === 'signed'} />
             </div>
           ))}
         </div>

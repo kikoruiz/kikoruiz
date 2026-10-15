@@ -17,6 +17,7 @@
   "back-to-store": "Back to store",
   "add-to-cart": "Add to cart",
   "size": "Size",
+  "signature": "Signature",
   "paper": "Paper",
   "card": {
     "go-to-picture": "Go to picture \"{{name}}\"",
@@ -24,7 +25,9 @@
   },
   "filters": {
     "with-border": "With border",
-    "borderless": "Borderless"
+    "borderless": "Borderless",
+    "signed": "Signed",
+    "unsigned": "Unsigned"
   },
   "downloads": {
     "description": "Download my photos instantly, ready for your screen or to print them yourself.",

@@ -77,6 +77,10 @@ export const FILTER_OPTIONS = {
   paper: Object.keys(papers).map(key => ({
     value: key,
     name: `${papers[key].brand} ${papers[key].type}`
-  }))
+  })),
+  signature: ['unsigned', 'signed']
 }
-export const SIMPLE_FILTERS = ['size-option']
+// It tells the cart line of a signed print apart from the unsigned one of the
+// same Stripe price, and the checkout strips it back off.
+export const SIGNED_SUFFIX = ':signed'
+export const SIMPLE_FILTERS = ['size-option', 'signature']
