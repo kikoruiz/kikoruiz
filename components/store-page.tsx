@@ -13,6 +13,7 @@ import IconCheckCircle from 'assets/icons/check-circle.svg'
 import IconXCircle from 'assets/icons/x-circle.svg'
 import {SITE_NAME} from 'config'
 import {Alternate} from 'types'
+import {FIT_TITLE_CLASS_NAME, getFitTitleStyle} from 'lib/utils/title'
 
 interface StorePageProps extends PropsWithChildren {
   title: string
@@ -91,9 +92,10 @@ export default function StorePage({
       <header className="mt-9 px-6 text-center sm:-mt-3 mb-12 sm:mb-16">
         <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
           <h1
-            className={`bg-gradient-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:text-8xl sm:leading-tight ${
+            className={`bg-gradient-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:text-8xl sm:leading-tight ${FIT_TITLE_CLASS_NAME} ${
               isIndex ? 'from-orange-300' : 'from-neutral-300/60'
             }`}
+            style={getFitTitleStyle(title)}
             title={title}
           >
             {title}

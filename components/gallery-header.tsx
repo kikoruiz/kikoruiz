@@ -6,6 +6,7 @@ import {GALLERY_TAGS} from 'config/gallery'
 import {getSlug, getTitle} from 'lib/utils'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconArrowRight from 'assets/icons/arrow-right.svg'
+import {FIT_TITLE_CLASS_NAME, getFitTitleStyle} from 'lib/utils/title'
 
 interface GalleryHeaderProps {
   isAlbum?: boolean
@@ -53,9 +54,10 @@ function GalleryHeader({
     >
       <div className="flex flex-col items-center justify-center gap-y-3 sm:flex-row">
         <h1
-          className={`bg-gradient-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:text-8xl sm:leading-tight ${
+          className={`bg-gradient-to-t to-neutral-900 bg-clip-text text-6xl font-black leading-tight text-transparent drop-shadow sm:text-8xl sm:leading-tight ${FIT_TITLE_CLASS_NAME} ${
             tag ? 'from-neutral-300/60' : 'from-orange-300'
           }`}
+          style={getFitTitleStyle(tag ? `# ${title}` : title)}
           title={title}
         >
           {tag ? (

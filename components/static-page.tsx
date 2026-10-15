@@ -2,6 +2,7 @@ import {ReactNode} from 'react'
 import Head from 'next/head'
 import Article from 'components/article'
 import {SITE_NAME} from 'config'
+import {FIT_TITLE_CLASS_NAME, getFitTitleStyle} from 'lib/utils/title'
 import {Alternate, StaticContent} from 'types'
 
 export interface StaticPageProps {
@@ -28,7 +29,12 @@ export default function StaticPage({
 
       <section className="mx-auto px-6 xl:max-w-5xl">
         <header className="pt-12 sm:pt-6 text-center">
-          <h1 className="-mx-3 text-6xl font-black tracking-tighter sm:mx-0 sm:text-8xl md:tracking-normal">{content.title}</h1>
+          <h1
+            className={`text-6xl font-black sm:text-8xl ${FIT_TITLE_CLASS_NAME}`}
+            style={getFitTitleStyle(content.title)}
+          >
+            {content.title}
+          </h1>
         </header>
 
         {children}

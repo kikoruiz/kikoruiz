@@ -15,6 +15,7 @@ import {BlogPost} from 'types/blog'
 import {Alternate} from 'types'
 import PostTitle from 'components/post-title'
 import IconInformationCircle from 'assets/icons/information-circle.svg'
+import {FIT_TITLE_CLASS_NAME, getFitTitleStyle} from 'lib/utils/title'
 
 export default function Post({post, alternates}: PostProps) {
   const {locale, defaultLocale} = useRouter()
@@ -96,7 +97,10 @@ export default function Post({post, alternates}: PostProps) {
             </div>
           </div>
 
-          <h1 className="my-6 text-6xl font-black sm:text-8xl">
+          <h1
+            className={`my-6 text-6xl font-black sm:text-8xl ${FIT_TITLE_CLASS_NAME}`}
+            style={getFitTitleStyle(post.title)}
+          >
             <PostTitle title={post.title} />
           </h1>
 
