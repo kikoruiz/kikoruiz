@@ -1,5 +1,11 @@
-import {ReactNode, useState} from 'react'
-import {CartProvider} from 'use-shopping-cart'
+import {ReactNode, useEffect, useState} from 'react'
+import dynamic from 'next/dynamic'
+
+// The cart library and Stripe's loader weigh on every page of the site, and
+// only the shop uses them. Splitting them off keeps them out of the bundle the
+// first visit has to parse, while the page of the shop itself is still
+// prerendered with them.
+const CartProvider = dynamic(() => import('./cart-provider'))
 
 interface StoreCartProviderProps {
   isActive: boolean
@@ -16,16 +22,26 @@ export default function StoreCartProvider({
   const [everActive, setEverActive] = useState(isActive)
   if (isActive && !everActive) setEverActive(true)
 
+  // Whoever browses around can still end up in the shop, so the chunk is
+  // fetched once the browser is idle, which spares that navigation the wait
+  // without having made the first load pay for it.
+  useEffect(() => {
+    const warm = () => import('./cart-provider')
+
+    if ('requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(warm, {timeout: 5000})
+
+      return () => window.cancelIdleCallback(id)
+    }
+
+    const id = setTimeout(warm, 3000)
+
+    return () => clearTimeout(id)
+  }, [])
+
   if (!everActive) return <>{children}</>
 
-  return (
-    <CartProvider
-      cartMode="checkout-session"
-      stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string}
-      currency="EUR"
-      shouldPersist
-    >
-      {children}
-    </CartProvider>
-  )
+  return <CartProvider>{children}</CartProvider>
 }
+
+StoreCartProvider.displayName = 'StoreCartProvider'
