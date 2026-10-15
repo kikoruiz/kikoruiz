@@ -125,7 +125,7 @@ export default function Navigation({
       <ul
         className={`${
           isMenuRendered
-            ? `absolute right-0 top-full z-20 mt-3 w-[calc(100vw-1.5rem)] rounded-md bg-neutral-800 py-4 drop-shadow-lg transition-[opacity,transform] duration-300 ease-out ${
+            ? `absolute right-0 top-full z-20 mt-3 w-[calc(100vw-1.5rem)] rounded-md bg-neutral-800 py-4 shadow-lg transition-[opacity,transform] duration-300 ease-out ${
                 isMenuVisible
                   ? 'translate-y-0 opacity-100'
                   : 'pointer-events-none -translate-y-3 opacity-0'
@@ -221,7 +221,7 @@ export default function Navigation({
         <div className="absolute left-1/2 top-1/2 w-5 -translate-x-1/2 -translate-y-1/2 transform">
           <span
             aria-hidden="true"
-            className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out ${
+            className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out will-change-transform ${
               isMenuOpen ? 'rotate-45' : '-translate-y-1.5'
             }`}
           />
@@ -235,7 +235,7 @@ export default function Navigation({
 
           <span
             aria-hidden="true"
-            className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out ${
+            className={`absolute flex h-0.5 w-5 transform bg-current transition duration-300 ease-in-out will-change-transform ${
               isMenuOpen ? '-rotate-45' : 'translate-y-1.5'
             }`}
           />
