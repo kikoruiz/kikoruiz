@@ -1,11 +1,16 @@
 import {useEffect, useState, memo} from 'react'
+import dynamic from 'next/dynamic'
 import useTranslation from 'next-translate/useTranslation'
 import {useCookieConsentContext} from '@use-cookie-consent/react'
 import CookiesModal from './cookies-modal'
 import Button from './button'
-import Article from './article'
 import {COOKIES_BY_TYPE} from 'config'
 import {camelCase} from 'change-case'
+
+// The banner only exists once the client has read the consent cookie, so its
+// text has nothing to be prerendered for, and a visitor who already answered
+// never needs the markdown renderer on this page at all.
+const Article = dynamic(() => import('./article'), {ssr: false})
 
 function CookiesBanner() {
   const {t} = useTranslation()
