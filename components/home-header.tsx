@@ -37,7 +37,7 @@ export default function HomeHeader({
   const maxTypedWidth = maxTypedLength * 0.6
 
   return (
-    <header className="relative rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pb-6 pt-12 text-white/90 md:px-6">
+    <header className="relative rounded bg-gradient-to-br from-neutral-900/60 to-neutral-900/30 px-3 pb-3 pt-12 text-white/90 md:px-6 md:pb-6">
       <div className="flex flex-col xl:flex-row xl:justify-center items-center mb-6 xl:mb-9 break-words transition-opacity">
         <Logo className="mb-3 w-24 fill-current xl:mb-0 xl:mr-6" />
 
