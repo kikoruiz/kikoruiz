@@ -1,7 +1,6 @@
 import {describe, it, expect} from 'vitest'
 import {PICTURES_NOT_FOR_SALE} from 'config/store'
-import {getDownloadId} from 'lib/store/downloads'
-import {fitsPrintSheet, isForSale} from 'lib/utils/pictures'
+import {fitsPrintSheet, getDownloadId, isForSale} from 'lib/utils/pictures'
 
 describe('store rules', () => {
   // Tests for `fitsPrintSheet`.

@@ -9,8 +9,7 @@ import {
   PRINT_MIN_RATING,
   PRINT_VARIANTS
 } from 'config/store'
-import {getDownloadId} from 'lib/store/downloads'
-import {fitsPrintSheet, isForSale} from 'lib/utils/pictures'
+import {fitsPrintSheet, getDownloadId, isForSale} from 'lib/utils/pictures'
 
 const pictureIds = new Set(pictures.map(({fileName}) => fileName.split('.')[0]))
 const printableIds = pictures
