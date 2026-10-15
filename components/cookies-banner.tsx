@@ -7,6 +7,7 @@ import Button from './button'
 import {COOKIES_BY_TYPE} from 'config'
 import {camelCase} from 'change-case'
 import useCookiesSettingsContext from 'contexts/CookiesSettings'
+import {usePresence} from 'hooks/use-presence'
 
 // The banner only exists once the client has read the consent cookie, so its
 // text has nothing to be prerendered for, and a visitor who already answered
@@ -27,6 +28,9 @@ function CookiesBanner() {
   // everyone who has already answered. Waiting for the effect means both sides
   // render nothing on the first pass and only the client fills it in.
   const [needsBanner, setNeedsBanner] = useState(false)
+
+  const {isRendered: isModalRendered, isVisible: isModalVisible} =
+    usePresence(isModalOpen)
 
   function openModal() {
     setIsModalOpen(true)
@@ -107,9 +111,9 @@ function CookiesBanner() {
         </div>
       )}
 
-      {isModalOpen && (
+      {isModalRendered && (
         <CookiesModal
-          isModalOpen={isModalOpen}
+          isVisible={isModalVisible}
           setIsModalOpen={setIsModalOpen}
         />
       )}

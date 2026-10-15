@@ -1,36 +1,14 @@
-import {PropsWithChildren, useEffect, useState} from 'react'
+import {PropsWithChildren} from 'react'
+import {usePresence} from 'hooks/use-presence'
 
 interface CollapsibleProps extends PropsWithChildren {
   isOpen: boolean
 }
 
-const DURATION = 300
-
 // Height cannot be animated to `auto`, but a grid row can travel between 0fr
 // and 1fr. The content stays mounted until the closing slide is over.
 export default function Collapsible({isOpen, children}: CollapsibleProps) {
-  const [isRendered, setIsRendered] = useState(isOpen)
-  const [isExpanded, setIsExpanded] = useState(isOpen)
-
-  useEffect(() => {
-    if (isOpen) {
-      setIsRendered(true)
-      let innerFrame: number
-      const outerFrame = requestAnimationFrame(() => {
-        innerFrame = requestAnimationFrame(() => setIsExpanded(true))
-      })
-
-      return () => {
-        cancelAnimationFrame(outerFrame)
-        cancelAnimationFrame(innerFrame)
-      }
-    }
-
-    setIsExpanded(false)
-    const timeout = setTimeout(() => setIsRendered(false), DURATION)
-
-    return () => clearTimeout(timeout)
-  }, [isOpen])
+  const {isRendered, isVisible: isExpanded} = usePresence(isOpen)
 
   if (!isRendered) return null
 

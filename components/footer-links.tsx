@@ -1,3 +1,4 @@
+import {Fragment} from 'react'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
@@ -125,37 +126,44 @@ export default function FooterLinks({alternates}: {alternates?: Alternate[]}) {
               {links.length > 0 && (
                 <ul className="space-y-1.5 text-sm">
                   {links.map(link => (
-                    <li key={link.id} className="font-light">
-                      {link.isCurrent ? (
-                        <span aria-current="page" className="text-neutral-300">
-                          {link.name}
-                        </span>
-                      ) : (
-                        <Link
-                          href={link.href}
-                          title={link.name}
-                          className="text-neutral-300/60 transition-colors hover:text-neutral-300"
-                        >
-                          {link.name}
-                        </Link>
-                      )}
-                    </li>
-                  ))}
+                    <Fragment key={link.id}>
+                      <li className="font-light">
+                        {link.isCurrent ? (
+                          <span
+                            aria-current="page"
+                            className="text-neutral-300"
+                          >
+                            {link.name}
+                          </span>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            title={link.name}
+                            className="text-neutral-300/60 transition-colors hover:text-neutral-300"
+                          >
+                            {link.name}
+                          </Link>
+                        )}
+                      </li>
 
-                  {id === 'legal' && (
-                    <li className="font-light">
-                      <button
-                        type="button"
-                        title={t('legal.cookies.modal.actions.open-modal.name')}
-                        className="text-left text-neutral-300/60 transition-colors hover:text-neutral-300"
-                        onClick={() => {
-                          setIsCookiesSettingsOpen(true)
-                        }}
-                      >
-                        {t('legal.cookies.modal.actions.open-modal.name')}
-                      </button>
-                    </li>
-                  )}
+                      {link.id === 'cookies-policy' && (
+                        <li className="font-light">
+                          <button
+                            type="button"
+                            title={t(
+                              'legal.cookies.modal.actions.open-modal.name'
+                            )}
+                            className="text-left text-neutral-300/60 transition-colors hover:text-neutral-300"
+                            onClick={() => {
+                              setIsCookiesSettingsOpen(true)
+                            }}
+                          >
+                            {t('legal.cookies.modal.actions.open-modal.name')}
+                          </button>
+                        </li>
+                      )}
+                    </Fragment>
+                  ))}
                 </ul>
               )}
             </div>

@@ -9,6 +9,7 @@ import {
   SPECIAL_SUBSECTIONS
 } from 'config'
 import {getRandomElement, getSlug} from 'lib/utils'
+import {usePresence} from 'hooks/use-presence'
 import NavigationSection from './navigation-section'
 import NavigationButton from './navigation-button'
 import dynamic from 'next/dynamic'
@@ -79,31 +80,9 @@ export default function Navigation({
   const [expandedSections, setExpandedSections] = useState(
     activeSection ? [activeSection.id] : []
   )
-  // The panel outlives `isMenuOpen` by the length of its closing transition,
-  // and only starts travelling a couple of frames after it is laid out, or
-  // there would be no starting point to move from.
-  const [isMenuRendered, setIsMenuRendered] = useState(isMenuOpen)
-  const [isMenuVisible, setIsMenuVisible] = useState(isMenuOpen)
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      setIsMenuRendered(true)
-      let innerFrame: number
-      const outerFrame = requestAnimationFrame(() => {
-        innerFrame = requestAnimationFrame(() => setIsMenuVisible(true))
-      })
-
-      return () => {
-        cancelAnimationFrame(outerFrame)
-        cancelAnimationFrame(innerFrame)
-      }
-    }
-
-    setIsMenuVisible(false)
-    const timeout = setTimeout(() => setIsMenuRendered(false), 300)
-
-    return () => clearTimeout(timeout)
-  }, [isMenuOpen])
+  // The panel outlives `isMenuOpen` by the length of its closing transition.
+  const {isRendered: isMenuRendered, isVisible: isMenuVisible} =
+    usePresence(isMenuOpen)
 
   function toggleMenu() {
     setIsMenuOpen(!isMenuOpen)

@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import Switch from './switch'
+import Collapsible from './collapsible'
 import IconChevronDown from 'assets/icons/chevron-down.svg'
 import {getSlug} from 'lib/utils'
 
@@ -36,7 +37,7 @@ export default function CookiesCollapsible({
         </button>
       </header>
 
-      {isOpen && (
+      <Collapsible isOpen={isOpen}>
         <div className="p-6">
           <div className="text-neutral-300/60">
             {t(`legal.cookies.types.${slug}.purpose`)}
@@ -54,7 +55,7 @@ export default function CookiesCollapsible({
             />
           </div>
         </div>
-      )}
+      </Collapsible>
     </div>
   )
 }

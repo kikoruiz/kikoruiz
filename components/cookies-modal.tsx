@@ -18,7 +18,7 @@ const defaultConsents = cookiesByType.reduce(
 )
 
 export default function CookiesModal({
-  isModalOpen,
+  isVisible,
   setIsModalOpen
 }: CookiesModalProps) {
   const {t} = useTranslation()
@@ -29,7 +29,7 @@ export default function CookiesModal({
   const [consents, setConsents] = useState({...defaultConsents, ...consent})
 
   function closeModal() {
-    setIsModalOpen(!isModalOpen)
+    setIsModalOpen(false)
   }
 
   return (
@@ -37,11 +37,13 @@ export default function CookiesModal({
       <button
         aria-hidden="true"
         tabIndex={-1}
-        className="fixed z-20 inset-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity opacity-1 touch-none cursor-pointer"
+        className={`fixed z-20 inset-0 h-screen w-screen bg-neutral-900/60 backdrop-blur transition-opacity duration-300 touch-none cursor-pointer ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         onClick={closeModal}
       />
 
-      <div className="fixed flex flex-col w-screen h-screen sm:h-auto sm:max-h-[calc(100vh-3rem)] overflow-y-auto text-sm top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 max-w-xl bg-neutral-900 sm:rounded sm:border sm:border-neutral-800 p-6 sm:p-12">
+      <div
+        className={`fixed flex flex-col w-screen h-screen sm:h-auto sm:max-h-[calc(100vh-3rem)] overflow-y-auto text-sm top-1/2 left-1/2 z-20 -translate-x-1/2 max-w-xl bg-neutral-900 sm:rounded sm:border sm:border-neutral-800 p-6 sm:p-12 transition-[opacity,transform] duration-300 ease-out ${isVisible ? '-translate-y-1/2 opacity-100' : 'translate-y-[calc(-50%-0.75rem)] pointer-events-none opacity-0'}`}
+      >
         <div className="absolute right-3 top-3 z-20 flex flex-row-reverse gap-3 sm:right-6 sm:top-6">
           <button
             aria-label={t('legal.cookies.modal.close')}
@@ -132,7 +134,7 @@ export default function CookiesModal({
 }
 
 interface CookiesModalProps {
-  isModalOpen: boolean
+  isVisible: boolean
   setIsModalOpen: (isModalOpen: boolean) => void
 }
 
