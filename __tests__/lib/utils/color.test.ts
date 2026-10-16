@@ -1,5 +1,4 @@
 import {describe, it, expect} from 'vitest'
-import placeholders from 'data/image/placeholders.json'
 import {HERO_IMAGES} from 'config'
 import {getContrastRatio, getSectionPalette} from 'lib/utils/color'
 
@@ -14,11 +13,6 @@ const AVERAGE_COLORS: Record<string, string> = {
   '2021-12-10_0008': '#544761',
   '2022-06-25_0028': '#4b4541',
   '2023-04-02_0102': '#554840'
-}
-
-function getPlaceholder(id: string) {
-  return placeholders.find(({image}) => image === `public/pictures/${id}.jpg`)
-    ?.css.backgroundImage
 }
 
 describe('color utils', () => {
@@ -37,8 +31,8 @@ describe('color utils', () => {
 
   // Tests for `getSectionPalette`.
 
-  it('falls back to the default palette without a placeholder to read', () => {
-    expect(getSectionPalette('#595152').title).toBe('#fdba74')
+  it('falls back to the default palette without a valid colour', () => {
+    expect(getSectionPalette('nope').title).toBe('#fdba74')
   })
 
   it('has an average colour for every hero picture', () => {
@@ -48,39 +42,49 @@ describe('color utils', () => {
   it.each(Object.keys(AVERAGE_COLORS))(
     'reads well on the cards of the hero picture %s',
     id => {
-      const placeholder = getPlaceholder(id)
-      const {from, to, title, description} = getSectionPalette(
-        AVERAGE_COLORS[id],
-        placeholder
-      )
+      const background = AVERAGE_COLORS[id]
+      const {title, description, ink} = getSectionPalette(background)
 
-      expect(placeholder).toBeDefined()
-      // The lighter end of the gradient is the hardest place to read.
-      expect(getContrastRatio(title, from)).toBeGreaterThanOrEqual(4.5)
-      expect(getContrastRatio(description, from)).toBeGreaterThanOrEqual(4.5)
-      // On hover the card turns orange and its text takes the dark end.
-      expect(getContrastRatio(to, title)).toBeGreaterThanOrEqual(7)
+      expect(getContrastRatio(title, background)).toBeGreaterThanOrEqual(4.5)
+      expect(getContrastRatio(description, background)).toBeGreaterThanOrEqual(
+        4.5
+      )
+      // On hover the card turns orange and its text takes the ink.
+      expect(getContrastRatio(ink, '#fdba74')).toBeGreaterThanOrEqual(7)
     }
   )
 
-  it('keeps the titles in the brand orange on every hero picture', () => {
-    const titles = Object.keys(AVERAGE_COLORS).map(
-      id => getSectionPalette(AVERAGE_COLORS[id], getPlaceholder(id)).title
+  it('keeps the flat average colour as the background', () => {
+    const backgrounds = Object.values(AVERAGE_COLORS).map(
+      hex => getSectionPalette(hex).background
     )
 
-    expect(new Set(titles)).toEqual(new Set(['#fdba74']))
+    expect(backgrounds).toEqual(Object.values(AVERAGE_COLORS))
   })
 
-  it('runs every gradient from a lighter tone down to a darker one', () => {
-    const steps = Object.keys(AVERAGE_COLORS).map(id => {
-      const {from, to} = getSectionPalette(
-        AVERAGE_COLORS[id],
-        getPlaceholder(id)
-      )
+  it('never uses pure white where a softer light reads just as well', () => {
+    const lightOnes = Object.values(AVERAGE_COLORS)
+      .map(hex => getSectionPalette(hex))
+      .filter(({title}) => title !== '#fdba74')
+      .map(({title, description}) => [title, description])
+      .flat()
 
-      return getContrastRatio(from, to)
-    })
+    expect(lightOnes).not.toContain('#ffffff')
+  })
 
-    expect(Math.min(...steps)).toBeGreaterThan(1.3)
+  it('keeps the description a notch quieter than the orange title', () => {
+    const palette = getSectionPalette('#4b4541')
+
+    expect(palette.title).toBe('#fdba74')
+    expect(palette.description).not.toBe(palette.title)
+  })
+
+  it('uses a dark text over a light background', () => {
+    const {title} = getSectionPalette('#c9d3e6')
+
+    expect(getContrastRatio(title, '#c9d3e6')).toBeGreaterThanOrEqual(4.5)
+    expect(
+      title.startsWith('#') && parseInt(title.slice(1, 3), 16)
+    ).toBeLessThan(100)
   })
 })

@@ -1,57 +1,49 @@
-type Hsl = [number, number, number]
-
 export interface SectionPalette {
-  from: string
-  to: string
+  background: string
+  accent: string
   title: string
   description: string
+  ink: string
 }
 
 const BRAND_ORANGE = '#fdba74'
+const MIN_TEXT_CONTRAST = 4.5
+const MIN_INK_CONTRAST = 7
+// Each step is a little stronger than the one before: the first that reads on
+// the background is the one used, so nothing is brighter than it needs to be.
+const LIGHT_TITLES = ['#e5e5e5', '#efefef', '#f7f7f7', '#ffffff']
+const LIGHT_DESCRIPTIONS = [
+  '#cdcdcd',
+  '#d9d9d9',
+  '#e6e6e6',
+  '#f2f2f2',
+  '#ffffff'
+]
+const DARK_TITLES = ['#3a3a3a', '#2a2a2a', '#1c1c1c', '#0a0a0a']
+const DARK_DESCRIPTIONS = [
+  '#454545',
+  '#333333',
+  '#242424',
+  '#1c1c1c',
+  '#0a0a0a'
+]
+
 const DEFAULT_PALETTE: SectionPalette = {
-  from: '#333333',
-  to: '#171717',
+  background: '#262626',
+  accent: BRAND_ORANGE,
   title: BRAND_ORANGE,
-  description: '#d4d4d4'
+  description: '#d6a77a',
+  ink: '#262626'
 }
 
 function hexToRgb(hex: string) {
   return [1, 3, 5].map(start => parseInt(hex.slice(start, start + 2), 16))
 }
 
-function rgbToHsl([red, green, blue]: number[]): Hsl {
-  const [r, g, b] = [red, green, blue].map(channel => channel / 255)
-  const max = Math.max(r, g, b)
-  const min = Math.min(r, g, b)
-  const lightness = (max + min) / 2
-
-  if (max === min) return [0, 0, lightness]
-
-  const delta = max - min
-  const saturation =
-    lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min)
-  const hue =
-    max === r
-      ? (g - b) / delta + (g < b ? 6 : 0)
-      : max === g
-        ? (b - r) / delta + 2
-        : (r - g) / delta + 4
-
-  return [hue * 60, saturation, lightness]
-}
-
-function hslToHex([hue, saturation, lightness]: Hsl) {
-  const a = saturation * Math.min(lightness, 1 - lightness)
-  const channel = (n: number) => {
-    const k = (n + hue / 30) % 12
-    const value = lightness - a * Math.max(-1, Math.min(k - 3, 9 - k, 1))
-
-    return Math.round(255 * value)
-      .toString(16)
-      .padStart(2, '0')
-  }
-
-  return `#${channel(0)}${channel(8)}${channel(4)}`
+function rgbToHex(channels: number[]) {
+  return `#${channels
+    .map(channel => Math.round(channel).toString(16).padStart(2, '0'))
+    .join('')}`
 }
 
 function getLuminance(hex: string) {
@@ -73,61 +65,62 @@ export function getContrastRatio(foreground: string, background: string) {
   return (lighter + 0.05) / (darker + 0.05)
 }
 
-// The placeholder of a picture is a handful of rgb stops of it, which is the
-// cheapest way to know which colour in it has the most life, with no pixels to
-// read. Full saturation in the middle of the lightness range wins.
-function getVibrantColor(placeholder: string): Hsl | null {
-  const stops = [...placeholder.matchAll(/rgb\((\d+),(\d+),(\d+)\)/g)].map(
-    ([, red, green, blue]) => rgbToHsl([+red, +green, +blue])
-  )
-  const getLife = ([, saturation, lightness]: Hsl) =>
-    saturation * (1 - Math.abs(lightness - 0.55))
+function mix(color: string, other: string, amount: number) {
+  const [from, to] = [hexToRgb(color), hexToRgb(other)]
 
-  return stops.sort((a, b) => getLife(b) - getLife(a))[0] ?? null
+  return rgbToHex(
+    from.map((channel, i) => channel + (to[i] - channel) * amount)
+  )
 }
 
-const MIN_TEXT_CONTRAST = 5
-const START_LIGHTNESS = 0.3
-const END_LIGHTNESS = 0.12
-
-// The cards run from a lighter tone of the picture down to a dark one, with the
-// brand orange for the titles and a tint of the picture for the descriptions.
-// The lighter end is the hardest place to read, so it gets only as light as
-// both texts still allow, which depends on the hue: a green of the same
-// lightness as a brown holds far more light.
-export function getSectionPalette(
-  averageHex: string,
-  placeholder = ''
-): SectionPalette {
-  const [averageHue, averageSaturation] = rgbToHsl(hexToRgb(averageHex))
-  const vibrant = getVibrantColor(placeholder)
-
-  if (!vibrant) return DEFAULT_PALETTE
-
-  const [vibrantHue, vibrantSaturation] = vibrant
-  const hue = vibrantSaturation > 0.25 ? vibrantHue : averageHue
-  const saturation = Math.max(
-    0.28,
-    Math.min(0.5, Math.max(averageSaturation, vibrantSaturation) * 1.1)
+function pickReadable(candidates: string[], background: string) {
+  return (
+    candidates.find(
+      candidate => getContrastRatio(candidate, background) >= MIN_TEXT_CONTRAST
+    ) ?? candidates[candidates.length - 1]
   )
-  const description = hslToHex([hue, Math.min(saturation, 0.35), 0.86])
-  let lightness = START_LIGHTNESS
+}
 
-  while (
-    lightness > END_LIGHTNESS &&
-    [BRAND_ORANGE, description].some(
-      text =>
-        getContrastRatio(text, hslToHex([hue, saturation, lightness])) <
-        MIN_TEXT_CONTRAST
-    )
-  ) {
-    lightness -= 0.01
+// The text of a card over the average colour of a picture, which is a flat mid
+// tone. The brand orange goes wherever it reads, with a description a notch
+// quieter than the title; where it does not, the text is light or dark by
+// whichever has more contrast, and as soft as the background allows.
+export function getSectionPalette(averageHex: string): SectionPalette {
+  if (!/^#[0-9a-f]{6}$/i.test(averageHex)) return DEFAULT_PALETTE
+
+  const orangeContrast = getContrastRatio(BRAND_ORANGE, averageHex)
+  const usesOrange = orangeContrast >= MIN_TEXT_CONTRAST
+  const usesLight =
+    getContrastRatio('#ffffff', averageHex) >=
+    getContrastRatio('#0a0a0a', averageHex)
+  // As quiet as the background lets it be, down to none.
+  const quietOrange =
+    [0.22, 0.16, 0.1, 0.05]
+      .map(amount => mix(BRAND_ORANGE, averageHex, amount))
+      .find(
+        color => getContrastRatio(color, averageHex) >= MIN_TEXT_CONTRAST
+      ) ?? BRAND_ORANGE
+  let ink = averageHex
+
+  // On hover the card turns orange, so its text darkens until it reads on it.
+  for (let step = 0; step < 20; step++) {
+    if (getContrastRatio(ink, BRAND_ORANGE) >= MIN_INK_CONTRAST) break
+
+    ink = mix(ink, '#000000', 0.15)
   }
 
   return {
-    from: hslToHex([hue, saturation, lightness]),
-    to: hslToHex([hue, saturation, END_LIGHTNESS]),
-    title: BRAND_ORANGE,
-    description
+    background: averageHex,
+    accent: BRAND_ORANGE,
+    title: usesOrange
+      ? BRAND_ORANGE
+      : pickReadable(usesLight ? LIGHT_TITLES : DARK_TITLES, averageHex),
+    description: usesOrange
+      ? quietOrange
+      : pickReadable(
+          usesLight ? LIGHT_DESCRIPTIONS : DARK_DESCRIPTIONS,
+          averageHex
+        ),
+    ink
   }
 }

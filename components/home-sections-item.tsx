@@ -18,10 +18,11 @@ export default function HomeSectionsItem({
   css,
   sizes,
   palette = {
-    from: '#333333',
-    to: '#171717',
+    background: '#262626',
+    accent: '#fdba74',
     title: '#fdba74',
-    description: '#d4d4d4'
+    description: '#d6a77a',
+    ink: '#262626'
   },
   isCollapsed
 }: HomeSectionsItemProps) {
@@ -37,31 +38,21 @@ export default function HomeSectionsItem({
       className="group flex flex-1 even:mt-1 md:even:mt-0 overflow-hidden shadow-sm first:rounded-tl-xl [&:nth-child(2)]:rounded-bl-xl [&:nth-child(3)]:rounded-tr-xl last:rounded-br-xl md:first:rounded-l-xl md:[&:nth-child(2)]:rounded-none md:[&:nth-child(3)]:rounded-none md:last:rounded-r-xl"
     >
       <article
-        className="relative isolate flex w-full flex-col justify-between p-[1px] font-extralight"
+        className="flex w-full flex-col justify-between p-[1px] font-extralight transition-colors hover:!bg-[color:var(--section-accent)]"
         style={
           {
-            '--section-ink': palette.to,
+            '--section-accent': palette.accent,
+            '--section-ink': palette.ink,
             '--section-title': palette.title,
             '--section-description': palette.description,
-            backgroundColor: palette.title,
+            backgroundColor: palette.background,
             WebkitMaskImage:
               'linear-gradient(to top, rgba(0, 0, 0, 1) 100%, transparent 100%)'
           } as CSSProperties
         }
       >
-        {/* The gradient is a layer of its own so that the hover can fade it
-            out to the orange behind it, which a background image on the card
-            could not do. */}
-        <span
-          aria-hidden
-          className="absolute inset-0 -z-10 transition-opacity duration-300 group-hover:opacity-0"
-          style={{
-            backgroundImage: `linear-gradient(160deg, ${palette.from} 0%, ${palette.to} 100%)`
-          }}
-        />
-
-        <header className="relative flex flex-col items-center px-0 py-3 md:p-6 lg:items-start xl:p-5">
-          <div className="-ml-1.5 flex font-semibold text-[color:var(--section-title)] transition-colors group-hover:text-[color:var(--section-ink)] sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
+        <header className="flex flex-col items-center px-0 py-3 md:p-6 lg:items-start xl:p-5">
+          <div className="-ml-1.5 flex font-semibold text-[color:var(--section-title)] transition-colors duration-300 group-hover:text-[color:var(--section-ink)] sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
             <Icon className="mr-1 w-5 md:mr-1.5 md:w-7 xl:mr-2 xl:w-8" />
 
             {sectionName}

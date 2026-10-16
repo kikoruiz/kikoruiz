@@ -64,9 +64,7 @@ export default function Home({
   const {heroImage: heroImageId, showImage} = useHeroImageContext()
   const heroImage =
     heroImageId && heroImages.find(({src}) => src.includes(heroImageId))
-  const palette =
-    heroImage &&
-    getSectionPalette(heroImage.averageColor.hex, heroImage.css.backgroundImage)
+  const palette = heroImage && getSectionPalette(heroImage.averageColor.hex)
   const {t} = useTranslation()
   const galleryCategories = GALLERY_ALBUMS.map(({id}) =>
     t(`gallery.albums.${id}.name`).toLowerCase()
