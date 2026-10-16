@@ -50,12 +50,12 @@ export default function NavigationCategoriesList({
         )}/${categorySlug}`
         const isActualCategory = path === categoryHref
         const categoryName = t(`${section.localePrefix}${category.id}.name`)
-        const categoryClassName = `block py-3 text-sm text-neutral-400 transition-colors duration-300 group-last:rounded-b ${
+        const categoryClassName = `block py-3 text-sm text-neutral-400 group-last:rounded-b ${
           isMenuOpen ? 'px-12' : 'px-6'
         } ${
           isActualCategory
             ? 'bg-neutral-600/20 text-orange-300 hover:cursor-default'
-            : 'hover:bg-neutral-600/30 hover:text-orange-200'
+            : 'transition-colors duration-150 hover:bg-neutral-600/30 hover:text-orange-200'
         }`
 
         return (

@@ -60,7 +60,13 @@ export default function NavigationSection({
       : ''
   // The underline fades on its own opacity because a gradient is not something
   // CSS can travel between, so its colour stays put and only its presence moves.
-  const sectionClassName = `relative px-6 font-bold transition-colors duration-300 after:absolute after:left-0 after:block after:from-transparent after:transition-opacity after:duration-300 ${
+  // A section that is the current one is marked at once: the fade belongs to
+  // the hover, and to the mark going away, not to it arriving late.
+  const sectionClassName = `relative px-6 font-bold after:absolute after:left-0 after:block after:from-transparent ${
+    isActiveSection
+      ? ''
+      : 'transition-colors duration-300 after:transition-opacity after:duration-300'
+  } ${
     isMenuOpen
       ? 'mx-3 py-3 after:top-0 after:h-full after:w-[1px] after:bg-gradient-to-b cursor-pointer'
       : 'py-2 after:bottom-0 after:h-[1px] after:w-full after:bg-gradient-to-r'

@@ -73,7 +73,7 @@ export default function Breadcrumb({
                   key={id}
                   href={href}
                   title={t('navigation.back-to', {section: name})}
-                  className="inline-flex text-neutral-300/30 transition-colors duration-300 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
+                  className="inline-flex text-neutral-300/30 transition-colors duration-150 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
                 >
                   {isFirstItem && <SectionIcon className="mr-1 w-5" />}
                   {name}
@@ -86,7 +86,7 @@ export default function Breadcrumb({
                 key={id}
                 aria-label={t('navigation.album.scroll-to-top')}
                 title={t('navigation.album.scroll-to-top')}
-                className="cursor-pointer text-neutral-300/30 transition-colors duration-300 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
+                className="cursor-pointer text-neutral-300/30 transition-colors duration-150 after:content-['\00a0/\00a0'] hover:text-neutral-300/60 hover:after:text-neutral-300/30"
                 onClick={scrollToTop}
               >
                 {name}
