@@ -52,7 +52,7 @@ export default function HomeSectionsItem({
         }
       >
         <header className="flex flex-col items-center px-0 py-3 md:p-6 lg:items-start xl:p-5">
-          <div className="-ml-1.5 flex font-semibold text-[color:var(--section-title)] transition-colors duration-300 group-hover:text-[color:var(--section-ink)] sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
+          <div className="-ml-1.5 flex font-bold text-[color:var(--section-title)] transition-colors duration-300 group-hover:text-[color:var(--section-ink)] sm:text-base md:ml-0 md:text-2xl xl:text-3xl">
             <Icon className="mr-1 w-5 md:mr-1.5 md:w-7 xl:mr-2 xl:w-8" />
 
             {sectionName}

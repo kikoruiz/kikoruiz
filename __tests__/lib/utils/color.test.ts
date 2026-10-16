@@ -42,10 +42,11 @@ describe('color utils', () => {
   it.each(Object.keys(AVERAGE_COLORS))(
     'reads well on the cards of the hero picture %s',
     id => {
-      const background = AVERAGE_COLORS[id]
-      const {title, description, ink} = getSectionPalette(background)
+      const {background, title, description, ink} = getSectionPalette(
+        AVERAGE_COLORS[id]
+      )
 
-      expect(getContrastRatio(title, background)).toBeGreaterThanOrEqual(4.5)
+      expect(getContrastRatio(title, background)).toBeGreaterThanOrEqual(5)
       expect(getContrastRatio(description, background)).toBeGreaterThanOrEqual(
         4.5
       )
@@ -54,37 +55,42 @@ describe('color utils', () => {
     }
   )
 
-  it('keeps the flat average colour as the background', () => {
-    const backgrounds = Object.values(AVERAGE_COLORS).map(
-      hex => getSectionPalette(hex).background
+  it('paints a deeper tone of the same hue than the average colour', () => {
+    const [average, deep] = ['#7e4f45', getSectionPalette('#7e4f45').background]
+    const hue = (hex: string) => {
+      const [r, g, b] = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16))
+
+      return Math.round(
+        Math.atan2(Math.sqrt(3) * (g - b), 2 * r - g - b) * 57.3
+      )
+    }
+
+    expect(getContrastRatio('#ffffff', deep)).toBeGreaterThan(
+      getContrastRatio('#ffffff', average)
+    )
+    expect(Math.abs(hue(deep) - hue(average))).toBeLessThan(8)
+  })
+
+  it('keeps the titles in the brand orange on every hero picture', () => {
+    const titles = Object.values(AVERAGE_COLORS).map(
+      hex => getSectionPalette(hex).title
     )
 
-    expect(backgrounds).toEqual(Object.values(AVERAGE_COLORS))
+    expect(new Set(titles)).toEqual(new Set(['#fdba74']))
   })
 
-  it('never uses pure white where a softer light reads just as well', () => {
-    const lightOnes = Object.values(AVERAGE_COLORS)
-      .map(hex => getSectionPalette(hex))
-      .filter(({title}) => title !== '#fdba74')
-      .map(({title, description}) => [title, description])
-      .flat()
+  it('keeps the orange readable even on a picture that is light on average', () => {
+    const {background, title} = getSectionPalette('#e0e6f0')
 
-    expect(lightOnes).not.toContain('#ffffff')
+    expect(getContrastRatio(title, background)).toBeGreaterThanOrEqual(5)
   })
 
-  it('keeps the description a notch quieter than the orange title', () => {
-    const palette = getSectionPalette('#4b4541')
+  it('tints the description with the hue instead of a plain grey', () => {
+    const {description} = getSectionPalette('#7e4f45')
+    const [r, , b] = [1, 3, 5].map(i =>
+      parseInt(description.slice(i, i + 2), 16)
+    )
 
-    expect(palette.title).toBe('#fdba74')
-    expect(palette.description).not.toBe(palette.title)
-  })
-
-  it('uses a dark text over a light background', () => {
-    const {title} = getSectionPalette('#c9d3e6')
-
-    expect(getContrastRatio(title, '#c9d3e6')).toBeGreaterThanOrEqual(4.5)
-    expect(
-      title.startsWith('#') && parseInt(title.slice(1, 3), 16)
-    ).toBeLessThan(100)
+    expect(r).toBeGreaterThan(b)
   })
 })
