@@ -1,16 +1,16 @@
 import HomeSectionsItem from './home-sections-item'
 import {SectionImage} from 'types'
-import type {ImageAverageColor} from 'types/gallery'
+import type {SectionPalette} from 'lib/utils/color'
 
 interface HomeSectionsProps {
   images: SectionImage[]
-  averageColor?: ImageAverageColor
+  palette?: SectionPalette
   isCollapsed: boolean
 }
 
 export default function HomeSections({
   images,
-  averageColor,
+  palette,
   isCollapsed = false
 }: HomeSectionsProps) {
   return (
@@ -19,7 +19,7 @@ export default function HomeSections({
         {images.map(image => (
           <HomeSectionsItem
             key={image.id}
-            averageColor={averageColor}
+            palette={palette}
             isCollapsed={isCollapsed}
             {...image}
           />

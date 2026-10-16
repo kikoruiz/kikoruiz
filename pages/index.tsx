@@ -17,6 +17,7 @@ import JsonLd from 'components/json-ld'
 import HomeHeader from 'components/home-header'
 import HomeLatestPictures from 'components/home-latest-pictures'
 import HomeLatestContent from 'components/home-latest-content'
+import {getSectionPalette} from 'lib/utils/color'
 import HomeBlock from 'components/home-block'
 import HomeModule from 'components/home-module'
 import GalleryTags from 'components/gallery-tags'
@@ -63,7 +64,9 @@ export default function Home({
   const {heroImage: heroImageId, showImage} = useHeroImageContext()
   const heroImage =
     heroImageId && heroImages.find(({src}) => src.includes(heroImageId))
-  const {averageColor} = heroImage ?? {}
+  const palette =
+    heroImage &&
+    getSectionPalette(heroImage.averageColor.hex, heroImage.css.backgroundImage)
   const {t} = useTranslation()
   const galleryCategories = GALLERY_ALBUMS.map(({id}) =>
     t(`gallery.albums.${id}.name`).toLowerCase()
@@ -100,7 +103,7 @@ export default function Home({
       {heroImage && <Hero image={heroImage} isImageHidden={!showImage} />}
 
       <div className="p-3">
-        <HomeHeader sectionImages={sectionImages} averageColor={averageColor} />
+        <HomeHeader sectionImages={sectionImages} palette={palette} />
 
         <HomeLatestPictures latestPictures={latestPictures} />
 

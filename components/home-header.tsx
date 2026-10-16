@@ -4,7 +4,7 @@ import useTranslation from 'next-translate/useTranslation'
 import Logo from 'assets/brand/logo.svg'
 import HomeSections from 'components/home-sections'
 import {SectionImage} from 'types'
-import {HighlightedImage} from 'types/gallery'
+import type {SectionPalette} from 'lib/utils/color'
 
 const ReactTyped = dynamic(
   () => import('react-typed').then(m => m.ReactTyped),
@@ -13,13 +13,10 @@ const ReactTyped = dynamic(
 
 interface HomeHeaderProps {
   sectionImages: SectionImage[]
-  averageColor: HighlightedImage['averageColor']
+  palette?: SectionPalette
 }
 
-export default function HomeHeader({
-  sectionImages,
-  averageColor
-}: HomeHeaderProps) {
+export default function HomeHeader({sectionImages, palette}: HomeHeaderProps) {
   const {t} = useTranslation('home')
   const [collapseSections, setCollapseSections] = useState(false)
   const [typingEnabled] = useState(true)
@@ -65,7 +62,7 @@ export default function HomeHeader({
 
       <HomeSections
         images={sectionImages}
-        averageColor={averageColor}
+        palette={palette}
         isCollapsed={collapseSections}
       />
 
