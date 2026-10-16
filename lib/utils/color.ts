@@ -1,14 +1,17 @@
 type Hsl = [number, number, number]
 
 export interface SectionPalette {
-  background: string
+  from: string
+  to: string
   title: string
   description: string
 }
 
+const BRAND_ORANGE = '#fdba74'
 const DEFAULT_PALETTE: SectionPalette = {
-  background: '#262626',
-  title: '#fdba74',
+  from: '#333333',
+  to: '#171717',
+  title: BRAND_ORANGE,
   description: '#d4d4d4'
 }
 
@@ -83,9 +86,15 @@ function getVibrantColor(placeholder: string): Hsl | null {
   return stops.sort((a, b) => getLife(b) - getLife(a))[0] ?? null
 }
 
-// The average of a picture is a flat mid tone, so instead of painting with it
-// the cards take its hue, darkened enough for light text to read on it, and the
-// title borrows the liveliest colour of the picture itself.
+const MIN_TEXT_CONTRAST = 5
+const START_LIGHTNESS = 0.3
+const END_LIGHTNESS = 0.12
+
+// The cards run from a lighter tone of the picture down to a dark one, with the
+// brand orange for the titles and a tint of the picture for the descriptions.
+// The lighter end is the hardest place to read, so it gets only as light as
+// both texts still allow, which depends on the hue: a green of the same
+// lightness as a brown holds far more light.
 export function getSectionPalette(
   averageHex: string,
   placeholder = ''
@@ -101,10 +110,24 @@ export function getSectionPalette(
     0.28,
     Math.min(0.5, Math.max(averageSaturation, vibrantSaturation) * 1.1)
   )
+  const description = hslToHex([hue, Math.min(saturation, 0.35), 0.86])
+  let lightness = START_LIGHTNESS
+
+  while (
+    lightness > END_LIGHTNESS &&
+    [BRAND_ORANGE, description].some(
+      text =>
+        getContrastRatio(text, hslToHex([hue, saturation, lightness])) <
+        MIN_TEXT_CONTRAST
+    )
+  ) {
+    lightness -= 0.01
+  }
 
   return {
-    background: hslToHex([hue, saturation, 0.15]),
-    title: hslToHex([vibrantHue, Math.max(0.55, vibrantSaturation), 0.68]),
-    description: hslToHex([hue, Math.min(saturation, 0.35), 0.74])
+    from: hslToHex([hue, saturation, lightness]),
+    to: hslToHex([hue, saturation, END_LIGHTNESS]),
+    title: BRAND_ORANGE,
+    description
   }
 }

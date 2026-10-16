@@ -49,24 +49,38 @@ describe('color utils', () => {
     'reads well on the cards of the hero picture %s',
     id => {
       const placeholder = getPlaceholder(id)
-      const {background, title, description} = getSectionPalette(
+      const {from, to, title, description} = getSectionPalette(
         AVERAGE_COLORS[id],
         placeholder
       )
 
       expect(placeholder).toBeDefined()
-      expect(getContrastRatio(title, background)).toBeGreaterThanOrEqual(4.5)
-      expect(getContrastRatio(description, background)).toBeGreaterThanOrEqual(
-        4.5
-      )
+      // The lighter end of the gradient is the hardest place to read.
+      expect(getContrastRatio(title, from)).toBeGreaterThanOrEqual(4.5)
+      expect(getContrastRatio(description, from)).toBeGreaterThanOrEqual(4.5)
+      // On hover the card turns orange and its text takes the dark end.
+      expect(getContrastRatio(to, title)).toBeGreaterThanOrEqual(7)
     }
   )
 
-  it('gives a dark background to every hero picture', () => {
-    const lightest = Object.keys(AVERAGE_COLORS)
-      .map(id => getSectionPalette(AVERAGE_COLORS[id], getPlaceholder(id)))
-      .map(({background}) => getContrastRatio('#ffffff', background))
+  it('keeps the titles in the brand orange on every hero picture', () => {
+    const titles = Object.keys(AVERAGE_COLORS).map(
+      id => getSectionPalette(AVERAGE_COLORS[id], getPlaceholder(id)).title
+    )
 
-    expect(Math.min(...lightest)).toBeGreaterThan(10)
+    expect(new Set(titles)).toEqual(new Set(['#fdba74']))
+  })
+
+  it('runs every gradient from a lighter tone down to a darker one', () => {
+    const steps = Object.keys(AVERAGE_COLORS).map(id => {
+      const {from, to} = getSectionPalette(
+        AVERAGE_COLORS[id],
+        getPlaceholder(id)
+      )
+
+      return getContrastRatio(from, to)
+    })
+
+    expect(Math.min(...steps)).toBeGreaterThan(1.3)
   })
 })
