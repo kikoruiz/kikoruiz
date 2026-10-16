@@ -11,13 +11,13 @@ export const GALLERY_ALBUMS = [
     id: 'landscapes',
     tags: ['landscape'],
     excludeTags: ['travel', 'seascape', 'seasonal'],
-    highlightedPicture: '2020-10-17_0213.jpg'
+    highlightedPicture: '2023-10-08_0001.jpg'
   },
   {
     id: 'astro',
     tags: ['moon', 'sun'],
     excludeTags: ['landscape', 'seascape', 'travel', 'aurora borealis'],
-    highlightedPicture: '2018-11-24_0178.jpg'
+    highlightedPicture: '2023-11-17_0394.jpg'
   },
   {
     id: 'portraits',
@@ -27,7 +27,7 @@ export const GALLERY_ALBUMS = [
   {
     id: 'travel',
     tags: ['travel'],
-    highlightedPicture: '2021-10-27_0280.jpg',
+    highlightedPicture: '2021-10-28_0037.jpg',
     subcategories: [
       {id: 'iceland', tag: 'iceland'},
       {id: 'lofoten-islands', tag: 'lofoten islands'},
@@ -38,7 +38,7 @@ export const GALLERY_ALBUMS = [
   {
     id: 'seasonal',
     tags: ['seasonal', 'winter', 'spring', 'summer', 'autumn'],
-    highlightedPicture: '2022-11-13_0023.jpg',
+    highlightedPicture: '2023-11-26_0370.jpg',
     subcategories: [
       {id: 'spring', tag: 'spring', emoji: '🌿'},
       {id: 'summer', tag: 'summer', emoji: '🌞'},

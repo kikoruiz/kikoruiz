@@ -8,7 +8,7 @@ export const SECTIONS = [
     id: 'gallery',
     categories: GALLERY_ALBUMS,
     localePrefix: 'gallery.albums.',
-    highlightedPicture: '/pictures/2022-01-04_0125.jpg'
+    highlightedPicture: '/pictures/2021-12-04_0153.jpg'
   },
   {
     id: 'store',
@@ -21,7 +21,7 @@ export const SECTIONS = [
     id: 'about-me',
     categories: [{id: 'resume'}],
     localePrefix: 'about-me.pages.',
-    highlightedPicture: '/pictures/2022-08-27_0108.jpg'
+    highlightedPicture: '/pictures/2022-12-28_0413.jpg'
   }
 ]
 
