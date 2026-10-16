@@ -34,9 +34,7 @@ export default function NavigationCategoriesList({
   const list = (
     <ul
       className={`sm:invisible sm:block sm:opacity-0 sm:transition-[opacity,visibility] sm:duration-300${
-        isDismissed
-          ? ''
-          : ' sm:group-hover:visible sm:group-hover:opacity-100'
+        isDismissed ? '' : ' sm:group-hover:visible sm:group-hover:opacity-100'
       }${
         isMenuOpen
           ? ''
@@ -52,7 +50,7 @@ export default function NavigationCategoriesList({
         )}/${categorySlug}`
         const isActualCategory = path === categoryHref
         const categoryName = t(`${section.localePrefix}${category.id}.name`)
-        const categoryClassName = `block py-3 text-sm text-neutral-400 group-last:rounded-b ${
+        const categoryClassName = `block py-3 text-sm text-neutral-400 transition-colors duration-300 group-last:rounded-b ${
           isMenuOpen ? 'px-12' : 'px-6'
         } ${
           isActualCategory
@@ -66,7 +64,9 @@ export default function NavigationCategoriesList({
               href={categoryHref}
               title={categoryName}
               className={categoryClassName}
-              onClick={isActualCategory ? e => e.preventDefault() : onCategoryClick}
+              onClick={
+                isActualCategory ? e => e.preventDefault() : onCategoryClick
+              }
               aria-current={isActualCategory ? 'page' : undefined}
             >
               {categoryName}
