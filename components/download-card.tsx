@@ -76,13 +76,14 @@ export default function DownloadCard({
         style={{top: `calc(-${headerHeight}px - 1em)`}}
       />
 
-      <div className="relative shadow-md group-hover:shadow-xl">
+      <div className="relative isolate shadow-md group-hover:shadow-xl">
         <Image
           src={src}
           alt={name}
           aspectRatio={aspectRatio}
           sizes={`(min-width: ${lg}) 33vw, (min-width: ${sm}) 50vw, 100vw`}
           fallbackStyle={css}
+          isRounded
           onLoad={() => {
             setIsImageLoaded(true)
           }}
