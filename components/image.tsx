@@ -1,5 +1,4 @@
 import {
-  useEffect,
   useState,
   CSSProperties,
   forwardRef,
@@ -11,9 +10,6 @@ import {useRouter} from 'next/router'
 import NextImage from 'next/image'
 import {getAspectRatioClassName} from 'lib/utils'
 import {ImageFallbackStyle} from 'types/gallery'
-
-// The length of the `duration-300` of the picture below.
-const FADE_DURATION = 300
 
 interface ImageProps {
   src: string
@@ -63,9 +59,6 @@ function Image(
   const router = useRouter()
   const {push, pathname, query} = router
   const [isLoaded, setIsLoaded] = useState(false)
-  // The fallback stays until the picture has finished fading in over it, or
-  // the box is empty for as long as the fade lasts.
-  const [isFadedIn, setIsFadedIn] = useState(false)
   const wrapperClassName = `relative${isRounded ? ' rounded-sm' : ''}`
   const isFullSize = sizes === '100vw'
   // What is preloaded is what the page is about to paint first, so it is
@@ -81,14 +74,6 @@ function Image(
         }
       : {})
   }
-
-  useEffect(() => {
-    if (!isLoaded) return
-
-    const timeout = setTimeout(() => setIsFadedIn(true), FADE_DURATION)
-
-    return () => clearTimeout(timeout)
-  }, [isLoaded])
 
   function handleImageLoad() {
     setIsLoaded(true)
@@ -121,11 +106,17 @@ function Image(
 
   const content = (
     <>
+      {/* The fallback leaves once the picture has loaded, but only after the
+          fade of the picture (the 300ms of its `duration-300`) has covered it,
+          or the box would be empty for as long as the fade lasts. */}
+      {/* Once the picture is loaded the fallback leaves, but only after the
+          fade of the picture (the 300ms of its `duration-300`) has covered it,
+          or the box would be empty for as long as the fade lasts. */}
       <div
         aria-hidden
         className={`absolute inset-0 -z-10 h-full w-full ${
           isFullSize ? 'blur-3xl' : 'blur-2xl'
-        }${isFadedIn && !isHidden ? ' hidden' : ''}${isFullRounded ? ' rounded-full' : ''}`}
+        }${isLoaded && !isHidden ? ' invisible opacity-0 transition-[opacity,visibility] delay-300 duration-0' : ''}${isFullRounded ? ' rounded-full' : ''}`}
         style={{
           ...fallbackStyle,
           transform: 'translate3d(0, 0, 0)'
