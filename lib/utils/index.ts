@@ -210,32 +210,14 @@ export function getPrintPictureSize({
   const sheetRatio = isVertical ? 210 / 297 : 297 / 210
   const available = 1 - PRINT_MAT_FRACTION * 2
   const fitsByWidth = pictureRatio > sheetRatio
-  const scale = fitsByWidth ? sheetRatio / pictureRatio : pictureRatio / sheetRatio
+  const scale = fitsByWidth
+    ? sheetRatio / pictureRatio
+    : pictureRatio / sheetRatio
 
   return {
     width: `${(fitsByWidth ? available : available * scale) * 100}%`,
     height: `${(fitsByWidth ? available * scale : available) * 100}%`
   }
-}
-
-// The master is never on disk at build time, only its optimized derivatives
-// are, and the smallest one is already more than enough pixel data for an
-// average color.
-function getSmallestOptimizedUrl(src: string) {
-  return src.replace(
-    /^\/pictures\/([^/]+)\.[^.]+$/,
-    '/pictures/optimized/$1-640w.webp'
-  )
-}
-
-export async function getAverageColor(src: string) {
-  const {getAverageColor: fastAverageColor} =
-    await import('fast-average-color-node')
-  const resourceFile = `public${getSmallestOptimizedUrl(src)}`
-  const color = await fastAverageColor(resourceFile)
-  const {hex, isDark, isLight} = color
-
-  return {hex, isDark, isLight}
 }
 
 export function getAverageValue(values: number[]) {
@@ -295,7 +277,10 @@ export const SOCIAL_IMAGE_WIDTH = 1200
 // The full resolution pictures are not published any more, so whatever is
 // handed to a crawler has to be the social derivative instead of the original.
 export function getSocialImageUrl(src: string) {
-  return src.replace(/^\/pictures\/([^/]+)\.[^.]+$/, '/pictures/optimized/$1-og.jpg')
+  return src.replace(
+    /^\/pictures\/([^/]+)\.[^.]+$/,
+    '/pictures/optimized/$1-og.jpg'
+  )
 }
 
 export function getSocialImageSize(imageSize: string) {

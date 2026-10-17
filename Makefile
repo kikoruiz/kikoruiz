@@ -25,6 +25,9 @@ save_site_images:
 save_placeholders:
 	FILE=image/placeholders make save
 
+save_colors:
+	FILE=image/colors make save
+
 save_metadata:
 	FILE=pictures/metadata make save
 	FILE=search/pictures make save

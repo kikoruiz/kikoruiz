@@ -1,5 +1,6 @@
 import {SECTIONS} from 'config'
-import {getAverageColor, sortListBy} from './utils'
+import {getAverageColor} from './image-colors'
+import {sortListBy} from './utils'
 import {getImagePlaceholder} from './utils/image'
 import {getAllPictures} from './gallery/pictures'
 import {fromExifToGallery} from './gallery/mappers'
