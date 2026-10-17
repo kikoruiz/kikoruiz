@@ -15,7 +15,7 @@ export function getPictureTitle({
   printLabel?: string
   siteName: string
 }) {
-  const build = (parts: string[]) => `${parts.join(' · ')} | ${siteName}`
+  const build = (parts: string[]) => `${parts.join(' · ')} / ${siteName}`
   const extras = [city, printLabel].filter(Boolean)
   const withAll = build([name, ...extras])
 

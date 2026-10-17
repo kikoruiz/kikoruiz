@@ -12,7 +12,7 @@ describe('seo lib', () => {
         printLabel: 'Impresión',
         siteName: 'Kiko Ruiz'
       })
-    ).toBe('The Yellow Boat · Calonge · Impresión | Kiko Ruiz')
+    ).toBe('The Yellow Boat · Calonge · Impresión / Kiko Ruiz')
   })
 
   it('gets a title without the print for a picture that is not for sale', () => {
@@ -22,13 +22,13 @@ describe('seo lib', () => {
         city: 'Calonge',
         siteName: 'Kiko Ruiz'
       })
-    ).toBe('The Yellow Boat · Calonge | Kiko Ruiz')
+    ).toBe('The Yellow Boat · Calonge / Kiko Ruiz')
   })
 
   it('gets a title with just the name when there is no place', () => {
     expect(
       getPictureTitle({name: 'The Yellow Boat', siteName: 'Kiko Ruiz'})
-    ).toBe('The Yellow Boat | Kiko Ruiz')
+    ).toBe('The Yellow Boat / Kiko Ruiz')
   })
 
   it('drops the city before the print when the title would be too long', () => {
@@ -40,7 +40,7 @@ describe('seo lib', () => {
     })
 
     expect(title).toBe(
-      'Last Autumn Lights and Colors II · Impresión | Kiko Ruiz'
+      'Last Autumn Lights and Colors II · Impresión / Kiko Ruiz'
     )
     expect(title.length).toBeLessThanOrEqual(60)
   })
