@@ -1,19 +1,12 @@
 import {describe, it, expect} from 'vitest'
 import {HERO_IMAGES} from 'config'
+import {getAverageColor} from 'lib/utils'
 import {getContrastRatio, getSectionPalette} from 'lib/utils/color'
 
-// The average colour of each hero picture, as `getAverageColor` returns it.
-const AVERAGE_COLORS: Record<string, string> = {
-  '2019-03-04_0001': '#595152',
-  '2019-03-07_0175': '#7684a0',
-  '2020-01-25_0040': '#716c75',
-  '2020-09-27_0057': '#7b675f',
-  '2021-10-24_0031': '#5f5a5c',
-  '2021-12-04_0153': '#7e4f45',
-  '2021-12-10_0008': '#544761',
-  '2022-06-25_0028': '#4b4541',
-  '2023-04-02_0102': '#554840'
-}
+// The average colour of each hero picture, as the page gets it.
+const AVERAGE_COLORS = Object.fromEntries(
+  HERO_IMAGES.map(id => [id, getAverageColor(`/pictures/${id}.jpg`).hex])
+)
 
 describe('color utils', () => {
   // Tests for `getContrastRatio`.
@@ -33,10 +26,6 @@ describe('color utils', () => {
 
   it('falls back to the default palette without a valid colour', () => {
     expect(getSectionPalette('nope').title).toBe('#fdba74')
-  })
-
-  it('has an average colour for every hero picture', () => {
-    expect(HERO_IMAGES.filter(id => !AVERAGE_COLORS[id])).toEqual([])
   })
 
   it.each(Object.keys(AVERAGE_COLORS))(

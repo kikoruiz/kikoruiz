@@ -8,7 +8,9 @@ import {
   PENDING_EVAL_SORTING_OPTIONS
 } from 'config/gallery'
 import {DEFAULT_ORIGIN} from 'config'
+import averageColors from 'data/image/average-colors.json'
 import {Screens, ThemeScreens} from 'types'
+import {ImageAverageColor} from 'types/gallery'
 
 const config = resolveConfig(tailwindConfig)
 
@@ -210,7 +212,9 @@ export function getPrintPictureSize({
   const sheetRatio = isVertical ? 210 / 297 : 297 / 210
   const available = 1 - PRINT_MAT_FRACTION * 2
   const fitsByWidth = pictureRatio > sheetRatio
-  const scale = fitsByWidth ? sheetRatio / pictureRatio : pictureRatio / sheetRatio
+  const scale = fitsByWidth
+    ? sheetRatio / pictureRatio
+    : pictureRatio / sheetRatio
 
   return {
     width: `${(fitsByWidth ? available : available * scale) * 100}%`,
@@ -218,24 +222,19 @@ export function getPrintPictureSize({
   }
 }
 
-// The master is never on disk at build time, only its optimized derivatives
-// are, and the smallest one is already more than enough pixel data for an
-// average color.
-function getSmallestOptimizedUrl(src: string) {
-  return src.replace(
-    /^\/pictures\/([^/]+)\.[^.]+$/,
-    '/pictures/optimized/$1-640w.webp'
-  )
-}
+// The colour of each picture is worked out by `make save_colors` and kept as
+// data, because the pages that need it are regenerated while live, in a
+// function that has no `public` folder to read the picture from.
+export function getAverageColor(src: string): ImageAverageColor {
+  const averageColor = (averageColors as Record<string, ImageAverageColor>)[src]
 
-export async function getAverageColor(src: string) {
-  const {getAverageColor: fastAverageColor} =
-    await import('fast-average-color-node')
-  const resourceFile = `public${getSmallestOptimizedUrl(src)}`
-  const color = await fastAverageColor(resourceFile)
-  const {hex, isDark, isLight} = color
+  if (!averageColor) {
+    throw new Error(
+      `There is no average colour for ${src}. Run make save_colors.`
+    )
+  }
 
-  return {hex, isDark, isLight}
+  return averageColor
 }
 
 export function getAverageValue(values: number[]) {
@@ -295,7 +294,10 @@ export const SOCIAL_IMAGE_WIDTH = 1200
 // The full resolution pictures are not published any more, so whatever is
 // handed to a crawler has to be the social derivative instead of the original.
 export function getSocialImageUrl(src: string) {
-  return src.replace(/^\/pictures\/([^/]+)\.[^.]+$/, '/pictures/optimized/$1-og.jpg')
+  return src.replace(
+    /^\/pictures\/([^/]+)\.[^.]+$/,
+    '/pictures/optimized/$1-og.jpg'
+  )
 }
 
 export function getSocialImageSize(imageSize: string) {
