@@ -8,9 +8,7 @@ import {
   PENDING_EVAL_SORTING_OPTIONS
 } from 'config/gallery'
 import {DEFAULT_ORIGIN} from 'config'
-import averageColors from 'data/image/average-colors.json'
 import {Screens, ThemeScreens} from 'types'
-import {ImageAverageColor} from 'types/gallery'
 
 const config = resolveConfig(tailwindConfig)
 
@@ -220,21 +218,6 @@ export function getPrintPictureSize({
     width: `${(fitsByWidth ? available : available * scale) * 100}%`,
     height: `${(fitsByWidth ? available * scale : available) * 100}%`
   }
-}
-
-// The colour of each picture is worked out by `make save_colors` and kept as
-// data, because the pages that need it are regenerated while live, in a
-// function that has no `public` folder to read the picture from.
-export function getAverageColor(src: string): ImageAverageColor {
-  const averageColor = (averageColors as Record<string, ImageAverageColor>)[src]
-
-  if (!averageColor) {
-    throw new Error(
-      `There is no average colour for ${src}. Run make save_colors.`
-    )
-  }
-
-  return averageColor
 }
 
 export function getAverageValue(values: number[]) {

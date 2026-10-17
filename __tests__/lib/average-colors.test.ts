@@ -1,7 +1,7 @@
 import {describe, it, expect} from 'vitest'
 import pictures from 'data/pictures/metadata.json'
 import {HERO_IMAGES} from 'config'
-import {getAverageColor} from 'lib/utils'
+import {getAverageColor} from 'lib/image-colors'
 
 describe('average colors', () => {
   it('has the colour of every hero picture', () => {

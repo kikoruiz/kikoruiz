@@ -1,6 +1,6 @@
 import {describe, it, expect} from 'vitest'
 import {HERO_IMAGES} from 'config'
-import {getAverageColor} from 'lib/utils'
+import {getAverageColor} from 'lib/image-colors'
 import {getContrastRatio, getSectionPalette} from 'lib/utils/color'
 
 // The average colour of each hero picture, as the page gets it.
