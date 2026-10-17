@@ -61,6 +61,14 @@ export default async function handler(
       const needsShipping = variantIds.some(
         id => !id.startsWith(`${DOWNLOAD_TYPE}_`)
       )
+      // The shipping is inside the price of a print, so the first rate is free
+      // and the second one is the surcharge of the islands. Checkout shows
+      // both and the buyer picks the one of their address; the webhook says if
+      // it was not the right one.
+      const shippingRates = [
+        process.env.STRIPE_SHIPPING_RATE_ID,
+        process.env.STRIPE_SHIPPING_RATE_ISLANDS_ID
+      ].filter(Boolean)
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
         payment_method_types: ['card', 'link'],
@@ -73,10 +81,10 @@ export default async function handler(
         // its id is set, the order carries no shipping charge.
         ...(needsShipping && {
           shipping_address_collection: {allowed_countries: ['ES']},
-          ...(process.env.STRIPE_SHIPPING_RATE_ID && {
-            shipping_options: [
-              {shipping_rate: process.env.STRIPE_SHIPPING_RATE_ID}
-            ]
+          ...(shippingRates.length > 0 && {
+            shipping_options: shippingRates.map(shipping_rate => ({
+              shipping_rate
+            }))
           })
         }),
         // Instant delivery kills the right of withdrawal, and that has to be

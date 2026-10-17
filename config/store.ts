@@ -148,4 +148,17 @@ export const SHIPPING = {
   handlingDays: null as {min: number; max: number} | null,
   transitDays: null as {min: number; max: number} | null
 }
+
+// Canarias, Ceuta and Melilla are sent to with other Correos tariffs and are
+// outside the VAT territory, so their orders pay a surcharge on top of the
+// shipping that the price already includes. 7.65 is what Paq Estándar up to
+// 1 kg costs to Canarias (21.30) minus what it costs inside the peninsula
+// (13.65), in the 2026 tariffs; a heavier parcel costs more, so check it
+// against the real weight of the biggest print.
+export const ISLANDS_SHIPPING = {
+  surcharge: 7.65,
+  regions: ['ES-GC', 'ES-TF', 'ES-CE', 'ES-ML'],
+  // Las Palmas, Santa Cruz de Tenerife, Ceuta and Melilla.
+  postalCodePrefixes: ['35', '38', '51', '52']
+}
 export const RETURN_POLICY = {country: 'ES', days: 14}

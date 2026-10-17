@@ -130,24 +130,36 @@ describe('structured data lib', () => {
 
   it('says the shipping of a print is free, since the price includes it', () => {
     const [print] = getGraph({}).Product.offers.offers
+    const [peninsula] = print.shippingDetails
 
-    expect(print.shippingDetails).toMatchObject({
+    expect(peninsula).toMatchObject({
       shippingRate: {value: 0, currency: 'EUR'},
       shippingDestination: {addressCountry: 'ES'}
     })
   })
 
-  it('ships only to the peninsula and the Balearic Islands', () => {
+  it('ships to the peninsula and the Balearic Islands for free', () => {
     const [print] = getGraph({}).Product.offers.offers
     const regions: string[] =
-      print.shippingDetails.shippingDestination.addressRegion
+      print.shippingDetails[0].shippingDestination.addressRegion
 
     expect(regions).toHaveLength(48)
     expect(regions).toContain('ES-PM')
     expect(regions).not.toContain('ES-GC')
-    expect(regions).not.toContain('ES-TF')
     expect(regions).not.toContain('ES-CE')
-    expect(regions).not.toContain('ES-ML')
+  })
+
+  it('charges the surcharge to Canarias, Ceuta and Melilla', () => {
+    const [print] = getGraph({}).Product.offers.offers
+    const islands = print.shippingDetails[1]
+
+    expect(islands.shippingRate.value).toBe(7.65)
+    expect(islands.shippingDestination.addressRegion).toEqual([
+      'ES-GC',
+      'ES-TF',
+      'ES-CE',
+      'ES-ML'
+    ])
   })
 
   it('says nothing about shipping when there is no rate', () => {
@@ -161,6 +173,6 @@ describe('structured data lib', () => {
     SHIPPING.rate = 4.5
     const [print] = getGraph({}).Product.offers.offers
 
-    expect(print.shippingDetails.shippingRate.value).toBe(4.5)
+    expect(print.shippingDetails[0].shippingRate.value).toBe(4.5)
   })
 })

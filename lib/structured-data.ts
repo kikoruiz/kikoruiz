@@ -1,5 +1,5 @@
 import {SITE_NAME} from 'config'
-import {RETURN_POLICY, SHIPPING} from 'config/store'
+import {ISLANDS_SHIPPING, RETURN_POLICY, SHIPPING} from 'config/store'
 import {getAbsoluteUrl, getSocialImageSize, getSocialImageUrl} from './utils'
 import {BreadcrumbItem} from 'types'
 import {Picture} from 'types/gallery'
@@ -103,29 +103,30 @@ function getPrintShippingDetails() {
     maxValue: days.max,
     unitCode: 'DAY'
   })
-
-  return {
+  const deliveryTime = (SHIPPING.handlingDays || SHIPPING.transitDays) && {
+    deliveryTime: {
+      '@type': 'ShippingDeliveryTime',
+      ...(SHIPPING.handlingDays && {
+        handlingTime: range(SHIPPING.handlingDays)
+      }),
+      ...(SHIPPING.transitDays && {transitTime: range(SHIPPING.transitDays)})
+    }
+  }
+  const getDetails = (value: number, addressRegion: string[]) => ({
     '@type': 'OfferShippingDetails',
-    shippingRate: {
-      '@type': 'MonetaryAmount',
-      value: SHIPPING.rate,
-      currency: CURRENCY
-    },
+    shippingRate: {'@type': 'MonetaryAmount', value, currency: CURRENCY},
     shippingDestination: {
       '@type': 'DefinedRegion',
       addressCountry: SHIPPING.country,
-      addressRegion: SHIPPING.regions
+      addressRegion
     },
-    ...((SHIPPING.handlingDays || SHIPPING.transitDays) && {
-      deliveryTime: {
-        '@type': 'ShippingDeliveryTime',
-        ...(SHIPPING.handlingDays && {
-          handlingTime: range(SHIPPING.handlingDays)
-        }),
-        ...(SHIPPING.transitDays && {transitTime: range(SHIPPING.transitDays)})
-      }
-    })
-  }
+    ...deliveryTime
+  })
+
+  return [
+    getDetails(SHIPPING.rate, SHIPPING.regions),
+    getDetails(ISLANDS_SHIPPING.surcharge, ISLANDS_SHIPPING.regions)
+  ]
 }
 
 const PRINT_RETURN_POLICY = {

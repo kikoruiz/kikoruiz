@@ -29,6 +29,9 @@ save_metadata:
 	FILE=pictures/metadata make save
 	FILE=search/pictures make save
 
+save_shipping: ## create the Stripe shipping rates · ARGS="--dry-run --live"
+	FILE=store/shipping make save
+
 save_content:
 	FILE=search/content make save
 
