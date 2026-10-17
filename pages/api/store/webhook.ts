@@ -1,7 +1,8 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
 import Stripe from 'stripe'
 import i18n from 'i18n'
-import {sendDownloadsEmail} from 'lib/store/email'
+import {sendDownloadsEmail, sendShippingAlert} from 'lib/store/email'
+import {getShippingMismatch} from 'lib/store/shipping'
 
 global.i18nConfig = i18n
 
@@ -58,6 +59,25 @@ export default async function handler(
   const session = event.data.object as Stripe.Checkout.Session
   const {locale, hasDownloads} = session.metadata ?? {}
   const to = session.customer_details?.email
+  const shippingRate = session.shipping_cost?.shipping_rate
+  const postalCode = (
+    session.collected_information?.shipping_details ?? session.customer_details
+  )?.address?.postal_code
+  const mismatch = getShippingMismatch({
+    postalCode,
+    rateId: typeof shippingRate === 'string' ? shippingRate : shippingRate?.id,
+    islandsRateId: process.env.STRIPE_SHIPPING_RATE_ISLANDS_ID
+  })
+
+  // A print is sent by hand, so whoever picked the wrong option can still be
+  // told before it leaves. The payment is never put at risk by this.
+  if (mismatch) {
+    try {
+      await sendShippingAlert({sessionId: session.id, postalCode, mismatch})
+    } catch (error) {
+      console.error('Could not send the shipping alert.', error)
+    }
+  }
 
   // Prints get an email from me by hand, so only files have anything to
   // deliver automatically. Anything already paid for stays reachable through

@@ -125,7 +125,7 @@ export default function PictureDetail({
       <div className="contents h-screen w-screen">
         <Image
           src={image.src}
-          alt={name}
+          alt={location ? `${name} · ${location.city}` : name}
           className="m-auto max-h-screen overflow-hidden"
           aspectRatio={aspectRatio}
           sizes={sizes}

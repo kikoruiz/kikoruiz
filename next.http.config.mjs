@@ -23,7 +23,16 @@ const http = {
       '/pictures/optimized/:file*',
       '/optimized/:file*',
       '/avatar.jpg',
-      '/logo.png'
+      '/logo.png',
+      // The icons and the manifest are tiny and almost never change, yet they
+      // were asked about on every visit and the manifest sits in the chain of
+      // requests that Lighthouse measures.
+      '/favicon.png',
+      '/favicon-32.png',
+      '/apple-touch-icon.png',
+      '/icon-192.png',
+      '/icon-512.png',
+      '/site.webmanifest'
     ].map(source => ({
       source,
       headers: [

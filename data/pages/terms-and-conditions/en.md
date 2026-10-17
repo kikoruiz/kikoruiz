@@ -1,4 +1,4 @@
-Last updated: **October 14, 2026**
+Last updated: **October 17, 2026**
 
 ## Acceptance of the terms and conditions
 
@@ -26,7 +26,7 @@ If the file cannot be downloaded or arrives damaged, write to me and I will repl
 
 ## Prints
 
-Prints are made to order and I only ship them to addresses in Spain. The shipping cost, if any, is shown before you pay. After the purchase I email you to confirm the order and agree on delivery times, which depend on the product and your location.
+Prints are made to order and I only ship them to addresses in Spain. Shipping to the Peninsula and the Balearic Islands is included in the price. A surcharge is added for the Canary Islands, Ceuta and Melilla, because shipping costs more there; you choose it at checkout and see the amount before you confirm the order. After the purchase I email you to confirm the order and agree on delivery times, which depend on the product and your location.
 
 ## Right of withdrawal for prints
 

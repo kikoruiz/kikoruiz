@@ -7,6 +7,43 @@ import {getSlug} from 'lib/utils'
 // fails every send rather than silently going to spam.
 const FROM = `${SITE_NAME} <hola@kikoruiz.es>`
 
+const SHIPPING_ALERTS = {
+  'missing-surcharge':
+    'va a Canarias, Ceuta o Melilla y ha elegido el envío sin recargo',
+  'unneeded-surcharge':
+    'va a la Península o Baleares y ha elegido el envío con recargo'
+}
+
+// An email to the owner, since nobody else is going to notice that an order
+// picked the shipping option of another place.
+export async function sendShippingAlert({
+  sessionId,
+  postalCode,
+  mismatch
+}: {
+  sessionId: string
+  postalCode: string
+  mismatch: keyof typeof SHIPPING_ALERTS
+}) {
+  const apiKey = process.env.RESEND_API_KEY
+
+  if (!apiKey) throw new Error('There is no RESEND_API_KEY to send with.')
+
+  const text = [
+    `El pedido ${sessionId} ${SHIPPING_ALERTS[mismatch]} (código postal ${postalCode}).`,
+    '',
+    'Revísalo en Stripe y escribe al comprador antes de enviarlo: cóbrale la diferencia o devuélvele el recargo.',
+    `https://dashboard.stripe.com/payments?query=${sessionId}`
+  ].join('\n')
+
+  return new Resend(apiKey).emails.send({
+    from: FROM,
+    to: 'hola@kikoruiz.es',
+    subject: `kikoruiz.es · Revisar envío del pedido ${sessionId.slice(-8)}`,
+    text
+  })
+}
+
 export async function sendDownloadsEmail({
   to,
   sessionId,

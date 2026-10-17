@@ -10,9 +10,10 @@ import {getPictureStructuredData} from 'lib/structured-data'
 import {getAbsoluteUrl, getSlug} from 'lib/utils'
 import {SITE_NAME} from 'config'
 import products from 'data/store/products.json'
+import rawDownloads from 'data/store/downloads.json'
 import {Alternate, BreadcrumbItem} from 'types'
 import {Picture, Subcategory} from 'types/gallery'
-import {PicturePrint} from 'types/store'
+import {PictureDownload, PicturePrint} from 'types/store'
 
 interface GalleryPictureProps {
   pictures: Picture[]
@@ -97,6 +98,14 @@ export async function getStaticProps({
       paper,
       price
     }))
+  const tStore = await getT(locale, 'store')
+  const downloads: PictureDownload[] = rawDownloads
+    .filter(({pictureId}) => pictureId === picture.id)
+    .map(({id, tier, price}) => ({
+      id,
+      name: `${picture.name} (${tStore(`downloads.tiers.${tier}`)})`,
+      price
+    }))
   const localePath = locale === defaultLocale ? '' : `/${locale}`
   const breadcrumbItems: BreadcrumbItem[] = [
     {id: 'home', name: SITE_NAME, href: '/'},
@@ -110,6 +119,7 @@ export async function getStaticProps({
   const structuredData = getPictureStructuredData({
     picture,
     prints,
+    downloads,
     canonical: albumProps.alternates.find(({locale: l}) => l === locale).href,
     licenseUrl: getAbsoluteUrl(
       `${localePath}/${getSlug(t('legal.pages.copyright.name'))}`

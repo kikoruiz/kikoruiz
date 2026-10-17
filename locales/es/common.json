@@ -76,6 +76,8 @@
       "creation-date": "{{date}} (creación)",
       "processing-date": "{{date}} (edición)",
       "description": "Fotografía de {{name}}, tomada por Kiko Ruiz.",
+      "title-print": "Impresión",
+      "print-note": "Disponible como impresión.",
       "location": "Localización",
       "technical-info": "Información técnica",
       "order-print": "Comprar impresión",
