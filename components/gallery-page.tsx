@@ -1,5 +1,6 @@
 import {useMemo, useState, ChangeEvent} from 'react'
 import Head from 'next/head'
+import {getPictureDescription, getPictureTitle} from 'lib/seo'
 import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
@@ -142,13 +143,30 @@ function PictureHead({
   localePath: string
 }) {
   const {t} = useTranslation()
-  const {name, description, image, imageSize, permalink} = picture
-  const title = `${SITE_NAME} / ${name}`
-  const text =
-    description?.replaceAll(/\n\n/g, ' ') ??
-    [t('gallery.picture.description', {name}), albumName && `${albumName}.`]
+  const {name, description, image, imageSize, permalink, location, prettyDate} =
+    picture
+  const hasPrint = Boolean(picture.print)
+  const title = getPictureTitle({
+    name,
+    city: location?.city,
+    printLabel: hasPrint ? t('gallery.picture.title-print') : undefined,
+    siteName: SITE_NAME
+  })
+  const text = getPictureDescription({
+    description: description?.replaceAll(/\n\n/g, ' '),
+    fallback: [
+      t('gallery.picture.description', {name}),
+      albumName && `${albumName}.`
+    ]
       .filter(Boolean)
-      .join(' ')
+      .join(' '),
+    facts: [
+      location && [location.city, location.country].filter(Boolean).join(', '),
+      prettyDate,
+      picture.model
+    ],
+    printNote: hasPrint ? t('gallery.picture.print-note') : undefined
+  })
   const canonical = getAbsoluteUrl(`${localePath}${permalink}`)
   const ogImage = getAbsoluteUrl(getSocialImageUrl(image.src))
   const {width, height} = getSocialImageSize(imageSize)

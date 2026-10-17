@@ -84,3 +84,16 @@ export const FILTER_OPTIONS = {
 // same Stripe price, and the checkout strips it back off.
 export const SIGNED_SUFFIX = ':signed'
 export const SIMPLE_FILTERS = ['size-option']
+
+// What the structured data says about delivering and returning a print. The
+// return window is the one of the terms and conditions. The fee is the one
+// charged for the Correos service used for prints, in euros, and stays empty
+// until there is a real one: Google asks for a rate to show shipping, and
+// guessing it would be telling buyers a price they will not be charged.
+export const SHIPPING = {
+  country: 'ES',
+  rate: null as number | null,
+  handlingDays: null as {min: number; max: number} | null,
+  transitDays: null as {min: number; max: number} | null
+}
+export const RETURN_POLICY = {country: 'ES', days: 14}
