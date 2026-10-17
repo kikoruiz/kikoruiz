@@ -1,4 +1,4 @@
-Última actualització: **14 d'octubre de 2026**
+Última actualització: **17 d'octubre de 2026**
 
 ## Acceptació dels termes i condicions
 
@@ -26,7 +26,7 @@ Si l'arxiu no es pot descarregar o arriba danyat, escriu-me i te'l reposaré o e
 
 ## Impressions
 
-Les impressions es fan sota comanda i només les envie a adreces d'Espanya. El cost d'enviament, si n'hi ha, es mostra abans de pagar. Després de la compra t'escric per correu per confirmar la comanda i concretar els terminis de lliurament, que depenen del producte i de la teua ubicació.
+Les impressions es fan sota comanda i només les envie a adreces d'Espanya. L'enviament a la Península i a les Balears està inclòs en el preu. A Canàries, Ceuta i Melilla s'afig un recàrrec, perquè l'enviament costa més; el tries en pagar i veus l'import abans de confirmar la comanda. Després de la compra t'escric per correu per confirmar la comanda i concretar els terminis de lliurament, que depenen del producte i de la teua ubicació.
 
 ## Desistiment en les impressions
 

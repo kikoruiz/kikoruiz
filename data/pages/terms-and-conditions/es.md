@@ -1,4 +1,4 @@
-Última actualización: **14 de octubre de 2026**
+Última actualización: **17 de octubre de 2026**
 
 ## Aceptación de los términos y condiciones
 
@@ -26,7 +26,7 @@ Si el archivo no se puede descargar o llega dañado, escríbeme y te lo repongo 
 
 ## Impresiones
 
-Las impresiones se hacen bajo pedido y solo las envío a direcciones de España. El coste de envío, si lo hay, se muestra antes de pagar. Tras la compra te escribo por correo para confirmar el pedido y concretar los plazos de entrega, que dependen del producto y de tu ubicación.
+Las impresiones se hacen bajo pedido y solo las envío a direcciones de España. El envío a la Península y a Baleares está incluido en el precio. A Canarias, Ceuta y Melilla se añade un recargo, porque el envío cuesta más; lo eliges al pagar y ves el importe antes de confirmar el pedido. Tras la compra te escribo por correo para confirmar el pedido y concretar los plazos de entrega, que dependen del producto y de tu ubicación.
 
 ## Desistimiento en las impresiones
 
