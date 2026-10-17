@@ -113,7 +113,8 @@ function getPrintShippingDetails() {
     },
     shippingDestination: {
       '@type': 'DefinedRegion',
-      addressCountry: SHIPPING.country
+      addressCountry: SHIPPING.country,
+      addressRegion: SHIPPING.regions
     },
     ...((SHIPPING.handlingDays || SHIPPING.transitDays) && {
       deliveryTime: {

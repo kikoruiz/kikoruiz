@@ -86,13 +86,65 @@ export const SIGNED_SUFFIX = ':signed'
 export const SIMPLE_FILTERS = ['size-option']
 
 // What the structured data says about delivering and returning a print. The
-// return window is the one of the terms and conditions. The fee is the one
-// charged for the Correos service used for prints, in euros, and stays empty
-// until there is a real one: Google asks for a rate to show shipping, and
-// guessing it would be telling buyers a price they will not be charged.
+// return window is the one of the terms and conditions. Shipping is inside the
+// price of the print, so the buyer pays nothing for it (keep the Stripe
+// shipping rate unset to match). It is sent with Correos, and only to the
+// provinces of the peninsula and the Balearic Islands, because the tariffs of
+// Canarias, Ceuta and Melilla are other ones and the price does not cover them.
+// Delivery times are left empty until Correos commits to some.
 export const SHIPPING = {
   country: 'ES',
-  rate: null as number | null,
+  rate: 0 as number | null,
+  regions: [
+    'C',
+    'VI',
+    'AB',
+    'A',
+    'AL',
+    'O',
+    'AV',
+    'BA',
+    'PM',
+    'B',
+    'BU',
+    'CC',
+    'CA',
+    'S',
+    'CS',
+    'CR',
+    'CO',
+    'CU',
+    'GI',
+    'GR',
+    'GU',
+    'SS',
+    'H',
+    'HU',
+    'J',
+    'LO',
+    'LE',
+    'L',
+    'LU',
+    'M',
+    'MA',
+    'MU',
+    'NA',
+    'OR',
+    'P',
+    'PO',
+    'SA',
+    'SG',
+    'SE',
+    'SO',
+    'T',
+    'TE',
+    'TO',
+    'V',
+    'VA',
+    'BI',
+    'ZA',
+    'Z'
+  ].map(code => `ES-${code}`),
   handlingDays: null as {min: number; max: number} | null,
   transitDays: null as {min: number; max: number} | null
 }

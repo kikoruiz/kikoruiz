@@ -60,7 +60,7 @@ function getGraph(
 }
 
 afterEach(() => {
-  SHIPPING.rate = null
+  SHIPPING.rate = 0
 })
 
 describe('structured data lib', () => {
@@ -128,19 +128,39 @@ describe('structured data lib', () => {
     expect(download.shippingDetails).toBeUndefined()
   })
 
-  it('says nothing about shipping until there is a real rate', () => {
+  it('says the shipping of a print is free, since the price includes it', () => {
+    const [print] = getGraph({}).Product.offers.offers
+
+    expect(print.shippingDetails).toMatchObject({
+      shippingRate: {value: 0, currency: 'EUR'},
+      shippingDestination: {addressCountry: 'ES'}
+    })
+  })
+
+  it('ships only to the peninsula and the Balearic Islands', () => {
+    const [print] = getGraph({}).Product.offers.offers
+    const regions: string[] =
+      print.shippingDetails.shippingDestination.addressRegion
+
+    expect(regions).toHaveLength(48)
+    expect(regions).toContain('ES-PM')
+    expect(regions).not.toContain('ES-GC')
+    expect(regions).not.toContain('ES-TF')
+    expect(regions).not.toContain('ES-CE')
+    expect(regions).not.toContain('ES-ML')
+  })
+
+  it('says nothing about shipping when there is no rate', () => {
+    SHIPPING.rate = null
     const [print] = getGraph({}).Product.offers.offers
 
     expect(print.shippingDetails).toBeUndefined()
   })
 
-  it('says how much the shipping of a print costs once there is a rate', () => {
+  it('says how much the shipping of a print costs when it is not free', () => {
     SHIPPING.rate = 4.5
     const [print] = getGraph({}).Product.offers.offers
 
-    expect(print.shippingDetails).toMatchObject({
-      shippingRate: {value: 4.5, currency: 'EUR'},
-      shippingDestination: {addressCountry: 'ES'}
-    })
+    expect(print.shippingDetails.shippingRate.value).toBe(4.5)
   })
 })
