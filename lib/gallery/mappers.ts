@@ -7,6 +7,7 @@ import {getPostSlugByPictureSlug} from 'lib/blog/posts'
 import {getPictureAlbum} from 'lib/utils/pictures'
 import {getImagePlaceholder} from 'lib/utils/image'
 import products from 'data/store/products.json'
+import descriptions from 'data/pictures/descriptions.json'
 import downloads from 'data/store/downloads.json'
 
 const DEFAULT_CANON_EF_LENS = 'Samyang 14mm f/2.8 IF ED UMC Aspherical'
@@ -31,6 +32,19 @@ interface ExifData {
   megapixels: number
   coordinates?: Coordinates
   location?: Location
+}
+
+// The descriptions are written in whichever language the picture was shared
+// in, and translated into the other ones in `descriptions.json`. A picture
+// without a translation keeps the text it has.
+function getLocalizedDescription(
+  id: string,
+  locale: string,
+  description: string
+) {
+  const translations = descriptions as Record<string, Record<string, string>>
+
+  return translations[id]?.[locale] ?? description
 }
 
 function getOrientation(size: string) {
@@ -167,7 +181,9 @@ export function fromExifToGallery({
       id,
       slug,
       name: title,
-      ...(description && {description}),
+      ...(description && {
+        description: getLocalizedDescription(id, locale, description)
+      }),
       url,
       ...(image && {image}),
       imageSize,
