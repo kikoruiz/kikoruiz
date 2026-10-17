@@ -66,8 +66,12 @@ export default function Post({post, alternates}: PostProps) {
           headline: post.title,
           description: post.excerpt,
           datePublished: post.createdAt,
+          dateModified: post.updated,
           image: getAbsoluteUrl(post.bodyImages[0].src),
-          author
+          author,
+          url: alternates.find(alternate => alternate.locale === locale)?.href,
+          keywords: post.tags,
+          inLanguage: locale
         })}
       />
 

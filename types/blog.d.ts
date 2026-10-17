@@ -6,6 +6,9 @@ export interface BlogPostContent extends StaticContent {
   author: string
   picture?: string
   tags: string
+  // Optional front matter for an article that has been revised after it was
+  // published, as `AAAA-MM-DD`.
+  updated?: string
 }
 
 export interface BlogPost extends BlogPostContent {

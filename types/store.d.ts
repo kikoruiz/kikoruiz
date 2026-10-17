@@ -48,6 +48,12 @@ export interface PicturePrint {
   price: number
 }
 
+export interface PictureDownload {
+  id: string
+  name: string
+  price: number
+}
+
 export interface DownloadVariant {
   id: string
   tier: string
