@@ -13,25 +13,49 @@ const prerenderManifestFile = path.join(
 )
 const PICTURE_ROUTE = /^(?:\/(?:ca|en))?\/galeria\/(?!tags\/)[^/]+\/([^/]+)$/
 
-let pictureDates
+let pictures
 
-// Every picture page can tell when its picture was last worked on, which is a
-// far better `lastmod` than the moment the sitemap happened to be built.
-function getLastmod(route) {
-  if (!pictureDates) {
-    pictureDates = new Map(
+function getPictures() {
+  if (!pictures) {
+    pictures = new Map(
       JSON.parse(fs.readFileSync(picturesFile, 'utf8')).map(
-        ({title, createDate, processingDate}) => [
+        ({title, fileName, createDate, processingDate}) => [
           getSlug(title),
-          new Date(processingDate ?? createDate).toISOString()
+          {
+            id: fileName.replace(/\.[^.]+$/, ''),
+            lastmod: new Date(processingDate ?? createDate).toISOString()
+          }
         ]
       )
     )
   }
 
+  return pictures
+}
+
+// Every picture page can tell when its picture was last worked on, which is a
+// far better `lastmod` than the moment the sitemap happened to be built.
+function getLastmod(route) {
   const [, slug] = route.match(PICTURE_ROUTE) ?? []
 
-  return pictureDates.get(slug) ?? new Date().toISOString()
+  return getPictures().get(slug)?.lastmod ?? new Date().toISOString()
+}
+
+// The picture itself is listed with its page, which is what lets Google Images
+// find it from the sitemap and not only by crawling.
+function getImages(route, config) {
+  const [, slug] = route.match(PICTURE_ROUTE) ?? []
+  const picture = getPictures().get(slug)
+
+  return picture
+    ? [
+        {
+          loc: new URL(
+            `${config.siteUrl}/pictures/optimized/${picture.id}-1920w.webp`
+          )
+        }
+      ]
+    : undefined
 }
 
 // `/en/galeria/*` are only the physical routes the English gallery is
@@ -48,7 +72,8 @@ function getEnglishGalleryFields(config) {
       loc: `${config.siteUrl}${route.replace('/en/galeria', '/en/gallery')}`,
       changefreq: config.changefreq,
       priority: config.priority,
-      lastmod: getLastmod(route)
+      lastmod: getLastmod(route),
+      images: getImages(route, config)
     }))
 }
 
@@ -108,7 +133,8 @@ module.exports = {
     loc: `${config.siteUrl}${path}`,
     changefreq: config.changefreq,
     priority: config.priority,
-    lastmod: getLastmod(path)
+    lastmod: getLastmod(path),
+    images: getImages(path, config)
   }),
   additionalPaths: async config => getEnglishGalleryFields(config)
 }
