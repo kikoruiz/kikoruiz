@@ -8,6 +8,7 @@ import Alert from './alert'
 import DownloadLinks from './download-links'
 import ShoppingCartModal from './shopping-cart-modal'
 import {getSlug} from 'lib/utils'
+import {trackPurchase} from 'lib/tracking'
 import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconCheckCircle from 'assets/icons/check-circle.svg'
 import IconXCircle from 'assets/icons/x-circle.svg'
@@ -50,6 +51,8 @@ export default function StorePage({
   useEffect(() => {
     if (checkout === 'success') {
       clearCart()
+
+      if (sessionId) trackPurchase(sessionId as string)
     }
   }, [checkout]) // eslint-disable-line
 

@@ -11,7 +11,7 @@ import IconArrowLeft from 'assets/icons/arrow-left.svg'
 import IconArrowRight from 'assets/icons/arrow-right.svg'
 import IconArrowPath from 'assets/icons/arrow-path.svg'
 import {fetcher} from 'lib/utils'
-import {trackEvent} from 'lib/tracking'
+import {trackEvent, getCartItems} from 'lib/tracking'
 
 export default function ShoppingCartModal() {
   const {t} = useTranslation('store')
@@ -47,21 +47,10 @@ export default function ShoppingCartModal() {
       )
 
       if (session?.url) {
-        trackEvent({
-          action: 'begin_checkout',
+        trackEvent('begin_checkout', {
           value: totalPrice,
           currency: currency.toUpperCase(),
-          items: Object.keys(cartDetails).map(id => {
-            const item = cartDetails[id]
-            const {id: productId} = item.product_data as {id: string}
-
-            return {
-              id: productId,
-              name: item.name,
-              price: item.price,
-              quantity: item.quantity
-            }
-          })
+          items: getCartItems(cartDetails)
         })
         window.location.replace(session.url)
       }

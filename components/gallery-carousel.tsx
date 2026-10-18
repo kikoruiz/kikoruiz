@@ -82,7 +82,16 @@ function GalleryCarousel({
     const index = emblaApi?.selectedScrollSnap()
     const label = name || (index && items[index].name)
 
-    trackEvent({action, category: 'carousel', ...(label && {label})})
+    // GA4 has a recommended event for sharing, which its reports understand.
+    if (action === 'copy_picture_link') {
+      return trackEvent('share', {
+        method: 'copy_link',
+        content_type: 'picture',
+        ...(label && {item_id: label})
+      })
+    }
+
+    trackEvent(action, {...(label && {picture_name: label})})
   }
 
   function handleButtonClose() {

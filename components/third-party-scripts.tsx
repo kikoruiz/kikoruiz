@@ -1,7 +1,12 @@
 import {useEffect} from 'react'
 import Script from 'next/script'
 import {useRouter} from 'next/router'
-import {trackPage, GA_TRACKING_ID} from 'lib/tracking'
+import {
+  trackPage,
+  initAnalytics,
+  updateConsent,
+  GA_TRACKING_ID
+} from 'lib/tracking'
 import {useCookieConsentContext} from '@use-cookie-consent/react'
 
 export default function ThirdPartyScripts() {
@@ -9,33 +14,27 @@ export default function ThirdPartyScripts() {
   const {consent} = useCookieConsentContext()
   const hasThirdPartyConsent = Boolean(consent.thirdParty)
 
-  // `asPath` changes on every navigation, shallow ones included, so this alone
-  // covers them. The first page view comes from the init script below.
+  // These effects run in this order on mount, which is what keeps the consent
+  // default ahead of the update and both of them ahead of the first page view.
   useEffect(() => {
-    if (hasThirdPartyConsent) trackPage(router.asPath)
-  }, [router.asPath, hasThirdPartyConsent])
+    initAnalytics()
+  }, [])
 
-  return hasThirdPartyConsent ? (
-    <>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-      />
-      <Script
-        id="ga4-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag() { dataLayer.push(arguments); }
-          gtag('js', new Date());
-          gtag('config', '${GA_TRACKING_ID}', {
-            page_path: window.location.pathname
-          });
-        `
-        }}
-      />
-    </>
+  useEffect(() => {
+    updateConsent(hasThirdPartyConsent)
+  }, [hasThirdPartyConsent])
+
+  // `asPath` changes on every navigation, shallow ones included, so this alone
+  // covers them, and the first page view too since the config sends none.
+  useEffect(() => {
+    trackPage()
+  }, [router.asPath])
+
+  return GA_TRACKING_ID ? (
+    <Script
+      strategy="afterInteractive"
+      src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+    />
   ) : null
 }
 
