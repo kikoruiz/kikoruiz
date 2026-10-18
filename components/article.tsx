@@ -5,6 +5,7 @@ import {cva} from 'class-variance-authority'
 import Image from './image'
 import ArticleLightbox from './article-lightbox'
 import {themeScreens} from 'lib/utils'
+import useLayoutContext from 'contexts/Layout'
 import {getNodeText, getStepId} from 'lib/blog/steps'
 import {Image as ImageInterface} from 'types/gallery'
 import type {VariantProps} from 'class-variance-authority'
@@ -31,6 +32,22 @@ type ArticleProps = PropsWithChildren<
       contentImages?: ImageInterface[]
     }
 >
+
+// A component of its own, and not an inline renderer, so that the heading keeps
+// its identity when the header height arrives; remounting the headings would
+// leave the steps observing nodes that are no longer on the page.
+function StepHeading({children, node}) {
+  const headerHeight = useLayoutContext()?.layout?.headerHeight || 0
+
+  return (
+    <h2
+      id={getStepId(getNodeText(node))}
+      style={{scrollMarginTop: `calc(${headerHeight}px + 2.25rem)`}}
+    >
+      {children}
+    </h2>
+  )
+}
 
 // Links written in the markdown go through the router, so following one does
 // not reload the page.
@@ -66,13 +83,7 @@ export default function Article({
   )
   const components = useMemo(
     () => ({
-      h2({children, node}) {
-        return (
-          <h2 id={getStepId(getNodeText(node))} className="scroll-mt-36">
-            {children}
-          </h2>
-        )
-      },
+      h2: StepHeading,
       p({children, node}) {
         if (node.children[0].tagName === 'img') {
           const image = node.children[0]

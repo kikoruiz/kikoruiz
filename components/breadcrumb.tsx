@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import {useRouter} from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import {fromSectionToBreadcrumbItems} from 'lib/mappers'
-import {getCapitalizedName, getSlug} from 'lib/utils'
+import {capitalizeFirst, getCapitalizedName, getSlug} from 'lib/utils'
 import useSubcategoryContext from 'contexts/Subcategory'
 import {SectionData} from 'types'
 import sectionIcons from './section-icons'
@@ -101,13 +101,13 @@ export default function Breadcrumb({
                 )}
                 {post && name.includes(BLOG.TITLE_SEPARATOR) ? (
                   <>
-                    <span className="mr-1">
-                      {name.split(BLOG.TITLE_SEPARATOR)[0]}
+                    <span className="mr-1 text-neutral-300/60">
+                      {capitalizeFirst(name.split(BLOG.TITLE_SEPARATOR)[0])}
                       {BLOG.TITLE_SEPARATOR}
                     </span>
 
                     <span className="truncate">
-                      {name.split(BLOG.TITLE_SEPARATOR)[1]}
+                      {capitalizeFirst(name.split(BLOG.TITLE_SEPARATOR)[1])}
                     </span>
                   </>
                 ) : (

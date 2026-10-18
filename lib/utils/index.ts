@@ -47,6 +47,14 @@ export function getCapitalizedName(slug: string) {
   return pascalCase(slug)
 }
 
+// Only the first letter, unlike `getCapitalizedName`, which rebuilds the whole
+// text as PascalCase.
+export function capitalizeFirst(text: string) {
+  return text.replace(/^(\s*)(\p{L})/u, (_, space, letter) => {
+    return `${space}${letter.toUpperCase()}`
+  })
+}
+
 export function getSlug(name: string) {
   return kebabCase(removeAccents(name))
 }
