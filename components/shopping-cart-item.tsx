@@ -169,14 +169,13 @@ export default function ShoppingCartItem({
             onClick={() => {
               if (!isCheckoutLoading) {
                 removeItem(id)
-                trackEvent({
-                  action: 'remove_from_cart',
+                trackEvent('remove_from_cart', {
                   value,
                   currency: currency.toUpperCase(),
                   items: [
                     {
-                      id: productId,
-                      name,
+                      item_id: productId,
+                      item_name: name,
                       price,
                       quantity
                     }
@@ -203,14 +202,13 @@ export default function ShoppingCartItem({
                 title={t('shopping-cart.decrement-item')}
                 onClick={() => {
                   decrementItem(id)
-                  trackEvent({
-                    action: 'remove_from_cart',
+                  trackEvent('remove_from_cart', {
                     value: price,
                     currency: currency.toUpperCase(),
                     items: [
                       {
-                        id: productId,
-                        name,
+                        item_id: productId,
+                        item_name: name,
                         price,
                         quantity: 1
                       }
@@ -228,14 +226,13 @@ export default function ShoppingCartItem({
                 title={t('shopping-cart.increment-item')}
                 onClick={() => {
                   incrementItem(id)
-                  trackEvent({
-                    action: 'add_to_cart',
+                  trackEvent('add_to_cart', {
                     value: price,
                     currency: currency.toUpperCase(),
                     items: [
                       {
-                        id: productId,
-                        name,
+                        item_id: productId,
+                        item_name: name,
                         price,
                         quantity: 1
                       }

@@ -159,11 +159,17 @@ export default function DownloadCard({
               }
             )
             handleCartHover()
-            trackEvent({
-              action: 'add_to_cart',
+            trackEvent('add_to_cart', {
               value: price,
               currency,
-              items: [{id: variantId, name: productName, price, quantity: 1}]
+              items: [
+                {
+                  item_id: variantId,
+                  item_name: productName,
+                  price,
+                  quantity: 1
+                }
+              ]
             })
           }}
         >

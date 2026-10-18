@@ -175,9 +175,9 @@ export default function Navigation({
             title={t('navigation.switch-hero-image.randomize')}
             onClick={() => {
               setHeroImage(getRandomElement(HERO_IMAGES, heroImage))
-              trackEvent({
-                action: `switch_hero_${showImage ? 'with_image' : 'without_image'}`
-              })
+              trackEvent(
+                `switch_hero_${showImage ? 'with_image' : 'without_image'}`
+              )
             }}
             className="flex gap-1.5 w-full items-center justify-center"
             size="small"

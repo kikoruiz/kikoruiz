@@ -162,14 +162,13 @@ export default function PrintCard({
               }
             )
             handleCartHover()
-            trackEvent({
-              action: 'add_to_cart',
+            trackEvent('add_to_cart', {
               value: price,
               currency: DEFAULT_CURRENCY.toUpperCase(),
               items: [
                 {
-                  id,
-                  name: productName,
+                  item_id: id,
+                  item_name: productName,
                   price,
                   quantity: 1
                 }
