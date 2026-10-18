@@ -5,6 +5,7 @@ import {cva} from 'class-variance-authority'
 import Image from './image'
 import ArticleLightbox from './article-lightbox'
 import {themeScreens} from 'lib/utils'
+import {getNodeText, getStepId} from 'lib/blog/steps'
 import {Image as ImageInterface} from 'types/gallery'
 import type {VariantProps} from 'class-variance-authority'
 
@@ -40,154 +41,164 @@ export default function Article({
   const [lightbox, setLightbox] = useState<{src: string; alt: string} | null>(
     null
   )
-  const components = useMemo(() => ({
-    p({children, node}) {
-      const nextChildren = {}
+  const components = useMemo(
+    () => ({
+      h2({children, node}) {
+        return (
+          <h2 id={getStepId(getNodeText(node))} className="scroll-mt-36">
+            {children}
+          </h2>
+        )
+      },
+      p({children, node}) {
+        const nextChildren = {}
 
-      node.children.forEach((attrs, index) => {
-        const {type, tagName, properties} = attrs
+        node.children.forEach((attrs, index) => {
+          const {type, tagName, properties} = attrs
 
-        if (type === 'element' && tagName === 'a') {
-          const {props} = children[index]
+          if (type === 'element' && tagName === 'a') {
+            const {props} = children[index]
 
-          nextChildren[index] = (
-            <NextLink
-              href={props.href}
-              target={properties.href.includes('https') ? '_blank' : '_self'}
-              key={index}
+            nextChildren[index] = (
+              <NextLink
+                href={props.href}
+                target={properties.href.includes('https') ? '_blank' : '_self'}
+                key={index}
+              >
+                {props.children}
+              </NextLink>
+            )
+          }
+        })
+
+        if (node.children[0].tagName === 'img') {
+          const image = node.children[0]
+          const metastring = image.properties.alt
+          const alt = metastring?.replace(/ *\{[^)]*\} */g, '')
+          const [properties] = metastring?.match(/\{(.*)\}/g) || []
+          let caption = alt
+          let hasPriority = false
+          let isSquare = false
+          let isRounded = false
+          let onlyInMobile = false
+          let alignToLeft = false
+          let alignToRight = false
+          let isVertical = false
+
+          if (properties) {
+            const parsed = JSON.parse(properties)
+
+            if (parsed.caption) caption = parsed.caption
+            if (parsed.priority) hasPriority = parsed.priority
+            if (parsed.square) isSquare = parsed.square
+            if (parsed.rounded) isRounded = parsed.rounded
+            if (parsed.mobile) onlyInMobile = parsed.mobile
+            if (parsed.align === 'left') alignToLeft = true
+            if (parsed.align === 'right') alignToRight = true
+            if (parsed.orientation === 'vertical') isVertical = true
+          }
+          const fallbackImage = contentImages?.find(
+            ({src}) => src === image.properties.src
+          )
+          const {md} = themeScreens
+
+          return (
+            <div
+              className={`relative lg:clear-both ${
+                isRounded ? 'my-12 flex justify-center' : 'mx-auto mb-12'
+              }${onlyInMobile ? ' sm:hidden' : ''}${
+                alignToLeft || alignToRight ? ' lg:mt-2 lg:w-1/2' : ''
+              }${alignToLeft ? ' lg:float-left lg:mr-6' : ''}${
+                alignToRight ? ' lg:float-right lg:ml-6' : ''
+              }`}
             >
-              {props.children}
-            </NextLink>
+              <button
+                type="button"
+                className="block w-full cursor-zoom-in"
+                onClick={() => setLightbox({src: image.properties.src, alt})}
+              >
+                <Image
+                  src={image.properties.src}
+                  alt={alt}
+                  needsPreload={hasPriority}
+                  className={`shadow-lg ${
+                    isRounded
+                      ? 'm-0 w-2/3 overflow-hidden rounded-full border-8 border-neutral-600/30'
+                      : 'm-0'
+                  }`}
+                  isRounded={!isRounded}
+                  isFullRounded={isRounded}
+                  aspectRatio={isSquare ? '1:1' : isVertical ? '2:3' : '3:2'}
+                  sizes={
+                    alignToLeft || alignToRight
+                      ? `(min-width: ${md}) 50vw, 100vw`
+                      : '100%'
+                  }
+                  fallbackStyle={fallbackImage ? fallbackImage.css : {}}
+                />
+              </button>
+
+              {caption && !isSquare && (
+                <span
+                  className="absolute left-0 top-full m-0 py-1 text-xs font-extralight italic text-neutral-300/50 drop-shadow-sm"
+                  aria-label={caption}
+                >
+                  {caption}
+                </span>
+              )}
+            </div>
           )
         }
-      })
-
-      if (node.children[0].tagName === 'img') {
-        const image = node.children[0]
-        const metastring = image.properties.alt
-        const alt = metastring?.replace(/ *\{[^)]*\} */g, '')
-        const [properties] = metastring?.match(/\{(.*)\}/g) || []
-        let caption = alt
-        let hasPriority = false
-        let isSquare = false
-        let isRounded = false
-        let onlyInMobile = false
-        let alignToLeft = false
-        let alignToRight = false
-        let isVertical = false
-
-        if (properties) {
-          const parsed = JSON.parse(properties)
-
-          if (parsed.caption) caption = parsed.caption
-          if (parsed.priority) hasPriority = parsed.priority
-          if (parsed.square) isSquare = parsed.square
-          if (parsed.rounded) isRounded = parsed.rounded
-          if (parsed.mobile) onlyInMobile = parsed.mobile
-          if (parsed.align === 'left') alignToLeft = true
-          if (parsed.align === 'right') alignToRight = true
-          if (parsed.orientation === 'vertical') isVertical = true
-        }
-        const fallbackImage = contentImages?.find(
-          ({src}) => src === image.properties.src
-        )
-        const {md} = themeScreens
 
         return (
-          <div
-            className={`relative lg:clear-both ${
-              isRounded ? 'my-12 flex justify-center' : 'mx-auto mb-12'
-            }${onlyInMobile ? ' sm:hidden' : ''}${
-              alignToLeft || alignToRight ? ' lg:mt-2 lg:w-1/2' : ''
-            }${alignToLeft ? ' lg:float-left lg:mr-6' : ''}${
-              alignToRight ? ' lg:float-right lg:ml-6' : ''
-            }`}
-          >
-            <button
-              type="button"
-              className="block w-full cursor-zoom-in"
-              onClick={() => setLightbox({src: image.properties.src, alt})}
-            >
-              <Image
-                src={image.properties.src}
-                alt={alt}
-                needsPreload={hasPriority}
-                className={`shadow-lg ${
-                  isRounded
-                    ? 'm-0 w-2/3 overflow-hidden rounded-full border-8 border-neutral-600/30'
-                    : 'm-0'
-                }`}
-                isRounded={!isRounded}
-                isFullRounded={isRounded}
-                aspectRatio={isSquare ? '1:1' : isVertical ? '2:3' : '3:2'}
-                sizes={
-                  alignToLeft || alignToRight
-                    ? `(min-width: ${md}) 50vw, 100vw`
-                    : '100%'
-                }
-                fallbackStyle={fallbackImage ? fallbackImage.css : {}}
-              />
-            </button>
+          <p>
+            {Array.isArray(children)
+              ? children.map((element, index) => {
+                  if (nextChildren[index]) return nextChildren[index]
 
-            {caption && !isSquare && (
-              <span
-                className="absolute left-0 top-full m-0 py-1 text-xs font-extralight italic text-neutral-300/50 drop-shadow-sm"
-                aria-label={caption}
+                  return element
+                })
+              : children}
+          </p>
+        )
+      },
+      // TO-DO: Unify and refactor this function.
+      li({children, node}) {
+        const nextChildren = {}
+
+        node.children.forEach((attrs, index) => {
+          const {type, tagName, properties} = attrs
+
+          if (type === 'element' && tagName === 'a') {
+            const {props} = children[index]
+
+            nextChildren[index] = (
+              <NextLink
+                href={props.href}
+                target={properties.href.includes('https') ? '_blank' : '_self'}
+                key={index}
               >
-                {caption}
-              </span>
-            )}
-          </div>
+                {props.children}
+              </NextLink>
+            )
+          }
+        })
+
+        return (
+          <li>
+            {Array.isArray(children)
+              ? children.map((element, index) => {
+                  if (nextChildren[index]) return nextChildren[index]
+
+                  return element
+                })
+              : children}
+          </li>
         )
       }
-
-      return (
-        <p>
-          {Array.isArray(children)
-            ? children.map((element, index) => {
-                if (nextChildren[index]) return nextChildren[index]
-
-                return element
-              })
-            : children}
-        </p>
-      )
-    },
-    // TO-DO: Unify and refactor this function.
-    li({children, node}) {
-      const nextChildren = {}
-
-      node.children.forEach((attrs, index) => {
-        const {type, tagName, properties} = attrs
-
-        if (type === 'element' && tagName === 'a') {
-          const {props} = children[index]
-
-          nextChildren[index] = (
-            <NextLink
-              href={props.href}
-              target={properties.href.includes('https') ? '_blank' : '_self'}
-              key={index}
-            >
-              {props.children}
-            </NextLink>
-          )
-        }
-      })
-
-      return (
-        <li>
-          {Array.isArray(children)
-            ? children.map((element, index) => {
-                if (nextChildren[index]) return nextChildren[index]
-
-                return element
-              })
-            : children}
-        </li>
-      )
-    }
-  }), [contentImages])
+    }),
+    [contentImages]
+  )
 
   return (
     <>

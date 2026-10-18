@@ -55,8 +55,8 @@ export const BLOG = {
   TAGS: [
     'photography',
     'personal',
-    'development'
-    // 'tutorial'
+    'development',
+    'tutorial'
   ],
   TITLE_SEPARATOR: ':',
   AVAILABLE_LOCALES: ['es', 'en', 'ca']
