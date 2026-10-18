@@ -32,6 +32,29 @@ type ArticleProps = PropsWithChildren<
     }
 >
 
+// Links written in the markdown go through the router, so following one does
+// not reload the page.
+function withNextLinks(children, node) {
+  const elements = Array.isArray(children) ? children : [children]
+  const linked = elements.map((element, index) => {
+    const {type, tagName, properties} = node.children[index] ?? {}
+
+    if (type !== 'element' || tagName !== 'a') return element
+
+    return (
+      <NextLink
+        href={element.props.href}
+        target={properties.href.includes('https') ? '_blank' : '_self'}
+        key={index}
+      >
+        {element.props.children}
+      </NextLink>
+    )
+  })
+
+  return Array.isArray(children) ? linked : linked[0]
+}
+
 export default function Article({
   content,
   contentImages,
@@ -51,26 +74,6 @@ export default function Article({
         )
       },
       p({children, node}) {
-        const nextChildren = {}
-
-        node.children.forEach((attrs, index) => {
-          const {type, tagName, properties} = attrs
-
-          if (type === 'element' && tagName === 'a') {
-            const {props} = children[index]
-
-            nextChildren[index] = (
-              <NextLink
-                href={props.href}
-                target={properties.href.includes('https') ? '_blank' : '_self'}
-                key={index}
-              >
-                {props.children}
-              </NextLink>
-            )
-          }
-        })
-
         if (node.children[0].tagName === 'img') {
           const image = node.children[0]
           const metastring = image.properties.alt
@@ -150,51 +153,10 @@ export default function Article({
           )
         }
 
-        return (
-          <p>
-            {Array.isArray(children)
-              ? children.map((element, index) => {
-                  if (nextChildren[index]) return nextChildren[index]
-
-                  return element
-                })
-              : children}
-          </p>
-        )
+        return <p>{withNextLinks(children, node)}</p>
       },
-      // TO-DO: Unify and refactor this function.
       li({children, node}) {
-        const nextChildren = {}
-
-        node.children.forEach((attrs, index) => {
-          const {type, tagName, properties} = attrs
-
-          if (type === 'element' && tagName === 'a') {
-            const {props} = children[index]
-
-            nextChildren[index] = (
-              <NextLink
-                href={props.href}
-                target={properties.href.includes('https') ? '_blank' : '_self'}
-                key={index}
-              >
-                {props.children}
-              </NextLink>
-            )
-          }
-        })
-
-        return (
-          <li>
-            {Array.isArray(children)
-              ? children.map((element, index) => {
-                  if (nextChildren[index]) return nextChildren[index]
-
-                  return element
-                })
-              : children}
-          </li>
-        )
+        return <li>{withNextLinks(children, node)}</li>
       }
     }),
     [contentImages]
