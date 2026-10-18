@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: del monitor al papel'
+title: 'Tutorial: Del monitor al papel'
 excerpt: 'Mi proceso paso a paso para imprimir una foto, desde calibrar el monitor hasta cortar el papel, cuidando que el color llegue intacto.'
 author: 'kiko-ruiz'
 tags: 'photography, tutorial'
@@ -11,7 +11,7 @@ Por eso mi forma de imprimir es lo más artesana y delicada que sé. No busco ra
 
 Aquí va mi paso a paso, tal cual lo hago. Los papeles y formatos que menciono son los mismos que ofrezco en la [tienda de impresiones](/tienda/impresiones).
 
-![The Yellow Boat {"priority": true, "align": "right"}](/pictures/2017-12-22_0034.jpg)
+![Mi Canon imagePROGRAF PRO-1000 en plena impresión {"priority": true, "align": "right", "orientation": "vertical"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_impresora.jpg)
 
 ## Preparar el monitor y el entorno
 

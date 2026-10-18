@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: de la pantalla al paper'
+title: 'Tutorial: De la pantalla al paper'
 excerpt: "El meu procés pas a pas per imprimir una foto, des de calibrar el monitor fins a tallar el paper, cuidant que el color hi arribe intacte."
 author: 'kiko-ruiz'
 tags: 'photography, tutorial'
@@ -11,7 +11,7 @@ Per això la meua manera d'imprimir és la més artesana i delicada que sé. No 
 
 Ací va el meu pas a pas, tal com el faig. Els papers i formats que esmente són els mateixos que oferisc a la [botiga d'impressions](/tienda/impresiones).
 
-![The Yellow Boat {"priority": true, "align": "right"}](/pictures/2017-12-22_0034.jpg)
+![La meua Canon imagePROGRAF PRO-1000 en plena impressió {"priority": true, "align": "right", "orientation": "vertical"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_impresora.jpg)
 
 ## Preparar el monitor i l'entorn
 

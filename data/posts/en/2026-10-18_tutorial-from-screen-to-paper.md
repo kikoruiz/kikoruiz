@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: from screen to paper'
+title: 'Tutorial: From screen to paper'
 excerpt: 'My step by step process for printing a photo, from calibrating the monitor to cutting the paper, making sure the colour arrives intact.'
 author: 'kiko-ruiz'
 tags: 'photography, tutorial'
@@ -11,7 +11,7 @@ That is why my way of printing is as hand-made and careful as I know how to make
 
 Here is my process, step by step, exactly as I do it. The papers and sizes I mention are the same ones I offer in the [prints store](/tienda/impresiones).
 
-![The Yellow Boat {"priority": true, "align": "right"}](/pictures/2017-12-22_0034.jpg)
+![My Canon imagePROGRAF PRO-1000 in the middle of a print {"priority": true, "align": "right", "orientation": "vertical"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_impresora.jpg)
 
 ## Preparing the monitor and the room
 
