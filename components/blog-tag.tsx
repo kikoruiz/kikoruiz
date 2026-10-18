@@ -30,6 +30,9 @@ function tagClassName(tag) {
       return 'bg-red-400/60 hover:bg-red-400 border-red-900 before:border-red-900'
     case 'personal':
       return 'bg-blue-400/60 hover:bg-blue-400 border-blue-900 before:border-blue-900'
+    case 'development':
+      return 'bg-green-400/60 hover:bg-green-400 border-green-900 before:border-green-900'
+    case 'tutorial':
     default:
       return 'bg-orange-400/60 hover:bg-orange-400 border-orange-900 before:border-orange-900'
   }

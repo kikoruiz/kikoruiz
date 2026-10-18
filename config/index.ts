@@ -52,12 +52,8 @@ export const PERSONAL_INFO = {
 
 export const BLOG = {
   AUTHORS: [{slug: 'kiko-ruiz', name: SITE_NAME}],
-  TAGS: [
-    'photography',
-    'personal',
-    'development',
-    'tutorial'
-  ],
+  TAGS: ['photography', 'personal', 'development', 'tutorial'],
+  TUTORIAL_TAG: 'tutorial',
   TITLE_SEPARATOR: ':',
   AVAILABLE_LOCALES: ['es', 'en', 'ca']
 }

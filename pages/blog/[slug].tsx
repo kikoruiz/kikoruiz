@@ -11,6 +11,7 @@ import {getAbsoluteUrl, getSlug} from 'lib/utils'
 import {BLOG, SITE_NAME} from 'config'
 import Article from 'components/article'
 import TutorialSteps from 'components/tutorial-steps'
+import useLayoutContext from 'contexts/Layout'
 import JsonLd from 'components/json-ld'
 import BlogTags from 'components/blog-tags'
 import {BlogPost} from 'types/blog'
@@ -26,6 +27,8 @@ export default function Post({post, alternates, steps}: PostProps) {
   const localePath = defaultLocale === locale ? '' : `/${locale}`
   const title = `${SITE_NAME} / ${post.title}`
   const isTutorial = steps.length > 0
+  const {layout} = useLayoutContext()
+  const headerHeight = layout?.headerHeight || 0
 
   function createAuthorMarkup() {
     return {
@@ -78,9 +81,7 @@ export default function Post({post, alternates, steps}: PostProps) {
         })}
       />
 
-      <article
-        className={`mx-auto p-6 ${isTutorial ? 'xl:max-w-6xl' : 'xl:max-w-5xl'}`}
-      >
+      <article className="mx-auto p-6 xl:max-w-5xl">
         <header className="pt-9 text-center sm:pt-0">
           {!BLOG.AVAILABLE_LOCALES.includes(locale) && (
             <div className="mb-12 w-full text-left text-sm font-extralight leading-normal drop-shadow-lg sm:text-center">
@@ -119,16 +120,15 @@ export default function Post({post, alternates, steps}: PostProps) {
           />
         </header>
 
-        <div
-          className={
-            isTutorial
-              ? 'lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-x-12'
-              : undefined
-          }
-        >
+        <div className="relative">
           {isTutorial && (
-            <div className="mt-12 lg:sticky lg:top-36 lg:self-start">
-              <TutorialSteps steps={steps} />
+            <div className="mt-12 min-[1400px]:absolute min-[1400px]:-bottom-20 min-[1400px]:top-0 min-[1400px]:right-full min-[1400px]:mr-6 min-[1400px]:mt-0 min-[1400px]:w-44 min-[1400px]:pt-12">
+              <div
+                className="min-[1400px]:sticky"
+                style={{top: `calc(${headerHeight}px + 1.5rem)`}}
+              >
+                <TutorialSteps steps={steps} />
+              </div>
             </div>
           )}
 
@@ -137,9 +137,9 @@ export default function Post({post, alternates, steps}: PostProps) {
             contentImages={post.bodyImages}
             className="relative mx-auto mt-12 pt-12 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"
           />
-        </div>
 
-        {post.tags && <BlogTags tags={post.blogTags} isPost />}
+          {post.tags && <BlogTags tags={post.blogTags} isPost />}
+        </div>
       </article>
     </>
   )
@@ -192,7 +192,7 @@ export async function getStaticProps({
     props: {
       post: {...post, blogTags},
       alternates,
-      steps: post.tags.split(', ').includes('tutorial')
+      steps: post.tags.split(', ').includes(BLOG.TUTORIAL_TAG)
         ? getTutorialSteps(post.body)
         : [],
       section

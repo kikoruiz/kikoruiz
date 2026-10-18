@@ -1,4 +1,4 @@
-import {SECTIONS} from 'config'
+import {BLOG, SECTIONS} from 'config'
 import {getAverageColor, sortListBy} from './utils'
 import {getImagePlaceholder} from './utils/image'
 import {getAllPictures} from './gallery/pictures'
@@ -37,16 +37,19 @@ export async function getLatestContent({
 }: {
   locale: string
 }): Promise<BlogPost[]> {
-  const TAG_TUTORIAL = 'tutorial'
   const allPosts = await getAllPosts(locale)
-  const latestTutorial = allPosts.find(({tags}) => tags.includes(TAG_TUTORIAL))
+  const latestTutorial = allPosts.find(({tags}) =>
+    tags.includes(BLOG.TUTORIAL_TAG)
+  )
 
   // Without a tutorial to pair with the latest post, the second slot would
   // otherwise sit empty, when the second most recent post is right there.
   if (!latestTutorial) return allPosts.slice(0, 2)
 
   const latestContent = [latestTutorial]
-  const latestPost = allPosts.find(({tags}) => !tags.includes(TAG_TUTORIAL))
+  const latestPost = allPosts.find(
+    ({tags}) => !tags.includes(BLOG.TUTORIAL_TAG)
+  )
   if (latestPost) latestContent.push(latestPost)
 
   return latestContent

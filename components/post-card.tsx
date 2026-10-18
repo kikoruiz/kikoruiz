@@ -8,6 +8,7 @@ import PostTitle from './post-title'
 import IconChevronRight from 'assets/icons/chevron-right.svg'
 import {orientation} from 'types'
 import {isNew} from 'lib/utils'
+import {BLOG} from 'config'
 
 export default function PostCard({
   title,
@@ -15,6 +16,7 @@ export default function PostCard({
   createdAt,
   readingTime,
   excerpt,
+  tags,
   highlightedImage,
   className = '',
   isLatest = false,
@@ -25,17 +27,23 @@ export default function PostCard({
   const {locale} = useRouter()
   const {t} = useTranslation()
   const isHorizontal = orientation === 'horizontal'
-  const isTutorial = title.toLowerCase().includes(t('blog.tags.tutorial'))
+  const isTutorial = tags?.split(', ').includes(BLOG.TUTORIAL_TAG) ?? false
   const isLatestTutorial = isLatest && isTutorial
+  const isNewest = isLatest && isNew(createdAt)
   const latestWrapperClassName = isLatestTutorial
     ? 'border-orange-300/30 hover:border-orange-300/60'
     : 'border-neutral-300/30 hover:border-neutral-300/60'
-  const latestTagClassName = isLatestTutorial
+  const labelClassName = isTutorial
     ? 'border-orange-600/60 from-orange-300/90 to-orange-200'
     : 'border-neutral-600/30 from-neutral-300/90 to-neutral-200'
-  const latestTagTextClassName = isLatestTutorial
+  const labelTextClassName = isTutorial
     ? 'from-orange-400 via-orange-600 to-orange-800'
     : 'from-neutral-400 via-neutral-600 to-neutral-800'
+  const labelText = isTutorial
+    ? isNewest
+      ? t('blog.post.latest-tutorial')
+      : t('blog.tags.tutorial')
+    : t('blog.post.latest-post')
 
   return (
     <Link
@@ -46,28 +54,22 @@ export default function PostCard({
       }`}
     >
       <article
-        className={`group flex flex-col overflow-hidden rounded border bg-gradient-to-t from-neutral-900/90 to-neutral-900/30 shadow-md hover:shadow-black/20${
+        className={`group relative flex flex-col overflow-hidden rounded border bg-gradient-to-t from-neutral-900/90 to-neutral-900/30 shadow-md hover:shadow-black/20${
           isHorizontal ? ' md:flex-row' : ''
         } ${
           isLatest
-            ? `relative ${latestWrapperClassName}`
+            ? latestWrapperClassName
             : 'border-neutral-600/60 hover:border-orange-300/60'
         }${isDraft ? 'hover:border-transparent' : ''}`}
       >
-        {isLatest && isNew(createdAt) && (
+        {(isTutorial || isNewest) && (
           <div
-            className={`pointer-events-none absolute left-3 top-3 z-[1] flex items-center justify-center rounded-xl border bg-gradient-to-t px-2 py-1 text-center drop-shadow${
-              isLatest ? ` ${latestTagClassName}` : ''
-            }`}
+            className={`pointer-events-none absolute left-3 top-3 z-[1] flex items-center justify-center rounded-xl border bg-gradient-to-t px-2 py-1 text-center drop-shadow ${labelClassName}`}
           >
             <span
-              className={`bg-gradient-to-tl bg-clip-text text-xs font-medium lowercase leading-snug text-transparent drop-shadow-sm${
-                isLatest ? ` ${latestTagTextClassName}` : ''
-              }`}
+              className={`bg-gradient-to-tl bg-clip-text text-xs font-medium lowercase leading-snug text-transparent drop-shadow-sm ${labelTextClassName}`}
             >
-              {isTutorial
-                ? t('blog.post.latest-tutorial')
-                : t('blog.post.latest-post')}
+              {labelText}
             </span>
           </div>
         )}
@@ -148,6 +150,7 @@ interface PostCardProps {
   createdAt: string
   readingTime: number
   excerpt: string
+  tags?: string
   highlightedImage: HighlightedImage
   className?: string
   isLatest?: boolean
