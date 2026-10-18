@@ -74,7 +74,7 @@ La deixe reposar plana, sense tocar la superfície, i la valore sempre sota la m
 
 ## Tallar i revisar
 
-L'últim pas és físic. Amb el tallador **Dahle Bis A2** retalle el paper a mida i deixe els marges exactes, amb un tall net d'un sol gest. Una vora mal tallada fa malbé una còpia perfecta.
+L'últim pas és físic. Amb la cisalla rotativa **Dahle 554** retalle el paper a mida i deixe els marges exactes. La seua fulla s'autoafila i la subjecció automàtica sosté el full mentre tale, així que el tall ix net, sense rebaves i d'un sol gest. Una vora mal tallada fa malbé una còpia perfecta.
 
 Revise la superfície, les vores i el color una última vegada i només llavors la done per bona. És un procés lent, però és el que em permet mirar la còpia i reconéixer, per fi, la foto que vaig veure en editar-la.
 

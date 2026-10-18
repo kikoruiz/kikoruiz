@@ -74,7 +74,7 @@ I let it rest flat, without touching the surface, and always judge it under the 
 
 ## Cutting and checking
 
-The last step is a physical one. With the **Dahle Bis A2** cutter I trim the paper to size and leave exact margins, with a clean cut in a single motion. A badly cut edge ruins a perfect print.
+The last step is a physical one. With the **Dahle 554** rotary trimmer I trim the paper to size and leave exact margins. Its blade sharpens itself as it cuts and the automatic clamp holds the sheet in place, so the cut comes out clean and burr-free in a single motion. A badly cut edge ruins a perfect print.
 
 I check the surface, the edges and the colour one last time, and only then do I call it good. It is a slow process, but it is the one that lets me look at the print and finally recognise the photo I saw while editing it.
 

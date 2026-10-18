@@ -74,7 +74,7 @@ La dejo reposar plana, sin tocar la superficie, y la valoro siempre bajo la mism
 
 ## Cortar y revisar
 
-El último paso es físico. Con el cortador **Dahle Bis A2** recorto el papel a medida y dejo los márgenes exactos, con un corte limpio de un solo gesto. Un borde mal cortado estropea una copia perfecta.
+El último paso es físico. Con la cizalla rotativa **Dahle 554** recorto el papel a medida y dejo los márgenes exactos. Su cuchilla se autoafila y la abrazadera automática sujeta la hoja mientras corto, así que el corte sale limpio, sin rebabas y de un solo gesto. Un borde mal cortado estropea una copia perfecta.
 
 Reviso la superficie, los bordes y el color una última vez y solo entonces la doy por buena. Es un proceso lento, pero es el que me permite mirar la copia y reconocer, por fin, la foto que vi al editarla.
 
