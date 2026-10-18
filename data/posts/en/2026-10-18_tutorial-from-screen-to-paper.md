@@ -29,6 +29,8 @@ Before measuring anything, I set the stage:
 
 To measure I use an **X-Rite i1Display Pro** probe and **BenQ Palette Master Element** software. My guide is the excellent tutorial by [Francesco Gola](https://www.francescogola.net/tutorial/monitor-calibration-and-profiling-with-benq-palette-master-element/), which my settings are based on.
 
+![My BenQ PhotoVue SW271C, with one of my photos on screen {"align": "left", "orientation": "vertical"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_monitor.jpg)
+
 I keep **two calibrations**, because editing and printing ask for different things:
 
 - **Editing:** D65 white point, 120 cd/m² luminance and the panel's native primaries.
@@ -45,6 +47,8 @@ I edit with the paper already in mind. I treat contrast and shadows with more ca
 ## Choosing paper and size
 
 Paper is half of the result. I print on **Hahnemühle [Photo Pearl 310](https://www.hahnemuehle.com/en/digital-fineart/hahnemuehle-photo/p/Product/show/37/649.html)**, a 310 gsm paper with a pearl finish that respects colours and gives the shadows depth without the reflections of a full gloss.
+
+![Prints with a border and my signature, fresh out of the printer {"align": "right", "square": true}](/blog/2026-10-18_tutorial-del-monitor-al-papel_copias.jpg)
 
 The photo sets the size, not the other way round. I work in **A4, A3 and A2**, with or without a border, and signed if you wish. A well-chosen size lets the composition breathe.
 

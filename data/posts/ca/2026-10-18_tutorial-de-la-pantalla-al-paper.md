@@ -29,6 +29,8 @@ Abans de mesurar res, prepare el terreny:
 
 Per mesurar faig servir la sonda **X-Rite i1Display Pro** i el programari **BenQ Palette Master Element**. La meua guia és l'excel·lent tutorial de [Francesco Gola](https://www.francescogola.net/tutorial/monitor-calibration-and-profiling-with-benq-palette-master-element/), del qual parteixen els meus ajustos.
 
+![El meu BenQ PhotoVue SW271C, amb una de les meues fotos en pantalla {"align": "left", "orientation": "vertical"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_monitor.jpg)
+
 Tinc **dues calibracions**, perquè editar i imprimir demanen coses diferents:
 
 - **Edició:** punt blanc D65, lluminància de 120 cd/m² i primaris natius del panell.
@@ -45,6 +47,8 @@ Edite pensant ja en el paper. Cuide el contrast i les ombres amb més atenció q
 ## Triar paper i format
 
 El paper és la meitat del resultat. Imprimisc sobre **Hahnemühle [Photo Pearl 310](https://www.hahnemuehle.com/es/digital-fineart/hahnemuehle-photo/p/Product/show/37/649.html)**, un paper de 310 g amb acabat perlat que respecta els colors i dona profunditat a les ombres sense els reflexos d'un brillant total.
+
+![Còpies amb vora i amb la meua signatura, acabades d'eixir de la impressora {"align": "right", "square": true}](/blog/2026-10-18_tutorial-del-monitor-al-papel_copias.jpg)
 
 El format el marca la foto, no al revés. Treballe en **A4, A3 i A2**, amb vora o sense, i amb la meua signatura si ho prefereixes. Un format ben triat deixa respirar la composició.
 

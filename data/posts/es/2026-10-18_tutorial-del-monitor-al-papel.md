@@ -29,6 +29,8 @@ Antes de medir nada, preparo el terreno:
 
 Para medir uso la sonda **X-Rite i1Display Pro** y el software **BenQ Palette Master Element**. Mi guía es el magnífico tutorial de [Francesco Gola](https://www.francescogola.net/tutorial/monitor-calibration-and-profiling-with-benq-palette-master-element/), del que parten mis ajustes.
 
+![Mi BenQ PhotoVue SW271C, con una de mis fotos en pantalla {"align": "left", "orientation": "vertical"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_monitor.jpg)
+
 Tengo **dos calibraciones**, porque editar e imprimir piden cosas distintas:
 
 - **Edición:** punto blanco D65, luminancia de 120 cd/m² y primarios nativos del panel.
@@ -45,6 +47,8 @@ Edito pensando ya en el papel. Cuido el contraste y las sombras con más cuidado
 ## Elegir papel y formato
 
 El papel es la mitad del resultado. Imprimo sobre **Hahnemühle [Photo Pearl 310](https://www.hahnemuehle.com/es/digital-fineart/hahnemuehle-photo/p/Product/show/37/649.html)**, un papel de 310 g con acabado perlado que respeta los colores y da profundidad a las sombras sin los reflejos de un brillo total.
+
+![Copias con borde y con mi firma, recién salidas de la impresora {"align": "right", "square": true}](/blog/2026-10-18_tutorial-del-monitor-al-papel_copias.jpg)
 
 El formato lo marca la foto, no al revés. Trabajo en **A4, A3 y A2**, con borde o sin borde, y con mi firma si lo prefieres. Un formato bien elegido deja respirar la composición.
 
