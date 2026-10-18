@@ -29,7 +29,7 @@ Before measuring anything, I set the stage:
 
 To measure I use an **X-Rite i1Display Pro** probe and **BenQ Palette Master Element** software. My guide is the excellent tutorial by [Francesco Gola](https://www.francescogola.net/tutorial/monitor-calibration-and-profiling-with-benq-palette-master-element/), which my settings are based on.
 
-![My BenQ PhotoVue SW271C, with one of my photos on screen {"align": "left", "orientation": "vertical"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_monitor.jpg)
+![My BenQ PhotoVue SW271C with its hood, running Lightroom Classic {"align": "left"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_monitor.jpg)
 
 I keep **two calibrations**, because editing and printing ask for different things:
 

@@ -29,7 +29,7 @@ Antes de medir nada, preparo el terreno:
 
 Para medir uso la sonda **X-Rite i1Display Pro** y el software **BenQ Palette Master Element**. Mi guía es el magnífico tutorial de [Francesco Gola](https://www.francescogola.net/tutorial/monitor-calibration-and-profiling-with-benq-palette-master-element/), del que parten mis ajustes.
 
-![Mi BenQ PhotoVue SW271C, con una de mis fotos en pantalla {"align": "left", "orientation": "vertical"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_monitor.jpg)
+![Mi BenQ PhotoVue SW271C con su capucha, con Lightroom Classic en pantalla {"align": "left"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_monitor.jpg)
 
 Tengo **dos calibraciones**, porque editar e imprimir piden cosas distintas:
 
