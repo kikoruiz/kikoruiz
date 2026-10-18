@@ -122,9 +122,9 @@ export default function Post({post, alternates, steps}: PostProps) {
 
         <div className="relative">
           {isTutorial && (
-            <div className="mt-12 min-[1400px]:absolute min-[1400px]:-bottom-20 min-[1400px]:top-0 min-[1400px]:right-full min-[1400px]:mr-6 min-[1400px]:mt-0 min-[1400px]:w-44 min-[1400px]:pt-12">
+            <div className="mt-12 min-[1500px]:absolute min-[1500px]:-bottom-20 min-[1500px]:left-[calc(50%-50vw+1.5rem)] min-[1500px]:top-0 min-[1500px]:mt-0 min-[1500px]:w-56 min-[1500px]:pt-12">
               <div
-                className="min-[1400px]:sticky"
+                className="min-[1500px]:sticky"
                 style={{top: `calc(${headerHeight}px + 1.5rem)`}}
               >
                 <TutorialSteps steps={steps} />
