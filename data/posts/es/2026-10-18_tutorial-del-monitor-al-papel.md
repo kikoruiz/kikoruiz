@@ -15,15 +15,15 @@ Aquí va mi paso a paso, tal cual lo hago. Los papeles y formatos que menciono s
 
 ## Preparar el monitor y el entorno
 
-Trabajo con un **BenQ PhotoVue SW271C**, un 27" 4K que cubre el 99 % de Adobe RGB, el 100 % de sRGB y el 90 % de DCI-P3, con una LUT 3D de 16 bits. Lo importante de esa LUT es que permite calibrar **por hardware**: las correcciones se escriben en el propio monitor, no en la tarjeta gráfica, y por eso son más estables en el tiempo.
+Trabajo con un **BenQ PhotoVue SW271C**, un 27" 4K que cubre el 99 % de Adobe RGB, el 100 % de sRGB y el 90 % de DCI-P3, con una LUT 3D de 16 bits. Lo importante de esa LUT es que permite calibrar **por *hardware***: las correcciones se escriben en el propio monitor, no en la tarjeta gráfica, y por eso son más estables en el tiempo.
 
 Antes de medir nada, preparo el terreno:
 
 - Limpio la pantalla, porque una huella justo donde apoyo la sonda puede estropear la medición.
 - Restablezco los ajustes manuales del monitor desde su menú.
-- En el Mac mini desactivo el salvapantallas, Night Shift y el ahorro de energía.
+- En el Mac mini desactivo el salvapantallas, *Night Shift* y el ahorro de energía.
 - Dejo el monitor encendido **al menos media hora** para que los componentes se estabilicen térmicamente.
-- Conecto el monitor al Mac con el cable de vídeo y también con el cable USB de la caja; sin él, la calibración por hardware no funciona.
+- Conecto el monitor al Mac con el cable de vídeo y también con el cable USB de la caja; sin él, la calibración por *hardware* no funciona.
 
 ## Calibrar y perfilar el monitor
 
@@ -54,7 +54,7 @@ El formato lo marca la foto, no al revés. Trabajo en **A4, A3 y A2**, con borde
 
 ## Simular la copia en pantalla
 
-Antes de gastar tinta, hago una **prueba de pantalla** (soft proofing). Activo la calibración de impresión del monitor y simulo en Lightroom o Photoshop el perfil ICC de este papel con mi impresora, con la opción de simular el color del papel y el negro de la tinta.
+Antes de gastar tinta, hago una **prueba de pantalla** (*soft proofing*). Activo la calibración de impresión del monitor y simulo en Lightroom o Photoshop el perfil ICC de este papel con mi impresora, con la opción de simular el color del papel y el negro de la tinta.
 
 Esa vista previa muestra lo que el papel no puede reproducir: colores fuera de gama que se recortan y negros que se aclaran. Retoco lo justo para compensarlo y no más, porque el objetivo es acercar la copia a la edición, no reinventarla.
 

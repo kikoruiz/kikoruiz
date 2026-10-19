@@ -214,7 +214,9 @@ export default function TutorialSteps({
           const isDone = index < activeIndex
           const isActive = index === activeIndex
           const isLast = index === steps.length - 1
-          const delay = getDelay(index)
+          // The step being read takes the focus at once, without waiting for
+          // the line to arrive.
+          const delay = isActive ? undefined : getDelay(index)
 
           return (
             <li
@@ -233,7 +235,9 @@ export default function TutorialSteps({
                     circleRefs.current[index] = element
                   }}
                   aria-hidden="true"
-                  className={`relative z-[1] flex size-9 shrink-0 items-center justify-center rounded-full border-2 text-sm font-black leading-none transition-all duration-200 motion-reduce:transition-none ${
+                  className={`relative z-[1] flex size-9 shrink-0 items-center justify-center rounded-full border-2 text-sm font-black leading-none transition-all motion-reduce:transition-none ${
+                    isActive ? 'duration-100' : 'duration-200'
+                  } ${
                     isDone
                       ? 'border-orange-300 bg-orange-300 text-neutral-900'
                       : isActive
@@ -247,7 +251,9 @@ export default function TutorialSteps({
 
                 <span className={isLast ? '' : 'pb-6'}>
                   <span
-                    className={`flex min-h-9 items-center text-balance text-sm leading-[18px] transition-colors duration-150 motion-reduce:transition-none ${
+                    className={`flex min-h-9 items-center text-balance text-sm leading-[18px] transition-colors motion-reduce:transition-none ${
+                      isActive ? 'duration-100' : 'duration-150'
+                    } ${
                       isActive
                         ? 'font-bold text-orange-300'
                         : isDone

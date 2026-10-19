@@ -21,7 +21,7 @@ Before measuring anything, I set the stage:
 
 - I clean the screen, because a fingerprint right where the probe sits can ruin the reading.
 - I reset any manual settings on the monitor from its own menu.
-- On the Mac mini I turn off the screensaver, Night Shift and energy saving.
+- On the Mac mini I turn off the screensaver, *Night Shift* and energy saving.
 - I leave the monitor on for **at least half an hour** so its components settle thermally.
 - I connect the monitor to the Mac with the video cable and also with the USB cable from the box; without it, hardware calibration does not work.
 
