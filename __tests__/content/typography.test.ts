@@ -2,15 +2,15 @@ import fs from 'node:fs'
 import {globSync} from 'glob'
 import {describe, expect, it} from 'vitest'
 
-// Spanish and Catalan put a space between a number and its percent sign, and
-// it has to be a no-break one so the two never end up on different lines.
+// A percent sign is written right after its number, in every language, so the
+// two can never end up on different lines.
 const files = globSync([
-  'data/posts/{es,ca}/*.md',
-  'data/pages/**/{es,ca}.md',
-  'locales/{es,ca}/*.json'
+  'data/posts/*/*.md',
+  'data/pages/**/*.md',
+  'locales/*/*.json'
 ])
 
-describe('typography of the Spanish and Catalan texts', () => {
+describe('typography of the texts', () => {
   it('has texts to check', () => {
     expect(files.length).toBeGreaterThan(10)
   })
@@ -20,7 +20,7 @@ describe('typography of the Spanish and Catalan texts', () => {
     file => {
       const text = fs.readFileSync(file, 'utf8')
 
-      expect(text.match(/\d %/g) ?? []).toEqual([])
+      expect(text.match(/\d[\s\u00a0\u202f]%/g) ?? []).toEqual([])
     }
   )
 })

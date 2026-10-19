@@ -15,7 +15,7 @@ Ací va el meu pas a pas, tal com el faig. Els papers i formats que esmente són
 
 ## Preparar el monitor i l'entorn
 
-Treballe amb un **BenQ PhotoVue SW271C**, un 27" 4K que cobreix el 99 % d'Adobe RGB, el 100 % de sRGB i el 90 % de DCI-P3, amb una LUT 3D de 16 bits. El que importa d'aquesta LUT és que permet calibrar **per *hardware***: les correccions s'escriuen al propi monitor, no a la targeta gràfica, i per això són més estables en el temps.
+Treballe amb un **BenQ PhotoVue SW271C**, un 27" 4K que cobreix el 99% d'Adobe RGB, el 100% de sRGB i el 90% de DCI-P3, amb una LUT 3D de 16 bits. El que importa d'aquesta LUT és que permet calibrar **per *hardware***: les correccions s'escriuen al propi monitor, no a la targeta gràfica, i per això són més estables en el temps.
 
 Abans de mesurar res, prepare el terreny:
 
