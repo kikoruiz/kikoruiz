@@ -15,7 +15,7 @@ Ací va el meu pas a pas, tal com el faig. Els papers i formats que esmente són
 
 ## Preparar el monitor i l'entorn
 
-Treballe amb un **BenQ PhotoVue SW271C**, un 27" 4K que cobrix el 99 % d'Adobe RGB, el 100 % de sRGB i el 90 % de DCI-P3, amb una LUT 3D de 16 bits. El que importa d'aquesta LUT és que permet calibrar **per maquinari**: les correccions s'escriuen al propi monitor, no a la targeta gràfica, i per això són més estables en el temps.
+Treballe amb un **BenQ PhotoVue SW271C**, un 27" 4K que cobreix el 99 % d'Adobe RGB, el 100 % de sRGB i el 90 % de DCI-P3, amb una LUT 3D de 16 bits. El que importa d'aquesta LUT és que permet calibrar **per *hardware***: les correccions s'escriuen al propi monitor, no a la targeta gràfica, i per això són més estables en el temps.
 
 Abans de mesurar res, prepare el terreny:
 
@@ -23,11 +23,11 @@ Abans de mesurar res, prepare el terreny:
 - Restablisc els ajustos manuals del monitor des del seu menú.
 - Al Mac mini desactive l'estalvi de pantalla, *Night Shift* i l'estalvi d'energia.
 - Deixe el monitor encés **almenys mitja hora** perquè els components s'estabilitzen tèrmicament.
-- Connecte el monitor al Mac amb el cable de vídeo i també amb el cable USB de la caixa; sense ell, la calibració per maquinari no funciona.
+- Connecte el monitor al Mac amb el cable de vídeo i també amb el cable USB de la caixa; sense ell, la calibració per *hardware* no funciona.
 
 ## Calibrar i perfilar el monitor
 
-Per mesurar faig servir la sonda **X-Rite i1Display Pro** i el programari **BenQ Palette Master Element**. La meua guia és l'excel·lent tutorial de [Francesco Gola](https://www.francescogola.net/tutorial/monitor-calibration-and-profiling-with-benq-palette-master-element/), del qual partixen els meus ajustos.
+Per mesurar faig servir la sonda **X-Rite i1Display Pro** i el programari **BenQ Palette Master Element**. La meua guia és l'excel·lent tutorial de [Francesco Gola](https://www.francescogola.net/tutorial/monitor-calibration-and-profiling-with-benq-palette-master-element/), del qual parteixen els meus ajustos.
 
 ![El meu BenQ PhotoVue SW271C amb la seua caputxa, amb Lightroom Classic en pantalla {"align": "left"}](/blog/2026-10-18_tutorial-del-monitor-al-papel_monitor.jpg)
 
@@ -40,9 +40,9 @@ En ambdues deixe la gamma en 2,2, trie perfil de versió 2 per compatibilitat, d
 
 ## Editar amb el color com a referència
 
-Revise i revele a **Lightroom** i acabe els retocs fins a **Photoshop**, sempre amb la calibració d'edició activa. Ací no hi ha truc: si la pantalla mentix, tot el que decidisca després estarà basat en una mentida.
+Revise i revele a **Lightroom** i acabe els retocs fins a **Photoshop**, sempre amb la calibració d'edició activa. Ací no hi ha truc: si la pantalla menteix, tot el que decidisca després estarà basat en una mentida.
 
-Edite pensant ja en el paper. Cuide el contrast i les ombres amb més atenció que per a una foto que només es veurà en pantalla, perquè el paper no emet llum: la reflectix, i el seu negre mai serà tan profund com el d'un monitor.
+Edite pensant ja en el paper. Cuide el contrast i les ombres amb més atenció que per a una foto que només es veurà en pantalla, perquè el paper no emet llum: la reflecteix, i el seu negre mai serà tan profund com el d'un monitor.
 
 ## Triar paper i format
 
@@ -50,19 +50,19 @@ El paper és la meitat del resultat. Imprimisc sobre **Hahnemühle [Photo Pearl 
 
 ![Còpies amb vora i amb la meua signatura, acabades d'eixir de la impressora {"align": "right", "square": true}](/blog/2026-10-18_tutorial-del-monitor-al-papel_copias.jpg)
 
-El format el marca la foto, no al revés. Treballe en **A4, A3 i A2**, amb vora o sense, i amb la meua signatura si ho preferixes. Un format ben triat deixa respirar la composició.
+El format el marca la foto, no al revés. Treballe en **A4, A3 i A2**, amb vora o sense, i amb la meua signatura si ho prefereixes. Un format ben triat deixa respirar la composició.
 
 ## Simular la còpia en pantalla
 
 Abans de gastar tinta, faig una **prova de pantalla** (*soft proofing*). Active la calibració d'impressió del monitor i simule a Lightroom o Photoshop el perfil ICC d'aquest paper amb la meua impressora, amb l'opció de simular el color del paper i el negre de la tinta.
 
-Aquesta vista prèvia mostra el que el paper no pot reproduir: colors fora de gamma que es retallen i negres que s'aclarixen. Retoque el just per compensar-ho i no més, perquè l'objectiu és acostar la còpia a l'edició, no reinventar-la.
+Aquesta vista prèvia mostra el que el paper no pot reproduir: colors fora de gamma que es retallen i negres que s'aclareixen. Retoque el just per compensar-ho i no més, perquè l'objectiu és acostar la còpia a l'edició, no reinventar-la.
 
 ## Imprimir amb el color sota control
 
 Imprimisc amb una **Canon imagePROGRAF PRO-1000** i les seues **tintes pigmentades originals Canon**. No faig servir tintes compatibles: tota la calibració perd el sentit si canvia el que ix pels capçals.
 
-La regla d'or és que **només un programa gestiona el color**. Ho fa Photoshop amb el perfil del paper, i al controlador de la impressora desactive qualsevol correcció. Si tots dos toquen el color, es corregix dues vegades i el resultat és impredictible.
+La regla d'or és que **només un programa gestiona el color**. Ho fa Photoshop amb el perfil del paper, i al controlador de la impressora desactive qualsevol correcció. Si tots dos toquen el color, es corregeix dues vegades i el resultat és impredictible.
 
 Per a la intenció de renderitzat parte del colorimètric relatiu amb compensació del punt negre, i prove el perceptual si la prova de pantalla mostra retalls importants.
 

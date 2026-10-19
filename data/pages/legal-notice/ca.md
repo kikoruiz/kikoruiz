@@ -6,7 +6,7 @@ Este lloc web, [kikoruiz.es](/), és de la meua titularitat i l'explota Kiko Rui
 
 ## Activitat
 
-El lloc reunix el meu portfolio fotogràfic, un blog i una botiga on venc impressions i descàrregues digitals de les meues fotografies. Les condicions de les compres estan als [termes i condicions](/termes-i-condicions) i les de l'ús de les descàrregues, a la [llicència de descàrregues](/llicencia-de-descarregues).
+El lloc reuneix el meu portfolio fotogràfic, un blog i una botiga on venc impressions i descàrregues digitals de les meues fotografies. Les condicions de les compres estan als [termes i condicions](/termes-i-condicions) i les de l'ús de les descàrregues, a la [llicència de descàrregues](/llicencia-de-descarregues).
 
 ## Condicions d'ús del lloc
 
@@ -18,7 +18,7 @@ Les fotografies, els textos, el disseny i la resta de continguts del lloc estan 
 
 ## Responsabilitat
 
-M'esforce perquè la informació del lloc siga correcta i estiga al dia, però s'oferix tal qual i no puc garantir que no continga errors ni que el servei estiga sempre disponible. No em faig responsable dels danys que puguen derivar-se d'una interrupció del servei, ni del contingut dels llocs web de tercers als quals enllace.
+M'esforce perquè la informació del lloc siga correcta i estiga al dia, però s'ofereix tal qual i no puc garantir que no continga errors ni que el servei estiga sempre disponible. No em faig responsable dels danys que puguen derivar-se d'una interrupció del servei, ni del contingut dels llocs web de tercers als quals enllace.
 
 ## Protecció de dades
 
@@ -26,7 +26,7 @@ Quan compres o m'escrius tracte algunes de les teues dades personals. Com ho fai
 
 ## Legislació aplicable
 
-Este lloc es regix per la legislació espanyola. Si ets consumidor, conserves els drets que et reconega la normativa del teu lloc de residència i, davant de qualsevol controvèrsia, pots acudir als jutjats i tribunals que et corresponguen segons la llei.
+Este lloc es regeix per la legislació espanyola. Si ets consumidor, conserves els drets que et reconega la normativa del teu lloc de residència i, davant de qualsevol controvèrsia, pots acudir als jutjats i tribunals que et corresponguen segons la llei.
 
 ## Contacte
 

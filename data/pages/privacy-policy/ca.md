@@ -26,7 +26,7 @@ No venc les teues dades. Per prestar-te el servei les comparteisc amb proveïdor
 - **OpenStreetMap:** presta els mapes que es mostren al Lloc. Quan obris un mapa, el teu navegador els demana directament als seus servidors, que reben la teua adreça IP i les dades tècniques de la petició.
 - **Google:** presta el servei d'analítica Google Analytics 4, només si acceptes les galetes d'anàlisi.
 - **Servei de missatgeria:** rep el teu nom i la teua adreça quan compres impressions, per lliurar-te-les.
-- **Assessoria fiscal:** accedix a les dades necessàries per complir les meues obligacions tributàries.
+- **Assessoria fiscal:** accedeix a les dades necessàries per complir les meues obligacions tributàries.
 
 També puc comunicar dades a les autoritats quan la llei m'ho exigisca.
 
@@ -36,7 +36,7 @@ Alguns d'estos proveïdors, com Stripe, Vercel, Google, Resend o Cloudflare, pod
 
 ## Quant de temps conserve les teues dades
 
-- Dades de les compres: durant els terminis que exigixen les normes fiscals i mercantils.
+- Dades de les compres: durant els terminis que exigeixen les normes fiscals i mercantils.
 - Missatges de contacte: el temps necessari per atendre la teua consulta i, després, durant els terminis de prescripció de possibles responsabilitats.
 - Dades d'analítica: segons els terminis de retenció configurats a Google Analytics.
 

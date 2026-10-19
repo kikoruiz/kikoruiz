@@ -15,7 +15,7 @@ Aquí va mi paso a paso, tal cual lo hago. Los papeles y formatos que menciono s
 
 ## Preparar el monitor y el entorno
 
-Trabajo con un **BenQ PhotoVue SW271C**, un 27" 4K que cubre el 99 % de Adobe RGB, el 100 % de sRGB y el 90 % de DCI-P3, con una LUT 3D de 16 bits. Lo importante de esa LUT es que permite calibrar **por *hardware***: las correcciones se escriben en el propio monitor, no en la tarjeta gráfica, y por eso son más estables en el tiempo.
+Trabajo con un **BenQ PhotoVue SW271C**, un 27" 4K que cubre el 99 % de Adobe RGB, el 100 % de sRGB y el 90 % de DCI-P3, con una LUT 3D de 16 bits. Lo importante de esa LUT es que permite calibrar **por *hardware***: las correcciones se escriben en el propio monitor, no en la tarjeta gráfica, y por eso son más estables en el tiempo.
 
 Antes de medir nada, preparo el terreno:
 

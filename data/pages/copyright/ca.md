@@ -20,7 +20,7 @@ Em reserve expressament els drets sobre les meues imatges i els meus textos dava
 
 ## Llicències a mida
 
-Si vols usar una imatge d'una manera que no cobrix la llicència de descàrregues, [escriu-me](/#contacte) i mirem una llicència a mida teua.
+Si vols usar una imatge d'una manera que no cobreix la llicència de descàrregues, [escriu-me](/#contacte) i mirem una llicència a mida teua.
 
 ## Excepcions
 
