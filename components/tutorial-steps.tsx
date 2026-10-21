@@ -249,7 +249,9 @@ export default function TutorialSteps({
                   {index + 1}
                 </span>
 
-                <span className={isLast ? '' : 'pb-6'}>
+                <span
+                  className={isLast ? '' : 'pb-[1.125rem] min-[1500px]:pb-6'}
+                >
                   <span
                     className={`flex min-h-9 items-center text-balance text-sm leading-[18px] transition-colors motion-reduce:transition-none ${
                       isActive ? 'duration-100' : 'duration-150'

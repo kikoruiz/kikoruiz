@@ -88,7 +88,8 @@ describe('Article headings', () => {
 
     const heading = container.querySelector('h2')
 
-    expect(heading.style.scrollMarginTop).toBe('calc(0px + 2.25rem)')
+    expect(heading.className).toContain('scroll-mt-48')
+    expect(heading.style.scrollMarginTop).toBe('')
 
     await renderWithHeader(146)
 

@@ -42,7 +42,14 @@ function StepHeading({children, node}) {
   return (
     <h2
       id={getStepId(getNodeText(node))}
-      style={{scrollMarginTop: `calc(${headerHeight}px + 2.25rem)`}}
+      // Until the header has been measured, which is also what the server
+      // renders, a link straight to a step still leaves room under it.
+      className="scroll-mt-48"
+      style={
+        headerHeight
+          ? {scrollMarginTop: `calc(${headerHeight}px + 2.25rem)`}
+          : undefined
+      }
     >
       {children}
     </h2>
