@@ -13,7 +13,7 @@ import type {VariantProps} from 'class-variance-authority'
 const DEFAULT_INTENT = 'dark'
 
 const articleStyles = cva(
-  'max-w-full overflow-hidden prose prose-neutral prose-a:font-bold prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-code:before:content-[""] prose-code:after:content-[""] hover:prose-a:no-underline prose-p:font-light prose-ul:font-light prose-ul:flow-root prose-ol:flow-root',
+  'max-w-full overflow-hidden prose prose-neutral prose-a:font-bold prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-code:before:content-[""] prose-code:after:content-[""] hover:prose-a:no-underline prose-p:font-light prose-ul:font-light',
   {
     variants: {
       intent: {
@@ -129,7 +129,7 @@ export default function Article({
                 isRounded ? 'my-12 flex justify-center' : 'mx-auto mb-12'
               }${onlyInMobile ? ' sm:hidden' : ''}${
                 alignToLeft || alignToRight ? ' lg:mt-2 lg:w-1/2' : ''
-              }${alignToLeft ? ' lg:float-left lg:mr-6' : ''}${
+              }${alignToLeft ? ' lg:float-left lg:mr-9' : ''}${
                 alignToRight ? ' lg:float-right lg:ml-6' : ''
               }`}
             >

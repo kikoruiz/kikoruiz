@@ -47,13 +47,6 @@ describe('Article', () => {
     expect(html).toContain('<li>texto con <a ')
   })
 
-  it('keeps lists out from under a floated image', () => {
-    const html = render('- uno')
-
-    expect(html).toContain('prose-ul:flow-root')
-    expect(html).toContain('prose-ol:flow-root')
-  })
-
   it('keeps plain text and emphasis untouched', () => {
     const html = render('Un **texto** normal.')
 
