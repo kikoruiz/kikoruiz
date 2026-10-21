@@ -1,22 +1,36 @@
-import {useEffect, useLayoutEffect, useRef, useState} from 'react'
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useSyncExternalStore
+} from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import {TutorialStep, getReachedStep} from 'lib/blog/steps'
+import {TutorialStep, getActiveStep, getReachedStep} from 'lib/blog/steps'
 import {getScrollTopBelowHeader} from 'lib/utils/scroll'
 
-// How far down the viewport a heading has to get before its step is the one
-// being read, as a fraction of the viewport height.
-const ACTIVATION_LINE = 0.35
+// How far under the place a link leaves its heading, in pixels, a heading still
+// counts as the step being read. The line sits next to where the links land
+// instead of at a fraction of the window, so that after following a link the
+// next heading cannot be above it, however tall the window is.
+const LANDING_TOLERANCE = 60
 
 // The space left between the header and the heading a step leads to, which is
 // the one the headings keep as their scroll margin.
 const STEP_GAP_IN_REM = 1.5
 const SMOOTH_SCROLL_SETTLE_TIME = 1000
+// How long the step a link leads to stays as the one being read, whatever the
+// position of the page. Near the end of the article the page cannot scroll far
+// enough to put the heading where the link wants it.
+const PINNED_STEP_TIME = SMOOTH_SCROLL_SETTLE_TIME + 300
 
 // How fast the tip of the line travels, in pixels per millisecond. It is the
 // same whether it goes a step or the whole way, so a long jump takes longer.
 const LINE_SPEED = 0.7
 function useActiveStep(ids: string[]) {
   const [activeIndex, setActiveIndex] = useState(-1)
+  const pinnedRef = useRef<{index: number; at: number} | null>(null)
   const key = ids.join()
 
   useEffect(() => {
@@ -28,13 +42,30 @@ function useActiveStep(ids: string[]) {
     if (headings.length === 0) return
 
     function update() {
-      const line = window.innerHeight * ACTIVATION_LINE
-      let next = -1
+      const pinned = pinnedRef.current
 
-      headings.forEach((heading, index) => {
-        if (heading.getBoundingClientRect().top <= line) next = index
-      })
-      setActiveIndex(next)
+      if (pinned && performance.now() - pinned.at < PINNED_STEP_TIME) {
+        setActiveIndex(pinned.index)
+
+        return
+      }
+
+      const header = document.querySelector('header')
+      const headerBottom = header ? header.getBoundingClientRect().bottom : 0
+      const gap =
+        STEP_GAP_IN_REM *
+        parseFloat(getComputedStyle(document.documentElement).fontSize)
+
+      setActiveIndex(
+        getActiveStep({
+          tops: headings.map(heading => heading.getBoundingClientRect().top),
+          line: headerBottom + gap + LANDING_TOLERANCE,
+          isAtBottom:
+            window.scrollY > 0 &&
+            window.innerHeight + window.scrollY >=
+              document.documentElement.scrollHeight - 2
+        })
+      )
     }
 
     update()
@@ -64,7 +95,26 @@ function useActiveStep(ids: string[]) {
     }
   }, [key])
 
-  return activeIndex
+  const pin = useCallback((index: number) => {
+    pinnedRef.current = {index, at: performance.now()}
+    setActiveIndex(index)
+  }, [])
+
+  return {activeIndex, pin}
+}
+
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const query = window.matchMedia(REDUCED_MOTION_QUERY)
+
+  query.addEventListener('change', onChange)
+
+  return () => query.removeEventListener('change', onChange)
+}
+
+function getReducedMotion() {
+  return window.matchMedia(REDUCED_MOTION_QUERY).matches
 }
 
 // The one value everything else is drawn from: how far down the track the tip
@@ -73,15 +123,16 @@ function useActiveStep(ids: string[]) {
 // jump covers and however many times the target moves on the way.
 function useLineOffset(target: number | null) {
   const [offset, setOffset] = useState(0)
+  const reducesMotion = useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotion,
+    () => false
+  )
   const currentRef = useRef(0)
   const isPlacedRef = useRef(false)
 
   useEffect(() => {
     if (target === null) return
-
-    const reducesMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches
 
     // The first reading, and any with reduced motion, put the tip in place.
     if (!isPlacedRef.current || reducesMotion) {
@@ -112,9 +163,11 @@ function useLineOffset(target: number | null) {
     frame = requestAnimationFrame(step)
 
     return () => cancelAnimationFrame(frame)
-  }, [target])
+  }, [target, reducesMotion])
 
-  return offset
+  // With reduced motion the tip is where it has to be as soon as the step
+  // changes, not a frame later.
+  return reducesMotion && target !== null ? target : offset
 }
 
 // Where the middle of each circle sits inside the list. The line is drawn from
@@ -164,7 +217,7 @@ export default function TutorialSteps({
   className = ''
 }: TutorialStepsProps) {
   const {t} = useTranslation('blog')
-  const activeIndex = useActiveStep(steps.map(({id}) => id))
+  const {activeIndex, pin} = useActiveStep(steps.map(({id}) => id))
   const {listRef, circleRefs, centers} = useCircleCenters(steps.length)
   const hasCenters = centers.length === steps.length
   const firstCenter = centers[0]
@@ -181,18 +234,22 @@ export default function TutorialSteps({
       ? centers[reachedIndex] - centers[reachedIndex - 1]
       : 0
 
-  function handleClick(event: React.MouseEvent<HTMLAnchorElement>, id: string) {
+  function handleClick(
+    event: React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+    index: number
+  ) {
     const heading = document.getElementById(id)
 
     if (!heading) return
 
     event.preventDefault()
+    pin(index)
 
     const gap =
       STEP_GAP_IN_REM *
       parseFloat(getComputedStyle(document.documentElement).fontSize)
-    const isSmooth = !window.matchMedia('(prefers-reduced-motion: reduce)')
-      .matches
+    const isSmooth = !window.matchMedia(REDUCED_MOTION_QUERY).matches
     let hasBeenMoved = false
     const markAsMoved = () => {
       hasBeenMoved = true
@@ -274,7 +331,7 @@ export default function TutorialSteps({
               <a
                 href={`#${id}`}
                 aria-current={index === activeIndex ? 'step' : undefined}
-                onClick={event => handleClick(event, id)}
+                onClick={event => handleClick(event, id, index)}
                 className="group flex gap-3"
               >
                 <span

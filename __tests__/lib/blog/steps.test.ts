@@ -1,5 +1,6 @@
 import {describe, expect, it} from 'vitest'
 import {
+  getActiveStep,
   getNodeText,
   getReachedStep,
   getStepId,
@@ -101,5 +102,56 @@ describe('getReachedStep', () => {
 
   it('never goes ahead of the line, whatever step is being read', () => {
     expect(getReachedStep({centers, offset: 60, activeIndex: 7})).toBe(1)
+  })
+})
+
+describe('getActiveStep', () => {
+  // Headings 236 to 680 pixels apart, the closest and the furthest in the
+  // tutorial, with the activation line 84 pixels under the header (24 and 60).
+  const line = 146 + 24 + 60
+
+  it('is none while no heading has got up to the line', () => {
+    expect(
+      getActiveStep({tops: [400, 900, 1300], line, isAtBottom: false})
+    ).toBe(-1)
+  })
+
+  it('is the last heading that has got up to the line', () => {
+    expect(
+      getActiveStep({tops: [-900, -300, 120, 560], line, isAtBottom: false})
+    ).toBe(2)
+  })
+
+  it('is the heading a link has just brought next to the header', () => {
+    // Where a link leaves its heading: 24 pixels under the header.
+    const landed = 146 + 24
+
+    for (const gapToNext of [236, 264, 312, 376, 536, 680]) {
+      expect(
+        getActiveStep({
+          tops: [landed - 1000, landed, landed + gapToNext],
+          line,
+          isAtBottom: false
+        })
+      ).toBe(1)
+    }
+  })
+
+  it('does not depend on how tall the window is', () => {
+    // The line is measured from the header, so the same positions give the
+    // same step in a window of any height.
+    const tops = [-500, 170, 406]
+
+    expect(getActiveStep({tops, line, isAtBottom: false})).toBe(1)
+  })
+
+  it('is the last step at the bottom of the page, even if its heading is lower', () => {
+    expect(
+      getActiveStep({tops: [-900, -300, 700], line, isAtBottom: true})
+    ).toBe(2)
+  })
+
+  it('has no step to give when there are no headings', () => {
+    expect(getActiveStep({tops: [], line, isAtBottom: true})).toBe(-1)
   })
 })

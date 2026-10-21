@@ -92,7 +92,7 @@ describe('Article headings', () => {
     renderWithHeader(146)
 
     expect(container.querySelector('h2')).toBe(heading)
-    expect(heading.style.scrollMarginTop).toBe('calc(146px + 2.25rem)')
+    expect(heading.style.scrollMarginTop).toBe('calc(146px + 1.5rem)')
 
     flushSync(() => root.unmount())
   })

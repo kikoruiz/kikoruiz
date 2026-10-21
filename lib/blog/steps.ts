@@ -80,3 +80,26 @@ export function getReachedStep({
 
   return reached
 }
+
+// The step being read: the last heading that has got up to the activation
+// line. At the very bottom of the page it is the last one, since a short final
+// section may never get its heading that far up.
+export function getActiveStep({
+  tops,
+  line,
+  isAtBottom
+}: {
+  tops: number[]
+  line: number
+  isAtBottom: boolean
+}) {
+  if (isAtBottom && tops.length > 0) return tops.length - 1
+
+  let active = -1
+
+  tops.forEach((top, index) => {
+    if (top <= line) active = index
+  })
+
+  return active
+}

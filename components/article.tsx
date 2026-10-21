@@ -47,7 +47,7 @@ function StepHeading({children, node}) {
       className="scroll-mt-48"
       style={
         headerHeight
-          ? {scrollMarginTop: `calc(${headerHeight}px + 2.25rem)`}
+          ? {scrollMarginTop: `calc(${headerHeight}px + 1.5rem)`}
           : undefined
       }
     >
