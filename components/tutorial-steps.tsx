@@ -1,10 +1,16 @@
 import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import {TutorialStep} from 'lib/blog/steps'
+import {getScrollTopBelowHeader} from 'lib/utils/scroll'
 
 // How far down the viewport a heading has to get before its step is the one
 // being read, as a fraction of the viewport height.
 const ACTIVATION_LINE = 0.35
+
+// The space left between the header and the heading a step leads to, which is
+// the one the headings keep as their scroll margin.
+const STEP_GAP_IN_REM = 2.25
+const SMOOTH_SCROLL_SETTLE_TIME = 1000
 
 const SWEEP_BASE_DURATION = 200
 const SWEEP_STEP_DURATION = 100
@@ -169,12 +175,44 @@ export default function TutorialSteps({
     if (!heading) return
 
     event.preventDefault()
-    heading.scrollIntoView({
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        ? 'auto'
-        : 'smooth'
+
+    const gap =
+      STEP_GAP_IN_REM *
+      parseFloat(getComputedStyle(document.documentElement).fontSize)
+    const isSmooth = !window.matchMedia('(prefers-reduced-motion: reduce)')
+      .matches
+    let hasBeenMoved = false
+    const markAsMoved = () => {
+      hasBeenMoved = true
+    }
+
+    window.scrollTo({
+      top: getScrollTopBelowHeader(heading, gap),
+      behavior: isSmooth ? 'smooth' : 'auto'
     })
     window.history.replaceState(null, '', `#${id}`)
+
+    // Images and fonts can still move the page while it scrolls, so once it
+    // stops the heading is put back where it belongs, unless the visitor has
+    // taken over in the meantime.
+    window.addEventListener('wheel', markAsMoved, {once: true, passive: true})
+    window.addEventListener('touchmove', markAsMoved, {
+      once: true,
+      passive: true
+    })
+    window.setTimeout(
+      () => {
+        window.removeEventListener('wheel', markAsMoved)
+        window.removeEventListener('touchmove', markAsMoved)
+
+        const top = getScrollTopBelowHeader(heading, gap)
+
+        if (!hasBeenMoved && Math.abs(top - window.scrollY) > 2) {
+          window.scrollTo({top, behavior: 'auto'})
+        }
+      },
+      isSmooth ? SMOOTH_SCROLL_SETTLE_TIME : 100
+    )
   }
 
   return (

@@ -22,7 +22,25 @@ function Header({...sectionData}: SectionData) {
   )
 
   useLayoutEffect(() => {
-    setLayout({headerHeight: headerRef.current.offsetHeight})
+    const header = headerRef.current
+
+    function update() {
+      const headerHeight = header.offsetHeight
+
+      setLayout(current =>
+        current?.headerHeight === headerHeight ? current : {headerHeight}
+      )
+    }
+
+    update()
+
+    // The breadcrumb changes with every page and the fonts can arrive late, so
+    // the height measured on mount is not necessarily the one that stays.
+    const observer = new ResizeObserver(update)
+
+    observer.observe(header, {box: 'border-box'})
+
+    return () => observer.disconnect()
   }, [setLayout])
 
   return (
