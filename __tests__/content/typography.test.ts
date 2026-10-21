@@ -1,3 +1,4 @@
+// @vitest-environment node
 import fs from 'node:fs'
 import {globSync} from 'glob'
 import {describe, expect, it} from 'vitest'

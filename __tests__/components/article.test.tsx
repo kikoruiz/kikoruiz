@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest'
-import {act} from 'react'
+import {flushSync} from 'react-dom'
 import {createRoot} from 'react-dom/client'
 import {renderToStaticMarkup} from 'react-dom/server'
 import Article from 'components/article'
@@ -61,15 +61,13 @@ describe('Article', () => {
 })
 
 describe('Article headings', () => {
-  it('keep their DOM node, and gain the header spacing, when the header height arrives', async () => {
-    ;(
-      globalThis as {IS_REACT_ACT_ENVIRONMENT?: boolean}
-    ).IS_REACT_ACT_ENVIRONMENT = true
-
+  it('keep their DOM node, and gain the header spacing, when the header height arrives', () => {
     const container = document.createElement('div')
     const root = createRoot(container)
+    // `flushSync` commits right away and, unlike `act`, exists in every build
+    // of React, the production one included.
     const renderWithHeader = (headerHeight?: number) =>
-      act(async () => {
+      flushSync(() => {
         root.render(
           <LayoutContext.Provider
             value={
@@ -84,18 +82,18 @@ describe('Article headings', () => {
         )
       })
 
-    await renderWithHeader()
+    renderWithHeader()
 
     const heading = container.querySelector('h2')
 
     expect(heading.className).toContain('scroll-mt-48')
     expect(heading.style.scrollMarginTop).toBe('')
 
-    await renderWithHeader(146)
+    renderWithHeader(146)
 
     expect(container.querySelector('h2')).toBe(heading)
     expect(heading.style.scrollMarginTop).toBe('calc(146px + 2.25rem)')
 
-    await act(async () => root.unmount())
+    flushSync(() => root.unmount())
   })
 })
