@@ -1,6 +1,6 @@
 import {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import useTranslation from 'next-translate/useTranslation'
-import {TutorialStep} from 'lib/blog/steps'
+import {TutorialStep, getReachedStep} from 'lib/blog/steps'
 import {getScrollTopBelowHeader} from 'lib/utils/scroll'
 
 // How far down the viewport a heading has to get before its step is the one
@@ -12,29 +12,11 @@ const ACTIVATION_LINE = 0.35
 const STEP_GAP_IN_REM = 1.5
 const SMOOTH_SCROLL_SETTLE_TIME = 1000
 
-const SWEEP_BASE_DURATION = 200
-const SWEEP_STEP_DURATION = 100
-const SWEEP_MAX_DURATION = 900
-// Once the line has arrived, the circles stop waiting for it.
-const SWEEP_SETTLE_TIME = 300
-
-interface ActiveStep {
-  activeIndex: number
-  previousIndex: number
-}
-
-function getSweepDuration(from: number, to: number) {
-  return Math.min(
-    SWEEP_BASE_DURATION + SWEEP_STEP_DURATION * Math.abs(to - from),
-    SWEEP_MAX_DURATION
-  )
-}
-
+// How fast the tip of the line travels, in pixels per millisecond. It is the
+// same whether it goes a step or the whole way, so a long jump takes longer.
+const LINE_SPEED = 0.5
 function useActiveStep(ids: string[]) {
-  const [state, setState] = useState<ActiveStep>({
-    activeIndex: -1,
-    previousIndex: -1
-  })
+  const [activeIndex, setActiveIndex] = useState(-1)
   const key = ids.join()
 
   useEffect(() => {
@@ -52,45 +34,87 @@ function useActiveStep(ids: string[]) {
       headings.forEach((heading, index) => {
         if (heading.getBoundingClientRect().top <= line) next = index
       })
-      setState(current =>
-        next === current.activeIndex
-          ? current
-          : {activeIndex: next, previousIndex: current.activeIndex}
-      )
+      setActiveIndex(next)
     }
 
     update()
 
-    // A heading crossing the activation line is the only moment the active
-    // step can change, so there is no need to listen to every scroll event.
-    const observer = new IntersectionObserver(update, {
-      rootMargin: `0px 0px -${(1 - ACTIVATION_LINE) * 100}% 0px`,
-      threshold: [0, 1]
-    })
+    // The step is worked out from where the headings are, once per frame at
+    // most. Waiting for headings to enter or leave a zone would miss a jump
+    // that clears several of them at once, like the End key or a dragged
+    // scrollbar.
+    let frame = 0
 
-    headings.forEach(heading => observer.observe(heading))
-    window.addEventListener('resize', update)
+    function schedule() {
+      if (frame) return
+
+      frame = requestAnimationFrame(() => {
+        frame = 0
+        update()
+      })
+    }
+
+    window.addEventListener('scroll', schedule, {passive: true})
+    window.addEventListener('resize', schedule)
 
     return () => {
-      observer.disconnect()
-      window.removeEventListener('resize', update)
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
     }
   }, [key])
 
+  return activeIndex
+}
+
+// The one value everything else is drawn from: how far down the track the tip
+// of the line has got. It chases `target` at a steady speed, so the line and
+// the circles it passes through always change in order, however many steps a
+// jump covers and however many times the target moves on the way.
+function useLineOffset(target: number | null) {
+  const [offset, setOffset] = useState(0)
+  const currentRef = useRef(0)
+  const isPlacedRef = useRef(false)
+
   useEffect(() => {
-    if (state.previousIndex === state.activeIndex) return
+    if (target === null) return
 
-    const timer = setTimeout(
-      () =>
-        setState(current => ({...current, previousIndex: current.activeIndex})),
-      getSweepDuration(state.previousIndex, state.activeIndex) +
-        SWEEP_SETTLE_TIME
-    )
+    const reducesMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
 
-    return () => clearTimeout(timer)
-  }, [state])
+    // The first reading, and any with reduced motion, put the tip in place.
+    if (!isPlacedRef.current || reducesMotion) {
+      isPlacedRef.current = true
+      currentRef.current = target
+      setOffset(target)
 
-  return state
+      return
+    }
+
+    let frame: number
+    let last = performance.now()
+
+    function step(now: number) {
+      const reach = LINE_SPEED * (now - last)
+      const distance = target - currentRef.current
+
+      last = now
+      currentRef.current =
+        Math.abs(distance) <= reach
+          ? target
+          : currentRef.current + Math.sign(distance) * reach
+      setOffset(currentRef.current)
+
+      if (currentRef.current !== target) frame = requestAnimationFrame(step)
+    }
+
+    frame = requestAnimationFrame(step)
+
+    return () => cancelAnimationFrame(frame)
+  }, [target])
+
+  return offset
 }
 
 // Where the middle of each circle sits inside the list. The line is drawn from
@@ -140,34 +164,22 @@ export default function TutorialSteps({
   className = ''
 }: TutorialStepsProps) {
   const {t} = useTranslation('blog')
-  const {activeIndex, previousIndex} = useActiveStep(steps.map(({id}) => id))
+  const activeIndex = useActiveStep(steps.map(({id}) => id))
   const {listRef, circleRefs, centers} = useCircleCenters(steps.length)
   const hasCenters = centers.length === steps.length
-  const duration = getSweepDuration(previousIndex, activeIndex)
-  const sweepOrigin = centers[Math.max(previousIndex, 0)]
-  const sweepLength = Math.abs(centers[Math.max(activeIndex, 0)] - sweepOrigin)
   const firstCenter = centers[0]
-  const fillLength =
+  const target =
     hasCenters && activeIndex > 0 ? centers[activeIndex] - firstCenter : 0
+  const offset = useLineOffset(hasCenters ? target : null)
+  // The step the tip of the line has reached, which is the one lit up.
+  const reachedIndex = hasCenters
+    ? getReachedStep({centers, offset, activeIndex})
+    : activeIndex
+
   const gradientLength =
-    hasCenters && activeIndex > 0
-      ? centers[activeIndex] - centers[activeIndex - 1]
+    hasCenters && reachedIndex > 0
+      ? centers[reachedIndex] - centers[reachedIndex - 1]
       : 0
-
-  // The circles light up, or go out, as the line passes through them.
-  function getDelay(index: number) {
-    if (!hasCenters || previousIndex === activeIndex || sweepLength === 0) {
-      return undefined
-    }
-
-    const [first, last] = [previousIndex, activeIndex].sort((a, b) => a - b)
-
-    if (index < Math.max(first, 0) || index > last) return undefined
-
-    const progress = Math.abs(centers[index] - sweepOrigin) / sweepLength
-
-    return `${Math.round(Math.min(progress, 1) * duration)}ms`
-  }
 
   function handleClick(event: React.MouseEvent<HTMLAnchorElement>, id: string) {
     const heading = document.getElementById(id)
@@ -235,8 +247,8 @@ export default function TutorialSteps({
             }}
           >
             <span
-              className="absolute inset-x-0 top-0 overflow-hidden bg-orange-300 transition-[height] ease-linear motion-reduce:transition-none"
-              style={{height: fillLength, transitionDuration: `${duration}ms`}}
+              className="absolute inset-x-0 top-0 overflow-hidden bg-orange-300"
+              style={{height: offset}}
             >
               {/* The stretch that leads into the step being read is the only
                   one with the gradient, riding the tip of the line. */}
@@ -249,12 +261,9 @@ export default function TutorialSteps({
         )}
 
         {steps.map(({id, title}, index) => {
-          const isDone = index < activeIndex
-          const isActive = index === activeIndex
+          const isDone = index < reachedIndex
+          const isActive = index === reachedIndex
           const isLast = index === steps.length - 1
-          // The step being read takes the focus at once, without waiting for
-          // the line to arrive.
-          const delay = isActive ? undefined : getDelay(index)
 
           return (
             <li
@@ -264,7 +273,7 @@ export default function TutorialSteps({
             >
               <a
                 href={`#${id}`}
-                aria-current={isActive ? 'step' : undefined}
+                aria-current={index === activeIndex ? 'step' : undefined}
                 onClick={event => handleClick(event, id)}
                 className="group flex gap-3"
               >
@@ -282,7 +291,6 @@ export default function TutorialSteps({
                         ? 'scale-110 border-orange-500 bg-neutral-900 text-orange-300 shadow-[0_0_0_6px_rgba(249,115,22,0.15)]'
                         : 'border-orange-200/30 bg-neutral-900 text-neutral-500 group-hover:border-orange-300 group-hover:text-orange-300'
                   }`}
-                  style={{transitionDelay: delay}}
                 >
                   {index + 1}
                 </span>
@@ -300,7 +308,6 @@ export default function TutorialSteps({
                           ? 'font-light text-neutral-300'
                           : 'font-light text-neutral-500 group-hover:text-neutral-300'
                     }`}
-                    style={{transitionDelay: delay}}
                   >
                     {title}
                   </span>

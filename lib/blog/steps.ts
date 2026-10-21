@@ -51,3 +51,32 @@ export function getTutorialSteps(body: string): TutorialStep[] {
     return [{id: getStepId(title), title}]
   })
 }
+
+// A circle counts as reached when the tip of the line is this close to its
+// middle, in pixels.
+const REACH_TOLERANCE = 0.5
+
+// The step the tip of the line has got to, given how far down the track it is
+// and where the middle of every circle sits. Once the line has stopped it is the
+// step being read, and on its way it is the last circle it went through.
+export function getReachedStep({
+  centers,
+  offset,
+  activeIndex
+}: {
+  centers: number[]
+  offset: number
+  activeIndex: number
+}) {
+  if (centers.length === 0 || (activeIndex <= 0 && offset <= REACH_TOLERANCE)) {
+    return activeIndex
+  }
+
+  let reached = 0
+
+  centers.forEach((center, index) => {
+    if (center - centers[0] <= offset + REACH_TOLERANCE) reached = index
+  })
+
+  return reached
+}
