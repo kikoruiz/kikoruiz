@@ -13,7 +13,7 @@ import type {VariantProps} from 'class-variance-authority'
 const DEFAULT_INTENT = 'dark'
 
 const articleStyles = cva(
-  'max-w-full overflow-hidden prose prose-neutral prose-a:font-bold prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-code:before:content-[""] prose-code:after:content-[""] hover:prose-a:no-underline prose-p:font-light prose-ul:font-light',
+  'max-w-full overflow-hidden prose prose-neutral prose-a:font-bold prose-h1:mb-0 prose-h1:sm:mb-12 prose-h1:text-6xl prose-code:before:content-[""] prose-code:after:content-[""] hover:prose-a:no-underline prose-p:font-light prose-ul:font-light prose-ul:flow-root prose-ol:flow-root',
   {
     variants: {
       intent: {
