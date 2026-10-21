@@ -135,7 +135,7 @@ export default function Post({post, alternates, steps}: PostProps) {
           <Article
             content={post.body}
             contentImages={post.bodyImages}
-            className="relative mx-auto mt-12 pt-12 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"
+            className="[&_ul]:list-none [&_ul]:pl-0 [&_ul>li]:relative [&_ul>li]:flow-root [&_ul>li]:pl-[2em] [&_ul>li]:before:absolute [&_ul>li]:before:left-[0.95em] [&_ul>li]:before:top-[0.8em] [&_ul>li]:before:size-[0.34em] [&_ul>li]:before:rounded-full [&_ul>li]:before:bg-current [&_ul>li]:before:content-[''] relative mx-auto mt-12 pt-12 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"
           />
 
           {post.tags && <BlogTags tags={post.blogTags} isPost />}

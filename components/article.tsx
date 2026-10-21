@@ -129,7 +129,7 @@ export default function Article({
                 isRounded ? 'my-12 flex justify-center' : 'mx-auto mb-12'
               }${onlyInMobile ? ' sm:hidden' : ''}${
                 alignToLeft || alignToRight ? ' lg:mt-2 lg:w-1/2' : ''
-              }${alignToLeft ? ' lg:float-left lg:mr-12' : ''}${
+              }${alignToLeft ? ' lg:float-left lg:mr-6' : ''}${
                 alignToRight ? ' lg:float-right lg:ml-6' : ''
               }`}
             >
