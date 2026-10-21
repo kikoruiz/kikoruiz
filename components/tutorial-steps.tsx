@@ -9,7 +9,7 @@ const ACTIVATION_LINE = 0.35
 
 // The space left between the header and the heading a step leads to, which is
 // the one the headings keep as their scroll margin.
-const STEP_GAP_IN_REM = 2.25
+const STEP_GAP_IN_REM = 1.5
 const SMOOTH_SCROLL_SETTLE_TIME = 1000
 
 const SWEEP_BASE_DURATION = 200
