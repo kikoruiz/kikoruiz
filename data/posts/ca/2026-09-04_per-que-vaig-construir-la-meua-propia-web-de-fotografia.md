@@ -21,7 +21,7 @@ Quan fas una [llarga exposició](/ca/galeria/tags/llarga-exposicio) de 120 segon
 
 ![Detall d'una foto amb les seues metadades {"align": "right"}](/blog/2026-09-04_por-que-construi-mi-web_detalle.png)
 
-La web està desenvolupada amb **Next.js** i pensada per al rendiment. Les imatges es serveixen en format WebP optimitzat a múltiples resolucions, es carreguen de forma progressiva amb un _placeholder_ de color dominant, i el disseny és completament _responsive_. No faig servir serveis externs d'optimització d'imatge; tot està pre-processat perquè l'experiència siga el més ràpida possible sense sacrificar qualitat.
+La web està desenvolupada amb **Next.js** i pensada per al rendiment. Les imatges es serveixen en format WebP optimitzat a múltiples resolucions, es carreguen de forma progressiva amb un _placeholder_ de color dominant, i el disseny és completament _responsive_. No faig servir serveis externs d'optimització d'imatge. Tot està pre-processat perquè l'experiència siga el més ràpida possible sense sacrificar qualitat.
 
 El tema fosc no és casualitat: un fons neutre és el millor marc per a fotografia, com les parets d'una galeria. Cada decisió de disseny està al servei de la imatge.
 

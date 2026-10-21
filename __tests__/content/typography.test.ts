@@ -24,3 +24,15 @@ describe('typography of the texts', () => {
     }
   )
 })
+
+// Spanish and Catalan sentences are separated with a period or a comma, never
+// with a semicolon.
+const posts = globSync('data/posts/{es,ca}/*.md')
+
+describe('punctuation of the Spanish and Catalan posts', () => {
+  it.each(posts)('has no semicolons in %s', file => {
+    const text = fs.readFileSync(file, 'utf8')
+
+    expect(text.match(/(?<!&[a-z#0-9]+);/g) ?? []).toEqual([])
+  })
+})
