@@ -10,13 +10,13 @@ A la botiga venc impressions i descàrregues digitals de les meues fotografies. 
 
 ## Com es compra i es paga
 
-Afegixes els productes al carret i pagues en una pantalla de Stripe, que processa els pagaments amb targeta i amb Link. Jo no tinc accés a les dades de la teua targeta. Una vegada confirmat el pagament, el contracte queda formalitzat i reps la confirmació de la compra.
+Afegeixes els productes al carret i pagues en una pantalla de Stripe, que processa els pagaments amb targeta i amb Link. Jo no tinc accés a les dades de la teua targeta. Una vegada confirmat el pagament, el contracte queda formalitzat i reps la confirmació de la compra.
 
 ## Descàrregues digitals
 
 Les descàrregues estan disponibles de manera immediata després de confirmar-se el pagament, a la mateixa pàgina de confirmació i mitjançant un enllaç que t'envie per correu. Els enllaços de descàrrega caduquen en una hora, però l'enllaç del correu continua funcionant i genera enllaços nous cada vegada que l'obris.
 
-L'ús de cada arxiu es regix per la [llicència de descàrregues](/llicencia-de-descarregues), que acceptes en comprar.
+L'ús de cada arxiu es regeix per la [llicència de descàrregues](/llicencia-de-descarregues), que acceptes en comprar.
 
 ### Renúncia al desistiment
 
@@ -52,11 +52,11 @@ Tracte les teues dades personals segons la [política de privacitat](/politica-d
 
 ## Modificació dels termes i condicions
 
-Puc actualitzar estos termes en qualsevol moment. Els canvis s'apliquen des que es publiquen al lloc, però no a les compres que ja hages fet, que es regixen pels termes vigents quan vas comprar.
+Puc actualitzar estos termes en qualsevol moment. Els canvis s'apliquen des que es publiquen al lloc, però no a les compres que ja hages fet, que es regeixen pels termes vigents quan vas comprar.
 
 ## Legislació aplicable i reclamacions
 
-Estos termes es regixen per la legislació espanyola. Si ets consumidor, conserves els drets que et reconega la normativa del teu lloc de residència. Si tens una reclamació, escriu-me i faré el possible per resoldre-la; també pots acudir als organismes de consum que et corresponguen.
+Estos termes es regeixen per la legislació espanyola. Si ets consumidor, conserves els drets que et reconega la normativa del teu lloc de residència. Si tens una reclamació, escriu-me i faré el possible per resoldre-la; també pots acudir als organismes de consum que et corresponguen.
 
 ## Contacte
 

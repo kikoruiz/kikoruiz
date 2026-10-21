@@ -1,6 +1,7 @@
 {
   "post": {
     "by": "Per {{author}}",
+    "steps": "Passos",
     "tag": "Tag \"{{tag}}\""
   },
   "list": {

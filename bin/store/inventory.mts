@@ -23,9 +23,9 @@ const PRINT_PAPERS = {
     type: 'Photo Pearl 310',
     gsm: 310,
     url: {
-      en: 'https://www.hahnemuehle.com/en/digital-fineart/hahnemuehle-photo/p/Product/show/37/649.html',
-      es: 'https://www.hahnemuehle.com/es/digital-fineart/hahnemuehle-photo/p/Product/show/37/649.html',
-      ca: 'https://www.hahnemuehle.com/es/digital-fineart/hahnemuehle-photo/p/Product/show/37/649.html'
+      en: 'https://www.hahnemuehle.com/en/digital-papers/hahnemuehle-photo/p/Product/show/37/649.html',
+      es: 'https://www.hahnemuehle.com/es/papeles-de-impresion/hahnemuehle-photo/p/Product/show/37/649.html',
+      ca: 'https://www.hahnemuehle.com/es/papeles-de-impresion/hahnemuehle-photo/p/Product/show/37/649.html'
     }
   }
 }

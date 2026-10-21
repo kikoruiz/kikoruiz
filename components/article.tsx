@@ -5,6 +5,8 @@ import {cva} from 'class-variance-authority'
 import Image from './image'
 import ArticleLightbox from './article-lightbox'
 import {themeScreens} from 'lib/utils'
+import useLayoutContext from 'contexts/Layout'
+import {getNodeText, getStepId} from 'lib/blog/steps'
 import {Image as ImageInterface} from 'types/gallery'
 import type {VariantProps} from 'class-variance-authority'
 
@@ -31,6 +33,52 @@ type ArticleProps = PropsWithChildren<
     }
 >
 
+// A component of its own, and not an inline renderer, so that the heading keeps
+// its identity when the header height arrives; remounting the headings would
+// leave the steps observing nodes that are no longer on the page.
+function StepHeading({children, node}) {
+  const headerHeight = useLayoutContext()?.layout?.headerHeight || 0
+
+  return (
+    <h2
+      id={getStepId(getNodeText(node))}
+      // Until the header has been measured, which is also what the server
+      // renders, a link straight to a step still leaves room under it.
+      className="scroll-mt-48"
+      style={
+        headerHeight
+          ? {scrollMarginTop: `calc(${headerHeight}px + 2.25rem)`}
+          : undefined
+      }
+    >
+      {children}
+    </h2>
+  )
+}
+
+// Links written in the markdown go through the router, so following one does
+// not reload the page.
+function withNextLinks(children, node) {
+  const elements = Array.isArray(children) ? children : [children]
+  const linked = elements.map((element, index) => {
+    const {type, tagName, properties} = node.children[index] ?? {}
+
+    if (type !== 'element' || tagName !== 'a') return element
+
+    return (
+      <NextLink
+        href={element.props.href}
+        target={properties.href.includes('https') ? '_blank' : '_self'}
+        key={index}
+      >
+        {element.props.children}
+      </NextLink>
+    )
+  })
+
+  return Array.isArray(children) ? linked : linked[0]
+}
+
 export default function Article({
   content,
   contentImages,
@@ -40,154 +88,97 @@ export default function Article({
   const [lightbox, setLightbox] = useState<{src: string; alt: string} | null>(
     null
   )
-  const components = useMemo(() => ({
-    p({children, node}) {
-      const nextChildren = {}
+  const components = useMemo(
+    () => ({
+      h2: StepHeading,
+      p({children, node}) {
+        if (node.children[0].tagName === 'img') {
+          const image = node.children[0]
+          const metastring = image.properties.alt
+          const alt = metastring?.replace(/ *\{[^)]*\} */g, '')
+          const [properties] = metastring?.match(/\{(.*)\}/g) || []
+          let caption = alt
+          let hasPriority = false
+          let isSquare = false
+          let isRounded = false
+          let onlyInMobile = false
+          let alignToLeft = false
+          let alignToRight = false
+          let isVertical = false
 
-      node.children.forEach((attrs, index) => {
-        const {type, tagName, properties} = attrs
+          if (properties) {
+            const parsed = JSON.parse(properties)
 
-        if (type === 'element' && tagName === 'a') {
-          const {props} = children[index]
-
-          nextChildren[index] = (
-            <NextLink
-              href={props.href}
-              target={properties.href.includes('https') ? '_blank' : '_self'}
-              key={index}
-            >
-              {props.children}
-            </NextLink>
+            if (parsed.caption) caption = parsed.caption
+            if (parsed.priority) hasPriority = parsed.priority
+            if (parsed.square) isSquare = parsed.square
+            if (parsed.rounded) isRounded = parsed.rounded
+            if (parsed.mobile) onlyInMobile = parsed.mobile
+            if (parsed.align === 'left') alignToLeft = true
+            if (parsed.align === 'right') alignToRight = true
+            if (parsed.orientation === 'vertical') isVertical = true
+          }
+          const fallbackImage = contentImages?.find(
+            ({src}) => src === image.properties.src
           )
-        }
-      })
+          const {md} = themeScreens
 
-      if (node.children[0].tagName === 'img') {
-        const image = node.children[0]
-        const metastring = image.properties.alt
-        const alt = metastring?.replace(/ *\{[^)]*\} */g, '')
-        const [properties] = metastring?.match(/\{(.*)\}/g) || []
-        let caption = alt
-        let hasPriority = false
-        let isSquare = false
-        let isRounded = false
-        let onlyInMobile = false
-        let alignToLeft = false
-        let alignToRight = false
-        let isVertical = false
-
-        if (properties) {
-          const parsed = JSON.parse(properties)
-
-          if (parsed.caption) caption = parsed.caption
-          if (parsed.priority) hasPriority = parsed.priority
-          if (parsed.square) isSquare = parsed.square
-          if (parsed.rounded) isRounded = parsed.rounded
-          if (parsed.mobile) onlyInMobile = parsed.mobile
-          if (parsed.align === 'left') alignToLeft = true
-          if (parsed.align === 'right') alignToRight = true
-          if (parsed.orientation === 'vertical') isVertical = true
-        }
-        const fallbackImage = contentImages?.find(
-          ({src}) => src === image.properties.src
-        )
-        const {md} = themeScreens
-
-        return (
-          <div
-            className={`relative lg:clear-both ${
-              isRounded ? 'my-12 flex justify-center' : 'mx-auto mb-12'
-            }${onlyInMobile ? ' sm:hidden' : ''}${
-              alignToLeft || alignToRight ? ' lg:mt-2 lg:w-1/2' : ''
-            }${alignToLeft ? ' lg:float-left lg:mr-6' : ''}${
-              alignToRight ? ' lg:float-right lg:ml-6' : ''
-            }`}
-          >
-            <button
-              type="button"
-              className="block w-full cursor-zoom-in"
-              onClick={() => setLightbox({src: image.properties.src, alt})}
+          return (
+            <div
+              className={`relative lg:clear-both ${
+                isRounded ? 'my-12 flex justify-center' : 'mx-auto mb-12'
+              }${onlyInMobile ? ' sm:hidden' : ''}${
+                alignToLeft || alignToRight ? ' lg:mt-2 lg:w-1/2' : ''
+              }${alignToLeft ? ' lg:float-left lg:mr-6' : ''}${
+                alignToRight ? ' lg:float-right lg:ml-6' : ''
+              }`}
             >
-              <Image
-                src={image.properties.src}
-                alt={alt}
-                needsPreload={hasPriority}
-                className={`shadow-lg ${
-                  isRounded
-                    ? 'm-0 w-2/3 overflow-hidden rounded-full border-8 border-neutral-600/30'
-                    : 'm-0'
-                }`}
-                isRounded={!isRounded}
-                isFullRounded={isRounded}
-                aspectRatio={isSquare ? '1:1' : isVertical ? '2:3' : '3:2'}
-                sizes={
-                  alignToLeft || alignToRight
-                    ? `(min-width: ${md}) 50vw, 100vw`
-                    : '100%'
-                }
-                fallbackStyle={fallbackImage ? fallbackImage.css : {}}
-              />
-            </button>
-
-            {caption && !isSquare && (
-              <span
-                className="absolute left-0 top-full m-0 py-1 text-xs font-extralight italic text-neutral-300/50 drop-shadow-sm"
-                aria-label={caption}
+              <button
+                type="button"
+                className="block w-full cursor-zoom-in"
+                onClick={() => setLightbox({src: image.properties.src, alt})}
               >
-                {caption}
-              </span>
-            )}
-          </div>
-        )
-      }
+                <Image
+                  src={image.properties.src}
+                  alt={alt}
+                  needsPreload={hasPriority}
+                  className={`shadow-lg ${
+                    isRounded
+                      ? 'm-0 w-2/3 overflow-hidden rounded-full border-8 border-neutral-600/30'
+                      : 'm-0'
+                  }`}
+                  isRounded={!isRounded}
+                  isFullRounded={isRounded}
+                  aspectRatio={isSquare ? '1:1' : isVertical ? '2:3' : '3:2'}
+                  sizes={
+                    alignToLeft || alignToRight
+                      ? `(min-width: ${md}) 50vw, 100vw`
+                      : '100%'
+                  }
+                  fallbackStyle={fallbackImage ? fallbackImage.css : {}}
+                />
+              </button>
 
-      return (
-        <p>
-          {Array.isArray(children)
-            ? children.map((element, index) => {
-                if (nextChildren[index]) return nextChildren[index]
-
-                return element
-              })
-            : children}
-        </p>
-      )
-    },
-    // TO-DO: Unify and refactor this function.
-    li({children, node}) {
-      const nextChildren = {}
-
-      node.children.forEach((attrs, index) => {
-        const {type, tagName, properties} = attrs
-
-        if (type === 'element' && tagName === 'a') {
-          const {props} = children[index]
-
-          nextChildren[index] = (
-            <NextLink
-              href={props.href}
-              target={properties.href.includes('https') ? '_blank' : '_self'}
-              key={index}
-            >
-              {props.children}
-            </NextLink>
+              {caption && !isSquare && (
+                <span
+                  className="absolute left-0 top-full m-0 py-1 text-xs font-extralight italic text-neutral-300/50 drop-shadow-sm"
+                  aria-label={caption}
+                >
+                  {caption}
+                </span>
+              )}
+            </div>
           )
         }
-      })
 
-      return (
-        <li>
-          {Array.isArray(children)
-            ? children.map((element, index) => {
-                if (nextChildren[index]) return nextChildren[index]
-
-                return element
-              })
-            : children}
-        </li>
-      )
-    }
-  }), [contentImages])
+        return <p>{withNextLinks(children, node)}</p>
+      },
+      li({children, node}) {
+        return <li>{withNextLinks(children, node)}</li>
+      }
+    }),
+    [contentImages]
+  )
 
   return (
     <>

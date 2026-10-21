@@ -21,7 +21,7 @@ Cuando haces una [larga exposición](/galeria/tags/larga-exposicion) de 120 segu
 
 ![Detalle de una foto con sus metadatos {"align": "right"}](/blog/2026-09-04_por-que-construi-mi-web_detalle.png)
 
-La web está desarrollada con **Next.js** y pensada para rendimiento. Las imágenes se sirven en formato WebP optimizado a múltiples resoluciones, se cargan de forma progresiva con un _placeholder_ de color dominante, y el diseño es completamente _responsive_. No uso servicios externos de optimización de imagen; todo está pre-procesado para que la experiencia sea lo más rápida posible sin sacrificar calidad.
+La web está desarrollada con **Next.js** y pensada para rendimiento. Las imágenes se sirven en formato WebP optimizado a múltiples resoluciones, se cargan de forma progresiva con un _placeholder_ de color dominante, y el diseño es completamente _responsive_. No uso servicios externos de optimización de imagen. Todo está pre-procesado para que la experiencia sea lo más rápida posible sin sacrificar calidad.
 
 El tema oscuro no es casualidad: un fondo neutro es el mejor marco para fotografía, como las paredes de una galería. Cada decisión de diseño está al servicio de la imagen.
 

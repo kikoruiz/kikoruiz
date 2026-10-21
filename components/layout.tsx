@@ -6,7 +6,7 @@ import {Inter} from 'next/font/google'
 import Header from './header'
 import Footer from './footer'
 import {Alternate, SectionData} from 'types'
-import {LEGAL_PAGES, SIMPLE_PAGES} from 'config'
+import {BLOG, LEGAL_PAGES, SIMPLE_PAGES} from 'config'
 import CookiesBanner from './cookies-banner'
 import ThirdPartyScripts from './third-party-scripts'
 
@@ -29,7 +29,12 @@ export default function Layout({
 }: LayoutProps) {
   const {locale, defaultLocale} = useRouter()
   const {t} = useTranslation()
-  const {hasHero, section} = sectionData
+  const {hasHero, section, post} = sectionData
+  // The steps of a tutorial sit in the margin beside the article and stay put
+  // while it scrolls, which a clipping and scrolling `main` would prevent.
+  const hasSideRail = Boolean(
+    post?.tags?.split(', ').includes(BLOG.TUTORIAL_TAG)
+  )
   const isLegalPage = LEGAL_PAGES.includes(section)
   const isSimplePage = SIMPLE_PAGES.includes(section)
   const canonical = alternates?.find(a => a.locale === locale)?.href
@@ -37,7 +42,7 @@ export default function Layout({
   const needsBorder = hasHero || isLegalPage || isSimplePage
   const mainProps = {
     ...(!isPrintable && {
-      className: `container mx-auto mb-auto overflow-hidden sm:pt-12${
+      className: `container mx-auto mb-auto sm:pt-12${hasSideRail ? '' : ' overflow-hidden'}${
         needsBorder ? ' border-t border-neutral-300/10' : ''
       }`
     })

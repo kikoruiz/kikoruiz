@@ -2,7 +2,7 @@
 
 ## Introducció
 
-Esta política explica quines galetes i tecnologies similars usa [kikoruiz.es](/), per a què servixen i com pots gestionar-les. Forma part de la [política de privacitat](/politica-de-privacitat).
+Esta política explica quines galetes i tecnologies similars usa [kikoruiz.es](/), per a què serveixen i com pots gestionar-les. Forma part de la [política de privacitat](/politica-de-privacitat).
 
 ## Què són les galetes?
 

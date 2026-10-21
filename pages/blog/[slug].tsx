@@ -4,11 +4,14 @@ import useTranslation from 'next-translate/useTranslation'
 import {getAllPosts} from 'lib/blog/posts'
 import {getPrettyDate} from 'lib/blog/date'
 import {getTagsData} from 'lib/blog/tags'
+import {getTutorialSteps, TutorialStep} from 'lib/blog/steps'
 import {fromLocalesToAlternates} from 'lib/mappers'
 import {getBlogPostingStructuredData} from 'lib/structured-data'
 import {getAbsoluteUrl, getSlug} from 'lib/utils'
 import {BLOG, SITE_NAME} from 'config'
 import Article from 'components/article'
+import TutorialSteps from 'components/tutorial-steps'
+import useLayoutContext from 'contexts/Layout'
 import JsonLd from 'components/json-ld'
 import BlogTags from 'components/blog-tags'
 import {BlogPost} from 'types/blog'
@@ -17,12 +20,15 @@ import PostTitle from 'components/post-title'
 import IconInformationCircle from 'assets/icons/information-circle.svg'
 import {FIT_TITLE_CLASS_NAME, getFitTitleStyle} from 'lib/utils/title'
 
-export default function Post({post, alternates}: PostProps) {
+export default function Post({post, alternates, steps}: PostProps) {
   const {locale, defaultLocale} = useRouter()
   const {t} = useTranslation('blog')
   const author = BLOG.AUTHORS.find(({slug}) => post.author === slug).name
   const localePath = defaultLocale === locale ? '' : `/${locale}`
   const title = `${SITE_NAME} / ${post.title}`
+  const isTutorial = steps.length > 0
+  const {layout} = useLayoutContext()
+  const headerHeight = layout?.headerHeight || 0
 
   function createAuthorMarkup() {
     return {
@@ -114,13 +120,26 @@ export default function Post({post, alternates}: PostProps) {
           />
         </header>
 
-        <Article
-          content={post.body}
-          contentImages={post.bodyImages}
-          className="relative mx-auto mt-12 pt-12 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"
-        />
+        <div className="relative">
+          {isTutorial && (
+            <div className="mt-12 min-[1500px]:absolute min-[1500px]:-bottom-20 min-[1500px]:left-[calc(50%-50vw+1.5rem)] min-[1500px]:top-0 min-[1500px]:mt-0 min-[1500px]:w-56 min-[1500px]:pt-12">
+              <div
+                className="min-[1500px]:sticky"
+                style={{top: `calc(${headerHeight}px + 1.5rem)`}}
+              >
+                <TutorialSteps steps={steps} />
+              </div>
+            </div>
+          )}
 
-        {post.tags && <BlogTags tags={post.blogTags} isPost />}
+          <Article
+            content={post.body}
+            contentImages={post.bodyImages}
+            className="[&_ul]:list-none [&_ul]:pl-0 [&_ul>li]:relative [&_ul>li]:flow-root [&_ul>li]:pl-[2em] [&_ul>li]:before:absolute [&_ul>li]:before:left-[0.95em] [&_ul>li]:before:top-[0.8em] [&_ul>li]:before:size-[0.34em] [&_ul>li]:before:rounded-full [&_ul>li]:before:bg-current [&_ul>li]:before:content-[''] relative mx-auto mt-12 pt-12 before:absolute before:left-0 before:top-0 before:block before:h-[1px] before:w-full before:bg-gradient-to-r before:from-transparent before:via-neutral-600"
+          />
+
+          {post.tags && <BlogTags tags={post.blogTags} isPost />}
+        </div>
       </article>
     </>
   )
@@ -173,6 +192,9 @@ export async function getStaticProps({
     props: {
       post: {...post, blogTags},
       alternates,
+      steps: post.tags.split(', ').includes(BLOG.TUTORIAL_TAG)
+        ? getTutorialSteps(post.body)
+        : [],
       section
     }
   }
@@ -181,4 +203,5 @@ export async function getStaticProps({
 interface PostProps {
   post: BlogPost
   alternates: Alternate[]
+  steps: TutorialStep[]
 }

@@ -1,8 +1,8 @@
 Última actualització: **14 d'octubre de 2026**
 
-## Què cobrix esta llicència
+## Què cobreix esta llicència
 
-Esta llicència regula l'ús dels arxius que compres a la [botiga de descàrregues](/botiga/descarregues). En comprar-los no adquirixes les fotografies ni els seus drets d'autor, que continuen sent meus, sinó una llicència per usar-les en les condicions que es descriuen ací. Acceptes esta llicència en fer la compra.
+Esta llicència regula l'ús dels arxius que compres a la [botiga de descàrregues](/botiga/descarregues). En comprar-los no adquireixes les fotografies ni els seus drets d'autor, que continuen sent meus, sinó una llicència per usar-les en les condicions que es descriuen ací. Acceptes esta llicència en fer la compra.
 
 ## Nivells de llicència
 
@@ -54,11 +54,11 @@ En cap nivell de llicència pots:
 
 ## Persones, marques i propietats
 
-La llicència només cobrix els meus drets d'autor sobre la fotografia. No inclou l'autorització de les persones, marques, obres o propietats que hi puguen aparéixer. Comprovar si necessites esta autorització per a l'ús que li vas a donar és responsabilitat teua, sobretot en l'ús comercial.
+La llicència només cobreix els meus drets d'autor sobre la fotografia. No inclou l'autorització de les persones, marques, obres o propietats que hi puguen aparéixer. Comprovar si necessites esta autorització per a l'ús que li vas a donar és responsabilitat teua, sobretot en l'ús comercial.
 
 ## Incompliment
 
-Si incomplixes estes condicions, la teua llicència queda sense efecte i has de deixar d'usar la imatge, sense perjudici de les accions legals que em corresponguen.
+Si incompleixes estes condicions, la teua llicència queda sense efecte i has de deixar d'usar la imatge, sense perjudici de les accions legals que em corresponguen.
 
 ## Garantia i canvis
 

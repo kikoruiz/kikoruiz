@@ -7,7 +7,7 @@ tags: 'photography, personal'
 
 Hui és el **9 d'octubre** i toca mirar una estona cap a casa.
 
-Jo em vaig criar en un poble mariner de la **Marina Baixa**, de família de **la Vila Joiosa**, eixe poble de cases de colors que, segons conten, es van pintar així per a que els pescadors reconegueren la seua des de mar endins. M'agrada pensar que la primera cosa que vaig aprendre sobre la imatge la vaig aprendre d'ací: que el color servix per a trobar el camí de tornada.
+Jo em vaig criar en un poble mariner de la **Marina Baixa**, de família de **la Vila Joiosa**, eixe poble de cases de colors que, segons conten, es van pintar així per a que els pescadors reconegueren la seua des de mar endins. M'agrada pensar que la primera cosa que vaig aprendre sobre la imatge la vaig aprendre d'ací: que el color serveix per a trobar el camí de tornada.
 
 ## Aprendre a mirar el que ja tenies davant
 
