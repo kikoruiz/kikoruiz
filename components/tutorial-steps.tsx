@@ -14,7 +14,7 @@ const SMOOTH_SCROLL_SETTLE_TIME = 1000
 
 // How fast the tip of the line travels, in pixels per millisecond. It is the
 // same whether it goes a step or the whole way, so a long jump takes longer.
-const LINE_SPEED = 0.5
+const LINE_SPEED = 0.7
 function useActiveStep(ids: string[]) {
   const [activeIndex, setActiveIndex] = useState(-1)
   const key = ids.join()
