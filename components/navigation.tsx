@@ -195,7 +195,7 @@ export default function Navigation({
             onClick={() => {
               setShowImage(!showImage)
             }}
-            className="flex gap-1.5 w-full items-center justify-center pointer-events-auto"
+            className="flex gap-1.5 w-full items-center justify-center"
             size="small"
             intent="light"
           >
