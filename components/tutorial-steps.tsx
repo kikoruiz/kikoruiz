@@ -321,6 +321,10 @@ export default function TutorialSteps({
           const isDone = index < reachedIndex
           const isActive = index === reachedIndex
           const isLast = index === steps.length - 1
+          // The step you are already reading has nowhere to scroll to, so its
+          // link stops being one.
+          const isCurrent = index === activeIndex
+          const Tag = isCurrent ? 'span' : 'a'
 
           return (
             <li
@@ -328,11 +332,13 @@ export default function TutorialSteps({
               className="relative motion-safe:animate-fade-in motion-safe:[animation-fill-mode:backwards]"
               style={{animationDelay: `${index * 90}ms`}}
             >
-              <a
-                href={`#${id}`}
-                aria-current={index === activeIndex ? 'step' : undefined}
-                onClick={event => handleClick(event, id, index)}
-                className="group flex gap-3"
+              <Tag
+                {...(!isCurrent && {
+                  href: `#${id}`,
+                  onClick: event => handleClick(event, id, index)
+                })}
+                aria-current={isCurrent ? 'step' : undefined}
+                className={`group flex gap-3${isCurrent ? ' cursor-default' : ''}`}
               >
                 <span
                   ref={element => {
@@ -369,7 +375,7 @@ export default function TutorialSteps({
                     {title}
                   </span>
                 </span>
-              </a>
+              </Tag>
             </li>
           )
         })}
