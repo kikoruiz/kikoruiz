@@ -10,6 +10,7 @@ import {SectionImage} from 'types'
 interface HomeSectionsItemProps extends SectionImage {
   palette?: SectionPalette
   isCollapsed: boolean
+  needsPreload?: boolean
 }
 
 export default function HomeSectionsItem({
@@ -24,7 +25,8 @@ export default function HomeSectionsItem({
     description: '#d6a77a',
     ink: '#262626'
   },
-  isCollapsed
+  isCollapsed,
+  needsPreload = false
 }: HomeSectionsItemProps) {
   const {t} = useTranslation()
   const href = `/${getSlug(t(`sections.${id}.name`))}`
@@ -84,7 +86,7 @@ export default function HomeSectionsItem({
               }}
               fallbackStyle={css}
               sizes={sizes}
-              needsPreload
+              needsPreload={needsPreload}
             />
           </div>
         </div>
