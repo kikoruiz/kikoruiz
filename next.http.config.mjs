@@ -88,6 +88,28 @@ const http = {
       locale: false,
       permanent: true
     },
+    // The redirect above only covered the index: the physical route behind
+    // every other English gallery page stayed reachable and crawlable under
+    // its own URL, a canonical tag pointing elsewhere notwithstanding, which
+    // is how Google kept finding and cataloguing it as a duplicate.
+    {
+      source: '/en/galeria/tags/:tag',
+      destination: '/en/gallery/tags/:tag',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/en/galeria/:slug/:picture',
+      destination: '/en/gallery/:slug/:picture',
+      locale: false,
+      permanent: true
+    },
+    {
+      source: '/en/galeria/:slug',
+      destination: '/en/gallery/:slug',
+      locale: false,
+      permanent: true
+    },
     {
       source: '/ca/tienda',
       destination: '/ca/botiga',
