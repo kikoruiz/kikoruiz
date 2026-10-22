@@ -19,7 +19,11 @@ export default function Hero({image, isImageHidden = false}: HeroProps) {
             'linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, transparent 100%)'
         }}
         sizes={image.sizes}
-        needsPreload
+        // The image starts hidden on every visit, so preloading it
+        // unconditionally fetched a background photo almost nobody was about
+        // to see at the same high priority as the content that actually
+        // paints first, which is exactly what LCP measures.
+        needsPreload={!isImageHidden}
         isHidden={isImageHidden}
       />
     </div>
