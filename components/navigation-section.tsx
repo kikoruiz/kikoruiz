@@ -52,7 +52,7 @@ export default function NavigationSection({
   // on hover has no colour to travel from.
   const tabClassName =
     hasCategories && !isMenuOpen
-      ? ` before:absolute before:bottom-0 before:left-[-0.5rem] before:block before:h-full before:w-[calc(100%+1rem)] before:rounded-t before:bg-transparent before:transition-[background-color,box-shadow] before:duration-300${
+      ? ` before:absolute before:bottom-0 before:left-[-0.5rem] before:block before:h-full before:w-[calc(100%+1rem)] before:rounded-t before:bg-transparent before:transition-[background-color,box-shadow] before:duration-150${
           isDismissed
             ? ''
             : ' group-hover:before:bg-neutral-800 group-hover:before:shadow-md'
